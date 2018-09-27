@@ -1,0 +1,8 @@
+找到项目文件夹
+右键Git Bash Here
+git init
+git add .
+git remote add origin https://github.com/dfgr1510315/HappyFriday/blob/master/ServerTest
+git pull origin master
+git pull --allow-unrelated-histories
+git push -u origin ServerTest
