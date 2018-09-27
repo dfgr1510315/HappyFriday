@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+
+    <servlet>
+        <servlet-name>SayHello</servlet-name>
+        <servlet-class>HelloPage.SayHello</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SayHello</servlet-name>
+        <url-pattern>/sayhello</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletHello</servlet-name>
+        <servlet-class>HelloPage.ServletHello</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletHello</servlet-name>
+        <url-pattern>/servlethello</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HelloForm</servlet-name>
+        <servlet-class>HelloPage.HelloForm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloForm</servlet-name>
+        <url-pattern>/helloform</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Resgister</servlet-name>
+        <servlet-class>Server.Register</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Resgister</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+</web-app>

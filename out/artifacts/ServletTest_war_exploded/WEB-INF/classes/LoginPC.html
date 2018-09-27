@@ -1,0 +1,70 @@
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head><meta charset="utf-8"><title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+<link rel="stylesheet" href="http://at.alicdn.com/t/font_404812_5ylqhr7dqsg1ra4i.css" type="text/css" media="all">
+<script src="zepto.js"></script>
+<script src="vue.js"></script>
+<script src="uic.js"></script>
+</head>
+<body>
+<link rel="stylesheet" href="http://www.uicweb.cn/usercss/uic1253/css/LoginPC.css" type="text/css" media="all">
+<div id="id1367" class="id1367" >
+    <div class='a1'>
+        <div class='b1'>
+            <i class='c1'>首页</i>
+            <i class='c2'>文档</i>
+            <i class='c3'>登录</i>
+        </div>
+    </div>
+
+    <div class='a2'></div>
+    <div class='a3'>
+        <div class='b1'>
+            <div class='c1'>
+                <div class='d1'>用户登录</div>
+            </div>
+            <div class='c2'>
+                <img src="" class='d1'>
+                <div class='d2'>
+                    <div class='e1'>
+                        <div class='f1'>登录名</div>
+                        <input type="text" placeholder="用户登录名" class='f2'>
+                    </div>
+                    <div class='e2'>
+                        <div class='f1'>密码</div>
+                        <input type="password" placeholder="请输入登录密码" class='f2'>
+                    </div>
+                    <div class='e3'>
+                        <div class='f1'></div>
+                        <div class='f2'>
+                            <input type="button" value="注册" v-on:click="location.href='registerPC.html'" class='g2'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='a4'></div>
+</div>
+<script type="text/javascript">
+	var v=new Vue({el:"#id1367",
+	
+	});
+
+   $(document).ready(function(){
+        $('#login').click(function(){
+            $.post("http://localhost:8080/register",{
+                    name:"455511",
+                    password:"155599"
+                },
+                function(data,status){
+                    //alert("数据: \n" + data + "\n状态: " + status);
+                    alert(status);
+                });
+            alert("???");
+        });
+    });
+
+</script>
+</body>
+</html>
