@@ -15,9 +15,8 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <link href="https://cdn.bootcss.com/ionic/1.3.2/css/ionic.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/ionic/1.3.2/js/ionic.bundle.min.js"></script>
-    <script type="text/javascript">
+
+    <%--<script type="text/javascript">
         angular.module('ionicApp', ['ionic'])
 
             .controller('SlideController', function ($scope) {
@@ -56,47 +55,12 @@
                 };
 
             });
-    </script>
+    </script>--%>
 
     <style>
         body {
             background: #fffef5;
         }
-
-        ul.daohang {
-            list-style-type: none;
-        }
-
-        ul.daohang li {
-            float: left;
-        }
-
-        ul.daohang li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 12px 16px;
-            text-decoration: none;
-            margin-top: -5px;
-        }
-
-        ul.daohang li a:hover:not(.active2) {
-            background-color: #3A5FCD;
-        }
-
-        .active2 {
-            background-color: #3A5FCD;
-        }
-
-        ul.daohang li.li3 {
-            float: right;
-            margin-right: 50px;
-        }
-
-        ul.daohang li.li1 {
-            margin-left: 50px;
-        }
-
 
         .item-top{
             width: 32%;
@@ -122,11 +86,6 @@
             float: left;
         }
 
-        .codelist h4{
-            border-bottom-width:1px;
-            border-bottom-color: #ddd;
-            border-style: solid
-        }
 
         .codelist h4 i{
             display: inline-block;
@@ -143,7 +102,7 @@
 
     </style>
 </head>
-<body ng-app="ionicApp" animation="slide-left-right-ios7" ng-controller="SlideController">
+<body >
 <div  style="position:fixed;top:0;left:0;right:0;width: 100% ;padding-left: 40px;padding-top: 9px;padding-bottom: 9px;background-color: white; z-index: 6;">
     <ul class="nav nav-pills">
         <li class="nav-item">
@@ -165,22 +124,35 @@
                 <div style="width: 100%;height: 100%;padding-top: 50px;">
                     <i style="display: inline-block; background-size: cover;  background-image: url(image/tags.png);height: 19px; width: 19px; "></i>
                     <span style="color: #999999">文档分类</span>
-                    <div ng-controller="MyCtrl" style="margin-top: 20px;  min-height:200px;  background-color: #fff;">
-                        <div >
-                            <div ng-repeat="group in groups " style=" background-color: #fffef5;border:none;">
-                                <ion-item class="item-stable"
-                                          ng-click="toggleGroup(group)"
-                                          ng-class="{active: isGroupShown(group)}"
-                                          style=" border-radius: 3px; width: 200px; background-color: white">
-                                    <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
-                                    {{group.name}}
-                                </ion-item>
-                                <ion-item class="item-accordion"
-                                          ng-repeat="item in group.items"
-                                          ng-show="isGroupShown(group)" style=" border-radius: 3px; width: 200px;">
-                                    {{item}}
-                                </ion-item>
-                            </div>
+                    <div  style="margin-top: 20px;  min-height:200px;  background-color: #fff;">
+                        <div id="accordion">
+                                <%
+                                    String arr[][] = {{"HTML/CSS", "HTML", "HTML5", "CSS", "CSS3", "Bootstrap3", "Font Awesome", "Foundation"},
+                                            {"JavaScript", "JavaScript", "HTML DOM", "jQuery", "AngularJS2", "Vue.js", "Node.js", "AJAX", "JSON"},
+                                            {"服务端", "PHP", "Python", "Django", "Linux", "Docker", "Ruby", "Java", "C", "C++", "Servlet", "JSP"},
+                                            {"数据库", "SQL", "Mysql", "SQLite"},
+                                            {"移动端", "Android", "Swift", "ionic"},
+                                            {"XML教程", "XML", "DTD", "XPath", "XQuery"},
+                                            {"Web Service", "Web Service", "WSDL", "SOAP", "RSS"},
+                                            {"开发工具", "Eclipse", "Git"},
+                                            {"网站建设", "HTTP", "浏览器信息", "TCP/IP", "W3C"}};
+                                    for (int i=0;i<arr.length;i++){
+                                        out.println("<div class=\"card\" >");
+                                        out.println("<div class=\"card-header\">");
+                                        out.print("<a class=\"collapsed card-link\" data-toggle=\"collapse\" href=\"#collapse"+i+"\">");
+                                        out.println(arr[i][0]);
+                                        out.println("</a>");
+                                        out.println("</div>");
+                                        out.println("<div id=\"collapse"+i+"\" class=\"collapse \" data-parent=\"#accordion\">");
+                                        for (int j=1;j<arr[i].length;j++){
+                                            out.println("<div class=\"card-body\">");
+                                            out.println(arr[i][j]);
+                                            out.println("</div>");
+                                        }
+                                        out.println("</div>");
+                                        out.println("</div>");
+                                    }
+                                %>
                         </div>
                     </div>
                 </div>
