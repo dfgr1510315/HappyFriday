@@ -7,10 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12850cd1-69d1-43cd-8843-a98321ef88ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ServletTest_war_exploded/Resources.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ServletTest_war_exploded/Resources.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Resources.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Resources.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -104,7 +101,7 @@
           <entry key="html" value="560" />
           <entry key="java" value="1479" />
           <entry key="jsp" value="7449" />
-          <entry key="txt" value="5" />
+          <entry key="txt" value="23" />
           <entry key="xml" value="274" />
         </counts>
       </usages-collector>
@@ -114,7 +111,7 @@
           <entry key="HTML" value="560" />
           <entry key="JAVA" value="1551" />
           <entry key="JSP" value="7377" />
-          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="PLAIN_TEXT" value="23" />
           <entry key="XML" value="274" />
         </counts>
       </usages-collector>
@@ -168,8 +165,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/Resources.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="145" column="26" lean-forward="true" selection-start-line="145" selection-start-column="26" selection-end-line="145" selection-end-column="26" />
+            <state relative-caret-position="102">
+              <caret line="141" column="6" selection-start-line="141" selection-start-column="6" selection-end-line="141" selection-end-column="6" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -430,11 +427,12 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="ChangesTree.GroupingKeys" value="directory" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538102496030" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538102799893" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -926,12 +924,20 @@
       <workItem from="1537950165332" duration="10626000" />
       <workItem from="1538036665847" duration="3160000" />
       <workItem from="1538051397534" duration="3753000" />
-      <workItem from="1538099156436" duration="3314000" />
+      <workItem from="1538099156436" duration="3569000" />
     </task>
+    <task id="LOCAL-00001" summary="将ionic换成了bootstrap">
+      <created>1538102747370</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1538102747370</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189459000" />
+    <option name="totallyTimeSpent" value="189714000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -945,23 +951,23 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.587234" visible="true" weight="0.21983914" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5875" visible="true" weight="0.21983914" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.5007072" side_tool="true" weight="0.17895442" />
       <window_info id="Capture Tool" order="6" />
-      <window_info id="Web" order="7" sideWeight="0.41276595" side_tool="true" visible="true" weight="0.21983914" />
+      <window_info id="Web" order="7" sideWeight="0.4125" side_tool="true" visible="true" weight="0.21983914" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32956153" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.34844193" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.09219858" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.09219858" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32907802" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.36299434" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.3286119" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32956153" />
@@ -983,6 +989,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="将ionic换成了bootstrap" />
+    <option name="LAST_COMMIT_MESSAGE" value="将ionic换成了bootstrap" />
   </component>
   <component name="XPathView.XPathProjectComponent">
     <history />
@@ -1251,8 +1261,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Resources.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="145" column="26" lean-forward="true" selection-start-line="145" selection-start-column="26" selection-end-line="145" selection-end-column="26" />
+        <state relative-caret-position="102">
+          <caret line="141" column="6" selection-start-line="141" selection-start-column="6" selection-end-line="141" selection-end-column="6" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
