@@ -17,6 +17,10 @@ import com.google.gson.JsonObject;
 
 @WebServlet(name = "Register")
 public class Register extends HttpServlet {
+    private static final int loginError = 1;
+    private static final int loginSuccess = 2;
+    private static final int registerError = 3;
+    private static final int registerSuccess = 4;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
@@ -26,25 +30,24 @@ public class Register extends HttpServlet {
         String statu = request.getParameter("statu");
         System.out.println("获取到的状态、用户名和密码为：" + statu + username + password);
         int Mysqlstate = ConnectMysql(username, password);
+        int msg;
         if (statu.equals("login")) {
             if (Mysqlstate == 2) {
                 System.out.println("login success!!");
+                msg = loginSuccess;
                 PrintWriter out = response.getWriter();
+                out.print(msg);
                 out.flush();
-                out.println("<script>");
-                out.println("location.href='homepage.jsp'");
-                /*out.println("location.href='index.jsp?name=admin'");*/
-                out.println("alert('登录成功');");
-                out.println("</script>");
                 out.close();
             } else {
                 System.out.println("login false");
+                msg = loginError;
                 PrintWriter out = response.getWriter();
                 out.flush();
-                out.println("<script>");
+                out.print(msg);
+               /* out.println("<script>");
                 out.println("alert('用户名或密码错误');");
-                out.println("location.href='LoginPC.jsp';");
-                out.println("</script>");
+                out.println("</script>");*/
                 out.close();
             }
         } else if (statu.equals("register")) {

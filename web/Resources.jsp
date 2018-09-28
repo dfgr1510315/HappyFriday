@@ -106,15 +106,53 @@
 <div  style="position:fixed;top:0;left:0;right:0;width: 100% ;padding-left: 40px;padding-top: 9px;padding-bottom: 9px;background-color: white; z-index: 6;">
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a class="nav-link active" href="#">首页</a>
+            <a class="nav-link" href="homepage.jsp">首页</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="Resources.jsp">文档</a>
+            <a class="nav-link active" href="Resources.jsp">文档</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#LoginModal" href="Resources.jsp">登录</a>
         </li>
     </ul>
+</div>
+
+<div class="modal fade" id="LoginModal" style="background-color: transparent; width: 100%; top: 165px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <%-- 登录框头部--%>
+            <div class="modal-header">
+                <h4 class="modal-title">登录</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <%--登录界面--%>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="email">用户名:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">密码:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox"> 记住我
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 15px">登录</button>
+                </form>
+            </div>
+
+            <%--登录底部--%>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">。。。</button>
+            </div>--%>
+        </div>
+    </div>
 </div>
 
 <div>

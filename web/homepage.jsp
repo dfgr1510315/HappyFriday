@@ -79,8 +79,17 @@
         <li class="nav-item">
             <a class="nav-link" href="Resources.jsp">文档</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="loginButton">
             <a class="nav-link" data-toggle="modal" data-target="#LoginModal" href="Resources.jsp">登录</a>
+        </li>
+        <li class="nav-item dropdown" id="personalCenter" style="display: none">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">个人中心</a>
+                <a class="dropdown-item" href="#">...</a>
+                <a class="dropdown-item" href="#">...</a>
+                <a class="dropdown-item" href="">退出登录</a>
+            </div>
         </li>
     </ul>
 </div>
@@ -92,22 +101,71 @@
             <%-- 登录框头部--%>
             <div class="modal-header">
                 <h4 class="modal-title">登录</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" id="loginClose">&times;</button>
             </div>
 
             <%--登录界面--%>
             <div class="modal-body">
-                登录内容。。。
+                <form id="login_form" action="http://localhost:8080/register" method="POST">
+                    <div class="form-group">
+                        <label for="username">用户名:</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">密码:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox"> 记住我
+                            <input style="display:none" type="text" value="login" name="statu" id="statu">
+                            <span id="loginError" style="display: none; color:red;margin-left: 20px">用户名或密码错误</span>
+                        </label>
+                    </div>
+                    <button id="login_btn" type="button" class="btn btn-primary" style="margin-top: 15px" onclick="login()">登录</button>
+                </form>
             </div>
 
             <%--登录底部--%>
-            <div class="modal-footer">
+            <%--<div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">。。。</button>
-            </div>
+            </div>--%>
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    function login() {
+        var username = $.trim($("#username").val());
+        var password = $.trim($("#pwd").val());
+        var statu = $.trim($("#statu").val());
+        if (username==""){
+            alert("请输入用户名");
+            return false;
+        } else if(password==""){
+            alert("请输入密码");
+            return false;
+        }
+        var data = {username:username,password:password,statu:statu};
+        $.ajax({
+            type:"POST",
+            asynch :"false",
+            url:"http://localhost:8080/register",
+            data:data,
+            dataType:'json',
+            success:function (msg) {
+                if (msg == 1) {
+                    $("#loginError").show();
+                }
+                else{
+                    $("#loginClose").click();
+                    $("#loginButton").hide();
+                    $("#personalCenter").show();
+                    $("#showname").text(username);
+                }
+            }
+        });
+    }
+</script>
 
 <div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px; margin-top: 56px;">
 
@@ -141,16 +199,6 @@
     </a>
 </div>
 
-
-<%--
-<div class="b1">
-    <div class="retrieval" style="margin: 16px;  padding-left: 10%; padding-right: 10%;">
-        <input type="text" placeholder="请输入关键字"
-               style="width: 80% ;padding: 5px; padding-left: 10px;border-radius: 6px; float: left">
-        <input type="submit" value="搜索" style="height: 34px;" onclick="alert('还得先搭建文档数据库');">
-    </div>
-</div>
---%>
 <div class="b1">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="检索...">
