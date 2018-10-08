@@ -62,7 +62,7 @@
             background: #fffef5;
         }
 
-        .item-top{
+        .item-top {
             width: 32%;
             margin: 0px 8px 9px 0px;
             text-align: left;
@@ -73,21 +73,20 @@
             padding: 6px 16px;
         }
 
-        .item-top:hover{
+        .item-top:hover {
             background-color: #e5e5e5;
         }
 
-        .codelist{
+        .codelist {
             float: left;
             width: 95%;
         }
 
-        .codelist a{
+        .codelist a {
             float: left;
         }
 
-
-        .codelist h4 i{
+        .codelist h4 i {
             display: inline-block;
             background-size: cover;
             background-image: url(image/tags.png);
@@ -95,15 +94,15 @@
             width: 19px;
         }
 
-        .codelist strong{
+        .codelist strong {
             font-size: 12px;
             margin-left: 10px;
         }
 
     </style>
 </head>
-<body >
-<div  style="position:fixed;top:0;left:0;right:0;width: 100% ;padding-left: 40px;padding-top: 9px;padding-bottom: 9px;background-color: white; z-index: 6;">
+<body>
+<div style="position:fixed;top:0;left:0;right:0;width: 100% ;padding-left: 40px;padding-top: 9px;padding-bottom: 9px;background-color: white; z-index: 6;">
     <ul class="nav nav-pills">
         <li class="nav-item">
             <a class="nav-link" href="homepage.jsp">首页</a>
@@ -111,8 +110,17 @@
         <li class="nav-item">
             <a class="nav-link active" href="Resources.jsp">文档</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="loginButton">
             <a class="nav-link" data-toggle="modal" data-target="#LoginModal" href="Resources.jsp">登录</a>
+        </li>
+        <li class="nav-item dropdown" id="personalCenter" style="display: none">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#" onclick="PerCenter()">个人中心</a>
+                <a class="dropdown-item" href="#">...</a>
+                <a class="dropdown-item" href="#">...</a>
+                <a class="dropdown-item" href="">退出登录</a>
+            </div>
         </li>
     </ul>
 </div>
@@ -124,15 +132,15 @@
             <%-- 登录框头部--%>
             <div class="modal-header">
                 <h4 class="modal-title">登录</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button id="loginClose"  class="close" data-dismiss="modal" >&times;</button>
             </div>
 
             <%--登录界面--%>
             <div class="modal-body">
-                <form>
+                <form id="login_form" action="http://localhost:8080/register" method="POST">
                     <div class="form-group">
-                        <label for="email">用户名:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter username">
+                        <label for="username">用户名:</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter username">
                     </div>
                     <div class="form-group">
                         <label for="pwd">密码:</label>
@@ -141,9 +149,11 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input class="form-check-input" type="checkbox"> 记住我
+                            <input style="display:none" type="text" value="login" name="statu" id="statu">
+                            <span id="loginError" style="display: none; color:red;margin-left: 20px">用户名或密码错误</span>
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 15px">登录</button>
+                    <button id="login_btn" type="button" class="btn btn-primary" style="margin-top: 15px" onclick="login()">登录</button>
                 </form>
             </div>
 
@@ -155,6 +165,44 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    function login() {
+        var username = $.trim($("#username").val());
+        var password = $.trim($("#pwd").val());
+        var statu = $.trim($("#statu").val());
+        if (username == "") {
+            alert("请输入用户名");
+            return false;
+        } else if (password == "") {
+            alert("请输入密码");
+            return false;
+        }
+        var data = {username: username, password: password, statu: statu};
+        $.ajax({
+            type: "POST",
+            asynch: "false",
+            url: "http://localhost:8080/register",
+            data: data,
+            dataType: 'json',
+            success: function (msg) {
+                if (msg == 1) {
+                    $("#loginError").show();
+                }
+                else {
+                    $("#loginClose").click();
+                    $("#loginButton").hide();
+                    $("#personalCenter").show();
+                    $("#showname").text(username);
+                }
+            }
+        });
+    }
+    function PerCenter() {
+        var username = $.trim($("#username").val());
+        window.open("http://localhost:8080/PersonalCenter.jsp?username="+username);
+    }
+</script>
+
 <div>
     <div style="width: 100%;height: 2350px;margin-top: 44px;margin-left: auto;margin-right: auto;">
         <div style="width: 80%;margin: auto;">
@@ -162,35 +210,35 @@
                 <div style="width: 100%;height: 100%;padding-top: 50px;">
                     <i style="display: inline-block; background-size: cover;  background-image: url(image/tags.png);height: 19px; width: 19px; "></i>
                     <span style="color: #999999">文档分类</span>
-                    <div  style="margin-top: 20px;  min-height:200px;  background-color: #fff;">
+                    <div style="margin-top: 20px;  min-height:200px;  background-color: #fff;">
                         <div id="accordion">
-                                <%
-                                    String arr[][] = {{"HTML/CSS", "HTML", "HTML5", "CSS", "CSS3", "Bootstrap3", "Font Awesome", "Foundation"},
-                                            {"JavaScript", "JavaScript", "HTML DOM", "jQuery", "AngularJS2", "Vue.js", "Node.js", "AJAX", "JSON"},
-                                            {"服务端", "PHP", "Python", "Django", "Linux", "Docker", "Ruby", "Java", "C", "C++", "Servlet", "JSP"},
-                                            {"数据库", "SQL", "Mysql", "SQLite"},
-                                            {"移动端", "Android", "Swift", "ionic"},
-                                            {"XML教程", "XML", "DTD", "XPath", "XQuery"},
-                                            {"Web Service", "Web Service", "WSDL", "SOAP", "RSS"},
-                                            {"开发工具", "Eclipse", "Git"},
-                                            {"网站建设", "HTTP", "浏览器信息", "TCP/IP", "W3C"}};
-                                    for (int i=0;i<arr.length;i++){
-                                        out.println("<div class=\"card\" >");
-                                        out.println("<div class=\"card-header\">");
-                                        out.print("<a class=\"collapsed card-link\" data-toggle=\"collapse\" href=\"#collapse"+i+"\">");
-                                        out.println(arr[i][0]);
-                                        out.println("</a>");
-                                        out.println("</div>");
-                                        out.println("<div id=\"collapse"+i+"\" class=\"collapse \" data-parent=\"#accordion\">");
-                                        for (int j=1;j<arr[i].length;j++){
-                                            out.println("<div class=\"card-body\">");
-                                            out.println(arr[i][j]);
-                                            out.println("</div>");
-                                        }
-                                        out.println("</div>");
+                            <%
+                                String arr[][] = {{"HTML/CSS", "HTML", "HTML5", "CSS", "CSS3", "Bootstrap3", "Font Awesome", "Foundation"},
+                                        {"JavaScript", "JavaScript", "HTML DOM", "jQuery", "AngularJS2", "Vue.js", "Node.js", "AJAX", "JSON"},
+                                        {"服务端", "PHP", "Python", "Django", "Linux", "Docker", "Ruby", "Java", "C", "C++", "Servlet", "JSP"},
+                                        {"数据库", "SQL", "Mysql", "SQLite"},
+                                        {"移动端", "Android", "Swift", "ionic"},
+                                        {"XML教程", "XML", "DTD", "XPath", "XQuery"},
+                                        {"Web Service", "Web Service", "WSDL", "SOAP", "RSS"},
+                                        {"开发工具", "Eclipse", "Git"},
+                                        {"网站建设", "HTTP", "浏览器信息", "TCP/IP", "W3C"}};
+                                for (int i = 0; i < arr.length; i++) {
+                                    out.println("<div class=\"card\" >");
+                                    out.println("<div class=\"card-header\">");
+                                    out.print("<a class=\"collapsed card-link\" data-toggle=\"collapse\" href=\"#collapse" + i + "\">");
+                                    out.println(arr[i][0]);
+                                    out.println("</a>");
+                                    out.println("</div>");
+                                    out.println("<div id=\"collapse" + i + "\" class=\"collapse \" data-parent=\"#accordion\">");
+                                    for (int j = 1; j < arr[i].length; j++) {
+                                        out.println("<div class=\"card-body\">");
+                                        out.println(arr[i][j]);
                                         out.println("</div>");
                                     }
-                                %>
+                                    out.println("</div>");
+                                    out.println("</div>");
+                                }
+                            %>
                         </div>
                     </div>
                 </div>
@@ -199,7 +247,7 @@
             <div style="width: 83%;height: 100%;float: right">
                 <div style=" margin-top: 93px;width: 100%;border-color: #b2b2b2;border-style: solid;border-width: 1px;border-radius: 3px;min-height: 2200px; margin-bottom: 100px;  padding-left: 20px;padding-top: 20px; padding-right:20px;  background-color: white;">
                     <div class="codelist">
-                        <h4 ><i></i>HTML/CSS</h4>
+                        <h4><i></i>HTML/CSS</h4>
                         <a class="item-top">
                             <h5>【HTML】</h5>
                             <strong>HTML是一种文本标记语言</strong>
@@ -413,7 +461,8 @@
             </div>
         </div>
     </div>
-    <div class="foot" style="float: left; background-color: white;width: 100%; height: 200px; margin-bottom: 0;border-color: #b2b2b2;border-style: solid;border-width: 1px;margin-bottom: 20px;">
+    <div class="foot"
+         style="float: left; background-color: white;width: 100%; height: 200px; margin-bottom: 0;border-color: #b2b2b2;border-style: solid;border-width: 1px;margin-bottom: 20px;">
 
     </div>
 </div>

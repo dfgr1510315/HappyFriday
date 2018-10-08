@@ -85,7 +85,7 @@
         <li class="nav-item dropdown" id="personalCenter" style="display: none">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">个人中心</a>
+                <a class="dropdown-item" href="#" onclick="PerCenter()">个人中心</a>
                 <a class="dropdown-item" href="#">...</a>
                 <a class="dropdown-item" href="#">...</a>
                 <a class="dropdown-item" href="">退出登录</a>
@@ -164,6 +164,10 @@
                 }
             }
         });
+    }
+    function PerCenter() {
+        var username = $.trim($("#username").val());
+        window.open("http://localhost:8080/PersonalCenter.jsp?username="+username);
     }
 </script>
 
