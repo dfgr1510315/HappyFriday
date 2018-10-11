@@ -11,11 +11,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>资源</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <%--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>--%>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <%--<script type="text/javascript">
         angular.module('ionicApp', ['ionic'])
 
@@ -56,7 +59,6 @@
 
             });
     </script>--%>
-
     <style>
         body {
             background: #fffef5;
@@ -98,110 +100,16 @@
             font-size: 12px;
             margin-left: 10px;
         }
-
     </style>
 </head>
-<body>
-<div style="position:fixed;top:0;left:0;right:0;width: 100% ;padding-left: 40px;padding-top: 9px;padding-bottom: 9px;background-color: white; z-index: 6;">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="homepage.jsp">首页</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="Resources.jsp">文档</a>
-        </li>
-        <li class="nav-item" id="loginButton">
-            <a class="nav-link" data-toggle="modal" data-target="#LoginModal" href="Resources.jsp">登录</a>
-        </li>
-        <li class="nav-item dropdown" id="personalCenter" style="display: none">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" onclick="PerCenter()">个人中心</a>
-                <a class="dropdown-item" href="#">...</a>
-                <a class="dropdown-item" href="#">...</a>
-                <a class="dropdown-item" href="">退出登录</a>
-            </div>
-        </li>
-    </ul>
-</div>
 
-<div class="modal fade" id="LoginModal" style="background-color: transparent; width: 100%; top: 165px;">
-    <div class="modal-dialog">
-        <div class="modal-content">
 
-            <%-- 登录框头部--%>
-            <div class="modal-header">
-                <h4 class="modal-title">登录</h4>
-                <button id="loginClose"  class="close" data-dismiss="modal" >&times;</button>
-            </div>
+<body id="resources" onload="checkCookie();ifActive()">
 
-            <%--登录界面--%>
-            <div class="modal-body">
-                <form id="login_form" action="http://localhost:8080/register" method="POST">
-                    <div class="form-group">
-                        <label for="username">用户名:</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter username">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">密码:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-                    </div>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox"> 记住我
-                            <input style="display:none" type="text" value="login" name="statu" id="statu">
-                            <span id="loginError" style="display: none; color:red;margin-left: 20px">用户名或密码错误</span>
-                        </label>
-                    </div>
-                    <button id="login_btn" type="button" class="btn btn-primary" style="margin-top: 15px" onclick="login()">登录</button>
-                </form>
-            </div>
+<jsp:include page="navigation.jsp"  />
 
-            <%--登录底部--%>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">。。。</button>
-            </div>--%>
-        </div>
-    </div>
-</div>
+<jsp:include page="LoginPC.jsp" />
 
-<script type="text/javascript">
-    function login() {
-        var username = $.trim($("#username").val());
-        var password = $.trim($("#pwd").val());
-        var statu = $.trim($("#statu").val());
-        if (username == "") {
-            alert("请输入用户名");
-            return false;
-        } else if (password == "") {
-            alert("请输入密码");
-            return false;
-        }
-        var data = {username: username, password: password, statu: statu};
-        $.ajax({
-            type: "POST",
-            asynch: "false",
-            url: "http://localhost:8080/register",
-            data: data,
-            dataType: 'json',
-            success: function (msg) {
-                if (msg == 1) {
-                    $("#loginError").show();
-                }
-                else {
-                    $("#loginClose").click();
-                    $("#loginButton").hide();
-                    $("#personalCenter").show();
-                    $("#showname").text(username);
-                }
-            }
-        });
-    }
-    function PerCenter() {
-        var username = $.trim($("#username").val());
-        window.open("http://localhost:8080/PersonalCenter.jsp?username="+username);
-    }
-</script>
 
 <div>
     <div style="width: 100%;height: 2350px;margin-top: 44px;margin-left: auto;margin-right: auto;">

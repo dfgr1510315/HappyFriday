@@ -6,33 +6,6 @@
 
 
     <servlet>
-        <servlet-name>SayHello</servlet-name>
-        <servlet-class>HelloPage.SayHello</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SayHello</servlet-name>
-        <url-pattern>/sayhello</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ServletHello</servlet-name>
-        <servlet-class>HelloPage.ServletHello</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletHello</servlet-name>
-        <url-pattern>/servlethello</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>HelloForm</servlet-name>
-        <servlet-class>HelloPage.HelloForm</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HelloForm</servlet-name>
-        <url-pattern>/helloform</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>Resgister</servlet-name>
         <servlet-class>Server.Register</servlet-class>
     </servlet>
@@ -41,4 +14,12 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UploadSec</servlet-name>
+        <servlet-class>Server.UploadSec</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadSec</servlet-name>
+        <url-pattern>/uploadsec</url-pattern>
+    </servlet-mapping>
 </web-app>
