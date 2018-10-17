@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <display-name>首页</display-name>
+    <welcome-file-list>
+        <welcome-file>homepage.jsp</welcome-file>
+    </welcome-file-list>
 
     <servlet>
         <servlet-name>Resgister</servlet-name>
@@ -21,5 +25,14 @@
     <servlet-mapping>
         <servlet-name>UploadSec</servlet-name>
         <url-pattern>/uploadsec</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChangeInfor</servlet-name>
+        <servlet-class>Server.ChangeInfor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeInfor</servlet-name>
+        <url-pattern>/changeInfor</url-pattern>
     </servlet-mapping>
 </web-app>

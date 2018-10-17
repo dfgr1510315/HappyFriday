@@ -80,7 +80,7 @@
 <jsp:include page="LoginPC.jsp" />
 
 
-<div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px; margin-top: 36px;">
+<div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px; margin-top: 71px;">
 
     <%--<!-- 指示符 -->
     <ul class="carousel-indicators">

@@ -105,14 +105,7 @@
         }
         return "";
     }
-    function checkCookie() {
-        var user = getCookie("username");
-        if (user!=""){
-            $("#loginButton").hide();
-            $("#personalCenter").show();
-            $("#showname").text(user);
-        }
-    }
+
     function deleteCookie() {
         $("#personalCenter").hide();
         $("#loginButton").show();

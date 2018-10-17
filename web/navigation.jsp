@@ -10,7 +10,7 @@
 <head>
 </head>
 <body >
-<div  style="position:fixed;top:0;left:0;right:0;width: 100% ;padding-left: 40px;padding-top: 9px;padding-bottom: 9px;background-color: white; z-index: 6;">
+<div  style="position:fixed;top:0;left:0;right:0;width: 100% ;padding-left: 40px;padding-top: 9px;padding-bottom: 9px;background-color: white; z-index: 6;    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);">
     <ul class="nav nav-pills" style="display: inline">
         <li class="nav-item">
             <a class="nav-link" href="homepage.jsp" style="float: left;">首页</a>
@@ -28,7 +28,7 @@
                 <a class="dropdown-item" href="upload.jsp">上传资源</a>
                 <a class="dropdown-item" href="#">账号设置</a>
                 <a class="dropdown-item" href="#">我的消息</a>
-                <a class="dropdown-item" href="" onclick="deleteCookie()">退出登录</a>
+                <a class="dropdown-item" href="homepage.jsp" onclick="deleteCookie()">退出登录</a>
             </div>
         </li>
     </ul>
@@ -45,6 +45,14 @@
             case id="resources":
                 document.getElementsByTagName("a")[1].className += ' active';
                 break;
+        }
+    }
+    function checkCookie() {
+        var user = getCookie("username");
+        if (user!=""){
+            $("#loginButton").hide();
+            $("#personalCenter").show();
+            $("#showname").text(user);
         }
     }
 </script>
