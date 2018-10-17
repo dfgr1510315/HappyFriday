@@ -64,7 +64,7 @@
 
     </style>
 </head>
-<body onload="checkCookie();showInfor()">
+<body onload="checkCookie();">
 
 <jsp:include page="navigation.jsp"/>
 
@@ -129,38 +129,36 @@
                                     list.add(inforBean);
                                 }
                                 request.setAttribute("list", list);
-                                //System.out.println(nike+sex+birth+information+teacher+name);
                                 rs.close();
                                 con.close();
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
+
                             ArrayList list = (ArrayList) request.getAttribute("list");
                             for (int i=0;i<list.size();i++){
                                 InforBean inforBean = (InforBean) list.get(i);
                         %>
                     <ul id="localUl" style="list-style: none;padding-left: 0" >
                         <li id="liNike">
-                            昵称: <%=inforBean.getNike() %>
+                            昵称：&nbsp<%=inforBean.getNike() %>
                         </li>
                         <li id="liName">
-                            实名:<%=inforBean.getName() %>
+                            实名：&nbsp<%=inforBean.getName() %>
                         </li>
                         <li id="liSex">
-                            性别:<%=inforBean.getSex() %>
+                            性别：&nbsp<%=inforBean.getSex() %>
                         </li>
                         <li id="liBirth">
-                            生日:<%=inforBean.getBirth() %>
+                            生日：&nbsp<%=inforBean.getBirth() %>
                         </li>
                         <li id="liTeacher">
-                            指导老师:<%=inforBean.getTeacher() %>
+                            指导老师：<%=inforBean.getTeacher() %>
                         </li>
                         <li id="liIntro">
-                            简介:<%=inforBean.getInformation() %>
+                            简介：&nbsp<%=inforBean.getInformation() %>
                         </li>
-                        <%
-                            }
-                        %>
+
                     </ul>
                 </div>
             </div>
@@ -191,13 +189,13 @@
                             <label for="sex">性别:</label>
                             <div class="dropdown">
                                 <button id="sex" type="button" class="btn btn-light dropdown-toggle"
-                                        data-toggle="dropdown" style="font-size: 15px">
+                                        data-toggle="dropdown" style="font-size: 15px" >
                                     请选择
                                 </button>
                                 <div class="dropdown-menu" style="min-width: 88px;">
-                                    <a class="dropdown-item" href="#" style="font-size: 13px"
+                                    <a class="dropdown-item"  style="font-size: 13px"
                                        onclick="sexChoose('男')">男</a>
-                                    <a class="dropdown-item" href="#" style="font-size: 13px"
+                                    <a class="dropdown-item"  style="font-size: 13px"
                                        onclick="sexChoose('女')">女</a>
                                 </div>
                             </div>
@@ -236,7 +234,7 @@
         $("#sex").text(sex);
     }
     
-    function showInfor() {
+   /* function showInfor() {
         alert("showInfor调用");
         $.ajax({
             type:"POST",
@@ -244,7 +242,7 @@
             url: "http://localhost:8080/changeInfor",
             data: {requestShow:"showInfor",ID:getCookie("username")},
             dataType: 'json'
-            /*success: function (nike,name,sex,birth,teacher,introduction) {
+            /!*success: function (nike,name,sex,birth,teacher,introduction) {
                 alert("success成功");
                 $("#liNike").text("昵称：" + nike);
                 $("#liName").text("实名：" + name);
@@ -252,17 +250,25 @@
                 $("#liBirth").text("生日：" + birth);
                 $("#liIntro").text("简介：" + introduction);
                 $("#liTeacher").text("指导老师：" + teacher);
-            },*/
+            },*!/
             success: function x() {
             alert("success")
         }
         });
-    }
+    }*/
 
+    $("#nike").val('<%=inforBean.getNike() %>');
+    $("#name").val('<%=inforBean.getName() %>');
+    $("#sex").text('<%=inforBean.getSex() %>');
+    $("#birth").val('<%=inforBean.getBirth() %>');
+    $("#teacher").val('<%=inforBean.getTeacher() %>');
+    $("#introduction").val('<%=inforBean.getInformation() %>');
+    <%  }%>
     function changeInfor() {
         var nike = $.trim($("#nike").val());
         var name = $.trim($("#name").val());
         var sex = $.trim($("#sex").text());
+        if (sex=='请选择')  sex = '';
         var birth = $.trim($("#birth").val());
         var teacher = $.trim($("#teacher").val());
         var introduction = $.trim($("#introduction").val());
@@ -285,11 +291,11 @@
             success: function (msg) {
                 if (msg==2){
                     $("#ChangeClose").click();
-                    $("#liNike").text("昵称：" + nike);
-                    $("#liName").text("实名：" + name);
-                    $("#liSex").text("性别：" + sex);
-                    $("#liBirth").text("生日：" + birth);
-                    $("#liIntro").text("简介：" + introduction);
+                    $("#liNike").text("昵称：       "+ nike);
+                    $("#liName").text("实名：        " + name);
+                    $("#liSex").text("性别：        " + sex);
+                    $("#liBirth").text("生日：        " + birth);
+                    $("#liIntro").text("简介：        " + introduction);
                     $("#liTeacher").text("指导老师：" + teacher);
                 }
                 else {
