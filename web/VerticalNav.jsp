@@ -9,8 +9,7 @@
 <html>
 
 <body>
-<div class="container" id="verticalNav"
-     style="width: 15%;
+<div class="container" id="verticalNav" style="width: 15%;
     float: left;
     background: white;
     margin-left: 25px;
@@ -20,6 +19,9 @@
         <li class="nav-item">
             <a class="nav-link" href="#">个人资料</a>
         </li>
+        <li class="nav-item liMyclass" >
+            <a id="idMyclass" class="nav-link aMyclass" href="Myclass.jsp">我的课程</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="#">我的收藏</a>
         </li>
@@ -28,6 +30,9 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">我的学院</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">操作记录</a>
         </li>
     </ul>
 </div>

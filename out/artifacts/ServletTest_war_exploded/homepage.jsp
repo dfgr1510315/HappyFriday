@@ -80,15 +80,15 @@
 <jsp:include page="LoginPC.jsp" />
 
 
-<div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px; margin-top: 71px;">
+<div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px;margin: auto; margin-top: 71px;width: 80%; ">
 
-    <%--<!-- 指示符 -->
+    <!-- 指示符 -->
     <ul class="carousel-indicators">
         <li data-target="#demo" data-slide-to="0" class="active"></li>
         <li data-target="#demo" data-slide-to="1"></li>
-    </ul>--%>
+    </ul>
 
-    <div class="carousel-inner">
+    <div class="carousel-inner" style="border-radius:4px;box-shadow: 0 12px 24px 0 rgba(7,17,27,.2);">
         <div class="carousel-item active">
             <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
             <div class="carousel-caption">

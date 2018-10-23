@@ -26,7 +26,7 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <base href="<%=basePath%>">
+    <%--<base href="<%=basePath%>">--%>
     <title>个人中心</title>
     <style type="text/css">
         body {
@@ -95,8 +95,10 @@
             <div style="width: 100%; ">
                 <div style="width: 10%;float: left;height: 100%;">
                     <%--头像区--%>
-                    <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg"
-                         style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">
+                    <%--<img src="http://static.runoob.com/images/mix/img_nature_wide.jpg"
+                         style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">--%>
+                        <img src="image/68296699_p0.png"
+                             style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">
                     <div style="text-align: center;width: 100px; margin-top: 7px">
                         <label for="file" class=" btn btn-primary" style="font-size: 12px;">更换头像</label>
                         <input id="file" type="file" style="display:none">
