@@ -13,6 +13,7 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <style>
         .liMyclass{
             background-color: #007bff;
@@ -20,10 +21,60 @@
         .aMyclass{
             color: white;
         }
+        #verticalNav{
+            margin-top: 32px;
+        }
+        .container_right{
+            width: 80%;
+            float: right;
+           /* background-color: pink;*/
+            min-height: 240px;
+            margin-top: 32px;
+        }
+        .container_right_head{
+            font-size: 20px;
+            color: #3d3d3d;
+            height: 90px;
+            line-height: 90px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .section{
+            width: 100%;
+            background-color: #8080800d;
+            float: left;
+            margin-bottom: 10px;
+        }
     </style>
     <script>
         function ifActive(){
             document.getElementById("idMyclass").className -= ' nav-link';
+        }
+
+        var Unitcount = 1;
+
+        function addSection() {
+            $(".sections").append('<div class="card section">\n' +
+                '      <div class="card-header">\n' +
+                '\t\t  <h8 id="UnitName">\n' +
+                '\t\t  \t\n' +
+                '\t\t  </h8>\n' +
+                '\t\t  <div class="btn-group" style="float:right">\n' +
+                '    \t\t<button type="button" class="btn btn-primary">增加课时</button>\n' +
+                '   \t\t\t<button type="button" class="btn btn-primary">更改名称</button>\n' +
+                '\t\t\t<button type="button" class="btn btn-primary">删除章节</button>\n' +
+                '\t\t\t<button type="button" class="btn btn-primary">批量上传</button>\n' +
+                '    \t\t<button type="button" class="btn btn-primary card-link" data-toggle="collapse" href="#collapseOne">折叠</button>\n' +
+                '  \t\t  </div>\n' +
+                '      </div>\n' +
+                '      <div id="collapseOne" class="collapse show" data-parent="#accordion">\n' +
+                '      \n' +
+                '      </div>\n' +
+                '    </div>\n' +
+                '\t  ');
+            document.getElementsByTagName("h8").id += Unitcount;
+            $("#UnitName"+Unitcount).text($("#unitname").val());
+            Unitcount = Unitcount+1;
+            $("#unitClose").click();
         }
     </script>
 </head>
@@ -41,9 +92,46 @@
         </div>
         <div style="width: 80%;margin: auto">
             <jsp:include page="VerticalNav.jsp"/>
+            <div class="container_right" >
+                <h3 class="container_right_head">
+                    课程管理
+                </h3>
+                <form>
+                    <div class="sections">
+
+                    </div>
+                    <div class="btn-group">
+                        <button data-toggle="modal" data-target="#addsection" type="button" class="btn btn-primary" >添加章节</button>
+                        <button type="submit" class="btn btn-primary" >保存</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
+
+    <div class="modal fade" id="addsection" style="background-color: transparent; width: 100%; top: 80px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <%-- 头部--%>
+                <div class="modal-header">
+                    <h5 class="modal-title">请输入章节名称</h5>
+                    <button id="unitClose" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <%--界面--%>
+                <div class="modal-body">
+                    <textarea id="unitname" style="height: 40px ;resize:none;" class="form-control"></textarea>
+                    <button type="button" class="btn btn-primary" style="float: right;margin-top: 10px" onclick="addSection()">确定</button>
+                </div>
+
+                <%--登录底部--%>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">。。。</button>
+                </div>--%>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
