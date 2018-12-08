@@ -1,6 +1,5 @@
 package Server;
 
-import Server.ConnectSQL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,18 +44,14 @@ public class ChangeInfor extends HttpServlet {
     }
 
     private int ConnectMysql(String ID, String nike, String name, String sex, String birth, String teacher, String introduction) {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/usermanager";
-        String user = "root";
-        String Mysqlpassword = "138859";
         try {
-            Class.forName(driver);
-            Connection con = DriverManager.getConnection(url, user, Mysqlpassword);
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             if (!con.isClosed()) System.out.println("数据库连接上了");
             /*String sql = "select * from usermanager";*/
             Statement statement = con.createStatement();
             /* ResultSet rq = statement.executeQuery(sql);*/
-            PreparedStatement qsql = con.prepareStatement("update personal_data set nike=?,name=?,sex=?,birth=?,information=?,teacher=? where ID=?");
+            PreparedStatement qsql = con.prepareStatement("update personal_table set nike=?,name=?,sex=?,birth=?,information=?,teacher=? where username=?");
             qsql.setString(1, nike);
             qsql.setString(2, name);
             qsql.setString(3, sex);

@@ -1,0 +1,38 @@
+.user_card{
+    visibility: hidden;
+    background-color:white;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 306px;
+    box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
+    z-index: 1000;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.user_imag:hover+.user_card{
+    visibility:visible;
+}
+.user_card:hover{
+    visibility:visible;
+}
+.user_navigation{
+    /*position: fixed;*/
+    height: 60px;
+    top: 0;
+    /* left: 0; */
+    /* right: 0; */
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    background-color: #07111b;
+    z-index: 6;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+}
+.nav-link{
+    color: rgba(255,255,255,.6);
+}
+.nav-link:hover{
+    color: white;
+}

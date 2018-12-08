@@ -30,11 +30,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" exported="" name="annotations-api" level="project" />
     <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.39-bin" level="project" />
     <orderEntry type="library" exported="" name="gson-2.8.4" level="project" />
     <orderEntry type="library" exported="" name="jsp-api" level="project" />
     <orderEntry type="library" exported="" name="servlet-api" level="project" />
     <orderEntry type="library" exported="" name="commons-fileupload-1.3.2" level="project" />
     <orderEntry type="library" exported="" name="commons-io-2.5" level="project" />
+    <orderEntry type="library" name="JSON" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.13" level="project" />
   </component>
 </module>

@@ -4,9 +4,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+
+    <mime-mapping>
+        <extension>txt</extension>
+        <mime-type>application/txt</mime-type>
+    </mime-mapping>
+
     <display-name>首页</display-name>
     <welcome-file-list>
-        <welcome-file>homepage.jsp</welcome-file>
+        <welcome-file>HTML_JSP/homepage.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -35,5 +41,41 @@
         <servlet-name>ChangeInfor</servlet-name>
         <url-pattern>/changeInfor</url-pattern>
     </servlet-mapping>
-   
+
+    <servlet-mapping>
+        <servlet-name>UploadActionServlet</servlet-name>
+        <url-pattern>/UploadActionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UploadActionServlet</servlet-name>
+        <servlet-class>Server.UploadActionServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <servlet-class>Server.FileUploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/FileUploadServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SaveClassInfor</servlet-name>
+        <servlet-class>Server.SaveClassInfor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SaveClassInfor</servlet-name>
+        <url-pattern>/SaveClassInfor</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetLearnFile</servlet-name>
+        <servlet-class>Server.GetLearnFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetLearnFile</servlet-name>
+        <url-pattern>/getlearnfile</url-pattern>
+    </servlet-mapping>
+
 </web-app>

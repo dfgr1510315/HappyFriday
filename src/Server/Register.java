@@ -8,11 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+
 
 
 @WebServlet(name = "Register")
@@ -80,15 +76,12 @@ public class Register extends HttpServlet {
 
 
     private int ConnectMysql(String name,String password){
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/usermanager";
-        String user = "root";
-        String Mysqlpassword = "138859";
+        /*String url = "jdbc:mysql://localhost:3306/mysql";*/
         try {
-            Class.forName(driver);
-            Connection con = DriverManager.getConnection(url,user,Mysqlpassword);
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url,ConnectSQL.user,ConnectSQL.Mysqlpassword);
             if (!con.isClosed()) System.out.println("数据库连上了");
-            String sql = "select * from user_table";
+            String sql = "select * from login_table";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             String username;
@@ -108,7 +101,7 @@ public class Register extends HttpServlet {
                     return 1;//仅用户名吻合，用户名重复
                 }
             }
-            PreparedStatement psql = con.prepareStatement("insert into  user_table(username,password)"+"values(?,?)");
+            PreparedStatement psql = con.prepareStatement("insert into  login_table(username,password)"+"values(?,?)");
             psql.setString(1,name);
             psql.setString(2,password);
             psql.executeUpdate();

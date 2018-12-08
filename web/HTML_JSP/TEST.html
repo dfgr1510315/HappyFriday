@@ -1,0 +1,170 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>HTML5-Drag-Demo by 顽Shi</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+
+        .column {
+
+            height: 200px;
+
+            width: 200px;
+
+            float: left;
+
+            border: 1px solid black;
+
+            background-color: green;
+
+            margin-right: 5px;
+
+            text-align: center;
+
+            cursor: move;
+
+        }
+
+        .column header {
+
+            color: black;
+
+            text-shadow: #000 0 1px;
+
+           /* box-shadow: 5;*/
+
+            padding: 5px;
+
+            background: red;
+
+            border-bottom: 1px solid black;
+
+        }
+
+        .column.over header{
+
+            /*border: 3px dashed #000;*/
+            display: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="columns">
+
+    <div class="column" draggable="true"><header>div1</header></div>
+
+    <div class="column" draggable="true"><header>div2</header></div>
+
+    <div class="column" draggable="true"><header>div3</header></div>
+
+</div>
+
+</body>
+
+<script>
+
+    var columns = document.querySelectorAll('.column');
+    var dragEl = null;
+    var save_dragEl = null;
+    var save_this = null;
+    var flag = 0;
+
+    [].forEach.call(columns,function(column){
+        alert(columns);
+        column.addEventListener("dragstart",domdrugstart,false);
+        column.addEventListener('dragenter', domdrugenter, false);
+        column.addEventListener('dragover', domdrugover, false);
+        column.addEventListener('dragleave', domdrugleave, false);
+        column.addEventListener('drop', domdrop, false);
+        column.addEventListener('dragend', domdrapend, false);
+    });
+
+    function domdrugstart(e) {
+        flag = 0;
+        dragEl = this;
+
+        save_dragEl = $(dragEl).html();//存储被拖动元素的html
+        //e.dataTransfer.effectAllowed = "move";
+        //e.dataTransfer.setData("text/html",this.innerHTML);
+    }
+
+
+    function domdrugenter(e) { //拖动后鼠标进入另一个可接受区域,
+
+        if (dragEl != this) {
+            //dragEl是被拖动的元素
+
+            save_this = $(this).html(); //存储当前元素的html
+            $(dragEl).empty().append(save_this);
+
+        }else {
+            $(dragEl).empty().append(save_dragEl);
+        }
+
+        e.target.classList.add('over');
+
+    }
+
+    function domdrugover(e) {  //阻止一些类似超链接拖动跳转的默认动作
+
+        if (e.preventDefault) {
+
+            e.preventDefault();
+
+        }
+
+        e.dataTransfer.dropEffect = 'move';
+
+        return false;
+    }
+
+    function domdrugleave(e) { //当拖拽鼠标划出区域时
+
+        e.target.classList.remove('over');
+
+    }
+
+    function domdrop(e) {
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        }
+
+// 位置互换
+        if (dragEl !== this) {
+            $(this).empty().append(save_dragEl)
+        }
+        //alert($(this).html());
+        flag = 1;
+        return false;
+    }
+
+
+
+    function domdrapend(e) {
+
+        if(flag!==1) $(dragEl).empty().append(save_dragEl);
+
+
+        [].forEach.call(columns, function (column) {
+
+            column.classList.remove('over');
+
+            //column.style.opacity = '1';
+
+        });
+
+    }
+
+</script>
+
+</html>

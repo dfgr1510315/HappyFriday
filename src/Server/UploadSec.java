@@ -1,5 +1,7 @@
 package Server;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -28,6 +30,9 @@ public class UploadSec extends HttpServlet {
     private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=UTF-8");
         if (!ServletFileUpload.isMultipartContent(request)) {
             //检测是否为多媒体上传
             PrintWriter writer = response.getWriter();
@@ -48,7 +53,9 @@ public class UploadSec extends HttpServlet {
 
         upload.setHeaderEncoding("UTF-8");
 
-        String uploadPath = getServletContext().getRealPath("/") + File.separator + UPLOAD_DIRECTORY;//相对于当前应用的目录
+        String uploadPath = getServletContext().getRealPath("/") + UPLOAD_DIRECTORY;//相对于当前应用的目录
+    /*    String uploadPath = "D:/";*/
+        System.out.println(getServletContext());
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists())  uploadDir.mkdir(); //如果当前目录不存在则创建
 
@@ -62,11 +69,18 @@ public class UploadSec extends HttpServlet {
                     if (!item.isFormField()){
                         String fileName = new File(item.getName()).getName();
                         String filePath = uploadPath + File.separator + fileName;
+                        System.out.println(fileName);
                         File storeFile = new File(filePath);
                         System.out.println(filePath);
                         item.write(storeFile);
                         request.setAttribute("message","文件上传成功");
-
+                        PrintWriter out = response.getWriter();
+                        JSONObject jsonObj = new JSONObject();
+                        jsonObj.put("src",UPLOAD_DIRECTORY+"/"+fileName);
+                        jsonObj.put("filename",fileName);
+                        out.flush();
+                        out.print(jsonObj);
+                        out.close();
                     }
                 }
             }
@@ -75,7 +89,7 @@ public class UploadSec extends HttpServlet {
 
         }
         /*getServletContext().getRequestDispatcher("/homepage.jsp").forward(request,response);*/
-        response.sendRedirect("/homepage.jsp");
+       /* response.sendRedirect("/homepage.jsp");*/
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
