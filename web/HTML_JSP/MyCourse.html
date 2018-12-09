@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<!--声明文档兼容模式，表示使用IE浏览器的最新模式-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!--设置视口的宽度(值为设备的理想宽度)，页面初始缩放值<理想宽度/可见宽度>-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>Bootstrap基本模板</title>
+
+		<!-- 引入Bootstrap核心样式文件 -->
+		<link href="../../../../../TIM/TIM下载/学习社/学习社/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../TIM/TIM下载/学习社/学习社/css/MyCourse.css" rel="stylesheet">
+		
+	</head>
+     
+	<body>
+		<!--<div class="container">
+	    <div class="row">
+		<div class="col-lg-9">-->
+		<div class="clearfix"style="margin-top:8px; margin-bottom:0;"  >
+			<div class="left-fix ">
+				<div class="" style="display: inline;margin-right:100px; " ><a href="#">最近学习</a></div>
+				<div class="" style="display: inline; "><a href="#">我的收藏</a></div>
+			</div>
+			<div class="right-fix" >
+				<a href="#" target="_blank">全部课程</a>
+			</div>
+			
+		</div>
+			<hr/>
+		<div class="main"  >
+	    <ul class="time-axis"></ul>
+	         
+        </div>
+         <!-- 分页 -->
+											<div class="pageDiv" style="text-align:center;">
+												<nav>
+												  <ul class="pagination">
+												  	
+													<!-- 首页超链 -->
+												    <li >
+												      <a  href="#>
+												        <span aria-hidden="true">首页</span>
+												      </a>
+												    </li>
+												  	
+												    <!-- 上一页超链 -->
+												    <li >
+												      <a  href="#" aria-label="Previous" >
+												        <span aria-hidden="true">‹‹</span>
+												      </a>
+												    </li>
+												    
+												    <!-- 中间页面 -->
+												    
+												     	<!-- 
+												     		主要是实现   例如当前页为10   那么总共显示   7,8,9,10,11,12,13这七个页码
+												     		判断里面的逻辑
+												     		(每页显示条数*(当前页面数-3)-每页显示条数*(当前页面数+1) ) <= 23  &&  (每页显示条数*(当前页面数-3)-每页显示条数*(当前页面数+1) ) >= -25
+												     			 	( 8*x-8*(10+1) ) <= 23  && ( 8*x-8*(10+1) ) >= -25
+												     			  ( 8*(10-3)-8*(10+1) ) <= 23  && ( 8*(10+3)-8*(10+1) ) >= -25
+												     	 -->
+												     	
+														    <li >
+													    		<a href="#">    <span aria-hidden="true">1</span></a>
+													    	</li>
+												    	
+												            <li >
+													    		<a href="#">    <span aria-hidden="true">2</span></a>
+													    	</li>
+													    	 <li >
+													    		<a href="#">    <span aria-hidden="true">3</span></a>
+													    	</li>
+												    	
+												    
+												    <!-- 下一页超链 -->
+											        <li >
+												      <a href="/DIGO_SHOPPING/back/backlistorder.do?pageIndex=${map.pageIndex+1}" aria-label="Next">
+												        <span aria-hidden="true">››</span>
+												      </a>
+												    </li>
+												    
+												    <!-- 尾页超链 -->
+											        <li>
+												      <a href="/DIGO_SHOPPING/back/backlistorder.do?pageIndex=${map.pageSize }" aria-label="Next">
+												        <span aria-hidden="true">尾页</span>
+												      </a>
+												    </li>
+												    
+												  </ul>
+												</nav>
+											</div> 
+											<!-- 分页 结束-->		
+ 
+<script type="text/javascript" src="../../../../../TIM/TIM下载/学习社/学习社/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../../../../../TIM/TIM下载/学习社/学习社/js/myscore.js"></script>
+
+</body>
+
+</html>

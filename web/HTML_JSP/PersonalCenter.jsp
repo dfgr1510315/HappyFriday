@@ -269,7 +269,7 @@
         var nike = $.trim($("#nike").val());
         var name = $.trim($("#name").val());
         var sex = $.trim($("#sex").text());
-        if (sex == '请选择') sex = '';
+        if (sex === '请选择') sex = '';
         var birth = $.trim($("#birth").val());
         var teacher = $.trim($("#teacher").val());
         var introduction = $.trim($("#introduction").val());

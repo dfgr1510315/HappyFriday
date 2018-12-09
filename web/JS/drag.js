@@ -50,6 +50,12 @@ function set_Class_Listener(event) {
     for(var count=1;count<=Classcount;count++){
         var collapse_id = $("#hour_button_collapse"+count);
         if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
+        collapse_id.removeAttr("href");
+    }
+    for(count=1;count<=Unitcount;count++){
+        collapse_id = $("#Button_collapse"+count);
+        collapse_id.attr("href","#collapse"+count);
+        if (collapse_id.hasClass('collapsed'))  collapse_id.click();
     }
     add_Listener(Class_columns,domdrapend);
     if (main_button.text()!=="取消拖动")  main_button.removeClass("btn-primary").addClass("btn-warning").text("取消拖动");
@@ -57,13 +63,34 @@ function set_Class_Listener(event) {
 
 function set_Unit_Listener(event) {
     if (Class_columns!==undefined) remove_Listener(Class_columns,domdrapend);
+    var main_button = $(event).parent().prev().prev();
     Unit_columns = document.querySelectorAll('.Unit');
+    for(var count=1;count<=Unitcount;count++){
+        var collapse_id = $("#Button_collapse"+count);
+        if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
+        collapse_id.removeAttr("href");
+    }
     add_Listener(Unit_columns,Unit_domdrapend);
-
+    if (main_button.text()!=="取消拖动")  main_button.removeClass("btn-primary").addClass("btn-warning").text("取消拖动");
 }
 
 function drag(event) {
-    set_Class_Listener(event);
+    if ($(event).text()==="取消拖动") {
+        $(event).removeClass("btn-warning").addClass("btn-primary").text("拖动排序");
+        if (Unit_columns!==undefined) remove_Listener(Unit_columns,Unit_domdrapend);
+        if (Class_columns!==undefined) remove_Listener(Class_columns,domdrapend);
+        for(var count=1;count<=Unitcount;count++){
+            var collapse_id = $("#Button_collapse"+count);
+            collapse_id.attr("href","#collapse"+count);
+            if (collapse_id.hasClass('collapsed'))  collapse_id.click();
+        }
+        for(count=1;count<=Classcount;count++){
+            collapse_id = $("#hour_button_collapse"+count);
+            collapse_id.attr("href","#hour_collapse"+count);
+            //if (collapse_id.hasClass('collapsed'))  collapse_id.click();
+        }
+        new_Editor();
+    }
 }
 
 
@@ -83,6 +110,12 @@ function domdrapend(e) {
 function Unit_domdrapend(e) {
     if(flag!==1) $(dragEl).empty().append(save_dragEl);
     sort_Unit('.Unit');
+    sort_Class('.Unit_class');
+    for(var count=1;count<=Unitcount;count++){
+        var collapse_id = $("#Button_collapse"+count);
+        if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
+        collapse_id.removeAttr("href");
+    }
 }
 
 function domdrugenter(e) { //拖动后鼠标进入另一个可接受区域,
@@ -144,9 +177,9 @@ function sort_Class(className) {
         i++;*/
        var flag_id = $(this).children().eq(1).attr('id');
        var flag_id_no = flag_id.substr(flag_id.length-1,1);
-       //alert(flag_id_no);
-        Change_Class_Fun(i,flag_id_no);
+       //alert('将'+flag_id_no+'变成'+i);
         Change_Class_Fun(flag_id_no,i);
+        Change_Class_Fun(i,flag_id_no);
         i++;
     });
 }

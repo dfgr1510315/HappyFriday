@@ -28,7 +28,9 @@ public class GetLearnFile extends HttpServlet {
         ArrayList<String> File_Href = new ArrayList<>();
         ArrayList<String> State = new ArrayList<>();
 
+
         String Title = request.getParameter("Class_Title");
+
         String ds = java.net.URLDecoder.decode(request.getParameter("ds"),"UTF-8");
         JSONArray json=JSONArray.fromObject(ds);
 

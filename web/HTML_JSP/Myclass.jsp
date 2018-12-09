@@ -51,6 +51,14 @@
             margin-top: 32px;
         }
 
+        .container_left{
+            width: 20%;
+            float: left;
+            /* background-color: pink;*/
+            min-height: 240px;
+            margin-top: 32px;
+        }
+
         .container_right_head {
             font-size: 20px;
             color: #3d3d3d;
@@ -84,6 +92,20 @@
         .card-header{
             height: 57.8px;
         }
+
+        body{
+            background-color: #f8fafc;
+            font-family: "PingFang SC", 微软雅黑, "Microsoft YaHei", Helvetica, "Helvetica Neue", Tahoma, Arial, sans-serif;
+        }
+
+        .ui-box{
+            width: 80%;
+            height: 170px;
+            margin: 33px auto auto;
+            background: #FFF;
+            box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
+            border-radius: 12px;
+        }
     </style>
 
 </head>
@@ -102,8 +124,39 @@
                 </div>
             </div>
         </div>
+        <div class="ui-box" >
+            <div style="height: 30%;">
+                <nav class="breadcrumb">
+                    <a class="breadcrumb-item" href="#">Home</a>
+                    <a class="breadcrumb-item" href="#">Library</a>
+                    <a class="breadcrumb-item" href="#">Data</a>
+                    <span class="breadcrumb-item active">Bootstrap</span>
+                </nav>
+            </div>
+            <div style="height: 70%;margin-top: -3px;" >
+                <div style="width:18%;height: 100%;float: left;text-align: center">
+                    <img  class="img-fluid" src="../image/68296699_p0.png" style="height: 103%;width: 100%;border-bottom-left-radius: 12px;">
+                </div>
+                <div style="width: 82%;height: 100%;float: left">
+                    <div class="card" style="border: none;">
+                        <div class="card-body" style="padding-bottom: 0;">
+                            <span class="badge badge-primary" style="float: left;margin-top: 5px;margin-right: 7px;font-size: 15px;">点播课程</span>
+                            <h4   id="curriculum_Name" style="float: left">Test</h4>
+                            <span style="float: right;">
+                                <button type="button" class="btn btn-outline-primary">发布课程</button>
+                                <button type="button" class="btn btn-outline-primary">课程主页</button>
+                                <button type="button" class="btn btn-outline-primary">预览</button>
+                            </span>
+                        </div>
+                    </div>
+                    <span id="teacher_Name" style="padding-left: 20px;color: #999;">教师：<a  href="">admin</a></span>
+                </div>
+            </div>
+        </div>
         <div style="width: 80%;margin: auto">
-            <jsp:include page="VerticalNav.jsp"/>
+            <div class="container_left" >
+                <jsp:include page="navigationBar.jsp"/>
+            </div>
             <div class="container_right">
                 <h3 class="container_right_head">
                     课程管理
@@ -113,7 +166,7 @@
 
                     </div>
                     <div class="btn-group">
-                        <button data-toggle="modal" data-target="#add_section" type="button" class="btn btn-primary">
+                        <button data-toggle="modal" data-target="#add_section" type="button" class="btn btn-primary" onclick="cancel_drag()">
                             添加章节
                         </button>
                         <button id="use_drag" type="button" class="btn btn-primary" onclick="drag(this)">拖动排序</button>
@@ -121,8 +174,8 @@
                             <span class="caret"></span>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" onclick="set_Unit_Listener(this)" href="#">章节排序</a>
-                            <a class="dropdown-item" onclick="set_Class_Listener(this)" href="#">课时排序</a>
+                            <a class="dropdown-item" onclick="set_Unit_Listener(this)" href="javascript:void(0)">章节排序</a>
+                            <a class="dropdown-item" onclick="set_Class_Listener(this)" href="javascript:void(0)">课时排序</a>
                         </div>
                         <button type="button" class="btn btn-success" onclick="saveClass()">保存</button>
                     </div>

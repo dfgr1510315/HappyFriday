@@ -362,20 +362,23 @@ function getHTML() {
             $(".sections").append(jsonObj.Class_html);
             Classcount = parseInt(jsonObj.ClassCount);
             Unitcount = parseInt(jsonObj.UnitCount);
-            for (var i = 1; i <= Classcount; i++) {
-                var editor_ID = $('#editor'+i);
-                var editor_ID_HTML = editor_ID.find('div:last').html();
-                editor_ID.empty();
-                var E = window.wangEditor;
-                var editor = new E('#editor' + i);
-                editor.create();
-                editor_ID.find('div:last').empty();
-                editor_ID.find('div:last').append(editor_ID_HTML);
-            }
+            new_Editor();
         }
     });
 }
 
+function new_Editor() {
+    for (var i = 1; i <= Classcount; i++) {
+        var editor_ID = $('#editor'+i);
+        var editor_ID_HTML = editor_ID.find('div:last').html();
+        editor_ID.empty();
+        var E = window.wangEditor;
+        var editor = new E('#editor' + i);
+        editor.create();
+        editor_ID.find('div:last').empty();
+        editor_ID.find('div:last').append(editor_ID_HTML);
+    }
+}
 
 function Video_TEXT_FILE(event, type) {
     if (1 === type) { //显示视频
