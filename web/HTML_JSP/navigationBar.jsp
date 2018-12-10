@@ -53,9 +53,7 @@
 
     </div>
 </div>
-<div class="col-lg-10">
-    ghertyertuer
-</div>
+
 
 </body>
 </html>

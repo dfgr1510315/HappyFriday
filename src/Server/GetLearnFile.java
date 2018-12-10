@@ -28,7 +28,6 @@ public class GetLearnFile extends HttpServlet {
         ArrayList<String> File_Href = new ArrayList<>();
         ArrayList<String> State = new ArrayList<>();
 
-
         String Title = request.getParameter("Class_Title");
 
         String ds = java.net.URLDecoder.decode(request.getParameter("ds"),"UTF-8");
@@ -79,6 +78,8 @@ public class GetLearnFile extends HttpServlet {
             while (rs.next()){
                 Unit.add(rs.getString("章节序号"));
             }
+            System.out.println(Unit);
+            System.out.println(Serial_No);
             for (int i=0;i<Serial_No.size();i++){
                 if (Unit.contains(Serial_No.get(i))) {
                     qsql = con.prepareStatement("update class set 章节标题=?, 课时标题=?, 发布状态=?,视频地址=?,图文信息=?,文件地址=? where 章节序号=?");
@@ -92,7 +93,6 @@ public class GetLearnFile extends HttpServlet {
                     qsql.executeUpdate();
                     qsql.close();
                 }else {
-
                     qsql = con.prepareStatement("insert into class values(?,?,?,?,?,?,?,?)");
                     qsql.setString(1,Title);
                     qsql.setString(2,Serial_No.get(i));
@@ -107,7 +107,14 @@ public class GetLearnFile extends HttpServlet {
                     qsql.close();
                 }
             }
-
+            for (String aUnit : Unit) {
+                if (!Serial_No.contains(aUnit)) {
+                    qsql = con.prepareStatement("delete FROM class WHERE 章节序号=?");
+                    qsql.setString(1, aUnit);
+                    qsql.executeUpdate();
+                    qsql.close();
+                }
+            }
             con.close();
         } catch (Exception e) {
             e.printStackTrace();

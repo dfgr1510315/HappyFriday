@@ -19,10 +19,12 @@
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../webuploader-0.1.5/css/webuploader.css">
+
     <script type="text/javascript" src="../webuploader-0.1.5/jekyll/js/webuploader.js"></script>
     <script type="text/javascript" src="../wangEditor-3.1.1/release/wangEditor.min.js"></script>
     <script type="text/javascript" src="../JS/Myclass.js"></script>
     <script type="text/javascript" src="../JS/drag.js"></script>
+    <script type="text/javascript" src="../JS/LoginPC.js"></script>
 
     <style type="text/css">
         .dndArea {
@@ -49,10 +51,16 @@
             /* background-color: pink;*/
             min-height: 240px;
             margin-top: 32px;
+            background-color: white;
+            box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
+            border-radius: 12px;
+            margin-bottom: 100px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
 
         .container_left{
-            width: 20%;
+            width: 18%;
             float: left;
             /* background-color: pink;*/
             min-height: 240px;
@@ -75,14 +83,14 @@
         }
 
         .Unit {
-            border-bottom: none;
-            border-left: none;
+            border: none;
             background-color: white;
         }
 
         .Unit_class {
             width: 90%;
             float: right;
+            border: none;
         }
 
         .over > *{
@@ -106,13 +114,30 @@
             box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
             border-radius: 12px;
         }
+
+        .list-group-item{
+            border: none;
+            background:none;
+            color: #787d82;
+        }
+        .list-group-item:hover{
+            color: #1c1f21;
+        }
+
+        .list_action{
+            color: white;
+            background: #007bff94;
+            border-radius: 8px 0 0 8px;
+            pointer-events: none;
+        }
+
+
     </style>
 
 </head>
 <body onload="checkCookie();ifActive();getHTML()">
 
 <jsp:include page="navigation.jsp"/>
-<jsp:include page="LoginPC.jsp"/>
 
 <div style="width: 100%;margin: 80px auto auto;height: 450px">
     <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">
@@ -145,7 +170,7 @@
                             <span style="float: right;">
                                 <button type="button" class="btn btn-outline-primary">发布课程</button>
                                 <button type="button" class="btn btn-outline-primary">课程主页</button>
-                                <button type="button" class="btn btn-outline-primary">预览</button>
+                                <a  href="Learn_list.jsp" target="_blank"><button type="button" class="btn btn-outline-primary">预览</button></a>
                             </span>
                         </div>
                     </div>
@@ -155,7 +180,16 @@
         </div>
         <div style="width: 80%;margin: auto">
             <div class="container_left" >
-                <jsp:include page="navigationBar.jsp"/>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list_action">课时管理</a>
+                    <a href="#" class="list-group-item">基本信息</a>
+                    <a href="#" class="list-group-item ">详细信息</a>
+                    <a href="#" class="list-group-item ">课程封面</a>
+                    <a href="#" class="list-group-item ">学员统计</a>
+                    <a href="#" class="list-group-item ">教师设置</a>
+                    <a href="#" class="list-group-item ">学员管理</a>
+                    <a href="#" class="list-group-item ">删除课程</a>
+                </div>
             </div>
             <div class="container_right">
                 <h3 class="container_right_head">
@@ -177,8 +211,8 @@
                             <a class="dropdown-item" onclick="set_Unit_Listener(this)" href="javascript:void(0)">章节排序</a>
                             <a class="dropdown-item" onclick="set_Class_Listener(this)" href="javascript:void(0)">课时排序</a>
                         </div>
-                        <button type="button" class="btn btn-success" onclick="saveClass()">保存</button>
                     </div>
+                    <button type="button" class="btn btn-success" onclick="saveClass()">保存</button>
                 </form>
             </div>
         </div>

@@ -26,7 +26,7 @@
     <style type="text/css">
 
         body {
-            background: #fffef5;
+            background-color: #f8fafc;
             overflow: auto;
         }
 
@@ -40,7 +40,7 @@
             font-size: 30px;
             line-height: 70px;
             border: 1px solid #dddddd;
-            box-shadow: 0px 1px 1px rgba(209, 212, 221, 0.15);
+            box-shadow: 0 1px 1px rgba(209, 212, 221, 0.15);
             border-radius: 0;
             margin-top: 45px;
         }

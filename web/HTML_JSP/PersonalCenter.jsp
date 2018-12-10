@@ -24,16 +24,18 @@
     <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>--%>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
+        <script src="${pageContext.request.contextPath}/JS/LoginPC.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+
     <%--<base href="<%=basePath%>">--%>
     <title>个人中心</title>
     <style type="text/css">
 
         body {
-            background: #fffef5;
+            background-color: #f8fafc;
             overflow: auto;
         }
 
@@ -65,105 +67,103 @@
             visibility: hidden;
         }
 
+
     </style>
 </head>
-<body onload="checkCookie();">
+<body onload="checkCookie();addClass(0)">
 
 <jsp:include page="navigation.jsp"/>
 
-<jsp:include page="LoginPC.jsp"/>
 
 <div style="width: 100%;margin: auto;margin-top: 80px;height: 450px">
-    <jsp:include page="VerticalNav.jsp"/>
-    <div style="width: 80%;
-    background-color: white;
-    min-height: 95%;
-    padding: 0 32px 32px;
-    float: left;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
-    margin-bottom: 10px;
-    height: 100%;">
 
-        <div style="height: 100%;width: 100%;">
-            <h3 style=" font-size: 20px;color: #3d3d3d;height: 90px;line-height: 90px;border-bottom: 1px solid #e0e0e0;">
-                个人资料
-            </h3>
+    <div style="width: 80%;margin: auto">
+        <jsp:include page="VerticalNav.jsp"/>
+        <div class="container_right">
+            <div style="height: 100%;width: 100%;">
+                <h3 style=" font-size: 20px;color: #3d3d3d;height: 90px;line-height: 90px;border-bottom: 1px solid #e0e0e0;">
+                    个人资料
+                </h3>
 
-            <div style="width: 100%; ">
-                <div style="width: 10%;float: left;height: 100%;">
-                    <%--头像区--%>
-                    <%--<img src="http://static.runoob.com/images/mix/img_nature_wide.jpg"
-                         style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">--%>
-                    <img src="../image/68296699_p0.png"
-                         style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">
-                    <div style="text-align: center;width: 100px; margin-top: 7px">
-                        <label for="file" class=" btn btn-primary" style="font-size: 12px;">更换头像</label>
-                        <input id="file" type="file" style="display:none">
+                <div style="width: 100%; ">
+                    <div style="width: 10%;float: left;height: 100%;">
+                        <%--头像区--%>
+                        <%--<img src="http://static.runoob.com/images/mix/img_nature_wide.jpg"
+                             style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">--%>
+                        <img src="../image/68296699_p0.png"
+                             style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">
+                        <div style="text-align: center;width: 100px; margin-top: 7px">
+                            <label for="file" class=" btn btn-primary" style="font-size: 12px;">更换头像</label>
+                            <input id="file" type="file" style="display:none">
+                        </div>
                     </div>
-                </div>
-                <div style="width: 90%;height: 100%;float: left;">
-                    <%--详细资料区--%>
-                    <div style="margin-top: 16px;height: 32px">
-                        <%--用户id--%>
-                        <span>ID:admin</span>
-                        <a data-toggle="modal" data-target="#information" href="#" style="float: right;">修改资料</a>
-                    </div>
-                    <%
-                        try {
-                            Class.forName(ConnectSQL.driver);
-                            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-                            if (!con.isClosed()) System.out.println("数据库连接上了");
-                            String sql = "select * from personal_table where username='" + "admin" + "'";
-                            Statement statement = con.createStatement();
-                            ResultSet rs = statement.executeQuery(sql);
-                            ArrayList<InforBean> list = new ArrayList<InforBean>();
-                            while (rs.next()) {
-                                InforBean inforBean = new InforBean();
-                                inforBean.setNike(rs.getString("nike"));
-                                inforBean.setName(rs.getString("name"));
-                                inforBean.setSex(rs.getString("sex"));
-                                inforBean.setBirth(rs.getString("birth"));
-                                inforBean.setInformation(rs.getString("information"));
-                                inforBean.setTeacher(rs.getString("teacher"));
-                                list.add(inforBean);
+                    <div style="width: 85%;height: 100%;float: right;">
+                        <%--详细资料区--%>
+                        <div style="margin-top: 16px;height: 32px">
+                            <%--用户id--%>
+                            <span>ID:admin</span>
+                            <a data-toggle="modal" data-target="#information" href="#" style="float: right;">修改资料</a>
+                        </div>
+                        <%
+                            try {
+                                Class.forName(ConnectSQL.driver);
+                                Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+                                if (!con.isClosed()) System.out.println("数据库连接上了");
+                                String sql = "select * from personal_table where username='" + "admin" + "'";
+                                Statement statement = con.createStatement();
+                                ResultSet rs = statement.executeQuery(sql);
+                                ArrayList<InforBean> list = new ArrayList<InforBean>();
+                                while (rs.next()) {
+                                    InforBean inforBean = new InforBean();
+                                    inforBean.setNike(rs.getString("nike"));
+                                    inforBean.setName(rs.getString("name"));
+                                    inforBean.setSex(rs.getString("sex"));
+                                    inforBean.setBirth(rs.getString("birth"));
+                                    inforBean.setInformation(rs.getString("information"));
+                                    inforBean.setTeacher(rs.getString("teacher"));
+                                    list.add(inforBean);
+                                }
+                                request.setAttribute("list", list);
+                                rs.close();
+                                con.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                            request.setAttribute("list", list);
-                            rs.close();
-                            con.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
 
-                        ArrayList list = (ArrayList) request.getAttribute("list");
-                        //System.out.println(list.size());
-                        for (int i = 0; i < list.size(); i++) {
-                            InforBean inforBean = (InforBean) list.get(i);
-                    %>
-                    <ul id="localUl" style="list-style: none;padding-left: 0">
-                        <li id="liNike">
-                            昵称：&nbsp<%=inforBean.getNike() %>
-                        </li>
-                        <li id="liName">
-                            实名：&nbsp<%=inforBean.getName() %>
-                        </li>
-                        <li id="liSex">
-                            性别：&nbsp<%=inforBean.getSex() %>
-                        </li>
-                        <li id="liBirth">
-                            生日：&nbsp<%=inforBean.getBirth() %>
-                        </li>
-                        <li id="liTeacher">
-                            指导老师：<%=inforBean.getTeacher() %>
-                        </li>
-                        <li id="liIntro">
-                            简介：&nbsp<%=inforBean.getInformation() %>
-                        </li>
+                            ArrayList list = (ArrayList) request.getAttribute("list");
+                            //System.out.println(list.size());
+                            for (int i = 0; i < list.size(); i++) {
+                                InforBean inforBean = (InforBean) list.get(i);
+                        %>
+                        <ul id="localUl" style="list-style: none;padding-left: 0">
+                            <li id="liNike">
+                                昵称：&nbsp<%=inforBean.getNike() %>
+                            </li>
+                            <li id="liName">
+                                实名：&nbsp<%=inforBean.getName() %>
+                            </li>
+                            <li id="liSex">
+                                性别：&nbsp<%=inforBean.getSex() %>
+                            </li>
+                            <li id="liBirth">
+                                生日：&nbsp<%=inforBean.getBirth() %>
+                            </li>
+                            <li id="liTeacher">
+                                指导老师：<%=inforBean.getTeacher() %>
+                            </li>
+                            <li id="liIntro">
+                                简介：&nbsp<%=inforBean.getInformation() %>
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
     <div class="modal fade" id="information" style="background-color: transparent; width: 100%; top: 80px;">
         <div class="modal-dialog">
             <div class="modal-content">

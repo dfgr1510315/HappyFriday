@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
     <script>
         function ifActive() {
             var obj = document.getElementsByTagName("body"); //获取当前body的id
@@ -33,29 +32,29 @@
             }
         }
 
-     /*   function Tomanger() {
-
-        }*/
+        function addClass(no) {
+            $(".list-group").children().eq(no).addClass('list_action');
+        }
     </script>
 </head>
 <body>
 <div class="user_navigation">
     <ul class="nav nav-pills" style="display: inline">
         <li>
-            <img src="../image/HUAS.png" style="height: 40px;width: 40px;float: left;margin-right: 21px">
+            <img src="${pageContext.request.contextPath}/image/HUAS.png" style="height: 40px;width: 40px;float: left;margin-right: 21px">
         </li>
         <li class="nav-item">
             <a class="nav-link" href="http://localhost:8080/" style="float: left;">首页</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../HTML_JSP/Resources.jsp" style="float:left;">文档</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/HTML_JSP/Resources.jsp" style="float:left;">文档</a>
         </li>
         <li class="nav-item" id="loginButton">
             <a class="nav-link" data-toggle="modal" data-target="#LoginModal" href="#" style="float: right">登录</a>
         </li>
         <li class="nav-item dropdown" id="personalCenter" style="display: none;float: right">
             <%-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>--%>
-            <img class="user_imag" src="../image/68296699_p0.png" style="height: 40px;width: 40px;border-radius: 50%; margin-right: 50px" >
+            <img class="user_imag" src="${pageContext.request.contextPath}/image/68296699_p0.png" style="height: 40px;width: 40px;border-radius: 50%; margin-right: 50px" >
             <%--<div class="dropdown-menu">
                 <a class="dropdown-item" href="#" onclick="PerCenter()">个人中心</a>
                 <a class="dropdown-item" href="upload.jsp">上传资源</a>
@@ -67,11 +66,11 @@
             <div class="user_card" >
                 <div style="padding: 20px;">
                     <a  href="#" onclick="PerCenter()">个人中心</a>
-                    <a href="../HTML_JSP/upload.jsp">上传资源</a>
+                    <a href="${pageContext.request.contextPath}/HTML_JSP/upload.jsp">上传资源</a>
                     <a href="#">账号设置</a>
                     <a  href="#">我的消息</a>
-                    <a  href="../HTML_JSP/management.jsp" >后台管理</a>
-                    <a href="../HTML_JSP/homepage.jsp" onclick="deleteCookie()">退出登录</a>
+                    <a  href="${pageContext.request.contextPath}/HTML_JSP/management.jsp" >后台管理</a>
+                    <a href="${pageContext.request.contextPath}/HTML_JSP/homepage.jsp" onclick="deleteCookie()">退出登录</a>
                 </div>
             </div>
         </li>
