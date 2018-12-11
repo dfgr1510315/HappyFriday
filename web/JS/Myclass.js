@@ -349,12 +349,18 @@ function Delete_File(event) {
 
 
 function getHTML() {
+    var Title = window.location.search.replace("?",'').split("/");String.fromCharCode(72,69,76,76,79);
+    var All_Title = '';
+    for(var i=0;i<Title.length-1;i++){
+        All_Title +=String.fromCharCode(parseInt(Title[i])-11);
+    }
+    $("#curriculum_Name").text(All_Title);
     $.ajax({
         type: "POST",
         asynch: "false",
         url: "http://localhost:8080/SaveClassInfor",
         data: {
-            ClassName: "Test",
+            ClassName: All_Title,
             Read_or_Save: "read"
         },
         dataType: 'json',
@@ -362,6 +368,7 @@ function getHTML() {
             $(".sections").append(jsonObj.Class_html);
             Classcount = parseInt(jsonObj.ClassCount);
             Unitcount = parseInt(jsonObj.UnitCount);
+            $("#teacher_Name").text(jsonObj.教师用户名);
             new_Editor();
         }
     });

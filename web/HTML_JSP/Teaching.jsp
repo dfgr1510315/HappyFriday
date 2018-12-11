@@ -18,15 +18,78 @@
         body{
             background-color: #f8fafc;
         }
+        tbody tr td:not(:first-child){
+            padding-top: 32px !important;
+        }
+
+        td button{
+            margin-top: -7px;
+        }
+
+        .cover{
+            width: 100px;height: 65px;margin-right: 5px
+        }
     </style>
+    <script type="text/javascript">
+        var user = getCookie("username");
+        function get_Class() {
+            $.ajax({
+                type: "POST",
+                asynch: "false",
+                url: "http://localhost:8080/get_teaching",
+                data: {
+                    username:user
+                },
+                dataType: 'json',
+                success: function (json) {
+                    $(json).each(function(){
+                        var Title = this.Title.toString();
+                        var All_Title = '';
+                        for (var i=0;i<Title.length;i++){
+                            All_Title +=(Title.charCodeAt(i)+11)+"/"
+                        }
+
+                        $("tbody").append(
+                            '<tr>\n' +
+                                '<td><img src="${pageContext.request.contextPath}'+this.封面地址 +'" class="cover">'+this.Title+'</td> \n'+
+                                '<td>'+this.学员数+'</td> \n'+
+                                '<td>'+this.状态+'</td> \n'+
+                                '<td><a target="_blank" href="Myclass.jsp?'+ All_Title+'"><button class="btn btn-outline-primary" >管理</button></a></td>\n'+
+                            '<tr>\n '
+                        )
+                    })
+                }
+            });
+        }
+    </script>
 
 </head>
-<body onload="checkCookie();ifActive();addClass(3)">
+<body onload="checkCookie();ifActive();addClass(3);get_Class()">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin: 80px auto auto;height: 450px">
     <div style="width: 80%;margin: auto">
         <jsp:include page="VerticalNav.jsp"/>
         <div class="container_right">
+            <div style="width: 100%;height: 100%;">
+                <h3 class="container_right_head">
+                    在线课程
+                    <button class="btn btn-outline-primary" style="float: right;margin-top: 28px">
+                        创建课程
+                    </button>
+                </h3>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th style="width:60%">课程名称</th>
+                        <th>学员数</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>

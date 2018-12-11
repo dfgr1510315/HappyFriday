@@ -131,7 +131,6 @@
             pointer-events: none;
         }
 
-
     </style>
 
 </head>
@@ -152,10 +151,10 @@
         <div class="ui-box" >
             <div style="height: 30%;">
                 <nav class="breadcrumb">
-                    <a class="breadcrumb-item" href="#">Home</a>
-                    <a class="breadcrumb-item" href="#">Library</a>
-                    <a class="breadcrumb-item" href="#">Data</a>
-                    <span class="breadcrumb-item active">Bootstrap</span>
+                    <a class="breadcrumb-item" href="homepage.jsp">首页</a>
+                    <a class="breadcrumb-item" href="PersonalCenter.jsp">个人中心</a>
+                    <a class="breadcrumb-item" href="Teaching.jsp">在教课程</a>
+                    <span class="breadcrumb-item active">课程管理</span>
                 </nav>
             </div>
             <div style="height: 70%;margin-top: -3px;" >
@@ -166,7 +165,7 @@
                     <div class="card" style="border: none;">
                         <div class="card-body" style="padding-bottom: 0;">
                             <span class="badge badge-primary" style="float: left;margin-top: 5px;margin-right: 7px;font-size: 15px;">点播课程</span>
-                            <h4   id="curriculum_Name" style="float: left">Test</h4>
+                            <h4   id="curriculum_Name" style="float: left"></h4>
                             <span style="float: right;">
                                 <button type="button" class="btn btn-outline-primary">发布课程</button>
                                 <button type="button" class="btn btn-outline-primary">课程主页</button>
@@ -174,7 +173,7 @@
                             </span>
                         </div>
                     </div>
-                    <span id="teacher_Name" style="padding-left: 20px;color: #999;">教师：<a  href="">admin</a></span>
+                    <span  style="padding-left: 20px;color: #999;">教师：<a id="teacher_Name" href=""></a></span>
                 </div>
             </div>
         </div>

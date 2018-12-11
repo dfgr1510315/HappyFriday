@@ -75,13 +75,13 @@
 <jsp:include page="navigation.jsp"/>
 
 
-<div style="width: 100%;margin: auto;margin-top: 80px;height: 450px">
+<div style="width: 100%;margin: 80px auto auto;height: 450px">
 
     <div style="width: 80%;margin: auto">
         <jsp:include page="VerticalNav.jsp"/>
         <div class="container_right">
             <div style="height: 100%;width: 100%;">
-                <h3 style=" font-size: 20px;color: #3d3d3d;height: 90px;line-height: 90px;border-bottom: 1px solid #e0e0e0;">
+                <h3 class="container_right_head">
                     个人资料
                 </h3>
 
@@ -108,7 +108,7 @@
                             try {
                                 Class.forName(ConnectSQL.driver);
                                 Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-                                if (!con.isClosed()) System.out.println("数据库连接上了");
+                                //if (!con.isClosed()) System.out.println("数据库连接上了");
                                 String sql = "select * from personal_table where username='" + "admin" + "'";
                                 Statement statement = con.createStatement();
                                 ResultSet rs = statement.executeQuery(sql);

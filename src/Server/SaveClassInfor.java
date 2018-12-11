@@ -73,6 +73,7 @@ public class SaveClassInfor extends HttpServlet {
                 jsonObj.put("Class_html",rs.getString("课时管理"));
                 jsonObj.put("UnitCount",rs.getString("UnitCount"));
                 jsonObj.put("ClassCount",rs.getString("ClassCount"));
+                jsonObj.put("教师用户名",rs.getString("教师用户名"));
             }
             rs.close();
             con.close();

@@ -78,4 +78,13 @@
         <url-pattern>/getlearnfile</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Get_Teaching</servlet-name>
+        <servlet-class>Server.Get_Teaching</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Get_Teaching</servlet-name>
+        <url-pattern>/get_teaching</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -29,3 +29,10 @@
     z-index: 6;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
 }
+.container_right_head{
+    font-size: 20px;
+    color: #3d3d3d;
+    height: 90px;
+    line-height: 90px;
+    border-bottom: 1px solid #e0e0e0;
+}
