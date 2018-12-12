@@ -3,11 +3,9 @@
     document.getElementById("idMyclass").className -= ' nav-link';
 };*/
 
-var Unitcount = 0;
-var Classcount = 0;
-
-
-
+var UnitCount = 0;
+var ClassCount = 0;
+var All_Title = '';
 
 function saveClass() {
     var Total_data = {
@@ -15,7 +13,7 @@ function saveClass() {
         UUNIt:[]
     };
 
-    for (var i=1;i<=Unitcount;i++){
+    for (var i=1;i<=UnitCount;i++){
         var flag  = $("#collapse"+i);
         var j=0;
         var Unit = {
@@ -58,8 +56,8 @@ function saveClass() {
         Read_or_Save: "save",
         ClassInfor: $('.sections').html(),
         ClassName: "Test",
-        Classcount: Classcount + "",
-        Unitcount: Unitcount + ""
+        ClassCount: ClassCount + "",
+        UnitCount: UnitCount + ""
     };
     $.ajax({
         type: "POST",
@@ -74,51 +72,72 @@ function saveClass() {
     alert("保存成功");
 }
 
-function Change_Unit_Fun(Unitcount, chooseCount) {
-   /* alert("UnitCount:" + Unitcount + " ChooseCount:" + chooseCount);*/
-    var obj = document.getElementById("collapse" + chooseCount);
-    obj.setAttribute("id", "collapse" + Unitcount);
+function Release(state) {
+        $.ajax({
+            url: "http://localhost:8080/SaveClassInfor",
+            data: {
+                ClassName:All_Title,
+                Read_or_Save:state
+            },
+            type: "POST",
+            dataType: "json",
+            asynch: "false"
+        });
+        if (state==='已发布') {
+            $("#Open_curriculum_Close").click();
+            $("#curriculum_button").removeClass('btn-outline-primary').addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
+        }else {
+            $("#Close_curriculum_Close").click();
+            $("#curriculum_button").removeClass('btn-success').addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
+        }
 
-    obj = document.getElementById("Button_collapse" + chooseCount);
-    obj.setAttribute("id", "Button_collapse" + Unitcount);
-    obj.setAttribute("href", "#collapse" + Unitcount);
-
-    obj = document.getElementById("button_add_class" + chooseCount);
-    obj.setAttribute("data-id", "button_add_class" + Unitcount);
-    obj.setAttribute("id", "button_add_class" + Unitcount);
-
-    obj = document.getElementById("button_Change_Unit" + chooseCount);
-    obj.setAttribute("data-id", "button_Change_Unit" + Unitcount);
-    obj.setAttribute("id", "button_Change_Unit" + Unitcount);
-
-    obj = document.getElementById("button_Delete_Unit" + chooseCount);
-    obj.setAttribute("data-id", "button_Delete_Unit" + Unitcount);
-    obj.setAttribute("id", "button_Delete_Unit" + Unitcount);
 }
 
-function Change_Class_Fun(Classcount, chooseCount) {
-    //alert("Classcount:" + Classcount + " ChooseCount:" + chooseCount);
+function Change_Unit_Fun(UnitCount, chooseCount) {
+   /* alert("UnitCount:" + UnitCount + " ChooseCount:" + chooseCount);*/
+    var obj = document.getElementById("collapse" + chooseCount);
+    obj.setAttribute("id", "collapse" + UnitCount);
+
+    obj = document.getElementById("Button_collapse" + chooseCount);
+    obj.setAttribute("id", "Button_collapse" + UnitCount);
+    obj.setAttribute("href", "#collapse" + UnitCount);
+
+    obj = document.getElementById("button_add_class" + chooseCount);
+    obj.setAttribute("data-id", "button_add_class" + UnitCount);
+    obj.setAttribute("id", "button_add_class" + UnitCount);
+
+    obj = document.getElementById("button_Change_Unit" + chooseCount);
+    obj.setAttribute("data-id", "button_Change_Unit" + UnitCount);
+    obj.setAttribute("id", "button_Change_Unit" + UnitCount);
+
+    obj = document.getElementById("button_Delete_Unit" + chooseCount);
+    obj.setAttribute("data-id", "button_Delete_Unit" + UnitCount);
+    obj.setAttribute("id", "button_Delete_Unit" + UnitCount);
+}
+
+function Change_Class_Fun(ClassCount, chooseCount) {
+    //alert("ClassCount:" + ClassCount + " ChooseCount:" + chooseCount);
     var obj = document.getElementById("hour_button_collapse" + chooseCount);
-    obj.setAttribute("id", "hour_button_collapse" + Classcount);
-    obj.setAttribute("href", "#hour_collapse" + Classcount);
+    obj.setAttribute("id", "hour_button_collapse" + ClassCount);
+    obj.setAttribute("href", "#hour_collapse" + ClassCount);
 
     obj = document.getElementById("hour_collapse" + chooseCount);
-    obj.setAttribute("id", "hour_collapse" + Classcount);
+    obj.setAttribute("id", "hour_collapse" + ClassCount);
 
     obj = document.getElementById("button_Change_Class" + chooseCount);
-    obj.setAttribute("id", "button_Change_Class" + Classcount);
-    obj.setAttribute("data-id", "button_Change_Class" + Classcount);
+    obj.setAttribute("id", "button_Change_Class" + ClassCount);
+    obj.setAttribute("data-id", "button_Change_Class" + ClassCount);
 
     obj = document.getElementById("button_Delete_Class" + chooseCount);
-    obj.setAttribute("id", "button_Delete_Class" + Classcount);
-    obj.setAttribute("data-id", "button_Delete_Class" + Classcount);
+    obj.setAttribute("id", "button_Delete_Class" + ClassCount);
+    obj.setAttribute("data-id", "button_Delete_Class" + ClassCount);
 
     obj = document.getElementById("editor" + chooseCount);
-    obj.setAttribute("id", "editor" + Classcount);
+    obj.setAttribute("id", "editor" + ClassCount);
 }
 
 function addSection() {
-    Unitcount = Unitcount + 1;
+    UnitCount = UnitCount + 1;
     $(".sections").append(
         '<div class="card section Unit" draggable="false">\n' +
         '   <div class="card-header"><span class="badge badge-pill badge-primary">章节</span>\n' +
@@ -137,10 +156,10 @@ function addSection() {
         '</div>\n'
     );
 
-    Change_Unit_Fun(Unitcount, "");
+    Change_Unit_Fun(UnitCount, "");
 
     var unit_name = $("#unit_name");
-    $("#collapse" + Unitcount).prev().children("h8").text(unit_name.val());
+    $("#collapse" + UnitCount).prev().children("h8").text(unit_name.val());
 
     unit_name.val('');
     //document.getElementById("unit_name").autofocus; 无效果
@@ -149,7 +168,7 @@ function addSection() {
 }
 
 function add_class_hour(add_id) {
-    Classcount = Classcount + 1;
+    ClassCount = ClassCount + 1;
     $(add_id).parent().parent().next().append('' +
         '<div class="card Unit_class" draggable="false" >' +
         '   <div class="card-header">' +
@@ -203,16 +222,16 @@ function add_class_hour(add_id) {
     var Next_Class_id = $(add_id).parent().parent().parent().next().children("div:last-child").children("div:first-child").children("div:last-child").attr('id');
     if (Next_Class_id!=null){
         var Next_Class_No = parseInt(Next_Class_id.slice(-1));
-        var i = Classcount-1;
+        var i = ClassCount-1;
         for(i;i>=Next_Class_No;i--){
             Change_Class_Fun(i+1,i);
         }
         Change_Class_Fun(Next_Class_No, "");
-    }else Change_Class_Fun(Classcount,"");
+    }else Change_Class_Fun(ClassCount,"");
 
 
     var E = window.wangEditor;
-    var editor = new E('#editor' + Classcount);
+    var editor = new E('#editor' + ClassCount);
     editor.create();
 
     class_name.val('');
@@ -237,28 +256,28 @@ function Change_Class_Name(Change_button_id) {
 
 function Delete_Unit(Delete_button_id) {
     var i = parseInt(Delete_button_id.id.slice(-1));
-    Unitcount = Unitcount - 1;
+    UnitCount = UnitCount - 1;
     var Son_div_length = parseInt($(Delete_button_id).parent().parent().next().children('div').length);
     var Last_Son_id = $(Delete_button_id).parent().parent().next().children("div:last-child").children("div:last-child").attr('id');
     if (Last_Son_id!=null){
         var Last_Son_no = parseInt(Last_Son_id.slice(-1));
-        for (Last_Son_no + 1; Last_Son_no < Classcount; Last_Son_no++) {
+        for (Last_Son_no + 1; Last_Son_no < ClassCount; Last_Son_no++) {
             Change_Class_Fun(Last_Son_no + 1 - Son_div_length, Last_Son_no + 1);
         }
     }
-     for (i; i < Unitcount + 1; i++) {
+     for (i; i < UnitCount + 1; i++) {
          Change_Unit_Fun(i, i + 1);
      }
-    Classcount = Classcount - (Son_div_length);
+    ClassCount = ClassCount - (Son_div_length);
     $(Delete_button_id).parent().parent().parent().remove();
     $("#Delete_Unit_Close").click();
 }
 
 function Delete_Class(Delete_button_id) {
-    Classcount = Classcount - 1;
+    ClassCount = ClassCount - 1;
     $(Delete_button_id).parent().parent().parent().remove();
     var i = parseInt(Delete_button_id.id.slice(-1));
-    for (i; i < Classcount + 1; i++) {
+    for (i; i < ClassCount + 1; i++) {
         Change_Class_Fun(i, i + 1);
     }
     $("#Delete_Class_Close").click();
@@ -349,13 +368,10 @@ function Delete_File(event) {
 
 
 function getHTML() {
-    var Title = window.location.search.replace("?",'').split("/");String.fromCharCode(72,69,76,76,79);
-    var All_Title = '';
-    for(var i=0;i<Title.length-1;i++){
-        All_Title +=String.fromCharCode(parseInt(Title[i])-11);
-    }
-    $("#curriculum_Name").text(All_Title);
-    $.ajax({
+    var Title = window.location.search.replace("?",'').split("/");
+     All_Title = decrypt(Title);
+     $("#curriculum_Name").text(All_Title);
+     $.ajax({
         type: "POST",
         asynch: "false",
         url: "http://localhost:8080/SaveClassInfor",
@@ -366,16 +382,19 @@ function getHTML() {
         dataType: 'json',
         success: function (jsonObj) {
             $(".sections").append(jsonObj.Class_html);
-            Classcount = parseInt(jsonObj.ClassCount);
-            Unitcount = parseInt(jsonObj.UnitCount);
+            ClassCount = parseInt(jsonObj.ClassCount);
+            UnitCount = parseInt(jsonObj.UnitCount);
             $("#teacher_Name").text(jsonObj.教师用户名);
+            if (jsonObj.state==='已发布')  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
+            else $("#curriculum_button").addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
             new_Editor();
         }
     });
 }
 
+
 function new_Editor() {
-    for (var i = 1; i <= Classcount; i++) {
+    for (var i = 1; i <= ClassCount; i++) {
         var editor_ID = $('#editor'+i);
         var editor_ID_HTML = editor_ID.find('div:last').html();
         editor_ID.empty();
@@ -420,4 +439,6 @@ function Change_Release_Statu(event) {
     }else {
         $(event).removeClass("btn-warning").addClass("btn-success").text("发布");
     }
+
+
 }

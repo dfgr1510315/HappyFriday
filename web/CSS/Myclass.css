@@ -1,0 +1,121 @@
+
+.dndArea {
+    width: 200px;
+    height: 100px;
+    border: dashed red;
+}
+
+.fade{
+    background-color: transparent;
+    width: 100%;
+    top: 80px;
+}
+
+.fade .btn-primary{
+    float: right;
+    margin-top: 10px
+}
+
+.fade .form-control{
+    height: 40px ;
+    resize:none;
+}
+
+.liMyclass {
+    background-color: #007bff;
+}
+
+.aMyclass {
+    color: white;
+}
+
+#verticalNav {
+    margin-top: 32px;
+}
+
+.container_right {
+    width: 80%;
+    float: right;
+    /* background-color: pink;*/
+    min-height: 240px;
+    margin-top: 32px;
+    background-color: white;
+    box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
+    border-radius: 12px;
+    margin-bottom: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container_left{
+    width: 18%;
+    float: left;
+    /* background-color: pink;*/
+    min-height: 240px;
+    margin-top: 32px;
+}
+
+.container_right_head {
+    font-size: 20px;
+    color: #3d3d3d;
+    height: 90px;
+    line-height: 90px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.section {
+    width: 100%;
+    background-color: #8080800d;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.Unit {
+    border: none;
+    background-color: white;
+}
+
+.Unit_class {
+    width: 90%;
+    float: right;
+    border: none;
+}
+
+.over > *{
+    display: none;
+}
+
+.card-header{
+    height: 57.8px;
+}
+
+body{
+    background-color: #f8fafc;
+    font-family: "PingFang SC", 微软雅黑, "Microsoft YaHei", Helvetica, "Helvetica Neue", Tahoma, Arial, sans-serif;
+}
+
+.ui-box{
+    width: 80%;
+    height: 170px;
+    margin: 33px auto auto;
+    background: #FFF;
+    box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
+    border-radius: 12px;
+}
+
+.list-group-item{
+    border: none;
+    background:none;
+    color: #787d82;
+}
+.list-group-item:hover{
+    color: #1c1f21;
+}
+
+.list_action{
+    color: white;
+    background: #007bff94;
+    border-radius: 8px 0 0 8px;
+    pointer-events: none;
+}
+

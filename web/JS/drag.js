@@ -40,14 +40,14 @@ function set_Class_Listener(event) {
         //remove_Listener(Unit_columns);
     }else {
         $(event).removeClass("btn-primary").addClass("btn-warning").text("取消拖动");
-        for(var count=1;count<=Classcount;count++){
+        for(var count=1;count<=ClassCount;count++){
             var collapse_id = $("#hour_button_collapse"+count);
             if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
         }
         add_Listener(Class_columns,domdrapend);
         //add_Listener(Unit_columns);
     }*/
-    for(var count=1;count<=Classcount;count++){
+    for(var count=1; count<=ClassCount; count++){
         var collapse_id = $("#hour_button_collapse"+count);
         if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
         collapse_id.removeAttr("href");
@@ -84,7 +84,7 @@ function drag(event) {
             collapse_id.attr("href","#collapse"+count);
             if (collapse_id.hasClass('collapsed'))  collapse_id.click();
         }
-        for(count=1;count<=Classcount;count++){
+        for(count=1; count<=ClassCount; count++){
             collapse_id = $("#hour_button_collapse"+count);
             collapse_id.attr("href","#hour_collapse"+count);
             //if (collapse_id.hasClass('collapsed'))  collapse_id.click();

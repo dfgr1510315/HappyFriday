@@ -56,4 +56,21 @@ function deleteCookie() {
     $("#personalCenter").hide();
     $("#loginButton").show();
     document.cookie="username=; expires=Thu,01 Jan 1970 00:00:00 GMT";
+    alert(getCookie("username"));
+}
+
+function encryption(Title) {
+    var All_Title = '';
+    for (var i=0;i<Title.length;i++){
+        All_Title +=(Title.charCodeAt(i)+11)+"/"
+    }
+    return All_Title;
+}
+
+function decrypt(Title) {
+    var All_Title = '';
+    for(var i=0;i<Title.length-1;i++){
+        All_Title +=String.fromCharCode(parseInt(Title[i])-11);
+    }
+    return All_Title;
 }

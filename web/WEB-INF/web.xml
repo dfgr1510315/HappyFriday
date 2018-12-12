@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-
     <mime-mapping>
         <extension>txt</extension>
         <mime-type>application/txt</mime-type>
@@ -86,5 +85,20 @@
         <servlet-name>Get_Teaching</servlet-name>
         <url-pattern>/get_teaching</url-pattern>
     </servlet-mapping>
+
+<!--
+    <filter>
+        <filter-name>Login_Filter</filter-name>
+        <filter-class>Filter.Login_Filter</filter-class>
+        <init-param>
+            <param-name>excPath</param-name>
+            <param-value>/HTML_JSP/homepage.jsp,/HTML_JSP/LoginPC.jsp</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Login_Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+-->
 
 </web-app>

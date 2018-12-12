@@ -32,6 +32,8 @@
     </style>
     <script type="text/javascript">
         var user = getCookie("username");
+
+
         function get_Class() {
             $.ajax({
                 type: "POST",
@@ -44,11 +46,7 @@
                 success: function (json) {
                     $(json).each(function(){
                         var Title = this.Title.toString();
-                        var All_Title = '';
-                        for (var i=0;i<Title.length;i++){
-                            All_Title +=(Title.charCodeAt(i)+11)+"/"
-                        }
-
+                        var All_Title = encryption(Title);
                         $("tbody").append(
                             '<tr>\n' +
                                 '<td><img src="${pageContext.request.contextPath}'+this.封面地址 +'" class="cover">'+this.Title+'</td> \n'+
