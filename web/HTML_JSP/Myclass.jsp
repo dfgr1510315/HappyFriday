@@ -58,7 +58,7 @@
                             <span style="float: right;">
                                 <button id="curriculum_button" type="button" class="btn " data-toggle="modal" ></button>
                                 <button type="button" class="btn btn-outline-primary">课程主页</button>
-                                <a  href="Learn_list.jsp" target="_blank"><button type="button" class="btn btn-outline-primary">预览</button></a>
+                                <a id="preview"  target="_blank"><button type="button" class="btn btn-outline-primary">预览</button></a>
                             </span>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -21,7 +22,9 @@ public class Get_Teaching extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
-        String username = request.getParameter("username");
+        //String username = request.getParameter("username");
+        HttpSession session=request.getSession();
+        String username=(String) session.getAttribute("user_id");
         JSONArray json= new JSONArray();
         try {
             Class.forName(ConnectSQL.driver);

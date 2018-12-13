@@ -35,7 +35,7 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input class="form-check-input" type="checkbox"> 记住我
-                            <input style="display:none" type="text" value="login" name="statu" id="statu">
+                            <input style="display:none" type="text" value="login" name="state" id="state">
                             <span id="loginError" style="display: none; color:red;margin-left: 20px"></span>
                         </label>
                     </div>

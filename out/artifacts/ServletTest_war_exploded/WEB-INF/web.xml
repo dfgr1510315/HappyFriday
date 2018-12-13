@@ -86,7 +86,15 @@
         <url-pattern>/get_teaching</url-pattern>
     </servlet-mapping>
 
-<!--
+    <servlet>
+        <servlet-name>Learn_list</servlet-name>
+        <servlet-class>Server.Learn_list</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Learn_list</servlet-name>
+        <url-pattern>/learn_list</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>Login_Filter</filter-name>
         <filter-class>Filter.Login_Filter</filter-class>
@@ -97,8 +105,11 @@
     </filter>
     <filter-mapping>
         <filter-name>Login_Filter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
--->
+
+    <!--<listener>
+        <listener-class>Listener.Session_Listener</listener-class>
+    </listener>-->
 
 </web-app>

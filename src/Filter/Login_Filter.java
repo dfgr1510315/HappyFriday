@@ -1,4 +1,3 @@
-/*
 package Filter;
 
 import javax.servlet.*;
@@ -7,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 
 @WebFilter(filterName = "Login_Filter")
@@ -22,7 +21,9 @@ public class Login_Filter implements Filter {
         //设置字符集为utf-8
         request.setCharacterEncoding("UTF-8");
         String path=request.getServletPath();
+        //System.out.println(path);
         for (String p : paths) {
+            //System.out.println(p);
             if (path.equals(p)) {
                 chain.doFilter(request, response);
                 return;
@@ -30,7 +31,8 @@ public class Login_Filter implements Filter {
         }
         HttpSession session=request.getSession();
         try {
-            String username=(String) session.getAttribute("username");
+            String username=(String) session.getAttribute("user_id");
+            //System.out.println(username);
             if(username==null){
                 //判断session是否为空，为空的话就页面重定向到登陆界面
                 response.sendRedirect(request.getContextPath()+"/HTML_JSP/homepage.jsp");
@@ -43,7 +45,7 @@ public class Login_Filter implements Filter {
             e.printStackTrace();
             return;
         }
-        chain.doFilter(req, resp);
+        chain.doFilter(request, response);
     }
 
     public void init(FilterConfig config) throws ServletException {
@@ -51,4 +53,3 @@ public class Login_Filter implements Filter {
     }
 
 }
-*/

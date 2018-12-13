@@ -8,105 +8,70 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%@ page import="java.sql.Connection" %>
-    <%@ page import="java.sql.DriverManager" %>
-    <%@ page import="java.sql.Statement" %>
-    <%@ page import="java.sql.ResultSet" %>
-    <%@ page import="Server.ConnectSQL" %>
-    <%@ page import="java.util.ArrayList" %>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Test</title>
     <script type="text/javascript" src="../JS/Learn_list.js"></script>
     <link rel="stylesheet" type="text/css" href="../CSS/Learn_list.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation_dark.css">
-    <script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        <%
-        ArrayList<String> Serial_No = new ArrayList<>();
-        ArrayList<String> Unit_Name = new ArrayList<>();
-        ArrayList<String> Class_Name = new ArrayList<>();
-        ArrayList<String> Video_Src = new ArrayList<>();
-        ArrayList<String> Editor = new ArrayList<>();
-        ArrayList<String> File_Href = new ArrayList<>();
-        ArrayList<String> State = new ArrayList<>();
-        try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            if (!con.isClosed()) System.out.println("数据库连接上了");
-            String sql = "select * from class where 课程标题='" + "Test" + "'";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                Serial_No.add(rs.getString("章节序号"));
-                Unit_Name.add(rs.getString("章节标题"));
-                Class_Name.add(rs.getString("课时标题"));
-                Video_Src.add(rs.getString("视频地址"));
-                Editor.add(rs.getString("图文信息"));
-                File_Href.add(rs.getString("文件地址"));
-                State.add(rs.getString("发布状态"));
-            }
-            rs.close();
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //System.out.println(Serial_No);
-    %>
         function get_Class() {
-            var Serial_No = '<%=Serial_No%>'.replace("[",'').replace("]",'').split(",");
-            var Unit_Name = '<%=Unit_Name%>'.replace("[",'').replace("]",'').split(",");
-            var Class_Name = '<%=Class_Name%>'.replace("[","").replace("]","").split(",");
-            var Video_Src = '<%=Video_Src%>'.replace("[","").replace("]","").split(",");
-            var Editor = '<%=Editor%>'.replace("[","").replace("]","").split(",");
-            var File_Href = '<%=File_Href%>'.replace("[","").replace("]","").split(",");
-            var State = '<%=State%>'.replace("[","").replace("]","").split(",");
-            /*alert(Unit_Name);
-            for (var i=0;i<Unit_Name.length;i++){
-                alert(Unit_Name[i].trim());
-            }*/
-            var flag='';var class_count = 0;
-            for(var i=0;i<Unit_Name.length;i++){
-                //alert(flag.match(Unit_Name[i]));
-                if (!flag.match(Unit_Name[i].trim())){
-                    flag = flag+','+Unit_Name[i].trim();
-                    //alert(flag);
-                }
-            }
-            flag = flag.substring(1).split(",");
-            for (i=0;i<flag.length;i++){
-                // alert(flag[i]);
-                $("#one").append(
-                    '<div id="Unit'+i+'" class="ui-box" draggable="true"  > ' +
-                        '<span class="part_title">第'+(i+1)+'章 '+flag[i]+'</span>'+
-                    '</div>'
-                );
-                var Class_flag='';
-                for (var j=0;j<Serial_No.length;j++)  if (Serial_No[j].match((i+1)+'_'))  Class_flag+=','+Serial_No[j];
-                Class_flag = Class_flag.substring(1).split(",");
-                for (var k=0;k<Class_flag.length;k++){
-                    if (State[class_count].trim()==='已发布'){
-                        $("#Unit"+i).append(
-                            '<div  >' +
-                            '    <a href="">' +
-                            '       <div class="ui-box1">' +
-                            '           <i class="iconfont icon-bofang"></i>'+
-                            Class_flag[k]+ Class_Name[class_count]+
-                            '       </div>'+
-                            '    </a>'+
-                            ' </div>'
-                        );
+            var title = decrypt(window.location.search.replace("?",'').split("/"));
+            $("#title").text(title);
+            $.ajax({
+                type: "POST",
+                asynch: "false",
+                url: "/learn_list",
+                data: {
+                    title:title
+                },
+                dataType: 'json',
+                success: function (jsonObject) {
+                    var Serial_No = jsonObject.Serial_No.toString().replace("[",'').replace("]",'').split(",");
+                    var Unit_Name = jsonObject.Unit_Name.toString().replace("[",'').replace("]",'').split(",");
+                    var Class_Name = jsonObject.Class_Name.toString().replace("[",'').replace("]",'').split(",");
+                    var State = jsonObject.State.toString().replace("[",'').replace("]",'').split(",");
+                    $("#teacher").text(jsonObject.teacher);
+                    var flag='';var class_count = 0;
+                    for(var i=0;i<Unit_Name.length;i++){
+                        if (!flag.match(Unit_Name[i].trim())){
+                            flag = flag+','+Unit_Name[i].trim();
+                        }
                     }
-                    class_count++;
+                    flag = flag.substring(1).split(",");
+                    for (i=0;i<flag.length;i++){
+                        $("#one").append(
+                            '<div id="Unit'+i+'" class="ui-box" draggable="true"  > ' +
+                            '<span class="part_title">第'+(i+1)+'章 '+flag[i]+'</span>'+
+                            '</div>'
+                        );
+                        var Class_flag='';
+                        for (var j=0;j<Serial_No.length;j++)  if (Serial_No[j].match((i+1)+'_'))  Class_flag+=','+Serial_No[j];
+                        Class_flag = Class_flag.substring(1).split(",");
+                        for (var k=0;k<Class_flag.length;k++){
+                            if (State[class_count].trim()==='已发布'){
+                                $("#Unit"+i).append(
+                                    '<div  >' +
+                                    '    <a href="">' +
+                                    '       <div class="ui-box1">' +
+                                    '           <i class="iconfont icon-bofang"></i>'+
+                                    Class_flag[k]+ Class_Name[class_count]+
+                                    '       </div>'+
+                                    '    </a>'+
+                                    ' </div>'
+                                );
+                            }
+                            class_count++;
+                        }
+                        //alert(Class_flag);
+                    }
+                    //alert(Serial_No+"\n"+Unit_Name+"\n"+Class_Name+"\n"+Video_Src+"\n"+Editor+"\n"+File_Href+"\n"+State);
                 }
-                //alert(Class_flag);
-            }
-
-            //alert(Serial_No+"\n"+Unit_Name+"\n"+Class_Name+"\n"+Video_Src+"\n"+Editor+"\n"+File_Href+"\n"+State);
+            });
 
         }
-
     </script>
 </head>
 
@@ -126,12 +91,12 @@
             <i class="i">\</i>
         </div>
         <div class="second">
-            <h2 class="left">Test</h2>
+            <h2 id="title" class="left"></h2>
         </div>
         <div class="third">
             <div class="t1">
                 <div class="t11"><a href="" target="_blank"><img src="../image/68296699_p0.png" width="48px" height="48px"></a></div>
-                <div class="t2">admin<%--<div class="t3">页面重构设计</div>--%></div>
+                <div id="teacher" class="t2">admin<%--<div class="t3">页面重构设计</div>--%></div>
                 <%--<div class="t22"><img src="慕课网首页.jpg" width="16" height="16" ></div>--%>
             </div>
             <div class="fouth">

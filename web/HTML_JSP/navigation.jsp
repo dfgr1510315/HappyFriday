@@ -23,14 +23,7 @@
             }
         }
 
-        function checkCookie() {
-            var user = getCookie("username");
-            if (user !== "") {
-                $("#loginButton").hide();
-                $("#personalCenter").show();
-                $("#showname").text(user);
-            }
-        }
+
 
         function addClass(no) {
             $(".list-group").children().eq(no).addClass('list_action');
@@ -65,7 +58,7 @@
             </div>--%>
             <div class="user_card" >
                 <div style="padding: 20px;">
-                    <a  href="#" onclick="PerCenter()">个人中心</a>
+                    <a  href="${pageContext.request.contextPath}HTML_JSP/PersonalCenter.jsp" target="_blank">个人中心</a>
                     <a href="${pageContext.request.contextPath}/HTML_JSP/upload.jsp">上传资源</a>
                     <a href="#">账号设置</a>
                     <a  href="#">我的消息</a>

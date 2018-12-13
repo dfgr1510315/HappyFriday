@@ -31,17 +31,11 @@
         }
     </style>
     <script type="text/javascript">
-        var user = getCookie("username");
-
-
         function get_Class() {
             $.ajax({
                 type: "POST",
                 asynch: "false",
-                url: "http://localhost:8080/get_teaching",
-                data: {
-                    username:user
-                },
+                url: "/get_teaching",
                 dataType: 'json',
                 success: function (json) {
                     $(json).each(function(){

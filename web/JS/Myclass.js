@@ -74,7 +74,7 @@ function saveClass() {
 
 function Release(state) {
         $.ajax({
-            url: "http://localhost:8080/SaveClassInfor",
+            url: "/SaveClassInfor",
             data: {
                 ClassName:All_Title,
                 Read_or_Save:state
@@ -342,7 +342,7 @@ function upload(event, type) {
     data.newParam = "type";
     data.type = "1";
     $.ajax({
-        url: "http://localhost:8080/uploadsec",
+        url: "/uploadsec",
         data: data,
         type: "POST",
         dataType: "json",
@@ -353,9 +353,9 @@ function upload(event, type) {
         success: function (jsonObj) {
             //alert(jsonObj.src);
             if (1 === type) {
-                $(event).parent().next().children().attr("src", "http://localhost:8080/" + jsonObj.src);
+                $(event).parent().next().children().attr("src", "/" + jsonObj.src);
             } else if (3 === type) {
-                $(event).next().next().append('<a  class="list-group-item list-group-item-action" target="_Blank" href="'+"http://localhost:8080/" + jsonObj.src+ '">' + jsonObj.filename + '<button type="button" class="btn btn-light" style="float: right;padding: 0;width: 26px" onclick="Delete_File(this)">&times;</button></a>\n')
+                $(event).next().next().append('<a  class="list-group-item list-group-item-action" target="_Blank" href="'+"/" + jsonObj.src+ '">' + jsonObj.filename + '<button type="button" class="btn btn-light" style="float: right;padding: 0;width: 26px" onclick="Delete_File(this)">&times;</button></a>\n')
             }
             /* $("#video").val(result.data.file);*/
         }
@@ -369,12 +369,13 @@ function Delete_File(event) {
 
 function getHTML() {
     var Title = window.location.search.replace("?",'').split("/");
+    $("#preview").attr("href","Learn_list.jsp?"+window.location.search.replace("?",''));
      All_Title = decrypt(Title);
      $("#curriculum_Name").text(All_Title);
      $.ajax({
         type: "POST",
         asynch: "false",
-        url: "http://localhost:8080/SaveClassInfor",
+        url: "/SaveClassInfor",
         data: {
             ClassName: All_Title,
             Read_or_Save: "read"

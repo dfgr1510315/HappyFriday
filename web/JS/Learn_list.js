@@ -62,7 +62,5 @@
          d.style.display="none";
          e.style.display="block";
      }
-     
-     function f() {
-         
-     }
+
+

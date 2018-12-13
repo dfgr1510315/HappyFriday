@@ -13,16 +13,13 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="Server.ConnectSQL" %>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    //String path = request.getContextPath();
+    //String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String username=(String) session.getAttribute("user_id");
 %>
 <html>
 <head>
-    <%--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">--%>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <%--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>--%>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
         <script src="${pageContext.request.contextPath}/JS/LoginPC.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
@@ -91,7 +88,7 @@
                         <%--<img src="http://static.runoob.com/images/mix/img_nature_wide.jpg"
                              style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">--%>
                         <img src="../image/68296699_p0.png"
-                             style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">
+                             style="width: 100px;height: 100px;border-radius: 50%;margin: 16px auto 0;">
                         <div style="text-align: center;width: 100px; margin-top: 7px">
                             <label for="file" class=" btn btn-primary" style="font-size: 12px;">更换头像</label>
                             <input id="file" type="file" style="display:none">
@@ -101,7 +98,7 @@
                         <%--详细资料区--%>
                         <div style="margin-top: 16px;height: 32px">
                             <%--用户id--%>
-                            <span>ID:admin</span>
+                            <span>ID:<%=username%></span>
                             <a data-toggle="modal" data-target="#information" href="#" style="float: right;">修改资料</a>
                         </div>
                         <%
@@ -109,7 +106,7 @@
                                 Class.forName(ConnectSQL.driver);
                                 Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
                                 //if (!con.isClosed()) System.out.println("数据库连接上了");
-                                String sql = "select * from personal_table where username='" + "admin" + "'";
+                                String sql = "select * from personal_table where username='" + username + "'";
                                 Statement statement = con.createStatement();
                                 ResultSet rs = statement.executeQuery(sql);
                                 ArrayList<InforBean> list = new ArrayList<InforBean>();

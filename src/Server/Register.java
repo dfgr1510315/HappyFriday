@@ -2,9 +2,7 @@ package Server;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -23,49 +21,60 @@ public class Register extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String statu = request.getParameter("statu");
-        System.out.println("获取到的状态、用户名和密码为：" + statu + username + password);
-        int Mysqlstate = ConnectMysql(username, password);
+        String state = request.getParameter("state");
+        System.out.println("获取到的状态、用户名和密码为：" + state + username + password);
+        int Mysql_state = ConnectMysql(username, password);
         int msg;
-        if (statu.equals("login")) {
-            if (Mysqlstate == 2) {
-                System.out.println("login success!!");
-                msg = loginSuccess;
-                PrintWriter out = response.getWriter();
-                out.print(msg);
-                out.flush();
-                out.close();
-            } else {
-                System.out.println("login false");
-                msg = loginError;
-                PrintWriter out = response.getWriter();
-                out.flush();
-                out.print(msg);
-               /* out.println("<script>");
-                out.println("alert('用户名或密码错误');");
-                out.println("</script>");*/
-                out.close();
-            }
-        } else if (statu.equals("register")) {
-            if (Mysqlstate == 1 || Mysqlstate == 2) {
-                System.out.println("login fail!!");
-                PrintWriter out = response.getWriter();
-                out.flush();
-                out.println("<script>");
-                out.println("history.back();");
-                out.println("alert('很遗憾，用户名已被使用');");
-                out.println("</script>");
-                out.close();
-            } else {
-                System.out.println("register success");
-                PrintWriter out = response.getWriter();
-                out.flush();
-                out.println("<script>");
-                out.println("alert('注册成功');");
-                out.println("location.href='LoginPC.jsp';");
-                out.println("</script>");
-                out.close();
-            }
+        switch (state){
+            case "login":
+                if (Mysql_state == 2){
+                    System.out.println("login success!!");
+                    msg = loginSuccess;
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user_id",username);
+                    Cookie cookie=new Cookie("JSESSIONID", session.getId());
+                    cookie.setMaxAge(60*20);
+                    response.addCookie(cookie);
+                    PrintWriter out = response.getWriter();
+                    out.print(msg);
+                    out.flush();
+                    out.close();
+                }else {
+                    System.out.println("login false");
+                    msg = loginError;
+                    PrintWriter out = response.getWriter();
+                    out.flush();
+                    out.print(msg);
+                    out.close();
+                }
+                break;
+            case  "register":
+                if (Mysql_state == 1 || Mysql_state == 2) {
+                    System.out.println("login fail!!");
+                    PrintWriter out = response.getWriter();
+                    out.flush();
+                    out.println("<script>");
+                    out.println("history.back();");
+                    out.println("alert('很遗憾，用户名已被使用');");
+                    out.println("</script>");
+                    out.close();
+                } else {
+                    System.out.println("register success");
+                    PrintWriter out = response.getWriter();
+                    out.flush();
+                    out.println("<script>");
+                    out.println("alert('注册成功');");
+                    out.println("location.href='LoginPC.jsp';");
+                    out.println("</script>");
+                    out.close();
+                }
+                break;
+            case "Logout":
+                HttpSession session = request.getSession();
+                session.setAttribute("user_id",username);
+                Cookie cookie=new Cookie("JSESSIONID", session.getId());
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
         }
     }
 
@@ -89,7 +98,8 @@ public class Register extends HttpServlet {
             while (rs.next()){
                 username = rs.getString("username");
                 paw = rs.getString("password");
-                System.out.println(username+"\t"+paw);
+                //System.out.println(username);
+                //System.out.println(username+"\t"+paw);
                 if (name.equals(username)) {
                     if (password.equals(paw)){
                         con.close();

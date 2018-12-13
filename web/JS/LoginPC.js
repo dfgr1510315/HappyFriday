@@ -2,7 +2,7 @@
 function login() {
     var username = $.trim($("#username").val());
     var password = $.trim($("#pwd").val());
-    var statu = $.trim($("#statu").val());
+    var state = $.trim($("#state").val());
     if (username===""){
         $("#loginError").text("请输入用户名").show();
         return false;
@@ -10,11 +10,11 @@ function login() {
         $("#loginError").text("请输入密码").show();
         return false;
     }
-    var data = {username:username,password:password,statu:statu};
+    var data = {username:username,password:password,state:state};
     $.ajax({
         type:"POST",
         asynch :"false",
-        url:"http://localhost:8080/register",
+        url:"/register",
         data:data,
         dataType:'json',
         success:function (msg) {
@@ -22,7 +22,7 @@ function login() {
                 $("#loginError").text("用户名或密码错误").show();
             }
             else{
-                setCookie("username",username,30);
+                //setCookie("username",username,30);
                 $("#loginClose").click();
                 $("#loginButton").hide();
                 $("#personalCenter").show();
@@ -31,32 +31,47 @@ function login() {
         }
     });
 }
-function PerCenter() {
-    var username = $.trim($("#username").val());
-    window.open("HTML_JSP/PersonalCenter.jsp?username="+username);
-}
 
+/*
 function setCookie(cname,cvalue,exday) {
     var d = new Date();
     d.setTime(d.getTime()+(exday*24*1000*60*60));
     var expires = "expires="+d.toUTCString();
     document.cookie = cname+"="+cvalue+";"+expires;
-}
-function getCookie(cname) {
+}*/
+/*function getCookie(cname) {
     var name = cname+"=";
     var ca = document.cookie.split(';');
     for(var i=0;i<ca.length;i++){
         var c = ca[i].trim();
+        alert(c.indexOf(name));
         if (c.indexOf(name)===0) return c.substring(name.length,c.length);
     }
     return "";
-}
+}*/
 
 function deleteCookie() {
+    $.ajax({
+        type:"POST",
+        asynch :"false",
+        url:"/register",
+        data:{
+            state:"Logout"
+        },
+        dataType:'json'
+    });
     $("#personalCenter").hide();
     $("#loginButton").show();
-    document.cookie="username=; expires=Thu,01 Jan 1970 00:00:00 GMT";
-    alert(getCookie("username"));
+    //document.cookie="JSESSIONID=B7D4B3487644149C29480AE7F03501B1;expires=Thu,01 Jan 1970 00:00:00 GMT";
+}
+
+function checkCookie() {
+    var user = document.cookie;
+    if (user !== "") {
+        $("#loginButton").hide();
+        $("#personalCenter").show();
+        $("#showname").text(user);
+    }
 }
 
 function encryption(Title) {
