@@ -59,6 +59,7 @@ function saveClass() {
         ClassCount: ClassCount + "",
         UnitCount: UnitCount + ""
     };
+
     $.ajax({
         type: "POST",
         asynch: "false",
@@ -226,12 +227,14 @@ function add_class_hour(add_id) {
         for(i;i>=Next_Class_No;i--){
             Change_Class_Fun(i+1,i);
         }
+        var E = window.wangEditor;
+        var editor = new E('#editor' + Next_Class_No);
         Change_Class_Fun(Next_Class_No, "");
-    }else Change_Class_Fun(ClassCount,"");
-
-
-    var E = window.wangEditor;
-    var editor = new E('#editor' + ClassCount);
+    }else{
+        Change_Class_Fun(ClassCount,"");
+        E = window.wangEditor;
+        editor = new E('#editor' + ClassCount);
+    }
     editor.create();
 
     class_name.val('');

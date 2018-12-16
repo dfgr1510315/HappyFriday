@@ -5,7 +5,7 @@
   Time: 20:18
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -20,6 +20,7 @@
         function get_Class() {
             var title = decrypt(window.location.search.replace("?",'').split("/"));
             $("#title").text(title);
+            $("title").text(title);
             $.ajax({
                 type: "POST",
                 asynch: "false",
@@ -253,11 +254,9 @@
                     <div class="hotrecommend">
                         <div >
                             <a href="#" class="hot1">用Query实现一小应用</a>
-                            </br>
                             <a href="#" class="hot2">Web前端常用框架</a>
                             <a href="#" class="hot2">防站开发</a>
                             <a href="#" class="hot3">最实用得前端开发框架教程</a>
-                            </br>
                             <a href="#" class="hot1">js入门基础</a>
                             <a href="#" class="hot4">全栈开发技能</a>
                         </div>
