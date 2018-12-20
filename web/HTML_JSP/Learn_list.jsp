@@ -16,6 +16,7 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <script type="text/javascript">
         function get_Class() {
             var title = decrypt(window.location.search.replace("?",'').split("/"));
@@ -78,7 +79,6 @@
 
 <body onload="checkCookie();ifActive();get_Class()" style="background-color: #f8fafc;">
 <jsp:include page="navigation.jsp"/>
-<jsp:include page="LoginPC.jsp"/>
 <div class="main">
     <div class="inside">
         <div class="first">

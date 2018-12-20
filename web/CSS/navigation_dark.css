@@ -36,3 +36,10 @@
 .nav-link:hover{
     color: white;
 }
+.course{
+     height: 1660px;
+     width: 80%;
+     margin:0 auto;
+     padding-right: 352px;
+     display: flex;/*给div父元素设置 display: flex; flex弹性盒模型*/
+ }
