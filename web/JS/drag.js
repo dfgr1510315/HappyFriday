@@ -5,6 +5,7 @@ var save_this = null;
 var Unit_columns ;
 var Class_columns ;
 
+
 function add_Listener(columns,domdrapend) {
     [].forEach.call(columns,function(column){
         column.setAttribute('draggable','true');
@@ -52,7 +53,7 @@ function set_Class_Listener(event) {
         if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
         collapse_id.removeAttr("href");
     }
-    for(count=1;count<=Unitcount;count++){
+    for(count=1;count<=UnitCount;count++){
         collapse_id = $("#Button_collapse"+count);
         collapse_id.attr("href","#collapse"+count);
         if (collapse_id.hasClass('collapsed'))  collapse_id.click();
@@ -65,7 +66,7 @@ function set_Unit_Listener(event) {
     if (Class_columns!==undefined) remove_Listener(Class_columns,domdrapend);
     var main_button = $(event).parent().prev().prev();
     Unit_columns = document.querySelectorAll('.Unit');
-    for(var count=1;count<=Unitcount;count++){
+    for(var count=1;count<=UnitCount;count++){
         var collapse_id = $("#Button_collapse"+count);
         if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
         collapse_id.removeAttr("href");
@@ -79,7 +80,7 @@ function drag(event) {
         $(event).removeClass("btn-warning").addClass("btn-primary").text("拖动排序");
         if (Unit_columns!==undefined) remove_Listener(Unit_columns,Unit_domdrapend);
         if (Class_columns!==undefined) remove_Listener(Class_columns,domdrapend);
-        for(var count=1;count<=Unitcount;count++){
+        for(var count=1;count<=UnitCount;count++){
             var collapse_id = $("#Button_collapse"+count);
             collapse_id.attr("href","#collapse"+count);
             if (collapse_id.hasClass('collapsed'))  collapse_id.click();
@@ -111,7 +112,7 @@ function Unit_domdrapend(e) {
     if(flag!==1) $(dragEl).empty().append(save_dragEl);
     sort_Unit('.Unit');
     sort_Class('.Unit_class');
-    for(var count=1;count<=Unitcount;count++){
+    for(var count=1;count<=UnitCount;count++){
         var collapse_id = $("#Button_collapse"+count);
         if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
         collapse_id.removeAttr("href");
@@ -168,6 +169,11 @@ function sort_Unit(unitName) {
         Change_Unit_Fun(flag_id_no,i);
         i++;
     });
+    for(var count=1;count<=UnitCount;count++){
+        var collapse_id = $("#Button_collapse"+count);
+        if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
+        collapse_id.removeAttr("href");
+    }
 }
 
 function sort_Class(className) {
@@ -182,6 +188,11 @@ function sort_Class(className) {
         Change_Class_Fun(i,flag_id_no);
         i++;
     });
+    for(var count=1; count<=ClassCount; count++){
+        var collapse_id = $("#hour_button_collapse"+count);
+        if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
+        collapse_id.removeAttr("href");
+    }
 }
 
 function cancel_drag() {  //点击增加课时，退出拖动模式

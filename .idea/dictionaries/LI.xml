@@ -6,10 +6,12 @@
       <w>ckplayer</w>
       <w>coursecount</w>
       <w>fafc</w>
+      <w>ffmpeg</w>
       <w>flashplayer</w>
       <w>fontset</w>
       <w>hotrecommend</w>
       <w>imagesize</w>
+      <w>qsql</w>
     </words>
   </dictionary>
 </component>

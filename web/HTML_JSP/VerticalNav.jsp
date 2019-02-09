@@ -19,7 +19,7 @@
 
     .list_action{
         color: white;
-        background: #007bff94;
+        background-color: rgba(0,123,255,0.70);
         border-radius: 8px 0 0 8px;
         pointer-events: none;
     }
@@ -40,8 +40,8 @@
         min-height: 95%;
         padding: 0 32px 32px;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
-        margin-bottom: 10px;
-        height: 100%;
+        margin-bottom: 60px;
+        height: auto;
     }
 
 </style>
@@ -50,15 +50,15 @@
 
     <div class="list-group">
         <a href="PersonalCenter.jsp" class="list-group-item ">个人资料</a>
-        <a href="#" class="list-group-item">密码修改</a>
-        <a href="#" class="list-group-item ">解除绑定</a>
+        <a href="ChangePW.jsp" class="list-group-item">密码修改</a>
+        <a href="Unbind.jsp" class="list-group-item ">解除绑定</a>
         <a href="Teaching.jsp" class="list-group-item " >在教课程</a>
-        <a href="#" class="list-group-item ">学员评论</a>
-        <a href="#" class="list-group-item ">我的课程</a>
-        <a href="#" class="list-group-item ">我发布的评论</a>
-        <a href="#" class="list-group-item ">我回复的评论</a>
-        <a href="#" class="list-group-item ">我的笔记</a>
-        <a href="#" class="list-group-item ">我的通知</a>
+        <a href="Student_commentary.jsp" class="list-group-item ">学员讨论</a>
+        <a href="LearingClass.jsp" class="list-group-item ">我的课程</a>
+        <a href="My_question.jsp" class="list-group-item ">我发布的评论</a>
+        <a href="My_answered.jsp" class="list-group-item ">我回复的评论</a>
+        <a href="note.jsp" class="list-group-item ">我的笔记</a>
+        <a href="notification.jsp" class="list-group-item ">我的通知</a>
     </div>
 </div>
 </body>

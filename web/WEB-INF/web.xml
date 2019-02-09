@@ -33,12 +33,39 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>UploadImage</servlet-name>
+        <servlet-class>Server.UploadImage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadImage</servlet-name>
+        <url-pattern>/uploadimage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>save_image</servlet-name>
+        <servlet-class>Server.save_image</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>save_image</servlet-name>
+        <url-pattern>/save_image</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ChangeInfor</servlet-name>
         <servlet-class>Server.ChangeInfor</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangeInfor</servlet-name>
         <url-pattern>/changeInfor</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChangePW</servlet-name>
+        <servlet-class>Server.ChangePW</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangePW</servlet-name>
+        <url-pattern>/changepw</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -95,12 +122,39 @@
         <url-pattern>/learn_list</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Play</servlet-name>
+        <servlet-class>Server.Play</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Play</servlet-name>
+        <url-pattern>/play</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PostNote</servlet-name>
+        <servlet-class>Server.PostNote</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostNote</servlet-name>
+        <url-pattern>/postnote</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PostAsk</servlet-name>
+        <servlet-class>Server.PostAsk</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostAsk</servlet-name>
+        <url-pattern>/postask</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>Login_Filter</filter-name>
         <filter-class>Filter.Login_Filter</filter-class>
         <init-param>
             <param-name>excPath</param-name>
-            <param-value>/HTML_JSP/homepage.jsp,/HTML_JSP/LoginPC.jsp</param-value>
+            <param-value>/HTML_JSP/homepage.jsp,/HTML_JSP/LoginPC.jsp,/bank_html/Bank.jsp,/bank_html/login_bank.jsp</param-value>
         </init-param>
     </filter>
     <filter-mapping>

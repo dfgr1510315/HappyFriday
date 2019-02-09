@@ -6,79 +6,41 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
-
 <html>
 <head>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>课程管理</title>
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/Myclass.css">
     <link rel="stylesheet" type="text/css" href="../webuploader-0.1.5/css/webuploader.css">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../webuploader-0.1.5/jekyll/js/webuploader.js"></script>
     <script type="text/javascript" src="../wangEditor-3.1.1/release/wangEditor.min.js"></script>
+    <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <script type="text/javascript" src="../JS/Myclass.js"></script>
     <script type="text/javascript" src="../JS/drag.js"></script>
-    <script type="text/javascript" src="../JS/LoginPC.js"></script>
 </head>
+<style type="text/css">
+    body.modal-open {
+        overflow-y: auto !important;
+        padding-right: 0!important;
+    }
+</style>
 
-<body onload="checkCookie();ifActive();getHTML()">
+<body onload="checkCookie();ifActive();getHTML();addClass(0);addHref()" onbeforeunload="live();">
 <jsp:include page="navigation.jsp"/>
-<div style="width: 100%;margin: 80px auto auto;height: 450px">
+<div style="width: 100%;margin-top:30px;height: 450px">
     <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">
-        <div style="width: 80%;height: 100%;margin: auto">
-            <div style="margin-left: 0;height: 148px;width: 148px;float: left">
-                <div style="    border: 4px solid #FFF;box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);width: 148px;height: 148px;position: relative;border-radius: 50%;background: #fff;top: 24px;">
-                    <img src="../image/68296699_p0.png"
-                         style="text-align: center;width: 140px;height: 140px;border-radius: 50%;">
-                </div>
-            </div>
-        </div>
-        <div class="ui-box" >
-            <div style="height: 30%;">
-                <nav class="breadcrumb">
-                    <a class="breadcrumb-item" href="homepage.jsp">首页</a>
-                    <a class="breadcrumb-item" href="PersonalCenter.jsp">个人中心</a>
-                    <a class="breadcrumb-item" href="Teaching.jsp">在教课程</a>
-                    <span class="breadcrumb-item active">课程管理</span>
-                </nav>
-            </div>
-            <div style="height: 70%;margin-top: -3px;" >
-                <div style="width:18%;height: 100%;float: left;text-align: center">
-                    <img  class="img-fluid" src="../image/68296699_p0.png" style="height: 103%;width: 100%;border-bottom-left-radius: 12px;">
-                </div>
-                <div style="width: 82%;height: 100%;float: left">
-                    <div class="card" style="border: none;">
-                        <div class="card-body" style="padding-bottom: 0;">
-                            <span class="badge badge-primary" style="float: left;margin-top: 5px;margin-right: 7px;font-size: 15px;">点播课程</span>
-                            <h4   id="curriculum_Name" style="float: left"></h4>
-                            <span style="float: right;">
-                                <button id="curriculum_button" type="button" class="btn " data-toggle="modal" ></button>
-                                <button type="button" class="btn btn-outline-primary">课程主页</button>
-                                <a id="preview"  target="_blank"><button type="button" class="btn btn-outline-primary">预览</button></a>
-                            </span>
-                        </div>
-                    </div>
-                    <span  style="padding-left: 20px;color: #999;">教师：<a id="teacher_Name" href=""></a></span>
-                </div>
-            </div>
-        </div>
+        <jsp:include page="radio_cover.jsp"/>
+        <jsp:include page="ui_box.jsp"/>
         <div style="width: 80%;margin: auto">
-            <div class="container_left" >
-                <div class="list-group">
-                    <a href="#" class="list-group-item list_action">课时管理</a>
-                    <a href="#" class="list-group-item">基本信息</a>
-                    <a href="#" class="list-group-item ">详细信息</a>
-                    <a href="#" class="list-group-item ">课程封面</a>
-                    <a href="#" class="list-group-item ">学员统计</a>
-                    <a href="#" class="list-group-item ">教师设置</a>
-                    <a href="#" class="list-group-item ">学员管理</a>
-                    <a href="#" class="list-group-item ">删除课程</a>
-                </div>
-            </div>
+            <jsp:include page="course_manag_nav.jsp"/>
             <div class="container_right">
                 <h3 class="container_right_head">
                     课程管理
@@ -194,7 +156,7 @@
                 <%--界面--%>
                 <div class="modal-body">
                     <h6>是否删除此章节</h6>
-                    <button id="Delete_Unit_sure_button" type="button" class="btn btn-primary" onclick="">确定
+                    <button id="Delete_Unit_sure_button" type="button" class="btn btn-primary" onclick="" >确定
                     </button>
                 </div>
             </div>

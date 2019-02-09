@@ -14,15 +14,16 @@ function login() {
     $.ajax({
         type:"POST",
         asynch :"false",
-        url:"/register",
+        url:$("#PageContext").val()+"/register",
         data:data,
         dataType:'json',
         success:function (msg) {
-            if (msg === 1) {
+            if (msg.state === '1') {
                 $("#loginError").text("用户名或密码错误").show();
             }
             else{
                 //setCookie("username",username,30);
+                $('#head_image').attr('src',msg.head_image);
                 $("#loginClose").click();
                 $("#loginButton").hide();
                 $("#personalCenter").show();
@@ -54,7 +55,7 @@ function deleteCookie() {
     $.ajax({
         type:"POST",
         asynch :"false",
-        url:"/register",
+        url:"../register",
         data:{
             state:"Logout"
         },
@@ -65,16 +66,8 @@ function deleteCookie() {
     //document.cookie="JSESSIONID=B7D4B3487644149C29480AE7F03501B1;expires=Thu,01 Jan 1970 00:00:00 GMT";
 }
 
-function checkCookie() {
-    var user = document.cookie;
-    if (user !== "") {
-        $("#loginButton").hide();
-        $("#personalCenter").show();
-        $("#showname").text(user);
-    }
-}
 
-function encryption(Title) {
+/*function encryption(Title) {
     var All_Title = '';
     for (var i=0;i<Title.length;i++){
         All_Title +=(Title.charCodeAt(i)+11)+"/"
@@ -88,4 +81,4 @@ function decrypt(Title) {
         All_Title +=String.fromCharCode(parseInt(Title[i])-11);
     }
     return All_Title;
-}
+}*/

@@ -36,6 +36,10 @@
             overflow: auto;
         }
 
+        a:hover{
+            text-decoration:none
+        }
+
         span {
             float: left;
             font-size: 14px;
@@ -72,12 +76,12 @@
 <jsp:include page="navigation.jsp"/>
 
 
-<div style="width: 100%;margin: 80px auto auto;height: 450px">
+<div style="width: 100%;height: 450px">
 
     <div style="width: 80%;margin: auto">
         <jsp:include page="VerticalNav.jsp"/>
         <div class="container_right">
-            <div style="height: 100%;width: 100%;">
+            <div >
                 <h3 class="container_right_head">
                     个人资料
                 </h3>
@@ -87,11 +91,11 @@
                         <%--头像区--%>
                         <%--<img src="http://static.runoob.com/images/mix/img_nature_wide.jpg"
                              style="width: 100px;height: 100px;border-radius: 50%;margin: 0 auto;margin-top: 16px;">--%>
-                        <img src="../image/68296699_p0.png"
+                        <img id="pc_head_image" src=""
                              style="width: 100px;height: 100px;border-radius: 50%;margin: 16px auto 0;">
                         <div style="text-align: center;width: 100px; margin-top: 7px">
-                            <label for="file" class=" btn btn-primary" style="font-size: 12px;">更换头像</label>
-                            <input id="file" type="file" style="display:none">
+                            <label for="head_iamge" class=" btn btn-primary" style="font-size: 12px;">更换头像</label>
+                            <input id="head_iamge" type="file" style="display:none" onchange="post_head_image(this)">
                         </div>
                     </div>
                     <div style="width: 85%;height: 100%;float: right;">
@@ -231,29 +235,7 @@
         $("#sex").text(sex);
     }
 
-    /* function showInfor() {
-         alert("showInfor调用");
-         $.ajax({
-             type:"POST",
-             asynch: "false",
-             url: "http://localhost:8080/changeInfor",
-             data: {requestShow:"showInfor",ID:getCookie("username")},
-             dataType: 'json'
-             /!*success: function (nike,name,sex,birth,teacher,introduction) {
-                 alert("success成功");
-                 $("#liNike").text("昵称：" + nike);
-                 $("#liName").text("实名：" + name);
-                 $("#liSex").text("性别：" + sex);
-                 $("#liBirth").text("生日：" + birth);
-                 $("#liIntro").text("简介：" + introduction);
-                 $("#liTeacher").text("指导老师：" + teacher);
-             },*!/
-             success: function x() {
-             alert("success")
-         }
-         });
-     }*/
-
+    $('#pc_head_image').attr('src',head_image);
     $("#nike").val('<%=inforBean.getNike() %>');
     $("#name").val('<%=inforBean.getName() %>');
     $("#sex").text('<%=inforBean.getSex() %>');
@@ -270,7 +252,7 @@
         var birth = $.trim($("#birth").val());
         var teacher = $.trim($("#teacher").val());
         var introduction = $.trim($("#introduction").val());
-        var user = getCookie("username");
+        var user = '<%=username%>';
         var data = {
             ID: user,
             nike: nike,
@@ -283,7 +265,7 @@
         $.ajax({
             type: "POST",
             asynch: "false",
-            url: "http://localhost:8080/changeInfor",
+            url: "${pageContext.request.contextPath}/changeInfor",
             data: data,
             dataType: 'json',
             success: function (msg) {
@@ -301,6 +283,53 @@
                 }
             }
         });
+    }
+
+    function post_head_image(event) {
+        var animateimg = $(event).val(); //获取上传的图片名 带//
+        var imgarr=animateimg.split('\\'); //分割
+        var myimg=imgarr[imgarr.length-1]; //去掉 // 获取图片名
+        var houzui = myimg.lastIndexOf('.'); //获取 . 出现的位置
+        var ext = myimg.substring(houzui, myimg.length).toUpperCase();  //切割 . 获取文件后缀
+        var file = $(event).get(0).files[0]; //获取上传的文件
+        var fileSize = file.size;           //获取上传的文件大小
+        var maxSize = 1048576;              //最大1MB
+        if(ext !=='.PNG' && ext !=='.GIF' && ext !=='.JPG' && ext !=='.JPEG' && ext !=='.BMP'){
+            alert('文件类型错误,请上传图片类型');
+            return false;
+        }else if(parseInt(fileSize) >= parseInt(maxSize)){
+            alert('上传的文件不能超过1MB');
+            return false;
+        }else {
+            var fileObj = event.files[0]; // js 获取文件对象
+            var formFile = new FormData();
+            formFile.append("file", fileObj); //加入文件对象
+            $.ajax({
+                url: ${pageContext.request.contextPath}"/uploadimage",
+                data: formFile,
+                type: "POST",
+                dataType: "json",
+                async: true,
+                cache: false,//上传文件无需缓存
+                processData: false,//用于对data参数进行序列化处理 这里必须false
+                contentType: false, //必须
+                success: function (jsonObj) {
+                    $('#pc_head_image').attr('src',${pageContext.request.contextPath}jsonObj.head_address);
+                    $('#head_image').attr('src',${pageContext.request.contextPath}jsonObj.head_address);
+                    $.ajax({
+                        url: ${pageContext.request.contextPath}"/save_image",
+                        data: {
+                            action:'set_head',
+                            image: ${pageContext.request.contextPath}jsonObj.head_address
+                        },
+                        type: "POST",
+                        dataType: "json",
+                        async: true
+                    });
+                }
+            });
+
+        }
     }
 
 </script>

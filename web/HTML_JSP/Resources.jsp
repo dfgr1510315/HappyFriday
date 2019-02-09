@@ -16,9 +16,11 @@
     <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>--%>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
+    <script src="${pageContext.request.contextPath}/JS/LoginPC.js"></script>
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <%--<script type="text/javascript">
         angular.module('ionicApp', ['ionic'])
 
@@ -66,7 +68,7 @@
 
         .item-top {
             width: 32%;
-            margin: 0px 8px 9px 0px;
+            margin: 0 8px 9px 0;
             text-align: left;
             height: 80px;
             color: #bbb;

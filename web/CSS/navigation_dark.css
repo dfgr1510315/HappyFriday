@@ -37,7 +37,7 @@
     color: white;
 }
 .course{
-     height: 1660px;
+     min-height: 600px;
      width: 80%;
      margin:0 auto;
      padding-right: 352px;

@@ -17,7 +17,8 @@
     visibility:visible;
 }
 .user_navigation{
-    position:fixed;
+    /*position:fixed;*/
+    height: 60px;
     top:0;
     left:0;
     right:0;
@@ -35,4 +36,7 @@
     height: 90px;
     line-height: 90px;
     border-bottom: 1px solid #e0e0e0;
+}
+a:hover{
+    text-decoration: none;
 }

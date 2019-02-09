@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
 </head>
 <body>
+<input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
 <div class="modal fade" id="LoginModal" style="background-color: transparent; width: 100%; top: 165px;">
     <div class="modal-dialog">
         <div class="modal-content">

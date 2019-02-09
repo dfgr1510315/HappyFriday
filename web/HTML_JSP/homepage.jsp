@@ -18,18 +18,26 @@
     <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
-
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
 
     <style type="text/css">
-
         body {
             background-color: #f8fafc;
             overflow: auto;
+        }
+
+        a:hover{
+            text-decoration:none
+        }
+
+        body.modal-open {
+            overflow-y: auto !important;
+            padding-right: 0!important;
         }
 
         .b1 {
@@ -59,6 +67,31 @@
             font-size: 15px;
         }
 
+        .c1 hr{
+            width:80% ;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            float: left;
+            border: solid 1px #dddddd;
+            border-bottom-width: 0;
+        }
+
+        .d1 {
+            width: 80%;
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .d1 ul{
+            float: left;
+            width: 100%;
+            height: 54px;
+            list-style:none;
+            display:inline;
+            padding-left: 70px;
+        }
+
         .d1 ul li {
             width: 200px;
             display: inline-block;
@@ -70,9 +103,92 @@
         }
 
         .label{
-            float: left;margin-left: 13px; font-size: 12px;
+            float: left;
+            margin-left: 13px;
+            font-size: 12px;
         }
 
+        .types-content{
+            width: 80%;
+            min-height: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow:hidden
+        }
+
+        .types-content .index-card-container {
+            float: left;
+            margin-left: 18px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .course-card-container .course-card-content .course-card-name:hover{
+            color: #007bff;
+        }
+
+        .course-card-container {
+            width: 216px;
+            position: relative;
+            transition: .3s all linear;
+        }
+
+        .course-card-container .course-card-top.hashadow {
+            overflow: hidden;
+        }
+
+        .course-card-container .course-card-top {
+            width: 216px;
+            height: 120px;
+            position: relative;
+            border-radius: 8px;
+            transition: all .3s;
+        }
+
+        .course-card-container .course-card-top .course-banner {
+            width: 100%;
+            height: 100%;
+            background-color: #f3f5f7;
+            border-radius: 8px;
+        }
+
+        .hashadow:hover {
+            box-shadow: 0 2px 8px #666;
+        }
+
+        .course-card-container .course-card-content {
+            padding: 12px 8px;
+        }
+
+        .course-card-container .course-card-content .course-card-name {
+            font-size: 16px;
+            color: #07111B;
+            line-height: 24px;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 46px;
+            transition: all .3s;
+        }
+
+        .course-card-container .course-card-content .course-card-info {
+            font-size: 12px;
+            color: #93999F;
+            line-height: 24px;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .course-card-container .course-card-content .course-card-info span {
+            display: inline-block;
+            margin-right: 12px;
+        }
+        .course-card-container .course-card-content .course-card-info .icon-set_sns {
+            margin-right: 2px;
+        }
     </style>
 </head>
 
@@ -83,7 +199,7 @@
 <jsp:include page="LoginPC.jsp" />
 
 
-<div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px;margin: auto; margin-top: 71px;width: 80%; ">
+<div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px;margin: 71px auto auto;width: 80%; ">
 
     <!-- 指示符 -->
     <ul class="carousel-indicators">
@@ -131,13 +247,25 @@
 
 <div class="c1">
     <div>
-        <div style="width: 10%; float: left; margin-top: 10px;">资源分类</div>
-        <hr style="width:80% ;  margin-top: 20px;margin-bottom: 20px; float: left;    border: solid 1px #dddddd;     border-bottom-width: 0px;">
+        <div style="width: 10%; float: left; margin-top: 10px;">最新课程</div>
+        <hr>
     </div>
 </div>
 
-<div class="d1" style=" width: 80%;height: 400px;   margin-left: auto;margin-right: auto; ">
-    <ul style="float: left; width: 100%;height: 54px; list-style:none; display:inline; padding-left: 70px;">
+<div class="types-content">
+
+</div>
+
+<div class="c1">
+    <div>
+        <div style="width: 10%; float: left; margin-top: 10px;">资源分类</div>
+        <hr>
+    </div>
+</div>
+
+
+<div class="d1">
+    <ul >
         <li>
             <a href="">HTML\CSS</a>
         </li>
@@ -176,8 +304,43 @@
         </li>
     </ul>
 </div>
-
-
 </body>
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            asynch: "false",
+            url: "${pageContext.request.contextPath}/SaveClassInfor",
+            data: {
+                Read_or_Save:'get_new_class'
+            },
+            dataType: 'json',
+            success: function (jsonObj) {
+                for (var i=0;i<jsonObj.title.length;i++){
+                    $('.types-content').append(
+                        ' <div class="index-card-container course-card-container container">\n' +
+                        '        <a target="_blank" class="course-card" href="Learn_list.jsp?'+jsonObj.no[i]+'">\n' +
+                        '            <div class="course-card-top hashadow">\n' +
+                        '                <img src="${pageContext.request.contextPath}'+jsonObj.cover[i]+'" alt="" class="course-banner">\n' +
+                        '            </div>\n' +
+                        '            <div class="course-card-content">\n' +
+                        '                <h3 class="course-card-name">'+jsonObj.title[i]+'</h3>\n' +
+                        '                <div class="clearfix course-card-bottom">\n' +
+                        '                    <div class="course-card-info">\n' +
+                        '                        <span>'+jsonObj.type[i]+'</span>\n' +
+                        '                        <span>'+jsonObj.teacher[i]+'</span>\n' +
+                        '                        <span>\n' +
+                        '                            <i class="icon-set_sns fa fa-user-o"></i>'+jsonObj.student_number[i]+'\n' +
+                        '                        </span>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
+                        '        </a>\n' +
+                        '    </div>'
+                    )
+                }
+            }
+        });
+    });
+</script>
 </html>

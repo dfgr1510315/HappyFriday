@@ -1,12 +1,14 @@
 package Server;
 
+import net.sf.json.JSONObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-
+import java.util.ArrayList;
 
 
 @WebServlet(name = "Register")
@@ -23,17 +25,19 @@ public class Register extends HttpServlet {
         String password = request.getParameter("password");
         String state = request.getParameter("state");
         System.out.println("获取到的状态、用户名和密码为：" + state + username + password);
-        int Mysql_state = ConnectMysql(username, password);
-        int msg;
+        JSONObject msg = new JSONObject();
         switch (state){
             case "login":
+                int Mysql_state = ConnectMysql(username, password);
                 if (Mysql_state == 2){
                     System.out.println("login success!!");
-                    msg = loginSuccess;
+                    msg.put("state",loginSuccess);
+                    String head = get_head(username);
+                    msg.put("head_image",head);
                     HttpSession session = request.getSession();
                     session.setAttribute("user_id",username);
                     Cookie cookie=new Cookie("JSESSIONID", session.getId());
-                    cookie.setMaxAge(60*20);
+                    cookie.setMaxAge(60*60*24);
                     response.addCookie(cookie);
                     PrintWriter out = response.getWriter();
                     out.print(msg);
@@ -41,7 +45,7 @@ public class Register extends HttpServlet {
                     out.close();
                 }else {
                     System.out.println("login false");
-                    msg = loginError;
+                    msg.put("state",loginError);
                     PrintWriter out = response.getWriter();
                     out.flush();
                     out.print(msg);
@@ -49,6 +53,7 @@ public class Register extends HttpServlet {
                 }
                 break;
             case  "register":
+                 Mysql_state = ConnectMysql(username, password);
                 if (Mysql_state == 1 || Mysql_state == 2) {
                     System.out.println("login fail!!");
                     PrintWriter out = response.getWriter();
@@ -76,6 +81,24 @@ public class Register extends HttpServlet {
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
         }
+    }
+
+    private String get_head(String username){
+        String head="";
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select head from personal_table where username='"+username+"'");
+            while (rs.next()){
+                head = rs.getString("head");
+            }
+            rs.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return head;
     }
 
 

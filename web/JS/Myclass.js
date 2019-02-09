@@ -3,11 +3,13 @@
     document.getElementById("idMyclass").className -= ' nav-link';
 };*/
 
+var PageContext = $("#PageContext").val();
 var UnitCount = 0;
 var ClassCount = 0;
-var All_Title = '';
+var No = window.location.search.replace("?",'');
 
 function saveClass() {
+    var class_name = $('#curriculum_Name').html();
     var Total_data = {
         ClassName:'课程名',
         UUNIt:[]
@@ -21,18 +23,28 @@ function saveClass() {
             Class:[]
         };
         while (flag.children("div").eq(j).html()!==undefined){
+            var source_video_name = flag.children("div").eq(j).children('div').eq(1).find('label').eq(0).text();
+            //alert(flag.children("div").eq(j).children('div').eq(1).find('video').data('cusrc'));
+            if ('选择视频'===source_video_name)   source_video_name='';
             var Class = {
                 Class_Name:flag.children("div").eq(j).children('div').eq(0).children('h10').text(),
                 Video_Src:flag.children("div").eq(j).children('div').eq(1).find('video').attr('src'),
+                Source_Video_Name:source_video_name,
+                Source_Video_Src:flag.children("div").eq(j).children('div').eq(1).find('video').data('cusrc'),
                 Editor:flag.children("div").eq(j).children('div').eq(1).find('video').parent().parent().next().children().eq(1).children().html(),
                 State:flag.children().eq(j).find('button:first').text()
             };
             var File_Href="";
+            var File_Name="";
+            //alert(flag.children("div").eq(j).children('div').eq(1).find('video').parent().parent().next().next().find('a').text());
             flag.children("div").eq(j).children('div').eq(1).find('video').parent().parent().next().next().find('a').each(function(){
                 File_Href=File_Href+this.href+'|';
+                File_Name=File_Name+this.text+'|';
             });
+           // alert(File_Name);
             Class.File_Href = File_Href;
-            Class.Serial_No = i+"_"+(j+1);
+            Class.File_Name = File_Name;
+            Class.Serial_No = i+"-"+(j+1);
 
             Unit.Class.push(Class);
             //alert(Unit.Class[j].Serial_No);
@@ -45,9 +57,9 @@ function saveClass() {
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: "/getlearnfile",
+        url: PageContext +"/getlearnfile",
         data: {
-            Class_Title:"Test",
+            No:No,
             ds:JSON.stringify(Total_data.UUNIt)},
         dataType: 'json'
     });
@@ -55,15 +67,14 @@ function saveClass() {
     var data = {
         Read_or_Save: "save",
         ClassInfor: $('.sections').html(),
-        ClassName: "Test",
+        No: No,
         ClassCount: ClassCount + "",
         UnitCount: UnitCount + ""
     };
-
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: "/SaveClassInfor",
+        url: PageContext+"/SaveClassInfor",
         data: data,
         dataType: 'json',
         success: function () {
@@ -73,11 +84,15 @@ function saveClass() {
     alert("保存成功");
 }
 
+function live() {
+    event.returnValue = '确认是否保存';
+}
+
 function Release(state) {
         $.ajax({
-            url: "/SaveClassInfor",
+            url: PageContext+"/SaveClassInfor",
             data: {
-                ClassName:All_Title,
+                No:No,
                 Read_or_Save:state
             },
             type: "POST",
@@ -197,12 +212,15 @@ function add_class_hour(add_id) {
         '                   </li>\n' +
         '               </ul>\n' +
         '               <div class="input-file-show" style="">\n' +
-        '                   <div>\n' +
-        '                       <input type="file" accept="video/*" onchange ="upload(this,1)">\n' +
-
+        '                   <div>' +
+        '                       <div class="custom-file mb-3" style="margin-top: 25px;width: 40%">\n' +
+        '                           <input type="file" class="custom-file-input" accept="video/*" onchange ="upload(this,1)">\n' +
+        '                           <label class="custom-file-label" >选择视频</label>\n' +
+        '                       </div>\n' +
+        '                       <button type="button" class="btn btn-secondary" style="margin-top: 4px; margin-left: 10px" onclick="delete_video(this)">删除视频</button>\n' +
         '                   </div>\n' +
         '                   <div>\n' +
-        '                       <video height="180px" width="320px"  controls="controls" src="" type="video/*" />\n' +
+        '                       <video height="180px" width="320px" data-cuSRC="" controls="controls" src="" type="video/*" />\n' +
         '                   </div>\n' +
         '               </div>' +
         '               <div id="editor" style="display: none;z-index: 0"></div>\n' +
@@ -286,6 +304,10 @@ function Delete_Class(Delete_button_id) {
     $("#Delete_Class_Close").click();
 }
 
+function delete_video(event){
+    $(event).parent().next().children().attr("src","");
+    $(event).prev().find('label').text('选择视频');
+}
 
 $(function () {
     $('#add_class_hour').on('show.bs.modal', function (event) {
@@ -334,10 +356,10 @@ $(function () {
 
 function upload(event, type) {
     var fileObj = event.files[0]; // js 获取文件对象
-    if ("undefined" === typeof (fileObj) || fileObj.size <= 0) {
+    /*if ("undefined" === typeof (fileObj) || fileObj.size <= 0) {
         alert("请选择图片");
         return;
-    }
+    }*/
     var formFile = new FormData();
 
     formFile.append("file", fileObj); //加入文件对象
@@ -345,20 +367,30 @@ function upload(event, type) {
     data.newParam = "type";
     data.type = "1";
     $.ajax({
-        url: "/uploadsec",
+        url: PageContext+"/uploadsec",
         data: data,
         type: "POST",
         dataType: "json",
-        async: false,
+        async: true,
         cache: false,//上传文件无需缓存
         processData: false,//用于对data参数进行序列化处理 这里必须false
         contentType: false, //必须
         success: function (jsonObj) {
             //alert(jsonObj.src);
             if (1 === type) {
-                $(event).parent().next().children().attr("src", "/" + jsonObj.src);
+                //alert(PageContext+"/" + jsonObj.src);
+                $(event).parent().parent().next().children().attr("data-cuSRC", PageContext+"/" + jsonObj.cuSRC);
+                $(event).parent().parent().next().children().attr("src", PageContext+"/" + jsonObj.src);
+                $(event).next().text(jsonObj.video_name);
             } else if (3 === type) {
-                $(event).next().next().append('<a  class="list-group-item list-group-item-action" target="_Blank" href="'+"/" + jsonObj.src+ '">' + jsonObj.filename + '<button type="button" class="btn btn-light" style="float: right;padding: 0;width: 26px" onclick="Delete_File(this)">&times;</button></a>\n')
+                $(event).next().next().append(
+                    '<div class="list-group-item list-group-item-action"> ' +
+                    '<a style="text-decoration: none;"  " target="_Blank" href="'+PageContext+"/" + jsonObj.src+ '">' + jsonObj.filename + '' +
+                    '</a>'+
+                    '<button type="button" class="btn btn-light" style="float: right;padding: 0;width: 26px" onclick="Delete_File(this)"><i class="fa fa-times"></i>' +
+                    '</button>' +
+                    '</div>'
+                    )
             }
             /* $("#video").val(result.data.file);*/
         }
@@ -371,23 +403,24 @@ function Delete_File(event) {
 
 
 function getHTML() {
-    var Title = window.location.search.replace("?",'').split("/");
-    $("#preview").attr("href","Learn_list.jsp?"+window.location.search.replace("?",''));
-     All_Title = decrypt(Title);
-     $("#curriculum_Name").text(All_Title);
+    $("#preview").attr("href","Learn_list.jsp?"+No);
      $.ajax({
         type: "POST",
         asynch: "false",
-        url: "/SaveClassInfor",
+        url: PageContext+"/SaveClassInfor",
         data: {
-            ClassName: All_Title,
+            No:No,
             Read_or_Save: "read"
         },
         dataType: 'json',
         success: function (jsonObj) {
-            $(".sections").append(jsonObj.Class_html);
-            ClassCount = parseInt(jsonObj.ClassCount);
-            UnitCount = parseInt(jsonObj.UnitCount);
+            var sections = $(".sections");
+            $("#curriculum_Name").text(jsonObj.Title);
+            if (undefined!==sections.html()) {
+                sections.append(jsonObj.Class_html);
+                ClassCount = parseInt(jsonObj.ClassCount);
+                UnitCount = parseInt(jsonObj.UnitCount);
+            }
             $("#teacher_Name").text(jsonObj.教师用户名);
             if (jsonObj.state==='已发布')  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
             else $("#curriculum_button").addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
