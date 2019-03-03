@@ -11,7 +11,6 @@
 
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/ckplayer/ckplayer/ckplayer.js"></script>
     <script type="text/javascript" src="../JS/Myclass.js"></script>
     <script type="text/javascript" src="../JS/drag.js"></script>
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
@@ -236,7 +235,12 @@
         font-size: 12px;
         line-height: 34px;
     }
-
+    button.btn-mini {
+        height: 29px;
+        padding: 0 15px;
+        font-size: 12px;
+        width: auto;
+    }
 </style>
 
 
@@ -350,7 +354,7 @@
                   <%-- 头部--%>
                   <div class="modal-header">
                       <h5 class="modal-title">确定删除这条笔记吗？</h5>
-                      <button id="Delete_Note_Close" class="close" data-dismiss="modal">&times;</button>
+                      <a id="Delete_Note_Close" class="close" data-dismiss="modal">&times;</a>
                   </div>
                   <%--界面--%>
                   <div class="modal-body">
@@ -366,6 +370,8 @@
 
 <script type="text/javascript">
     var No = window.location.search.replace("?",'').split("/");
+    var Unit_length;
+    var Unit;
     var class_no = No[1];
     No = No[0];
     var editor_count = 0;
@@ -432,6 +438,8 @@
                 $("#teacher").text(jsonObject.teacher);
                 /*var class_no = getSrting(window.location.search);*/
                 var flag='';var class_count = 0;
+                Unit_length = jsonObject.Unit_Name.length;
+                Unit = jsonObject.Serial_No;
                 for(var i=0;i<jsonObject.Unit_Name.length;i++){
                     if (!flag.match(jsonObject.Unit_Name[i].trim())){
                         flag = flag+','+jsonObject.Unit_Name[i].trim();
@@ -492,7 +500,7 @@
                     $('#note_box').prepend(' <div class="ui-box">\n' +
                         '                            <div style="float:left;">\n' +
                         '                                <a href="PersonalCenter.jsp">\n' +
-                        '                                    <image src="'+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
+                        '                                    <image src="'+"${pageContext.request.contextPath}"+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
                         '                                </a>\n' +
                         '                            </div>\n' +
                         '                            <div style="margin-left: 60px">\n' +
@@ -505,7 +513,7 @@
                         '                                    </div>\n' +
                         '                                    <div class="post" style=" margin-left: 44px;">\n' +
                         '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
-                        '                                        <a data-id="delete_note'+i+'" id="delete_note'+i+'" class="post_action" data-toggle="modal"  data-target="#Delete_Note"><i class="fa fa-window-close-o"></i>删除</a>\n' +
+                        '                                        <a id="delete_note'+jsonObject.note_no[i]+'" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="'+jsonObject.note_no[i]+'"><i class="fa fa-window-close-o" ></i>删除</a>\n' +
                         '                                        <a class="post_action">查看全文</a>\n' +
                         '                                        <span >'+jsonObject.time[i]+'</span>\n' +
                         '                                    </div>\n' +
@@ -513,8 +521,8 @@
                         '                                <div style="display: none;">  <%--修改笔记区--%>\n' +
                         '                                    <div id="edit_editor'+i+'" style="height: 60%;margin-bottom: 14px"></div>\n' +
                         '                                    <div style="height: 30px;">\n' +
-                        '                                        <button type="button" class="btn btn-primary" style="float:right;" onclick="change_note(this)">提交</button>\n' +
-                        '                                        <button type="button" class="btn btn-outline-secondary" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
+                        '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="'+jsonObject.note_no[i]+'">提交</button>\n' +
+                        '                                        <button type="button" class="btn btn-outline-secondary btn-mini" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
                         '                                    </div>\n' +
                         '                                </div>\n' +
                         '                            </div>\n' +
@@ -551,6 +559,25 @@
     var cookieTime;
     function live() {
         cookie.set('class_no_'+user+No,class_no+','+$('#adjust').prev().text());
+        var done_times = 0;
+        for (var a=0;a<Unit_length;a++){
+            var ifDone = cookie.get('time_'+user+No+Unit[a]);
+            if (ifDone ==='done')  done_times++;
+        }
+        var percentage = parseInt(done_times/Unit_length*100);
+        $.ajax({
+            type: "POST",
+            asynch: "false",
+            url: PageContext+"/students",
+            data: {
+                action:'save_schedule',
+                No:No,
+                user:user,
+                schedule:percentage,
+                last_time:class_no+','+$('#adjust').prev().text()
+            },
+            dataType: 'json'
+        });
     }
 
   /*  function loadHandler() {
@@ -589,7 +616,7 @@
                     alert('本视频记录的上次观看时间(秒)为：' + cookieTime);
                 }*/
 
-                $('#video1').children().attr('src',${pageContext.request.contextPath}jsonObj.Video_address);
+                $('#video1').children().attr('src',jsonObj.Video_address);
 
                 player = videojs('video1', { });
 
@@ -657,7 +684,7 @@
     $(function () {
         $('#Delete_Note').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var button_id = button.data('id'); //获取呼出模态框的按钮ID
+            var button_id = button.data('noteno'); //获取呼出模态框的按钮ID
             var obj = document.getElementById("Delete_Note_sure_button");
             obj.setAttribute("onclick", "delete_note(" + button_id + ")");
         })
@@ -665,17 +692,16 @@
 
     function change_note(event) {
         var new_note = $(event).parent().prev().children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g,'');
+        var time = new Date().Format("yyyy-MM-dd HH:mm:ss");
         $.ajax({
             type: "POST",
             asynch: "false",
             url: "${pageContext.request.contextPath}/postnote",
             data: {
                 action:'change',
-                No:No,
-                class_No:class_no,
-                author:user,
+                note_no:$(event).data('noteno'),
                 note_editor:new_note,
-                time:$(event).parent().parent().prev().children().eq(1).find('span').text()
+                time:time
             },
             dataType: 'json',
             success: function (jsonObj) {
@@ -708,13 +734,13 @@
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
-                    if ('1'===jsonObj.msg){
+                    if (null!==jsonObj.note_id){
                         var note_editor = $('#note_editor');
                         editor_count++;
                         $('#note_box').prepend(' <div class="ui-box">\n' +
                             '                            <div style="float:left;">\n' +
                             '                                <a href="PersonalCenter.jsp">\n' +
-                            '                                    <image src="'+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
+                            '                                    <image src="'+"${pageContext.request.contextPath}"+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
                             '                                </a>\n' +
                             '                            </div>\n' +
                             '                            <div style="margin-left: 60px">\n' +
@@ -727,7 +753,7 @@
                             '                                    </div>\n' +
                             '                                    <div class="post" style=" margin-left: 44px;">\n' +
                             '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
-                            '                                        <a data-id="delete_note'+editor_count+'" id="delete_note'+editor_count+'" class="post_action" data-toggle="modal"  data-target="#Delete_Note"><i class="fa fa-window-close-o"></i>删除</a>\n' +
+                            '                                        <a id="delete_note'+jsonObj.note_id+'" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="'+jsonObj.note_id+'"><i class="fa fa-window-close-o"></i>删除</a>\n' +
                             '                                        <a class="post_action">查看全文</a>\n' +
                             '                                        <span >'+time2+'</span>\n' +
                             '                                    </div>\n' +
@@ -735,8 +761,8 @@
                             '                                <div style="display: none;">  <%--修改笔记区--%>\n' +
                             '                                    <div id="edit_editor'+editor_count+'" style="height: 60%;margin-bottom: 14px"></div>\n' +
                             '                                    <div style="height: 30px;">\n' +
-                            '                                        <button type="button" class="btn btn-primary" style="float:right;" onclick="change_note(this)">提交</button>\n' +
-                            '                                        <button type="button" class="btn btn-outline-secondary" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
+                            '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this) data-noteno="'+jsonObj.note_id+'"">提交</button>\n' +
+                            '                                        <button type="button" class="btn btn-outline-secondary btn-mini" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
                             '                                    </div>\n' +
                             '                                </div>\n' +
                             '                            </div>\n' +
@@ -778,7 +804,7 @@
         return fmt;
     };
 
-    function delete_note(event) {
+    function delete_note(noteno) {
         //alert($(event).parent().prev().html().replace(/(^\s*)|(\s*$)/g, ""));
         $.ajax({
             type: "POST",
@@ -786,15 +812,12 @@
             url: "${pageContext.request.contextPath}/postnote",
             data: {
                 action:'delete',
-                No:No,
-                class_No:class_no,
-                author:user,
-                note_editor:$(event).parent().prev().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g,'')
+                note_no:noteno
             },
             dataType: 'json',
             success: function (jsonObj) {
                 if ('1'===jsonObj.msg){
-                    $(event).parent().parent().parent().parent().remove();
+                    $('#delete_note'+noteno).parent().parent().parent().parent().remove();
                     $("#Delete_Note_Close").click();
                 }
             }
@@ -838,7 +861,7 @@
         $('#ask_box').prepend(' <div class="ui-box">\n' +
             '                            <div style="float:left;">\n' +
             '                                <a href="PersonalCenter.jsp">\n' +
-            '                                    <image src="'+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
+            '                                    <image src="'+"${pageContext.request.contextPath}"+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
             '                                </a>\n' +
             '                            </div>\n' +
             '                            <div style="margin-left: 60px">\n' +

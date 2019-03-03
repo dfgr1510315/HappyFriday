@@ -1,21 +1,16 @@
 .user_card{
-    visibility: hidden;
+    display: none;
     background-color:white;
     position: absolute;
-    right: 0;
-    top: 100%;
-    width: 306px;
+    right: 12px;
+    top: 61px;
+    width: 110px;
     box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
     z-index: 1000;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
 }
-.user_imag:hover+.user_card{
-    visibility:visible;
-}
-.user_card:hover{
-    visibility:visible;
-}
+
 .user_navigation{
     /*position: fixed;*/
     height: 60px;
@@ -30,16 +25,85 @@
     z-index: 6;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
 }
-.nav-link{
+.user_navigation .nav-link{
     color: rgba(255,255,255,.6);
 }
-.nav-link:hover{
+.user_navigation  .nav-link:hover{
     color: white;
 }
 .course{
-     min-height: 600px;
-     width: 80%;
-     margin:0 auto;
-     padding-right: 352px;
-     display: flex;/*给div父元素设置 display: flex; flex弹性盒模型*/
- }
+    min-height: 600px;
+    width: 80%;
+    margin:0 auto;
+    padding-right: 352px;
+    display: flex;/*给div父元素设置 display: flex; flex弹性盒模型*/
+}
+
+.notification{
+    position: relative;
+    float: left;
+}
+
+.notification .dropdown-menu{
+    background-color: #07111b;
+}
+
+.notification .dropdown-menu .dropdown-item:hover{
+    background-color: #212529;
+}
+
+.notification a{
+    color: #787d82;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+.notification a:hover{
+    color: white;
+}
+
+.msg_remind {
+    display: none;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #f01414;
+    right: 17px;
+    top: 8px;
+    border-radius: 50%;
+}
+
+.form-control{
+    height: calc(2rem + 2px);
+}
+
+
+#search_input{
+    font-size: 13px;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+}
+
+#search_input:focus{
+    outline:none;
+    box-shadow: none;
+    border-bottom: 1px solid #007bff;
+}
+/*
+.user_navigation .form-control{
+    font-size: 13px;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+}
+
+.user_navigation .form-control:focus{
+    outline:none;
+    box-shadow: none
+}
+ .form-group{
+    position: relative;
+}*/

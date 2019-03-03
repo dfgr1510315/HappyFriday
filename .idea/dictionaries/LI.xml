@@ -12,6 +12,7 @@
       <w>hotrecommend</w>
       <w>imagesize</w>
       <w>qsql</w>
+      <w>usertype</w>
     </words>
   </dictionary>
 </component>

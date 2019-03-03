@@ -43,13 +43,15 @@
         margin-bottom: 10px;
         color: red;
     }
+    .basic_control{
+        height: calc(2.25rem + 2px);
+    }
 </style>
 
-<body onload="checkCookie();ifActive();addClass(1);addHref();getHTML()">
+<body onload="checkCookie();ifActive();addAction(1);addHref();getHTML()">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
-    <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">
-        <jsp:include page="radio_cover.jsp"/>
+    <div style="background-size: cover;height: 148px;margin-top: -21px">
         <jsp:include page="ui_box.jsp"/>
         <div style="width: 80%;margin: auto">
             <jsp:include page="course_manag_nav.jsp"/>
@@ -63,7 +65,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">标题</span>
                             </div>
-                            <input type="text" class="form-control" id="title">
+                            <input type="text" class="basic_control form-control" id="title">
                         </div>
                         <div class="group_with">
                             <small id="title_waring" data-bv-validator="notEmpty" class="help-block" style="display: none">课程标题的长度为2-60个中文或字母、数字</small>
@@ -74,7 +76,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">分类</span>
                             </div>
-                            <select class="form-control found_class_text" id="sel1" >
+                            <select class="form-control found_class_text basic_control " id="sel1" >
                                 <option>类型</option>
                                 <option value=1>前端设计</option>
                                 <option value=2>后台设计</option>
@@ -91,7 +93,7 @@
                     <div class="group">
                         <div class="input-group group_with">
                             <label for="outline" style="margin-right: 9px;margin-left: -16px;">课程概要</label>
-                            <textarea type="text" class="form-control" id="outline" style="height: 90px;resize:none"></textarea>
+                            <textarea type="text" class="form-control basic_control " id="outline" style="height: 90px;resize:none"></textarea>
                         </div>
                     </div>
                     <div class="group_with" style="height: 52px;margin-top: 10px;">

@@ -1,33 +1,46 @@
 
 function login() {
-    var username = $.trim($("#username").val());
-    var password = $.trim($("#pwd").val());
-    var state = $.trim($("#state").val());
-    if (username===""){
-        $("#loginError").text("请输入用户名").show();
-        return false;
-    } else if(password===""){
-        $("#loginError").text("请输入密码").show();
-        return false;
+    var username = $("#username").val();
+    var password = $("#pwd").val();
+    var PageContext = $("#PageContext").val();
+    if (!username_model.test(username)){
+        $("#loginError").text("用户名以字母开头，允许5-16字节，允许字母数字下划线").show();
+        return;
     }
-    var data = {username:username,password:password,state:state};
+    if(!pasw_model.test(password)){
+        $("#loginError").text("密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线").show();
+        return;
+    }
+    var data = {username:username,password:password,state:'login'};
     $.ajax({
         type:"POST",
         asynch :"false",
-        url:$("#PageContext").val()+"/register",
+        url:PageContext+"/register",
         data:data,
         dataType:'json',
         success:function (msg) {
-            if (msg.state === '1') {
-                $("#loginError").text("用户名或密码错误").show();
+            if (msg.state === 1) {
+                $("#loginError").text("用户名错误或未激活").show();
             }
-            else{
+            else if (msg.state === 3){
+                $("#loginError").text("密码错误").show();
+            }
+            else if (msg.state === 2) {
                 //setCookie("username",username,30);
-                $('#head_image').attr('src',msg.head_image);
+                $('#head_image').attr('src',PageContext+msg.head_image);
                 $("#loginClose").click();
                 $("#loginButton").hide();
                 $("#personalCenter").show();
                 $("#showname").text(username);
+                if ($('#remember').is(':checked')){
+                    cookie.set('username',username);
+                    cookie.set('password',password);
+                }else {
+                    cookie.del('username');
+                    cookie.del('password');
+                }
+            }else {
+                alert('未知错误,请与管理员联系');
             }
         }
     });

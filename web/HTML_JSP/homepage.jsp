@@ -13,12 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>首页</title>
-   <%-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
@@ -211,13 +206,13 @@
         <div class="carousel-item active">
             <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
             <div class="carousel-caption">
-                <h3>计科吴彦祖：</h3>
+                <%--<h3>计科吴彦祖：</h3>--%>
             </div>
         </div>
         <div class="carousel-item">
             <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
             <div class="carousel-caption">
-                <h3>咸鱼桑</h3>
+                <%-- <h3>咸鱼桑</h3>--%>
             </div>
         </div>
     </div>
@@ -231,19 +226,6 @@
     </a>
 </div>
 
-<div class="b1">
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="检索...">
-        <div class="input-group-append">
-            <button class="btn btn-success" type="submit">Go</button>
-        </div>
-    </div>
-    <span class="badge badge-pill badge-primary label" >标签</span>
-    <span class="badge badge-pill badge-success label" >标签</span>
-    <span class="badge badge-pill badge-info label" >标签</span>
-    <span class="badge badge-pill badge-warning label" >标签</span>
-    <span class="badge badge-pill badge-danger label" >标签</span>
-</div>
 
 <div class="c1">
     <div>
@@ -312,14 +294,17 @@
             asynch: "false",
             url: "${pageContext.request.contextPath}/SaveClassInfor",
             data: {
-                Read_or_Save:'get_new_class'
+                Read_or_Save:'get_new_class',
+                limit:'10',
+                type:'0',
+                page:'0'
             },
             dataType: 'json',
             success: function (jsonObj) {
                 for (var i=0;i<jsonObj.title.length;i++){
                     $('.types-content').append(
                         ' <div class="index-card-container course-card-container container">\n' +
-                        '        <a target="_blank" class="course-card" href="Learn_list.jsp?'+jsonObj.no[i]+'">\n' +
+                        '        <a target="_blank" class="course-card" href="Learn_list.jsp?='+jsonObj.no[i]+'">\n' +
                         '            <div class="course-card-top hashadow">\n' +
                         '                <img src="${pageContext.request.contextPath}'+jsonObj.cover[i]+'" alt="" class="course-banner">\n' +
                         '            </div>\n' +

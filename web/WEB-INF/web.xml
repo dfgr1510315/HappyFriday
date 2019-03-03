@@ -114,6 +114,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Students</servlet-name>
+        <servlet-class>Server.Students</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Students</servlet-name>
+        <url-pattern>/students</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Learn_list</servlet-name>
         <servlet-class>Server.Learn_list</servlet-class>
     </servlet>
@@ -149,12 +158,25 @@
         <url-pattern>/postask</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Activation</servlet-name>
+        <servlet-class>Server.Activation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Activation</servlet-name>
+        <url-pattern>/activation</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>Login_Filter</filter-name>
         <filter-class>Filter.Login_Filter</filter-class>
         <init-param>
             <param-name>excPath</param-name>
-            <param-value>/HTML_JSP/homepage.jsp,/HTML_JSP/LoginPC.jsp,/bank_html/Bank.jsp,/bank_html/login_bank.jsp</param-value>
+            <param-value>/HTML_JSP/homepage.jsp,/HTML_JSP/LoginPC.jsp,/bank_html/Bank.jsp,/bank_html/login_bank.jsp,/HTML_JSP/index.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>teacherPath</param-name>
+            <param-value>/HTML_JSP/Myclass.jsp,/HTML_JSP/basic_information.jsp,/HTML_JSP/image.jsp,/HTML_JSP/duration.jsp,/HTML_JSP/instructors.jsp,/HTML_JSP/students.jsp</param-value>
         </init-param>
     </filter>
     <filter-mapping>

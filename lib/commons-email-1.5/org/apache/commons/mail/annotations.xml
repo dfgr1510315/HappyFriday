@@ -1,0 +1,5 @@
+<root>
+    <item name='org.apache.commons.mail.DefaultAuthenticator'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

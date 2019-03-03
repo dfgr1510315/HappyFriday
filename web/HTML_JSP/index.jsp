@@ -2,54 +2,66 @@
 <html>
 <head>
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
-    <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
 </head>
 
 <style type="text/css">
-    .video-js .vjs-time-control{display:block;}
-    .video-js .vjs-remaining-time{display: none;}
+
 </style>
 
 <body>
-
-
-<video id="video1" class="video-js vjs-default-skin"  width="375" height="200" controls preload="none"
-
-       data-setup='{ "html5" : { "nativeTextTracks" : false } }'>
-
-    <source src="${pageContext.request.contextPath}/Upload/33969c4371226b916139c168128a2fd2.mp4" type="video/mp4">
-
-    <p class="vjs-no-js">  播放视频需要启用 JavaScript，推荐使用<a href="http://videojs.com/html5-video-support/" target="_blank">支持HTML5</a>的浏览器访问。</p>
-
-</video>
-
+<div class="form-group">
+    <label for="email">邮箱:</label>
+    <input type="text" class="form-control" id="email" placeholder="Enter username">
+</div>
+<div class="form-group">
+    <label for="username">用户名:</label>
+    <input type="text" class="form-control" id="username" placeholder="Enter username">
+</div>
+<div class="form-group">
+    <label for="pwd">密码:</label>
+    <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+</div>
+<button id="login_btn" type="button" class="btn btn-primary" style="margin-top: 15px" onclick="register()">注册
+</button>
 </body>
 <script type="text/javascript">
-    var player = videojs('video1', { }, function () {
-        console.log('Good to go!');
-    });
+    function register(){
+        var username=document.getElementById('username').value;
+        var password=document.getElementById('pwd').value;
+        var email=document.getElementById('email').value;
+//先对输入的邮箱格式进行判断
+        if(email === ''){
+            alert("请输入您的邮箱");
+            return;
+        }else if(email !== "") {
+            var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+            isok= reg.test(email );
+            if (!isok) {
+                alert("邮箱格式不正确，请重新输入！");
+                return false;
+            }
+        }
+        $.ajax({
+            url : "${pageContext.request.contextPath}/register",
+            type : "post",
+            data : {
+                state:'email_register',
+                username:username,
+                password:password,
+                email:email
+            },
+            async : false,
+            success : function(data) {
+                if(data==='No'){
+                    alert("注册失败");
+                }
+                else {
+                    alert("注册成功");
+                }
+            }
+        });
 
-    player.on('play', function () {
-        console.log('开始/恢复播放');
-    });
-
-    player.on('pause', function () {
-        console.log('暂停播放');
-    });
-
-    player.on('ended', function () {
-        console.log('结束播放');
-    });
-
-    player.on('timeupdate', function () {
-        console.log(player.currentTime());
-    });
-
-    player.on('loadedmetadata', function() {
-        player.currentTime(20);		    //跳转
-    });
-
+    }
 </script>
 
 </html>

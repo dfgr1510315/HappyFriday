@@ -50,7 +50,14 @@ public class SaveClassInfor extends HttpServlet {
                 set_infor(response,No,title,sel1,outline);
                 break;
             case "get_new_class":
-                get_new_class(response);
+                int limit = Integer.parseInt(request.getParameter("limit"));
+                int page = Integer.parseInt(request.getParameter("page"));
+                int type = Integer.parseInt(request.getParameter("type"));
+                get_new_class(response,limit,page,type);
+                break;
+            case "delete_class":
+                No = Integer.parseInt(request.getParameter("No"));
+                delete_class(No);
                 break;
             default:
                 No = Integer.parseInt(request.getParameter("No"));
@@ -63,19 +70,51 @@ public class SaveClassInfor extends HttpServlet {
         doPost(request,response);
     }
 
-    private void get_new_class(HttpServletResponse response){
+    private void delete_class(int No){
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            PreparedStatement qsql  = con.prepareStatement("delete from class_teacher_table where 课程编号=?");
+            qsql.setInt(1,No);
+            qsql.executeUpdate();
+            qsql.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void get_new_class(HttpServletResponse response,int limit,int page,int type){
         JSONObject jsonObj = new JSONObject();
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 教师用户名,标题,class_type.课程类型,课程编号,学员数,封面地址 from class_teacher_table,class_type where class_type.课程类型编号=class_teacher_table.课程类型 and 状态='已发布' LIMIT 10");
+            ResultSet rs;
+            String sql;
+            String count_sql;
+            if (page==0) sql = "select 教师用户名,标题,class_type.课程类型,课程编号,学员数,封面地址,课程概要 from class_teacher_table,class_type where class_type.课程类型编号=class_teacher_table.课程类型 and 状态='已发布' order by 课程编号 desc LIMIT "+limit;
+            else{
+                if (type==0) {
+                    sql = "select 教师用户名,标题,class_type.课程类型,课程编号,学员数,封面地址,课程概要 from class_teacher_table,class_type where class_type.课程类型编号=class_teacher_table.课程类型 and 状态='已发布' order by 课程编号 desc LIMIT "+(25*(page-1))+","+25;
+                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where 状态='已发布'";
+                }
+                else {
+                    sql = "select 教师用户名,标题,class_type.课程类型,课程编号,学员数,封面地址,课程概要 from class_teacher_table,class_type where class_teacher_table.课程类型="+type+" and class_type.课程类型编号=class_teacher_table.课程类型 and 状态='已发布' order by 课程编号 desc LIMIT "+(25*(page-1))+","+25;
+                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where 课程类型="+type+" and 状态='已发布'";
+                }
+                rs = statement.executeQuery(count_sql);
+                while (rs.next()){
+                    jsonObj.put("count",rs.getString("count"));
+                }
+            }
+            rs = statement.executeQuery(sql);
             ArrayList<String> title_list = new ArrayList<>();
             ArrayList<String> teacher_list = new ArrayList<>();
             ArrayList<String> type_list = new ArrayList<>();
             ArrayList<Integer> no_list = new ArrayList<>();
             ArrayList<Integer> student_number_list = new ArrayList<>();
             ArrayList<String> cover_list = new ArrayList<>();
+            ArrayList<String> outline = new ArrayList<>();
             while (rs.next()){
                 title_list.add(rs.getString("标题"));
                 teacher_list.add(rs.getString("教师用户名"));
@@ -83,6 +122,7 @@ public class SaveClassInfor extends HttpServlet {
                 no_list.add(rs.getInt("课程编号"));
                 student_number_list.add(rs.getInt("学员数"));
                 cover_list.add(rs.getString("封面地址"));
+                outline.add(rs.getString("课程概要"));
             }
             jsonObj.put("title",title_list);
             jsonObj.put("teacher",teacher_list);
@@ -90,6 +130,7 @@ public class SaveClassInfor extends HttpServlet {
             jsonObj.put("no",no_list);
             jsonObj.put("student_number",student_number_list);
             jsonObj.put("cover",cover_list);
+            jsonObj.put("outline",outline);
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);

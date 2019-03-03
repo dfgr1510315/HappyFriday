@@ -32,11 +32,10 @@
     }
 </style>
 
-<body onload="checkCookie();ifActive();addClass(2);addHref();getHTML()">
+<body onload="checkCookie();ifActive();addAction(2);addHref();getHTML()">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
-    <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">
-        <jsp:include page="radio_cover.jsp"/>
+    <div style="background-size: cover;height: 148px;margin-top: -21px">
         <jsp:include page="ui_box.jsp"/>
         <div style="width: 80%;margin: auto">
             <jsp:include page="course_manag_nav.jsp"/>
@@ -73,8 +72,9 @@
     </div>
 </div>
 <script type="text/javascript">
+    var new_cover = cover_address;
     $(document).ready(function(){
-        $('#cover').attr('src',cover_address);
+        $('#cover').attr('src',"${pageContext.request.contextPath}"+cover_address);
     });
 
     function post_cover_image(event) {
@@ -97,7 +97,7 @@
             var formFile = new FormData();
             formFile.append("file", fileObj); //加入文件对象
             $.ajax({
-                url: ${pageContext.request.contextPath}"/uploadimage",
+                url: "${pageContext.request.contextPath}/uploadimage",
                 data: formFile,
                 type: "POST",
                 dataType: "json",
@@ -106,25 +106,26 @@
                 processData: false,//用于对data参数进行序列化处理 这里必须false
                 contentType: false, //必须
                 success: function (jsonObj) {
-                    $('#cover').attr('src',${pageContext.request.contextPath}jsonObj.head_address);
+                    $('#cover').attr('src',"${pageContext.request.contextPath}"+jsonObj.head_address);
+                    new_cover = jsonObj.head_address;
                 }
             });
         }
     }
     function save_cover_image() {
         $.ajax({
-            url: ${pageContext.request.contextPath}"/save_image",
+            url: "${pageContext.request.contextPath}/save_image",
             data: {
                 action:'set_cover',
-                image: $('#cover').attr('src'),
+                image:new_cover,
                 No:No
             },
             type: "POST",
             dataType: "json",
             success: function (jsonObj) {
                 if (jsonObj.msg==='1') {
-                    $('#ui-box-cover').attr('src',$('#cover').attr('src'));
-                    $('#radio_cover').attr('src',cover_address);
+                    $('#ui-box-cover').attr('src',"${pageContext.request.contextPath}"+new_cover);
+                    $('#radio_cover').attr('src',"${pageContext.request.contextPath}"+cover_address);
                     alert('保存成功');
                 }
             }

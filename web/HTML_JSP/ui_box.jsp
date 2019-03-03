@@ -41,7 +41,7 @@
     var cover_address;
     $(document).ready(function(){
         $.ajax({
-            url: ${pageContext.request.contextPath}"/save_image",
+            url: "${pageContext.request.contextPath}/save_image",
             data: {
                 action:'get_cover',
                 No:No
@@ -50,9 +50,9 @@
             dataType: "json",
             async: false,
             success: function (jsonObj) {
-                cover_address = ${pageContext.request.contextPath}jsonObj.cover_address;
-                $('#ui-box-cover').attr('src',cover_address);
-                $('#radio_cover').attr('src',cover_address);
+                cover_address = jsonObj.cover_address;
+                $('#ui-box-cover').attr('src',"${pageContext.request.contextPath}"+cover_address);
+                $('#radio_cover').attr('src',"${pageContext.request.contextPath}"+cover_address);
             }
         });
     })

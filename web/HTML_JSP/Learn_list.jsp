@@ -19,10 +19,27 @@
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <script type="text/javascript" src="../JS/Learn_list.js"></script>
-
 </head>
 <script type="text/javascript">
     function get_Class() {
+        var percentage;
+        var last_time;
+        $.ajax({
+            url:" ${pageContext.request.contextPath}/students",
+            data: {
+                No:No,
+                student:user,
+                action:'get_schedule'
+            },
+            type: "POST",
+            dataType: "json",
+            asynch: "false",
+            success: function (jsonObj) {
+                percentage = jsonObj.schedule;
+                last_time = jsonObj.last_time;
+            }
+        });
+
         $.ajax({
             type: "POST",
             asynch: "false",
@@ -33,9 +50,10 @@
             },
             dataType: 'json',
             success: function (jsonObject) {
+                $("title").text(jsonObject.title);
                 $("#title").text(jsonObject.title);
                 $("#teacher").text(jsonObject.teacher);
-                $('#head').attr('src',jsonObject.head);
+                $('#head').attr('src',"${pageContext.request.contextPath}"+jsonObject.head);
                 $('#student_number').text(jsonObject.student_number);
                 var class_type;
                 switch (jsonObject.class_type) {
@@ -58,17 +76,47 @@
                         class_type='项目发布';
                         break;
                 }
-                $('#class_type').text(class_type);
-                var done_times = 0;
-                for (var a=0;a<jsonObject.Serial_No.length;a++){
-                    var ifDone = cookie.get('time_'+user+No+jsonObject.Serial_No[a]);
-                    if (ifDone ==='done')  done_times++;
+                $('#other_class').text(class_type+'相关课程');
+                for (var i=0;i<jsonObject.other_class_title.length;i++){
+                    $('#other_class').append(
+                        '<div class="sno2-allbox">\n' +
+                        '      <img src="'+"${pageContext.request.contextPath}"+jsonObject.other_class_iamge[i]+'" class="imagesize">\n' +
+                        '           <div class="coursecount">\n' +
+                        '           <a href="Learn_list.jsp?='+jsonObject.other_class_no[i]+'" class="coursecount-font">'+jsonObject.other_class_title[i]+'</a>\n' +
+                        '      </div>\n' +
+                        '</div>'
+                    )
                 }
-                var percentage = parseInt(done_times/jsonObject.Serial_No.length*100);
-                var last_time = cookie.get('class_no_'+user+No);
-                if(!last_time || last_time === undefined) {
+                $('#class_type').text(class_type);
+                $('#Bread_crumb_navigation').append(
+                    '  <a target="_blank" href="homepage.jsp">首页</a>\n' +
+                    '  <i class="i">\\</i>\n' +
+                    '  <a target="_blank" href="course.jsp?type='+jsonObject.class_type+'">'+class_type+'</a>\n' +
+                    '  <i class="i">\\</i>\n' +
+                    '  <a href="">'+jsonObject.title+'</a>\n' +
+                    '  <i class="i">\\</i>'
+                );
+                if (GetQueryString('page_ask')==null && GetQueryString('page_note')==null) {
+                    $('#unit-nav').addClass('active show');
+                    $('#one').addClass('active show');
+                }
+                else if (GetQueryString('page_note')==null) {
+                    $('#ask_nav').addClass('active show');
+                    $('#two').addClass('active show');
+                }else {
+                    $('#note_nav').addClass('active show');
+                    $('#three').addClass('active show');
+                }
+
+                if(percentage === undefined) {
                      $('.sno1-1').append(
-                         '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>'
+                         '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n' +
+                         '<div class="course-info-tip">' +
+                         '      <dl class="first">\n' +
+                         '          <dt>课程概要</dt>\n' +
+                         '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
+                         '      </dl>' +
+                         '</div>'
                      )
                  }else {
                      $('.sno1-1').append(
@@ -77,13 +125,20 @@
                          '      <div class="progress">\n' +
                          '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
                          '     </div>\n' +
-                         '     <div class="learn-info-media">上次学至 '+last_time+'</div>\n' +
-                         '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class()">继续学习</button>\n' +
-                         ' </div>'
+                         '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
+                         '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n' +
+                         ' </div>\n'+
+                         '<div class="course-info-tip">' +
+                         '      <dl class="first">\n' +
+                         '          <dt>课程概要</dt>\n' +
+                         '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
+                         '      </dl>' +
+                         '</div>'
+
                      )
                  }
                 var flag='';var class_count = 0;
-                for(var i=0;i<jsonObject.Unit_Name.length;i++){
+                for(i=0;i<jsonObject.Unit_Name.length;i++){
                     if (!flag.match(jsonObject.Unit_Name[i].trim())){
                         flag = flag+','+jsonObject.Unit_Name[i].trim();
                     }
@@ -103,7 +158,7 @@
                         if (jsonObject.State[class_count].trim()==='已发布'){
                             $("#Unit"+i).append(
                                 '<div class="list_box" >' +
-                                '    <a  href="Play.jsp'+window.location.search +'/'+Class_flag[k]+'">' +
+                                '    <a  href="Play.jsp?'+GetQueryString('')+'/'+Class_flag[k]+'">' +
                                 '       <div class="ui-box1">' +
                                 '           <i class="fa fa-adjust"></i>'+
                                 '               <span style="margin-right: 20px;color: #999;">课时'+Class_flag[k].charAt(Class_flag[k].length-1) +'</span>'+
@@ -121,21 +176,217 @@
             }
         });
     }
+
+    $(document).ready(function(){
+        get_Ask();
+        get_Note();
+    });
+
+
+
+    function get_Note() {
+        var page = GetQueryString('page_note');
+        if (page == null) page = '1';
+        $.ajax({
+            type: "POST",
+            asynch: "false",
+            url: PageContext + "/postnote",
+            data: {
+                action: 'get_this_class_note',
+                No: No,
+                page: page
+            },
+            dataType: 'json',
+            success: function (jsonObj) {
+                $('#note_nav').prev().text(jsonObj.count);
+                for (i=0;i<jsonObj.text.length;i++){
+                    $('#note_ul').append(
+                        '<li class="post-row js-find-txt">\n' +
+                        '                            <div class="media">\n' +
+                        '                                <a href="" target="_blank">\n' +
+                        '                                    <img src="'+"${pageContext.request.contextPath}"+jsonObj.head[i]+'" width="40" height="40">\n' +
+                        '                                </a>\n' +
+                        '                            </div>\n' +
+                        '                            <div class="bd">\n' +
+                        '                                <div class="tit">\n' +
+                        '                                    <a href="" target="_blank">'+jsonObj.name[i]+'</a>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="js-note-main">\n' +
+                        '                                    <div class="note-media">\n' +
+                        '                                        <a href="" class="from l">'+jsonObj.class_no[i]+jsonObj.class_title[i]+'</a>\n' +
+                        '                                    </div>\n' +
+                        '                                    <div class="js-notelist-content notelist-content">\n' +
+                        '                                        <div class="autowrap note-content">\n' +
+                        '                                            '+jsonObj.text[i]+'\n' +
+                        '                                        </div>\n' +
+                        '                                    </div>\n' +
+                        '                                    <div class="footer clearfix">\n' +
+                        '                                        <div class="actions l">\n' +
+                        '                                            <a href="" target="_blank" class="post-action">查看全文</a>\n' +
+                        '                                        </div>\n' +
+                        '                                        <span class="r timeago">'+jsonObj.time[i]+'</span>\n' +
+                        '                                    </div>\n' +
+                        '                                </div>\n' +
+                        '                            </div>\n' +
+                        '                        </li>'
+                    )
+                }
+                var page_ul =  $('#page_note');
+                page_length = Math.ceil(jsonObj.count/6);
+                if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_note='+(parseInt(page)-1)+'">Previous</a></li>');
+                else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
+
+                if (page-1>2&&page_length-page>=2){
+                    for (var i = page-2;i<=page+2;i++){
+                        if (i<page_length+1){
+                            if (i===parseInt(page)){
+                                page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
+                            }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
+                        }
+                    }
+                }else {
+                    if (page<=3){
+                        for (i=1;i<6;i++){
+                            if (i<page_length+1){
+                                if (i===parseInt(page)){
+                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
+                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
+                            }
+                        }
+                    }else {
+                        for (i=page_length-4;i<=page_length;i++){
+                            if (i<page_length+1){
+                                if (i===parseInt(page)){
+                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
+                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
+                            }
+                        }
+                    }
+
+                }
+
+                if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_note='+(parseInt(page)+1)+'">Next</a></li>');
+                else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+            }
+        })
+    }
+
+
+    function get_Ask() {
+        var page = GetQueryString('page_ask');
+        if(page == null) page='1';
+        $.ajax({
+            type: "POST",
+            asynch: "false",
+            url: PageContext + "/postask",
+            data: {
+                action: 'get_this_class_ask',
+                No: No,
+                page:page
+            },
+            dataType: 'json',
+            success: function (jsonObj) {
+                $('#ask_nav').prev().text(jsonObj.count);
+                for (i=0;i<jsonObj.ask_no.length;i++){
+                    $('#ask_ul').append(
+                        ' <li>\n' +
+                        '                            <div class="ui-box">\n' +
+                        '                                <div class="headslider qa-medias l">\n' +
+                        '                                    <a class="media" target="_blank" href="" title="'+jsonObj.asker[i]+'">\n' +
+                        '                                        <img src="'+"${pageContext.request.contextPath}"+jsonObj.head[i]+'" width="40px" height="40px">\n' +
+                        '                                    </a>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="wendaslider qa-content">\n' +
+                        '                                    <h2 class="wendaquetitle qa-header">\n' +
+                        '                                        <div class="wendatitlecon qa-header-cnt clearfix">\n' +
+                        '                                            <a class="qa-tit" target="_blank" href="questions.jsp?'+jsonObj.ask_no[i]+'">\n' +
+                        '                                                <i>'+jsonObj.describe[i]+'</i>\n' +
+                        '                                            </a>\n' +
+                        '                                        </div>\n' +
+                        '                                    </h2>\n' +
+                        '                                    <div class="replycont qa-body clearfix">\n' +
+                        '                                        <div class="l replydes" id="new_reply'+jsonObj.ask_no[i]+'">\n' +
+                        '                                        </div>\n' +
+                        '                                    </div>\n' +
+                        '                                    <div class="replymegfooter qa-footer clearfix">\n' +
+                        '                                        <div class="l-box l">\n' +
+                        '                                            <a class="replynumber static-count " target="_blank" href="questions.jsp?'+jsonObj.ask_no[i]+'">\n' +
+                        '                                                <span class="static-item answer">'+jsonObj.answer_count[i]+' 回答</span>\n' +
+                        '                                                <span class="static-item">'+jsonObj.times[i]+' 浏览</span>\n' +
+                        '                                            </a>\n' +
+                        '                                            <a href="" target="_blank">'+jsonObj.title_No_list[i]+jsonObj.title[i]+'</a>\n' +
+                        '                                        </div>\n' +
+                        '                                        <em class="r">'+jsonObj.time[i]+'</em>\n' +
+                        '                                    </div>\n' +
+                        '                                </div>\n' +
+                        '                            </div>\n' +
+                        '                        </li>'
+                    );
+                    //$('#ask_no'+jsonObj.ask_no[i]).
+                    if (jsonObj.new_answer[i]===null){
+                        $('#new_reply'+jsonObj.ask_no[i]).append(
+                            '<button type="button" class="btn btn-light" onclick="window.open(\'questions.jsp?'+jsonObj.ask_no[i]+'\')">我来回答</button>\n'
+                        )
+                    } else {
+                        $('#new_reply'+jsonObj.ask_no[i]).append(
+                            '<span class="replysign">\n' +
+                            ' 最新回复 /\n' +
+                            '   <a class="nickname" target="_blank" href="">'+jsonObj.new_answer[i]+'</a>\n' +
+                            ' </span>\n' +
+                            ' <div class="replydet">'+jsonObj.new_answer_text[i]+'</div>\n'
+                        )
+                    }
+                }
+
+
+
+                var page_ul =  $('#page_ask');
+                page_length = Math.ceil(jsonObj.count/6);
+                if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)-1)+'">Previous</a></li>');
+                else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
+
+                if (page-1>2&&page_length-page>=2){
+                    for (var i = page-2;i<=page+2;i++){
+                        if (i<page_length+1){
+                            if (i===parseInt(page)){
+                                page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                            }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                        }
+                    }
+                }else {
+                    if (page<=3){
+                        for (i=1;i<6;i++){
+                            if (i<page_length+1){
+                                if (i===parseInt(page)){
+                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                            }
+                        }
+                    }else {
+                        for (i=page_length-4;i<=page_length;i++){
+                            if (i<page_length+1){
+                                if (i===parseInt(page)){
+                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                            }
+                        }
+                    }
+
+                }
+
+                if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)+1)+'">Next</a></li>');
+                else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+            }
+        });
+    }
 </script>
 
 <body onload="checkCookie();ifActive();get_Class()" style="background-color: #f8fafc;">
 <jsp:include page="navigation.jsp"/>
 <div class="main">
     <div class="inside">
-        <div class="first">
-            <a href="homepage.jsp">首页</a>
-            <i class="i">\</i>
-            <a href="#">前端开发</a>
-            <i class="i">\</i>
-            <a href="#">JavaScript</a>
-            <i class="i">\</i>
-            <a href="#">JavaScript入门篇</a>
-            <i class="i">\</i>
+        <div class="first" id="Bread_crumb_navigation">
+
         </div>
         <div class="second">
             <h2 id="title" class="left"></h2>
@@ -166,13 +417,15 @@
     <div class="w">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="pill" href="#one">章节</a>
+                <a id="unit-nav" class="nav-link " data-toggle="pill" href="#one">章节</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#two">问答</a>
+                <span></span>
+                <a id="ask_nav" class="nav-link" data-toggle="pill" href="#two">问答</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#three">笔记</a>
+                <span></span>
+                <a id="note_nav" class="nav-link" data-toggle="pill" href="#three">笔记</a>
             </li>
         </ul>
     </div>
@@ -182,48 +435,34 @@
 <div>
     <div class="course">
         <div class="tab-content">
-            <div id="one" class="container tab-pane active margin">
+            <div id="one" class="container tab-pane  margin">
 
             </div>
             <!-- 问答评论 -->
             <div id="two" class="container tab-pane fade margin">
                 <div class="comment-list">
-                    <ul>
-                        <li>
-                            <div class="ui-box">
-                                1
-                            </div>
-                        </li>
-                        <li>
-                            <div class="ui-box">
-                                2
-                            </div>
-                        </li>
-                    </ul>
+                    <ul id="ask_ul"></ul>
                 </div>
+                <ul id="page_ask" class="pagination">
+
+                </ul>
             </div>
             <!-- 同学笔记 -->
             <div id="three" class="container tab-pane fade margin">
-                <div class="circle">
+                <%--<div class="circle">
                     <ul>
                         <li><a href="#"><div class="col_1">最新</div></a></li>
                         <li><a href="#"><div>点赞</div></a></li>
                     </ul>
-                </div>
+                </div>--%>
                 <div class="comment-list">
-                    <ul>
-                        <li>
-                            <div class="ui-box">
-                                1
-                            </div>
-                        </li>
-                        <li>
-                            <div class="ui-box">
-                                2
-                            </div>
-                        </li>
+                    <ul id="note_ul">
+
                     </ul>
                 </div>
+                <ul id="page_note" class="pagination">
+
+                </ul>
             </div>
         </div>
 
@@ -242,40 +481,15 @@
                         <p class="fontbody">mobx的使用方法，对React项目的性能优化经验</p>
                     </div>--%>
                 </div>
-                <div class="fontset-headline">推荐课程
+          <%--      <div class="fontset-headline">推荐课程
                     <div class="sno2-allbox">
                         <img src="https://img3.mukewang.com/szimg/58a68f000001262805400300-360-202.jpg" class="imagesize">
                             <div class="coursecount">
                                 <a href="#" class="coursecount-font">在本章中，将会通过编写一个简单的高阶组件，来加深对高阶组件概念的理解；</a>
                             </div>
                     </div>
-                    <div class="sno2-allbox">
-                        <img src="https://img3.mukewang.com/szimg/58a68f000001262805400300-360-202.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">111111111111111111111111111111111111111</a>
-                            </div>
-                    </div>
-                    <div class="sno2-allbox">
-                        <img src="https://img2.mukewang.com/szimg/5a17ef670001292c05400300-360-202.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">111111111111111111111111111111111111111</a>
-                            </div>
-                    </div>
-                    <div class="sno2-allbox">
-                        <img src="https://img3.mukewang.com/szimg/59006d090001508305400300-360-202.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">111111111111111111111111111111111111111</a>
-                            </div>
-                    </div>
-                    <div><img src="https://img3.mukewang.com/szimg/58a68f000001262805400300-360-202.jpg" class="imagesize">
-                        <div class="sno2-allbox">
-                            <img src="https://img4.mukewang.com/szimg/58a68f000001262805400300-360-202.jpg" class="imagesize">
-                                <div class="coursecount" >
-                                    <a href="#" class="coursecount-font">111111111111111111111111111111111111111</a>
-                                </div>
-                        </div>
-                </div>
-                <div class="son3 fontset-headline">热门专题标签
+                </div>--%>
+                <div class="son3 fontset-headline">最新公告
                     <div class="hotrecommend">
                         <div >
                             <a href="#" class="hot1">用Query实现一小应用</a>
@@ -287,42 +501,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="sno4 fontset-headline">相关课程
-                    <div class="sno2-allbox">
-                        <img src="https://img1.mukewang.com/5b8e323900017f7406000338-240-135.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">在本章中，将会通过编写一个简单的高阶组件，来加深对高阶组件概念的理解；</a>
-                            </div>
-                    </div>
-                    <div class="sno2-allbox">
-                        <img src="https://img3.mukewang.com/5bc44d080001049906000338-240-135.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">在本章中，将会通过编写一个简单的高阶组件，来加深对高阶组件概念的理解；</a>
-                            </div>
-                    </div>
-                    <div class="sno2-allbox">
-                        <img src="https://img4.mukewang.com/5b28da010001930906000338-240-135.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">在本章中，将会通过编写一个简单的高阶组件，来加深对高阶组件概念的理解；</a>
-                            </div>
-                    </div>
-                    <div class="sno2-allbox">
-                        <img src="https://img2.mukewang.com/5b4ed6590001d9ee06000338-240-135.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">在本章中，将会通过编写一个简单的高阶组件，来加深对高阶组件概念的理解；</a>
-                            </div>
-                    </div>
-                    <div class="sno2-allbox">
-                        <img src="https://img2.mukewang.com/5b7bfaa20001ec6006000338-240-135.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">在本章中，将会通过编写一个简单的高阶组件，来加深对高阶组件概念的理解；</a>
-                            </div>
-                    </div>
+                <div class="sno4 fontset-headline" id="other_class">相关课程
+
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 <%--<body onload="get_Class()">

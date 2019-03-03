@@ -13,6 +13,7 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/My_question.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <style type="text/css">
@@ -147,10 +148,6 @@
             padding: 0 12px;
             line-height: 2.5;
         }
-        .form-control{
-            display: inline;
-            width: 52px
-        }
 
     </style>
     <script type="text/javascript">
@@ -159,7 +156,7 @@
             var page = window.location.search.replace('?','');
             if(page==='') page='1';
             $.ajax({
-                url: ${pageContext.request.contextPath}"/postask",
+                url: "${pageContext.request.contextPath}/postask",
                 data: {
                     page:page,
                     user:user,
@@ -208,32 +205,71 @@
 
                     page_ul.append(
                         '<li class="page-item last">\n' +
-                            '<a >\n' +
-                                '<label>\n' +
-                                    '<input id="jump" type="text" class="form-control" onkeydown="go();">\n' +
-                                '</label>\n' +
-                                '<span id="count_page"> </span>\n' +
-                            '</a>\n' +
+                        '<a >\n' +
+                        '<label>\n' +
+                        '<input id="jump" type="text" class="form-control" onkeydown="go();">\n' +
+                        '</label>\n' +
+                        '<span id="count_page"> </span>\n' +
+                        '</a>\n' +
                         '</li>');
                     $('#count_page').text('/ '+page_length);
 
+                    var ask_ul = $('#ask_ul');
                     for (i=0;i<jsonObj.title.length;i++){
-                        $('#list').append(
-                            '<li class="media">\n' +
-                            '     <div class="media-body">\n' +
-                            '          <div class="member">\n' +
-                            '               <a href="#"><i class="fa fa-comments"></i><strong>'+jsonObj.describe[i]+'</strong></a>\n' +
-                            '          </div>\n' +
-                            '          <div class="text-normal text-mute">\n' +
-                            '               <span>发表于<a href="https://www.bilibili.com/" class="link-info">'+jsonObj.title[i]+'</a></span>\n' +
-                            '               <span class="bullet">.</span>\n' +
-                            '               <span>0 回复</span>\n' +
-                            '               <span class="bullet">.</span>\n' +
-                            '               <span>创建于 '+jsonObj.time[i]+'</span>\n' +
-                            '          </div>\n' +
-                            '      </div>\n' +
-                            '</li>'
+                        ask_ul.append(
+                            ' <li>\n' +
+                            '                            <div class="ui-box">\n' +
+                            '                                <div class="headslider qa-medias l">\n' +
+                            '                                    <a class="media" target="_blank" href="" title="'+user+'">\n' +
+                            '                                        <img src="'+"${pageContext.request.contextPath}"+head_image+'" width="40px" height="40px">\n' +
+                            '                                    </a>\n' +
+                            '                                </div>\n' +
+                            '                                <div class="wendaslider qa-content">\n' +
+                            '                                    <h2 class="wendaquetitle qa-header">\n' +
+                            '                                        <div class="wendatitlecon qa-header-cnt clearfix">\n' +
+                            '                                            <a class="qa-tit" target="_blank" href="questions.jsp?'+jsonObj.ask_no[i]+'">\n' +
+                            '                                                <i>'+jsonObj.describe[i]+'</i>\n' +
+                            '                                            </a>\n' +
+                            '                                        </div>\n' +
+                            '                                    </h2>\n' +
+                            '                                    <div class="replycont qa-body clearfix">\n' +
+                            '                                        <div class="l replydes" id="new_reply'+jsonObj.ask_no[i]+'">\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>\n' +
+                            '                                    <div class="replymegfooter qa-footer clearfix">\n' +
+                            '                                        <div class="l-box l">\n' +
+                            '                                            <a class="replynumber static-count " target="_blank" href="questions.jsp?'+jsonObj.ask_no[i]+'">\n' +
+                            '                                                <span class="static-item answer">'+jsonObj.answer_count[i]+' 回答</span>\n' +
+                            '                                                <span class="static-item">'+jsonObj.times[i]+' 浏览</span>\n' +
+                            '                                            </a>\n' +
+                            '                                            <a href="Learn_list.jsp?='+jsonObj.class_no[i]+'" target="_blank">'+jsonObj.title[i]+'</a>\n' +
+                            '                                            <a href="Play.jsp?'+jsonObj.class_no[i]+'/'+jsonObj.unit_no[i]+'" target="_blank">'+jsonObj.unit_no[i]+'  '+jsonObj.title[i]+'</a>\n' +
+                            '                                        </div>\n' +
+                            '                                        <em class="r">'+jsonObj.time[i]+'</em>\n' +
+                            '                                    </div>\n' +
+                            '                                </div>\n' +
+                            '                            </div>\n' +
+                            '                        </li>'
                         );
+                        if (jsonObj.new_answer[i]===null){
+                            $('#new_reply'+jsonObj.ask_no[i]).append(
+                                '<button type="button" class="btn btn-light" onclick="window.open(\'questions.jsp?'+jsonObj.ask_no[i]+'\')">我来回答</button>\n'
+                            )
+                        } else {
+                            $('#new_reply'+jsonObj.ask_no[i]).append(
+                                '<span class="replysign">\n' +
+                                ' 最新回复 /\n' +
+                                '   <a class="nickname" target="_blank" href="">'+jsonObj.new_answer[i]+'</a>\n' +
+                                ' </span>\n' +
+                                ' <div class="replydet">'+jsonObj.new_answer_text[i]+'</div>\n'
+                            )
+                        }
+                    }
+
+                    if (ask_ul.html().length === 0) {
+                        ask_ul.append(
+                            ' <div class="no_find_class">暂无讨论</div> '
+                        )
                     }
                 }
             });
@@ -263,19 +299,10 @@
                 <h3 class="container_right_head">
                     学员讨论
                 </h3>
-                <div class="main-default main-col">
-                    <div class="main-body">
-                        <ul id="list" class="media-list">
-
-
-                        </ul>
-                        <div class="last-row">
-                            <ul id="page" class="pagination">
-
-                            </ul>
-                        </div>
-                    </div>
+                <div class="comment-list">
+                    <ul id="ask_ul" style="padding-left: 0"></ul>
                 </div>
+                <ul id="page" class="pagination"></ul>
             </div>
         </div>
     </div>

@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 @WebServlet(name = "Register")
 public class Register extends HttpServlet {
-    private static final int loginError = 1;
+    private static final int loginNofind = 1;
     private static final int loginSuccess = 2;
-    private static final int registerError = 3;
+    private static final int loginPWerror = 3;
     private static final int registerSuccess = 4;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
@@ -24,55 +24,10 @@ public class Register extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String state = request.getParameter("state");
-        System.out.println("获取到的状态、用户名和密码为：" + state + username + password);
-        JSONObject msg = new JSONObject();
+        ConnectSQL.my_println("获取到的状态、用户名和密码为：" + state + username + password);
         switch (state){
             case "login":
-                int Mysql_state = ConnectMysql(username, password);
-                if (Mysql_state == 2){
-                    System.out.println("login success!!");
-                    msg.put("state",loginSuccess);
-                    String head = get_head(username);
-                    msg.put("head_image",head);
-                    HttpSession session = request.getSession();
-                    session.setAttribute("user_id",username);
-                    Cookie cookie=new Cookie("JSESSIONID", session.getId());
-                    cookie.setMaxAge(60*60*24);
-                    response.addCookie(cookie);
-                    PrintWriter out = response.getWriter();
-                    out.print(msg);
-                    out.flush();
-                    out.close();
-                }else {
-                    System.out.println("login false");
-                    msg.put("state",loginError);
-                    PrintWriter out = response.getWriter();
-                    out.flush();
-                    out.print(msg);
-                    out.close();
-                }
-                break;
-            case  "register":
-                 Mysql_state = ConnectMysql(username, password);
-                if (Mysql_state == 1 || Mysql_state == 2) {
-                    System.out.println("login fail!!");
-                    PrintWriter out = response.getWriter();
-                    out.flush();
-                    out.println("<script>");
-                    out.println("history.back();");
-                    out.println("alert('很遗憾，用户名已被使用');");
-                    out.println("</script>");
-                    out.close();
-                } else {
-                    System.out.println("register success");
-                    PrintWriter out = response.getWriter();
-                    out.flush();
-                    out.println("<script>");
-                    out.println("alert('注册成功');");
-                    out.println("location.href='LoginPC.jsp';");
-                    out.println("</script>");
-                    out.close();
-                }
+                login(request,response,username, password);
                 break;
             case "Logout":
                 HttpSession session = request.getSession();
@@ -80,72 +35,161 @@ public class Register extends HttpServlet {
                 Cookie cookie=new Cookie("JSESSIONID", session.getId());
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
+                break;
+            case "register":
+                String email = request.getParameter("email");
+                int active = 0;
+                register(response,username,password,email,active);
+                break;
+            case "forgetPW":
+                String forget_user = request.getParameter("forget_user");
+                forgetPW(response,forget_user);
+                break;
+            case "ChangeEmail":
+                email = request.getParameter("email");
+                ChangeEmail(response,username,email);
+                break;
         }
     }
 
-    private String get_head(String username){
-        String head="";
+    private void ChangeEmail(HttpServletResponse response,String username,String email) throws IOException{
+        String code=CodeUtil.generateUniqueCode();
+        PrintWriter out = response.getWriter();
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            PreparedStatement psql = con.prepareStatement("update login_table set code=? where username=?");
+            psql.setString(1,code);
+            psql.setString(2,username);
+            int state = psql.executeUpdate();
+            out.flush();
+            out.println(state);
+            psql.close();
+            con.close();
+            new Thread(new MailUtil(email,code,1)).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.flush();
+            out.println(0);
+        }
+        out.close();
+    }
+
+    private void forgetPW(HttpServletResponse response,String forget_user) throws IOException{
+        //生成激活码
+        PrintWriter out = response.getWriter();
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select head from personal_table where username='"+username+"'");
+            ResultSet rs = statement.executeQuery("select password,email from login_table where username='"+forget_user+"'");
+            String password = null;
+            String email = null;
             while (rs.next()){
-                head = rs.getString("head");
+                password = rs.getString("password");
+                email = rs.getString("email");
             }
-            rs.close();
+            if (password==null){
+                out.flush();
+                out.println(0);
+                return;
+            }
+            out.flush();
+            out.println(1);
             con.close();
+            new Thread(new Mailforget(email,password)).start();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return head;
+        out.close();
+    }
+
+    private void register(HttpServletResponse response,String username,String password,String email,int active) throws IOException{
+        //生成激活码
+        String code=CodeUtil.generateUniqueCode();
+        PrintWriter out = response.getWriter();
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            PreparedStatement psql = con.prepareStatement("insert into  login_table values(?,?,?,?,?)");
+            psql.setString(1,username);
+            psql.setString(2,password);
+            psql.setString(3,email);
+            psql.setInt(4,active);
+            psql.setString(5,code);
+            int state = psql.executeUpdate();
+            ConnectSQL.my_println("state:"+state);
+            out.flush();
+            out.println(state);
+            psql.close();
+            con.close();
+            new Thread(new MailUtil(email, code,0)).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.flush();
+            out.println(0);
+        }
+        out.close();
+    }
+
+    private void login(HttpServletRequest request,HttpServletResponse response,String name,String password){
+        ConnectSQL.my_println("login");
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url,ConnectSQL.user,ConnectSQL.Mysqlpassword);
+            String sql = "select login_table.*,nike,head,usertype from login_table,personal_table where login_table.username=personal_table.username and active=1 and login_table.username='"+name+"'";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            String username = null;
+            String paw = null;
+            String nike = null;
+            String head_image = null;
+            String usertype = null;
+            PrintWriter out = response.getWriter();
+            JSONObject jsonObject = new JSONObject();
+            while (rs.next()){
+                username = rs.getString("login_table.username");
+                paw = rs.getString("password");
+                nike = rs.getString("nike");
+                head_image = rs.getString("head");
+                usertype = rs.getString("usertype");
+            }
+            if (username!=null&&paw!=null) {
+                if (password.equals(paw)){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user_id",username);
+                    session.setAttribute("usertype",usertype);
+                    Cookie cookie=new Cookie("JSESSIONID", session.getId());
+                    cookie.setMaxAge(3600*24);
+                    response.addCookie(cookie);
+                    jsonObject.put("state",loginSuccess);//2
+                    jsonObject.put("nike",nike);
+                    jsonObject.put("head_image",head_image);
+                    out.print(jsonObject);
+                    out.flush();
+                    out.close();
+                }
+                else {
+                    jsonObject.put("state",loginPWerror);//3
+                    out.print(jsonObject);
+                    out.flush();
+                    out.close();
+                }
+            }else {
+                jsonObject.put("state",loginNofind);//1
+                out.print(jsonObject);
+                out.flush();
+                out.close();
+            }
+            con.close();
+            rs.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
-
-
-    private int ConnectMysql(String name,String password){
-        /*String url = "jdbc:mysql://localhost:3306/mysql";*/
-        try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url,ConnectSQL.user,ConnectSQL.Mysqlpassword);
-            if (!con.isClosed()) System.out.println("数据库连上了");
-            String sql = "select * from login_table";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            String username;
-            String paw;
-            while (rs.next()){
-                username = rs.getString("username");
-                paw = rs.getString("password");
-                //System.out.println(username);
-                //System.out.println(username+"\t"+paw);
-                if (name.equals(username)) {
-                    if (password.equals(paw)){
-                        con.close();
-                        rs.close();
-                        return 2;//用户名和密码都吻合，登录成功
-                    }
-                    con.close();
-                    rs.close();
-                    return 1;//仅用户名吻合，用户名重复
-                }
-            }
-            PreparedStatement psql = con.prepareStatement("insert into  login_table(username,password)"+"values(?,?)");
-            psql.setString(1,name);
-            psql.setString(2,password);
-            psql.executeUpdate();
-            psql.close();
-            con.close();
-            rs.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-
 }

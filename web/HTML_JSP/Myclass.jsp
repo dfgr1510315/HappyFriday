@@ -6,11 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<% String username=(String) session.getAttribute("user_id");
+%>
 <html>
 <head>
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 
     <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
+    <input id="user" type="hidden" value="<%=username %>" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>课程管理</title>
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
@@ -33,11 +36,10 @@
     }
 </style>
 
-<body onload="checkCookie();ifActive();getHTML();addClass(0);addHref()" onbeforeunload="live();">
+<body onload="checkCookie();ifActive();getHTML();addHref();addAction(0)" onbeforeunload="live();">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
-    <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">
-        <jsp:include page="radio_cover.jsp"/>
+    <div style="background-size: cover;height: 148px;margin-top: -21px">
         <jsp:include page="ui_box.jsp"/>
         <div style="width: 80%;margin: auto">
             <jsp:include page="course_manag_nav.jsp"/>

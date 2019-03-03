@@ -3,25 +3,22 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="net.sf.json.JSONObject" %>
-<%@ page import="java.io.PrintWriter" %><%--
-  Created by IntelliJ IDEA.
-  User: 1105379011
-  Date: 2018/10/10
-  Time: 19:40
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String username=(String) session.getAttribute("user_id");
-    String head_image = "";
+    String head_image = null;
+    String usertype = null;
+    String email = null;
     try {
         Class.forName(ConnectSQL.driver);
         Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
         Statement statement = con.createStatement();
-        ResultSet rs = statement.executeQuery("select head from personal_table where username='"+username+"'");
+        ResultSet rs = statement.executeQuery("select head,usertype,email from personal_table,login_table where login_table.username=personal_table.username and login_table.username='"+username+"'");
         while (rs.next()){
             head_image = rs.getString("head");
+            usertype = rs.getString("usertype");
+            email = rs.getString("email");
         }
         rs.close();
         con.close();
@@ -31,9 +28,12 @@
 %>
 <html>
 <head>
+    <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
     <script>
         var user = '<%=username%>';
         var head_image = '<%=head_image%>';
+        var usertype = '<%=usertype%>';
+        var email = '<%=email%>';
         function ifActive() {
             var obj = document.getElementsByTagName("body"); //获取当前body的id
             /*var obj = document.getElementById(id[0].getAttribute("id")+'');*/
@@ -48,16 +48,14 @@
             }
         }
 
-        function addClass(no) {
-            $(".list-group").children().eq(no).addClass('list_action');
-        }
+
 
         function checkCookie() {
             if (user !== "null") {
                 $("#loginButton").hide();
                 $("#personalCenter").show();
                 $("#showname").text(user);
-                $("#head_image").attr('src',head_image);
+                $("#head_image").attr('src',"${pageContext.request.contextPath}"+head_image);
             }
         }
 
@@ -79,12 +77,26 @@
             del: function(name) {
                 var exp = new Date();
                 exp.setTime(exp.getTime() - 1);
-                var cval = getCookie(name);
+                var cval = cookie.get(name);
                 if(cval != null) {
                     document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString();
                 }
             }
         };
+        $(document).ready(function(){
+            var timeout = null;
+            var user_card = $(".user");
+            user_card.mouseover(function(){
+                $("#user_card").show();
+                if( timeout != null ) clearTimeout(timeout);
+            });
+
+            user_card.mouseout(function(){
+                timeout = setTimeout(function(){
+                    $("#user_card").hide();
+                },1000);
+            });
+        })
 
     </script>
 </head>
@@ -100,19 +112,22 @@
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/HTML_JSP/Resources.jsp" style="float:left;">文档</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/HTML_JSP/course.jsp" style="float:left;">课程类型</a>
+        </li>
         <li class="nav-item" id="loginButton">
             <a class="nav-link" data-toggle="modal" data-target="#LoginModal" href="#" style="float: right">登录</a>
         </li>
-        <li class="nav-item dropdown" id="personalCenter" style="display: none;float: right">
+        <li class="nav-item" id="personalCenter" style="display: none;float: right">
             <%-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>--%>
-            <img id="head_image" class="user_imag" src="" style="height: 40px;width: 40px;border-radius: 50%; margin-right: 50px" >
-            <div class="user_card" >
+            <img id="head_image" class="user_imag user" src="" style="height: 40px;width: 40px;border-radius: 50%; margin-right: 50px" >
+            <div class="user_card user" id="user_card">
                 <div style="padding: 20px;">
                     <a  href="${pageContext.request.contextPath}/HTML_JSP/PersonalCenter.jsp" target="_blank">个人中心</a>
-                    <a href="${pageContext.request.contextPath}/HTML_JSP/upload.jsp">上传资源</a>
+                  <%--  <a href="${pageContext.request.contextPath}/HTML_JSP/upload.jsp">上传资源</a>
                     <a href="#">账号设置</a>
                     <a  href="#">我的消息</a>
-                    <a  href="${pageContext.request.contextPath}/HTML_JSP/management.jsp" >后台管理</a>
+                    <a  href="${pageContext.request.contextPath}/HTML_JSP/management.jsp" >后台管理</a>--%>
                     <a href="${pageContext.request.contextPath}/HTML_JSP/homepage.jsp" onclick="deleteCookie()">退出登录</a>
                 </div>
             </div>

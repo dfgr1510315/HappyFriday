@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>在教课程</title>
+    <title>个人中心</title>
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
@@ -78,12 +78,12 @@
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
         }
-      /*  .main-col .main-heading {
-            background: transparent;
-            font-weight: bold;
-            color: #393d4d;
-            padding: 20px 20px;
-        }*/
+        /*  .main-col .main-heading {
+              background: transparent;
+              font-weight: bold;
+              color: #393d4d;
+              padding: 20px 20px;
+          }*/
 
         .main-body{
             padding: 15px;
@@ -121,15 +121,6 @@
             margin-left: -15px;
             display: flex;
         }
-        /*.has-success {
-        .form-control-validation(@state-success-text; @state-success-text; @state-success-bg);
-        }
-        .has-warning {
-        .form-control-validation(@state-warning-text; @state-warning-text; @state-warning-bg);
-        }
-        .has-error {
-        .form-control-validation(@state-danger-text; @state-danger-text; @state-danger-bg);
-        }*/
         .control-label {
             width: 110px;
             margin-bottom: 0;
@@ -225,35 +216,35 @@
 
         function post_PW() {
             //alert(flag1+','+flag2+','+flag3);
-           if (flag1===true&&flag2===true&&flag3===true&&form_confirmPassword.val()===form_newPassword.val()) {
-               $.ajax({
-                   url: ${pageContext.request.contextPath}"/changepw",
-                   data: {
-                       username:user,
-                       form_currentPassword:form_currentPassword.val(),
-                       form_confirmPassword:form_confirmPassword.val()
-                   },
-                   type: "POST",
-                   dataType: "json",
-                   asynch: "false",
-                   success: function (state) {
-                       switch (state) {
-                           case 0:
-                               alert('修改成功');
-                               form_currentPassword.val('');
-                               form_confirmPassword.val('');
-                               form_newPassword.val('');
-                               break;
-                           case 1:
-                               alert('原密码错误');
-                               break;
-                           case 2:
-                               alert('修改失败');
-                               break;
-                       }
-                   }
-               });
-           }
+            if (flag1===true&&flag2===true&&flag3===true&&form_confirmPassword.val()===form_newPassword.val()) {
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/changepw",
+                    data: {
+                        username:user,
+                        form_currentPassword:form_currentPassword.val(),
+                        form_confirmPassword:form_confirmPassword.val()
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    asynch: "false",
+                    success: function (state) {
+                        switch (state) {
+                            case 0:
+                                alert('修改成功');
+                                form_currentPassword.val('');
+                                form_confirmPassword.val('');
+                                form_newPassword.val('');
+                                break;
+                            case 1:
+                                alert('原密码错误');
+                                break;
+                            case 2:
+                                alert('修改失败');
+                                break;
+                        }
+                    }
+                });
+            }
         }
     </script>
 

@@ -30,30 +30,205 @@
         overflow-y: auto !important;
         padding-right: 0!important;
     }
+    >
+    .biggest {
+        width: 820px;
+        height: 554px;
+    }
+    .top-right {
+        float: right !important;
+    }
+
+    .head .btn-outline-primary{
+        float: right;
+        margin-left: 20px;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .media .left {
+        margin-right: 10px;
+    }
+    .left {
+        float: left !important;
+    }
+    img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .table thead th{
+        width: 18%;
+    }
+
+    .progress{
+        margin-top: 14px;
+    }
+
+    .btn-sm{
+        margin-top: 8px;
+    }
+
+    .text-sm {
+        color: #999;
+        font-size: 12px;
+        left: 65px;
+        top: 45px;
+    }
+
 </style>
 
-<body onload="checkCookie();ifActive();addClass(5);addHref();getHTML()">
+<body onload="checkCookie();ifActive();addAction(5);addHref();getHTML()">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
-    <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">
-        <div style="width: 80%;height: 100%;margin: auto">
-            <div style="margin-left: 0;height: 148px;width: 148px;float: left">
-                <div style="    border: 4px solid #FFF;box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);width: 148px;height: 148px;position: relative;border-radius: 50%;background: #fff;top: 24px;">
-                    <img src="../image/68296699_p0.png"
-                         style="text-align: center;width: 140px;height: 140px;border-radius: 50%;">
-                </div>
-            </div>
-        </div>
+    <div style="background-size: cover;height: 148px;margin-top: -21px">
         <jsp:include page="ui_box.jsp"/>
         <div style="width: 80%;margin: auto">
             <jsp:include page="course_manag_nav.jsp"/>
             <div class="container_right">
+                <div class="head">
+                    <h3 class="container_right_head">
+                        学员管理
+                    </h3>
+                    <form  class="top-right">
+                        <button type="button" class="btn btn-outline-primary">导入学员</button>
+                    </form>
+                    <button type="button" class="btn btn-outline-primary">添加学员</button>
+                    <input class="btn btn-outline-primary" type="button" onclick="location.href='/resources/csv/course/demo.csv'" value="下载模板">
+                </div>
 
+                <table id="student_table" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>学员</th>
+                        <th>学习进度</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+                <ul id="page" class="pagination">
+
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
 </body>
+
+<script type="text/javascript">
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null) return  unescape(r[2]); return null;
+    }
+
+    function remove_student(event){
+        if (confirm("确定移除此学员吗？")) {
+            $.ajax({
+                url: "${pageContext.request.contextPath}/students",
+                data: {
+                    No:No,
+                    student:$(event).parent().prev().prev().children().eq(0).children().eq(1).text(),
+                    action:'remove_student'
+                },
+                type: "POST",
+                dataType: "json",
+                asynch: "false",
+                success: function (jsonObj) {
+                    if (jsonObj===1){
+                        $(event).parent().parent().remove();
+                    }
+                }
+            })
+        }
+    }
+
+    $(document).ready(function(){
+        $('#cover').attr('src',cover_address);
+        var page = GetQueryString('page');
+        if(page===null) page='1';
+        $.ajax({
+            url: "${pageContext.request.contextPath}/students",
+            data: {
+                No:No,
+                page:page,
+                action:'get_class_students'
+            },
+            type: "POST",
+            dataType: "json",
+            asynch: "false",
+            success: function (jsonObj) {
+                for (var i=0;i<jsonObj.user.length;i++){
+                    $('#student_table').append(
+                        '<tr>\n' +
+                        '                        <td style="position: relative;">\n' +
+                        '                            <a target="_blank" href="" >\n' +
+                        '                                <img src="'+"${pageContext.request.contextPath}"+jsonObj.head[i]+'">\n' +
+                        '                                <span>'+jsonObj.user[i]+'</span>\n' +
+                        '                            </a>\n' +
+                        '                            <span class="text-sm" style="position: absolute;">'+jsonObj.time[i]+' 加入</span>\n' +
+                        '                        </td>\n' +
+                        '                        <td>\n' +
+                        '                            <div class="progress">\n' +
+                        '                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:'+jsonObj.schedule[i]+'%"></div>\n' +
+                        '                            </div>\n' +
+                        '                        </td>\n' +
+                        '                        <td>\n' +
+                        '                            <button type="button" class="btn btn-outline-primary btn-sm">设为班长</button>\n' +
+                        '                            <button type="button" class="btn btn-outline-info btn-sm">发送信息</button>\n' +
+                        '                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="remove_student(this)">移除学员</button>\n' +
+                        '                        </td>\n' +
+                        '                    </tr>'
+                    )
+                }
+
+                var page_ul =  $('#page');
+                page_length = Math.ceil(jsonObj.count/6);
+                if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)-1)+'">Previous</a></li>');
+                else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
+
+                if (page-1>2&&page_length-page>=2){
+                    for (i = page-2;i<=page+2;i++){
+                        if (i<page_length+1){
+                            if (i===parseInt(page)){
+                                page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                            }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                        }
+                    }
+                }else {
+                    if (page<=3){
+                        for (i=1;i<6;i++){
+                            if (i<page_length+1){
+                                if (i===parseInt(page)){
+                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                            }
+                        }
+                    }else {
+                        for (i=page_length-4;i<=page_length;i++){
+                            if (i<page_length+1){
+                                if (i===parseInt(page)){
+                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                            }
+                        }
+                    }
+
+                }
+
+                if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)+1)+'">Next</a></li>');
+                else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+            }
+        })
+    })
+</script>
 
 </html>

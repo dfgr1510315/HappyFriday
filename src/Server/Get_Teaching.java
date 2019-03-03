@@ -99,18 +99,22 @@ public class Get_Teaching extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 课程类型,collection,class,标题,封面地址 from SC,class_teacher_table where user='"+username+"' and class=课程编号" );
+            ResultSet rs = statement.executeQuery("select 课程类型,collection,class,标题,封面地址,schedule,last_time from SC,class_teacher_table where user='"+username+"' and class=课程编号" );
             ArrayList<String> class_no = new ArrayList<>();
             ArrayList<String> title = new ArrayList<>();
             ArrayList<String> img_address = new ArrayList<>();
             ArrayList<String> collection = new ArrayList<>();
             ArrayList<String> class_type = new ArrayList<>();
+            ArrayList<String> schedule = new ArrayList<>();
+            ArrayList<String> last_time = new ArrayList<>();
             while (rs.next()){
                 class_no.add(rs.getString("class"));
                 title.add(rs.getString("标题"));
                 img_address.add(rs.getString("封面地址"));
                 collection.add(rs.getString("collection"));
                 class_type.add(rs.getString("课程类型"));
+                schedule.add(rs.getString("schedule"));
+                last_time.add(rs.getString("last_time"));
             }
 
             rs = statement.executeQuery("select 所属课程编号,count(*) sum from SC,note where user='"+username+"' and class=所属课程编号 and user=署名 group by 所属课程编号" );
@@ -138,6 +142,8 @@ public class Get_Teaching extends HttpServlet {
             jsonObj.put("note_count_no",note_count_no);
             jsonObj.put("ask_count",ask_count);
             jsonObj.put("ask_count_no",ask_count_no);
+            jsonObj.put("schedule",schedule);
+            jsonObj.put("last_time",last_time);
             out.flush();
             out.print(jsonObj);
             out.close();

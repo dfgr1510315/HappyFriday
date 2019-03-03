@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,6 +31,8 @@ public class UploadSec extends HttpServlet {
     private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 500; // 50MB
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        String username=(String) session.getAttribute("user_id");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -89,7 +92,7 @@ public class UploadSec extends HttpServlet {
                         JSONObject jsonObj = new JSONObject();
                         PrintWriter out = response.getWriter();
 
-                        ToH264 toH264 = new ToH264(uploadPath,oldFileName); //判断文件类型
+                        ToH264 toH264 = new ToH264(uploadPath,oldFileName,username,oldFileName); //判断文件类型
                         //System.out.println(toH264.getPATH());
                         //toH264.getPATH();
 
@@ -113,6 +116,9 @@ public class UploadSec extends HttpServlet {
                             }
                             jsonObj.put("src",UPLOAD_DIRECTORY+"/"+fileName);
                             jsonObj.put("filename",oldFileName);
+                            out.flush();
+                            out.print(jsonObj);
+                            out.close();
                         }else {  //类型为视频
                             if (Server.getHash.getFile(uploadPath).contains(fileName)){   //是否有重复文件
                                 ConnectSQL.my_println("getFile(uploadPath).contains(fileName):"+Server.getHash.getFile(uploadPath).contains(fileName));
@@ -128,6 +134,9 @@ public class UploadSec extends HttpServlet {
                                         //ConnectSQL.my_println("fileName::"+fileName);
                                         jsonObj.put("cuSRC",UPLOAD_DIRECTORY+"/"+fileName);
                                     }
+                                    out.flush();
+                                    out.print(jsonObj);
+                                    out.close();
                                     con.close();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -156,11 +165,11 @@ public class UploadSec extends HttpServlet {
                                 //ConnectSQL.my_println("fileName::"+fileName);
                                 jsonObj.put("cuSRC",UPLOAD_DIRECTORY+"/"+fileName);
                                 jsonObj.put("src",UPLOAD_DIRECTORY+"/"+src);
+                                out.flush();
+                                out.print(jsonObj);
+                                out.close();
                             }
                         }
-                        out.flush();
-                        out.print(jsonObj);
-                        out.close();
                     }
                 }
             }

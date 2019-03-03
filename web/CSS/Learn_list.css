@@ -330,7 +330,6 @@
 {
     margin-top:32px; 
     width: 320px;
-    height: 205px;
     background-color: #FFF;
     border-radius:12px;
     margin-bottom:32px;
@@ -364,7 +363,6 @@
     }
 .sno1-1
 {
-    height: 47px;
     border-radius: 30px;
     margin: 20px auto 0;
     line-height: 50px;
@@ -567,3 +565,238 @@
      line-height: 18px;
  }
 
+ .ui-box .qa-medias {
+     width: 96px;
+     overflow: hidden;
+     text-align: center;
+ }
+ .ui-box  .qa-medias img {
+     display: block;
+     width: 40px;
+     height: 40px;
+     margin: 0 auto;
+     border-radius: 50%;
+     vertical-align: top;
+ }
+
+ .ui-box .qa-content {
+     padding-right: 20px;
+     min-height: 85px;
+     position: relative;
+     overflow: hidden;
+     word-wrap: break-word;
+     word-break: break-all;
+ }
+
+ .ui-box .qa-header {
+     font-size: 14px;
+     line-height: 20px;
+     color: #363d40;
+     position: relative;
+ }
+
+ .ui-box .qa-header .qa-tit {
+     font-size: 16px;
+     font-weight: 700;
+     word-break: break-all;
+     word-wrap: break-word;
+     color: #07111b;
+     line-height: 24px;
+ }
+
+ i {
+     font-style: normal;
+ }
+
+ .replycont {
+     margin-top: 10px;
+     position: relative;
+ }
+
+ .replydes {
+     padding-left: 20px;
+     border-left: 2px solid #d9dde1;
+     color: #545c63;
+     font-size: 12px;
+     line-height: 20px;
+     word-wrap: break-word;
+     word-break: break-all;
+     overflow: hidden;
+ }
+
+ .replydes .replysign {
+     margin-bottom: 4px;
+ }
+
+ .replycont a {
+     font-size: 12px;
+     color: #71777d;
+ }
+
+ .ui-box .qa-footer {
+     margin-top: 12px;
+     color: #93999f;
+     font-size: 12px!important;
+ }
+ .l {
+     float: left;
+ }
+
+ .ui-box .qa-footer .static-count {
+     font-size: 12px;
+     color: #93999f;
+ }
+
+ .ui-box .qa-footer .l-box a {
+     color: #93999f;
+     margin-right: 30px;
+ }
+
+ .ui-box .qa-footer .static-count .static-item.answer {
+     margin-right: 26px;
+ }
+
+ .ui-box .qa-footer .static-count .static-item {
+     display: inline-block;
+ }
+
+ .ui-box .qa-footer .static-count .static-item {
+     display: inline-block;
+ }
+
+ .r {
+     float: right;
+ }
+
+ .nav-tabs .nav-item {
+     width: 10%;
+     text-align: center;
+     position: relative;
+ }
+
+ .under .w .nav-item span {
+     position: absolute;
+     font-size: 12px;
+     font-weight: 200;
+     color: #9199a1;
+     line-height: 18px;
+     left: 80px;
+ }
+
+ #note_ul .post-row {
+     position: relative;
+     margin-bottom: 8px;
+     padding: 32px;
+     background: #fff;
+     box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+     border-radius: 12px;
+ }
+
+ #note_ul .post-row .media {
+     float: left;
+     width: 40px;
+     margin-right: 10px;
+ }
+
+ #note_ul .post-row .bd {
+     position: relative;
+     margin-left: 60px;
+     margin-right: 20px;
+ }
+
+ #note_ul .post-row .tit {
+     margin-bottom: 2px;
+ }
+
+ #note_ul .post-row .media img {
+     display: block;
+     -moz-border-radius: 20px;
+     -webkit-border-radius: 20px;
+     -o-border-radius: 20px;
+     -ms-border-radius: 20px;
+     border-radius: 20px;
+ }
+
+ #note_ul .post-row .tit a {
+     font-size: 14px;
+     color: #1c1f21;
+     font-weight: 700;
+ }
+
+ #note_ul .post-row .note-media {
+     font-size: 12px;
+     line-height: 18px;
+ }
+
+ #note_ul .post-row .note-media a {
+     color: #9199a1;
+ }
+
+ .notelist-content {
+     padding: 8px 0;
+     position: relative;
+     max-height: 156px;
+     line-height: 28px;
+     overflow: hidden;
+     font-size: 14px;
+     clear: both;
+ }
+
+ .notelist-content .note-content {
+     font-size: 16px;
+     line-height: 28px;
+     white-space: pre-wrap;
+ }
+
+ .autowrap {
+     word-wrap: break-word;
+     word-break: break-all;
+ }
+
+ #note_ul .post-row .footer {
+     color: #9199a1;
+     font-size: 12px;
+     margin-top: 15px;
+     line-height: 34px;
+ }
+ #note_ul .post-row .post-action {
+     float: left;
+     margin-left: 20px;
+     color: #9199a1;
+     font-size: 12px;
+     overflow: hidden;
+     cursor: pointer;
+     line-height: 34px;
+ }
+
+ .sno1-1 .course-info-tip {
+     padding-top: 8px;
+ }
+
+
+ .sno1-1 .course-info-tip dt {
+     margin-bottom: 6px;
+     font-weight: 700;
+     font-size: 14px;
+ }
+
+ .sno1-1 .course-info-tip dd {
+     font-size: 12px;
+     line-height: 24px;
+     color: #545c63;
+     white-space: pre-line;
+ }
+
+ .autowrap {
+     word-wrap: break-word;
+     word-break: break-all;
+ }
+
+ .learn-btn .studyfont , .sno1-1 .studyfont {
+     height: 50px;
+ }
+
+ .replydes .btn-light{
+     border-radius: 18px;
+     font-size: 12px;
+ }

@@ -1,0 +1,157 @@
+body{
+    background-color: #f8fafc;
+}
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0!important;
+}
+tbody tr td:not(:first-child){
+    padding-top: 32px !important;
+}
+
+td button{
+    margin-top: -7px;
+}
+
+.cover{
+    width: 100px;height: 65px;margin-right: 5px
+}
+
+.found_class {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.found_class_text{
+    height: 40px !important;
+    resize: none;
+    width: 80%;
+    float: right;
+}
+ul{
+    list-style: none;
+}
+.ui-box {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+    /* border: 1px solid #ddddcf; */   /* 边框 */
+    background-color: white;
+    padding:  20px 20px 20px;
+    margin-bottom: 15px;
+    width: 100%;
+
+}
+.ui-box .qa-medias {
+    width: 96px;
+    overflow: hidden;
+    text-align: center;
+}
+.ui-box  .qa-medias img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border-radius: 50%;
+    vertical-align: top;
+}
+
+.ui-box .qa-content {
+    padding-right: 20px;
+    min-height: 85px;
+    position: relative;
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.ui-box .qa-header {
+    font-size: 14px;
+    line-height: 20px;
+    color: #363d40;
+    position: relative;
+}
+
+.ui-box .qa-header .qa-tit {
+    font-size: 16px;
+    font-weight: 700;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #07111b;
+    line-height: 24px;
+}
+.ui-box .qa-footer {
+    margin-top: 12px;
+    color: #93999f;
+    font-size: 12px!important;
+}
+.l {
+    float: left;
+}
+
+.ui-box .qa-footer .static-count {
+    font-size: 12px;
+    color: #93999f;
+}
+
+.ui-box .qa-footer .l-box a {
+    color: #93999f;
+    margin-right: 30px;
+}
+
+.ui-box .qa-footer .static-count .static-item.answer {
+    margin-right: 26px;
+}
+
+.ui-box .qa-footer .static-count .static-item {
+    display: inline-block;
+}
+
+.ui-box .qa-footer .static-count .static-item {
+    display: inline-block;
+}
+i {
+    font-style: normal;
+}
+.replycont {
+    margin-top: 10px;
+    position: relative;
+}
+.replydes {
+    padding-left: 20px;
+    border-left: 2px solid #d9dde1;
+    color: #545c63;
+    font-size: 12px;
+    line-height: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
+.l {
+    float: left;
+}
+.replydes .replysign {
+    margin-bottom: 4px;
+}
+.replycont a {
+    font-size: 12px;
+    color: #71777d;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.replydes .btn-light {
+    border-radius: 18px;
+    font-size: 12px;
+}
+.no_find_class {
+    width: 16%;
+    margin-left: auto;
+    margin-top: 103px;
+    margin-right: auto;
+    font-size: 35px;
+    font-weight: 300;
+    color: #93999f;
+}

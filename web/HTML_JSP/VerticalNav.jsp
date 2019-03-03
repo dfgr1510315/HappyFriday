@@ -30,6 +30,7 @@
         /* background-color: pink;*/
         min-height: 240px;
         margin-top: 32px;
+        margin-bottom: 64px;
     }
 
     .container_right{
@@ -43,22 +44,42 @@
         margin-bottom: 60px;
         height: auto;
     }
-
 </style>
+<script type="text/javascript">
+    function addClass(no) {
+        if (usertype==='student'){
+            $('#vertical_group').append(
+                '<a id="Nav0" href="PersonalCenter.jsp" class="list-group-item ">个人资料</a>\n' +
+                '<a id="Nav1" href="ChangePW.jsp" class="list-group-item">密码修改</a>\n' +
+                '<a id="Nav2" href="Unbind.jsp" class="list-group-item ">账号绑定</a>\n' +
+                '<a id="Nav5" href="LearingClass.jsp" class="list-group-item ">我的课程</a>\n' +
+                '<a id="Nav6" href="My_question.jsp" class="list-group-item ">我发布的评论</a>\n' +
+                '<a id="Nav7" href="My_answered.jsp" class="list-group-item ">我回复的评论</a>\n' +
+                '<a id="Nav8" href="note.jsp" class="list-group-item ">我的笔记</a>\n' +
+                '<a id="Nav9" href="notification.jsp" class="list-group-item ">我的通知</a>'
+            )
+        } else {
+            $('#vertical_group').append(
+                '<a id="Nav0" href="PersonalCenter.jsp" class="list-group-item ">个人资料</a>\n' +
+                '<a id="Nav1" href="ChangePW.jsp" class="list-group-item">密码修改</a>\n' +
+                '<a id="Nav2" href="Unbind.jsp" class="list-group-item ">账号绑定</a>\n' +
+                '<a id="Nav3" href="Teaching.jsp" class="list-group-item " >在教课程</a>\n' +
+                '<a id="Nav4" href="Student_commentary.jsp" class="list-group-item ">学员讨论</a>\n' +
+                '<a id="Nav5" href="LearingClass.jsp" class="list-group-item ">我的课程</a>\n' +
+                '<a id="Nav6" href="My_question.jsp" class="list-group-item ">我发布的评论</a>\n' +
+                '<a id="Nav7" href="My_answered.jsp" class="list-group-item ">我回复的评论</a>\n' +
+                '<a id="Nav8" href="note.jsp" class="list-group-item ">我的笔记</a>\n' +
+                '<a id="Nav9" href="notification.jsp" class="list-group-item ">我的通知</a>'
+            )
+        }
+        $("#Nav"+no).addClass('list_action');
+    }
+</script>
 <body>
 <div class="container_left" id="verticalNav" >
+    <jsp:include page="radio_cover.jsp"/>
+    <div class="list-group" id="vertical_group">
 
-    <div class="list-group">
-        <a href="PersonalCenter.jsp" class="list-group-item ">个人资料</a>
-        <a href="ChangePW.jsp" class="list-group-item">密码修改</a>
-        <a href="Unbind.jsp" class="list-group-item ">解除绑定</a>
-        <a href="Teaching.jsp" class="list-group-item " >在教课程</a>
-        <a href="Student_commentary.jsp" class="list-group-item ">学员讨论</a>
-        <a href="LearingClass.jsp" class="list-group-item ">我的课程</a>
-        <a href="My_question.jsp" class="list-group-item ">我发布的评论</a>
-        <a href="My_answered.jsp" class="list-group-item ">我回复的评论</a>
-        <a href="note.jsp" class="list-group-item ">我的笔记</a>
-        <a href="notification.jsp" class="list-group-item ">我的通知</a>
     </div>
 </div>
 </body>

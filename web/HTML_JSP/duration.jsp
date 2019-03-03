@@ -32,11 +32,10 @@
     }
 </style>
 
-<body onload="checkCookie();ifActive();addClass(3);addHref();getHTML()">
+<body onload="checkCookie();ifActive();addAction(3);addHref();getHTML()">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
-    <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">
-        <jsp:include page="radio_cover.jsp"/>
+    <div style="background-size: cover;height: 148px;margin-top: -21px">
         <jsp:include page="ui_box.jsp"/>
         <div style="width: 80%;margin: auto">
             <jsp:include page="course_manag_nav.jsp"/>

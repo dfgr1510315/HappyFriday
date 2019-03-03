@@ -1,20 +1,14 @@
 .user_card{
-    visibility: hidden;
+    display: none;
     background-color:white;
     position: absolute;
-    right: 0;
-    top: 100%;
-    width: 306px;
+    right: 12px;
+    top: 61px;
+    width: 110px;
     box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
     z-index: 1000;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
-}
-.user_imag:hover+.user_card{
-    visibility:visible;
-}
-.user_card:hover{
-    visibility:visible;
 }
 .user_navigation{
     /*position:fixed;*/
@@ -39,4 +33,53 @@
 }
 a:hover{
     text-decoration: none;
+}
+.notification{
+    position: relative;
+    float: left;
+}
+
+.notification a{
+    color: #787d82;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+.notification a:hover{
+    color: #007bff;
+}
+.msg_remind {
+    display: none;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #f01414;
+    right: 17px;
+    top: 8px;
+    border-radius: 50%;
+}
+.form-control{
+    height: calc(2rem + 2px);
+}
+
+.form-control:focus{
+    outline:none;
+    box-shadow: none;
+    border: 1px solid #007bff;
+}
+
+
+#search_input{
+    font-size: 13px;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+}
+
+#search_input:focus{
+    outline:none;
+    box-shadow: none;
+    border-bottom: 1px solid #007bff;
 }

@@ -20,23 +20,43 @@
 </style>
 <body >
     <div class="container_left" >
-        <div class="list-group">
+        <div class="list-group" id="course_group">
             <a href="Myclass.jsp" class="list-group-item ">课时管理</a>
             <a href="basic_information.jsp" class="list-group-item">基本信息</a>
             <a href="image.jsp" class="list-group-item ">课程封面</a>
             <a href="duration.jsp" class="list-group-item ">学员统计</a>
             <a href="instructors.jsp" class="list-group-item ">教师设置</a>
             <a href="students.jsp" class="list-group-item ">学员管理</a>
-            <a href="#" class="list-group-item ">删除课程</a>
+            <a href="javascript:void(0);" class="list-group-item" onclick="delete_class()">删除课程</a>
         </div>
     </div>
 </body>
 <script type="text/javascript">
+    function addAction(no) {
+        $('#course_group').children().eq(no).addClass('list_action');
+    }
+
     function addHref(){
         var list_group = $(".list-group");
         for (var i=0;i<7;i++){
             var href = list_group.children().eq(i).attr('href');
             list_group.children().eq(i).attr('href',href+location.search);
+        }
+    }
+
+    function delete_class() {
+        if (confirm("确定删除课程吗，删除后将无法恢复课程信息？")) {
+            $.ajax({
+                url: "${pageContext.request.contextPath}/SaveClassInfor",
+                data: {
+                    No:No,
+                    Read_or_Save:'delete_class'
+                },
+                type: "POST",
+                dataType: "json",
+                asynch: "false"
+            });
+            window.location.href = "Teaching.jsp";
         }
     }
 

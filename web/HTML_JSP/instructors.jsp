@@ -32,18 +32,10 @@
     }
 </style>
 
-<body onload="checkCookie();ifActive();addClass(4);addHref();getHTML()">
+<body onload="checkCookie();ifActive();addAction(4);addHref();getHTML()">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
-    <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">
-        <div style="width: 80%;height: 100%;margin: auto">
-            <div style="margin-left: 0;height: 148px;width: 148px;float: left">
-                <div style="    border: 4px solid #FFF;box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);width: 148px;height: 148px;position: relative;border-radius: 50%;background: #fff;top: 24px;">
-                    <img src="../image/68296699_p0.png"
-                         style="text-align: center;width: 140px;height: 140px;border-radius: 50%;">
-                </div>
-            </div>
-        </div>
+    <div style="background-size: cover;height: 148px;margin-top: -21px">
         <jsp:include page="ui_box.jsp"/>
         <div style="width: 80%;margin: auto">
             <jsp:include page="course_manag_nav.jsp"/>

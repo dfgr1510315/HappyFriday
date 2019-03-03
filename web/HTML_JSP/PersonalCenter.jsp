@@ -117,7 +117,6 @@
                                 while (rs.next()) {
                                     InforBean inforBean = new InforBean();
                                     inforBean.setNike(rs.getString("nike"));
-                                    inforBean.setName(rs.getString("name"));
                                     inforBean.setSex(rs.getString("sex"));
                                     inforBean.setBirth(rs.getString("birth"));
                                     inforBean.setInformation(rs.getString("information"));
@@ -139,9 +138,6 @@
                         <ul id="localUl" style="list-style: none;padding-left: 0">
                             <li id="liNike">
                                 昵称：&nbsp<%=inforBean.getNike() %>
-                            </li>
-                            <li id="liName">
-                                实名：&nbsp<%=inforBean.getName() %>
                             </li>
                             <li id="liSex">
                                 性别：&nbsp<%=inforBean.getSex() %>
@@ -172,7 +168,7 @@
                 <%-- 修改头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">修改资料</h5>
-                    <button id="ChangeClose" class="close" data-dismiss="modal">&times;</button>
+                    <a id="ChangeClose" class="close" data-dismiss="modal">&times;</a>
                 </div>
 
                 <%--修改界面--%>
@@ -182,10 +178,10 @@
                             <label for="nike">昵称:</label>
                             <input type="text" class="form-control input1" id="nike">
                         </div>
-                        <div class="form-group">
+                       <%-- <div class="form-group">
                             <label for="name">实名:</label>
                             <input type="text" class="form-control input1" id="name">
-                        </div>
+                        </div>--%>
                         <div class="form-group">
                             <label for="sex">性别:</label>
                             <div class="dropdown">
@@ -235,9 +231,8 @@
         $("#sex").text(sex);
     }
 
-    $('#pc_head_image').attr('src',head_image);
+    $('#pc_head_image').attr('src',"${pageContext.request.contextPath}"+head_image);
     $("#nike").val('<%=inforBean.getNike() %>');
-    $("#name").val('<%=inforBean.getName() %>');
     $("#sex").text('<%=inforBean.getSex() %>');
     $("#birth").val('<%=inforBean.getBirth() %>');
     $("#teacher").val('<%=inforBean.getTeacher() %>');
@@ -246,7 +241,6 @@
 
     function changeInfor() {
         var nike = $.trim($("#nike").val());
-        var name = $.trim($("#name").val());
         var sex = $.trim($("#sex").text());
         if (sex === '请选择') sex = '';
         var birth = $.trim($("#birth").val());
@@ -256,7 +250,6 @@
         var data = {
             ID: user,
             nike: nike,
-            name: name,
             sex: sex,
             birth: birth,
             teacher: teacher,
@@ -272,7 +265,6 @@
                 if (2 === msg) {
                     $("#ChangeClose").click();
                     $("#liNike").text("昵称：       " + nike);
-                    $("#liName").text("实名：        " + name);
                     $("#liSex").text("性别：        " + sex);
                     $("#liBirth").text("生日：        " + birth);
                     $("#liIntro").text("简介：        " + introduction);
@@ -305,7 +297,7 @@
             var formFile = new FormData();
             formFile.append("file", fileObj); //加入文件对象
             $.ajax({
-                url: ${pageContext.request.contextPath}"/uploadimage",
+                url: "${pageContext.request.contextPath}/uploadimage",
                 data: formFile,
                 type: "POST",
                 dataType: "json",
@@ -314,13 +306,14 @@
                 processData: false,//用于对data参数进行序列化处理 这里必须false
                 contentType: false, //必须
                 success: function (jsonObj) {
-                    $('#pc_head_image').attr('src',${pageContext.request.contextPath}jsonObj.head_address);
-                    $('#head_image').attr('src',${pageContext.request.contextPath}jsonObj.head_address);
+                    $('#pc_head_image').attr('src',"${pageContext.request.contextPath}"+jsonObj.head_address);
+                    $('#head_image').attr('src',"${pageContext.request.contextPath}"+jsonObj.head_address);
+                    $('#radio_cover').attr('src',"${pageContext.request.contextPath}"+head_image);
                     $.ajax({
-                        url: ${pageContext.request.contextPath}"/save_image",
+                        url: "${pageContext.request.contextPath}/save_image",
                         data: {
                             action:'set_head',
-                            image: ${pageContext.request.contextPath}jsonObj.head_address
+                            image: "${pageContext.request.contextPath}"+jsonObj.head_address
                         },
                         type: "POST",
                         dataType: "json",

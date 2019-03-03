@@ -22,12 +22,11 @@ public class ChangeInfor extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         String ID = request.getParameter("ID");
         String nike = request.getParameter("nike");
-        String name = request.getParameter("name");
         String sex = request.getParameter("sex");
         String birth = request.getParameter("birth");
         String teacher = request.getParameter("teacher");
         String introduction = request.getParameter("introduction");
-        int status = ConnectMysql(ID, nike, name, sex, birth, teacher, introduction);
+        int status = ConnectMysql(ID, nike, sex, birth, teacher, introduction);
         int msg;
         if (status == 0) {
             msg = loginSuccess;
@@ -43,7 +42,7 @@ public class ChangeInfor extends HttpServlet {
         doPost(request, response);
     }
 
-    private int ConnectMysql(String ID, String nike, String name, String sex, String birth, String teacher, String introduction) {
+    private int ConnectMysql(String ID, String nike, String sex, String birth, String teacher, String introduction) {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
@@ -51,14 +50,13 @@ public class ChangeInfor extends HttpServlet {
             /*String sql = "select * from usermanager";*/
             //Statement statement = con.createStatement();
             /* ResultSet rq = statement.executeQuery(sql);*/
-            PreparedStatement qsql = con.prepareStatement("update personal_table set nike=?,name=?,sex=?,birth=?,information=?,teacher=? where username=?");
+            PreparedStatement qsql = con.prepareStatement("update personal_table set nike=?,sex=?,birth=?,information=?,teacher=? where username=?");
             qsql.setString(1, nike);
-            qsql.setString(2, name);
-            qsql.setString(3, sex);
-            qsql.setString(4, birth);
-            qsql.setString(5, introduction);
-            qsql.setString(6, teacher);
-            qsql.setString(7, ID);
+            qsql.setString(2, sex);
+            qsql.setString(3, birth);
+            qsql.setString(4, introduction);
+            qsql.setString(5, teacher);
+            qsql.setString(6, ID);
             qsql.executeUpdate();
             qsql.close();
             con.close();

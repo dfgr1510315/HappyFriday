@@ -1,22 +1,34 @@
 package Server;
 
 
-import java.io.File;
-import java.io.InputStream;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-
-    class ToH264 {
-
+@ServerEndpoint("/websocket_toH264")
+public class ToH264 {
         //private  static String PATH = "D:\\IntelliJ IDEA 2018.2\\javaweb\\ServletTest\\out\\artifacts\\ServletTest_war_exploded\\Upload\\2.avi";
-        private static String PATH ;
-        private static String FileName ;
-        private static String NewPATH;
-        private static String returnName;
+        //private static CopyOnWriteArraySet<ToH264> webSocketSet = new CopyOnWriteArraySet<ToH264>();
+        private  String PATH ;
+        private  String FileName ;
+        private  String NewPATH;
+        private  String returnName;
+        private  String  Username;
+        private  String  Oldfilename;
 
-        ToH264(String path,String filename){
+        ToH264(String path, String filename,String username,String oldfilename){
+            Oldfilename = oldfilename;
+            Username = username;
             PATH=path;
             FileName=filename;
             System.out.println("ToH264-PATH:"+PATH);
@@ -46,27 +58,18 @@ import java.util.List;
         }
 
 
-        public static void main(String args[]) {
+       /* public  void main(String args[]) {
             PATH = "D:\\IntelliJ IDEA 2018.2\\javaweb\\ServletTest\\out\\artifacts\\ServletTest_war_exploded\\Upload";
             FileName="2.avi";
-           /* if (!checkfile()) {   //判断路径是不是一个文件
-                System.out.println(FileName + " is not file");
-                return;
-            }
-            if (process()) {        //执行转码任务
-                System.out.println("ok");
-                getHash getHash = new getHash("D:\\IntelliJ IDEA 2018.2\\javaweb\\ServletTest\\out\\artifacts\\ServletTest_war_exploded\\Upload\\1a1557d31e0ae796fd42a556f84788c7.avi");
-                System.out.println(getHash.getMD5());
-            }*/
-            //getPATH();
-        }
 
-        private static boolean checkfile() {
+        }*/
+
+        private  boolean checkfile() {
             File file = new File(PATH+"\\"+FileName);
             return file.isFile();
         }
 
-        private static int process() {
+        private  int process() {
             // 判断视频的类型
             int type = checkContentType();
             //boolean status = false;
@@ -86,7 +89,7 @@ import java.util.List;
             return 2;
         }
 
-        private static int checkContentType() {
+        private  int checkContentType() {
             String type = FileName.substring(FileName.lastIndexOf(".") + 1).toLowerCase();
             // ffmpeg能解析的格式：（asx，asf，mpg，wmv，3gp，mp4，mov，avi，mp4等）
             switch (type) {
@@ -123,7 +126,7 @@ import java.util.List;
 
 
         // 对ffmpeg无法解析的文件格式(wmv9，rm，rmvb等), 可以先用别的工具（mencoder）转换为avi(ffmpeg能解析的)格式.
-        private static String processAVI(int type) {
+        private  String processAVI(int type) {
             List<String> commend = new ArrayList<String>();
             commend.add("mencoder");
             commend.add(PATH+"\\"+FileName);
@@ -154,7 +157,7 @@ import java.util.List;
         }
 
         // ffmpeg能解析的格式：（asx，asf，mpg，wmv，3gp，mp4，mov，avi，mp4等）
-        private static boolean processmp4(String oldfilepath) {
+        private  boolean processmp4(String oldfilepath) {
             if (!checkfile()) {
                 System.out.println(oldfilepath + " is not file");
                 return false;
@@ -198,22 +201,81 @@ import java.util.List;
                 ProcessBuilder builder = new ProcessBuilder(commend);
                 builder.command(commend);
                 Process process = builder.start();
+                BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+                //StringBuilder stringBuilder = new StringBuilder();
+                String line = "";
+                Pattern pattern =  Pattern.compile("Duration: (.*?),");
+                Pattern now_time =  Pattern.compile("time=(.*?) ");
+                Matcher m;
+                Matcher n;
+                int time=0;
+                int now;
+
+                while ((line = br.readLine()) != null) {
+                    m = pattern.matcher(line);
+                    n = now_time.matcher(line);
+                    if (time==0 && m.find()) {
+                        time = getTimelen(m.group(1));
+                        //ConnectSQL.my_println("time:"+time);
+                    }else if (n.find()){
+                        //ConnectSQL.my_println("n.group(1):"+n.group(1));
+                        now = getTimelen(n.group(1));
+                        //ConnectSQL.my_println("now:"+now);
+                        //ConnectSQL.my_println((float)now/(float) time*100);
+                        //ConnectSQL.my_println("username:"+Username);
+                        WebSocketTest.sendMessage(Username+Oldfilename,(float)now/(float) time*100+"");
+                    }
+                    //stringBuilder.append(line);
+                }
+                //从视频信息中解析时长
+               /* String regexDuration = "Duration: (.*?), start: (.*?), bitrate: (\\d*) kb\\/s";
+                pattern = Pattern.compile(regexDuration);
+                m = pattern.matcher(stringBuilder.toString());
+                if (m.find()) {
+                    time = getTimelen(m.group(1));
+                    System.out.println("视频时长：" + time + "s , 开始时间：" + m.group(2) + ", 比特率：" + m.group(3) + "kb/s");
+                }
+                String regexVideo = "Vedio: (.*?), (.*?), (.*?)[,\\s]";
+                pattern = Pattern.compile(regexVideo);
+                m = pattern.matcher(stringBuilder.toString());
+                if (m.find()) {
+                    System.out.println("编码格式：" + m.group(1) + ", 视频格式：" + m.group(2) + ", 分辨率：" + m.group(3) + "kb/s");
+                }*/
+
               /*  ProcessBuilder(array).start()创建子进程Process之后，
                 一定要及时取走子进程的输出信息和错误信息，否则输出信息流和错误信息流很可能因为信息太多导致被填满，最终导致子进程阻塞住，然后执行不下去。*/
                 InputStream isErr = process.getErrorStream();
-                int data=0;
-                while((data=isErr.read())!=-1);
-                    //System.err.println((byte)data);
+                int data;
+                while((data=isErr.read())!=-1) ;
+
                 NewPATH = PATH+"\\"+FileName.substring(0,FileName.lastIndexOf(".")).toLowerCase()+".mp4";
 
                 getHash getHash = new getHash(NewPATH);
                 returnName =getHash.getMD5()+".mp4";
                 new File(NewPATH).renameTo(new File(PATH+"\\"+getHash.getMD5()+".mp4"));
+                br.close();
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
             }
+        }
+
+
+        private int getTimelen(String timelen) {
+            int min = 0;
+            String strs[] = timelen.split(":");
+            if (strs[0].compareTo("0") > 0) {
+                // 秒
+                min += Integer.valueOf(strs[0]) * 60 * 60;
+            }
+            if (strs[1].compareTo("0") > 0) {
+                min += Integer.valueOf(strs[1]) * 60;
+            }
+            if (strs[2].compareTo("0") > 0) {
+                min += Math.round(Float.valueOf(strs[2]));
+            }
+            return min;
         }
     }
 

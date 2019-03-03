@@ -8,6 +8,19 @@ var UnitCount = 0;
 var ClassCount = 0;
 var No = window.location.search.replace("?",'');
 
+
+//关闭WebSocket连接
+function closeWebSocket(websocket) {
+    websocket.close();
+}
+
+//发送消息
+function send(websocket) {
+    var message = document.getElementById('text').value;
+    websocket.send(message);
+}
+
+
 function saveClass() {
     var class_name = $('#curriculum_Name').html();
     var Total_data = {
@@ -219,6 +232,9 @@ function add_class_hour(add_id) {
         '                       </div>\n' +
         '                       <button type="button" class="btn btn-secondary" style="margin-top: 4px; margin-left: 10px" onclick="delete_video(this)">删除视频</button>\n' +
         '                   </div>\n' +
+        '                   <div data-percent=""  class="progressbar">\n' +
+        '                       <span class="bfb_span"></span>\n' +
+        '                   </div>\n' +
         '                   <div>\n' +
         '                       <video height="180px" width="320px" data-cuSRC="" controls="controls" src="" type="video/*" />\n' +
         '                   </div>\n' +
@@ -305,7 +321,7 @@ function Delete_Class(Delete_button_id) {
 }
 
 function delete_video(event){
-    $(event).parent().next().children().attr("src","");
+    $(event).parent().next().next().children().attr("src","");
     $(event).prev().find('label').text('选择视频');
 }
 
@@ -354,6 +370,15 @@ $(function () {
     })
 });
 
+function onprogress(evt){
+    var loaded = evt.loaded;                  //已经上传大小情况
+    var tot = evt.total;                      //附件总大小
+    var per = Math.floor(100*loaded/tot);     //已经上传的百分比
+    local_bar.children().html( per +'%'+'('+loaded+'/'+tot+')' );
+    local_bar.css('width' , per +'%');
+    if (per===100)  local_bar.css('display','none');
+}
+
 function upload(event, type) {
     var fileObj = event.files[0]; // js 获取文件对象
     /*if ("undefined" === typeof (fileObj) || fileObj.size <= 0) {
@@ -361,11 +386,13 @@ function upload(event, type) {
         return;
     }*/
     var formFile = new FormData();
-
     formFile.append("file", fileObj); //加入文件对象
     var data = formFile;
     data.newParam = "type";
     data.type = "1";
+    var local_bar = $(event).parent().parent().next();
+    var websocket = null;
+
     $.ajax({
         url: PageContext+"/uploadsec",
         data: data,
@@ -375,12 +402,66 @@ function upload(event, type) {
         cache: false,//上传文件无需缓存
         processData: false,//用于对data参数进行序列化处理 这里必须false
         contentType: false, //必须
+        xhr: function(){
+            //取得xmlhttp异步监听
+            var xhr = $.ajaxSettings.xhr();
+            local_bar.css('display','block');
+            if(onprogress && xhr.upload) {
+                xhr.upload.addEventListener('progress' , function (evt) {
+                    var loaded = evt.loaded;                  //已经上传大小情况
+                    var tot = evt.total;                      //附件总大小
+                    var per = Math.floor(100*loaded/tot);     //已经上传的百分比
+                    local_bar.children().html( per +'%'+'('+loaded+'/'+tot+')' );
+                    local_bar.css('width' , per +'%');
+                    if (per===100)  {
+                        local_bar.css('width','0');
+//判断当前浏览器是否支持WebSocket
+                        if ('WebSocket' in window) {
+                            websocket = new WebSocket("ws:"+window.location.host+PageContext+"/websocket/"+document.getElementById('user').value+fileObj.name);
+                            //websocket = new WebSocket("ws://localhost:8080/websocket/"+document.getElementById('user').value+fileObj.name);
+                        }
+                        else {
+                            alert('当前浏览器 Not support websocket')
+                        }
+
+//连接发生错误的回调方法
+                        websocket.onerror = function () {
+                            console.log("WebSocket连接发生错误");
+                        };
+
+//连接成功建立的回调方法
+                        websocket.onopen = function () {
+                            console.log("WebSocket连接成功");
+                        };
+
+//接收到消息的回调方法
+                        websocket.onmessage = function (event) {
+                            local_bar.children().html('正在进行转码'+event.data+'%');
+                            local_bar.css('width' , event.data +'%');
+                            //console.log(event.data);
+                        };
+
+//连接关闭的回调方法
+                        websocket.onclose = function () {
+                            //local_bar.css('display','none');
+                            console.log("WebSocket连接关闭");
+                        };
+//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+                        window.onbeforeunload = function () {
+                            closeWebSocket(websocket);
+                        };
+
+                    }
+                }, false);
+                return xhr;
+            }
+        },
         success: function (jsonObj) {
             //alert(jsonObj.src);
             if (1 === type) {
                 //alert(PageContext+"/" + jsonObj.src);
-                $(event).parent().parent().next().children().attr("data-cuSRC", PageContext+"/" + jsonObj.cuSRC);
-                $(event).parent().parent().next().children().attr("src", PageContext+"/" + jsonObj.src);
+                $(event).parent().parent().next().next().children().attr("data-cuSRC", PageContext+"/" + jsonObj.cuSRC);
+                $(event).parent().parent().next().next().children().attr("src", PageContext+"/" + jsonObj.src);
                 $(event).next().text(jsonObj.video_name);
             } else if (3 === type) {
                 $(event).next().next().append(
@@ -392,6 +473,8 @@ function upload(event, type) {
                     '</div>'
                     )
             }
+            local_bar.css('display','none');
+            closeWebSocket(websocket);
             /* $("#video").val(result.data.file);*/
         }
     })
@@ -403,11 +486,11 @@ function Delete_File(event) {
 
 
 function getHTML() {
-    $("#preview").attr("href","Learn_list.jsp?"+No);
+    $("#preview").attr("href","Learn_list.jsp?="+No);
      $.ajax({
         type: "POST",
         asynch: "false",
-        url: PageContext+"/SaveClassInfor",
+        url:PageContext+"/SaveClassInfor",
         data: {
             No:No,
             Read_or_Save: "read"
