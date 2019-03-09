@@ -24,7 +24,7 @@ public class save_image extends HttpServlet {
         String image = request.getParameter("image");
         switch (action) {
             case "set_head":
-                set_head(username, image);
+                set_head(request,username, image);
                 break;
             case "set_cover": {
                 int No = Integer.parseInt(request.getParameter("No"));
@@ -86,7 +86,7 @@ public class save_image extends HttpServlet {
         }
     }
 
-    private void set_head(String username, String head_image){
+    private void set_head(HttpServletRequest request,String username, String head_image){
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
@@ -94,6 +94,8 @@ public class save_image extends HttpServlet {
             qsql.setString(1, head_image);
             qsql.setString(2, username);
             qsql.executeUpdate();
+            HttpSession session = request.getSession();
+            session.setAttribute("head_image",head_image);
             qsql.close();
             con.close();
         }

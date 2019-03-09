@@ -20,8 +20,8 @@
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
-        <script src="${pageContext.request.contextPath}/JS/LoginPC.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
+    <script src="${pageContext.request.contextPath}/JS/LoginPC.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
@@ -178,10 +178,10 @@
                             <label for="nike">昵称:</label>
                             <input type="text" class="form-control input1" id="nike">
                         </div>
-                       <%-- <div class="form-group">
-                            <label for="name">实名:</label>
-                            <input type="text" class="form-control input1" id="name">
-                        </div>--%>
+                        <%-- <div class="form-group">
+                             <label for="name">实名:</label>
+                             <input type="text" class="form-control input1" id="name">
+                         </div>--%>
                         <div class="form-group">
                             <label for="sex">性别:</label>
                             <div class="dropdown">
@@ -313,7 +313,7 @@
                         url: "${pageContext.request.contextPath}/save_image",
                         data: {
                             action:'set_head',
-                            image: "${pageContext.request.contextPath}"+jsonObj.head_address
+                            image: jsonObj.head_address
                         },
                         type: "POST",
                         dataType: "json",

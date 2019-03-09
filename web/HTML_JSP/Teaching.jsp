@@ -47,6 +47,16 @@
             width: 80%;
             float: right;
         }
+
+        .no_find_class {
+            width: 16%;
+            margin-left: auto;
+            margin-top: 103px;
+            margin-right: auto;
+            font-size: 35px;
+            font-weight: 300;
+            color: #93999f;
+        }
     </style>
     <script type="text/javascript">
         function get_Class() {
@@ -55,20 +65,26 @@
                 asynch: "false",
                 url: "${pageContext.request.contextPath}/get_teaching",
                 data:{
-                  type:'get_Class'
+                    type:'get_Class'
                 },
                 dataType: 'json',
                 success: function (json) {
+                    var clas_ul = $("tbody");
                     $(json).each(function(){
-                        $("tbody").append(
+                        clas_ul.append(
                             '<tr>\n' +
-                                '<td><img src="${pageContext.request.contextPath}'+this.封面地址 +'" class="cover">'+this.Title+'</td> \n'+
-                                '<td>'+this.学员数+'</td> \n'+
-                                '<td>'+this.状态+'</td> \n'+
-                                '<td><a target="_blank" href="Myclass.jsp?'+ this.课程编号+'"><button class="btn btn-outline-primary" >管理</button></a></td>\n'+
+                            '<td><img src="${pageContext.request.contextPath}'+this.封面地址 +'" class="cover">'+this.Title+'</td> \n'+
+                            '<td>'+this.学员数+'</td> \n'+
+                            '<td>'+this.状态+'</td> \n'+
+                            '<td><a target="_blank" href="Myclass.jsp?class_id='+ this.课程编号+'"><button class="btn btn-outline-primary" >管理</button></a></td>\n'+
                             '<tr>\n '
                         )
-                    })
+                    });
+                    if (clas_ul.html().length === 0) {
+                        $('#class_table').append(
+                            ' <div class="no_find_class">暂无课程</div> '
+                        )
+                    }
                 }
             });
         }
@@ -109,7 +125,7 @@
     <div style="width: 80%;margin: auto">
         <jsp:include page="VerticalNav.jsp"/>
         <div class="container_right">
-            <div >
+            <div id="class_table">
                 <h3 class="container_right_head">
                     在线课程
                     <button class="btn btn-outline-primary" style="float: right;margin-top: 28px" data-id="button_Change_Class"    data-toggle="modal"  data-target="#found_class">
@@ -125,8 +141,7 @@
                         <th>操作</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
 

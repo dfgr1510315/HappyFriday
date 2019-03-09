@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String email = (String) session.getAttribute("email");
+%>
 <html>
 <head>
     <title>个人中心</title>
@@ -111,6 +114,7 @@
         }
     </style>
     <script type="text/javascript">
+        var email = '<%=email%>';
         var email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
         $(document).ready(function () {
             $('.font4').text(email);

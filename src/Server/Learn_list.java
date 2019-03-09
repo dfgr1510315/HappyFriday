@@ -47,6 +47,7 @@ public class Learn_list extends HttpServlet {
             qsql.setInt(2, No);
             qsql.setString(3, time);
             qsql.executeUpdate();
+            //notice.join_class_notice(username,No);
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();

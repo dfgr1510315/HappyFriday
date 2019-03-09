@@ -383,7 +383,7 @@
 <body onload="checkCookie();ifActive();">
 <jsp:include page="navigation.jsp"/>
 <div class="questions_main">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" style="display:block">
         <a target="_blank" class="breadcrumb-item" href="homepage.jsp">首页</a>
         <a target="_blank" class="breadcrumb-item" href=""></a>
         <a target="_blank" class="breadcrumb-item" href=""></a>
@@ -535,7 +535,7 @@
                         '                            </div>\n' +
                         '                            <div class="qa-comment-addon">\n' +
                         '                                <span class="qa-comment-time">'+jsonObj.answer_time[answer_count]+'</span>\n' +
-                        '                                <span class="js-qa-tr-num" onclick="textarea_show('+answer_count+')">\n' +
+                        '                                <span class="js-qa-tr-num" onclick="textarea_show('+answer_count+',this)">\n' +
                         '                                      <i class="fa fa-commenting-o" ></i>回复\n' +
                         '                                </span>\n' +
                         '                            </div>\n' +
@@ -623,11 +623,17 @@
             }
         })
     }
-    function textarea_show(i) {
-        $('#textarea'+i).attr('placeholder','写下你的评论...').parent().parent().css('display','block');
+    function textarea_show(i,event) {
+        var textarea= $('#textarea'+i);
+        textarea.attr('placeholder','写下你的评论...').parent().parent().css('display','block');
+        textarea.data('reply_to',$(event).parent().parent().parent().prev().children().children().eq(1).text());
+        alert(textarea.data('reply_to'));
     }
     function textarea_show_to(i,event) {
-        $('#textarea'+i).attr('placeholder','回复 '+$(event).parent().prev().prev().children().eq(0).text()).parent().parent().css('display','block');
+        var reply_to = $(event).parent().prev().prev().children().eq(0).text();
+        var textarea= $('#textarea'+i);
+        textarea.attr('placeholder','回复 '+reply_to).parent().parent().css('display','block');
+        textarea.data('reply_to',reply_to);
     }
     function textarea_hide(i) {
         $('#textarea'+i).parent().parent().css('display','none');
@@ -647,7 +653,8 @@
                 No: ask_no,
                 reply:user,
                 reply_text:reply_text,
-                time: time
+                time: time,
+                reply_to:reply_edit.data('reply_to')
             },
             dataType: 'json',
             success: function (jsonObj) {
@@ -725,7 +732,7 @@
                         '                            </div>\n' +
                         '                            <div class="qa-comment-addon">\n' +
                         '                                <span class="qa-comment-time">'+time+'</span>\n' +
-                        '                                <span class="js-qa-tr-num" onclick="textarea_show('+answer_count+')">\n' +
+                        '                                <span class="js-qa-tr-num" onclick="textarea_show('+answer_count+',this)">\n' +
                         '                                      <i class="fa fa-commenting-o" ></i>回复\n' +
                         '                                </span>\n' +
                         '                            </div>\n' +

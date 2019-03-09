@@ -54,7 +54,8 @@ public class PostAsk extends HttpServlet {
                 user = request.getParameter("reply");
                 note_editor = request.getParameter("reply_text");
                 time = request.getParameter("time");
-                post_reply(response,No,user,time,note_editor);
+                String reply_to = request.getParameter("reply_to");
+                post_reply(response,No,user,time,note_editor,reply_to);
                 break;
             case "post_answer" :
                 No = Integer.parseInt(request.getParameter("No"));
@@ -222,15 +223,16 @@ public class PostAsk extends HttpServlet {
         }
     }
 
-    private void post_reply(HttpServletResponse response,int No,String reply,String reply_time,String reply_text){
+    private void post_reply(HttpServletResponse response,int No,String reply,String reply_time,String reply_text,String reply_to){
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into reply values(?,?,?,?)");
+            PreparedStatement qsql  = con.prepareStatement("insert into reply(所属回答编号,回复者,内容,回复时间,被回复者) values(?,?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,reply);
             qsql.setString(3,reply_text);
             qsql.setString(4,reply_time);
+            qsql.setString(5,reply_to);
             qsql.executeUpdate();
             qsql.close();
             JSONObject jsonObj = new JSONObject();
@@ -414,7 +416,7 @@ public class PostAsk extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 标题,时间,问题描述,问题编号,所属课程编号,课时序号,提问者,回答数,访问次数,(select 回答者 from answer where 所属问题编号=问题编号 order by 回答时间  desc limit 1) 最新回答者,(select 内容 from answer where 所属问题编号=问题编号 order by 回答时间 desc limit 1) 最新回复 from class_teacher_table,ask where 教师用户名='admin' and 课程编号=所属课程编号 order by 时间 desc limit "+(6*(page-1))+","+6);
+            ResultSet rs = statement.executeQuery("select 标题,时间,问题描述,问题编号,所属课程编号,课时序号,提问者,回答数,访问次数,(select 回答者 from answer where 所属问题编号=问题编号 order by 回答时间  desc limit 1) 最新回答者,(select 内容 from answer where 所属问题编号=问题编号 order by 回答时间 desc limit 1) 最新回复 from class_teacher_table,ask where 教师用户名='"+user+"' and 课程编号=所属课程编号 order by 时间 desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> ask_no = new ArrayList<>();
             ArrayList<String> class_no = new ArrayList<>();

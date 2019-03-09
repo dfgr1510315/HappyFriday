@@ -145,6 +145,7 @@ public class Register extends HttpServlet {
             String nike = null;
             String head_image = null;
             String usertype = null;
+            String email = null;
             PrintWriter out = response.getWriter();
             JSONObject jsonObject = new JSONObject();
             while (rs.next()){
@@ -153,12 +154,25 @@ public class Register extends HttpServlet {
                 nike = rs.getString("nike");
                 head_image = rs.getString("head");
                 usertype = rs.getString("usertype");
+                email = rs.getString("email");
             }
             if (username!=null&&paw!=null) {
                 if (password.equals(paw)){
                     HttpSession session = request.getSession();
                     session.setAttribute("user_id",username);
                     session.setAttribute("usertype",usertype);
+                    session.setAttribute("head_image",head_image);
+                    session.setAttribute("email",email);
+                    if (usertype.equals("teacher")){
+                        String class_id="";
+                        sql = "select 课程编号 from class_teacher_table where 教师用户名='"+username+"'";
+                        rs = statement.executeQuery(sql);
+                        while (rs.next()){
+                            class_id=class_id +","+rs.getInt("课程编号");
+                        }
+                        session.setAttribute("class_id",class_id);
+                        ConnectSQL.my_println(class_id);
+                    }
                     Cookie cookie=new Cookie("JSESSIONID", session.getId());
                     cookie.setMaxAge(3600*24);
                     response.addCookie(cookie);

@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
-
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 </head>
 <style type="text/css">
     .btn-outline-success{
@@ -52,7 +52,7 @@
     .form-group{
         position: relative;
     }
-    .login_control label{
+    .form-group label{
         display: inline-block;
         position: absolute;
         top: 11px;
@@ -65,7 +65,7 @@
     }
 </style>
 <script type="text/javascript">
-    var username_model = /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
+    var username_model = /^.{3,20}$/;
     var email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     var pasw_model = /^[a-zA-Z]\w{5,17}$/;
 
@@ -81,7 +81,7 @@
         var email = $('#register_email').val();
         var pasw = $('#register_pwd').val();
         if (!username_model.test(username)){
-            $('#error_waring').css('display','block').children().text('用户名以字母开头，允许5-16字节，允许字母数字下划线');
+            $('#error_waring').css('display','block').children().text('用户名长度为3~20');
             return;
         }
         if (!email_model.test(email)){
@@ -236,7 +236,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="forget_user"><i class="fa fa-user"></i></label>
-                    <input type="text" class="form-control" id="forget_user" placeholder="输入用户名">
+                    <input type="text" class="form-control login_control" id="forget_user" placeholder="输入用户名">
                 </div>
                 <button type="button" class="btn btn-primary"  onclick="forgetPW()">确定
                 </button>

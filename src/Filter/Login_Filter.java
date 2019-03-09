@@ -1,5 +1,6 @@
 package Filter;
 
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,13 @@ public class Login_Filter implements Filter {
     public void destroy() {
     }
 
+    private boolean isHave(String string,String[] strings){
+        for (String p:strings){
+            if (string.equals(p)) return true;
+        }
+        return false;
+    }
+
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
@@ -23,33 +31,24 @@ public class Login_Filter implements Filter {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
-        String realPath = request.getSession().getServletContext().getRealPath("/");
+        String realPath = "/ServletTest_war";
         String path=request.getServletPath();
-        //System.out.println(path);
-        for (String p : paths) {
-            //System.out.println(p);
-            if (path.equals(p)) {
-                chain.doFilter(request, response);
-                return;
-            }
+        if (isHave(path,paths)){
+            chain.doFilter(request, response);
+            return;
         }
         HttpSession session=request.getSession();
         try {
             String username=(String) session.getAttribute("user_id");
             String usertype = (String) session.getAttribute("usertype");
-            //System.out.println(username);
+
             if(username==null){
-                //判断session是否为空，为空的话就页面重定向到登陆界面
-               /* response.sendRedirect(request.getContextPath()+"/HTML_JSP/homepage.jsp");
-                PrintWriter pw=response.getWriter();
-                pw.write("<script language='javascript'>alert('请登录')</script>");
-                pw.close();*/
                 PrintWriter out = response.getWriter();
                 out.println ("<script language=javascript>alert('请登录');window.location='"+realPath+"/HTML_JSP/homepage.jsp'</script>");
                 out.close();
                 return;
             }
-            for (String p : teacher_paths) {
+         /*   for (String p : teacher_paths) {
                 if (path.equals(p)) {
                     if (usertype.equals("student")) {
                         PrintWriter out = response.getWriter();
@@ -57,6 +56,19 @@ public class Login_Filter implements Filter {
                         out.close();
                         return;
                     }
+                }
+            }*/
+            if (isHave(path,teacher_paths)){
+                String class_id[] = ((String)session.getAttribute("class_id")).split(",");
+                String class_id1 = request.getParameter("class_id");
+                if (usertype.equals("teacher")&&isHave(class_id1,class_id)) {
+                    chain.doFilter(request, response);
+                    return;
+                }else {
+                    PrintWriter out = response.getWriter();
+                    out.println ("<script language=javascript>alert('你的用户权限不足以访问此页面');window.location='"+realPath+"/HTML_JSP/homepage.jsp'</script>");
+                    out.close();
+                    return;
                 }
             }
 

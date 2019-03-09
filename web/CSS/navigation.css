@@ -71,7 +71,7 @@ a:hover{
 }
 
 
-#search_input{
+/*#search_input{
     font-size: 13px;
     border: none;
     border-bottom: 1px solid #ced4da;
@@ -82,4 +82,71 @@ a:hover{
     outline:none;
     box-shadow: none;
     border-bottom: 1px solid #007bff;
+}*/
+
+.nav-item .input-group{
+    float: left;
+    width: auto;
+}
+
+#search_input{
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+    font-size: 13px;
+    position: static;
+    padding-right: 21px;
+
+}
+
+#search_input:focus{
+    outline: none;
+    border-bottom-color: #007bff;
+    box-shadow:none;
+    z-index: 0;
+}
+
+.nav-item .input-group .input-group-append{
+    position: absolute;
+    color: #757a7e;
+    top: 11px;
+    right: 3px;
+    cursor: pointer;
+}
+
+.notice{
+    margin-right: 25px;
+    font-size: 20px;
+    color: #787d82;
+    float: right;
+    margin-top: 10px;
+    position: relative;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+.notice:hover{
+    color: #007bff;
+}
+
+.user_imag{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 50px;
+    float: right
+}
+
+.msg_remind {
+    display: none;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #007bff;
+    top: 0;
+    left: 21px;
+    border-radius: 50%;
 }

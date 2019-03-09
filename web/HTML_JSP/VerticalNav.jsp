@@ -8,16 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <style type="text/css">
-    .list-group-item{
+    #vertical_group .list-group-item{
         border: none;
         background:none;
         color: #787d82;
     }
-    .list-group-item:hover{
+    #vertical_group .list-group-item:hover{
         color: #1c1f21;
     }
 
-    .list_action{
+    #vertical_group .list_action{
         color: white;
         background-color: rgba(0,123,255,0.70);
         border-radius: 8px 0 0 8px;
@@ -78,9 +78,7 @@
 <body>
 <div class="container_left" id="verticalNav" >
     <jsp:include page="radio_cover.jsp"/>
-    <div class="list-group" id="vertical_group">
-
-    </div>
+    <div class="list-group" id="vertical_group"></div>
 </div>
 </body>
 </html>

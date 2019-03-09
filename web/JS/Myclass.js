@@ -6,8 +6,14 @@
 var PageContext = $("#PageContext").val();
 var UnitCount = 0;
 var ClassCount = 0;
-var No = window.location.search.replace("?",'');
+var No = GetQueryString('class_id');
 
+function GetQueryString(name)
+{
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null) return  unescape(r[2]); return null;
+}
 
 //关闭WebSocket连接
 function closeWebSocket(websocket) {
@@ -486,6 +492,7 @@ function Delete_File(event) {
 
 
 function getHTML() {
+
     $("#preview").attr("href","Learn_list.jsp?="+No);
      $.ajax({
         type: "POST",

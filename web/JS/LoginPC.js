@@ -1,5 +1,6 @@
 
 function login() {
+    $("#loginError").hide();
     var username = $("#username").val();
     var password = $("#pwd").val();
     var PageContext = $("#PageContext").val();

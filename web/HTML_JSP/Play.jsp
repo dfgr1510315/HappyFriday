@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+    <link  rel="stylesheet" href="../video-js-7.4.1/video-js.min.css">
 
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
@@ -15,7 +15,7 @@
     <script type="text/javascript" src="../JS/drag.js"></script>
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <script type="text/javascript" src="../wangEditor-3.1.1/release/wangEditor.min.js"></script>
-    <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
+    <script type="text/javascript" src="../video-js-7.4.1/video.min.js"></script>
 </head>
 
 <style type="text/css">
@@ -246,7 +246,7 @@
 
 <body onload="checkCookie();ifActive();get_Video();get_Class()" onunload="live();">
 <jsp:include page="navigation.jsp"/>
-<div style="width: 100%;height: 650px;background-color: #1c1f21;padding: 10px;margin-top: 5px">
+<div style="width: 100%;height: 100%;background-color: #1c1f21;padding: 10px;margin-top: 5px">
     <div class='course-sidebar-layout ' id='courseSidebar' style="height:100%;width: 5%;float: left;">
         <ul class="nav nav-pills flex-column" role="tablist" style="height: 40%">
             <li class='nav-item'>

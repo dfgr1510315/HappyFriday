@@ -21,6 +21,11 @@
     <script type="text/javascript" src="../JS/Learn_list.js"></script>
 </head>
 <script type="text/javascript">
+    $(document).ready(function(){
+        get_Class();
+        get_Ask();
+        get_Note();
+    });
     function get_Class() {
         var percentage;
         var last_time;
@@ -109,34 +114,34 @@
                 }
 
                 if(percentage === undefined) {
-                     $('.sno1-1').append(
-                         '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n' +
-                         '<div class="course-info-tip">' +
-                         '      <dl class="first">\n' +
-                         '          <dt>课程概要</dt>\n' +
-                         '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
-                         '      </dl>' +
-                         '</div>'
-                     )
-                 }else {
-                     $('.sno1-1').append(
-                         '  <div class="learn-btn">\n' +
-                         '      <div class="learn-info"><span>已学 '+percentage+'%</span></div>\n' +
-                         '      <div class="progress">\n' +
-                         '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
-                         '     </div>\n' +
-                         '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
-                         '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n' +
-                         ' </div>\n'+
-                         '<div class="course-info-tip">' +
-                         '      <dl class="first">\n' +
-                         '          <dt>课程概要</dt>\n' +
-                         '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
-                         '      </dl>' +
-                         '</div>'
+                    $('.sno1-1').append(
+                        '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n' +
+                        '<div class="course-info-tip">' +
+                        '      <dl class="first">\n' +
+                        '          <dt>课程概要</dt>\n' +
+                        '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
+                        '      </dl>' +
+                        '</div>'
+                    )
+                }else {
+                    $('.sno1-1').append(
+                        '  <div class="learn-btn">\n' +
+                        '      <div class="learn-info"><span>已学 '+percentage+'%</span></div>\n' +
+                        '      <div class="progress">\n' +
+                        '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
+                        '     </div>\n' +
+                        '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
+                        '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n' +
+                        ' </div>\n'+
+                        '<div class="course-info-tip">' +
+                        '      <dl class="first">\n' +
+                        '          <dt>课程概要</dt>\n' +
+                        '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
+                        '      </dl>' +
+                        '</div>'
 
-                     )
-                 }
+                    )
+                }
                 var flag='';var class_count = 0;
                 for(i=0;i<jsonObject.Unit_Name.length;i++){
                     if (!flag.match(jsonObject.Unit_Name[i].trim())){
@@ -144,10 +149,11 @@
                     }
                 }
                 if (flag!=='') flag = flag.substring(1).split(",");
+                var one = $("#one");
                 for (i=0;i<flag.length;i++){
-                    $("#one").append(
-                        '<div id="Unit'+i+'" class="ui-box" draggable="true"  > ' +
-                        '<span  style="margin-right: 20px;color: #999;font-weight: bold;">第'+(i+1)+'章 '+'</span>'+
+                    one.append(
+                        '<div id="Unit'+i+'" class="ui-box" draggable="true"  >' +
+                        '<span  style="margin-right:20px;color:#999;font-weight:bold;">第'+(i+1)+'章 '+'</span>'+
                         '<span > '+flag[i]+'</span>'+
                         '</div>'
                     );
@@ -172,17 +178,15 @@
                     }
                     //alert(Class_flag);
                 }
+                if (one.html().length === 0) {
+                    one.append(
+                        ' <div class="no_find_class">暂无发布的章节</div> '
+                    )
+                }
                 //alert(Serial_No+"\n"+Unit_Name+"\n"+Class_Name+"\n"+Video_Src+"\n"+Editor+"\n"+File_Href+"\n"+State);
             }
         });
     }
-
-    $(document).ready(function(){
-        get_Ask();
-        get_Note();
-    });
-
-
 
     function get_Note() {
         var page = GetQueryString('page_note');
@@ -270,7 +274,6 @@
             }
         })
     }
-
 
     function get_Ask() {
         var page = GetQueryString('page_ask');
@@ -381,7 +384,7 @@
     }
 </script>
 
-<body onload="checkCookie();ifActive();get_Class()" style="background-color: #f8fafc;">
+<body onload="checkCookie();ifActive();" style="background-color: #f8fafc;">
 <jsp:include page="navigation.jsp"/>
 <div class="main">
     <div class="inside">
@@ -435,9 +438,7 @@
 <div>
     <div class="course">
         <div class="tab-content">
-            <div id="one" class="container tab-pane  margin">
-
-            </div>
+            <div id="one" class="container tab-pane  margin"></div>
             <!-- 问答评论 -->
             <div id="two" class="container tab-pane fade margin">
                 <div class="comment-list">
@@ -474,21 +475,21 @@
                     <div class="sno1-1">
 
                     </div>
-                 <%--   <div class="inbelow">
-                        <h3 class="fontset-headline">课程须知</h3>
-                        <p class="fontbody">适合对React视图工具有一定的实际开发经验，特别是对redux有一定的使用经验，想了解其它类似解决方案的同学</p>
-                        <h3 class="fontset-headline">老师告诉你能学到什么？</h3>
-                        <p class="fontbody">mobx的使用方法，对React项目的性能优化经验</p>
-                    </div>--%>
+                    <%--   <div class="inbelow">
+                           <h3 class="fontset-headline">课程须知</h3>
+                           <p class="fontbody">适合对React视图工具有一定的实际开发经验，特别是对redux有一定的使用经验，想了解其它类似解决方案的同学</p>
+                           <h3 class="fontset-headline">老师告诉你能学到什么？</h3>
+                           <p class="fontbody">mobx的使用方法，对React项目的性能优化经验</p>
+                       </div>--%>
                 </div>
-          <%--      <div class="fontset-headline">推荐课程
-                    <div class="sno2-allbox">
-                        <img src="https://img3.mukewang.com/szimg/58a68f000001262805400300-360-202.jpg" class="imagesize">
-                            <div class="coursecount">
-                                <a href="#" class="coursecount-font">在本章中，将会通过编写一个简单的高阶组件，来加深对高阶组件概念的理解；</a>
-                            </div>
-                    </div>
-                </div>--%>
+                <%--      <div class="fontset-headline">推荐课程
+                          <div class="sno2-allbox">
+                              <img src="https://img3.mukewang.com/szimg/58a68f000001262805400300-360-202.jpg" class="imagesize">
+                                  <div class="coursecount">
+                                      <a href="#" class="coursecount-font">在本章中，将会通过编写一个简单的高阶组件，来加深对高阶组件概念的理解；</a>
+                                  </div>
+                          </div>
+                      </div>--%>
                 <div class="son3 fontset-headline">最新公告
                     <div class="hotrecommend">
                         <div >

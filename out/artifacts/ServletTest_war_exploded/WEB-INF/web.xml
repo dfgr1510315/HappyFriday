@@ -159,6 +159,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Notification</servlet-name>
+        <servlet-class>Server.Notification</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Notification</servlet-name>
+        <url-pattern>/notification</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Activation</servlet-name>
         <servlet-class>Server.Activation</servlet-class>
     </servlet>
