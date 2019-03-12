@@ -31,10 +31,7 @@ public class Register extends HttpServlet {
                 break;
             case "Logout":
                 HttpSession session = request.getSession();
-                session.setAttribute("user_id",username);
-                Cookie cookie=new Cookie("JSESSIONID", session.getId());
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
+                session.invalidate();
                 break;
             case "register":
                 String email = request.getParameter("email");
@@ -137,7 +134,7 @@ public class Register extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url,ConnectSQL.user,ConnectSQL.Mysqlpassword);
-            String sql = "select login_table.*,nike,head,usertype from login_table,personal_table where login_table.username=personal_table.username and active=1 and login_table.username='"+name+"'";
+            String sql = "select login_table.*,nike,head,usertype,(select readed from notice where username='"+name+"' order by time desc limit 1) readed from login_table,personal_table where login_table.username=personal_table.username and active=1 and login_table.username='"+name+"'";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             String username = null;
@@ -146,6 +143,7 @@ public class Register extends HttpServlet {
             String head_image = null;
             String usertype = null;
             String email = null;
+            int readed=-1;
             PrintWriter out = response.getWriter();
             JSONObject jsonObject = new JSONObject();
             while (rs.next()){
@@ -155,6 +153,7 @@ public class Register extends HttpServlet {
                 head_image = rs.getString("head");
                 usertype = rs.getString("usertype");
                 email = rs.getString("email");
+                readed = rs.getInt("readed");
             }
             if (username!=null&&paw!=null) {
                 if (password.equals(paw)){
@@ -173,12 +172,13 @@ public class Register extends HttpServlet {
                         session.setAttribute("class_id",class_id);
                         ConnectSQL.my_println(class_id);
                     }
-                    Cookie cookie=new Cookie("JSESSIONID", session.getId());
+                    /*Cookie cookie=new Cookie("JSESSIONID", session.getId());
                     cookie.setMaxAge(3600*24);
-                    response.addCookie(cookie);
+                    response.addCookie(cookie);*/
                     jsonObject.put("state",loginSuccess);//2
                     jsonObject.put("nike",nike);
                     jsonObject.put("head_image",head_image);
+                    jsonObject.put("readed",readed);
                     out.print(jsonObject);
                     out.flush();
                     out.close();

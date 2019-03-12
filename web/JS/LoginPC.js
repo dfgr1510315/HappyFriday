@@ -33,6 +33,7 @@ function login() {
                 $("#loginButton").hide();
                 $("#personalCenter").show();
                 $("#showname").text(username);
+                if (msg.readed===0)  $('.msg_remind').css('display','inline') ;
                 if ($('#remember').is(':checked')){
                     cookie.set('username',username);
                     cookie.set('password',password);

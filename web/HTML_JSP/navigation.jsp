@@ -88,7 +88,6 @@
                     $("#user_card").hide();
                 },1000);
             });
-
             if (new_notice==='0')  $('.msg_remind').css('display','inline')
         })
 
@@ -134,6 +133,10 @@
                     <a href="${pageContext.request.contextPath}/HTML_JSP/homepage.jsp" onclick="deleteCookie()">退出登录</a>
                 </div>
             </div>
+            <a class="notice" target="_blank" href="${pageContext.request.contextPath}/HTML_JSP/notification.jsp">
+                <i class="msg_remind"></i>
+                <i class="fa fa-bell"></i>
+            </a>
             <a class="notice" target="_blank" href="${pageContext.request.contextPath}/HTML_JSP/notification.jsp">
                 <i class="msg_remind"></i>
                 <i class="fa fa-bell"></i>

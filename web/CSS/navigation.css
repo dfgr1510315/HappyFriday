@@ -132,7 +132,7 @@ a:hover{
     color: #007bff;
 }
 
-.user_imag{
+#head_image{
     height: 40px;
     width: 40px;
     border-radius: 50%;

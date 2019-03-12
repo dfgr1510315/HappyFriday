@@ -68,8 +68,6 @@
     background-color: white;
     padding:  20px 20px 20px;
     margin-bottom: 15px;
-    width: 800px;
-
 }
 /* 课程章节 盒子 */
 #one .ui-box .part_title {
@@ -97,7 +95,6 @@
     background-color: white;
     padding:  20px 20px 20px 20px;
     margin-bottom: 15px;
-    width: 750px;
     position: relative;
 }
 #one .ui-box  a div i {/* 字体图标样式 */
@@ -193,7 +190,7 @@
 }
 .inside{
     height: 200px;
-    max-width: 1152px;
+    max-width: 80%;
     margin: 0 auto;
     border: 1px;
     position: relative;

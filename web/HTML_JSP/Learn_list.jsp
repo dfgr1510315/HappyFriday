@@ -42,6 +42,22 @@
             success: function (jsonObj) {
                 percentage = jsonObj.schedule;
                 last_time = jsonObj.last_time;
+                if(percentage === undefined) {
+                    $('.sno1-1').append(
+                        '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n'
+                    )
+                }else {
+                    $('.sno1-1').append(
+                        '  <div class="learn-btn">\n' +
+                        '      <div class="learn-info"><span>已学 '+percentage+'%</span></div>\n' +
+                        '      <div class="progress">\n' +
+                        '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
+                        '     </div>\n' +
+                        '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
+                        '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n' +
+                        ' </div>\n'
+                    )
+                }
             }
         });
 
@@ -113,35 +129,15 @@
                     $('#three').addClass('active show');
                 }
 
-                if(percentage === undefined) {
-                    $('.sno1-1').append(
-                        '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n' +
-                        '<div class="course-info-tip">' +
-                        '      <dl class="first">\n' +
-                        '          <dt>课程概要</dt>\n' +
-                        '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
-                        '      </dl>' +
-                        '</div>'
-                    )
-                }else {
-                    $('.sno1-1').append(
-                        '  <div class="learn-btn">\n' +
-                        '      <div class="learn-info"><span>已学 '+percentage+'%</span></div>\n' +
-                        '      <div class="progress">\n' +
-                        '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
-                        '     </div>\n' +
-                        '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
-                        '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n' +
-                        ' </div>\n'+
-                        '<div class="course-info-tip">' +
-                        '      <dl class="first">\n' +
-                        '          <dt>课程概要</dt>\n' +
-                        '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
-                        '      </dl>' +
-                        '</div>'
+                $('.sno1-1').append(
+                    '<div class="course-info-tip">' +
+                    '      <dl class="first">\n' +
+                    '          <dt>课程概要</dt>\n' +
+                    '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
+                    '      </dl>' +
+                    '</div>'
+                );
 
-                    )
-                }
                 var flag='';var class_count = 0;
                 for(i=0;i<jsonObject.Unit_Name.length;i++){
                     if (!flag.match(jsonObject.Unit_Name[i].trim())){
@@ -154,7 +150,7 @@
                     one.append(
                         '<div id="Unit'+i+'" class="ui-box" draggable="true"  >' +
                         '<span  style="margin-right:20px;color:#999;font-weight:bold;">第'+(i+1)+'章 '+'</span>'+
-                        '<span > '+flag[i]+'</span>'+
+                        '<span >'+flag[i]+'</span>'+
                         '</div>'
                     );
                     var Class_flag='';

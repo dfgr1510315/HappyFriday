@@ -89,6 +89,11 @@ public class Notification extends HttpServlet {
             while (rs.next()){
                 jsonObj.put("count",rs.getString("count"));
             }
+            PreparedStatement psql = con.prepareStatement("update notice set readed=? where readed=? and username=? order by time desc limit "+6*page);
+            psql.setInt(1,1);
+            psql.setInt(2,0);
+            psql.setString(3,user);
+            psql.executeUpdate();
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);

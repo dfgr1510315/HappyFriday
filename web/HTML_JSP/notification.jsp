@@ -186,7 +186,7 @@
                     var notice_box_ul_var = $('#notice_box_ul');
                     if (notice_box_ul_var.html().length === 0) {
                         notice_box_ul_var.append(
-                            '<div class="no_find_class">暂无通知</div> '
+                            '<div class="no_find_class">暂无通知</div>'
                         )
                     }else {
                         var page_ul =  $('#page_ask');
@@ -198,8 +198,8 @@
                             for (i = page-2;i<=page+2;i++){
                                 if (i<page_length+1){
                                     if (i===parseInt(page)){
-                                        page_ul.append(' <li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
-                                    }else page_ul.append(' <li class="page-item"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
+                                        page_ul.append('<li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
+                                    }else page_ul.append('<li class="page-item"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
                                 }
                             }
                         }else {
@@ -207,16 +207,16 @@
                                 for (i=1;i<6;i++){
                                     if (i<page_length+1){
                                         if (i===parseInt(page)){
-                                            page_ul.append(' <li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
-                                        }else page_ul.append(' <li class="page-item"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
+                                            page_ul.append('<li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
+                                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
                                     }
                                 }
                             }else {
                                 for (i=page_length-4;i<=page_length;i++){
                                     if (i<page_length+1){
                                         if (i===parseInt(page)){
-                                            page_ul.append(' <li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
-                                        }else page_ul.append(' <li class="page-item"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
+                                            page_ul.append('<li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
+                                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
                                     }
                                 }
                             }
