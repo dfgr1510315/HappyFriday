@@ -172,6 +172,7 @@ public class Register extends HttpServlet {
                         session.setAttribute("class_id",class_id);
                         ConnectSQL.my_println(class_id);
                     }
+
                     /*Cookie cookie=new Cookie("JSESSIONID", session.getId());
                     cookie.setMaxAge(3600*24);
                     response.addCookie(cookie);*/

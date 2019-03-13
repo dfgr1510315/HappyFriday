@@ -138,8 +138,7 @@
                 <i class="fa fa-bell"></i>
             </a>
             <a class="notice" target="_blank" href="${pageContext.request.contextPath}/HTML_JSP/notification.jsp">
-                <i class="msg_remind"></i>
-                <i class="fa fa-bell"></i>
+                <i class="fa fa-history"></i>
             </a>
         </li>
     </ul>

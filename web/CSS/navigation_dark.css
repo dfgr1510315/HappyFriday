@@ -167,7 +167,7 @@
 }
 
 .msg_remind {
-    display: inline;
+    display: none;
     position: absolute;
     width: 8px;
     height: 8px;
