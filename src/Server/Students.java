@@ -40,8 +40,7 @@ public class Students extends HttpServlet {
                 break;
             case "get_schedule" :
                 No = Integer.parseInt(request.getParameter("No"));
-                user = request.getParameter("student");
-                get_schedule(response,No,user);
+                get_schedule(request,response,No);
                 break;
         }
     }
@@ -74,16 +73,27 @@ public class Students extends HttpServlet {
             qsql.setInt(4,No);
             qsql.executeUpdate();
             HttpSession session = request.getSession();
-            //session.setAttribute("user_id",username);
+            int[] history_class_id = (int[])session.getAttribute("history_class_id");
+            int[] schedule = (int[]) session.getAttribute("schedule");
+            String[] history_last_time = (String[]) session.getAttribute("last_time");
+            for (int i=0;i<6;i++){
+                if (No==history_class_id[i]){
+                    schedule[i] = percentage;
+                    history_last_time[i] = last_time;
+                    break;
+                }
+            }
+            session.setAttribute("schedule",schedule);
+            session.setAttribute("last_time",history_last_time);
             qsql.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void get_schedule(HttpServletResponse response,int No,String user){
+    private void get_schedule(HttpServletRequest request,HttpServletResponse response,int No){
         try {
-            Class.forName(ConnectSQL.driver);
+          /*  Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select schedule,last_time from sc where user='"+user+"' and class="+No);
@@ -91,13 +101,25 @@ public class Students extends HttpServlet {
             while (rs.next()){
                 jsonObj.put("schedule",rs.getInt("schedule"));
                 jsonObj.put("last_time",rs.getString("last_time"));
+            }*/
+            JSONObject jsonObj = new JSONObject();
+            HttpSession session = request.getSession();
+            int[] history_class_id = (int[])session.getAttribute("history_class_id");
+            int[] schedule = (int[]) session.getAttribute("schedule");
+            String[] last_time = (String[]) session.getAttribute("last_time");
+            for (int i=0;i<6;i++){
+                if (No==history_class_id[i]){
+                    jsonObj.put("schedule",schedule[i]);
+                    jsonObj.put("last_time",last_time[i]);
+                    break;
+                }
             }
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
-            rs.close();
+            //rs.close();
             out.close();
-            con.close();
+            //con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
