@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -30,7 +31,7 @@ public class Students extends HttpServlet {
                 String user = request.getParameter("user");
                 String last_time = request.getParameter("last_time");
                 int schedule = Integer.parseInt(request.getParameter("schedule"));
-                save_schedule(No,schedule,user,last_time);
+                save_schedule(request,No,schedule,user,last_time);
                 break;
             case "remove_student" :
                 No = Integer.parseInt(request.getParameter("No"));
@@ -62,7 +63,7 @@ public class Students extends HttpServlet {
         }
     }
 
-    private void save_schedule(int No,int percentage,String user,String last_time){
+    private void save_schedule(HttpServletRequest request,int No,int percentage,String user,String last_time){
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
@@ -72,6 +73,8 @@ public class Students extends HttpServlet {
             qsql.setString(3,user);
             qsql.setInt(4,No);
             qsql.executeUpdate();
+            HttpSession session = request.getSession();
+            //session.setAttribute("user_id",username);
             qsql.close();
         } catch (Exception e) {
             e.printStackTrace();

@@ -3,11 +3,16 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String username=(String) session.getAttribute("user_id");
     String head_image =(String) session.getAttribute("head_image");
     String usertype = (String) session.getAttribute("usertype");
+    String history_class_id = Arrays.toString((int[]) session.getAttribute("history_class_id"));
+    String schedule = Arrays.toString((int[]) session.getAttribute("schedule"));
+    String last_time = Arrays.toString((String[]) session.getAttribute("last_time"));
+    String title = Arrays.toString((String[]) session.getAttribute("title"));
     int new_notice=1;
     try {
         Class.forName(ConnectSQL.driver);
@@ -18,6 +23,8 @@
     }catch (Exception e){
         e.printStackTrace();
     }
+
+
 %>
 <html>
 <head>
@@ -76,6 +83,54 @@
             }
         };
         $(document).ready(function(){
+            load_history();
+            card_show();
+            history_show();
+            if (new_notice==='0')  $('.msg_remind').css('display','inline')
+        });
+
+        function load_history() {
+            var history_class_id = '<%=history_class_id%>'.replace('[','').replace(']','').split(',');
+            var schedule = '<%=schedule%>'.replace('[','').replace(']','').split(',');
+            var last_time = '<%=last_time%>'.replace('[','').replace(']','').split(',');
+            var title = '<%=title%>'.replace('[','').replace(']','').split(',');
+            for (var i=0;i<history_class_id.length;i++){
+                if (' 0' === history_class_id[i])  continue;
+                var unit = last_time[i].split(':');
+                console.log(unit[0]);
+                $('.history_ul').append(
+                    '   <li>\n' +
+                    '                        <a href="${pageContext.request.contextPath}/HTML_JSP/Play.jsp?'+history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+last_time[i].trim()+'" class="clearfix">\n' +
+                    '                            <div class="link">'+last_time[i].trim()+'</div>\n' +
+                    '                            <div>\n' +
+                    '                                <div class="state">\n' +
+                    '                                    <span class="page">'+title[i]+'</span>\n' +
+                    '                                    <span class="split">|</span>\n' +
+                    '                                    <span>'+schedule[i]+'%</span>\n' +
+                    '                                </div>\n' +
+                    '                            </div>\n' +
+                    '                        </a>\n' +
+                    '                    </li>'
+                )
+            }
+        }
+
+        function history_show() {
+            var timeout = null;
+            var history_card = $(".history");
+            history_card.mouseover(function(){
+                $("#history_card").show();
+                if( timeout != null ) clearTimeout(timeout);
+            });
+
+            history_card.mouseout(function(){
+                timeout = setTimeout(function(){
+                    $("#history_card").hide();
+                },1000);
+            });
+        }
+        
+        function card_show() {
             var timeout = null;
             var user_card = $(".user");
             user_card.mouseover(function(){
@@ -88,9 +143,7 @@
                     $("#user_card").hide();
                 },1000);
             });
-            if (new_notice==='0')  $('.msg_remind').css('display','inline')
-        })
-
+        }
     </script>
     <title></title>
 </head>
@@ -120,7 +173,7 @@
         <li class="nav-item" id="loginButton">
             <a class="nav-link" data-toggle="modal" data-target="#LoginModal" style="float: right;" href="">登录</a>
         </li>
-        <li class="nav-item" id="personalCenter" style="display: none;float: right">
+        <li class="nav-item" id="personalCenter" style="display: none;float: right;position: relative;">
             <%-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>--%>
             <img id="head_image" class="user_imag user"  alt="用户头像" src="">
             <div class="user_card user" id="user_card">
@@ -137,9 +190,12 @@
                 <i class="msg_remind"></i>
                 <i class="fa fa-bell"></i>
             </a>
-            <a class="notice" target="_blank" href="${pageContext.request.contextPath}/HTML_JSP/notification.jsp">
+            <a class="notice history" target="_blank" href="${pageContext.request.contextPath}/HTML_JSP/notification.jsp">
                 <i class="fa fa-history"></i>
             </a>
+            <div class="history-record-m mini-wnd-nav history-wnd dd-bubble history" id="history_card">
+                <ul class="history_ul"></ul>
+            </div>
         </li>
     </ul>
 </div>

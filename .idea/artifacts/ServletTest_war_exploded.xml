@@ -30,6 +30,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/lib/activation-1.1.1.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/activation.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/javax.mail-1.5.2.jar" />
+          <element id="file-copy" path="D:/apache-tomcat-9.0.16/lib/websocket-api.jar" />
         </element>
       </element>
     </root>

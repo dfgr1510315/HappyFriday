@@ -3,7 +3,7 @@
     background-color:white;
     position: absolute;
     right: 12px;
-    top: 61px;
+    top: 44px;
     width: 110px;
     box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
     z-index: 1000;
@@ -49,16 +49,6 @@ a:hover{
 }
 .notification a:hover{
     color: #007bff;
-}
-.msg_remind {
-    display: none;
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: #f01414;
-    right: 17px;
-    top: 8px;
-    border-radius: 50%;
 }
 .form-control{
     height: calc(2rem + 2px);
@@ -149,4 +139,80 @@ a:hover{
     top: 0;
     left: 21px;
     border-radius: 50%;
+}
+
+.dd-bubble {
+    position: absolute;
+    z-index: 1;
+}
+
+.history-wnd {
+    width: 400px;
+    left: auto;
+    right: -58px;
+}
+
+.mini-wnd-nav {
+    display: none;
+    position: absolute;
+    right: 153px;
+    top: 45px;
+    background-color: #fff;
+    width: 375px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.16);
+    border: 1px solid #e5e9ef;
+    border-radius: 0 0 4px 4px;
+    z-index: 200;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.history_ul{
+    padding-left: 0;
+}
+
+.history_ul li {
+    clear: both;
+    position: relative;
+    padding-left: 38px;
+}
+
+.history_ul li {
+    height: 28px;
+    line-height: 28px;
+    text-align: left;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 12px 0 22px;
+    position: relative;
+}
+.mini-wnd-nav a {
+    color: #222;
+    transition: color .2s;
+}
+
+.mini-wnd-nav .history_ul li .link {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 240px;
+    float: left;
+}
+
+.mini-wnd-nav.history-wnd .state {
+    font-size: 12px;
+    color: #99a2aa;
+    float: right;
+}
+
+.mini-wnd-nav.history-wnd .state span {
+    display: inline-block;
+    float: left;
+}
+
+.mini-wnd-nav.history-wnd .split {
+    margin: 0 5px;
 }

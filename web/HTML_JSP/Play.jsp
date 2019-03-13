@@ -574,7 +574,7 @@
                 No:No,
                 user:user,
                 schedule:percentage,
-                last_time:class_no+','+$('#adjust').prev().text()
+                last_time:class_no+':'+$('#adjust').prev().text()
             },
             dataType: 'json'
         });

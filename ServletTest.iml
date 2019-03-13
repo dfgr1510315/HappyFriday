@@ -44,12 +44,12 @@
       <library>
         <CLASSES>
           <root url="jar://D:/apache-tomcat-7.0.88/lib/websocket-api.jar!/" />
+          <root url="jar://D:/apache-tomcat-9.0.16/lib/websocket-api.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="websocket-api" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>

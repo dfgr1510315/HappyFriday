@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 @WebServlet(name = "Register")
@@ -172,7 +173,28 @@ public class Register extends HttpServlet {
                         session.setAttribute("class_id",class_id);
                         ConnectSQL.my_println(class_id);
                     }
-
+                    sql = "SELECT class,schedule,last_time,标题 from sc,class_teacher_table where user='"+username+"' and class=课程编号 order by time desc limit 6";
+                    rs = statement.executeQuery(sql);
+                    //ArrayList<Integer> history_class_id = new ArrayList<>();
+                    int[] history_class_id = new int[6];
+                    int[] schedule = new int[6];
+                    String[] last_time = new String[6];
+                    String[] title = new String[6];
+                    //ArrayList<Integer> schedule = new ArrayList<>();
+                    //ArrayList<String> last_time = new ArrayList<>();
+                   //ArrayList<String> title = new ArrayList<>();
+                    for (int i=0;i<6;i++){
+                        if (rs.next()){
+                            history_class_id[i]=rs.getInt("class");
+                            schedule[i]=rs.getInt("schedule");
+                            last_time[i]=rs.getString("last_time");
+                            title[i]=rs.getString("标题");
+                        }
+                    }
+                    session.setAttribute("history_class_id",history_class_id);
+                    session.setAttribute("schedule",schedule);
+                    session.setAttribute("last_time",last_time);
+                    session.setAttribute("title",title);
                     /*Cookie cookie=new Cookie("JSESSIONID", session.getId());
                     cookie.setMaxAge(3600*24);
                     response.addCookie(cookie);*/
