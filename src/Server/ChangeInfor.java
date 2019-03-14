@@ -46,10 +46,6 @@ public class ChangeInfor extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            //if (!con.isClosed()) System.out.println("数据库连接上了");
-            /*String sql = "select * from usermanager";*/
-            //Statement statement = con.createStatement();
-            /* ResultSet rq = statement.executeQuery(sql);*/
             PreparedStatement qsql = con.prepareStatement("update personal_table set nike=?,sex=?,birth=?,information=?,teacher=? where username=?");
             qsql.setString(1, nike);
             qsql.setString(2, sex);

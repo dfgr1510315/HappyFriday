@@ -83,6 +83,7 @@
             }
         };
         $(document).ready(function(){
+            if (user===null) return;
             load_history();
             card_show();
             history_show();

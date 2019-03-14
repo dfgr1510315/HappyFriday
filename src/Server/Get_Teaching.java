@@ -27,7 +27,7 @@ public class Get_Teaching extends HttpServlet {
         switch (type) {
             case "found_class":
                 String Class_Name = request.getParameter("Class_Name");
-                String Class_Type = request.getParameter("Class_Type");
+                int Class_Type = Integer.parseInt(request.getParameter("Class_Type"));
                 add_class(response, username, Class_Name, Class_Type);
                 break;
             case "get_Class":
@@ -99,37 +99,37 @@ public class Get_Teaching extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 课程类型,collection,class,标题,封面地址,schedule,last_time from SC,class_teacher_table where user='"+username+"' and class=课程编号" );
+            ResultSet rs = statement.executeQuery("select class_type,collection,class,class_title,cover_address,schedule,last_time from sc,class_teacher_table where user='"+username+"' and class=class_id" );
             ArrayList<String> class_no = new ArrayList<>();
             ArrayList<String> title = new ArrayList<>();
             ArrayList<String> img_address = new ArrayList<>();
             ArrayList<String> collection = new ArrayList<>();
-            ArrayList<String> class_type = new ArrayList<>();
+            ArrayList<Integer> class_type = new ArrayList<>();
             ArrayList<String> schedule = new ArrayList<>();
             ArrayList<String> last_time = new ArrayList<>();
             while (rs.next()){
                 class_no.add(rs.getString("class"));
-                title.add(rs.getString("标题"));
-                img_address.add(rs.getString("封面地址"));
+                title.add(rs.getString("class_title"));
+                img_address.add(rs.getString("cover_address"));
                 collection.add(rs.getString("collection"));
-                class_type.add(rs.getString("课程类型"));
+                class_type.add(rs.getInt("class_type"));
                 schedule.add(rs.getString("schedule"));
                 last_time.add(rs.getString("last_time"));
             }
 
-            rs = statement.executeQuery("select 所属课程编号,count(*) sum from SC,note where user='"+username+"' and class=所属课程编号 and user=署名 group by 所属课程编号" );
+            rs = statement.executeQuery("select belong_class_id,count(*) sum from sc,note where user='"+username+"' and class=belong_class_id and user=author group by belong_class_id" );
             ArrayList<String> note_count = new ArrayList<>();
             ArrayList<String> note_count_no = new ArrayList<>();
             while (rs.next()){
                 note_count.add(rs.getString("sum"));
-                note_count_no.add(rs.getString("所属课程编号"));
+                note_count_no.add(rs.getString("belong_class_id"));
             }
-            rs = statement.executeQuery("select 所属课程编号,count(*) sum from SC,ask where user='"+username+"' and class=所属课程编号 and user=提问者 group by 所属课程编号");
+            rs = statement.executeQuery("select belong_class_id,count(*) sum from sc,ask where user='"+username+"' and class=belong_class_id and user=author group by belong_class_id");
             ArrayList<String> ask_count = new ArrayList<>();
             ArrayList<String> ask_count_no = new ArrayList<>();
             while (rs.next()){
                 ask_count.add(rs.getString("sum"));
-                ask_count_no.add(rs.getString("所属课程编号"));
+                ask_count_no.add(rs.getString("belong_class_id"));
             }
             PrintWriter out = response.getWriter();
             JSONObject jsonObj = new JSONObject();
@@ -154,15 +154,15 @@ public class Get_Teaching extends HttpServlet {
         }
     }
 
-    private void add_class(HttpServletResponse response,String username,String Class_Name,String type){
+    private void add_class(HttpServletResponse response,String username,String Class_Name,int type){
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement psql = con.prepareStatement("insert into  class_teacher_table(教师用户名,标题,状态,课程类型,封面地址)"+"values(?,?,?,?,?)");
+            PreparedStatement psql = con.prepareStatement("insert into  class_teacher_table(teacher,class_title,release_status,class_type,cover_address)"+"values(?,?,?,?,?)");
             psql.setString(1,username);
             psql.setString(2,Class_Name);
-            psql.setString(3,"未发布");
-            psql.setString(4,type);
+            psql.setInt(3,0);
+            psql.setInt(4,type);
             psql.setString(5,"/image/efb37fee400582742424a4ce08951213.png");
             psql.executeUpdate();
             PrintWriter out = response.getWriter();
@@ -183,14 +183,14 @@ public class Get_Teaching extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 课程编号,标题,学员数,状态,封面地址 from class_teacher_table where 教师用户名='"+username+"'");
+            ResultSet rs = statement.executeQuery("select class_id,class_title,student_count,release_status,cover_address from class_teacher_table where teacher='"+username+"'");
             while (rs.next()){
                 JSONObject jsonObj = new JSONObject();
-                jsonObj.put("Title",rs.getString("标题"));
-                jsonObj.put("学员数",rs.getInt("学员数"));
-                jsonObj.put("状态",rs.getString("状态"));
-                jsonObj.put("封面地址",rs.getString("封面地址"));
-                jsonObj.put("课程编号",rs.getString("课程编号"));
+                jsonObj.put("Title",rs.getString("class_title"));
+                jsonObj.put("学员数",rs.getInt("student_count"));
+                jsonObj.put("状态",rs.getInt("release_status"));
+                jsonObj.put("封面地址",rs.getString("cover_address"));
+                jsonObj.put("课程编号",rs.getInt("class_id"));
                 json.add(jsonObj);
             }
             PrintWriter out = response.getWriter();

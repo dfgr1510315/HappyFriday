@@ -663,7 +663,7 @@
                 var file_name = jsonObj.file_name.split('|');
                 for (var i=0;i<file_address.length-1;i++) {
                     $('#file_group').append(
-                        ' <a target="_blank" href="'+file_address[i]+'" class="list-group-item list-group-item-action">'+file_name[i]+'</a>'
+                        '<a target="_blank" href="'+file_address[i]+'" class="list-group-item list-group-item-action">'+file_name[i]+'</a>'
                     )
                 }
 

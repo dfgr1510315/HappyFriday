@@ -84,7 +84,7 @@ public class GetLearnFile extends HttpServlet {
             Statement statement = con.createStatement();
             ResultSet rs;
             PreparedStatement qsql;
-            rs = statement.executeQuery("select 章节序号 from class where 课程编号='"+No+"'");
+            rs = statement.executeQuery("select unit_no from class where class_id='"+No+"'");
             ArrayList<String> Unit = new ArrayList<>();
             while (rs.next()){
                 Unit.add(rs.getString("章节序号"));
@@ -93,14 +93,13 @@ public class GetLearnFile extends HttpServlet {
             System.out.println(Serial_No);
             for (int i=0;i<Serial_No.size();i++){
                 if (Unit.contains(Serial_No.get(i))) {
-                    qsql = con.prepareStatement("update class set 章节标题=?, 课时标题=?, 发布状态=?,视频地址=?,图文信息=?,文件地址=?,文件名称=?,源视频名称=? ,源视频地址=? where 章节序号=? and 课程编号=?");
+                    qsql = con.prepareStatement("update class set unit_title=?, lesson_title=?, release_status=?,video_address=?,Image_text=?,file_address=?,file_name=?,source_video_title=? ,source_video_address=? where unit_no=? and class_id=?");
                     qsql.setString(1,Unit_name.get(Integer.parseInt(Serial_No.get(i).substring(0,Serial_No.get(i).indexOf("-")))-1));
                     qsql.setString(2,Class_name.get(i));
                     qsql.setString(3,state.get(i));
                     qsql.setString(4,Video_src.get(i));
                     qsql.setString(5,Editor.get(i));
                     qsql.setString(6,File_Href.get(i));
-                    //ConnectSQL.my_println("File_Href.get(i):"+File_Href.get(i));
                     qsql.setString(7,File_Name.get(i));
                     qsql.setString(8,Source_Video_Name.get(i));
                     qsql.setString(9,Source_Video_Src.get(i));
@@ -128,7 +127,7 @@ public class GetLearnFile extends HttpServlet {
             }
             for (String aUnit : Unit) {
                 if (!Serial_No.contains(aUnit)) {
-                    qsql = con.prepareStatement("delete FROM class WHERE 章节序号=?and 课程编号=?");
+                    qsql = con.prepareStatement("delete FROM class WHERE unit_no=?and class_id=?");
                     qsql.setString(1, aUnit);
                     qsql.setInt(2, No);
                     qsql.executeUpdate();

@@ -31,14 +31,14 @@ public class Play extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            String sql = "select * from class,class_teacher_table where class.课程编号=" + No + " and class.课程编号=class_teacher_table.课程编号  and 章节序号='"+class_No+"'";
+            String sql = "select video_address,Image_text,file_address,file_name from class where class_id=" + No + " and unit_no='"+class_No+"'";
             ResultSet rs = statement.executeQuery(sql);
             JSONObject jsonObj = new JSONObject();
             while (rs.next()){
-                jsonObj.put("Video_address",rs.getString("视频地址"));
-                jsonObj.put("text",rs.getString("图文信息"));
-                jsonObj.put("file_address",rs.getString("文件地址"));
-                jsonObj.put("file_name",rs.getString("文件名称"));
+                jsonObj.put("Video_address",rs.getString("video_address"));
+                jsonObj.put("text",rs.getString("Image_text"));
+                jsonObj.put("file_address",rs.getString("file_address"));
+                jsonObj.put("file_name",rs.getString("file_name"));
             }
             PrintWriter out = response.getWriter();
             out.flush();

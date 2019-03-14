@@ -67,7 +67,7 @@ public class Learn_list extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            String sql = "select 章节序号,章节标题,课时标题,发布状态 from class where 课程编号=" + No ;
+            String sql = "select unit_no,unit_title,lesson_title,release_status from class where class_no=" + No ;
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             String teacher = null;
@@ -82,34 +82,34 @@ public class Learn_list extends HttpServlet {
             ArrayList<String> State = new ArrayList<>();
             ArrayList<String> other_class_title = new ArrayList<>();
             ArrayList<Integer> other_class_no = new ArrayList<>();
-            ArrayList<String> other_class_iamge = new ArrayList<>();
+            ArrayList<String> other_class_image = new ArrayList<>();
             while (rs.next()) {
-                Serial_No.add(rs.getString("章节序号"));
-                Unit_Name.add(rs.getString("章节标题"));
-                Class_Name.add(rs.getString("课时标题"));
-                State.add(rs.getString("发布状态"));
+                Serial_No.add(rs.getString("unit_no"));
+                Unit_Name.add(rs.getString("unit_title"));
+                Class_Name.add(rs.getString("lesson_title"));
+                State.add(rs.getString("release_status"));
             }
-            sql = "select 教师用户名,标题,head,学员数,课程类型,课程概要 from class_teacher_table,personal_table where 教师用户名=username and 课程编号=" + No;
+            sql = "select teacher,class_title,head,student_count,class_type,outline from class_teacher_table,personal_table where teacher=username and class_id=" + No;
             rs = statement.executeQuery(sql);
             while (rs.next()) {
                 head = rs.getString("head");
-                teacher = rs.getString("教师用户名");
-                title = rs.getString("标题");
-                student_number = rs.getString("学员数");
-                class_type = rs.getInt("课程类型")+"";
-                outline = rs.getString("课程概要");
+                teacher = rs.getString("teacher");
+                title = rs.getString("class_title");
+                student_number = rs.getString("student_count");
+                class_type = rs.getInt("class_type")+"";
+                outline = rs.getString("outline");
             }
 
-            sql = "select 课程编号,标题,封面地址 from class_teacher_table where 状态='已发布' and 课程类型="+class_type+" limit 5";
+            sql = "select class_id,class_title,cover_address from class_teacher_table where release_status='已发布' and class_type="+class_type+" limit 5";
             rs = statement.executeQuery(sql);
             while (rs.next()) {
-                other_class_title.add(rs.getString("标题"));
-                other_class_no.add(rs.getInt("课程编号"));
-                other_class_iamge.add(rs.getString("封面地址"));
+                other_class_title.add(rs.getString("class_title"));
+                other_class_no.add(rs.getInt("class_id"));
+                other_class_image.add(rs.getString("cover_address"));
             }
             jsonObject.put("other_class_title",other_class_title);
             jsonObject.put("other_class_no",other_class_no);
-            jsonObject.put("other_class_iamge",other_class_iamge);
+            jsonObject.put("other_class_iamge",other_class_image);
             jsonObject.put("teacher",teacher);
             jsonObject.put("head",head);
             jsonObject.put("title",title);
