@@ -142,7 +142,7 @@ public class PostAsk extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 课时序号,问题描述,时间,课时标题,回答数,问题编号,访问次数,所属课程编号,标题,(select 回答者 from answer where 所属问题编号=问题编号 order by 回答时间  desc limit 1) 最新回答者,(select 内容 from answer where 所属问题编号=问题编号 order by 回答时间 desc limit 1) 最新回复 from personal_table,ask,class,class_teacher_table where 提问者='"+author+"' and 提问者=username and 所属课程编号=class.课程编号 and class.课程编号=class_teacher_table.课程编号 and 课时序号=章节序号 order by 时间 desc limit "+(6*(page-1))+","+6);
+            ResultSet rs = statement.executeQuery("select ask.unit_no,ask_title,ask_time,lesson_title,answer_count,ask_id,visits_count,belong_class_id,class_title,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from personal_table,ask,class,class_teacher_table where asker='"+author+"' and asker=username and belong_class_id=class.class_id and class.class_id=class_teacher_table.class_id and ask.unit_no=class.unit_no order by ask_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> ask_no = new ArrayList<>();
             ArrayList<Integer> times = new ArrayList<>();
@@ -156,17 +156,17 @@ public class PostAsk extends HttpServlet {
             ArrayList<String> class_no = new ArrayList<>();
             ArrayList<String> class_title = new ArrayList<>();
             while (rs.next()){
-                ask_no.add(rs.getString("问题编号"));
-                times.add(rs.getInt("访问次数"));
-                title_No_list.add(rs.getString("课时序号"));
-                title_list.add(rs.getString("课时标题"));
-                time_list.add(rs.getString("时间"));
-                describe_list.add(rs.getString("问题描述"));
-                answer_count.add(rs.getString("回答数"));
-                new_answer.add(rs.getString("最新回答者"));
-                new_answer_text.add(rs.getString("最新回复"));
-                class_no.add(rs.getString("所属课程编号"));
-                class_title.add(rs.getString("标题"));
+                ask_no.add(rs.getString("ask_id"));
+                times.add(rs.getInt("visits_count"));
+                title_No_list.add(rs.getString("unit_no"));
+                title_list.add(rs.getString("lesson_title"));
+                time_list.add(rs.getString("ask_time"));
+                describe_list.add(rs.getString("ask_title"));
+                answer_count.add(rs.getString("answer_count"));
+                new_answer.add(rs.getString("new_answerer"));
+                new_answer_text.add(rs.getString("new_answer"));
+                class_no.add(rs.getString("belong_class_id"));
+                class_title.add(rs.getString("class_title"));
             }
             jsonObj.put("ask_no",ask_no);
             jsonObj.put("times",times);
@@ -179,7 +179,7 @@ public class PostAsk extends HttpServlet {
             jsonObj.put("new_answer_text",new_answer_text);
             jsonObj.put("class_no",class_no);
             jsonObj.put("class_title",class_title);
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask where 提问者='"+author+"'");
+            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask where asker='"+author+"'");
             while (rs.next()){
                 jsonObj.put("count",rs.getString("count"));
             }
@@ -198,7 +198,7 @@ public class PostAsk extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into answer(所属问题编号,回答者,内容,回答时间) values(?,?,?,?)");
+            PreparedStatement qsql  = con.prepareStatement("insert into answer(belong_ask_id,answerer,answer_text,answer_time) values(?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,answer);
             qsql.setString(3,answer_text);
@@ -227,7 +227,7 @@ public class PostAsk extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into reply(所属回答编号,回复者,内容,回复时间,被回复者) values(?,?,?,?,?)");
+            PreparedStatement qsql  = con.prepareStatement("insert into reply(belong_answer_id,replyer,text,reply_time,to_reply) values(?,?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,reply);
             qsql.setString(3,reply_text);
@@ -252,10 +252,10 @@ public class PostAsk extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            PreparedStatement qsql  = con.prepareStatement("UPDATE ask SET 访问次数 =访问次数+1  WHERE 问题编号="+No);
+            PreparedStatement qsql  = con.prepareStatement("UPDATE ask SET visits_count =visits_count+1  WHERE ask_id="+No);
             qsql.executeUpdate();
             qsql.close();
-            ResultSet rs = statement.executeQuery("select 标题,所属课程编号,问题描述,提问者,内容,时间,head,课时序号,课程类型,访问次数 from ask,personal_table,class_teacher_table where 问题编号="+No+" and username=提问者 and 所属课程编号=课程编号;");
+            ResultSet rs = statement.executeQuery("select class_title,belong_class_id,ask_title,asker,ask_text,ask_time,head,unit_no,class_type,visits_count from ask,personal_table,class_teacher_table where ask_id="+No+" and username=asker and belong_class_id=class_id;");
             JSONObject jsonObj = new JSONObject();
             String ask_title = null;
             int class_no = 0;
@@ -275,45 +275,45 @@ public class PostAsk extends HttpServlet {
             ArrayList<Integer> other_ask_no = new ArrayList<>();
             ArrayList<String> other_ask_title = new ArrayList<>();
             while (rs.next()){
-                ask_title = rs.getString("标题");
-                class_no = rs.getInt("所属课程编号");
-                ask_describe = rs.getString("问题描述");
-                asker = rs.getString("提问者");
-                ask_text = rs.getString("内容");
-                ask_time = rs.getString("时间");
+                ask_title = rs.getString("class_title");
+                class_no = rs.getInt("belong_class_id");
+                ask_describe = rs.getString("ask_title");
+                asker = rs.getString("asker");
+                ask_text = rs.getString("ask_text");
+                ask_time = rs.getString("ask_time");
                 asker_head = rs.getString("head");
-                unit_no = rs.getString("课时序号");
-                type = rs.getInt("课程类型");
-                times = rs.getInt("访问次数");
+                unit_no = rs.getString("unit_no");
+                type = rs.getInt("class_type");
+                times = rs.getInt("visits_count");
             }
 
-            rs = statement.executeQuery("select 问题编号,问题描述 from ask where 所属课程编号="+class_no+"  and 课时序号='"+unit_no+"' and 问题编号!="+No+" limit 10");
+            rs = statement.executeQuery("select ask_id,ask_title from ask where belong_class_id="+class_no+"  and unit_no='"+unit_no+"' and ask_id!="+No+" limit 10");
             while (rs.next()){
-                other_ask_title.add(rs.getString("问题描述"));
-                other_ask_no.add(rs.getInt("问题编号"));
+                other_ask_title.add(rs.getString("ask_title"));
+                other_ask_no.add(rs.getInt("ask_id"));
             }
 
-            rs = statement.executeQuery("select head,回答编号,回答者,内容,回答时间 from answer,personal_table where 所属问题编号="+No+"  and username=回答者 order by 回答时间 ;");
+            rs = statement.executeQuery("select head,answer_id,answerer,answer_text,answer_time from answer,personal_table where belong_ask_id="+No+"  and username=answerer order by answer_time;");
             while (rs.next()){
                 answer_head.add(rs.getString("head"));
-                answer_no.add(rs.getString("回答编号"));
-                answer.add(rs.getString("回答者"));
-                answer_text.add(rs.getString("内容"));
-                answer_time.add(rs.getString("回答时间"));
+                answer_no.add(rs.getString("answer_id"));
+                answer.add(rs.getString("answerer"));
+                answer_text.add(rs.getString("answer_text"));
+                answer_time.add(rs.getString("answer_time"));
             }
 
             int count = 0;
             for (String anAnswer_no : answer_no) {
-                rs = statement.executeQuery("select reply.*,head from reply,personal_table where 所属回答编号=" + anAnswer_no + " and 回复者=username order by 回复时间 ;");
+                rs = statement.executeQuery("select reply.text,replyer,reply_time,head from reply,personal_table where belong_answer_id=" + anAnswer_no + " and replyer=username order by reply_time ;");
                 ArrayList<String> reply = new ArrayList<>();
                 ArrayList<String> reply_text = new ArrayList<>();
                 ArrayList<String> reply_time = new ArrayList<>();
                 ArrayList<String> reply_head = new ArrayList<>();
                 JSONObject reply_jsonobj = new JSONObject();
                 while (rs.next()) {
-                    reply.add(rs.getString("回复者"));
-                    reply_text.add(rs.getString("内容"));
-                    reply_time.add(rs.getString("回复时间"));
+                    reply.add(rs.getString("replyer"));
+                    reply_text.add(rs.getString("text"));
+                    reply_time.add(rs.getString("reply_time"));
                     reply_head.add(rs.getString("head"));
                 }
                 reply_jsonobj.put("reply",reply);
@@ -359,7 +359,7 @@ public class PostAsk extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 课时序号,问题描述,提问者,时间,head,课时标题,回答数,问题编号,访问次数,(select 回答者 from answer where 所属问题编号=问题编号 order by 回答时间  desc limit 1) 最新回答者,(select 内容 from answer where 所属问题编号=问题编号 order by 回答时间 desc limit 1) 最新回复 from personal_table,ask,class where 所属课程编号="+No+" and 提问者=username and 所属课程编号=课程编号 and 课时序号=章节序号 order by 时间 desc limit "+(6*(page-1))+","+6);
+            ResultSet rs = statement.executeQuery("select ask.unit_no,ask_title,asker,ask_time,head,lesson_title,answer_count,ask_id,visits_count,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from personal_table,ask,class where belong_class_id="+No+" and asker=username and belong_class_id=class_id and ask.unit_no=class.unit_no order by ask_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> ask_no = new ArrayList<>();
             ArrayList<Integer> times = new ArrayList<>();
@@ -373,17 +373,17 @@ public class PostAsk extends HttpServlet {
             ArrayList<String> new_answer = new ArrayList<>();
             ArrayList<String> new_answer_text = new ArrayList<>();
             while (rs.next()){
-                ask_no.add(rs.getString("问题编号"));
-                times.add(rs.getInt("访问次数"));
-                title_No_list.add(rs.getString("课时序号"));
-                title_list.add(rs.getString("课时标题"));
-                time_list.add(rs.getString("时间"));
-                describe_list.add(rs.getString("问题描述"));
-                asker.add(rs.getString("提问者"));
+                ask_no.add(rs.getString("ask_id"));
+                times.add(rs.getInt("visits_count"));
+                title_No_list.add(rs.getString("unit_no"));
+                title_list.add(rs.getString("lesson_title"));
+                time_list.add(rs.getString("ask_time"));
+                describe_list.add(rs.getString("ask_title"));
+                asker.add(rs.getString("asker"));
                 head.add(rs.getString("head"));
-                answer_count.add(rs.getString("回答数"));
-                new_answer.add(rs.getString("最新回答者"));
-                new_answer_text.add(rs.getString("最新回复"));
+                answer_count.add(rs.getString("answer_count"));
+                new_answer.add(rs.getString("new_answerer"));
+                new_answer_text.add(rs.getString("new_answer"));
             }
             jsonObj.put("ask_no",ask_no);
             jsonObj.put("times",times);
@@ -396,7 +396,7 @@ public class PostAsk extends HttpServlet {
             jsonObj.put("answer_count",answer_count);
             jsonObj.put("new_answer",new_answer);
             jsonObj.put("new_answer_text",new_answer_text);
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask where 所属课程编号="+No);
+            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask where belong_class_id="+No);
             while (rs.next()){
                 jsonObj.put("count",rs.getString("count"));
             }
@@ -416,7 +416,7 @@ public class PostAsk extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 标题,时间,问题描述,问题编号,所属课程编号,课时序号,提问者,回答数,访问次数,(select 回答者 from answer where 所属问题编号=问题编号 order by 回答时间  desc limit 1) 最新回答者,(select 内容 from answer where 所属问题编号=问题编号 order by 回答时间 desc limit 1) 最新回复 from class_teacher_table,ask where 教师用户名='"+user+"' and 课程编号=所属课程编号 order by 时间 desc limit "+(6*(page-1))+","+6);
+            ResultSet rs = statement.executeQuery("select class_title,ask_time,ask_title,ask_id,belong_class_id,unit_no,asker,answer_count,visits_count,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from class_teacher_table,ask where teacher='"+user+"' and class_id=belong_class_id order by ask_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> ask_no = new ArrayList<>();
             ArrayList<String> class_no = new ArrayList<>();
@@ -430,17 +430,17 @@ public class PostAsk extends HttpServlet {
             ArrayList<String> answer_count = new ArrayList<>();
             ArrayList<Integer> times = new ArrayList<>();
             while (rs.next()){
-                title_list.add(rs.getString("标题"));
-                time_list.add(rs.getString("时间"));
-                describe_list.add(rs.getString("问题描述"));
-                ask_no.add(rs.getString("问题编号"));
-                class_no.add(rs.getString("所属课程编号"));
-                unit_no.add(rs.getString("课时序号"));
-                asker.add(rs.getString("提问者"));
-                new_answer.add(rs.getString("最新回答者"));
-                new_answer_text.add(rs.getString("最新回复"));
-                answer_count.add(rs.getString("回答数"));
-                times.add(rs.getInt("访问次数"));
+                title_list.add(rs.getString("class_title"));
+                time_list.add(rs.getString("ask_time"));
+                describe_list.add(rs.getString("ask_title"));
+                ask_no.add(rs.getString("ask_id"));
+                class_no.add(rs.getString("belong_class_id"));
+                unit_no.add(rs.getString("unit_no"));
+                asker.add(rs.getString("asker"));
+                new_answer.add(rs.getString("new_answerer"));
+                new_answer_text.add(rs.getString("new_answer"));
+                answer_count.add(rs.getString("answer_count"));
+                times.add(rs.getInt("visits_count"));
             }
             jsonObj.put("title",title_list);
             jsonObj.put("time",time_list);
@@ -453,7 +453,7 @@ public class PostAsk extends HttpServlet {
             jsonObj.put("new_answer_text",new_answer_text);
             jsonObj.put("answer_count",answer_count);
             jsonObj.put("times",times);
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask,class_teacher_table where 教师用户名='"+user+"' and 课程编号=所属课程编号");
+            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask,class_teacher_table where teacher='"+user+"' and class_id=belong_class_id");
             while (rs.next()){
                 jsonObj.put("count",rs.getString("count"));
             }
@@ -473,17 +473,17 @@ public class PostAsk extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 问题描述,时间,回答数,访问次数 from ask where 所属课程编号="+No+" and 课时序号='"+class_No+"' and 提问者= '"+author+"'");
+            ResultSet rs = statement.executeQuery("select ask_title,ask_time,answer_count,visits_count from ask where belong_class_id="+No+" and unit_no='"+class_No+"' and asker= '"+author+"'");
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> title_list = new ArrayList<>();
             ArrayList<String> time_list = new ArrayList<>();
             ArrayList<String> answer = new ArrayList<>();
             ArrayList<String> browse = new ArrayList<>();
             while (rs.next()){
-                title_list.add(rs.getString("问题描述"));
-                time_list.add(rs.getString("时间"));
-                answer.add(rs.getString("回答数"));
-                browse.add(rs.getString("访问次数"));
+                title_list.add(rs.getString("ask_title"));
+                time_list.add(rs.getString("ask_time"));
+                answer.add(rs.getString("answer_count"));
+                browse.add(rs.getString("visits_count"));
             }
             jsonObj.put("title",title_list);
             jsonObj.put("time",time_list);
@@ -504,7 +504,7 @@ public class PostAsk extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into ask(所属课程编号,课时序号,问题描述,提问者,内容,时间) values(?,?,?,?,?,?)");
+            PreparedStatement qsql  = con.prepareStatement("insert into ask(belong_class_id,unit_no,ask_title,asker,ask_text,ask_time) values(?,?,?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,class_No);
             qsql.setString(3,ask_title);

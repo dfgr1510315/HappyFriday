@@ -8,8 +8,6 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 @WebServlet(name = "Register")
@@ -165,15 +163,15 @@ public class Register extends HttpServlet {
                     session.setAttribute("email",email);
                     if (usertype.equals("teacher")){
                         String class_id="";
-                        sql = "select 课程编号 from class_teacher_table where 教师用户名='"+username+"'";
+                        sql = "select class_id from class_teacher_table where teacher='"+username+"'";
                         rs = statement.executeQuery(sql);
                         while (rs.next()){
-                            class_id=class_id +","+rs.getInt("课程编号");
+                            class_id=class_id +","+rs.getInt("class_id");
                         }
                         session.setAttribute("class_id",class_id);
                         ConnectSQL.my_println(class_id);
                     }
-                    sql = "SELECT class,schedule,last_time,标题 from sc,class_teacher_table where user='"+username+"' and class=课程编号 order by time desc limit 6";
+                    sql = "SELECT class,schedule,last_time,class_title from sc,class_teacher_table where user='"+username+"' and class=class_id order by time desc limit 6";
                     rs = statement.executeQuery(sql);
                     //ArrayList<Integer> history_class_id = new ArrayList<>();
                     int[] history_class_id = new int[6];
@@ -188,7 +186,7 @@ public class Register extends HttpServlet {
                             history_class_id[i]=rs.getInt("class");
                             schedule[i]=rs.getInt("schedule");
                             last_time[i]=rs.getString("last_time");
-                            title[i]=rs.getString("标题");
+                            title[i]=rs.getString("class_title");
                         }
                     }
                     session.setAttribute("history_class_id",history_class_id);

@@ -48,10 +48,10 @@ public class save_image extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 封面地址 from class_teacher_table where 课程编号="+class_no);
+            ResultSet rs = statement.executeQuery("select cover_address from class_teacher_table where class_id="+class_no);
             JSONObject jsonObj = new JSONObject();
             while (rs.next()){
-                jsonObj.put("cover_address",rs.getString("封面地址"));
+                jsonObj.put("cover_address",rs.getString("cover_address"));
             }
              PrintWriter out = response.getWriter();
              out.flush();
@@ -67,7 +67,7 @@ public class save_image extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set 封面地址=? where 课程编号=?");
+            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set cover_address=? where class_id=?");
             qsql.setString(1, image);
             qsql.setInt(2, class_no);
             ConnectSQL.my_println(image);

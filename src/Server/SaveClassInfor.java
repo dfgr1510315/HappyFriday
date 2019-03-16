@@ -74,7 +74,7 @@ public class SaveClassInfor extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("delete from class_teacher_table where 课程编号=?");
+            PreparedStatement qsql  = con.prepareStatement("delete from class_teacher_table where class_id=?");
             qsql.setInt(1,No);
             qsql.executeUpdate();
             qsql.close();
@@ -92,15 +92,17 @@ public class SaveClassInfor extends HttpServlet {
             ResultSet rs;
             String sql;
             String count_sql;
-            if (page==0) sql = "select 教师用户名,标题,class_type.课程类型,课程编号,学员数,封面地址,课程概要 from class_teacher_table,class_type where class_type.课程类型编号=class_teacher_table.课程类型 and 状态='已发布' order by 课程编号 desc LIMIT "+limit;
+            String public_select_sql = "select teacher,class_title,class_type.class_type,class_id,student_count,cover_address,outline from class_teacher_table,class_type ";
+            String public_where_sql = "where class_type.class_type_id=class_teacher_table.class_type and release_status='已发布' order by class_id desc LIMIT ";
+            if (page==0) sql = public_select_sql+public_where_sql+limit;
             else{
                 if (type==0) {
-                    sql = "select 教师用户名,标题,class_type.课程类型,课程编号,学员数,封面地址,课程概要 from class_teacher_table,class_type where class_type.课程类型编号=class_teacher_table.课程类型 and 状态='已发布' order by 课程编号 desc LIMIT "+(25*(page-1))+","+25;
-                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where 状态='已发布'";
+                    sql = public_select_sql+public_where_sql+(25*(page-1))+","+25;
+                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where release_status='已发布'";
                 }
                 else {
-                    sql = "select 教师用户名,标题,class_type.课程类型,课程编号,学员数,封面地址,课程概要 from class_teacher_table,class_type where class_teacher_table.课程类型="+type+" and class_type.课程类型编号=class_teacher_table.课程类型 and 状态='已发布' order by 课程编号 desc LIMIT "+(25*(page-1))+","+25;
-                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where 课程类型="+type+" and 状态='已发布'";
+                    sql = public_select_sql+" where class_teacher_table.class_type="+type+" and class_type.class_type_id=class_teacher_table.class_type and release_status='已发布' order by class_id desc LIMIT "+(25*(page-1))+","+25;
+                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where class_type="+type+" and release_status='已发布'";
                 }
                 rs = statement.executeQuery(count_sql);
                 while (rs.next()){
@@ -116,13 +118,13 @@ public class SaveClassInfor extends HttpServlet {
             ArrayList<String> cover_list = new ArrayList<>();
             ArrayList<String> outline = new ArrayList<>();
             while (rs.next()){
-                title_list.add(rs.getString("标题"));
-                teacher_list.add(rs.getString("教师用户名"));
-                type_list.add(rs.getString("课程类型"));
-                no_list.add(rs.getInt("课程编号"));
-                student_number_list.add(rs.getInt("学员数"));
-                cover_list.add(rs.getString("封面地址"));
-                outline.add(rs.getString("课程概要"));
+                title_list.add(rs.getString("class_title"));
+                teacher_list.add(rs.getString("teacher"));
+                type_list.add(rs.getString("class_type.class_type"));
+                no_list.add(rs.getInt("class_id"));
+                student_number_list.add(rs.getInt("student_count"));
+                cover_list.add(rs.getString("cover_address"));
+                outline.add(rs.getString("outline"));
             }
             jsonObj.put("title",title_list);
             jsonObj.put("teacher",teacher_list);
@@ -148,7 +150,7 @@ public class SaveClassInfor extends HttpServlet {
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             /*String sql = "select * from usermanager";*/
             /* ResultSet rq = statement.executeQuery(sql);*/
-            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set 标题=?, 课程类型=?, 课程概要=? where 课程编号=? ");
+            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set class_title=?, class_type=?, outline=? where class_id=? ");
             qsql.setString(1,title );
             qsql.setInt(2,sel1 );
             qsql.setString(3,outline );
@@ -173,11 +175,11 @@ public class SaveClassInfor extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 标题,课程概要,课程类型 from class_teacher_table where  课程编号="+No );
+            ResultSet rs = statement.executeQuery("select class_title,outline,class_type from class_teacher_table where  class_id="+No );
             while (rs.next()){
-                jsonObj.put("title",rs.getString("标题"));
-                jsonObj.put("outline",rs.getString("课程概要"));
-                jsonObj.put("type",rs.getString("课程类型"));
+                jsonObj.put("title",rs.getString("class_title"));
+                jsonObj.put("outline",rs.getString("outline"));
+                jsonObj.put("type",rs.getString("class_type"));
             }
             PrintWriter out = response.getWriter();
             out.flush();
@@ -196,7 +198,7 @@ public class SaveClassInfor extends HttpServlet {
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             /*String sql = "select * from usermanager";*/
             /* ResultSet rq = statement.executeQuery(sql);*/
-            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set 课时管理=?, UnitCount=?, ClassCount=? where 课程编号=? ");
+            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set layout=?, UnitCount=?, ClassCount=? where class_id=? ");
             qsql.setString(1,ClassInfor );
             qsql.setString(2,Unitcount );
             qsql.setString(3,Classcount );

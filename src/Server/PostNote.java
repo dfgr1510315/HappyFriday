@@ -62,7 +62,7 @@ public class PostNote extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select note.*,head,课时标题 from note,personal_table,class where 所属课程编号="+No+" and 署名=username and 所属课程编号=课程编号 and 课时序号=章节序号 order by 时间 desc limit "+(6*(page-1))+","+6);
+            ResultSet rs = statement.executeQuery("select text,note_time,note.unit_no,author,head,lesson_title from note,personal_table,class where belong_class_id="+No+" and author=username and belong_class_id=class_id and note.unit_no=class.unit_no order by note_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> text_list = new ArrayList<>();
             ArrayList<String> time_list = new ArrayList<>();
@@ -71,14 +71,14 @@ public class PostNote extends HttpServlet {
             ArrayList<String> name = new ArrayList<>();
             ArrayList<String> class_title = new ArrayList<>();
             while (rs.next()){
-                text_list.add(rs.getString("内容"));
-                time_list.add(rs.getString("时间"));
+                text_list.add(rs.getString("text"));
+                time_list.add(rs.getString("note_time"));
                 head.add(rs.getString("head"));
-                class_no.add(rs.getString("课时序号"));
-                name.add(rs.getString("署名"));
-                class_title.add(rs.getString("课时标题"));
+                class_no.add(rs.getString("note.unit_no"));
+                name.add(rs.getString("author"));
+                class_title.add(rs.getString("lesson_title"));
             }
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM note where 所属课程编号="+No);
+            rs = statement.executeQuery("SELECT COUNT(*) count FROM note where belong_class_id="+No);
             while (rs.next()){
                 jsonObj.put("count",rs.getString("count"));
             }
@@ -104,7 +104,7 @@ public class PostNote extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select note.*,标题,封面地址 from note,class_teacher_table where 课程编号=所属课程编号 and 署名= '"+author+"'");
+            ResultSet rs = statement.executeQuery("select note_id,text,note_time,note.unit_no,belong_class_id,class_title,cover_address from note,class_teacher_table where class_id=belong_class_id and author= '"+author+"'");
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> note_no = new ArrayList<>();
             ArrayList<String> title_list = new ArrayList<>();
@@ -115,15 +115,15 @@ public class PostNote extends HttpServlet {
             ArrayList<String> title_no = new ArrayList<>();
             ArrayList<String> class_title = new ArrayList<>();
             while (rs.next()){
-                note_no.add(rs.getString("笔记编号"));
-                title_list.add(rs.getString("标题"));
-                text_list.add(rs.getString("内容"));
-                time_list.add(rs.getString("时间"));
-                image_address.add(rs.getString("封面地址"));
-                class_no.add(rs.getString("课时序号"));
-                title_no.add(rs.getString("所属课程编号"));
+                note_no.add(rs.getString("note_id"));
+                title_list.add(rs.getString("class_title"));
+                text_list.add(rs.getString("text"));
+                time_list.add(rs.getString("note_time"));
+                image_address.add(rs.getString("cover_address"));
+                class_no.add(rs.getString("note.unit_no"));
+                title_no.add(rs.getString("belong_class_id"));
             }
-            rs = statement.executeQuery("select 课时标题 from note,class where 课时序号=章节序号 and 署名= '"+author+"'");
+            rs = statement.executeQuery("select lesson_title from note,class where note.unit_no=class.unit_no and author= '"+author+"'");
             while (rs.next()){
                 class_title.add(rs.getString("课时标题"));
             }
@@ -152,7 +152,7 @@ public class PostNote extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("update note set 内容=?,时间=? where 笔记编号=?");
+            PreparedStatement qsql  = con.prepareStatement("update note set text=?,note_time=? where note_id=?");
             qsql.setString(1,note_editor);
             qsql.setString(2,time);
             qsql.setInt(3,note_no);
@@ -174,7 +174,7 @@ public class PostNote extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("delete FROM note WHERE 笔记编号=?");
+            PreparedStatement qsql = con.prepareStatement("delete FROM note WHERE note_id=?");
             qsql.setInt(1, note_no);
             qsql.executeUpdate();
             qsql.close();
@@ -196,15 +196,15 @@ public class PostNote extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select 内容,时间,笔记编号 from note where 所属课程编号="+No+" and 课时序号='"+class_No+"' and 署名= '"+author+"'");
+            ResultSet rs = statement.executeQuery("select text,note_time,note_id from note where belong_class_id="+No+" and unit_no='"+class_No+"' and author= '"+author+"'");
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> text_list = new ArrayList<>();
             ArrayList<String> time_list = new ArrayList<>();
             ArrayList<String> note_no = new ArrayList<>();
             while (rs.next()){
-                text_list.add(rs.getString("内容"));
-                time_list.add(rs.getString("时间"));
-                note_no.add(rs.getString("笔记编号"));
+                text_list.add(rs.getString("text"));
+                time_list.add(rs.getString("note_time"));
+                note_no.add(rs.getString("note_id"));
             }
             jsonObj.put("text",text_list);
             jsonObj.put("time",time_list);
@@ -226,7 +226,7 @@ public class PostNote extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into note(所属课程编号,课时序号,署名,内容,时间) values(?,?,?,?,?)");
+            PreparedStatement qsql  = con.prepareStatement("insert into note(belong_class_id,unit_no,author,text,note_time) values(?,?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,class_No);
             qsql.setString(3,author);
