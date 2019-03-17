@@ -157,7 +157,7 @@
                     for (var j=0;j<jsonObject.Serial_No.length;j++)  if (jsonObject.Serial_No[j].match((i+1)+'-'))  Class_flag+=','+jsonObject.Serial_No[j];
                     Class_flag = Class_flag.substring(1).split(",");
                     for (var k=0;k<Class_flag.length;k++){
-                        if (jsonObject.State[class_count].trim()==='已发布'){
+                        if (jsonObject.State[class_count].trim()==='1'){
                             $("#Unit"+i).append(
                                 '<div class="list_box" >' +
                                 '    <a  href="Play.jsp?'+GetQueryString('')+'/'+Class_flag[k]+'">' +

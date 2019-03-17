@@ -67,7 +67,7 @@ public class Learn_list extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            String sql = "select unit_no,unit_title,lesson_title,release_status from class where class_no=" + No ;
+            String sql = "select unit_no,unit_title,lesson_title,release_status from class where class_id=" + No ;
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             String teacher = null;
@@ -89,7 +89,7 @@ public class Learn_list extends HttpServlet {
                 Class_Name.add(rs.getString("lesson_title"));
                 State.add(rs.getString("release_status"));
             }
-            sql = "select teacher,class_title,head,student_count,class_type,outline from class_teacher_table,personal_table where teacher=username and class_id=" + No;
+            sql = "select class_teacher_table.teacher,class_title,head,student_count,class_type,outline from class_teacher_table,personal_table where class_teacher_table.teacher=username and class_id=" + No;
             rs = statement.executeQuery(sql);
             while (rs.next()) {
                 head = rs.getString("head");
@@ -100,7 +100,7 @@ public class Learn_list extends HttpServlet {
                 outline = rs.getString("outline");
             }
 
-            sql = "select class_id,class_title,cover_address from class_teacher_table where release_status='已发布' and class_type="+class_type+" limit 5";
+            sql = "select class_id,class_title,cover_address from class_teacher_table where release_status=1 and class_type="+class_type+" limit 5";
             rs = statement.executeQuery(sql);
             while (rs.next()) {
                 other_class_title.add(rs.getString("class_title"));

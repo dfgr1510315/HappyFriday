@@ -93,16 +93,16 @@ public class SaveClassInfor extends HttpServlet {
             String sql;
             String count_sql;
             String public_select_sql = "select teacher,class_title,class_type.class_type,class_id,student_count,cover_address,outline from class_teacher_table,class_type ";
-            String public_where_sql = "where class_type.class_type_id=class_teacher_table.class_type and release_status='已发布' order by class_id desc LIMIT ";
+            String public_where_sql = "where class_type.class_type_id=class_teacher_table.class_type and release_status=1 order by class_id desc LIMIT ";
             if (page==0) sql = public_select_sql+public_where_sql+limit;
             else{
                 if (type==0) {
                     sql = public_select_sql+public_where_sql+(25*(page-1))+","+25;
-                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where release_status='已发布'";
+                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where release_status=1";
                 }
                 else {
-                    sql = public_select_sql+" where class_teacher_table.class_type="+type+" and class_type.class_type_id=class_teacher_table.class_type and release_status='已发布' order by class_id desc LIMIT "+(25*(page-1))+","+25;
-                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where class_type="+type+" and release_status='已发布'";
+                    sql = public_select_sql+" where class_teacher_table.class_type="+type+" and class_type.class_type_id=class_teacher_table.class_type and release_status=1 order by class_id desc LIMIT "+(25*(page-1))+","+25;
+                    count_sql = "SELECT COUNT(*) count FROM class_teacher_table where class_type="+type+" and release_status=1";
                 }
                 rs = statement.executeQuery(count_sql);
                 while (rs.next()){
@@ -217,14 +217,14 @@ public class SaveClassInfor extends HttpServlet {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select * from class_teacher_table where 课程编号="+No);
+            ResultSet rs = statement.executeQuery("select class_title,layout,UnitCount,ClassCount,teacher,release_status from class_teacher_table where class_id="+No);
             while (rs.next()){
-                jsonObj.put("Title",rs.getString("标题"));
-                jsonObj.put("Class_html",rs.getString("课时管理"));
+                jsonObj.put("Title",rs.getString("class_title"));
+                jsonObj.put("Class_html",rs.getString("layout"));
                 jsonObj.put("UnitCount",rs.getString("UnitCount"));
                 jsonObj.put("ClassCount",rs.getString("ClassCount"));
-                jsonObj.put("教师用户名",rs.getString("教师用户名"));
-                jsonObj.put("state",rs.getString("状态"));
+                jsonObj.put("教师用户名",rs.getString("teacher"));
+                jsonObj.put("state",rs.getInt("release_status"));
             }
             rs.close();
             con.close();
@@ -238,7 +238,7 @@ public class SaveClassInfor extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set 状态=? where 课程编号=?");
+            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set release_status=? where class_id=?");
             qsql.setString(1,state );
             qsql.setInt(2,No );
             qsql.executeUpdate();

@@ -133,7 +133,7 @@ public class Register extends HttpServlet {
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url,ConnectSQL.user,ConnectSQL.Mysqlpassword);
-            String sql = "select login_table.*,nike,head,usertype,(select readed from notice where username='"+name+"' order by time desc limit 1) readed from login_table,personal_table where login_table.username=personal_table.username and active=1 and login_table.username='"+name+"'";
+            String sql = "select login_table.*,nike,head,usertype,(select readed from notice where to_user='"+name+"' order by time desc limit 1) readed from login_table,personal_table where login_table.username=personal_table.username and active=1 and login_table.username='"+name+"'";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             String username = null;

@@ -124,7 +124,7 @@ public class Get_Teaching extends HttpServlet {
                 note_count.add(rs.getString("sum"));
                 note_count_no.add(rs.getString("belong_class_id"));
             }
-            rs = statement.executeQuery("select belong_class_id,count(*) sum from sc,ask where user='"+username+"' and class=belong_class_id and user=author group by belong_class_id");
+            rs = statement.executeQuery("select belong_class_id,count(*) sum from sc,ask where user='"+username+"' and class=belong_class_id and user=asker group by belong_class_id");
             ArrayList<String> ask_count = new ArrayList<>();
             ArrayList<String> ask_count_no = new ArrayList<>();
             while (rs.next()){

@@ -125,7 +125,7 @@ public class PostNote extends HttpServlet {
             }
             rs = statement.executeQuery("select lesson_title from note,class where note.unit_no=class.unit_no and author= '"+author+"'");
             while (rs.next()){
-                class_title.add(rs.getString("课时标题"));
+                class_title.add(rs.getString("lesson_title"));
             }
             jsonObj.put("note_no",note_no);
             jsonObj.put("text",text_list);

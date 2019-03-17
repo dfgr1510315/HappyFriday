@@ -492,7 +492,6 @@ function Delete_File(event) {
 
 
 function getHTML() {
-
     $("#preview").attr("href","Learn_list.jsp?="+No);
      $.ajax({
         type: "POST",
@@ -512,7 +511,7 @@ function getHTML() {
                 UnitCount = parseInt(jsonObj.UnitCount);
             }
             $("#teacher_Name").text(jsonObj.教师用户名);
-            if (jsonObj.state==='已发布')  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
+            if (jsonObj.state===1)  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
             else $("#curriculum_button").addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
             new_Editor();
         }

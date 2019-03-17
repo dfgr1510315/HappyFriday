@@ -18,7 +18,7 @@
         Class.forName(ConnectSQL.driver);
         Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
         Statement statement = con.createStatement();
-        ResultSet rs = statement.executeQuery("SELECT readed from notice where username='"+username+"' order by time desc limit 1;");
+        ResultSet rs = statement.executeQuery("SELECT readed from notice where to_user='"+username+"' order by time desc limit 1;");
         while (rs.next())  new_notice = rs.getInt("readed");
     }catch (Exception e){
         e.printStackTrace();

@@ -127,10 +127,10 @@ public class UploadSec extends HttpServlet {
                                     Class.forName(ConnectSQL.driver);
                                     Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
                                     Statement statement = con.createStatement();
-                                    ResultSet rs = statement.executeQuery("select * from Video where 源视频地址='"+UPLOAD_DIRECTORY+"/"+fileName+"'");
+                                    ResultSet rs = statement.executeQuery("select video_address,video_title from Video where source_video_address='"+UPLOAD_DIRECTORY+"/"+fileName+"'");
                                     while (rs.next()) {
-                                        jsonObj.put("src",rs.getString("视频地址"));
-                                        jsonObj.put("video_name",rs.getString("视频名称"));
+                                        jsonObj.put("src",rs.getString("video_address"));
+                                        jsonObj.put("video_name",rs.getString("video_title"));
                                         //ConnectSQL.my_println("fileName::"+fileName);
                                         jsonObj.put("cuSRC",UPLOAD_DIRECTORY+"/"+fileName);
                                     }
