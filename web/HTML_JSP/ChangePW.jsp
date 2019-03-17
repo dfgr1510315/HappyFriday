@@ -47,26 +47,11 @@
             width: 80%;
             float: right;
         }
-        * {
-            box-sizing: border-box;
-        }
         .container_right{
             font-size: 14px;
             line-height: 1.42857143;
             color: #333;
         }
-        div{
-            display: block;
-            font-family: "Microsoft YaHei",arial !important;
-            margin: 0;
-        }
-        form{
-            display: block;
-            font-family: "Microsoft YaHei",arial !important;
-            margin:0;
-            padding: 0;
-        }
-
         .main-col{
             min-height: 400px;
         }
@@ -132,15 +117,8 @@
             text-align: right;
             padding-top: 7px;
             margin-top: 0;
-            margin-bottom: 0;
         }
 
-        label{
-            display: inline-block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            cursor: default;
-        }
         .control-col{
             position: relative;
             min-height: 1px;

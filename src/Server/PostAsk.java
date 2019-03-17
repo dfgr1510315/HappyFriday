@@ -257,16 +257,6 @@ public class PostAsk extends HttpServlet {
             qsql.close();
             ResultSet rs = statement.executeQuery("select class_title,belong_class_id,ask_title,asker,ask_text,ask_time,head,unit_no,class_type,visits_count from ask,personal_table,class_teacher_table where ask_id="+No+" and username=asker and belong_class_id=class_id;");
             JSONObject jsonObj = new JSONObject();
-            String ask_title = null;
-            int class_no = 0;
-            String ask_describe = null;
-            String asker = null;
-            String ask_text = null;
-            String ask_time = null;
-            String asker_head = null;
-            String unit_no = null;
-            int type = 0;
-            int times = 0;
             ArrayList<String> answer_head = new ArrayList<>();
             ArrayList<String> answer_no = new ArrayList<>();
             ArrayList<String> answer = new ArrayList<>();
@@ -275,19 +265,28 @@ public class PostAsk extends HttpServlet {
             ArrayList<Integer> other_ask_no = new ArrayList<>();
             ArrayList<String> other_ask_title = new ArrayList<>();
             while (rs.next()){
-                ask_title = rs.getString("class_title");
-                class_no = rs.getInt("belong_class_id");
-                ask_describe = rs.getString("ask_title");
+                jsonObj.put("ask_title",rs.getString("class_title"));
+                jsonObj.put("class_no",rs.getString("belong_class_id"));
+                jsonObj.put("ask_describe",rs.getString("ask_title"));
+                jsonObj.put("asker",rs.getString("asker"));
+                jsonObj.put("ask_text",rs.getString("ask_text"));
+                jsonObj.put("ask_time",rs.getString("ask_time"));
+                jsonObj.put("asker_head",rs.getString("head"));
+                jsonObj.put("unit_no",rs.getString("unit_no"));
+                jsonObj.put("type",rs.getString("class_type"));
+                jsonObj.put("times",rs.getString("visits_count"));
+                //class_no = rs.getInt("belong_class_id");
+               /* ask_describe = rs.getString("ask_title");
                 asker = rs.getString("asker");
                 ask_text = rs.getString("ask_text");
                 ask_time = rs.getString("ask_time");
                 asker_head = rs.getString("head");
                 unit_no = rs.getString("unit_no");
                 type = rs.getInt("class_type");
-                times = rs.getInt("visits_count");
+                times = rs.getInt("visits_count");*/
             }
 
-            rs = statement.executeQuery("select ask_id,ask_title from ask where belong_class_id="+class_no+"  and unit_no='"+unit_no+"' and ask_id!="+No+" limit 10");
+            rs = statement.executeQuery("select ask_id,ask_title from ask where belong_class_id="+jsonObj.get("class_no")+"  and unit_no='"+jsonObj.get("unit_no")+"' and ask_id!="+No+" limit 10");
             while (rs.next()){
                 other_ask_title.add(rs.getString("ask_title"));
                 other_ask_no.add(rs.getInt("ask_id"));
@@ -324,16 +323,6 @@ public class PostAsk extends HttpServlet {
                 count++;
             }
 
-            jsonObj.put("ask_title",ask_title);
-            jsonObj.put("class_no",class_no+"");
-            jsonObj.put("ask_describe",ask_describe);
-            jsonObj.put("asker",asker);
-            jsonObj.put("ask_text",ask_text);
-            jsonObj.put("ask_time",ask_time);
-            jsonObj.put("asker_head",asker_head);
-            jsonObj.put("unit_no",unit_no);
-            jsonObj.put("type",type);
-            jsonObj.put("times",times);
             jsonObj.put("other_ask_no",other_ask_no);
             jsonObj.put("other_ask_title",other_ask_title);
 

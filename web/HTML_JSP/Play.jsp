@@ -312,17 +312,17 @@
                     <h6>笔记</h6>
                     <div id="note_editor" style="width: 100%"></div>
                     <div style="margin-top: 5px;margin-bottom: 45px;">
-                        <button type="button" class="btn btn-primary" style="float: right" onclick="post_note()">提交</button>
+                        <button type="button" class="btn btn-outline-success btn-mini" style="float: right" onclick="post_note()">提交</button>
                     </div>
                     <h6>我的笔记</h6>
                     <div id="note_box">
 
                     </div>
-                    <div style=" margin-left: auto; margin-right: auto;text-align: center;margin-top: 10px">
+               <%--     <div style=" margin-left: auto; margin-right: auto;text-align: center;margin-top: 10px">
                         <a href="https://www.baidu.com/" >
                             <button type="button" class="btn btn-light">查看更多笔记</button>
                         </a>
-                    </div>
+                    </div>--%>
                 </div>
                 <div id="ask" class=" tab-pane fade"><br>
                     <h6>提问</h6>
@@ -331,17 +331,17 @@
                     </div>
                     <div id="ask_editor" style="width: 100%"></div>
                     <div style="margin-top: 5px;margin-bottom: 45px;">
-                        <button type="button" class="btn btn-primary" style="float: right" onclick="post_ask()">提交</button>
+                        <button type="button" class="btn btn-outline-success btn-mini" style="float: right" onclick="post_ask()">提交</button>
                     </div>
-                    <h6>其他问答</h6>
+                    <h6>我的问答</h6>
                     <div id="ask_box">
 
                     </div>
-                    <div style=" margin-left: auto; margin-right: auto;text-align: center;margin-top: 10px">
+                   <%-- <div style=" margin-left: auto; margin-right: auto;text-align: center;margin-top: 10px">
                         <a href="https://www.baidu.com/" >
                             <button type="button" class="btn btn-light">查看本课时更多问答</button>
                         </a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
         </div>
@@ -459,7 +459,7 @@
                     for (var j=0;j<jsonObject.Serial_No.length;j++)  if (jsonObject.Serial_No[j].match((i+1)+'-'))  Class_flag+=','+jsonObject.Serial_No[j];
                     Class_flag = Class_flag.substring(1).split(",");
                     for (var k=0;k<Class_flag.length;k++){
-                        if (jsonObject.State[class_count].trim()==='已发布'){
+                        if (jsonObject.State[class_count].trim()==='1'){
                             $("#Unit"+i).append(
                                 '<li class="sec-li">' +
                                 '    <a  href="Play.jsp'+window.location.search.replace(class_no,'') + Class_flag[k]+'">' +
@@ -511,7 +511,7 @@
                         '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
                         '                                        '+jsonObject.text[i]+'\n' +
                         '                                    </div>\n' +
-                        '                                    <div class="post" style=" margin-left: 44px;">\n' +
+                        '                                    <div class="post" style=" margin-left: 12%;">\n' +
                         '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
                         '                                        <a id="delete_note'+jsonObject.note_no[i]+'" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="'+jsonObject.note_no[i]+'"><i class="fa fa-window-close-o" ></i>删除</a>\n' +
                         '                                        <a class="post_action">查看全文</a>\n' +
@@ -519,7 +519,7 @@
                         '                                    </div>\n' +
                         '                                </div>\n' +
                         '                                <div style="display: none;">  <%--修改笔记区--%>\n' +
-                        '                                    <div id="edit_editor'+i+'" style="height: 60%;margin-bottom: 14px"></div>\n' +
+                        '                                    <div id="edit_editor'+i+'" style="height: 322px;margin-bottom: 14px"></div>\n' +
                         '                                    <div style="height: 30px;">\n' +
                         '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="'+jsonObject.note_no[i]+'">提交</button>\n' +
                         '                                        <button type="button" class="btn btn-outline-secondary btn-mini" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
@@ -549,7 +549,7 @@
             dataType: 'json',
             success: function (jsonObject){
                 for (var i=0;i< jsonObject.title.length;i++){
-                    add_ask_box(jsonObject.title[i],jsonObject.time[i]);
+                    add_ask_box(jsonObject.title[i],jsonObject.time[i],jsonObject.answer[i],jsonObject.browse[i]);
                 }
             }
         });
@@ -751,7 +751,7 @@
                             '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
                             '                                        '+note_editor.children().eq(1).children().html()+'\n' +
                             '                                    </div>\n' +
-                            '                                    <div class="post" style=" margin-left: 44px;">\n' +
+                            '                                    <div class="post" style=" margin-left: 12%;">\n' +
                             '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
                             '                                        <a id="delete_note'+jsonObj.note_id+'" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="'+jsonObj.note_id+'"><i class="fa fa-window-close-o"></i>删除</a>\n' +
                             '                                        <a class="post_action">查看全文</a>\n' +
@@ -848,7 +848,7 @@
                 dataType: 'json',
                 success: function (jsonObj) {
                     if ('1'===jsonObj.msg){
-                        add_ask_box(ask_title,time2);
+                        add_ask_box(ask_title,time2,0,0);
                         ask_editor.children().eq(1).children().html('<p><br></p>');
                         $('#problem').val('');
                     }
@@ -857,7 +857,7 @@
         }
     }
 
-    function add_ask_box(ask_title,time2) {
+    function add_ask_box(ask_title,time2,answer,browse) {
         $('#ask_box').prepend(' <div class="ui-box">\n' +
             '                            <div style="float:left;">\n' +
             '                                <a href="PersonalCenter.jsp">\n' +
@@ -872,8 +872,8 @@
             '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
             '                                        '+ask_title+'\n' +
             '                                    </div>\n' +
-            '                                    <div class="post" style=" margin-left: 44px;">\n' +
-            '                                        <a class="post_action" href="javascript:void(0);"><span>回答</span><span>浏览</span></a>\n' +
+            '                                    <div class="post" style=" margin-left: 30%;">\n' +
+            '                                        <a class="post_action" href="javascript:void(0);"><span>'+answer+'回答</span><span>'+browse+'浏览</span></a>\n' +
             '                                        <span >'+time2+'</span>\n' +
             '                                    </div>\n' +
             '                                </div>\n' +

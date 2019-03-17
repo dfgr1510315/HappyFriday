@@ -38,6 +38,10 @@ public class SaveClassInfor extends HttpServlet {
                 out.print(jsonObj);
                 out.close();
                 break;
+            case "search":
+                String keyword = request.getParameter("keyword");
+                search(keyword,response);
+                break;
             case "get_infor":
                 No = Integer.parseInt(request.getParameter("No"));
                 get_infor(response,No);
@@ -68,6 +72,26 @@ public class SaveClassInfor extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
+    }
+
+    private void search(String keyword,HttpServletResponse response){
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            Statement statement = con.createStatement();
+            PrintWriter out = response.getWriter();
+            ResultSet rs = statement.executeQuery("select class_title from class_teacher_table where class_title like '%"+keyword+"%'" );
+            //ConnectSQL.my_println("查询");
+            while (rs.next()){
+                out.print("<li class='list_tips'><a>"+rs.getString("class_title")+"</a></li>");
+            }
+            out.flush();
+            out.close();
+            rs.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void delete_class(int No){

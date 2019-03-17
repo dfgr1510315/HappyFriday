@@ -480,7 +480,7 @@
                 $('#asker').children().eq(0).attr('src',"${pageContext.request.contextPath}"+jsonObj.asker_head);
                 $('#ask_describe').text(jsonObj.ask_describe);
                 $('#ask_rich_text').append(jsonObj.ask_text);
-                $('#class_no').attr('href','Play.jsp?'+jsonObj.class_no+'/'+jsonObj.unit_no).text('问题来自：'+jsonObj.ask_title+''+jsonObj.unit_no);
+                $('#class_no').attr('href','Play.jsp?'+jsonObj.class_no+'/'+jsonObj.unit_no).text('问题来自：'+jsonObj.ask_title+'  '+jsonObj.unit_no);
                 $('#ask_time').text(jsonObj.ask_time);
                 $('#answer_count').text(jsonObj.answer.length+' 回答');
                 $('#times').text(jsonObj.times+' 浏览');

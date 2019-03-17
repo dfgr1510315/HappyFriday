@@ -40,7 +40,7 @@
             text-decoration:none
         }
 
-        span {
+        .user_id_span {
             float: left;
             font-size: 14px;
             color: #4d4d4d;
@@ -102,7 +102,7 @@
                         <%--详细资料区--%>
                         <div style="margin-top: 16px;height: 32px">
                             <%--用户id--%>
-                            <span>ID:<%=username%></span>
+                            <span class="user_id_span">ID:<%=username%></span>
                             <a data-toggle="modal" data-target="#information" href="#" style="float: right;">修改资料</a>
                         </div>
                         <%

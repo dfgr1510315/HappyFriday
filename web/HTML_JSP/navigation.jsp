@@ -87,7 +87,13 @@
             load_history();
             card_show();
             history_show();
-            if (new_notice==='0')  $('.msg_remind').css('display','inline')
+            search_tips();
+            if (new_notice==='0')  $('.msg_remind').css('display','inline');
+            $("#search_input").blur(function(){
+                setTimeout(function(){
+                    $('.title_list_box').hide();
+                },500)
+            });
         });
 
         function load_history() {
@@ -145,6 +151,46 @@
                 },1000);
             });
         }
+
+
+        
+        function search_tips() {
+            $('.title_list_box').hide();
+            var timeout;
+            $('#search_input').keyup(function(){
+                clearTimeout(timeout);
+                var user = $('#search_input').val();
+                if(user==='') return;
+                var data = {
+                    Read_or_Save:'search',
+                    keyword:user
+                };
+                timeout = setTimeout(function() {
+                    $.ajax({
+                        type:"POST",
+                        url:"${pageContext.request.contextPath}/SaveClassInfor",
+                        data:data,
+                        success:function(html){
+                            $('.title_list_box').show();
+                            $('.title_list').html(html);
+                            $('.list_tips').hover(
+                                function(){
+                                    $(this).addClass('hover');
+                                },
+                                function(){
+                                    $(this).removeClass('hover');
+                                }
+                            );
+                            $('.list_tips').click(function(){
+                                $('#search_input').val($(this).text());
+                                $('.title_list_box').hide();
+                            });
+                        }
+                    });
+                }, 600);
+                return false;
+            });
+        }
     </script>
     <title></title>
 </head>
@@ -168,6 +214,9 @@
                 <input id="search_input" type="text" class="form-control" placeholder="搜索">
                 <div class="input-group-append">
                     <i class="fa fa-search"></i>
+                </div>
+                <div class="title_list_box">
+                    <ul class="title_list"></ul>
                 </div>
             </div>
         </li>

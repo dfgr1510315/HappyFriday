@@ -99,7 +99,8 @@
                     if (ask_ul.html().length === 0) {
                         ask_ul.append(
                             ' <div class="no_find_class">暂无讨论</div> '
-                        )
+                        );
+                        return;
                     }
 
 

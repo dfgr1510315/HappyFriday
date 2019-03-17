@@ -189,7 +189,7 @@ a:hover{
     position: relative;
 }
 .mini-wnd-nav a {
-    color: #222;
+   /* color: #222;*/
     transition: color .2s;
 }
 
@@ -215,4 +215,46 @@ a:hover{
 
 .mini-wnd-nav.history-wnd .split {
     margin: 0 5px;
+}
+
+.title_list_box{
+    position: absolute;
+   /* border: 1px solid #e5e9ef;*/
+    margin-top: 2px;
+    top: 40px;
+    width: 100%;
+    background: #fff;
+    z-index: 99999;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.16);
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+
+.title_list{
+    padding-left: 0;
+}
+
+.list_tips{
+    padding: 6px 10px;
+    cursor: pointer;
+    word-wrap: break-word;
+    word-break: break-all;
+    display: block;
+    color: #222;
+    position: relative;
+    list-style: none;
+}
+
+.list_tips a{
+    color: #222;
+    display: block;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hover{
+    background-color: #e0e4e7;
 }

@@ -45,13 +45,15 @@ function saveClass() {
             var source_video_name = flag.children("div").eq(j).children('div').eq(1).find('label').eq(0).text();
             //alert(flag.children("div").eq(j).children('div').eq(1).find('video').data('cusrc'));
             if ('选择视频'===source_video_name)   source_video_name='';
+            var state = 0;
+            if (flag.children().eq(j).find('button:first').text()==='已发布') state = 1;
             var Class = {
                 Class_Name:flag.children("div").eq(j).children('div').eq(0).children('h10').text(),
                 Video_Src:flag.children("div").eq(j).children('div').eq(1).find('video').attr('src'),
                 Source_Video_Name:source_video_name,
                 Source_Video_Src:flag.children("div").eq(j).children('div').eq(1).find('video').data('cusrc'),
                 Editor:flag.children("div").eq(j).children('div').eq(1).find('video').parent().parent().next().children().eq(1).children().html(),
-                State:flag.children().eq(j).find('button:first').text()
+                State:state
             };
             var File_Href="";
             var File_Name="";
@@ -232,7 +234,7 @@ function add_class_hour(add_id) {
         '               </ul>\n' +
         '               <div class="input-file-show" style="">\n' +
         '                   <div>' +
-        '                       <div class="custom-file mb-3" style="margin-top: 25px;width: 40%">\n' +
+        '                       <div class="custom-file mb-3" style="margin-top: 25px;width: 86%">\n' +
         '                           <input type="file" class="custom-file-input" accept="video/*" onchange ="upload(this,1)">\n' +
         '                           <label class="custom-file-label" >选择视频</label>\n' +
         '                       </div>\n' +

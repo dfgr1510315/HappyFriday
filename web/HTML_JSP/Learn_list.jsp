@@ -213,17 +213,15 @@
                         '                                </div>\n' +
                         '                                <div class="js-note-main">\n' +
                         '                                    <div class="note-media">\n' +
-                        '                                        <a href="" class="from l">'+jsonObj.class_no[i]+jsonObj.class_title[i]+'</a>\n' +
+                        '                                        <a href="" class="from l">'+jsonObj.class_no[i]+'&nbsp&nbsp'+jsonObj.class_title[i]+'</a>\n' +
                         '                                    </div>\n' +
                         '                                    <div class="js-notelist-content notelist-content">\n' +
-                        '                                        <div class="autowrap note-content">\n' +
-                        '                                            '+jsonObj.text[i]+'\n' +
-                        '                                        </div>\n' +
+                        '                                        <div class="autowrap note-content">'+jsonObj.text[i]+'</div>\n' +
                         '                                    </div>\n' +
                         '                                    <div class="footer clearfix">\n' +
-                        '                                        <div class="actions l">\n' +
+               /*         '                                        <div class="actions l">\n' +
                         '                                            <a href="" target="_blank" class="post-action">查看全文</a>\n' +
-                        '                                        </div>\n' +
+                        '                                        </div>\n' +*/
                         '                                        <span class="r timeago">'+jsonObj.time[i]+'</span>\n' +
                         '                                    </div>\n' +
                         '                                </div>\n' +
@@ -313,7 +311,7 @@
                         '                                                <span class="static-item answer">'+jsonObj.answer_count[i]+' 回答</span>\n' +
                         '                                                <span class="static-item">'+jsonObj.times[i]+' 浏览</span>\n' +
                         '                                            </a>\n' +
-                        '                                            <a href="" target="_blank">'+jsonObj.title_No_list[i]+jsonObj.title[i]+'</a>\n' +
+                        '                                            <a href="" target="_blank">'+jsonObj.title_No_list[i]+'&nbsp&nbsp'+jsonObj.title[i]+'</a>\n' +
                         '                                        </div>\n' +
                         '                                        <em class="r">'+jsonObj.time[i]+'</em>\n' +
                         '                                    </div>\n' +
