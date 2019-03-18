@@ -32,7 +32,7 @@
     }
 </style>
 
-<body onload="checkCookie();ifActive();addAction(4);addHref();getHTML()">
+<body onload="ifActive();addAction(4);addHref();getHTML()">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
     <div style="background-size: cover;height: 148px;margin-top: -21px">

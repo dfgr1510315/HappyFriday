@@ -378,12 +378,11 @@
     }
 </script>
 
-<body onload="checkCookie();ifActive();" style="background-color: #f8fafc;">
+<body onload="ifActive();" style="background-color: #f8fafc;">
 <jsp:include page="navigation.jsp"/>
 <div class="main">
     <div class="inside">
         <div class="first" id="Bread_crumb_navigation">
-
         </div>
         <div class="second">
             <h2 id="title" class="left"></h2>
@@ -451,13 +450,9 @@
                     </ul>
                 </div>--%>
                 <div class="comment-list">
-                    <ul id="note_ul">
-
-                    </ul>
+                    <ul id="note_ul"></ul>
                 </div>
-                <ul id="page_note" class="pagination">
-
-                </ul>
+                <ul id="page_note" class="pagination"></ul>
             </div>
         </div>
 

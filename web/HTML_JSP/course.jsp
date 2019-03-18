@@ -231,7 +231,7 @@
         });
     </script>
 </head>
-<body onload="checkCookie();ifActive()" style="background-color: #f8fafc;">
+<body onload="ifActive()" style="background-color: #f8fafc;">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 80%;margin-right: auto;margin-left: auto">
     <!-- Nav pills -->

@@ -84,6 +84,7 @@
         };
         $(document).ready(function(){
             if (user===null) return;
+            checkCookie();
             load_history();
             card_show();
             history_show();
@@ -104,7 +105,7 @@
             for (var i=0;i<history_class_id.length;i++){
                 if (' 0' === history_class_id[i])  continue;
                 var unit = last_time[i].split(':');
-                console.log(unit[0]);
+                /*console.log(unit[0]);*/
                 $('.history_ul').append(
                     '   <li>\n' +
                     '                        <a href="${pageContext.request.contextPath}/HTML_JSP/Play.jsp?'+history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+last_time[i].trim()+'" class="clearfix">\n' +
@@ -152,18 +153,22 @@
             });
         }
 
-
+        function search() {
+            var keyword = $('#search_input').val();
+            if (keyword.trim()==='') return;
+            window.open('${pageContext.request.contextPath}/HTML_JSP/Search/video.jsp?keyword='+encodeURI(keyword),'_blank');
+        }
         
         function search_tips() {
             $('.title_list_box').hide();
             var timeout;
             $('#search_input').keyup(function(){
                 clearTimeout(timeout);
-                var user = $('#search_input').val();
-                if(user==='') return;
+                var keyword = $('#search_input').val();
+                if(keyword==='') return;
                 var data = {
-                    Read_or_Save:'search',
-                    keyword:user
+                    Read_or_Save:'search_tips',
+                    keyword:keyword
                 };
                 timeout = setTimeout(function() {
                     $.ajax({
@@ -213,7 +218,7 @@
             <div class="input-group mb-3">
                 <input id="search_input" type="text" class="form-control" placeholder="搜索">
                 <div class="input-group-append">
-                    <i class="fa fa-search"></i>
+                    <i class="fa fa-search" onclick="search()"></i>
                 </div>
                 <div class="title_list_box">
                     <ul class="title_list"></ul>

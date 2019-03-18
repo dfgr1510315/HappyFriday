@@ -187,7 +187,7 @@
     </style>
 </head>
 
-<body onload="checkCookie();ifActive()" id="homepage">
+<body onload="ifActive()" id="homepage">
 
 <jsp:include page="navigation.jsp"  />
 

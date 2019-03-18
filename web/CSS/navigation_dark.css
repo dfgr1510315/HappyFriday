@@ -266,6 +266,10 @@
     list-style: none;
 }
 
+.user_navigation .nav-pills .nav-item .nav-link,.user_card a{
+    transition: all .3s;
+}
+
 .list_tips a{
     color: #222;
     display: block;

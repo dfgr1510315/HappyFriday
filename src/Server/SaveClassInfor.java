@@ -38,9 +38,14 @@ public class SaveClassInfor extends HttpServlet {
                 out.print(jsonObj);
                 out.close();
                 break;
-            case "search":
+            case "search_tips":
                 String keyword = request.getParameter("keyword");
-                search(keyword,response);
+                search_tips(keyword,response);
+                break;
+            case "search_class":
+                keyword = request.getParameter("keyword");
+                int page = Integer.parseInt(request.getParameter("page"));
+                search_class(response,keyword,page);
                 break;
             case "get_infor":
                 No = Integer.parseInt(request.getParameter("No"));
@@ -55,7 +60,7 @@ public class SaveClassInfor extends HttpServlet {
                 break;
             case "get_new_class":
                 int limit = Integer.parseInt(request.getParameter("limit"));
-                int page = Integer.parseInt(request.getParameter("page"));
+                page = Integer.parseInt(request.getParameter("page"));
                 int type = Integer.parseInt(request.getParameter("type"));
                 get_new_class(response,limit,page,type);
                 break;
@@ -74,7 +79,52 @@ public class SaveClassInfor extends HttpServlet {
         doPost(request,response);
     }
 
-    private void search(String keyword,HttpServletResponse response){
+    private void search_class(HttpServletResponse response,String keyword,int page){
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            Statement statement = con.createStatement();
+            PrintWriter out = response.getWriter();
+            JSONObject jsonObject = new JSONObject();
+            ArrayList<Integer> class_id = new ArrayList<>();
+            ArrayList<String> class_title = new ArrayList<>();
+            ArrayList<String> teacher = new ArrayList<>();
+            ArrayList<String> outline = new ArrayList<>();
+            ArrayList<Integer> student_count = new ArrayList<>();
+            ArrayList<String> cover_address = new ArrayList<>();
+            ArrayList<Integer> class_type = new ArrayList<>();
+            ResultSet rs = statement.executeQuery("SELECT class_id,class_title,teacher,outline,student_count,cover_address,class_type FROM class_teacher_table where class_title like '%"+keyword+"%' order by student_count desc limit "+(6*(page-1))+","+6);
+            while (rs.next()){
+                class_id.add(rs.getInt("class_id"));
+                class_title.add(rs.getString("class_title"));
+                teacher.add(rs.getString("teacher"));
+                outline.add(rs.getString("outline"));
+                student_count.add(rs.getInt("student_count"));
+                cover_address.add(rs.getString("cover_address"));
+                class_type.add(rs.getInt("class_type"));
+            }
+            rs = statement.executeQuery("SELECT COUNT(*) count FROM class_teacher_table where class_title like '%"+keyword+"%'");
+            while (rs.next()){
+                jsonObject.put("count",rs.getString("count"));
+            }
+            jsonObject.put("class_id",class_id);
+            jsonObject.put("class_title",class_title);
+            jsonObject.put("teacher",teacher);
+            jsonObject.put("outline",outline);
+            jsonObject.put("student_count",student_count);
+            jsonObject.put("cover_address",cover_address);
+            jsonObject.put("class_type",class_type);
+            out.print(jsonObject);
+            out.flush();
+            out.close();
+            rs.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void search_tips(String keyword,HttpServletResponse response){
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);

@@ -351,10 +351,10 @@
     </script>
 
 </head>
-<body onload="checkCookie();ifActive();addClass(5)">
+<body onload="ifActive();addClass(5)">
 <jsp:include page="navigation.jsp"/>
-<div style="width: 100%;height: 450px">
-    <div style="width: 80%;margin: auto">
+<div >
+    <div style="width: 80%;margin: 10px auto auto;">
         <jsp:include page="VerticalNav.jsp"/>
         <div class="container_right">
             <div>

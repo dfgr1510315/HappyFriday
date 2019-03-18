@@ -14,7 +14,7 @@
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
-<body onload="checkCookie()">
+<body >
 <jsp:include page="navigation.jsp"  />
 <jsp:include page="LoginPC.jsp" />
 

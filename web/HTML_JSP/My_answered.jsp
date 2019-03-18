@@ -98,7 +98,7 @@
 
                     if (ask_ul.html().length === 0) {
                         ask_ul.append(
-                            ' <div class="no_find_class">暂无讨论</div> '
+                            '<div class="no_find_class">暂无讨论</div> '
                         );
                         return;
                     }
@@ -146,10 +146,10 @@
     </script>
 
 </head>
-<body onload="checkCookie();ifActive();addClass(7)">
+<body onload="ifActive();addClass(7)">
 <jsp:include page="navigation.jsp"/>
-<div style="width: 100%;height: 450px">
-    <div style="width: 80%;margin: auto">
+<div>
+    <div style="width: 80%;margin: 10px auto auto;">
         <jsp:include page="VerticalNav.jsp"/>
         <div class="container_right">
             <h3 class="container_right_head">

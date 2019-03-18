@@ -99,12 +99,13 @@
             line-height: 1;
             -webkit-font-smoothing: antialiased;
         }
-        .form-group {
-            height: 34px;
+        .container_right .form-group {
+            /*height: 34px;*/
             margin-bottom: 50px;
             margin-right: -15px;
             margin-left: -15px;
             display: flex;
+            height: calc(2rem + 2px);
         }
         .control-label {
             width: 110px;
@@ -227,10 +228,10 @@
     </script>
 
 </head>
-<body onload="checkCookie();ifActive();addClass(1)">
+<body onload="ifActive();addClass(1)">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;height: 450px">
-    <div style="width: 80%;margin: auto">
+    <div style="width: 80%;margin: 10px auto auto;">
         <jsp:include page="VerticalNav.jsp"/>
         <div class="container_right">
             <div >

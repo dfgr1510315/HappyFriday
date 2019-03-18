@@ -106,7 +106,7 @@
 </head>
 
 
-<body id="resources" onload="checkCookie();ifActive()">
+<body id="resources" onload="ifActive()">
 
 <jsp:include page="navigation.jsp"  />
 

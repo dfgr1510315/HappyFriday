@@ -36,7 +36,7 @@
     }
 </style>
 
-<body onload="checkCookie();ifActive();getHTML();addHref();addAction(0)" onbeforeunload="live();">
+<body onload="ifActive();getHTML();addHref();addAction(0)" onbeforeunload="live();">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
     <div style="background-size: cover;height: 148px;margin-top: -21px">

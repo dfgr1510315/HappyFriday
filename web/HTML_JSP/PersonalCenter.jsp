@@ -71,7 +71,7 @@
 
     </style>
 </head>
-<body onload="checkCookie();addClass(0)">
+<body onload="addClass(0)">
 
 <jsp:include page="navigation.jsp"/>
 

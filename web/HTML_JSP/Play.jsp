@@ -244,7 +244,7 @@
 </style>
 
 
-<body onload="checkCookie();ifActive();get_Video();get_Class()" onunload="live();">
+<body onload="ifActive();get_Video();get_Class()" onunload="live();">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;height: 100%;background-color: #1c1f21;padding: 10px;margin-top: 5px">
     <div class='course-sidebar-layout ' id='courseSidebar' style="height:100%;width: 5%;float: left;">

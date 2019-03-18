@@ -32,7 +32,7 @@
     }
 </style>
 
-<body onload="checkCookie();ifActive();addClass(2);addHref();getHTML()">
+<body onload="ifActive();addClass(2);addHref();getHTML()">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
     <div style="background: url(../image/bacg2.jpg) center top no-repeat #000;background-size: cover;height: 148px;margin-top: -21px">

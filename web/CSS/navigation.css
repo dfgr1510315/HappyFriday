@@ -34,6 +34,9 @@
 a:hover{
     text-decoration: none;
 }
+.user_navigation .nav-pills .nav-item .nav-link,.user_card a{
+    transition: all .3s;
+}
 .notification{
     position: relative;
     float: left;
@@ -50,7 +53,7 @@ a:hover{
 .notification a:hover{
     color: #007bff;
 }
-.form-control{
+.container_right .form-control{
     height: calc(2rem + 2px);
 }
 

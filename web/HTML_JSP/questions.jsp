@@ -380,7 +380,7 @@
     }
 
 </style>
-<body onload="checkCookie();ifActive();">
+<body onload="ifActive();">
 <jsp:include page="navigation.jsp"/>
 <div class="questions_main">
     <nav class="breadcrumb" style="display:block">
