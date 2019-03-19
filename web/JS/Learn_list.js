@@ -33,7 +33,7 @@ function GetQueryString(name)
 
     function continue_class(event) {
         var last_time = $(event).prev().data('class');
-        window.location.href="Play.jsp?"+No+"/"+last_time.substring(0,last_time.indexOf(','));
+        window.location.href="Play.jsp?"+No+"/"+last_time.substring(0,last_time.indexOf(':'));
     }
 
 

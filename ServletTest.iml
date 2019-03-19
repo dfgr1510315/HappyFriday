@@ -37,9 +37,7 @@
     <orderEntry type="library" exported="" name="commons-io-2.5" level="project" />
     <orderEntry type="library" name="JSON" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.13" level="project" />
-    <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="popper" level="application" />
-    <orderEntry type="library" name="video" level="application" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -78,5 +76,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="popper" level="application" />
   </component>
 </module>

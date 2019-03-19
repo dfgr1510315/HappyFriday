@@ -68,9 +68,10 @@ public class SaveClassInfor extends HttpServlet {
                 No = Integer.parseInt(request.getParameter("No"));
                 delete_class(No);
                 break;
-            default:
+            case "release":
                 No = Integer.parseInt(request.getParameter("No"));
-                change_class_state(No,Read_or_Save);
+                int state = Integer.parseInt(request.getParameter("state"));
+                change_class_state(No,state);
                 break;
         }
     }
@@ -308,12 +309,12 @@ public class SaveClassInfor extends HttpServlet {
         return jsonObj;
     }
 
-    private void change_class_state(int No,String state){
+    private void change_class_state(int No,int state){
         try {
             Class.forName(ConnectSQL.driver);
             Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
             PreparedStatement qsql = con.prepareStatement("update class_teacher_table set release_status=? where class_id=?");
-            qsql.setString(1,state );
+            qsql.setInt(1,state );
             qsql.setInt(2,No );
             qsql.executeUpdate();
             qsql.close();

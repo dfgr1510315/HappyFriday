@@ -30,10 +30,9 @@ function login() {
                 //setCookie("username",username,30);
                 $('#head_image').attr('src',PageContext+msg.head_image);
                 $("#loginClose").click();
-                $("#loginButton").hide();
+                /*$("#loginButton").hide();
                 $("#personalCenter").show();
-                $("#showname").text(username);
-                load_history();
+                $("#showname").text(username);*/
                 if (msg.readed===0)  $('.msg_remind').css('display','inline') ;
                 if ($('#remember').is(':checked')){
                     cookie.set('username',username);
@@ -42,6 +41,7 @@ function login() {
                     cookie.del('username');
                     cookie.del('password');
                 }
+                location.reload()
             }else {
                 alert('未知错误,请与管理员联系');
             }

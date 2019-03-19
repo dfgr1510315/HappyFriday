@@ -238,6 +238,7 @@
 }
 
 .title_list_box{
+    display: none;
     position: absolute;
     /* border: 1px solid #e5e9ef;*/
     margin-top: 2px;

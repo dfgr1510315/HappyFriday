@@ -31,11 +31,14 @@ class getHash {
             StringBuilder sb=new StringBuilder();
             while ((line = br.readLine()) != null) {
                 //System.out.println(line);
-                if (i==1) sb.append(line);
+                if (i==1) {
+                    sb.append(line);
+                    break;
+                }
                 i++;
             }
-            //System.out.println(sb.toString());
-            return sb.toString();
+            //ConnectSQL.my_println("11 22 33  ".replaceAll("\\s*", ""));
+            return sb.toString().replaceAll("\\s*", "");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +50,7 @@ class getHash {
         File file = new File(uploadPath);
         // 获得该文件夹内的所有文件
         File[] array = file.listFiles();
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         int n = 0;
         assert array != null;
         for (File anArray : array) {

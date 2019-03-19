@@ -114,13 +114,14 @@ function Release(state) {
             url: PageContext+"/SaveClassInfor",
             data: {
                 No:No,
-                Read_or_Save:state
+                state:state,
+                Read_or_Save:'release'
             },
             type: "POST",
             dataType: "json",
             asynch: "false"
         });
-        if (state==='已发布') {
+        if (state===1) {
             $("#Open_curriculum_Close").click();
             $("#curriculum_button").removeClass('btn-outline-primary').addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
         }else {
@@ -234,9 +235,9 @@ function add_class_hour(add_id) {
         '               </ul>\n' +
         '               <div class="input-file-show" style="">\n' +
         '                   <div>' +
-        '                       <div class="custom-file mb-3" style="margin-top: 25px;width: 86%">\n' +
+        '                       <div class="custom-file mb-3" style="margin-top: 25px;width: 80%">\n' +
         '                           <input type="file" class="custom-file-input" accept="video/*" onchange ="upload(this,1)">\n' +
-        '                           <label class="custom-file-label" >选择视频</label>\n' +
+        '                           <label class="custom-file-label" style="overflow: hidden">选择视频</label>\n' +
         '                       </div>\n' +
         '                       <button type="button" class="btn btn-secondary" style="margin-top: 4px; margin-left: 10px" onclick="delete_video(this)">删除视频</button>\n' +
         '                   </div>\n' +

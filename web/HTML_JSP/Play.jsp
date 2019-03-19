@@ -119,11 +119,7 @@
         font-size: 12px;
         color: grey;
         line-height: 20px;
-    }
-    .fa-play-circle-o {
-        float: left;
-        margin-right: 10px;
-        font-size: 21px;
+        transition: all .3s;
     }
 
     a:hover{
@@ -132,9 +128,6 @@
 
     ul{
         list-style: none;
-    }
-    .fa-play-circle-o{
-        float: left;
     }
     .sec-li a:hover{
         color: #007bff;
@@ -171,6 +164,7 @@
 
     .flex-column a{
         color: grey;
+        transition: all .3s;
     }
 
     .flex-column a:hover{
@@ -241,6 +235,28 @@
         font-size: 12px;
         width: auto;
     }
+
+    .no_find_video{
+        color: white;
+        width: 50%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        height: 50px;
+        margin-top: 280px;
+        font-size: 33px;
+    }
+    #chapter ul{
+        padding-left: 10px;
+    }
+    .ui-box1{
+        position: absolute;
+    }
+    .ui-box .fa-play-circle-o{
+        position: relative;
+        top: 5px;
+    }
+
 </style>
 
 
@@ -250,7 +266,7 @@
     <div class='course-sidebar-layout ' id='courseSidebar' style="height:100%;width: 5%;float: left;">
         <ul class="nav nav-pills flex-column" role="tablist" style="height: 40%">
             <li class='nav-item'>
-                <i class='fa fa-caret-square-o-right'></i>
+                <i class='fa fa-file-video-o'></i>
                 <a class="active" data-toggle="pill" href="#video">视频</a>
             </li>
             <li class='nav-item' >
@@ -267,19 +283,14 @@
 
       <div id="center_box" class="tab-content">
           <div id="video" class="center tab-pane active"   >
-              <video id="video1" class="video-js vjs-default-skin"  style="width:100% ;height:100%" controls preload="none"
-
+              <video id="video1" class="video-js vjs-default-skin"  style="width:100% ;height:100%" controls preload="none"></video>
+<%--
                      data-setup='{ "html5" : { "nativeTextTracks" : false } }'>
-
                   <source src="${pageContext.request.contextPath}/Upload/33969c4371226b916139c168128a2fd2.mp4" type="video/mp4">
-
-              </video>
-
+--%>
           </div>
 
-          <div id="text" class="center tab-pane fade" style="background-color: white;padding: 20px;">
-
-          </div>
+          <div id="text" class="center tab-pane fade" style="background-color: white;padding: 20px;"></div>
           <div id="file" class="center tab-pane fade" style="background-color: white;padding: 20px;">
               <div id="file_group" class="list-group">
 
@@ -463,9 +474,8 @@
                             $("#Unit"+i).append(
                                 '<li class="sec-li">' +
                                 '    <a  href="Play.jsp'+window.location.search.replace(class_no,'') + Class_flag[k]+'">' +
-                                '       <i class="fa fa-play-circle-o"></i>'+
                                 '       <div class="ui-box1">' +
-
+                                '               <i class="fa fa-play-circle-o"></i>'+
                                 '               <span style="margin-right: 20px;">课时'+Class_flag[k].charAt(Class_flag[k].length-1) +'</span>'+
                                 '               <span >'+jsonObject.Class_Name[class_count]+'</span>'+
                                 '       </div>'+
@@ -477,8 +487,8 @@
                     }
                     //alert(Class_flag);
                 }
-                $('#Unit'+(class_no.substring(0,class_no.indexOf('-'))-1)).children().eq((class_no.substring(class_no.indexOf('-')+1))).find('.ui-box1').append(
-                    '<i class="fa fa-adjust" style="float: right;margin-top: 5px;" id="adjust"></i>'
+                $('#Unit'+(class_no.substring(0,class_no.indexOf('-'))-1)).children().eq((class_no.substring(class_no.indexOf('-')+1))).find('.ui-box1').parent().append(
+                    '<i class="fa fa-adjust" style="position: relative;left:370px;top: 5px" id="adjust"></i>'
                 )
                 //alert(Serial_No+"\n"+Unit_Name+"\n"+Class_Name+"\n"+Video_Src+"\n"+Editor+"\n"+File_Href+"\n"+State);
             }
@@ -606,54 +616,39 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                //alert(jsonObj.Video_address);
-                videoID = user+No+class_no; //视频的区分ID，每个视频分配一个唯一的ID
-                cookieTime = cookie.get('time_' + videoID); //调用已记录的time
-                if(!cookieTime || cookieTime === undefined || cookieTime === 'done') { //如果没有记录值，则设置时间0开始播放
-                    cookieTime = 0;
-                }
-               /* if(cookieTime > 0) {
-                    alert('本视频记录的上次观看时间(秒)为：' + cookieTime);
-                }*/
-
-                $('#video1').children().attr('src',jsonObj.Video_address);
-
-                player = videojs('video1', { });
-
-                player.on('ended', function () {
-                    cookie.set('time_' + videoID, 'done');
-                });
-
-                player.on('timeupdate', function () {
-                    cookie.set('time_' + videoID, player.currentTime()); //当前视频播放时间写入cookie
-                });
-
-                player.on('loadedmetadata', function() {
-                    if(cookieTime > 0) { //如果记录时间大于0，则设置视频播放后跳转至上次记录时间
-                        player.currentTime(cookieTime)
+                if (jsonObj.Video_address !== ''){
+                    console.log(jsonObj.Video_address);
+                    videoID = user+No+class_no; //视频的区分ID，每个视频分配一个唯一的ID
+                    cookieTime = cookie.get('time_' + videoID); //调用已记录的time
+                    if(!cookieTime  || cookieTime === 'done') { //如果没有记录值，则设置时间0开始播放
+                        cookieTime = 0;
                     }
-                });
-               //player.src(jsonObj.Video_address);
+                    /* if(cookieTime > 0) {
+                         alert('本视频记录的上次观看时间(秒)为：' + cookieTime);
+                     }*/
 
-                /*var videoObject = {
-                    container: '#video', //“#”代表容器的ID，“.”或“”代表容器的class
-                    variable: 'player', //该属性必需设置，值等于下面的new chplayer()的对象
-                    loop:false,
-                    loaded:'loadHandler',
-                    video: jsonObj.Video_address//视频地址
-                };
-                if(cookieTime > 0) { //如果记录时间大于0，则设置视频播放后跳转至上次记录时间
-                    videoObject['seek'] = cookieTime;
+                    $('#video1').children().attr('src',jsonObj.Video_address);
+
+                    player = videojs('video1', { });
+
+                    player.on('ended', function () {
+                        cookie.set('time_' + videoID, 'done');
+                    });
+
+                    player.on('timeupdate', function () {
+                        cookie.set('time_' + videoID, player.currentTime()); //当前视频播放时间写入cookie
+                    });
+
+                    player.on('loadedmetadata', function() {
+                        if(cookieTime > 0) { //如果记录时间大于0，则设置视频播放后跳转至上次记录时间
+                            player.currentTime(cookieTime)
+                        }
+                    });
+                }else {
+                    $('#video').empty().append(
+                        '<div class="no_find_video">本课时无视频教案</div>'
+                    )
                 }
-                player = new ckplayer(videoObject);*/
-
-            /*    var videoObject = {
-                    container: '#video',//“#”代表容器的ID，“.”或“”代表容器的class
-                    variable: 'player',//该属性必需设置，值等于下面的new chplayer()的对象
-                    flashplayer:false,//如果强制使用flashplayer则设置成true
-                    video:jsonObj.Video_address//视频地址
-                };
-                var player=new ckplayer(videoObject);*/
 
                 $('#text').append(
                     jsonObj.text

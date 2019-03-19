@@ -194,7 +194,7 @@
                 <%--界面--%>
                 <div class="modal-body">
                     <h6>是否发布此课程</h6>
-                    <button id="Open_curriculum_sure_button" type="button" class="btn btn-primary" onclick="Release('已发布')">确定
+                    <button id="Open_curriculum_sure_button" type="button" class="btn btn-primary" onclick="Release(1)">确定
                     </button>
                 </div>
             </div>
@@ -212,7 +212,7 @@
                 <%--界面--%>
                 <div class="modal-body">
                     <h6>是否关闭此课程</h6>
-                    <button id="Close_curriculum_sure_button" type="button" class="btn btn-primary" onclick="Release('未发布')">确定
+                    <button id="Close_curriculum_sure_button" type="button" class="btn btn-primary" onclick="Release(0)">确定
                     </button>
                 </div>
             </div>

@@ -7,23 +7,32 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String username=(String) session.getAttribute("user_id");
-    String head_image =(String) session.getAttribute("head_image");
-    String usertype = (String) session.getAttribute("usertype");
-    String history_class_id = Arrays.toString((int[]) session.getAttribute("history_class_id"));
-    String schedule = Arrays.toString((int[]) session.getAttribute("schedule"));
-    String last_time = Arrays.toString((String[]) session.getAttribute("last_time"));
-    String title = Arrays.toString((String[]) session.getAttribute("title"));
-    int new_notice=1;
-    try {
-        Class.forName(ConnectSQL.driver);
-        Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-        Statement statement = con.createStatement();
-        ResultSet rs = statement.executeQuery("SELECT readed from notice where to_user='"+username+"' order by time desc limit 1;");
-        while (rs.next())  new_notice = rs.getInt("readed");
-    }catch (Exception e){
-        e.printStackTrace();
+    String head_image = null;
+    String usertype = null;
+    String history_class_id = null;
+    String schedule = null;
+    String last_time = null;
+    String title = null;
+    int new_notice = 1;
+    if (username!=null){
+        //System.out.println("连接数据库");
+        head_image =(String) session.getAttribute("head_image");
+        usertype = (String) session.getAttribute("usertype");
+        history_class_id = Arrays.toString((int[]) session.getAttribute("history_class_id"));
+        System.out.println("history_class_id"+history_class_id);
+        schedule = Arrays.toString((int[]) session.getAttribute("schedule"));
+        last_time = Arrays.toString((String[]) session.getAttribute("last_time"));
+        title = Arrays.toString((String[]) session.getAttribute("title"));
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT readed from notice where to_user='"+username+"' order by time desc limit 1;");
+            while (rs.next())  new_notice = rs.getInt("readed");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-
 
 %>
 <html>
@@ -53,7 +62,7 @@
             if (user !== "null") {
                 $("#loginButton").hide();
                 $("#personalCenter").show();
-                $("#showname").text(user);
+              /*  $("#showname").text(user);*/
                 $("#head_image").attr('src',"${pageContext.request.contextPath}"+head_image);
             }
         }
@@ -83,7 +92,7 @@
             }
         };
         $(document).ready(function(){
-            if (user===null) return;
+            if (user==="null") return;
             checkCookie();
             load_history();
             card_show();
@@ -98,7 +107,9 @@
         });
 
         function load_history() {
+            console.log('load_history:');
             var history_class_id = '<%=history_class_id%>'.replace('[','').replace(']','').split(',');
+            console.log('<%=history_class_id%>');
             var schedule = '<%=schedule%>'.replace('[','').replace(']','').split(',');
             var last_time = '<%=last_time%>'.replace('[','').replace(']','').split(',');
             var title = '<%=title%>'.replace('[','').replace(']','').split(',');
@@ -176,9 +187,16 @@
                         url:"${pageContext.request.contextPath}/SaveClassInfor",
                         data:data,
                         success:function(html){
-                            $('.title_list_box').show();
-                            $('.title_list').html(html);
-                            $('.list_tips').hover(
+                            var title_list_box = $('.title_list_box');
+                            var title_list = $('.title_list');
+                            if (html==='') {
+                                title_list_box.hide();
+                                return;
+                            }
+                            title_list_box.show();
+                            title_list.html(html);
+                            var list_tips = $('.list_tips');
+                            list_tips.hover(
                                 function(){
                                     $(this).addClass('hover');
                                 },
@@ -186,7 +204,7 @@
                                     $(this).removeClass('hover');
                                 }
                             );
-                            $('.list_tips').click(function(){
+                            list_tips.click(function(){
                                 $('#search_input').val($(this).text());
                                 $('.title_list_box').hide();
                             });
