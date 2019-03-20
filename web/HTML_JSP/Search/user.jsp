@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: LI
-  Date: 2019/3/18 0018
-  Time: 10:22
+  Date: 2019/3/19 0019
+  Time: 17:05
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -24,7 +24,7 @@
         if (keyword.trim()==='')  return;
         $('#search_ipt').val(keyword);
         add_href();
-        search_class();
+        search_user();
     });
 </script>
 <body style="background: #f8fafc;">
@@ -44,10 +44,10 @@
                 <div class="search-classify clearfix">
                     <ul class="nav nav-tabs nav-justified">
                         <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0)">课程</a>
+                            <a class="nav-link " href="video.jsp">课程</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="user.jsp">用户</a>
+                            <a class="nav-link active" href="javascript:void(0)">用户</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ask.jsp">问答</a>
@@ -60,10 +60,30 @@
                         <em id="count" style="font-style: normal;"></em>
                     </span>
                 </div>
+                <ul class="user-list">
+                   <%-- <li class="up-item">
+                        <div class="up-face">
+                            <a href="" target="_blank" title="星际玩家" class="face-img">
+                                <div class="lazy-img">
+                                    <img alt="" src="/image/11f5dbcf9ad6ae261aa1656dd78004d9.jpg">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="info-wrap">
+                            <div class="headline">
+                                <a href="" title="星际玩家" target="_blank" class="title">星际玩家</a>
+                            </div>
+                            <div class="up-info">
+                                <span>性别：男</span>
+                                <span>教师</span>
+                            </div>
+                            <div class="desc">豁牙，请多关照(&amp;gt;﹏&amp;lt;)</div>
+                        </div>
+                    </li>--%>
+                </ul>
             </div>
             <div id="page" class="pagination"></div>
         </div>
-
     </div>
 </div>
 </body>

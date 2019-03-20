@@ -11,21 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12850cd1-69d1-43cd-8843-a98321ef88ef" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/websocket_api.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/websocket_api.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/CSS/search.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/HTML_JSP/Search/ask.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/HTML_JSP/Search/user.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/JS/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/LI.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/LI.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServletTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ServletTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/SaveClassInfor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/SaveClassInfor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/Students.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Students.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/getHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/getHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/navigation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/navigation_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/navigation_dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Myclass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Myclass.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/ChangeInfor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ChangeInfor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/PostAsk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/PostAsk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/PersonalCenter.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/PersonalCenter.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Play.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Play.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/navigation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/navigation.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/Learn_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/Learn_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/LoginPC.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/LoginPC.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/Myclass.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/Myclass.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Search/video.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Search/video.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,19 +73,46 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp">
+        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Search/video.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="56" column="108" selection-start-line="56" selection-start-column="108" selection-end-line="56" selection-end-column="108" />
+            <state relative-caret-position="988">
+              <caret line="52" column="61" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/JS/Learn_list.js">
+        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Search/user.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="1596">
+              <caret line="84" column="22" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Search/ask.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="874">
+              <caret line="46" column="45" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/CSS/search.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4180">
+              <caret line="220" selection-start-line="220" selection-end-line="220" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/JS/search.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -97,11 +120,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Server/PostAsk.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="347" column="45" lean-forward="true" selection-start-line="347" selection-start-column="45" selection-end-line="347" selection-end-column="45" />
+            <state relative-caret-position="186">
+              <caret line="564" column="25" lean-forward="true" selection-start-line="564" selection-start-column="25" selection-end-line="564" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/My_question.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1843">
+              <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -113,46 +145,46 @@
       <list>
         <option value="jsf" />
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="AnnotationType" />
-        <option value="CSS File" />
         <option value="Class" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
         <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>state</find>
-      <find>change_class_state</find>
-      <find>last_time</find>
-      <find>Release(</find>
-      <find>Release</find>
-      <find>save_schedule</find>
-      <find>schedule</find>
-      <find>选择视频</find>
-      <find>custom-file mb-3</find>
-      <find>video</find>
-      <find>text</find>
-      <find>video1</find>
-      <find>fa fa-play-circle-o</find>
-      <find>ui-box1</find>
-      <find>.fa-play-circle-o</find>
-      <find>adjust</find>
-      <find>.sec-li a</find>
-      <find>get_schedule</find>
-      <find>user</find>
-      <find>showname</find>
-      <find>title_list_box</find>
-      <find>title_list</find>
-      <find>load_history</find>
-      <find>search_tips</find>
-      <find>list_tips</find>
       <find>_schedule</find>
       <find>hover</find>
       <find>.title_list_box</find>
       <find>autoReconnect</find>
       <find>continue_class(this)</find>
+      <find>continue_class</find>
+      <find>live</find>
+      <find>adjust</find>
+      <find>GetLearnFile</find>
+      <find>${pageContext.request.contextPath}</find>
+      <find>justified</find>
+      <find>changeinfor</find>
+      <find>page</find>
+      <find>?page</find>
+      <find>search-content</find>
+      <find>user-list</find>
+      <find>ChangeInfor</find>
+      <find>.user-list .up-item .up-face</find>
+      <find>username</find>
+      <find>ui-box</find>
+      <find>go</find>
+      <find>ask_ul</find>
+      <find>jsonObj</find>
+      <find>height=&quot;40px&quot;</find>
+      <find>count</find>
+      <find>page_ul</find>
+      <find>jsonObj.count === 0</find>
+      <find>search_to()</find>
+      <find>hei</find>
+      <find>highlight</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,11 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Server/ConnectSQL.java" />
-        <option value="$PROJECT_DIR$/src/Server/ChangeInfor.java" />
-        <option value="$PROJECT_DIR$/src/Server/CodeUtil.java" />
-        <option value="$PROJECT_DIR$/src/Server/Notification.java" />
-        <option value="$PROJECT_DIR$/src/Server/Play.java" />
         <option value="$PROJECT_DIR$/src/Server/save_image.java" />
         <option value="$PROJECT_DIR$/src/Server/UploadSec.java" />
         <option value="$PROJECT_DIR$/src/Filter/Login_Filter.java" />
@@ -175,7 +202,6 @@
         <option value="$PROJECT_DIR$/src/Server/PostNote.java" />
         <option value="$PROJECT_DIR$/src/Server/Learn_list.java" />
         <option value="$PROJECT_DIR$/src/Server/GetLearnFile.java" />
-        <option value="$PROJECT_DIR$/src/Server/PostAsk.java" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/index.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/basic_information.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/course.jsp" />
@@ -185,7 +211,6 @@
         <option value="$PROJECT_DIR$/web/HTML_JSP/image.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/instructors.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/management.jsp" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/PersonalCenter.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/questions.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/Resources.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/students.jsp" />
@@ -201,11 +226,8 @@
         <option value="$PROJECT_DIR$/web/HTML_JSP/radio_cover.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/My_answered.jsp" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/Search/video.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/Myclass.jsp" />
-        <option value="$PROJECT_DIR$/src/Server/SaveClassInfor.java" />
         <option value="$PROJECT_DIR$/web/JS/Myclass.js" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/Play.jsp" />
         <option value="$PROJECT_DIR$/src/Server/getHash.java" />
         <option value="$PROJECT_DIR$/src/Server/Students.java" />
         <option value="$PROJECT_DIR$/web/JS/LoginPC.js" />
@@ -213,6 +235,16 @@
         <option value="$PROJECT_DIR$/web/CSS/navigation_dark.css" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/navigation.jsp" />
         <option value="$PROJECT_DIR$/web/JS/Learn_list.js" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/Play.jsp" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/PersonalCenter.jsp" />
+        <option value="$PROJECT_DIR$/src/Server/SaveClassInfor.java" />
+        <option value="$PROJECT_DIR$/src/Server/ChangeInfor.java" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/Search/user.jsp" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/Search/video.jsp" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/Search/ask.jsp" />
+        <option value="$PROJECT_DIR$/src/Server/PostAsk.java" />
+        <option value="$PROJECT_DIR$/web/CSS/search.css" />
+        <option value="$PROJECT_DIR$/web/JS/search.js" />
       </list>
     </option>
   </component>
@@ -236,9 +268,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="446" />
-    <option name="y" value="271" />
-    <option name="width" value="1310" />
+    <option name="x" value="6" />
+    <option name="y" value="307" />
+    <option name="width" value="1879" />
     <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -249,67 +281,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
-          <expand>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="CSS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="HTML_JSP" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="HTML_JSP" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Search" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="JS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -400,6 +371,73 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
+          <expand>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="CSS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="HTML_JSP" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="HTML_JSP" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Search" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="JS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="WEB-INF" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -412,7 +450,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/IntelliJ IDEA 2018.2/javaweb/ServletTest/src/Server/UploadImage.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552970896089" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553001818759" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="MySQL" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SoftTest" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -953,6 +991,7 @@
       <workItem from="1552620093236" duration="646000" />
       <workItem from="1552874116374" duration="16681000" />
       <workItem from="1552959383444" duration="11397000" />
+      <workItem from="1553053845496" duration="215000" />
     </task>
     <task id="LOCAL-00001" summary="将ionic换成了bootstrap">
       <created>1538102747370</created>
@@ -1161,7 +1200,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1656494000" />
+    <option name="totallyTimeSpent" value="1673122000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1173,10 +1212,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.57859534" visible="true" weight="0.15618336" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.57859534" visible="true" weight="0.17091152" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1187,17 +1226,17 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3243626" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49061662" weight="0.34751773" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48927614" weight="0.4262473" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48927614" weight="0.42492917" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49597856" weight="0.3253796" />
       <window_info anchor="bottom" id="Application Servers" order="7" side_tool="true" weight="0.32765958" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50603217" side_tool="true" weight="0.3512748" />
       <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.4919571" weight="0.1681128" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3264642" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32577905" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="12" type="SLIDING" weight="0.12340426" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49396783" weight="0.32719547" />
+      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49396783" weight="0.69121814" />
       <window_info anchor="bottom" id="Duplicate detector" order="14" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="15" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -1304,75 +1343,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/fileupload1.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/fileupload2.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="34" column="20" lean-forward="true" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-          <folding>
-            <element signature="e#10#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/homepage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="189" column="14" selection-start-line="189" selection-start-column="14" selection-end-line="189" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/image.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/instructors.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/MyCourse.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/navigationBar.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="21" column="49" lean-forward="true" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/PersonalCenter.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/questions.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="383" column="26" lean-forward="true" selection-start-line="383" selection-start-column="26" selection-end-line="383" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/registerPC.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/registerPC.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1420,19 +1390,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/ChangePW.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="231" column="29" lean-forward="true" selection-start-line="231" selection-start-column="29" selection-end-line="231" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="931">
+          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1528,13 +1487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/My_question.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2356">
-          <caret line="142" column="54" selection-start-line="142" selection-start-column="40" selection-end-line="142" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/Play.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -1570,61 +1522,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/JS/Myclass.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="241" column="81" selection-start-line="241" selection-start-column="81" selection-end-line="241" selection-end-column="81" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Myclass.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="201" column="10" selection-start-line="201" selection-start-column="10" selection-end-line="201" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Search/video.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#label#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Play.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="121" column="28" selection-start-line="121" selection-start-column="28" selection-end-line="121" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#video#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1651,47 +1552,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/navigation.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="193" column="39" lean-forward="true" selection-start-line="193" selection-start-column="39" selection-end-line="193" selection-end-column="39" />
-          <folding>
-            <element signature="n#style#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#6;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/Students.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="969">
+          <caret line="51" column="52" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/CSS/navigation.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="223" selection-start-line="223" selection-end-line="223" selection-end-column="18" />
+        <state relative-caret-position="722">
+          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/CSS/navigation_dark.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="240" column="18" selection-start-line="240" selection-start-column="18" selection-end-line="240" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/SaveClassInfor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-975">
-          <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="5111">
+          <caret line="270" column="4" selection-start-line="270" selection-start-column="4" selection-end-line="270" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -1705,20 +1581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="56" column="108" selection-start-line="56" selection-start-column="108" selection-end-line="56" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/JS/Learn_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/ConnectSQL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -1726,10 +1588,189 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Play.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10868">
+          <caret line="572" column="59" lean-forward="true" selection-start-line="572" selection-start-column="59" selection-end-line="572" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/JS/Myclass.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="83" column="20" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/GetLearnFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="87" lean-forward="true" selection-start-line="10" selection-start-column="87" selection-end-line="10" selection-end-column="87" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/JS/Learn_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Students.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/ChangePW.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/SaveClassInfor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="26" column="70" lean-forward="true" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/PersonalCenter.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="252" column="23" lean-forward="true" selection-start-line="252" selection-start-column="23" selection-end-line="252" selection-end-column="23" />
+          <folding>
+            <element signature="e#4580#4591#0#JAVA" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/CSS/My_question.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/ChangeInfor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/My_question.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="97" column="21" lean-forward="true" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/JAVA/java11/lib/src.zip!/java.base/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="768" column="22" selection-start-line="768" selection-start-column="22" selection-end-line="768" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Search/ask.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="46" column="45" lean-forward="true" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#em#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Search/video.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="52" column="61" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#em#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Search/user.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="84" column="22" lean-forward="true" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#em#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/CSS/search.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/JS/search.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="42" lean-forward="true" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#label#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/PostAsk.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="347" column="45" lean-forward="true" selection-start-line="347" selection-start-column="45" selection-end-line="347" selection-end-column="45" />
+        <state relative-caret-position="160">
+          <caret line="87" column="56" lean-forward="true" selection-start-line="87" selection-start-column="56" selection-end-line="87" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

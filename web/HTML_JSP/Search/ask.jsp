@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: LI
-  Date: 2019/3/18 0018
-  Time: 10:22
+  Date: 2019/3/19 0019
+  Time: 19:56
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation_dark.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/search.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/My_question.css">
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/JS/LoginPC.js"></script>
@@ -24,7 +25,7 @@
         if (keyword.trim()==='')  return;
         $('#search_ipt').val(keyword);
         add_href();
-        search_class();
+        search_ask()
     });
 </script>
 <body style="background: #f8fafc;">
@@ -44,13 +45,13 @@
                 <div class="search-classify clearfix">
                     <ul class="nav nav-tabs nav-justified">
                         <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0)">课程</a>
+                            <a class="nav-link " href="video.jsp">课程</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="user.jsp">用户</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="ask.jsp">问答</a>
+                            <a class="nav-link active" href="javascript:void(0)">问答</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">笔记</a>
@@ -60,6 +61,7 @@
                         <em id="count" style="font-style: normal;"></em>
                     </span>
                 </div>
+                <ul id="ask_ul"></ul>
             </div>
             <div id="page" class="pagination"></div>
         </div>

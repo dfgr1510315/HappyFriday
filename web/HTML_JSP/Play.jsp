@@ -256,7 +256,9 @@
         position: relative;
         top: 5px;
     }
-
+    .playing{
+        color: #007bff !important;
+    }
 </style>
 
 
@@ -283,11 +285,10 @@
 
       <div id="center_box" class="tab-content">
           <div id="video" class="center tab-pane active"   >
-              <video id="video1" class="video-js vjs-default-skin"  style="width:100% ;height:100%" controls preload="none"></video>
-<%--
+              <video id="video1" class="video-js vjs-default-skin"  style="width:100% ;height:100%" controls preload="none">
                      data-setup='{ "html5" : { "nativeTextTracks" : false } }'>
-                  <source src="${pageContext.request.contextPath}/Upload/33969c4371226b916139c168128a2fd2.mp4" type="video/mp4">
---%>
+                  <source src="" type="video/mp4">
+              </video>
           </div>
 
           <div id="text" class="center tab-pane fade" style="background-color: white;padding: 20px;"></div>
@@ -487,7 +488,7 @@
                     }
                     //alert(Class_flag);
                 }
-                $('#Unit'+(class_no.substring(0,class_no.indexOf('-'))-1)).children().eq((class_no.substring(class_no.indexOf('-')+1))).find('.ui-box1').parent().append(
+                $('#Unit'+(class_no.substring(0,class_no.indexOf('-'))-1)).children().eq((class_no.substring(class_no.indexOf('-')+1))).find('.ui-box1').parent().addClass('playing').append(
                     '<i class="fa fa-adjust" style="position: relative;left:370px;top: 5px" id="adjust"></i>'
                 )
                 //alert(Serial_No+"\n"+Unit_Name+"\n"+Class_Name+"\n"+Video_Src+"\n"+Editor+"\n"+File_Href+"\n"+State);
@@ -568,7 +569,8 @@
     var videoID;
     var cookieTime;
     function live() {
-        cookie.set('class_no_'+user+No,class_no+','+$('#adjust').prev().text());
+        var title = $('#adjust').prev().children().eq(2).text();
+        cookie.set('class_no_'+user+No,class_no+','+title);
         var done_times = 0;
         for (var a=0;a<Unit_length;a++){
             var ifDone = cookie.get('time_'+user+No+Unit[a]);
@@ -584,7 +586,7 @@
                 No:No,
                 user:user,
                 schedule:percentage,
-                last_time:class_no+':'+$('#adjust').prev().text()
+                last_time:class_no+':'+title
             },
             dataType: 'json'
         });

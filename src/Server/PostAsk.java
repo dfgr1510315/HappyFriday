@@ -67,10 +67,71 @@ public class PostAsk extends HttpServlet {
             case "get_my_ask" :
                 page = Integer.parseInt(request.getParameter("page"));
                 get_my_ask(response,page,author);
+                break;
             case "get_my_reply_ask" :
                 page = Integer.parseInt(request.getParameter("page"));
                 user = request.getParameter("answer");
                 get_my_reply_ask(response,page,user);
+                break;
+            case "search_ask":
+                page = Integer.parseInt(request.getParameter("page"));
+                user = request.getParameter("keyword");
+                search_ask(response,page,user);
+                break;
+        }
+    }
+
+    private void search_ask(HttpServletResponse response,int page,String keyword){
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            Statement statement = con.createStatement();
+            PrintWriter out = response.getWriter();
+            JSONObject jsonObject = new JSONObject();
+            ArrayList<Integer> ask_id = new ArrayList<>();
+            ArrayList<Integer> belong_class_id = new ArrayList<>();
+            ArrayList<String> ask_title = new ArrayList<>();
+            ArrayList<String> ask_time = new ArrayList<>();
+            ArrayList<Integer> answer_count = new ArrayList<>();
+            ArrayList<Integer> visits_count = new ArrayList<>();
+            ArrayList<String> class_title = new ArrayList<>();
+            ArrayList<String> cover_address = new ArrayList<>();
+            ArrayList<String> new_answerer = new ArrayList<>();
+            ArrayList<String> new_answer = new ArrayList<>();
+            ResultSet rs = statement.executeQuery("select ask_id,belong_class_id,ask_title,ask_time,answer_count,visits_count,class_title,cover_address,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from ask,class_teacher_table where belong_class_id=class_id and ask_title like '%"+keyword+"%' limit "+(6*(page-1))+","+6);
+            while (rs.next()){
+                ask_id.add(rs.getInt("ask_id"));
+                belong_class_id.add(rs.getInt("belong_class_id"));
+                ask_title.add(rs.getString("ask_title"));
+                ask_time.add(rs.getString("ask_time"));
+                answer_count.add(rs.getInt("answer_count"));
+                visits_count.add(rs.getInt("visits_count"));
+                class_title.add(rs.getString("class_title"));
+                cover_address.add(rs.getString("cover_address"));
+                new_answerer.add(rs.getString("new_answerer"));
+                new_answer.add(rs.getString("new_answer"));
+            }
+            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask where ask_title like '%"+keyword+"%'");
+            while (rs.next()){
+                jsonObject.put("count",rs.getString("count"));
+            }
+            jsonObject.put("ask_id",ask_id);
+            jsonObject.put("belong_class_id",belong_class_id);
+            jsonObject.put("ask_title",ask_title);
+            jsonObject.put("ask_time",ask_time);
+            jsonObject.put("answer_count",answer_count);
+            jsonObject.put("visits_count",visits_count);
+            jsonObject.put("class_title",class_title);
+            jsonObject.put("cover_address",cover_address);
+            jsonObject.put("new_answerer",new_answerer);
+            jsonObject.put("new_answer",new_answer);
+            out.print(jsonObject);
+            out.flush();
+            out.close();
+            rs.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -248,6 +248,7 @@
         var introduction = $.trim($("#introduction").val());
         var user = '<%=username%>';
         var data = {
+            action:'1', //更改用户信息
             ID: user,
             nike: nike,
             sex: sex,
