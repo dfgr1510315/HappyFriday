@@ -2,6 +2,7 @@ package Server;
 
 
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
+
 
 @WebServlet(name = "SaveClassInfor")
 public class SaveClassInfor extends HttpServlet {
@@ -160,10 +162,13 @@ public class SaveClassInfor extends HttpServlet {
 
     private void get_new_class(HttpServletResponse response,int limit,int page,int type){
         JSONObject jsonObj = new JSONObject();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection conn = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            Statement statement = con.createStatement();
+       /*     Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);*/
+            conn = dbp.getConnection();
+            Statement statement = conn.createStatement();
             ResultSet rs;
             String sql;
             String count_sql;
@@ -213,9 +218,15 @@ public class SaveClassInfor extends HttpServlet {
             out.print(jsonObj);
             out.close();
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (conn!=null)
+                try{
+                    conn.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
