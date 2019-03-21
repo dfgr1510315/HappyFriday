@@ -11,12 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12850cd1-69d1-43cd-8843-a98321ef88ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Server/DBPoolConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ServletTest_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ServletTest_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ServletTest_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ServletTest_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServletTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ServletTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/SaveClassInfor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/SaveClassInfor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -230,8 +225,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="41" />
-    <option name="y" value="352" />
+    <option name="x" value="40" />
+    <option name="y" value="351" />
     <option name="width" value="1880" />
     <option name="height" value="1030" />
   </component>
@@ -385,7 +380,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/IntelliJ IDEA 2018.2/javaweb/ServletTest/src/Server/UploadImage.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553143192020" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553154063475" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="MySQL" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/log4j-1.2.17.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -928,7 +923,7 @@
       <workItem from="1552959383444" duration="11397000" />
       <workItem from="1553053845496" duration="215000" />
       <workItem from="1553129905695" duration="1930000" />
-      <workItem from="1553143288737" duration="734000" />
+      <workItem from="1553143288737" duration="809000" />
     </task>
     <task id="LOCAL-00001" summary="将ionic换成了bootstrap">
       <created>1538102747370</created>
@@ -1119,7 +1114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552827699555</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="3/21 使用Druid连接池">
+      <created>1553153395672</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1553153395673</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1137,7 +1139,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1693498000" />
+    <option name="totallyTimeSpent" value="1693573000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1150,7 +1152,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.57859534" visible="true" weight="0.17493297" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1244,7 +1245,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="新增文件上传功能" />
     <MESSAGE value="个人中心——》修改个人信息" />
     <MESSAGE value="完善了个人信息的修改功能" />
     <MESSAGE value="肝" />
@@ -1269,7 +1269,8 @@
     <MESSAGE value="3/14 更新sql字段" />
     <MESSAGE value="3/16 更新sql" />
     <MESSAGE value="3/17 修复若干bug,增加搜索自动补全功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/17 修复若干bug,增加搜索自动补全功能" />
+    <MESSAGE value="3/21 使用Druid连接池" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/21 使用Druid连接池" />
   </component>
   <component name="XPathView.XPathProjectComponent">
     <history />
