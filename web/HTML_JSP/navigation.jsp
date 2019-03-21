@@ -1,9 +1,8 @@
-<%@ page import="Server.ConnectSQL" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %>
+
 <%@ page import="java.util.Arrays" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="Server.DBPoolConnection" %>
+<%@ page import="com.alibaba.druid.pool.DruidPooledConnection" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String username=(String) session.getAttribute("user_id");
@@ -15,22 +14,29 @@
     String title = null;
     int new_notice = 1;
     if (username!=null){
-        //System.out.println("连接数据库");
         head_image =(String) session.getAttribute("head_image");
         usertype = (String) session.getAttribute("usertype");
         history_class_id = Arrays.toString((int[]) session.getAttribute("history_class_id"));
-        //System.out.println("history_class_id"+history_class_id);
         schedule = Arrays.toString((int[]) session.getAttribute("schedule"));
         last_time = Arrays.toString((String[]) session.getAttribute("last_time"));
         title = Arrays.toString((String[]) session.getAttribute("title"));
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("SELECT readed from notice where to_user='"+username+"' order by time desc limit 1;");
             while (rs.next())  new_notice = rs.getInt("readed");
+            rs.close();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 

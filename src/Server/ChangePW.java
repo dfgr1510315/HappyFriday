@@ -1,5 +1,7 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,25 +29,37 @@ public class ChangePW extends HttpServlet {
 
     private int changepw(String username,String form_currentPassword, String form_confirmPassword) {
         int state = 0;
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select password from login_table where username='"+username+"'");
             String currentPW = "";
             while (rs.next()) currentPW = rs.getString("password");
             if (currentPW.equals(form_currentPassword)){
-                PreparedStatement qsql = con.prepareStatement("update login_table set password=? where username=?");
+                qsql = con.prepareStatement("update login_table set password=? where username=?");
                 qsql.setString(1, form_confirmPassword);
                 qsql.setString(2, username);
                 qsql.executeUpdate();
-                qsql.close();
             }else state = 1;
-            con.close();
-
         } catch (Exception e) {
             state = 2;
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
         return state;
     }

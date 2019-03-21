@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -82,9 +83,10 @@ public class PostAsk extends HttpServlet {
     }
 
     private void search_ask(HttpServletResponse response,int page,String keyword){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             PrintWriter out = response.getWriter();
             JSONObject jsonObject = new JSONObject();
@@ -129,16 +131,23 @@ public class PostAsk extends HttpServlet {
             out.flush();
             out.close();
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_my_reply_ask(HttpServletResponse response,int page,String answer){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select distinct ask.unit_no,ask_title,asker,ask_time,head,lesson_title,answer_count,ask_id,visits_count,belong_class_id,class_title,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_reply from personal_table,ask,class,class_teacher_table,answer where answerer='"+answer+"'and belong_ask_id=ask_id and asker=username and belong_class_id=class.class_id and class.class_id=class_teacher_table.class_id and class.unit_no=ask.unit_no order by ask_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
@@ -192,16 +201,23 @@ public class PostAsk extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_my_ask(HttpServletResponse response,int page,String author){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select ask.unit_no,ask_title,ask_time,lesson_title,answer_count,ask_id,visits_count,belong_class_id,class_title,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from personal_table,ask,class,class_teacher_table where asker='"+author+"' and asker=username and belong_class_id=class.class_id and class.class_id=class_teacher_table.class_id and ask.unit_no=class.unit_no order by ask_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
@@ -249,73 +265,105 @@ public class PostAsk extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void post_answer(HttpServletResponse response,int No,String answer,String answer_time,String answer_text){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into answer(belong_ask_id,answerer,answer_text,answer_time) values(?,?,?,?)");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("insert into answer(belong_ask_id,answerer,answer_text,answer_time) values(?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,answer);
             qsql.setString(3,answer_text);
             qsql.setString(4,answer_time);
             qsql.executeUpdate();
-            qsql.close();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ID() answerID");
             JSONObject jsonObj = new JSONObject();
             while (rs.next()){
                 jsonObj.put("answerID",rs.getString("answerID"));
             }
-
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void post_reply(HttpServletResponse response,int No,String reply,String reply_time,String reply_text,String reply_to){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into reply(belong_answer_id,replyer,text,reply_time,to_reply) values(?,?,?,?,?)");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("insert into reply(belong_answer_id,replyer,text,reply_time,to_reply) values(?,?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,reply);
             qsql.setString(3,reply_text);
             qsql.setString(4,reply_time);
             qsql.setString(5,reply_to);
             qsql.executeUpdate();
-            qsql.close();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_reply(HttpServletResponse response,int No){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
-            PreparedStatement qsql  = con.prepareStatement("UPDATE ask SET visits_count =visits_count+1  WHERE ask_id="+No);
+            qsql  = con.prepareStatement("UPDATE ask SET visits_count =visits_count+1  WHERE ask_id="+No);
             qsql.executeUpdate();
-            qsql.close();
             ResultSet rs = statement.executeQuery("select class_title,belong_class_id,ask_title,asker,ask_text,ask_time,head,unit_no,class_type,visits_count from ask,personal_table,class_teacher_table where ask_id="+No+" and username=asker and belong_class_id=class_id;");
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> answer_head = new ArrayList<>();
@@ -334,17 +382,8 @@ public class PostAsk extends HttpServlet {
                 jsonObj.put("ask_time",rs.getString("ask_time"));
                 jsonObj.put("asker_head",rs.getString("head"));
                 jsonObj.put("unit_no",rs.getString("unit_no"));
-                jsonObj.put("type",rs.getString("class_type"));
+                jsonObj.put("type",rs.getInt("class_type"));
                 jsonObj.put("times",rs.getString("visits_count"));
-                //class_no = rs.getInt("belong_class_id");
-               /* ask_describe = rs.getString("ask_title");
-                asker = rs.getString("asker");
-                ask_text = rs.getString("ask_text");
-                ask_time = rs.getString("ask_time");
-                asker_head = rs.getString("head");
-                unit_no = rs.getString("unit_no");
-                type = rs.getInt("class_type");
-                times = rs.getInt("visits_count");*/
             }
 
             rs = statement.executeQuery("select ask_id,ask_title from ask where belong_class_id="+jsonObj.get("class_no")+"  and unit_no='"+jsonObj.get("unit_no")+"' and ask_id!="+No+" limit 10");
@@ -397,17 +436,30 @@ public class PostAsk extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
 
     private void get_this_class_ask(HttpServletResponse response,int No,int page){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select ask.unit_no,ask_title,asker,ask_time,head,lesson_title,answer_count,ask_id,visits_count,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from personal_table,ask,class where belong_class_id="+No+" and asker=username and belong_class_id=class_id and ask.unit_no=class.unit_no order by ask_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
@@ -451,16 +503,23 @@ public class PostAsk extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_All_ask(HttpServletResponse response,String user,int page){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select class_title,ask_time,ask_title,ask_id,belong_class_id,unit_no,asker,answer_count,visits_count,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from class_teacher_table,ask where teacher='"+user+"' and class_id=belong_class_id order by ask_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
@@ -508,16 +567,23 @@ public class PostAsk extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_ask(HttpServletResponse response,int No,String class_No,String author){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select ask_title,ask_time,answer_count,visits_count from ask where belong_class_id="+No+" and unit_no='"+class_No+"' and asker= '"+author+"'");
             JSONObject jsonObj = new JSONObject();
@@ -540,17 +606,25 @@ public class PostAsk extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void post_ask(HttpServletResponse response,int No,String class_No,String author,String note_editor,String time,String ask_title){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into ask(belong_class_id,unit_no,ask_title,asker,ask_text,ask_time) values(?,?,?,?,?,?)");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("insert into ask(belong_class_id,unit_no,ask_title,asker,ask_text,ask_time) values(?,?,?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,class_No);
             qsql.setString(3,ask_title);
@@ -558,17 +632,27 @@ public class PostAsk extends HttpServlet {
             qsql.setString(5,note_editor);
             qsql.setString(6,time);
             qsql.executeUpdate();
-            qsql.close();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();
-            //System.out.println(jsonObj+"????");
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 

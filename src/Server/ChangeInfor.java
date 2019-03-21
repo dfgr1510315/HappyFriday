@@ -1,6 +1,7 @@
 package Server;
 
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -48,9 +49,10 @@ public class ChangeInfor extends HttpServlet {
     }
 
     private void search_user(HttpServletResponse response,String keyword,int page){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             PrintWriter out = response.getWriter();
             JSONObject jsonObject = new JSONObject();
@@ -80,17 +82,25 @@ public class ChangeInfor extends HttpServlet {
             out.flush();
             out.close();
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private int ConnectMysql(String ID, String nike, String sex, String birth, String teacher, String introduction) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("update personal_table set nike=?,sex=?,birth=?,information=?,teacher=? where username=?");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update personal_table set nike=?,sex=?,birth=?,information=?,teacher=? where username=?");
             qsql.setString(1, nike);
             qsql.setString(2, sex);
             qsql.setString(3, birth);
@@ -98,11 +108,21 @@ public class ChangeInfor extends HttpServlet {
             qsql.setString(5, teacher);
             qsql.setString(6, ID);
             qsql.executeUpdate();
-            qsql.close();
-            con.close();
-
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
         return 0;
     }

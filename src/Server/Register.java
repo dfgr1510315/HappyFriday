@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -51,32 +52,44 @@ public class Register extends HttpServlet {
     private void ChangeEmail(HttpServletResponse response,String username,String email) throws IOException{
         String code=CodeUtil.generateUniqueCode();
         PrintWriter out = response.getWriter();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement psql = con.prepareStatement("update login_table set code=? where username=?");
-            psql.setString(1,code);
-            psql.setString(2,username);
-            int state = psql.executeUpdate();
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update login_table set code=? where username=?");
+            qsql.setString(1,code);
+            qsql.setString(2,username);
+            int state = qsql.executeUpdate();
             out.flush();
             out.println(state);
-            psql.close();
-            con.close();
             new Thread(new MailUtil(email,code,1)).start();
         } catch (Exception e) {
             e.printStackTrace();
             out.flush();
             out.println(0);
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
         out.close();
     }
 
     private void forgetPW(HttpServletResponse response,String forget_user) throws IOException{
-        //生成激活码
-        PrintWriter out = response.getWriter();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select password,email from login_table where username='"+forget_user+"'");
             String password = null;
@@ -85,6 +98,7 @@ public class Register extends HttpServlet {
                 password = rs.getString("password");
                 email = rs.getString("email");
             }
+            PrintWriter out = response.getWriter();
             if (password==null){
                 out.flush();
                 out.println(0);
@@ -92,47 +106,67 @@ public class Register extends HttpServlet {
             }
             out.flush();
             out.println(1);
-            con.close();
+            out.close();
             new Thread(new Mailforget(email,password)).start();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
-        out.close();
     }
 
     private void register(HttpServletResponse response,String username,String password,String email,int active) throws IOException{
         //生成激活码
         String code=CodeUtil.generateUniqueCode();
         PrintWriter out = response.getWriter();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement psql = con.prepareStatement("insert into  login_table values(?,?,?,?,?)");
-            psql.setString(1,username);
-            psql.setString(2,password);
-            psql.setString(3,email);
-            psql.setInt(4,active);
-            psql.setString(5,code);
-            int state = psql.executeUpdate();
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("insert into  login_table values(?,?,?,?,?)");
+            qsql.setString(1,username);
+            qsql.setString(2,password);
+            qsql.setString(3,email);
+            qsql.setInt(4,active);
+            qsql.setString(5,code);
+            int state = qsql.executeUpdate();
             ConnectSQL.my_println("state:"+state);
             out.flush();
             out.println(state);
-            psql.close();
-            con.close();
             new Thread(new MailUtil(email, code,0)).start();
         } catch (Exception e) {
             e.printStackTrace();
             out.flush();
             out.println(0);
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
         out.close();
     }
 
     private void login(HttpServletRequest request,HttpServletResponse response,String name,String password){
         ConnectSQL.my_println("login");
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url,ConnectSQL.user,ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             String sql = "select login_table.*,nike,head,usertype,(select readed from notice where to_user='"+name+"' order by time desc limit 1) readed from login_table,personal_table where login_table.username=personal_table.username and active=1 and login_table.username='"+name+"'";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
@@ -216,10 +250,16 @@ public class Register extends HttpServlet {
                 out.flush();
                 out.close();
             }
-            con.close();
             rs.close();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 

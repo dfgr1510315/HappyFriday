@@ -1,5 +1,7 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,17 +32,17 @@ public class Activation extends HttpServlet {
         }else{
             request.getRequestDispatcher("/fail.jsp").forward(request, response);
         }*/
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             if (email==null){
-                PreparedStatement qsql = con.prepareStatement("update login_table set active=?,code=? where code=?");
+                qsql = con.prepareStatement("update login_table set active=?,code=? where code=?");
                 qsql.setInt(1, 1);
                 qsql.setString(2, null);
                 qsql.setString(3, code);
                 int state = qsql.executeUpdate();
-                qsql.close();
-                con.close();
                 ConnectSQL.my_println("state"+state);
                 if (state==0){
                     PrintWriter pw=response.getWriter();
@@ -50,15 +52,13 @@ public class Activation extends HttpServlet {
                     pw.write("<script language='javascript'>alert('激活成功');window.location.href='HTML_JSP/homepage.jsp'</script>");
                 }
             }else {
-                PreparedStatement qsql = con.prepareStatement("update login_table set email=?,code=? where code=?");
+                qsql = con.prepareStatement("update login_table set email=?,code=? where code=?");
                 qsql.setString(1, email);
                 qsql.setString(2, null);
                 qsql.setString(3, code);
                 int state = qsql.executeUpdate();
                 HttpSession session = request.getSession();
                 session.setAttribute("email",email);
-                qsql.close();
-                con.close();
                 if (state==0){
                     PrintWriter pw=response.getWriter();
                     pw.write("<script language='javascript'>alert('更换失败');window.location.href='HTML_JSP/homepage.jsp'</script>");
@@ -71,6 +71,19 @@ public class Activation extends HttpServlet {
             //request.getRequestDispatcher("HTML_JSP/homepage.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 }

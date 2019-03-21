@@ -7,11 +7,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="Server.ConnectSQL" %>
+<%@ page import="Server.DBPoolConnection" %>
+<%@ page import="com.alibaba.druid.pool.DruidPooledConnection" %>
+<%@ page import="java.sql.*" %>
 <%
     //String path = request.getContextPath();
     //String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -109,10 +107,10 @@
                             <a data-toggle="modal" data-target="#information" href="#" style="float: right;">修改资料</a>
                         </div>
                         <%
+                            DBPoolConnection dbp = DBPoolConnection.getInstance();
+                            DruidPooledConnection con =null;
                             try {
-                                Class.forName(ConnectSQL.driver);
-                                Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-                                //if (!con.isClosed()) System.out.println("数据库连接上了");
+                                con = dbp.getConnection();
                                 String sql = "select * from personal_table where username='" + username + "'";
                                 Statement statement = con.createStatement();
                                 ResultSet rs = statement.executeQuery(sql);
@@ -128,9 +126,15 @@
                                 }
                                 request.setAttribute("list", list);
                                 rs.close();
-                                con.close();
                             } catch (Exception e) {
                                 e.printStackTrace();
+                            }finally {
+                                if (con!=null)
+                                    try{
+                                        con.close();
+                                    }catch (SQLException e){
+                                        e.printStackTrace();
+                                    }
                             }
 
                             ArrayList list = (ArrayList) request.getAttribute("list");

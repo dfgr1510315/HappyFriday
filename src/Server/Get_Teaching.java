@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -20,7 +21,6 @@ public class Get_Teaching extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
-        //String username = request.getParameter("username");
         HttpSession session=request.getSession();
         String type = request.getParameter("type");
         String username=(String) session.getAttribute("user_id");
@@ -52,52 +52,79 @@ public class Get_Teaching extends HttpServlet {
     }
 
     private void delete_class(HttpServletResponse response,String class_No,String username){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("delete FROM sc WHERE user=? and class=?");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("delete FROM sc WHERE user=? and class=?");
             qsql.setString(1, username);
             qsql.setString(2, class_No);
             qsql.executeUpdate();
-            qsql.close();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void set_collection(HttpServletResponse response,String class_No,String username,String type){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("update sc set collection=? where user=? and class=?");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("update sc set collection=? where user=? and class=?");
             qsql.setString(1,type);
             qsql.setString(2,username);
             qsql.setString(3,class_No);
             qsql.executeUpdate();
-            qsql.close();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg",type);
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_my_class(HttpServletResponse response,String username){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select class_type,collection,class,class_title,cover_address,schedule,last_time from sc,class_teacher_table where user='"+username+"' and class=class_id" );
             ArrayList<String> class_no = new ArrayList<>();
@@ -148,40 +175,61 @@ public class Get_Teaching extends HttpServlet {
             out.print(jsonObj);
             out.close();
             rs.close();
-            con.close();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void add_class(HttpServletResponse response,String username,String Class_Name,int type){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement psql = con.prepareStatement("insert into  class_teacher_table(teacher,class_title,release_status,class_type,cover_address)"+"values(?,?,?,?,?)");
-            psql.setString(1,username);
-            psql.setString(2,Class_Name);
-            psql.setInt(3,0);
-            psql.setInt(4,type);
-            psql.setString(5,"/image/efb37fee400582742424a4ce08951213.png");
-            psql.executeUpdate();
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("insert into  class_teacher_table(teacher,class_title,release_status,class_type,cover_address)"+"values(?,?,?,?,?)");
+            qsql.setString(1,username);
+            qsql.setString(2,Class_Name);
+            qsql.setInt(3,0);
+            qsql.setInt(4,type);
+            qsql.setString(5,"/image/efb37fee400582742424a4ce08951213.png");
+            qsql.executeUpdate();
             PrintWriter out = response.getWriter();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("state","1");
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_Infor(HttpServletResponse response,String username){
         JSONArray json= new JSONArray();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select class_id,class_title,student_count,release_status,cover_address from class_teacher_table where teacher='"+username+"'");
             while (rs.next()){
@@ -198,11 +246,16 @@ public class Get_Teaching extends HttpServlet {
             out.print(json);
             out.close();
             rs.close();
-            con.close();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -30,13 +30,28 @@
         text-decoration: none;
     }
     .course-sidebar-layout{
+        height:100%;
+        width: 4%;
+        float: left;
         background: #1c1f21;
-        width: 60px;
-        display: flex;
+        /*display: flex;*/
         display: -webkit-flex;
         align-items: center;
-        z-index: 10000;
+        position: relative;
+
     }
+    .course-sidebar-layout #back{
+        position: absolute;
+        color: rgba(255,255,255,.6);
+        top: 0;
+        transition: all .3s;
+        cursor: pointer;
+        font-size: 25px;
+    }
+    .course-sidebar-layout #back:hover{
+        color: white;
+    }
+
     .course-sidebar-layout dl {
         flex: 1;
         width: 100%;
@@ -50,7 +65,7 @@
         justify-content: center;
         cursor: pointer;
     }
-    .course-sidebar-layout i {
+    .course-sidebar-layout .nav-pills .nav-item .fa {
         font-size: 24px;
         color: rgba(255,255,255,.6);
         line-height: 24px;
@@ -259,31 +274,31 @@
     .playing{
         color: #007bff !important;
     }
+    .course-sidebar-layout .nav-pills .nav-item .active{
+        color: white;
+    }
 </style>
 
 
 <body onload="ifActive();get_Video();get_Class()" onunload="live();">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;height: 100%;background-color: #1c1f21;padding: 10px;margin-top: 5px">
-    <div class='course-sidebar-layout ' id='courseSidebar' style="height:100%;width: 4%;float: left;">
+    <div class='course-sidebar-layout ' id='courseSidebar' >
+        <a href="Learn_list.jsp" id="back">
+            <i class="fa fa-arrow-left"></i>
+        </a>
         <ul class="nav nav-pills flex-column" role="tablist" style="height: 40%">
             <li class='nav-item' id="video_li">
-                <div>
-                    <i class='fa fa-file-video-o'></i>
-                    <a class="active" data-toggle="pill" href="#video">视频</a>
-                </div>
+                <i class='fa fa-file-video-o'></i>
+                <a class=" active" data-toggle="pill" href="#video">视频</a>
             </li>
             <li class='nav-item' id="text_li" >
-                <div>
-                    <i class='fa fa-file-code-o'></i>
-                    <a class="" data-toggle="pill" href="#text">图文</a>
-                </div>
+                <i class='fa fa-file-code-o'></i>
+                <a class="" data-toggle="pill" href="#text">图文</a>
             </li>
             <li class='nav-item'  id="file_li">
-                <div>
-                    <i class='fa fa-file-archive-o'></i>
-                    <a class="" data-toggle="pill" href="#file">文件</a>
-                </div>
+                <i class='fa fa-file-archive-o'></i>
+                <a class="" data-toggle="pill" href="#file">文件</a>
             </li>
 
         </ul>
@@ -298,9 +313,7 @@
           </div>
           <div id="text" class="center tab-pane fade" style="background-color: white;padding: 20px;"></div>
           <div id="file" class="center tab-pane fade" style="background-color: white;padding: 20px;">
-              <div id="file_group" class="list-group">
-
-              </div>
+              <div id="file_group" class="list-group"></div>
           </div>
       </div>
 
@@ -322,9 +335,7 @@
 
             <!-- Tab panes -->
             <div class="tab-content box">
-                <div id="chapter" class=" tab-pane active">
-
-                </div>
+                <div id="chapter" class=" tab-pane active"></div>
                 <div id="note" class=" tab-pane fade" ><br>
                     <h6>笔记</h6>
                     <div id="note_editor" style="width: 100%"></div>
@@ -439,6 +450,7 @@
         note_editor.create();
         ask_editor.create();
 
+        $('#back').attr('href','Learn_list.jsp?='+No);
         $.ajax({
             type: "POST",
             asynch: "false",

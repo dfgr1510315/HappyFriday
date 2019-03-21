@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -39,34 +40,47 @@ public class Learn_list extends HttpServlet {
     }
 
     private void join_class(HttpServletResponse response,int No,String username,String time){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("insert into sc(user,class,time) value (?,?,?)");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("insert into sc(user,class,time) value (?,?,?)");
             qsql.setString(1, username);
             qsql.setInt(2, No);
             qsql.setString(3, time);
             qsql.executeUpdate();
-            //notice.join_class_notice(username,No);
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
             out.close();
-            qsql.close();
-            con.close();
         }
         catch(Exception e){
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private JSONObject get_class(int No){
         JSONObject jsonObject = new JSONObject();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             String sql = "select unit_no,unit_title,lesson_title,release_status from class where class_id=" + No ;
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
@@ -117,9 +131,15 @@ public class Learn_list extends HttpServlet {
             jsonObject.put("Class_Name",Class_Name);
             jsonObject.put("State",State);
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
         return jsonObject;
     }

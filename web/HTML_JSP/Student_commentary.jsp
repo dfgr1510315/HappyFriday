@@ -144,10 +144,6 @@
             border-top-right-radius: 4px;
             border-bottom-right-radius: 4px;
         }
-        .last  a, .last  span {
-            padding: 0 12px;
-            line-height: 2.5;
-        }
 
     </style>
     <script type="text/javascript">
@@ -302,7 +298,7 @@
                 <div class="comment-list">
                     <ul id="ask_ul" style="padding-left: 0"></ul>
                 </div>
-                <ul id="page" class="pagination"></ul>
+                <ul id="page" class="pagination pagination-sm"></ul>
             </div>
         </div>
     </div>

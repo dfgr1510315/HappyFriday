@@ -157,8 +157,19 @@ p {
 }
 #jump{
     width: 50px;
+    height: 24px;
+    font-size: 4px;
 }
 .last  a, .last  span {
     padding: 0 12px;
     line-height: 2.5;
+}
+
+.last{
+    position: absolute;
+    right: 0;
+}
+
+.pagination{
+    position: relative;
 }

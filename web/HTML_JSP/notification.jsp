@@ -255,7 +255,7 @@
             <div id="notice_box">
                 <ul class="list-group" id="notice_box_ul"></ul>
             </div>
-            <ul id="page_ask" class="pagination"></ul>
+            <ul id="page_ask" class="pagination pagination-sm"></ul>
         </div>
     </div>
 </div>

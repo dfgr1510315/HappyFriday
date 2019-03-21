@@ -107,14 +107,10 @@
                         <th>操作</th>
                     </tr>
                     </thead>
-                    <tbody>
-
-                    </tbody>
+                    <tbody></tbody>
                 </table>
 
-                <ul id="page" class="pagination">
-
-                </ul>
+                <ul id="page" class="pagination pagination-sm"></ul>
             </div>
         </div>
     </div>

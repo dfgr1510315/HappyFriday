@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ public class Notification extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        String time = request.getParameter("time");
+        //String time = request.getParameter("time");
         switch (action) {
             case "get_notice":
                 String user = request.getParameter("user");
@@ -34,27 +35,42 @@ public class Notification extends HttpServlet {
     }
 
     private void delete_notice(HttpServletResponse response,int notice_id){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("delete from notice where notice_id=?");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("delete from notice where notice_id=?");
             qsql.setInt(1,notice_id);
             qsql.executeUpdate();
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(1);
-            qsql.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_notice(HttpServletResponse response,int page,String user){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select notice.*,(SELECT class_title from class_teacher_table where class_teacher_table.class_id=notice.class_id) class_title,(SELECT ask_title from ask where ask.ask_id=notice.ask_id) ask_title from notice where to_user='"+user+"' order by time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
@@ -89,19 +105,31 @@ public class Notification extends HttpServlet {
             while (rs.next()){
                 jsonObj.put("count",rs.getString("count"));
             }
-            PreparedStatement psql = con.prepareStatement("update notice set readed=? where readed=? and to_user=? order by time desc limit "+6*page);
-            psql.setInt(1,1);
-            psql.setInt(2,0);
-            psql.setString(3,user);
-            psql.executeUpdate();
+            qsql = con.prepareStatement("update notice set readed=? where readed=? and to_user=? order by time desc limit "+6*page);
+            qsql.setInt(1,1);
+            qsql.setInt(2,0);
+            qsql.setString(3,user);
+            qsql.executeUpdate();
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

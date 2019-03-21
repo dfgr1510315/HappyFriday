@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -44,9 +45,10 @@ public class save_image extends HttpServlet {
     }
 
     private void get_cover(HttpServletResponse response,int class_no){
-         try{
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        try {
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select cover_address from class_teacher_table where class_id="+class_no);
             JSONObject jsonObj = new JSONObject();
@@ -57,17 +59,25 @@ public class save_image extends HttpServlet {
              out.flush();
              out.print(jsonObj);
              out.close();
-             con.close();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void set_cover(HttpServletResponse response,String image,int class_no){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set cover_address=? where class_id=?");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update class_teacher_table set cover_address=? where class_id=?");
             qsql.setString(1, image);
             qsql.setInt(2, class_no);
             ConnectSQL.my_println(image);
@@ -78,30 +88,53 @@ public class save_image extends HttpServlet {
             out.flush();
             out.print(jsonObj);
             out.close();
-            qsql.close();
-            con.close();
         }
         catch(Exception e){
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void set_head(HttpServletRequest request,String username, String head_image){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("update personal_table set head=? where username=?");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update personal_table set head=? where username=?");
             qsql.setString(1, head_image);
             qsql.setString(2, username);
             qsql.executeUpdate();
             HttpSession session = request.getSession();
             session.setAttribute("head_image",head_image);
-            qsql.close();
-            con.close();
         }
         catch(Exception e){
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
-
 }

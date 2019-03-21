@@ -428,9 +428,7 @@
                 <div class="comment-list">
                     <ul id="ask_ul"></ul>
                 </div>
-                <ul id="page_ask" class="pagination">
-
-                </ul>
+                <ul id="page_ask" class="pagination pagination-sm"></ul>
             </div>
             <!-- 同学笔记 -->
             <div id="three" class="container tab-pane fade margin">
@@ -443,7 +441,7 @@
                 <div class="comment-list">
                     <ul id="note_ul"></ul>
                 </div>
-                <ul id="page_note" class="pagination"></ul>
+                <ul id="page_note" class="pagination pagination-sm"></ul>
             </div>
         </div>
 

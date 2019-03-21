@@ -83,9 +83,10 @@ public class SaveClassInfor extends HttpServlet {
     }
 
     private void search_class(HttpServletResponse response,String keyword,int page){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             PrintWriter out = response.getWriter();
             JSONObject jsonObject = new JSONObject();
@@ -121,16 +122,23 @@ public class SaveClassInfor extends HttpServlet {
             out.flush();
             out.close();
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void search_tips(String keyword,HttpServletResponse response){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             PrintWriter out = response.getWriter();
             ResultSet rs = statement.executeQuery("select class_title from class_teacher_table where class_title like '%"+keyword+"%'" );
@@ -141,22 +149,42 @@ public class SaveClassInfor extends HttpServlet {
             out.flush();
             out.close();
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void delete_class(int No){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("delete from class_teacher_table where class_id=?");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("delete from class_teacher_table where class_id=?");
             qsql.setInt(1,No);
             qsql.executeUpdate();
-            qsql.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
@@ -231,12 +259,12 @@ public class SaveClassInfor extends HttpServlet {
     }
 
     private void set_infor(HttpServletResponse response,int No,String title,int sel1,String outline){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            /*String sql = "select * from usermanager";*/
-            /* ResultSet rq = statement.executeQuery(sql);*/
-            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set class_title=?, class_type=?, outline=? where class_id=? ");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update class_teacher_table set class_title=?, class_type=?, outline=? where class_id=? ");
             qsql.setString(1,title );
             qsql.setInt(2,sel1 );
             qsql.setString(3,outline );
@@ -248,18 +276,30 @@ public class SaveClassInfor extends HttpServlet {
             out.flush();
             out.print(jsonObj);
             out.close();
-            qsql.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_infor(HttpServletResponse response,int No){
         JSONObject jsonObj = new JSONObject();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select class_title,outline,class_type from class_teacher_table where  class_id="+No );
             while (rs.next()){
@@ -272,36 +312,54 @@ public class SaveClassInfor extends HttpServlet {
             out.print(jsonObj);
             out.close();
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void save_class(int No,String ClassInfor,String Unitcount,String Classcount){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            /*String sql = "select * from usermanager";*/
-            /* ResultSet rq = statement.executeQuery(sql);*/
-            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set layout=?, UnitCount=?, ClassCount=? where class_id=? ");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update class_teacher_table set layout=?, UnitCount=?, ClassCount=? where class_id=? ");
             qsql.setString(1,ClassInfor );
             qsql.setString(2,Unitcount );
             qsql.setString(3,Classcount );
             qsql.setInt(4,No );
             qsql.executeUpdate();
-            qsql.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private JSONObject read_class(int No){
         JSONObject jsonObj = new JSONObject();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select class_title,layout,UnitCount,ClassCount,teacher,release_status from class_teacher_table where class_id="+No);
             while (rs.next()){
@@ -313,25 +371,44 @@ public class SaveClassInfor extends HttpServlet {
                 jsonObj.put("state",rs.getInt("release_status"));
             }
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
         return jsonObj;
     }
 
     private void change_class_state(int No,int state){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("update class_teacher_table set release_status=? where class_id=?");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update class_teacher_table set release_status=? where class_id=?");
             qsql.setInt(1,state );
             qsql.setInt(2,No );
             qsql.executeUpdate();
-            qsql.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 }

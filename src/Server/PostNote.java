@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -63,9 +64,10 @@ public class PostNote extends HttpServlet {
     }
 
     private void search_note(HttpServletResponse response,String keyword,int page){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select belong_class_id,author,text,note_time,class_title,cover_address from note,class_teacher_table where belong_class_id=class_id and text like '%"+keyword+"%' limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
@@ -98,16 +100,23 @@ public class PostNote extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_this_class_note(HttpServletResponse response,int No,int page){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select text,note_time,note.unit_no,author,head,lesson_title from note,personal_table,class where belong_class_id="+No+" and author=username and belong_class_id=class_id and note.unit_no=class.unit_no order by note_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
@@ -136,16 +145,23 @@ public class PostNote extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_my_all_note(HttpServletResponse response,String author){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select note_id,text,note_time,note.unit_no,belong_class_id,class_title,cover_address from note,class_teacher_table where class_id=belong_class_id and author= '"+author+"'");
             JSONObject jsonObj = new JSONObject();
@@ -184,43 +200,63 @@ public class PostNote extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
 
     private void change_note(HttpServletResponse response,int note_no,String note_editor,String time){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("update note set text=?,note_time=? where note_id=?");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("update note set text=?,note_time=? where note_id=?");
             qsql.setString(1,note_editor);
             qsql.setString(2,time);
             qsql.setInt(3,note_no);
             qsql.executeUpdate();
-            qsql.close();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void delete_note(HttpServletResponse response,int note_no){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql = con.prepareStatement("delete FROM note WHERE note_id=?");
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("delete FROM note WHERE note_id=?");
             qsql.setInt(1, note_no);
             qsql.executeUpdate();
-            qsql.close();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();
@@ -228,16 +264,29 @@ public class PostNote extends HttpServlet {
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_note(HttpServletResponse response,int No,String class_No,String author){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select text,note_time,note_id from note where belong_class_id="+No+" and unit_no='"+class_No+"' and author= '"+author+"'");
             JSONObject jsonObj = new JSONObject();
@@ -254,29 +303,35 @@ public class PostNote extends HttpServlet {
             jsonObj.put("note_no",note_no);
             jsonObj.put("msg","1");
             PrintWriter out = response.getWriter();
-            //System.out.println(jsonObj+"????");
             out.flush();
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void post_note(HttpServletResponse response,int No,String class_No,String author,String note_editor,String time){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("insert into note(belong_class_id,unit_no,author,text,note_time) values(?,?,?,?,?)");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("insert into note(belong_class_id,unit_no,author,text,note_time) values(?,?,?,?,?)");
             qsql.setInt(1,No);
             qsql.setString(2,class_No);
             qsql.setString(3,author);
             qsql.setString(4,note_editor);
             qsql.setString(5,time);
             qsql.executeUpdate();
-            qsql.close();
             JSONObject jsonObj = new JSONObject();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select LAST_INSERT_ID() note_id");
@@ -284,13 +339,24 @@ public class PostNote extends HttpServlet {
                 jsonObj.put("note_id",rs.getString("note_id"));
             }
             PrintWriter out = response.getWriter();
-            //System.out.println(jsonObj+"????");
             out.flush();
             out.print(jsonObj);
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 

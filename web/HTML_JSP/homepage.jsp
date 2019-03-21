@@ -52,7 +52,6 @@
 
         .c1 {
             height: 50px;
-            width: 80%;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
@@ -72,7 +71,6 @@
         }
 
         .d1 {
-            width: 80%;
             height: 400px;
             margin-left: auto;
             margin-right: auto;
@@ -104,7 +102,6 @@
         }
 
         .types-content{
-            width: 80%;
             min-height: 100px;
             margin-left: auto;
             margin-right: auto;
@@ -193,99 +190,101 @@
 
 <jsp:include page="LoginPC.jsp" />
 
+<div style="margin: 0 auto;width: 1196px;;">
+    <div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px;margin: 71px auto auto ">
 
-<div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px;margin: 71px auto auto;width: 80%; ">
+        <!-- 指示符 -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+        </ul>
 
-    <!-- 指示符 -->
-    <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-    </ul>
-
-    <div class="carousel-inner" style="border-radius:4px;box-shadow: 0 12px 24px 0 rgba(7,17,27,.2);">
-        <div class="carousel-item active">
-            <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
-            <div class="carousel-caption">
-                <%--<h3>计科吴彦祖：</h3>--%>
+        <div class="carousel-inner" style="border-radius:4px;box-shadow: 0 12px 24px 0 rgba(7,17,27,.2);">
+            <div class="carousel-item active">
+                <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                <div class="carousel-caption">
+                    <%--<h3>计科吴彦祖：</h3>--%>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
+                <div class="carousel-caption">
+                    <%-- <h3>咸鱼桑</h3>--%>
+                </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
-            <div class="carousel-caption">
-                <%-- <h3>咸鱼桑</h3>--%>
-            </div>
+
+        <!-- 左右切换按钮 -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+
+
+    <div class="c1">
+        <div>
+            <div style="width: 10%; float: left; margin-top: 10px;">最新课程</div>
+            <hr>
         </div>
     </div>
 
-    <!-- 左右切换按钮 -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </a>
-</div>
+    <div class="types-content">
+
+    </div>
+
+    <div class="c1">
+        <div>
+            <div style="width: 10%; float: left; margin-top: 10px;">资源分类</div>
+            <hr>
+        </div>
+    </div>
 
 
-<div class="c1">
-    <div>
-        <div style="width: 10%; float: left; margin-top: 10px;">最新课程</div>
-        <hr>
+    <div class="d1">
+        <ul >
+            <li>
+                <a href="">HTML\CSS</a>
+            </li>
+            <li>
+                <a href="">JavaScript</a>
+            </li>
+            <li>
+                <a href="">服务端</a>
+            </li>
+            <li>
+                <a href="">数据库</a>
+            </li>
+            <li>
+                <a href="">移动端</a>
+            </li>
+            <li>
+                <a href="">ASP.NET</a>
+            </li>
+            <li>
+                <a href="">Web Service</a>
+            </li>
+            <li>
+                <a href="">开发工具</a>
+            </li>
+            <li>
+                <a href="">网站建设</a>
+            </li>
+            <li>
+                <a href="">网站建设</a>
+            </li>
+            <li>
+                <a href="">网站建设</a>
+            </li>
+            <li>
+                <a href="">网站建设</a>
+            </li>
+        </ul>
     </div>
 </div>
 
-<div class="types-content">
-
-</div>
-
-<div class="c1">
-    <div>
-        <div style="width: 10%; float: left; margin-top: 10px;">资源分类</div>
-        <hr>
-    </div>
-</div>
-
-
-<div class="d1">
-    <ul >
-        <li>
-            <a href="">HTML\CSS</a>
-        </li>
-        <li>
-            <a href="">JavaScript</a>
-        </li>
-        <li>
-            <a href="">服务端</a>
-        </li>
-        <li>
-            <a href="">数据库</a>
-        </li>
-        <li>
-            <a href="">移动端</a>
-        </li>
-        <li>
-            <a href="">ASP.NET</a>
-        </li>
-        <li>
-            <a href="">Web Service</a>
-        </li>
-        <li>
-            <a href="">开发工具</a>
-        </li>
-        <li>
-            <a href="">网站建设</a>
-        </li>
-        <li>
-            <a href="">网站建设</a>
-        </li>
-        <li>
-            <a href="">网站建设</a>
-        </li>
-        <li>
-            <a href="">网站建设</a>
-        </li>
-    </ul>
-</div>
 </body>
 <script type="text/javascript">
     $(document).ready(function(){

@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -47,27 +48,43 @@ public class Students extends HttpServlet {
     }
 
     private void remove_student(HttpServletResponse response,int No,String user){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("delete from sc where user=? and class=?");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("delete from sc where user=? and class=?");
             qsql.setString(1,user);
             qsql.setInt(2,No);
             qsql.executeUpdate();
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(1);
-            qsql.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void save_schedule(HttpServletRequest request,int No,int percentage,String user,String last_time){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-            PreparedStatement qsql  = con.prepareStatement("update sc set schedule=?,last_time=? where user=? and class=?");
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("update sc set schedule=?,last_time=? where user=? and class=?");
             qsql.setInt(1,percentage);
             qsql.setString(2,last_time);
             qsql.setString(3,user);
@@ -86,16 +103,29 @@ public class Students extends HttpServlet {
             }
             session.setAttribute("schedule",schedule);
             session.setAttribute("last_time",history_last_time);
-            qsql.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_schedule(HttpServletResponse response,int No,String user){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select schedule,last_time from sc where user='"+user+"' and class="+No);
             JSONObject jsonObj = new JSONObject();
@@ -118,18 +148,25 @@ public class Students extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);
-            //rs.close();
+            rs.close();
             out.close();
-            //con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
     private void get_class_students(HttpServletResponse response,int No,int page){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select user,head,schedule,time from sc,personal_table where class="+No+" and username=user order by time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
@@ -156,9 +193,15 @@ public class Students extends HttpServlet {
             out.print(jsonObj);
             rs.close();
             out.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 

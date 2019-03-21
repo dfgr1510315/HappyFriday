@@ -177,7 +177,7 @@
             <div class="comment-list">
                 <ul id="ask_ul" style="padding-left: 0"></ul>
             </div>
-            <ul id="page_ask" class="pagination"></ul>
+            <ul id="page_ask" class="pagination pagination-sm"></ul>
         </div>
     </div>
 </div>

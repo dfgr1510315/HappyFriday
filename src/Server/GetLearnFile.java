@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -78,19 +79,17 @@ public class GetLearnFile extends HttpServlet {
     }
 
     private void ConnectMysql(int No,ArrayList<String> Serial_No, ArrayList<String> Unit_name, ArrayList<String> Class_name, ArrayList<String> Video_src, ArrayList<String> Source_Video_Src,ArrayList<String> Source_Video_Name, ArrayList<String> Editor, ArrayList<String> File_Href,ArrayList<String> File_Name, ArrayList<Integer> state){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs;
-            PreparedStatement qsql;
-            rs = statement.executeQuery("select unit_no from class where class_id='"+No+"'");
+            ResultSet rs = statement.executeQuery("select unit_no from class where class_id='"+No+"'");
             ArrayList<String> Unit = new ArrayList<>();
             while (rs.next()){
                 Unit.add(rs.getString("unit_no"));
             }
-            System.out.println(Unit);
-            System.out.println(Serial_No);
             for (int i=0;i<Serial_No.size();i++){
                 if (Unit.contains(Serial_No.get(i))) {
                     qsql = con.prepareStatement("update class set unit_title=?, lesson_title=?, release_status=?,video_address=?,Image_text=?,file_address=?,file_name=?,source_video_title=? ,source_video_address=? where unit_no=? and class_id=?");
@@ -106,7 +105,6 @@ public class GetLearnFile extends HttpServlet {
                     qsql.setString(10,Serial_No.get(i));
                     qsql.setInt(11,No);
                     qsql.executeUpdate();
-                    qsql.close();
                 }else {
                     qsql = con.prepareStatement("insert into class values(?,?,?,?,?,?,?,?,?,?,?)");
                     qsql.setInt(1,No);
@@ -122,7 +120,6 @@ public class GetLearnFile extends HttpServlet {
                     qsql.setString(10,File_Href.get(i));
                     qsql.setString(11,File_Name.get(i));
                     qsql.executeUpdate();
-                    qsql.close();
                 }
             }
             for (String aUnit : Unit) {
@@ -131,12 +128,23 @@ public class GetLearnFile extends HttpServlet {
                     qsql.setString(1, aUnit);
                     qsql.setInt(2, No);
                     qsql.executeUpdate();
-                    qsql.close();
                 }
             }
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 

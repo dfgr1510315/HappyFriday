@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -27,9 +28,10 @@ public class Play extends HttpServlet {
     }
 
     private void get_address(HttpServletResponse response,int No,String class_No){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
         try {
-            Class.forName(ConnectSQL.driver);
-            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            con = dbp.getConnection();
             Statement statement = con.createStatement();
             String sql = "select video_address,Image_text,file_address,file_name from class where class_id=" + No + " and unit_no='"+class_No+"'";
             ResultSet rs = statement.executeQuery(sql);
@@ -45,9 +47,15 @@ public class Play extends HttpServlet {
             out.print(jsonObj);
             out.close();
             rs.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 }

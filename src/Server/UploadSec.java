@@ -1,5 +1,6 @@
 package Server;
 
+import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -101,17 +102,30 @@ public class UploadSec extends HttpServlet {
                                 new File(uploadPath+"\\"+oldFileName).delete();
                             }else {
                                 new File(uploadPath+"\\"+oldFileName).renameTo(new File(uploadPath+"\\"+fileName));
+                                DBPoolConnection dbp = DBPoolConnection.getInstance();
+                                DruidPooledConnection con =null;
+                                PreparedStatement qsql = null;
                                 try {
-                                    Class.forName(ConnectSQL.driver);
-                                    Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-                                    PreparedStatement qsql= con.prepareStatement("insert into File values(?,?)");
+                                    con = dbp.getConnection();
+                                    qsql= con.prepareStatement("insert into File values(?,?)");
                                     qsql.setString(1,UPLOAD_DIRECTORY+"/"+fileName);
                                     qsql.setString(2,oldFileName);
                                     qsql.executeUpdate();
-                                    qsql.close();
-                                    con.close();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                }finally {
+                                    if (qsql!=null)
+                                        try{
+                                            qsql.close();
+                                        }catch (SQLException e){
+                                            e.printStackTrace();
+                                        }
+                                    if (con!=null)
+                                        try{
+                                            con.close();
+                                        }catch (SQLException e){
+                                            e.printStackTrace();
+                                        }
                                 }
                             }
                             jsonObj.put("src",UPLOAD_DIRECTORY+"/"+fileName);
@@ -123,9 +137,10 @@ public class UploadSec extends HttpServlet {
                             if (Server.getHash.getFile(uploadPath).contains(fileName)){   //是否有重复文件
                                 ConnectSQL.my_println("getFile(uploadPath).contains(fileName):"+Server.getHash.getFile(uploadPath).contains(fileName));
                                 new File(uploadPath+"\\"+oldFileName).delete();
+                                DBPoolConnection dbp = DBPoolConnection.getInstance();
+                                DruidPooledConnection con =null;
                                 try {
-                                    Class.forName(ConnectSQL.driver);
-                                    Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+                                    con = dbp.getConnection();
                                     Statement statement = con.createStatement();
                                     ResultSet rs = statement.executeQuery("select video_address,video_title from Video where source_video_address='"+UPLOAD_DIRECTORY+"/"+fileName+"'");
                                     while (rs.next()) {
@@ -137,9 +152,15 @@ public class UploadSec extends HttpServlet {
                                     out.flush();
                                     out.print(jsonObj);
                                     out.close();
-                                    con.close();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                }finally {
+                                    if (con!=null)
+                                        try{
+                                            con.close();
+                                        }catch (SQLException e){
+                                            e.printStackTrace();
+                                        }
                                 }
                             }else {
                                 toH264.getPATH();
@@ -148,18 +169,31 @@ public class UploadSec extends HttpServlet {
                                 if (type.equals("mp4")) {
                                     src = fileName;
                                 }else src = toH264.getName();
+                                DBPoolConnection dbp = DBPoolConnection.getInstance();
+                                DruidPooledConnection con =null;
+                                PreparedStatement qsql = null;
                                 try {
-                                    Class.forName(ConnectSQL.driver);
-                                    Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
-                                    PreparedStatement qsql= con.prepareStatement("insert into Video values(?,?,?)");
+                                    con = dbp.getConnection();
+                                    qsql= con.prepareStatement("insert into Video values(?,?,?)");
                                     qsql.setString(1,UPLOAD_DIRECTORY+"/"+fileName);
                                     qsql.setString(2,UPLOAD_DIRECTORY+"/"+src);
                                     qsql.setString(3,oldFileName);
                                     qsql.executeUpdate();
-                                    qsql.close();
-                                    con.close();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                }finally {
+                                    if (qsql!=null)
+                                        try{
+                                            qsql.close();
+                                        }catch (SQLException e){
+                                            e.printStackTrace();
+                                        }
+                                    if (con!=null)
+                                        try{
+                                            con.close();
+                                        }catch (SQLException e){
+                                            e.printStackTrace();
+                                        }
                                 }
                                 jsonObj.put("video_name",oldFileName);
                                 //ConnectSQL.my_println("fileName::"+fileName);

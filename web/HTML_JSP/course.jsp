@@ -163,6 +163,7 @@
         }
 
         $(document).ready(function(){
+            $('.user_navigation .nav-pills li:eq(3) a').css('color','white');
             var type = GetQueryString('type');
             if (type==null) type ='0';
             $('#nav_type').children().eq(type).children().addClass('active');
@@ -181,13 +182,12 @@
                 dataType: 'json',
                 success: function (jsonObj) {
                     if (jsonObj.title.length===0) $('.types-content').append(
-                        ' <div class="no_find_class">暂无课程</div>'
+                        '<div class="no_find_class">暂无课程</div>'
                     ) ;
                     else {
                         for (var i=0;i<jsonObj.title.length;i++){
                             add_class(jsonObj.no[i],jsonObj.cover[i],jsonObj.title[i],jsonObj.type[i],jsonObj.teacher[i],jsonObj.student_number[i],jsonObj.outline[i]);
                         }
-
 
                         var page_ul =  $('#page');
                         page_length = Math.ceil(jsonObj.count/25);
@@ -231,10 +231,10 @@
         });
     </script>
 </head>
-<body onload="ifActive()" style="background-color: #f8fafc;">
+<body style="background-color: #f8fafc;">
 <jsp:include page="navigation.jsp"/>
 <jsp:include page="LoginPC.jsp" />
-<div style="width: 80%;margin-right: auto;margin-left: auto">
+<div style="width: 80%;margin-right: auto;margin-left: auto;margin-bottom: 50px;">
     <!-- Nav pills -->
     <ul id="nav_type" class="nav nav-pills"  style="margin-top: 48px;">
         <li class="nav-item">
@@ -263,13 +263,8 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div  class=" tab-pane active"><br>
-            <div class="types-content">
-
-            </div>
-
-            <ul id="page" class="pagination">
-
-            </ul>
+            <div class="types-content"></div>
+            <ul id="page" class="pagination pagination-sm"></ul>
         </div>
     </div>
 </div>
