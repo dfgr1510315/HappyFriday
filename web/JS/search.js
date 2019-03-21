@@ -57,6 +57,8 @@ function highlight(type)
         case 3:
             get_high = '.ui-box .qa-header .qa-tit i';
             break;
+        case 4:
+            get_high = '#note_box .post-row .note_text p'
     }
     $(get_high).each(function()//遍历文章；
     {
@@ -152,6 +154,56 @@ function search_to() {
     //console.log(new_keyword+'!!!');
     if (new_keyword===keyword || new_keyword.trim()==='') return;
     window.location.href=sp[sp.length-1]+'?keyword='+encodeURI(new_keyword);
+}
+
+function search_note() {
+    var keyword = $('#search_ipt').val();
+    if (keyword.trim() === '') return;
+    var page = GetQueryString('page');
+    if (page == null) page = '1';
+    $.ajax({
+        type: "POST",
+        asynch: "false",
+        url: PageContext+"/postnote",
+        data: {
+            page: page,
+            action: 'search_note',
+            keyword: keyword
+        },
+        dataType: 'json',
+        success: function (jsonObj) {
+            $('#count').text('共找到' + jsonObj.count + '个结果');
+            if (jsonObj.count === '0') return;
+            var note_box = $('#note_box');
+            for (var i = 0; i < jsonObj.author.length; i++) {
+                note_box.prepend('<div class="post-row">\n' +
+                    '                            <div style="float:left;">\n' +
+                    '                                <a target="_blank" href="../Learn_list.jsp?='+jsonObj.belong_class_id[i]+'">\n' +
+                    '                                    <image src="'+PageContext+jsonObj.cover_address[i]+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
+                    '                                </a>\n' +
+                    '                            </div>\n' +
+                    '                            <div style="margin-left: 60px">\n' +
+                    '                                <div class="title">\n' +
+                    '                                    <a target="_blank" href="../Learn_list.jsp?='+jsonObj.belong_class_id[i]+'" >'+jsonObj.class_title[i]+'</a>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="unit">\n' +
+                    '                                    <a target="_blank" href="" >'+jsonObj.author[i]+'</a>\n' +
+                    '                                </div>\n' +
+                    '                                <div style="display: block;">\n' +
+                    '                                    <div class="note_text">\n' +
+                    '                                        '+jsonObj.text[i]+'\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="post" style="margin-left: 445px;">\n' +
+                    '                                        <span >'+jsonObj.note_time[i]+'</span>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                            </div>\n' +
+                    '                        </div>');
+            }
+            page_ul(page, jsonObj.count);
+            highlight(4);
+        }
+    })
 }
 
 function search_user() {

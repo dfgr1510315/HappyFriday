@@ -19,7 +19,7 @@
         head_image =(String) session.getAttribute("head_image");
         usertype = (String) session.getAttribute("usertype");
         history_class_id = Arrays.toString((int[]) session.getAttribute("history_class_id"));
-        System.out.println("history_class_id"+history_class_id);
+        //System.out.println("history_class_id"+history_class_id);
         schedule = Arrays.toString((int[]) session.getAttribute("schedule"));
         last_time = Arrays.toString((String[]) session.getAttribute("last_time"));
         title = Arrays.toString((String[]) session.getAttribute("title"));

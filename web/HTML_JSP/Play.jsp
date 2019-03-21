@@ -185,7 +185,7 @@
 
 
     #center_box{
-        width:70%;
+        width:71%;
         height:100%;
         float: left
     }
@@ -265,19 +265,25 @@
 <body onload="ifActive();get_Video();get_Class()" onunload="live();">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;height: 100%;background-color: #1c1f21;padding: 10px;margin-top: 5px">
-    <div class='course-sidebar-layout ' id='courseSidebar' style="height:100%;width: 5%;float: left;">
+    <div class='course-sidebar-layout ' id='courseSidebar' style="height:100%;width: 4%;float: left;">
         <ul class="nav nav-pills flex-column" role="tablist" style="height: 40%">
-            <li class='nav-item'>
-                <i class='fa fa-file-video-o'></i>
-                <a class="active" data-toggle="pill" href="#video">视频</a>
+            <li class='nav-item' id="video_li">
+                <div>
+                    <i class='fa fa-file-video-o'></i>
+                    <a class="active" data-toggle="pill" href="#video">视频</a>
+                </div>
             </li>
-            <li class='nav-item' >
-                <i class='fa fa-file-code-o'></i>
-                <a class="" data-toggle="pill" href="#text">图文</a>
+            <li class='nav-item' id="text_li" >
+                <div>
+                    <i class='fa fa-file-code-o'></i>
+                    <a class="" data-toggle="pill" href="#text">图文</a>
+                </div>
             </li>
-            <li class='nav-item' >
-                <i class='fa fa-file-archive-o'></i>
-                <a class="" data-toggle="pill" href="#file">文件</a>
+            <li class='nav-item'  id="file_li">
+                <div>
+                    <i class='fa fa-file-archive-o'></i>
+                    <a class="" data-toggle="pill" href="#file">文件</a>
+                </div>
             </li>
 
         </ul>
@@ -290,7 +296,6 @@
                   <source src="" type="video/mp4">
               </video>
           </div>
-
           <div id="text" class="center tab-pane fade" style="background-color: white;padding: 20px;"></div>
           <div id="file" class="center tab-pane fade" style="background-color: white;padding: 20px;">
               <div id="file_group" class="list-group">
@@ -308,10 +313,10 @@
                     <a class="nav-link active" data-toggle="tab" href="#chapter" onclick="sub_width()">章节</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#note" onclick="add_width()">笔记</a>
+                    <a class="nav-link" data-toggle="tab" href="#note" onclick="add_width();get_note()">笔记</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#ask" onclick="add_width()">问答</a>
+                    <a class="nav-link" data-toggle="tab" href="#ask" onclick="add_width();get_ask()">问答</a>
                 </li>
             </ul>
 
@@ -381,6 +386,8 @@
 </body>
 
 <script type="text/javascript">
+    var note_flag = 0;
+    var ask_flag = 0;
     var No = window.location.search.replace("?",'').split("/");
     var Unit_length;
     var Unit;
@@ -413,14 +420,14 @@
         'fontSize',  // 字号
         'quote',
         'code'];
-    function getSrting(search) {
+/*    function getSrting(search) {
         var return_string='';
         for (var i = search.length-1;i>=0;i--){
             if (search.charAt(i)==='/') break;
             return_string = return_string+search.charAt(i);
         }
         return return_string.split("").reverse().join("");
-    }
+    }*/
 
     function get_Class() {
         var note_editor = new E('#note_editor');
@@ -443,10 +450,6 @@
             dataType: 'json',
             success: function (jsonObject) {
                 $("title").text(jsonObject.title);
-/*                var Serial_No = jsonObject.Serial_No.toString().replace("[",'').replace("]",'').split(",");
-                var Unit_Name = jsonObject.Unit_Name.toString().replace("[",'').replace("]",'').split(",");
-                var Class_Name = jsonObject.Class_Name.toString().replace("[",'').replace("]",'').split(",");
-                var State = jsonObject.State.toString().replace("[",'').replace("]",'').split(",");*/
                 $("#teacher").text(jsonObject.teacher);
                 /*var class_no = getSrting(window.location.search);*/
                 var flag='';var class_count = 0;
@@ -494,7 +497,32 @@
                 //alert(Serial_No+"\n"+Unit_Name+"\n"+Class_Name+"\n"+Video_Src+"\n"+Editor+"\n"+File_Href+"\n"+State);
             }
         });
+    }
 
+    function get_ask() {
+        if (ask_flag===1) return;
+        $.ajax({
+            type: "POST",
+            asynch: "false",
+            url: PageContext+"/postask",
+            data: {
+                action:'get',
+                No:No,
+                class_No:class_no,
+                author:user
+            },
+            dataType: 'json',
+            success: function (jsonObject){
+                for (var i=0;i< jsonObject.title.length;i++){
+                    add_ask_box(jsonObject.title[i],jsonObject.time[i],jsonObject.answer[i],jsonObject.browse[i]);
+                }
+            }
+        });
+        ask_flag = 1;
+    }
+
+    function get_note() {
+        if (note_flag===1) return;
         $.ajax({
             type: "POST",
             asynch: "false",
@@ -546,25 +574,9 @@
                 }
             }
         });
-
-        $.ajax({
-            type: "POST",
-            asynch: "false",
-            url: PageContext+"/postask",
-            data: {
-                action:'get',
-                No:No,
-                class_No:class_no,
-                author:user
-            },
-            dataType: 'json',
-            success: function (jsonObject){
-                for (var i=0;i< jsonObject.title.length;i++){
-                    add_ask_box(jsonObject.title[i],jsonObject.time[i],jsonObject.answer[i],jsonObject.browse[i]);
-                }
-            }
-        });
+        note_flag=1
     }
+
     var player;
     var videoID;
     var cookieTime;
@@ -649,32 +661,43 @@
                 }else {
                     $('#video').empty().append(
                         '<div class="no_find_video">本课时无视频教案</div>'
-                    )
+                    );
+                    $('#video_li').hide();
+
                 }
 
-                $('#text').append(
-                    jsonObj.text
-                );
-
-                var file_address = jsonObj.file_address.split('|');
-                var file_name = jsonObj.file_name.split('|');
-                for (var i=0;i<file_address.length-1;i++) {
-                    $('#file_group').append(
-                        '<a target="_blank" href="'+file_address[i]+'" class="list-group-item list-group-item-action">'+file_name[i]+'</a>'
-                    )
+                //console.log('jsonObj.text'+jsonObj.text);
+                if (jsonObj.text==='<p><br></p>'){
+                    $('#text_li').hide()
+                }else {
+                    $('#text').append(
+                        jsonObj.text
+                    );
                 }
 
-                //alert(jsonObj.file_name);
+
+
+                if (jsonObj.file_address===''){
+                    $('#file_li').hide();
+                }else {
+                    var file_address = jsonObj.file_address.split('|');
+                    var file_name = jsonObj.file_name.split('|');
+                    for (var i=0;i<file_address.length-1;i++) {
+                        $('#file_group').append(
+                            '<a target="_blank" href="'+file_address[i]+'" class="list-group-item list-group-item-action">'+file_name[i]+'</a>'
+                        )
+                    }
+                }
             }
         });
     }
     function add_width() {
-        $("#center_box").css('width','57%');
+        $("#center_box").css('width','58%');
         $("#right_box").css('width','36%');
     }
 
     function sub_width() {
-        $("#center_box").css('width','70%');
+        $("#center_box").css('width','71%');
         $("#right_box").css('width','23%');
     }
 

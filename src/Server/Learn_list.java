@@ -70,12 +70,7 @@ public class Learn_list extends HttpServlet {
             String sql = "select unit_no,unit_title,lesson_title,release_status from class where class_id=" + No ;
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-            String teacher = null;
-            String title = null;
-            String head = null;
-            String student_number = null;
-            String class_type = null;
-            String outline = null;
+            int class_type = 0;
             ArrayList<String> Serial_No = new ArrayList<>();
             ArrayList<String> Unit_Name = new ArrayList<>();
             ArrayList<String> Class_Name = new ArrayList<>();
@@ -92,12 +87,13 @@ public class Learn_list extends HttpServlet {
             sql = "select class_teacher_table.teacher,class_title,head,student_count,class_type,outline from class_teacher_table,personal_table where class_teacher_table.teacher=username and class_id=" + No;
             rs = statement.executeQuery(sql);
             while (rs.next()) {
-                head = rs.getString("head");
-                teacher = rs.getString("teacher");
-                title = rs.getString("class_title");
-                student_number = rs.getString("student_count");
-                class_type = rs.getInt("class_type")+"";
-                outline = rs.getString("outline");
+                jsonObject.put("head",rs.getString("head"));
+                jsonObject.put("teacher",rs.getString("teacher"));
+                jsonObject.put("title",rs.getString("class_title"));
+                jsonObject.put("student_number",rs.getInt("student_count"));
+                jsonObject.put("class_type",rs.getInt("class_type"));
+                jsonObject.put("outline",rs.getString("outline"));
+                class_type = rs.getInt("class_type");
             }
 
             sql = "select class_id,class_title,cover_address from class_teacher_table where release_status=1 and class_type="+class_type+" limit 5";
@@ -107,20 +103,19 @@ public class Learn_list extends HttpServlet {
                 other_class_no.add(rs.getInt("class_id"));
                 other_class_image.add(rs.getString("cover_address"));
             }
+            sql = "SELECT COUNT(note_id) note_count,(SELECT COUNT(ask_id) FROM ask WHERE belong_class_id="+No+") ask_count FROM note where belong_class_id="+No;
+            rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                jsonObject.put("note_count",rs.getInt("note_count"));
+                jsonObject.put("ask_count",rs.getInt("ask_count"));
+            }
             jsonObject.put("other_class_title",other_class_title);
             jsonObject.put("other_class_no",other_class_no);
             jsonObject.put("other_class_iamge",other_class_image);
-            jsonObject.put("teacher",teacher);
-            jsonObject.put("head",head);
-            jsonObject.put("title",title);
-            jsonObject.put("student_number",student_number);
-            jsonObject.put("class_type",class_type);
             jsonObject.put("Serial_No",Serial_No);
             jsonObject.put("Unit_Name",Unit_Name);
             jsonObject.put("Class_Name",Class_Name);
             jsonObject.put("State",State);
-            jsonObject.put("outline",outline);
-            //System.out.println(jsonObject);
             rs.close();
             con.close();
         } catch (Exception e) {

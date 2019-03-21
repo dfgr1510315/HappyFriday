@@ -12,7 +12,7 @@
     top: 80px;
 }
 
-.fade .btn-primary{
+.fade .btn{
     float: right;
     margin-top: 10px
 }
@@ -80,9 +80,18 @@
     display: none;
 }
 
-.card-header{
-    height: 57.8px;
+/*.card-header{
+    height: 48px;
+}*/
+
+.card-header h8{
+    font-size: 14px;
 }
+
+.card-header h10{
+    font-size: 12px;
+}
+
 
 body{
     background-color: #f8fafc;
@@ -140,4 +149,25 @@ body{
     transition-duration: 0.6s;
     transition-property: width;
     transition-timing-function: ease;
+}
+/*
+
+!*.sections .section .card-body  .custom-file .container *!.input-file-show .custom-file{
+    margin-top: 25px;
+    width: 80%;
+}
+.input-file-show .custom-file .custom-file-label{
+    overflow: hidden
+}
+.input-file-show .custom-file {
+    margin-top: 25px;height: auto;display: none
+}
+
+.input-file-show .btn-secondary{
+    margin-top: 4px;
+    margin-left: 10px
+}*/
+.input-file-show .custom-file{
+    margin-top: 25px;
+    width: 80%;
 }

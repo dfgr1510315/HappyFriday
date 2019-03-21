@@ -21,46 +21,56 @@
     <script type="text/javascript" src="../JS/Learn_list.js"></script>
 </head>
 <script type="text/javascript">
+    var ask_flag = 0;
+    var note_flag = 0;
+    var ask_count = -1;
+    var note_count = -1;
     $(document).ready(function(){
         get_Class();
-        get_Ask();
-        get_Note();
+        if (GetQueryString('page_ask')!=null) get_Ask();
+        else if (GetQueryString('page_note')!=null) get_Note();
     });
     function get_Class() {
         var percentage;
         var last_time;
-        $.ajax({
-            url:" ${pageContext.request.contextPath}/students",
-            data: {
-                No:No,
-                student:user,
-                action:'get_schedule'
-            },
-            type: "POST",
-            dataType: "json",
-            asynch: "false",
-            success: function (jsonObj) {
-                percentage = jsonObj.schedule;
-                last_time = jsonObj.last_time;
-                if(percentage === undefined) {
-                    $('.sno1-1').append(
-                        '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n'
-                    )
-                }else {
-                    $('.sno1-1').append(
-                        '  <div class="learn-btn">\n' +
-                        '      <div class="learn-info"><span>已学 '+percentage+'%</span></div>\n' +
-                        '      <div class="progress">\n' +
-                        '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
-                        '     </div>\n' +
-                        '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
-                        '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n' +
-                        ' </div>\n'
-                    )
+        console.log('user'+user);
+        if(user === 'null'){
+            $('.sno1-1').append(
+                '<button type="button" class="studyfont btn btn-outline-primary" data-toggle="modal" data-target="#LoginModal" >开始学习</button>\n'
+            )
+        }else {
+            $.ajax({
+                url:" ${pageContext.request.contextPath}/students",
+                data: {
+                    No:No,
+                    student:user,
+                    action:'get_schedule'
+                },
+                type: "POST",
+                dataType: "json",
+                asynch: "false",
+                success: function (jsonObj) {
+                    percentage = jsonObj.schedule;
+                    last_time = jsonObj.last_time;
+                    if(percentage === undefined) {
+                        $('.sno1-1').append(
+                            '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n'
+                        )
+                    }else {
+                        $('.sno1-1').append(
+                            '  <div class="learn-btn">\n' +
+                            '      <div class="learn-info"><span>已学 '+percentage+'%</span></div>\n' +
+                            '      <div class="progress">\n' +
+                            '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
+                            '     </div>\n' +
+                            '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
+                            '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n' +
+                            ' </div>\n'
+                        )
+                    }
                 }
-            }
-        });
-
+            });
+        }
         $.ajax({
             type: "POST",
             asynch: "false",
@@ -76,24 +86,28 @@
                 $("#teacher").text(jsonObject.teacher);
                 $('#head').attr('src',"${pageContext.request.contextPath}"+jsonObject.head);
                 $('#student_number').text(jsonObject.student_number);
+                ask_count = jsonObject.ask_count;
+                note_count = jsonObject.note_count;
+                $('#ask_nav').prev().text(ask_count);
+                $('#note_nav').prev().text(note_count);
                 var class_type;
                 switch (jsonObject.class_type) {
-                    case '1':
+                    case 1:
                         class_type='前端设计';
                         break;
-                    case '2':
+                    case 2:
                         class_type='后台设计';
                         break;
-                    case '3':
+                    case 3:
                         class_type='基础理论';
                         break;
-                    case '4':
+                    case 4:
                         class_type='嵌入式';
                         break;
-                    case '5':
+                    case 5:
                         class_type='移动开发';
                         break;
-                    case '6':
+                    case 6:
                         class_type='项目发布';
                         break;
                 }
@@ -176,7 +190,7 @@
                 }
                 if (one.html().length === 0) {
                     one.append(
-                        ' <div class="no_find_class">暂无发布的章节</div> '
+                        '<div class="no_find_class">暂无发布的章节</div> '
                     )
                 }
                 //alert(Serial_No+"\n"+Unit_Name+"\n"+Class_Name+"\n"+Video_Src+"\n"+Editor+"\n"+File_Href+"\n"+State);
@@ -184,7 +198,48 @@
         });
     }
 
+    function add_page(page_ul_id,page,count,page_type) {
+        var page_ul =  $(page_ul_id);
+        console.log(count);
+        page_length = Math.ceil(count/6);
+        if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+(parseInt(page)-1)+'">Previous</a></li>');
+        else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
+
+        if (page-1>2&&page_length-page>=2){
+            for (var i = page-2;i<=page+2;i++){
+                if (i<page_length+1){
+                    if (i===parseInt(page)){
+                        page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                    }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                }
+            }
+        }else {
+            if (page<=3){
+                for (i=1;i<6;i++){
+                    if (i<page_length+1){
+                        if (i===parseInt(page)){
+                            page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                        }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                    }
+                }
+            }else {
+                for (i=page_length-4;i<=page_length;i++){
+                    if (i<page_length+1){
+                        if (i===parseInt(page)){
+                            page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                        }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                    }
+                }
+            }
+
+        }
+
+        if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+(parseInt(page)+1)+'">Next</a></li>');
+        else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+    }
+
     function get_Note() {
+        if (note_flag===1) return;
         var page = GetQueryString('page_note');
         if (page == null) page = '1';
         $.ajax({
@@ -198,7 +253,6 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                $('#note_nav').prev().text(jsonObj.count);
                 for (i=0;i<jsonObj.text.length;i++){
                     $('#note_ul').append(
                         '<li class="post-row js-find-txt">\n' +
@@ -229,47 +283,17 @@
                         '                        </li>'
                     )
                 }
-                var page_ul =  $('#page_note');
-                page_length = Math.ceil(jsonObj.count/6);
-                if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_note='+(parseInt(page)-1)+'">Previous</a></li>');
-                else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
-
-                if (page-1>2&&page_length-page>=2){
-                    for (var i = page-2;i<=page+2;i++){
-                        if (i<page_length+1){
-                            if (i===parseInt(page)){
-                                page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
-                            }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
-                        }
-                    }
-                }else {
-                    if (page<=3){
-                        for (i=1;i<6;i++){
-                            if (i<page_length+1){
-                                if (i===parseInt(page)){
-                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
-                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
-                            }
-                        }
-                    }else {
-                        for (i=page_length-4;i<=page_length;i++){
-                            if (i<page_length+1){
-                                if (i===parseInt(page)){
-                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
-                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_note='+i+'">'+i+'</a></li>');
-                            }
-                        }
-                    }
-
-                }
-
-                if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_note='+(parseInt(page)+1)+'">Next</a></li>');
-                else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+                setTimeout(function () {
+                    if (ask_count===-1) setTimeout(this,500);
+                    else add_page('#page_note',page,note_count,'page_note');
+                },500);
             }
-        })
+        });
+        note_flag = 1;
     }
 
     function get_Ask() {
+        if (ask_flag===1) return;
         var page = GetQueryString('page_ask');
         if(page == null) page='1';
         $.ajax({
@@ -283,7 +307,6 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                $('#ask_nav').prev().text(jsonObj.count);
                 for (i=0;i<jsonObj.ask_no.length;i++){
                     $('#ask_ul').append(
                         ' <li>\n' +
@@ -335,51 +358,19 @@
                     }
                 }
 
-
-
-                var page_ul =  $('#page_ask');
-                page_length = Math.ceil(jsonObj.count/6);
-                if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)-1)+'">Previous</a></li>');
-                else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
-
-                if (page-1>2&&page_length-page>=2){
-                    for (var i = page-2;i<=page+2;i++){
-                        if (i<page_length+1){
-                            if (i===parseInt(page)){
-                                page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                            }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                        }
-                    }
-                }else {
-                    if (page<=3){
-                        for (i=1;i<6;i++){
-                            if (i<page_length+1){
-                                if (i===parseInt(page)){
-                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                            }
-                        }
-                    }else {
-                        for (i=page_length-4;i<=page_length;i++){
-                            if (i<page_length+1){
-                                if (i===parseInt(page)){
-                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                            }
-                        }
-                    }
-
-                }
-
-                if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)+1)+'">Next</a></li>');
-                else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+                setTimeout(function () {
+                    if (ask_count===-1) setTimeout(this,500);
+                    else add_page('#page_ask',page,ask_count,'page_ask')
+                },500);
             }
         });
+        ask_flag = 1;
     }
 </script>
 
 <body onload="ifActive();" style="background-color: #f8fafc;">
 <jsp:include page="navigation.jsp"/>
+<jsp:include page="LoginPC.jsp" />
 <div class="main">
     <div class="inside">
         <div class="first" id="Bread_crumb_navigation">
@@ -417,11 +408,11 @@
             </li>
             <li class="nav-item">
                 <span></span>
-                <a id="ask_nav" class="nav-link" data-toggle="pill" href="#two">问答</a>
+                <a id="ask_nav" class="nav-link" data-toggle="pill" href="#two" onclick="get_Ask();">问答</a>
             </li>
             <li class="nav-item">
                 <span></span>
-                <a id="note_nav" class="nav-link" data-toggle="pill" href="#three">笔记</a>
+                <a id="note_nav" class="nav-link" data-toggle="pill" href="#three" onclick="get_Note()">笔记</a>
             </li>
         </ul>
     </div>

@@ -54,9 +54,56 @@ public class PostNote extends HttpServlet {
                 int page = Integer.parseInt(request.getParameter("page"));
                 get_this_class_note(response, No,page);
                 break;
-
+            case "search_note":
+                page = Integer.parseInt(request.getParameter("page"));
+                note_editor = request.getParameter("keyword");
+                search_note(response,note_editor,page);
+                break;
         }
     }
+
+    private void search_note(HttpServletResponse response,String keyword,int page){
+        try {
+            Class.forName(ConnectSQL.driver);
+            Connection con = DriverManager.getConnection(ConnectSQL.url, ConnectSQL.user, ConnectSQL.Mysqlpassword);
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select belong_class_id,author,text,note_time,class_title,cover_address from note,class_teacher_table where belong_class_id=class_id and text like '%"+keyword+"%' limit "+(6*(page-1))+","+6);
+            JSONObject jsonObj = new JSONObject();
+            ArrayList<Integer> belong_class_id = new ArrayList<>();
+            ArrayList<String> author = new ArrayList<>();
+            ArrayList<String> text = new ArrayList<>();
+            ArrayList<String> note_time = new ArrayList<>();
+            ArrayList<String> class_title = new ArrayList<>();
+            ArrayList<String> cover_address = new ArrayList<>();
+            while (rs.next()){
+                belong_class_id.add(rs.getInt("belong_class_id"));
+                author.add(rs.getString("author"));
+                text.add(rs.getString("text"));
+                note_time.add(rs.getString("note_time"));
+                class_title.add(rs.getString("class_title"));
+                cover_address.add(rs.getString("cover_address"));
+            }
+            rs = statement.executeQuery("SELECT COUNT(*) count FROM note where text like '%"+keyword+"%'");
+            while (rs.next()){
+                jsonObj.put("count",rs.getString("count"));
+            }
+            jsonObj.put("belong_class_id",belong_class_id);
+            jsonObj.put("author",author);
+            jsonObj.put("text",text);
+            jsonObj.put("note_time",note_time);
+            jsonObj.put("class_title",class_title);
+            jsonObj.put("cover_address",cover_address);
+            PrintWriter out = response.getWriter();
+            out.flush();
+            out.print(jsonObj);
+            rs.close();
+            out.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void get_this_class_note(HttpServletResponse response,int No,int page){
         try {
             Class.forName(ConnectSQL.driver);
@@ -77,10 +124,6 @@ public class PostNote extends HttpServlet {
                 class_no.add(rs.getString("note.unit_no"));
                 name.add(rs.getString("author"));
                 class_title.add(rs.getString("lesson_title"));
-            }
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM note where belong_class_id="+No);
-            while (rs.next()){
-                jsonObj.put("count",rs.getString("count"));
             }
             jsonObj.put("text",text_list);
             jsonObj.put("time",time_list);

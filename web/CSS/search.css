@@ -218,3 +218,75 @@ a:hover{
 .nav-justified .nav-item :hover{
     background-color: #f8fafc;
 }
+
+#note_box .post_action{
+    float: left;
+    margin-left: 20px;
+    color: #9199a1;
+    font-size: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    line-height: 34px;
+}
+#note_box .post_action:hover{
+    text-decoration: none;
+    color: #4d555d;
+}
+#note_box .post_action i{
+    margin-right: 5px;
+}
+
+.post span{
+    margin-left: 20px;
+    color: #9199a1;
+    font-size: 12px;
+    line-height: 34px;
+}
+.title a {
+    font-size: 14px;
+    color: #1c1f21;
+    font-weight: 700;
+}
+.title a:hover{
+    color: #007bff
+}
+.unit a{
+    font-size: 12px;
+    color: #93999f;
+    line-height: 24px;
+}
+.unit a:hover{
+    color: #1c1f21;
+}
+
+#note_box .post-row {
+    position: relative;
+    margin-bottom: 8px;
+    padding: 32px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+    border-radius: 12px;
+}
+
+#note_box .post-row .note_text{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-height: 63%;
+}
+
+.no_find_class {
+    width: 16%;
+    margin-left: auto;
+    margin-top: 103px;
+    margin-right: auto;
+    font-size: 35px;
+    font-weight: 300;
+    color: #93999f;
+}
+button.btn-mini {
+    height: 29px;
+    padding: 0 15px;
+    font-size: 12px;
+    width: auto;
+}

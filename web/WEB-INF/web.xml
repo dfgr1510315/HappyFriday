@@ -181,7 +181,7 @@
         <filter-class>Filter.Login_Filter</filter-class>
         <init-param>
             <param-name>excPath</param-name>
-            <param-value>/HTML_JSP/homepage.jsp,/HTML_JSP/LoginPC.jsp,/bank_html/Bank.jsp,/bank_html/login_bank.jsp,/HTML_JSP/index.jsp</param-value>
+            <param-value>/HTML_JSP/homepage.jsp,/HTML_JSP/LoginPC.jsp,/HTML_JSP/index.jsp,/HTML_JSP/course.jsp,/HTML_JSP/Learn_list.jsp</param-value>
         </init-param>
         <init-param>
             <param-name>teacherPath</param-name>

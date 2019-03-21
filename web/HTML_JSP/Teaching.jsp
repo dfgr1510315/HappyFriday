@@ -76,7 +76,7 @@
                             '<td><img src="${pageContext.request.contextPath}'+this.封面地址 +'" class="cover">'+this.Title+'</td> \n'+
                             '<td>'+this.学员数+'</td> \n'+
                             '<td>'+this.状态+'</td> \n'+
-                            '<td><a target="_blank" href="Myclass.jsp?class_id='+ this.课程编号+'"><button class="btn btn-outline-primary" >管理</button></a></td>\n'+
+                            '<td><a target="_blank" href="Myclass.jsp?class_id='+ this.课程编号+'"><button class="btn btn-outline-primary btn-sm" >管理</button></a></td>\n'+
                             '<tr>\n '
                         )
                     });

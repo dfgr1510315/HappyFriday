@@ -31,18 +31,7 @@
         td button{
             margin-top: -7px;
         }
-        .ui-box {
-            border-radius: 5px;
-            box-shadow: 0 6px 16px 0 rgba(7,17,27,.1);
-            /* border: 1px solid #ddddcf;*/
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            width: 92%;
-            margin-left: auto;
-            margin-right: auto;
-            max-height: 425px;
-        }
+
         #note_box .post_action{
             float: left;
             margin-left: 20px;
@@ -82,7 +71,7 @@
             color: #93999f;
             line-height: 24px;
         }
-        .Unit a:hover{
+        .unit a:hover{
             color: #1c1f21;
         }
 

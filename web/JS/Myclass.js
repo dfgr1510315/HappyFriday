@@ -182,11 +182,11 @@ function addSection() {
         '       <h8 id="h8_id">\n' +
         '       </h8>\n' +
         '       <div class="btn-group" style="float:right">\n' +
-        '           <button id="button_add_class" data-id="button_add_class" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_class_hour" onclick="cancel_drag()">增加课时</button>\n' +
-        '           <button id="button_Change_Unit" data-id="button_Change_Unit" type="button" class="btn btn-primary"  data-toggle="modal"  data-target="#Change_section">更改名称</button>\n' +
-        '           <button id="button_Delete_Unit" data-id="button_Delete_Unit" type="button" class="btn btn-primary" data-toggle="modal"  data-target="#Delete_Unit">删除章节</button>\n' +
+        '           <button id="button_add_class" data-id="button_add_class" type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add_class_hour" onclick="cancel_drag()">增加课时</button>\n' +
+        '           <button id="button_Change_Unit" data-id="button_Change_Unit" type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal"  data-target="#Change_section">更改名称</button>\n' +
+        '           <button id="button_Delete_Unit" data-id="button_Delete_Unit" type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"  data-target="#Delete_Unit">删除章节</button>\n' +
                   /*<button type="button" class="btn btn-primary">批量上传</button>*/
-        '           <button id="Button_collapse" type="button" class="btn btn-prima  ry card-link" data-toggle="collapse" href="">折叠</button>\n' +
+        '           <button id="Button_collapse" type="button" class="btn btn-outline-secondary btn-sm ry card-link" data-toggle="collapse" href="">折叠</button>\n' +
         '       </div>\n' +
         '   </div>\n' +
         '   <div id="collapse" class="collapse show" >\n' +
@@ -235,7 +235,7 @@ function add_class_hour(add_id) {
         '               </ul>\n' +
         '               <div class="input-file-show" style="">\n' +
         '                   <div>' +
-        '                       <div class="custom-file mb-3" style="margin-top: 25px;width: 80%">\n' +
+        '                       <div class="custom-file mb-3" >\n' +
         '                           <input type="file" class="custom-file-input" accept="video/*" onchange ="upload(this,1)">\n' +
         '                           <label class="custom-file-label" style="overflow: hidden">选择视频</label>\n' +
         '                       </div>\n' +

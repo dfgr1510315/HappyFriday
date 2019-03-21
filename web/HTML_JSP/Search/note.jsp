@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: LI
-  Date: 2019/3/19 0019
-  Time: 19:56
+  User: Administrator
+  Date: 2019/3/20 0020
+  Time: 15:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -25,7 +25,7 @@
         if (keyword.trim()==='')  return;
         $('#search_ipt').val(keyword);
         add_href();
-        search_ask()
+        search_note()
     });
 </script>
 <body style="background: #f8fafc;">
@@ -51,17 +51,17 @@
                             <a class="nav-link" href="user.jsp">用户</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0)">问答</a>
+                            <a class="nav-link" href="ask.jsp">问答</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="note.jsp">笔记</a>
+                            <a class="nav-link  active" href="javascript:void(0)">笔记</a>
                         </li>
                     </ul>
                     <span class="search-related js-all-count">
                         <em id="count" style="font-style: normal;"></em>
                     </span>
                 </div>
-                <ul id="ask_ul"></ul>
+                <div id="note_box"></div>
             </div>
             <div id="page" class="pagination"></div>
         </div>

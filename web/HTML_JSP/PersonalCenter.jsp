@@ -68,6 +68,9 @@
             visibility: hidden;
         }
 
+        .form-control{
+            height: calc(2.25rem + 2px);
+        }
 
     </style>
 </head>
@@ -78,7 +81,7 @@
 
 <div style="width: 100%;height: 450px">
 
-    <div style="width: 80%;margin: auto">
+    <div style="width: 80%;margin: 10px auto auto;">
         <jsp:include page="VerticalNav.jsp"/>
         <div class="container_right">
             <div >

@@ -52,11 +52,11 @@
 
                     </div>
                     <div class="btn-group">
-                        <button data-toggle="modal" data-target="#add_section" type="button" class="btn btn-primary" onclick="cancel_drag()">
+                        <button data-toggle="modal" data-target="#add_section" type="button" class="btn btn-primary btn-sm" onclick="cancel_drag()">
                             添加章节
                         </button>
-                        <button id="use_drag" type="button" class="btn btn-primary" onclick="drag(this)">拖动排序</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                        <button id="use_drag" type="button" class="btn btn-primary btn-sm" onclick="drag(this)">拖动排序</button>
+                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
                             <span class="caret"></span>
                         </button>
                         <div class="dropdown-menu">
@@ -64,7 +64,7 @@
                             <a class="dropdown-item" onclick="set_Class_Listener(this)" href="javascript:void(0)">课时排序</a>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success" onclick="saveClass()">保存</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" onclick="saveClass()">保存</button>
                 </form>
             </div>
         </div>
@@ -77,13 +77,13 @@
                 <%-- 头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">请输入章节名称</h5>
-                    <button id="unitClose" class="close" data-dismiss="modal">&times;</button>
+                    <a id="unitClose" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
                 <div class="modal-body">
                     <textarea id="unit_name"  class="form-control"
                               title="unit"></textarea>
-                    <button type="button" class="btn btn-primary"  onclick="addSection()">确定
+                    <button type="button" class="btn btn-outline-success btn-sm"  onclick="addSection()">确定
                     </button>
                 </div>
             </div>
@@ -96,13 +96,13 @@
                 <%-- 头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">请重新输入章节名称</h5>
-                    <button id="Change_section_Close" class="close" data-dismiss="modal">&times;</button>
+                    <a id="Change_section_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
                 <div class="modal-body">
                     <textarea id="Change_unit_name" class="form-control"
                               title="unit"></textarea>
-                    <button id="Change_sure_button" type="button" class="btn btn-primary" onclick="">确定
+                    <button id="Change_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="">确定
                     </button>
                 </div>
             </div>
@@ -115,13 +115,13 @@
                 <%-- 头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">请输入课时名称</h5>
-                    <button id="class_Close" class="close" data-dismiss="modal">&times;</button>
+                    <a id="class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
                 <div class="modal-body">
                     <textarea id="class_name"  class="form-control"
                               title="class"></textarea>
-                    <button id="Add_sure_button" type="button" class="btn btn-primary" onclick="">确定
+                    <button id="Add_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="">确定
                     </button>
                 </div>
             </div>
@@ -134,13 +134,13 @@
                 <%-- 头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">请重新输入课时名称</h5>
-                    <button id="Change_Class_Close" class="close" data-dismiss="modal">&times;</button>
+                    <a id="Change_Class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
                 <div class="modal-body">
                     <textarea id="Change_class_name"  class="form-control"
                               title="unit"></textarea>
-                    <button id="Change_class_sure_button" type="button" class="btn btn-primary" onclick="">确定
+                    <button id="Change_class_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="">确定
                     </button>
                 </div>
             </div>
@@ -153,12 +153,12 @@
                 <%-- 头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">提示</h5>
-                    <button id="Delete_Unit_Close" class="close" data-dismiss="modal">&times;</button>
+                    <a id="Delete_Unit_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
                 <div class="modal-body">
                     <h6>是否删除此章节</h6>
-                    <button id="Delete_Unit_sure_button" type="button" class="btn btn-primary" onclick="" >确定
+                    <button id="Delete_Unit_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="" >确定
                     </button>
                 </div>
             </div>
@@ -171,12 +171,12 @@
                 <%-- 头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">提示</h5>
-                    <button id="Delete_Class_Close" class="close" data-dismiss="modal">&times;</button>
+                    <a id="Delete_Class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
                 <div class="modal-body">
                     <h6>是否删除此课时</h6>
-                    <button id="Delete_Class_sure_button" type="button" class="btn btn-primary" onclick="">确定
+                    <button id="Delete_Class_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="">确定
                     </button>
                 </div>
             </div>
@@ -189,12 +189,12 @@
                 <%-- 头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">提示</h5>
-                    <button id="Open_curriculum_Close" class="close" data-dismiss="modal">&times;</button>
+                    <a id="Open_curriculum_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
                 <div class="modal-body">
                     <h6>是否发布此课程</h6>
-                    <button id="Open_curriculum_sure_button" type="button" class="btn btn-primary" onclick="Release(1)">确定
+                    <button id="Open_curriculum_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="Release(1)">确定
                     </button>
                 </div>
             </div>
@@ -207,12 +207,12 @@
                 <%-- 头部--%>
                 <div class="modal-header">
                     <h5 class="modal-title">提示</h5>
-                    <button id="Close_curriculum_Close" class="close" data-dismiss="modal">&times;</button>
+                    <a id="Close_curriculum_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
                 <div class="modal-body">
                     <h6>是否关闭此课程</h6>
-                    <button id="Close_curriculum_sure_button" type="button" class="btn btn-primary" onclick="Release(0)">确定
+                    <button id="Close_curriculum_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="Release(0)">确定
                     </button>
                 </div>
             </div>

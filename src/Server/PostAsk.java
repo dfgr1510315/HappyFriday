@@ -446,10 +446,6 @@ public class PostAsk extends HttpServlet {
             jsonObj.put("answer_count",answer_count);
             jsonObj.put("new_answer",new_answer);
             jsonObj.put("new_answer_text",new_answer_text);
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask where belong_class_id="+No);
-            while (rs.next()){
-                jsonObj.put("count",rs.getString("count"));
-            }
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(jsonObj);

@@ -53,7 +53,7 @@
                             <a class="nav-link" href="ask.jsp">问答</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">笔记</a>
+                            <a class="nav-link" href="note.jsp">笔记</a>
                         </li>
                     </ul>
                     <span class="search-related js-all-count">
