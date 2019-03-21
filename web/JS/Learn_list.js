@@ -1,9 +1,7 @@
 var PageContext = $("#PageContext").val();
-var No = GetQueryString('');
+var No = GetQueryString('class_id');
 
-/**
- * @return {string}
- */
+
 function GetQueryString(name)
 {
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");

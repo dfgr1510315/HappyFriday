@@ -303,7 +303,7 @@
                 for (var i=0;i<jsonObj.title.length;i++){
                     $('.types-content').append(
                         ' <div class="index-card-container course-card-container container">\n' +
-                        '        <a target="_blank" class="course-card" href="Learn_list.jsp?='+jsonObj.no[i]+'">\n' +
+                        '        <a target="_blank" class="course-card" href="Learn_list.jsp?class_id='+jsonObj.no[i]+'">\n' +
                         '            <div class="course-card-top hashadow">\n' +
                         '                <img src="${pageContext.request.contextPath}'+jsonObj.cover[i]+'" alt="" class="course-banner">\n' +
                         '            </div>\n' +

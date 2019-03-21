@@ -21,6 +21,7 @@
     <script type="text/javascript" src="../JS/Learn_list.js"></script>
 </head>
 <script type="text/javascript">
+    var pass = -1;
     var ask_flag = 0;
     var note_flag = 0;
     var ask_count = -1;
@@ -31,46 +32,6 @@
         else if (GetQueryString('page_note')!=null) get_Note();
     });
     function get_Class() {
-        var percentage;
-        var last_time;
-        console.log('user'+user);
-        if(user === 'null'){
-            $('.sno1-1').append(
-                '<button type="button" class="studyfont btn btn-outline-primary" data-toggle="modal" data-target="#LoginModal" >开始学习</button>\n'
-            )
-        }else {
-            $.ajax({
-                url:" ${pageContext.request.contextPath}/students",
-                data: {
-                    No:No,
-                    student:user,
-                    action:'get_schedule'
-                },
-                type: "POST",
-                dataType: "json",
-                asynch: "false",
-                success: function (jsonObj) {
-                    percentage = jsonObj.schedule;
-                    last_time = jsonObj.last_time;
-                    if(percentage === undefined) {
-                        $('.sno1-1').append(
-                            '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n'
-                        )
-                    }else {
-                        $('.sno1-1').append(
-                            '  <div class="learn-btn">\n' +
-                            '      <div class="learn-info"><span>已学 '+percentage+'%</span></div>\n' +
-                            '      <div class="progress">\n' +
-                            '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
-                            '     </div>\n' +
-                            '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
-                            '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n' +
-                            ' </div>\n'
-                        )
-                    }
-                }
-            });
-        }
         $.ajax({
             type: "POST",
             asynch: "false",
@@ -81,6 +42,15 @@
             },
             dataType: 'json',
             success: function (jsonObject) {
+                console.log('jsonObj.release_status'+jsonObject.release_status);
+                if (jsonObject.release_status===0){
+                    pass = 0;
+                    console.log('1:'+pass);
+                    alert('该课程尚未发布');
+                    window.location.href="homepage.jsp";
+                    return
+                }
+                get_schedule();
                 $("title").text(jsonObject.title);
                 $("#title").text(jsonObject.title);
                 $("#teacher").text(jsonObject.teacher);
@@ -88,8 +58,10 @@
                 $('#student_number').text(jsonObject.student_number);
                 ask_count = jsonObject.ask_count;
                 note_count = jsonObject.note_count;
-                $('#ask_nav').prev().text(ask_count);
-                $('#note_nav').prev().text(note_count);
+                var ask_nav = $('#ask_nav');
+                var note_nav = $('#note_nav');
+                ask_nav.prev().text(ask_count);
+                note_nav.prev().text(note_count);
                 var class_type;
                 switch (jsonObject.class_type) {
                     case 1:
@@ -111,9 +83,11 @@
                         class_type='项目发布';
                         break;
                 }
-                $('#other_class').text(class_type+'相关课程');
+                var other_class = $('#other_class');
+                var one = $('#one');
+                other_class.text(class_type+'相关课程');
                 for (var i=0;i<jsonObject.other_class_title.length;i++){
-                    $('#other_class').append(
+                    other_class.append(
                         '<div class="sno2-allbox">\n' +
                         '      <img src="'+"${pageContext.request.contextPath}"+jsonObject.other_class_iamge[i]+'" class="imagesize">\n' +
                         '           <div class="coursecount">\n' +
@@ -133,23 +107,21 @@
                 );
                 if (GetQueryString('page_ask')==null && GetQueryString('page_note')==null) {
                     $('#unit-nav').addClass('active show');
-                    $('#one').addClass('active show');
+                    one.addClass('active show');
                 }
                 else if (GetQueryString('page_note')==null) {
-                    $('#ask_nav').addClass('active show');
+                    ask_nav.addClass('active show');
                     $('#two').addClass('active show');
                 }else {
-                    $('#note_nav').addClass('active show');
+                    note_nav.addClass('active show');
                     $('#three').addClass('active show');
                 }
 
-                $('.sno1-1').append(
-                    '<div class="course-info-tip">' +
+                $('.sno1-1 .course-info-tip').append(
                     '      <dl class="first">\n' +
                     '          <dt>课程概要</dt>\n' +
                     '          <dd class="autowrap">'+jsonObject.outline+'</dd>\n' +
-                    '      </dl>' +
-                    '</div>'
+                    '      </dl>'
                 );
 
                 var flag='';var class_count = 0;
@@ -159,7 +131,7 @@
                     }
                 }
                 if (flag!=='') flag = flag.substring(1).split(",");
-                var one = $("#one");
+                
                 for (i=0;i<flag.length;i++){
                     one.append(
                         '<div id="Unit'+i+'" class="ui-box" draggable="true"  >' +
@@ -174,7 +146,7 @@
                         if (jsonObject.State[class_count].trim()==='1'){
                             $("#Unit"+i).append(
                                 '<div class="list_box" >' +
-                                '    <a  href="Play.jsp?'+GetQueryString('')+'/'+Class_flag[k]+'">' +
+                                '    <a  href="Play.jsp?'+GetQueryString('class_id')+'/'+Class_flag[k]+'">' +
                                 '       <div class="ui-box1">' +
                                 '           <i class="fa fa-adjust"></i>'+
                                 '               <span style="margin-right: 20px;color: #999;">课时'+Class_flag[k].charAt(Class_flag[k].length-1) +'</span>'+
@@ -196,6 +168,46 @@
                 //alert(Serial_No+"\n"+Unit_Name+"\n"+Class_Name+"\n"+Video_Src+"\n"+Editor+"\n"+File_Href+"\n"+State);
             }
         });
+
+    }
+
+    function get_schedule() {
+        if(user === 'null'){
+            $('.sno1-1 .learn-btn').append(
+                '<button type="button" class="studyfont btn btn-outline-primary" data-toggle="modal" data-target="#LoginModal" >开始学习</button>\n'
+            )
+        }else {
+            $.ajax({
+                url:" ${pageContext.request.contextPath}/students",
+                data: {
+                    No:No,
+                    student:user,
+                    action:'get_schedule'
+                },
+                type: "POST",
+                dataType: "json",
+                asynch: "false",
+                success: function (jsonObj) {
+                    var percentage = jsonObj.schedule;
+                    var last_time = jsonObj.last_time;
+                    if(percentage === undefined) {
+                        $('.sno1-1 .learn-btn').append(
+                            '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n'
+                        )
+                    }else {
+                        $('.sno1-1 .learn-btn').append(
+
+                            '      <div class="learn-info"><span>已学 '+percentage+'%</span></div>\n' +
+                            '      <div class="progress">\n' +
+                            '         <div class="progress-bar" style="width:'+percentage+'%"></div>\n' +
+                            '     </div>\n' +
+                            '     <div class="learn-info-media" data-class="'+last_time+'">上次学至 '+last_time+'</div>\n' +
+                            '     <button type="button" class="studyfont btn btn-outline-primary" onclick="continue_class(this)">继续学习</button>\n'
+                        )
+                    }
+                }
+            });
+        }
     }
 
     function add_page(page_ul_id,page,count,page_type) {
@@ -380,7 +392,7 @@
         </div>
         <div class="third">
             <div class="t1">
-                <div class="t11"><a href="" target="_blank"><img id="head" src="" width="48px" height="48px"></a></div>
+                <div class="t11"><a href="" target="_blank"><img id="head" src="" width="48px" height="48px" alt=""></a></div>
             </div>
             <div class="fouth">
                 <span class="f1">教师</span>
@@ -451,7 +463,8 @@
             <div class="course-introduction-main">
                 <div class="son1">
                     <div class="sno1-1">
-
+                        <div class="learn-btn"></div>
+                        <div class="course-info-tip"></div>
                     </div>
                     <%--   <div class="inbelow">
                            <h3 class="fontset-headline">课程须知</h3>

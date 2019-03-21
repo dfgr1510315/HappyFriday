@@ -495,7 +495,7 @@ function Delete_File(event) {
 
 
 function getHTML() {
-    $("#preview").attr("href","Learn_list.jsp?="+No);
+    $("#preview").attr("href","Learn_list.jsp?class_id="+No);
      $.ajax({
         type: "POST",
         asynch: "false",

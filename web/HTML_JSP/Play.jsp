@@ -31,7 +31,7 @@
     }
     .course-sidebar-layout{
         height:100%;
-        width: 4%;
+        width: 69px;
         float: left;
         background: #1c1f21;
         /*display: flex;*/
@@ -450,7 +450,7 @@
         note_editor.create();
         ask_editor.create();
 
-        $('#back').attr('href','Learn_list.jsp?='+No);
+        $('#back').attr('href','Learn_list.jsp?class_id='+No);
         $.ajax({
             type: "POST",
             asynch: "false",

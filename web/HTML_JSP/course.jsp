@@ -142,7 +142,7 @@
         function add_class(class_no,cover,title,type,teacher,student_number,outline){
             $('.types-content').append(
                 '<div class="index-card-container course-card-container container">\n' +
-                '                    <a target="_blank" class="course-card" href="Learn_list.jsp?='+class_no+'">\n' +
+                '                    <a target="_blank" class="course-card" href="Learn_list.jsp?class_id='+class_no+'">\n' +
                 '                        <div class="course-card-top hashadow">\n' +
                 '                            <img src="${pageContext.request.contextPath}'+cover+'"  class="course-banner">\n' +
                 '                        </div>\n' +

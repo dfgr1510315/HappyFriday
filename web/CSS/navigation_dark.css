@@ -1,3 +1,5 @@
+
+
 .user_card{
     display: none;
     background-color:white;
@@ -10,6 +12,8 @@
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
 }
+
+
 
 .user_navigation{
     /*position: fixed;*/
@@ -267,7 +271,7 @@
     list-style: none;
 }
 
-.user_navigation .nav-pills .nav-item .nav-link,.user_card a{
+/*.user_navigation .nav-pills .nav-item .nav-link,.user_card */a{
     transition: all .3s;
 }
 
@@ -278,8 +282,4 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.hover{
-    background-color: #e0e4e7;
 }

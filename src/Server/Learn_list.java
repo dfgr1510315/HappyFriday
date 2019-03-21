@@ -23,9 +23,9 @@ public class Learn_list extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
         if (action.equals("get_class")){
-            int No = Integer.parseInt(request.getParameter("No"));
+            String s_No = request.getParameter("No");
             PrintWriter out = response.getWriter();
-            JSONObject jsonObject = get_class(No);
+            JSONObject jsonObject = get_class(request,s_No);
             out.print(jsonObject);
             out.flush();
             out.close();
@@ -75,32 +75,24 @@ public class Learn_list extends HttpServlet {
         }
     }
 
-    private JSONObject get_class(int No){
+    private JSONObject get_class(HttpServletRequest request,String sNo){
+        int No = Integer.parseInt(sNo);
         JSONObject jsonObject = new JSONObject();
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
+        int class_type = 0;
         try {
             con = dbp.getConnection();
-            String sql = "select unit_no,unit_title,lesson_title,release_status from class where class_id=" + No ;
             Statement statement = con.createStatement();
+            String sql = "select release_status,class_teacher_table.teacher,class_title,head,student_count,class_type,outline from class_teacher_table,personal_table where class_teacher_table.teacher=username and class_id=" + No;
             ResultSet rs = statement.executeQuery(sql);
-            int class_type = 0;
-            ArrayList<String> Serial_No = new ArrayList<>();
-            ArrayList<String> Unit_Name = new ArrayList<>();
-            ArrayList<String> Class_Name = new ArrayList<>();
-            ArrayList<String> State = new ArrayList<>();
-            ArrayList<String> other_class_title = new ArrayList<>();
-            ArrayList<Integer> other_class_no = new ArrayList<>();
-            ArrayList<String> other_class_image = new ArrayList<>();
+            int release_status;
+            boolean pass = false;
             while (rs.next()) {
-                Serial_No.add(rs.getString("unit_no"));
-                Unit_Name.add(rs.getString("unit_title"));
-                Class_Name.add(rs.getString("lesson_title"));
-                State.add(rs.getString("release_status"));
-            }
-            sql = "select class_teacher_table.teacher,class_title,head,student_count,class_type,outline from class_teacher_table,personal_table where class_teacher_table.teacher=username and class_id=" + No;
-            rs = statement.executeQuery(sql);
-            while (rs.next()) {
+                release_status = rs.getInt("release_status");
+                pass = isHave(request,sNo,release_status);
+                if (!pass) break;
+                jsonObject.put("release_status",1);
                 jsonObject.put("head",rs.getString("head"));
                 jsonObject.put("teacher",rs.getString("teacher"));
                 jsonObject.put("title",rs.getString("class_title"));
@@ -109,27 +101,46 @@ public class Learn_list extends HttpServlet {
                 jsonObject.put("outline",rs.getString("outline"));
                 class_type = rs.getInt("class_type");
             }
+            if (!pass){
+                jsonObject.put("release_status",0);
+            }else {
+                sql = "select unit_no,unit_title,lesson_title,release_status from class where class_id=" + No ;
+                rs = statement.executeQuery(sql);
+                ArrayList<String> Serial_No = new ArrayList<>();
+                ArrayList<String> Unit_Name = new ArrayList<>();
+                ArrayList<String> Class_Name = new ArrayList<>();
+                ArrayList<String> State = new ArrayList<>();
+                ArrayList<String> other_class_title = new ArrayList<>();
+                ArrayList<Integer> other_class_no = new ArrayList<>();
+                ArrayList<String> other_class_image = new ArrayList<>();
+                while (rs.next()) {
+                    Serial_No.add(rs.getString("unit_no"));
+                    Unit_Name.add(rs.getString("unit_title"));
+                    Class_Name.add(rs.getString("lesson_title"));
+                    State.add(rs.getString("release_status"));
+                }
 
-            sql = "select class_id,class_title,cover_address from class_teacher_table where release_status=1 and class_type="+class_type+" limit 5";
-            rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                other_class_title.add(rs.getString("class_title"));
-                other_class_no.add(rs.getInt("class_id"));
-                other_class_image.add(rs.getString("cover_address"));
+                sql = "select class_id,class_title,cover_address from class_teacher_table where release_status=1 and class_type="+class_type+" limit 5";
+                rs = statement.executeQuery(sql);
+                while (rs.next()) {
+                    other_class_title.add(rs.getString("class_title"));
+                    other_class_no.add(rs.getInt("class_id"));
+                    other_class_image.add(rs.getString("cover_address"));
+                }
+                sql = "SELECT COUNT(note_id) note_count,(SELECT COUNT(ask_id) FROM ask WHERE belong_class_id="+No+") ask_count FROM note where belong_class_id="+No;
+                rs = statement.executeQuery(sql);
+                while (rs.next()) {
+                    jsonObject.put("note_count",rs.getInt("note_count"));
+                    jsonObject.put("ask_count",rs.getInt("ask_count"));
+                }
+                jsonObject.put("other_class_title",other_class_title);
+                jsonObject.put("other_class_no",other_class_no);
+                jsonObject.put("other_class_iamge",other_class_image);
+                jsonObject.put("Serial_No",Serial_No);
+                jsonObject.put("Unit_Name",Unit_Name);
+                jsonObject.put("Class_Name",Class_Name);
+                jsonObject.put("State",State);
             }
-            sql = "SELECT COUNT(note_id) note_count,(SELECT COUNT(ask_id) FROM ask WHERE belong_class_id="+No+") ask_count FROM note where belong_class_id="+No;
-            rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                jsonObject.put("note_count",rs.getInt("note_count"));
-                jsonObject.put("ask_count",rs.getInt("ask_count"));
-            }
-            jsonObject.put("other_class_title",other_class_title);
-            jsonObject.put("other_class_no",other_class_no);
-            jsonObject.put("other_class_iamge",other_class_image);
-            jsonObject.put("Serial_No",Serial_No);
-            jsonObject.put("Unit_Name",Unit_Name);
-            jsonObject.put("Class_Name",Class_Name);
-            jsonObject.put("State",State);
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,6 +153,22 @@ public class Learn_list extends HttpServlet {
                 }
         }
         return jsonObject;
+    }
+
+    private boolean isHave(HttpServletRequest request,String string,int release_status){
+        HttpSession session=request.getSession();
+        String usertype = (String) session.getAttribute("usertype");
+        if (release_status==1){
+            return true;
+        }else if (usertype==null||usertype.equals("student")){
+            return false;
+        }else {
+            String[] class_id = ((String) session.getAttribute("class_id")).split(",");
+            for (String p:class_id){
+                if (string.equals(p)) return true;
+            }
+        }
+        return false;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

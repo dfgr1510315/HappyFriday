@@ -34,7 +34,7 @@
 a:hover{
     text-decoration: none;
 }
-.user_navigation .nav-pills .nav-item .nav-link,.user_card a{
+/*.user_navigation .nav-pills .nav-item .nav-link,.user_card */a{
     transition: all .3s;
 }
 .notification{
