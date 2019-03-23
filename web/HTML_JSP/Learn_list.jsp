@@ -24,6 +24,7 @@
     var pass = -1;
     var ask_flag = 0;
     var note_flag = 0;
+    var get_class_flag = 0;
     var ask_count = -1;
     var note_count = -1;
     $(document).ready(function(){
@@ -192,7 +193,7 @@
                     var last_time = jsonObj.last_time;
                     if(percentage === undefined) {
                         $('.sno1-1 .learn-btn').append(
-                            '<button type="button" class="studyfont btn btn-outline-primary" onclick="join_class()">开始学习</button>\n'
+                            '<button type="button" class="studyfont btn btn-outline-primary" data-toggle="modal" data-target="#join_class">开始学习</button>\n'
                         )
                     }else {
                         $('.sno1-1 .learn-btn').append(
@@ -221,8 +222,8 @@
             for (var i = page-2;i<=page+2;i++){
                 if (i<page_length+1){
                     if (i===parseInt(page)){
-                        page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
-                    }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                        page_ul.append('<li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                    }else page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
                 }
             }
         }else {
@@ -230,16 +231,16 @@
                 for (i=1;i<6;i++){
                     if (i<page_length+1){
                         if (i===parseInt(page)){
-                            page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
-                        }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                            page_ul.append('<li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
                     }
                 }
             }else {
                 for (i=page_length-4;i<=page_length;i++){
                     if (i<page_length+1){
                         if (i===parseInt(page)){
-                            page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
-                        }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                            page_ul.append('<li class="page-item active"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
+                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&'+page_type+'='+i+'">'+i+'</a></li>');
                     }
                 }
             }
@@ -378,6 +379,45 @@
         });
         ask_flag = 1;
     }
+
+    $(function () {
+        $('#join_class').on('show.bs.modal', function (event) {
+            if (get_class_flag!==0)  return;
+            $.ajax({
+                url: "${pageContext.request.contextPath}/students",
+                data: {
+                    No:No,
+                    action:'get_class'
+                },
+                type: "POST",
+                dataType: "json",
+                asynch: "false",
+                success: function (jsonObj) {
+                    var class_box = $('#class_box');
+                    if (jsonObj.id.length===0){
+                        class_box.append(
+                            '<div class="no_find_join_class">该课程暂未设立班级</div>'
+                        );
+                        return
+                    }
+                    class_box.append(
+                        '<table id="class_table" class="table">\n' +
+                        '     <tbody></tbody>\n' +
+                        '</table>'
+                    );
+                    for (var i=0;i<jsonObj.id.length;i++){
+                        $('#class_table').append(
+                            ' <tr>\n' +
+                            '     <td>'+jsonObj.name[i]+'</td>\n' +
+                            '     <td><button type="button" style="margin-top: 0;float: right" class="btn btn-outline-primary btn-sm" onclick="join_class('+jsonObj.id[i]+')">加入班级</button></td>\n' +
+                            '</tr>'
+                        )
+                    }
+                }
+            });
+            get_class_flag = 1;
+        })
+    });
 </script>
 
 <body onload="ifActive();" style="background-color: #f8fafc;">
@@ -493,9 +533,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="sno4 fontset-headline" id="other_class">相关课程
+                <div class="sno4 fontset-headline" id="other_class">相关课程</div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                </div>
+<div class="modal fade" id="join_class"  style="background-color: transparent; width: 100%; top: 165px;">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+            <%-- 头部--%>
+            <div class="modal-header">
+                <div class="modal-title">请选择你所在的班级</div>
+                <a id="join_class_Close" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <%--界面--%>
+            <div class="modal-body" id="class_box" style="max-height: 440px;overflow-y: scroll;overflow-x: hidden;">
+                <table id="class_table" class="table">
+                    <tbody></tbody>
+                </table>
             </div>
         </div>
     </div>

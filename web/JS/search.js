@@ -178,13 +178,13 @@ function search_note() {
             for (var i = 0; i < jsonObj.author.length; i++) {
                 note_box.prepend('<div class="post-row">\n' +
                     '                            <div style="float:left;">\n' +
-                    '                                <a target="_blank" href="../Learn_list.jsp?='+jsonObj.belong_class_id[i]+'">\n' +
+                    '                                <a target="_blank" href="../Learn_list.jsp?class_id='+jsonObj.belong_class_id[i]+'">\n' +
                     '                                    <image src="'+PageContext+jsonObj.cover_address[i]+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
                     '                                </a>\n' +
                     '                            </div>\n' +
                     '                            <div style="margin-left: 60px">\n' +
                     '                                <div class="title">\n' +
-                    '                                    <a target="_blank" href="../Learn_list.jsp?='+jsonObj.belong_class_id[i]+'" >'+jsonObj.class_title[i]+'</a>\n' +
+                    '                                    <a target="_blank" href="../Learn_list.jsp?class_id='+jsonObj.belong_class_id[i]+'" >'+jsonObj.class_title[i]+'</a>\n' +
                     '                                </div>\n' +
                     '                                <div class="unit">\n' +
                     '                                    <a target="_blank" href="" >'+jsonObj.author[i]+'</a>\n' +
@@ -299,7 +299,7 @@ function search_ask() {
                     '                                                <span class="static-item answer">'+jsonObj.answer_count[i]+' 回答</span>\n' +
                     '                                                <span class="static-item">'+jsonObj.visits_count[i]+' 浏览</span>\n' +
                     '                                            </a>\n' +
-                    '                                            <a href="../Learn_list.jsp?='+jsonObj.belong_class_id[i]+'" target="_blank">'+jsonObj.class_title[i]+'</a>\n' +
+                    '                                            <a href="../Learn_list.jsp?class_id='+jsonObj.belong_class_id[i]+'" target="_blank">'+jsonObj.class_title[i]+'</a>\n' +
                     '                                        </div>\n' +
                     '                                        <em class="r">'+jsonObj.ask_time[i]+'</em>\n' +
                     '                                    </div>\n' +
@@ -349,11 +349,11 @@ function search_class() {
                 var class_type = get_class_type(jsonObj.class_type[i]);
                 $('.search-content').append(
                     ' <div class="course-item">\n' +
-                    '                    <a href="../Learn_list.jsp?=' + jsonObj.class_id[i] + '" target="_blank" class="course-detail-title">\n' +
+                    '                    <a href="../Learn_list.jsp?class_id=' + jsonObj.class_id[i] + '" target="_blank" class="course-detail-title">\n' +
                     '                        <img src="'+PageContext + jsonObj.cover_address[i] + '" alt="">\n' +
                     '                    </a>\n' +
                     '                    <div class="course-item-detail">\n' +
-                    '                        <a href="../Learn_list.jsp?=' + jsonObj.class_id[i] + '" target="_blank" class="course-detail-title">\n' +
+                    '                        <a href="../Learn_list.jsp?class_id=' + jsonObj.class_id[i] + '" target="_blank" class="course-detail-title">\n' +
                     '                            ' + jsonObj.class_title[i] + '\n' +
                     '                        </a>\n' +
                     '                        <div class="course-item-classify">\n' +

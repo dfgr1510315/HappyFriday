@@ -280,7 +280,7 @@
 </style>
 
 
-<body onload="ifActive();get_Video();get_Class()" onunload="live();">
+<body  onunload="live();">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;height: 100%;background-color: #1c1f21;padding: 10px;margin-top: 5px">
     <div class='course-sidebar-layout ' id='courseSidebar' >
@@ -399,6 +399,8 @@
 <script type="text/javascript">
     var note_flag = 0;
     var ask_flag = 0;
+    var post_note_flag = 0;
+    var post_ask_flag = 0;
     var No = window.location.search.replace("?",'').split("/");
     var Unit_length;
     var Unit;
@@ -431,14 +433,13 @@
         'fontSize',  // 字号
         'quote',
         'code'];
-/*    function getSrting(search) {
-        var return_string='';
-        for (var i = search.length-1;i>=0;i--){
-            if (search.charAt(i)==='/') break;
-            return_string = return_string+search.charAt(i);
-        }
-        return return_string.split("").reverse().join("");
-    }*/
+
+    $(document).ready(function () {
+        get_Class();
+        get_Video()
+    });
+
+
 
     function get_Class() {
         var note_editor = new E('#note_editor');
@@ -475,10 +476,10 @@
                 flag = flag.substring(1).split(",");
                 for (i=0;i<flag.length;i++){
                     $("#chapter").append(
-                        '<ul id="Unit'+i+'" class="" draggable="true"  > ' +
+                        '<ul id="Unit'+i+'" class="" draggable="true"  >' +
                         '<li class="sec-title">'+
-                        '   <span  style="margin-right: 20px;color: #999;font-weight: bold;">第'+(i+1)+'章 '+'</span>'+
-                        '   <span > '+flag[i]+'</span>'+
+                        '   <span  style="margin-right:20px;color:#999;font-weight:bold;">第'+(i+1)+'章 '+'</span>'+
+                        '   <span >'+flag[i]+'</span>'+
                         '</li>'+
                         '</ul>'
                     );
@@ -593,6 +594,7 @@
     var videoID;
     var cookieTime;
     function live() {
+        if (post_note_flag ===1||post_ask_flag===1) return;
         var title = $('#adjust').prev().children().eq(2).text();
         cookie.set('class_no_'+user+No,class_no+','+title);
         var done_times = 0;
@@ -642,6 +644,30 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
+                if (jsonObj.sc_user===0) {
+                    $('#video').empty().append(
+                        '<div class="no_find_video">请先加入本课程学习</div>'
+                    );
+                    note_flag =1;
+                    ask_flag = 1;
+                    post_note_flag = post_ask_flag = 1;
+                    $('#video_li').hide();
+                    $('#text_li').hide();
+                    $('#file_li').hide();
+                    return;
+                }
+                if(jsonObj.Video_address===undefined&&jsonObj.text===undefined&&jsonObj.file_address===undefined) {
+                    $('#video').empty().append(
+                        '<div class="no_find_video">本课时无内容或尚未发布</div>'
+                    );
+                    note_flag =1;
+                    ask_flag = 1;
+                    post_note_flag = post_ask_flag = 1;
+                    $('#video_li').hide();
+                    $('#text_li').hide();
+                    $('#file_li').hide();
+                    return;
+                }
                 if (jsonObj.Video_address !== ''){
                     console.log(jsonObj.Video_address);
                     videoID = user+No+class_no; //视频的区分ID，每个视频分配一个唯一的ID
@@ -686,8 +712,6 @@
                         jsonObj.text
                     );
                 }
-
-
 
                 if (jsonObj.file_address===''){
                     $('#file_li').hide();
@@ -746,6 +770,7 @@
     }
 
     function post_note() {
+        if (post_note_flag===1) return;
         var note_editor = $('#note_editor');
         var note_text = note_editor.children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g,'');
         if (note_editor.text().trim().length===0){
@@ -857,6 +882,7 @@
     }
 
     function post_ask() {
+        if (post_ask_flag===1) return;
         var ask_editor = $('#ask_editor');
         var ask_title = $('#problem').val();
         var ask_text = ask_editor.children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g,'');

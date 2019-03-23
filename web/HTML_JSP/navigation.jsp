@@ -269,7 +269,7 @@
                 <i class="msg_remind"></i>
                 <i class="fa fa-bell"></i>
             </a>
-            <a class="notice history" target="_blank" href="${pageContext.request.contextPath}/HTML_JSP/notification.jsp">
+            <a class="notice history" target="_blank" href="javascript:void(0)">
                 <i class="fa fa-history"></i>
             </a>
             <div class="history-record-m mini-wnd-nav history-wnd dd-bubble history" id="history_card">

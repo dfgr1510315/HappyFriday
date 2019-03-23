@@ -24,7 +24,7 @@ public class Students extends HttpServlet {
         switch (action) {
             case "get_class_students":
                 int No = Integer.parseInt(request.getParameter("No"));
-                int page = Integer.parseInt(request.getParameter("page"));
+                int page = Integer.parseInt(request.getParameter("id"));
                 get_class_students(response,No,page);
                 break;
             case "save_schedule" :
@@ -44,6 +44,118 @@ public class Students extends HttpServlet {
                 user = request.getParameter("student");
                 get_schedule(response,No,user);
                 break;
+            case "get_class":
+                No = Integer.parseInt(request.getParameter("No"));
+                get_class(response,No);
+                break;
+            case "create_class":
+                No = Integer.parseInt(request.getParameter("No"));
+                user = request.getParameter("class_name");
+                create_class(response,No,user);
+                break;
+            case "delete_class":
+                No = Integer.parseInt(request.getParameter("id"));
+                delete_class(response,No);
+                break;
+        }
+    }
+
+    private void delete_class(HttpServletResponse response,int id){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        try {
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("delete from classification where id="+id);
+            qsql.executeUpdate();
+            PrintWriter out = response.getWriter();
+            out.flush();
+            out.print(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    private void create_class(HttpServletResponse response,int No,String class_name){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        try {
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("insert into classification(class_id,name) value (?,?)");
+            qsql.setInt(1,No);
+            qsql.setString(2,class_name);
+            qsql.executeUpdate();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select LAST_INSERT_ID() id");
+            int id = -1;
+            while (rs.next()){
+                id = rs.getInt("id");
+            }
+            PrintWriter out = response.getWriter();
+            out.flush();
+            out.print(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    private void get_class(HttpServletResponse response,int No){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        try {
+            con = dbp.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select id,name from classification where class_id="+No);
+            JSONObject jsonObj = new JSONObject();
+            ArrayList<Integer> id = new ArrayList<>();
+            ArrayList<String> name = new ArrayList<>();
+            while (rs.next()){
+                id.add(rs.getInt("id"));
+                name.add(rs.getString("name"));
+            }
+            jsonObj.put("id",id);
+            jsonObj.put("name",name);
+            PrintWriter out = response.getWriter();
+            out.flush();
+            out.print(jsonObj);
+            rs.close();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
@@ -162,13 +274,16 @@ public class Students extends HttpServlet {
         }
     }
 
-    private void get_class_students(HttpServletResponse response,int No,int page){
+    private void get_class_students(HttpServletResponse response,int No,int classification){
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select user,head,schedule,time from sc,personal_table where class="+No+" and username=user order by time desc limit "+(6*(page-1))+","+6);
+            /*classification
+             * order by time desc limit "+(6*(page-1))+","+6);
+              * */
+            ResultSet rs = statement.executeQuery("select user,head,schedule,time from sc,personal_table where class="+No+" and username=user and classification="+classification);
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> user_list = new ArrayList<>();
             ArrayList<String> time_list = new ArrayList<>();
@@ -180,10 +295,10 @@ public class Students extends HttpServlet {
                 head.add(rs.getString("head"));
                 schedule_list.add(rs.getString("schedule"));
             }
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM sc where class="+No);
+       /*     rs = statement.executeQuery("SELECT COUNT(*) count FROM sc where class="+No);
             while (rs.next()){
                 jsonObj.put("count",rs.getString("count"));
-            }
+            }*/
             jsonObj.put("user",user_list);
             jsonObj.put("time",time_list);
             jsonObj.put("head",head);

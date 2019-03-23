@@ -80,7 +80,7 @@
 
 </style>
 
-<body onload="ifActive();addAction(5);addHref();getHTML()">
+<body onload="addAction(5);addHref();getHTML();">
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
     <div style="background-size: cover;height: 148px;margin-top: -21px">
@@ -92,30 +92,39 @@
                     <h3 class="container_right_head">
                         学员管理
                     </h3>
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#create_class">创建班级</button>
                     <form  class="top-right">
                         <button type="button" class="btn btn-outline-primary">导入学员</button>
                     </form>
                     <button type="button" class="btn btn-outline-primary">添加学员</button>
                     <input class="btn btn-outline-primary" type="button" onclick="location.href='/resources/csv/course/demo.csv'" value="下载模板">
                 </div>
-
-                <table id="student_table" class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>学员</th>
-                        <th>学习进度</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-
-                <ul id="page" class="pagination pagination-sm"></ul>
+                <div id="class_box" class="table-responsive"></div>
+        <%--        <div id="page_box">
+                </div>
+                <ul id="page" class="pagination pagination-sm"></ul>--%>
             </div>
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="create_class"  style="background-color: transparent; width: 100%; top: 165px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%-- 头部--%>
+            <div class="modal-header">
+                <div class="modal-title">请输入班级名</div>
+                <a id="create_class_Close" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <%--界面--%>
+            <div class="modal-body">
+                <label for="create_class_name"></label>
+                <textarea id="create_class_name" class="form-control"></textarea>
+                <button type="button" class="btn btn-outline-success btn-sm" onclick="create_class()">确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 <script type="text/javascript">
@@ -146,24 +155,178 @@
             })
         }
     }
-
-    $(document).ready(function(){
-        $('#cover').attr('src',cover_address);
-        var page = GetQueryString('page');
-        if(page===null) page='1';
+    
+    function create_class() {
+        var class_name = $('#create_class_name');
+        $('#create_class_Close').click();
         $.ajax({
             url: "${pageContext.request.contextPath}/students",
             data: {
                 No:No,
-                page:page,
+                class_name:class_name.val(),
+                action:'create_class'
+            },
+            type: "POST",
+            dataType: "json",
+            asynch: "false",
+            success: function (jsonObj) {
+                if (jsonObj!==-1){
+                    $('#class_table').prepend(
+                        '<tr>\n' +
+                        '   <td>'+class_name.val()+'</td>\n' +
+                        '   <td><button type="button" style="margin-top:0;" class="btn btn-outline-primary btn-sm" onclick="get_class_students('+jsonObj+')">查看班级</button>' +
+                        '       <button type="button" style="margin-top:0;" class="btn btn-outline-danger btn-sm" onclick="delete_student_class(this,'+jsonObj+')">删除班级</button>\n' +
+                        '</td>\n' +
+                        '</tr>'
+                    );
+                    class_name.val('');
+                }
+            }
+        })
+    }
+
+    function get_class() {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/students",
+            data: {
+                No:No,
+                action:'get_class'
+            },
+            type: "POST",
+            dataType: "json",
+            asynch: "false",
+            success: function (jsonObj) {
+                $('#class_box').append(
+                    '<table id="class_table" class="table">\n' +
+                    '                    <thead>\n' +
+                    '                    <tr>\n' +
+                    '                        <th>班级</th>\n' +
+                    '                        <th>操作</th>\n' +
+                    '                    </tr>\n' +
+                    '                    </thead>\n' +
+                    '                    <tbody></tbody>\n' +
+                    '                </table>'
+                );
+                for (var i=0;i<jsonObj.id.length;i++){
+                    $('#class_table').prepend(
+                        ' <tr>\n' +
+                        '        <td>'+jsonObj.name[i]+'</td>\n' +
+                        '        <td>' +
+                        '           <button type="button" style="margin-top: 0;" class="btn btn-outline-primary btn-sm" onclick="get_class_students('+jsonObj.id[i]+')">查看班级</button>\n' +
+                        '           <button type="button" style="margin-top:0;" class="btn btn-outline-danger btn-sm" onclick="delete_student_class(this,'+jsonObj.id[i]+')">删除班级</button>\n' +
+                        '       </td>\n' +
+                        '      </tr>'
+                    )
+                }
+            }
+        })
+    }
+
+    function delete_student_class(event,id) {
+        var delete_class = confirm("确定删除此班级吗?");
+        if (delete_class) {
+            $.ajax({
+                url: "${pageContext.request.contextPath}/students",
+                data: {
+                    id:id,
+                    action:'delete_class'
+                },
+                type: "POST",
+                dataType: "json",
+                asynch: "false",
+                success: function (jsonObj) {
+                    if (jsonObj===1){
+                        $(event).parent().parent().remove();
+                    }
+                }
+            })
+        }
+    }
+
+    function add_page(page_id,count,page) {
+        var page_ul =  $(page_id);
+        page_length = Math.ceil(count/6);
+        if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)-1)+'">Previous</a></li>');
+        else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
+
+        if (page-1>2&&page_length-page>=2){
+            for (var i = page-2;i<=page+2;i++){
+                if (i<page_length+1){
+                    if (i===parseInt(page)){
+                        page_ul.append('<li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                    }else page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                }
+            }
+        }else {
+            if (page<=3){
+                for (i=1;i<6;i++){
+                    if (i<page_length+1){
+                        if (i===parseInt(page)){
+                            page_ul.append('<li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                    }
+                }
+            }else {
+                for (i=page_length-4;i<=page_length;i++){
+                    if (i<page_length+1){
+                        if (i===parseInt(page)){
+                            page_ul.append('<li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
+                    }
+                }
+            }
+
+        }
+
+        if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)+1)+'">Next</a></li>');
+        else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+    }
+
+    function get_class_students(id){
+/*        var page = GetQueryString('page');
+        if(page===null) page='1';*/
+        $('.table-striped').hide();
+        var student_table = $('#student_table'+id);
+        console.log(student_table.length);
+        if ( student_table.length > 0 ) {
+            student_table.show();
+            return;
+        }
+        $.ajax({
+            url: "${pageContext.request.contextPath}/students",
+            data: {
+                No:No,
+                id:id,
                 action:'get_class_students'
             },
             type: "POST",
             dataType: "json",
             asynch: "false",
             success: function (jsonObj) {
+                var class_box = $('#class_box');
+                if (jsonObj.user.length===0)  {
+                    class_box.append(
+                        '<div id="student_table'+id+'" class=" table table-striped">\n' +
+                        '     <div style="text-align: center;color: #93999f;">此班级没有添加学员</div>\n' +
+                        '</div>'
+                    );
+                    return;
+                }
+
+                class_box.append(
+                    '  <table id="student_table'+id+'" class="table table-striped">\n' +
+                    '                    <thead>\n' +
+                    '                    <tr>\n' +
+                    '                        <th>学员</th>\n' +
+                    '                        <th>学习进度</th>\n' +
+                    '                        <th>操作</th>\n' +
+                    '                    </tr>\n' +
+                    '                    </thead>\n' +
+                    '                    <tbody></tbody>\n' +
+                    '                </table>'
+                );
                 for (var i=0;i<jsonObj.user.length;i++){
-                    $('#student_table').append(
+                    $('#student_table'+id).append(
                         '<tr>\n' +
                         '                        <td style="position: relative;">\n' +
                         '                            <a target="_blank" href="" >\n' +
@@ -185,45 +348,15 @@
                         '                    </tr>'
                     )
                 }
-
-                var page_ul =  $('#page');
-                page_length = Math.ceil(jsonObj.count/6);
-                if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)-1)+'">Previous</a></li>');
-                else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
-
-                if (page-1>2&&page_length-page>=2){
-                    for (i = page-2;i<=page+2;i++){
-                        if (i<page_length+1){
-                            if (i===parseInt(page)){
-                                page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                            }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                        }
-                    }
-                }else {
-                    if (page<=3){
-                        for (i=1;i<6;i++){
-                            if (i<page_length+1){
-                                if (i===parseInt(page)){
-                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                            }
-                        }
-                    }else {
-                        for (i=page_length-4;i<=page_length;i++){
-                            if (i<page_length+1){
-                                if (i===parseInt(page)){
-                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
-                            }
-                        }
-                    }
-
-                }
-
-                if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)+1)+'">Next</a></li>');
-                else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+                //add_page('#page',jsonObj.count,page);
             }
         })
+    }
+
+    $(document).ready(function(){
+        $('#cover').attr('src',cover_address);
+        get_class();
+        //get_class_students();
     })
 </script>
 

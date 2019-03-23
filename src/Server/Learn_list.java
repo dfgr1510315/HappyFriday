@@ -34,21 +34,23 @@ public class Learn_list extends HttpServlet {
             HttpSession session=request.getSession();
             String username=(String) session.getAttribute("user_id");
             String time = request.getParameter("time");
-            join_class(response,No,username,time);
+            int classification = Integer.parseInt(request.getParameter("classification"));
+            join_class(response,No,username,time,classification);
         }
 
     }
 
-    private void join_class(HttpServletResponse response,int No,String username,String time){
+    private void join_class(HttpServletResponse response,int No,String username,String time,int classification){
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
         try {
             con = dbp.getConnection();
-            qsql = con.prepareStatement("insert into sc(user,class,time) value (?,?,?)");
+            qsql = con.prepareStatement("insert into sc(user,class,time,classification) value (?,?,?,?)");
             qsql.setString(1, username);
             qsql.setInt(2, No);
             qsql.setString(3, time);
+            qsql.setInt(4, classification);
             qsql.executeUpdate();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("msg","1");

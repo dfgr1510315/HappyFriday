@@ -38,7 +38,7 @@
 
     function addHref(){
         var list_group = $(".list-group");
-        for (var i=0;i<7;i++){
+        for (var i=0;i<6;i++){
             var href = list_group.children().eq(i).attr('href');
             list_group.children().eq(i).attr('href',href+location.search);
         }

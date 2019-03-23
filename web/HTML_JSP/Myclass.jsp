@@ -76,7 +76,7 @@
             <div class="modal-content">
                 <%-- 头部--%>
                 <div class="modal-header">
-                    <h5 class="modal-title">请输入章节名称</h5>
+                    <div class="modal-title">请输入章节名称</div>
                     <a id="unitClose" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
@@ -95,7 +95,7 @@
             <div class="modal-content">
                 <%-- 头部--%>
                 <div class="modal-header">
-                    <h5 class="modal-title">请重新输入章节名称</h5>
+                    <div class="modal-title">请重新输入章节名称</div>
                     <a id="Change_section_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
@@ -114,7 +114,7 @@
             <div class="modal-content">
                 <%-- 头部--%>
                 <div class="modal-header">
-                    <h5 class="modal-title">请输入课时名称</h5>
+                    <div class="modal-title">请输入课时名称</div>
                     <a id="class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
@@ -133,7 +133,7 @@
             <div class="modal-content">
                 <%-- 头部--%>
                 <div class="modal-header">
-                    <h5 class="modal-title">请重新输入课时名称</h5>
+                    <div class="modal-title">请重新输入课时名称</div>
                     <a id="Change_Class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
@@ -152,7 +152,7 @@
             <div class="modal-content">
                 <%-- 头部--%>
                 <div class="modal-header">
-                    <h5 class="modal-title">提示</h5>
+                    <div class="modal-title">提示</div>
                     <a id="Delete_Unit_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
@@ -170,7 +170,7 @@
             <div class="modal-content">
                 <%-- 头部--%>
                 <div class="modal-header">
-                    <h5 class="modal-title">提示</h5>
+                    <div class="modal-title">提示</div>
                     <a id="Delete_Class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
@@ -188,7 +188,7 @@
             <div class="modal-content">
                 <%-- 头部--%>
                 <div class="modal-header">
-                    <h5 class="modal-title">提示</h5>
+                    <div class="modal-title">提示</div>
                     <a id="Open_curriculum_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>
@@ -206,7 +206,7 @@
             <div class="modal-content">
                 <%-- 头部--%>
                 <div class="modal-header">
-                    <h5 class="modal-title">提示</h5>
+                    <div class="modal-title">提示</div>
                     <a id="Close_curriculum_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <%--界面--%>

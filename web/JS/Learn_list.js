@@ -2,37 +2,38 @@ var PageContext = $("#PageContext").val();
 var No = GetQueryString('class_id');
 
 
-function GetQueryString(name)
-{
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if(r!=null) return  unescape(r[2]); return null;
+    if (r != null) return unescape(r[2]);
+    return null;
 }
 
-    function join_class() {
-        var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
-        $.ajax({
-            type: "POST",
-            asynch: "false",
-            url: PageContext+"/learn_list",
-            data: {
-                action:'join_class',
-                time:time2,
-                No:No
-            },
-            dataType: 'json',
-            success: function (jsonObject) {
-                if (jsonObject.msg==='1'){
-                    window.location.href="Play.jsp?"+No+"/1-1";
-                }
+function join_class(classification) {
+    var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
+    $.ajax({
+        type: "POST",
+        asynch: "false",
+        url: PageContext + "/learn_list",
+        data: {
+            action: 'join_class',
+            time: time2,
+            No: No,
+            classification:classification
+        },
+        dataType: 'json',
+        success: function (jsonObject) {
+            if (jsonObject.msg === '1') {
+                window.location.href = "Play.jsp?" + No + "/1-1";
             }
-        })
-    }
+        }
+    })
+}
 
-    function continue_class(event) {
-        var last_time = $(event).prev().data('class');
-        window.location.href="Play.jsp?"+No+"/"+last_time.substring(0,last_time.indexOf(':'));
-    }
+function continue_class(event) {
+    var last_time = $(event).prev().data('class');
+    window.location.href = "Play.jsp?" + No + "/" + last_time.substring(0, last_time.indexOf(':'));
+}
 
 
 Date.prototype.Format = function (fmt) {
