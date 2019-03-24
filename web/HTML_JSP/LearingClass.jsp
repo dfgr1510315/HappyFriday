@@ -206,7 +206,7 @@
                 '   </div>\n' +
                 '   <div class="course-list-cont">\n' +
                 '       <h3 class="study-hd">\n' +
-                '            <a href="Learn_list.jsp?=' + json.class_no[i] + '" target="_blank">' + json.title[i] + '</a>\n' +
+                '            <a href="Learn_list.jsp?class_id=' + json.class_no[i] + '" target="_blank">' + json.title[i] + '</a>\n' +
                 '            <div class="share-box">\n' +
                 '                  <a href="javascript:void(0);" onclick="collection(this,'+action+')" title="收藏" ><i class="fa fa-'+star+'"></i></a>\n' +
                 '                  <a href="javascript:void(0);" onclick="delete_class_no(' + json.class_no[i] + ')" data-toggle="modal"  data-target="#Delete_Class"  title="删除" ><i class="fa fa-trash-o"></i></a>\n' +
@@ -217,8 +217,8 @@
                 '             <span class="i-right span-common">学习至' + json.last_time[i] + '</span>\n' +
                 '       </div>\n' +
                 '       <div class="catog-points">\n' +
-                '              <span class="i-left span-common"><a target="_blank" href="Learn_list.jsp?=' + json.class_no[i] + '&page_note=1">笔记 ' + note + '</a></span>\n' +
-                '              <span class="i-right span-common"><a target="_blank" href="Learn_list.jsp?=' + json.class_no[i] + '&page_ask=1">问答 ' + ask + '</a></span>\n' +
+                '              <span class="i-left span-common"><a target="_blank" href="Learn_list.jsp?class_id=' + json.class_no[i] + '&page_note=1">笔记 ' + note + '</a></span>\n' +
+                '              <span class="i-right span-common"><a target="_blank" href="Learn_list.jsp?class_id=' + json.class_no[i] + '&page_ask=1">问答 ' + ask + '</a></span>\n' +
                 '              <button type="button" class="btn btn-outline-primary" style="right: 32px;position: absolute;" onclick="continue_class(' + json.class_no[i] + ',\'' + json.last_time[i] + '\')">继续学习</button>\n' +
                 '       </div>\n' +
                 '</li>'

@@ -126,13 +126,13 @@
                     for (var i=0;i< jsonObject.text.length;i++){
                         note_box.prepend(' <div class="post-row">\n' +
                             '                            <div style="float:left;">\n' +
-                            '                                <a target="_blank" href="Learn_list.jsp?='+jsonObject.title_no[i]+'">\n' +
+                            '                                <a target="_blank" href="Learn_list.jsp?class_id='+jsonObject.title_no[i]+'">\n' +
                             '                                    <image src="'+"${pageContext.request.contextPath}"+jsonObject.image_address[i]+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
                             '                                </a>\n' +
                             '                            </div>\n' +
                             '                            <div style="margin-left: 60px">\n' +
                             '                                <div class="title">\n' +
-                            '                                    <a target="_blank" href="Learn_list.jsp?='+jsonObject.title_no[i]+'" >'+jsonObject.title[i]+'</a>\n' +
+                            '                                    <a target="_blank" href="Learn_list.jsp?class_id='+jsonObject.title_no[i]+'" >'+jsonObject.title[i]+'</a>\n' +
                             '                                </div>\n' +
                             '                                <div class="unit">\n' +
                             '                                    <a target="_blank" href="Play.jsp?'+jsonObject.title_no[i]+'/'+jsonObject.class_no[i]+'" >'+jsonObject.class_no[i]+'&nbsp&nbsp&nbsp'+jsonObject.class_title[i]+'</a>\n' +

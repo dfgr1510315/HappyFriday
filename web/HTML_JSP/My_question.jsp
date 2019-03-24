@@ -73,7 +73,7 @@
                             '                                                <span class="static-item answer">'+jsonObj.answer_count[i]+' 回答</span>\n' +
                             '                                                <span class="static-item">'+jsonObj.times[i]+' 浏览</span>\n' +
                             '                                            </a>\n' +
-                            '                                            <a href="Learn_list.jsp?='+jsonObj.class_no[i]+'" target="_blank">'+jsonObj.class_title[i]+'</a>\n' +
+                            '                                            <a href="Learn_list.jsp?class_id='+jsonObj.class_no[i]+'" target="_blank">'+jsonObj.class_title[i]+'</a>\n' +
                             '                                            <a href="Play.jsp?'+jsonObj.class_no[i]+'/'+jsonObj.title_No_list[i]+'" target="_blank">'+jsonObj.title_No_list[i]+'  '+jsonObj.title[i]+'</a>\n' +
                             '                                        </div>\n' +
                             '                                        <em class="r">'+jsonObj.time[i]+'</em>\n' +

@@ -169,10 +169,10 @@
                         var notice;
                         switch (jsonObj.notice_type[i]) {
                             case 1:
-                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>加入了课程<a href='Learn_list.jsp?="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>\n";
+                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>加入了课程<a href='Learn_list.jsp?class_id="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>\n";
                                 break;
                             case 2:
-                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在课程<a href='Learn_list.jsp?="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>发表了问题<a href='questions.jsp?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>\n";
+                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在课程<a href='Learn_list.jsp?class_id="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>发表了问题<a href='questions.jsp?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>\n";
                                 break;
                             case 3:
                                 notice = "用户<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在你发布的问题<a href='questions.jsp?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>中回答了你";
