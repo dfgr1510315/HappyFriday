@@ -20,6 +20,7 @@
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <script type="text/javascript" src="../JS/Learn_list.js"></script>
 </head>
+
 <script type="text/javascript">
     var pass = -1;
     var ask_flag = 0;
@@ -400,11 +401,6 @@
                         );
                         return
                     }
-                    class_box.append(
-                        '<table id="class_table" class="table">\n' +
-                        '     <tbody></tbody>\n' +
-                        '</table>'
-                    );
                     for (var i=0;i<jsonObj.id.length;i++){
                         $('#class_table').append(
                             ' <tr>\n' +
@@ -539,7 +535,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="join_class"  style="background-color: transparent; width: 100%; top: 165px;">
+<div class="modal fade" id="join_class"  style="background-color: transparent; width: 100%; top:90px;">
     <div class="modal-dialog">
         <div class="modal-content" >
             <%-- 头部--%>

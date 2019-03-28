@@ -57,6 +57,7 @@ public class Students extends HttpServlet {
                 No = Integer.parseInt(request.getParameter("id"));
                 delete_class(response,No);
                 break;
+
         }
     }
 

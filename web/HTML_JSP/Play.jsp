@@ -284,7 +284,7 @@
 <jsp:include page="navigation.jsp"/>
 <div style="width: 100%;height: 100%;background-color: #1c1f21;padding: 10px;margin-top: 5px">
     <div class='course-sidebar-layout ' id='courseSidebar' >
-        <a href="Learn_list.jsp" id="back">
+        <a href="Learn_list.jsp" id="back" onclick="live()">
             <i class="fa fa-arrow-left"></i>
         </a>
         <ul class="nav nav-pills flex-column" role="tablist" style="height: 40%">

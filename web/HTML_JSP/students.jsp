@@ -77,7 +77,9 @@
         left: 65px;
         top: 45px;
     }
-
+    #modal_class_box::-webkit-scrollbar {
+        display: none;
+    }
 </style>
 
 <body onload="addAction(5);addHref();getHTML();">
@@ -125,9 +127,28 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="join_class"  style="background-color: transparent; width: 100%; top: 90px;">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+            <%-- 头部--%>
+            <div class="modal-header">
+                <div class="modal-title">请选择班级</div>
+                <a id="join_class_Close" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <%--界面--%>
+            <div class="modal-body" id="modal_class_box" style="max-height: 440px;overflow-y: scroll;overflow-x: hidden;">
+                <table id="modal_class_table" class="table">
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 <script type="text/javascript">
+    var move_student;
     function GetQueryString(name)
     {
         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -179,6 +200,12 @@
                         '</td>\n' +
                         '</tr>'
                     );
+                    $('#modal_class_table').append(
+                        ' <tr>\n' +
+                        '     <td>'+class_name.val()+'</td>\n' +
+                        '     <td><button type="button" style="margin-top: 0;float: right" class="btn btn-outline-primary btn-sm" onclick="join_class()">移动至此班级</button></td>\n' +
+                        '</tr>'
+                    );
                     class_name.val('');
                 }
             }
@@ -216,7 +243,32 @@
                         '           <button type="button" style="margin-top:0;" class="btn btn-outline-danger btn-sm" onclick="delete_student_class(this,'+jsonObj.id[i]+')">删除班级</button>\n' +
                         '       </td>\n' +
                         '      </tr>'
+                    );
+                    $('#modal_class_table').append(
+                        ' <tr>\n' +
+                        '     <td>'+jsonObj.name[i]+'</td>\n' +
+                        '     <td><button type="button" style="margin-top:0;float:right" class="btn btn-outline-primary btn-sm" onclick="join_class()">移动至此班级</button></td>\n' +
+                        '</tr>'
                     )
+                }
+
+            }
+        })
+    }
+
+    function join_class() {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/students",
+            data: {
+                id:id,
+                action:'delete_class'
+            },
+            type: "POST",
+            dataType: "json",
+            asynch: "false",
+            success: function (jsonObj) {
+                if (jsonObj===1){
+                    $(event).parent().parent().remove();
                 }
             }
         })
@@ -342,7 +394,7 @@
                         '                        </td>\n' +
                         '                        <td>\n' +
                         '                            <button type="button" class="btn btn-outline-primary btn-sm">设为班长</button>\n' +
-                        '                            <button type="button" class="btn btn-outline-info btn-sm">发送信息</button>\n' +
+                        '                            <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#join_class" data-student="'+jsonObj.user[i]+'" onclick="change_stu(this)">移动学员</button>\n' +
                         '                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="remove_student(this)">移除学员</button>\n' +
                         '                        </td>\n' +
                         '                    </tr>'
@@ -351,6 +403,10 @@
                 //add_page('#page',jsonObj.count,page);
             }
         })
+    }
+
+    function change_stu(event){
+        move_student = $(event).data('student');
     }
 
     $(document).ready(function(){

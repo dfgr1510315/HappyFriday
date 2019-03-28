@@ -816,3 +816,7 @@ i {
     margin-bottom: 35px;
     color: #93999f;
 }
+
+#class_box::-webkit-scrollbar {
+    display: none;
+}
