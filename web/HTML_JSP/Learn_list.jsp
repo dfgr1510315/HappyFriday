@@ -212,6 +212,11 @@
         }
     }
 
+    /*$('.list_box a').click(record());
+    function record() {
+        alert('???');
+    }*/
+
     function add_page(page_ul_id,page,count,page_type) {
         var page_ul =  $(page_ul_id);
         console.log(count);
@@ -267,7 +272,7 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                for (i=0;i<jsonObj.text.length;i++){
+                for (var i=0;i<jsonObj.text.length;i++){
                     $('#note_ul').append(
                         '<li class="post-row js-find-txt">\n' +
                         '                            <div class="media">\n' +
@@ -321,7 +326,7 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                for (i=0;i<jsonObj.ask_no.length;i++){
+                for (var i=0;i<jsonObj.ask_no.length;i++){
                     $('#ask_ul').append(
                         ' <li>\n' +
                         '                            <div class="ui-box">\n' +

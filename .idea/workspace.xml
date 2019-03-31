@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="ServletTest:war exploded" />
+      <artifact name="ServletTest:war" />
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
@@ -11,12 +11,1034 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12850cd1-69d1-43cd-8843-a98321ef88ef" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.eslintrc.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.github/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.github/ISSUE_TEMPLATE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.headerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.jshintrc-dist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/DISCLAIMER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/KEYS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/NOTICE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/asset/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/dep/bootstrap/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/dep/bootstrap/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/dep/filesaver/FileSaver.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/dep/jquery/jquery-2.2.4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/dep/lodash/lodash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/dep/vue/vue.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/gulpfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/src/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/src/testCase.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/src/testFactory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/benchmark/src/testManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/addHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/amd2common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/build.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/mangleString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/optimize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/pre-publish.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/preamble.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/rollup-plugin-ec-lang.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/build/rollup-plugin-ec-remove-dev.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts-en.common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts-en.common.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts-en.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts-en.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts-en.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts-en.simple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts-en.simple.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts.common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts.common.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts.simple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/echarts.simple.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/extension/bmap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/extension/bmap.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/extension/bmap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/extension/dataTool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/extension/dataTool.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/dist/extension/dataTool.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/echarts.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/echarts.blank.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/echarts.common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/echarts.simple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension-src/bmap/BMapCoordSys.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension-src/bmap/BMapModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension-src/bmap/BMapView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension-src/bmap/bmap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension-src/dataTool/gexf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension-src/dataTool/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension-src/dataTool/prepareBoxplotData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/bmap/BMapCoordSys.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/bmap/BMapModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/bmap/BMapView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/bmap/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/bmap/bmap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/dataTool/gexf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/dataTool/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/dataTool/prepareBoxplotData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/echarts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/extension/webpack.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/index.common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/index.simple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/licenses/LICENSE-d3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/china-contour.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/china.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/anhui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/aomen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/beijing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/chongqing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/fujian.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/gansu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/guangdong.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/guangxi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/guizhou.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/hainan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/hebei.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/heilongjiang.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/henan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/hubei.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/hunan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/jiangsu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/jiangxi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/jilin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/liaoning.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/neimenggu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/ningxia.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/qinghai.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/shandong.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/shanghai.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/shanxi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/shanxi1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/sichuan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/taiwan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/tianjin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/xianggang.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/xinjiang.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/xizang.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/yunnan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/province/zhejiang.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/js/world.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/china-cities.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/china-contour.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/china.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/anhui.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/aomen.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/beijing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/chongqing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/fujian.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/gansu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/guangdong.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/guangxi.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/guizhou.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/hainan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/hebei.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/heilongjiang.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/henan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/hubei.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/hunan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/jiangsu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/jiangxi.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/jilin.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/liaoning.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/neimenggu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/ningxia.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/qinghai.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/shandong.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/shanghai.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/shanxi.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/shanxi1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/sichuan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/taiwan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/tianjin.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/xianggang.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/xinjiang.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/xizang.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/yunnan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/province/zhejiang.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/map/json/world.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/CoordinateSystem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/ExtensionAPI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/action/createDataSelectAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/action/geoRoam.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/action/roamHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/bar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/bar/BarSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/bar/BarView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/bar/BaseBarSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/bar/PictorialBarSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/bar/PictorialBarView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/bar/barItemStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/bar/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/boxplot.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/boxplot/BoxplotSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/boxplot/BoxplotView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/boxplot/boxplotLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/boxplot/boxplotVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/candlestick.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/candlestick/CandlestickSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/candlestick/CandlestickView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/candlestick/candlestickLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/candlestick/candlestickVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/candlestick/preprocessor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/chord.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/chord/ChordSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/chord/ChordView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/chord/Ribbon.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/chord/chordCircularLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/effectScatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/effectScatter/EffectScatterSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/effectScatter/EffectScatterView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/funnel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/funnel/FunnelSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/funnel/FunnelView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/funnel/funnelLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/gauge.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/gauge/GaugeSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/gauge/GaugeView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/gauge/PointerPath.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/GraphSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/GraphView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/adjustEdge.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/backwardCompat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/categoryFilter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/categoryVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/circularLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/circularLayoutHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/createView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/edgeVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/forceHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/forceLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/graphAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/simpleLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/graph/simpleLayoutHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/heatmap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/heatmap/HeatmapLayer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/heatmap/HeatmapSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/heatmap/HeatmapView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/EffectLine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/EffectPolyline.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/EffectSymbol.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/LargeLineDraw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/LargeSymbolDraw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/Line.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/LineDraw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/LinePath.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/Polyline.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/Symbol.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/SymbolDraw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/createGraphFromNodeEdge.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/createGraphFromNodeMatrix.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/createListFromArray.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/createListSimply.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/createRenderPlanner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/focusNodeAdjacencyAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/labelHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/treeHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/helper/whiskerBoxCommon.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/line.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/line/LineSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/line/LineView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/line/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/line/lineAnimationDiff.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/line/poly.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/lines.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/lines/LinesSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/lines/LinesView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/lines/linesLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/lines/linesVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/map.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/map/MapSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/map/MapView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/map/backwardCompat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/map/mapDataStatistic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/map/mapSymbolLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/map/mapVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/parallel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/parallel/ParallelSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/parallel/ParallelView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/parallel/parallelVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/pictorialBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/pie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/pie/PieSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/pie/PieView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/pie/labelLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/pie/pieLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/radar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/radar/RadarSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/radar/RadarView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/radar/backwardCompat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/radar/radarLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sankey.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sankey/SankeySeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sankey/SankeyView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sankey/sankeyAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sankey/sankeyLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sankey/sankeyVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/scatter/ScatterSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/scatter/ScatterView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sunburst.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sunburst/SunburstPiece.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sunburst/SunburstSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sunburst/SunburstView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sunburst/sunburstAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/sunburst/sunburstLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/themeRiver.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/themeRiver/ThemeRiverSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/themeRiver/ThemeRiverView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/themeRiver/themeRiverLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/themeRiver/themeRiverVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/tree/TreeSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/tree/TreeView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/tree/layoutHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/tree/traversalHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/tree/treeAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/tree/treeLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/treemap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/treemap/Breadcrumb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/treemap/TreemapSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/treemap/TreemapView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/treemap/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/treemap/treemapAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/treemap/treemapLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/chart/treemap/treemapVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/angleAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis/AngleAxisView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis/AxisBuilder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis/AxisView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis/CartesianAxisView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis/ParallelAxisView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis/RadiusAxisView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis/SingleAxisView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axis/parallelAxisAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/AxisPointerModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/AxisPointerView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/BaseAxisPointer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/CartesianAxisPointer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/IAxisPointer" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/PolarAxisPointer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/SingleAxisPointer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/axisTrigger.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/findPointFromSeries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/globalListener.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/modelHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/axisPointer/viewHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/brush.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/brush/BrushModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/brush/BrushView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/brush/brushAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/brush/preprocessor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/brush/selector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/brush/visualEncoding.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/calendar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/calendar/CalendarView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/AxisProxy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/DataZoomModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/DataZoomView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/InsideZoomModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/InsideZoomView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/SelectZoomModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/SelectZoomView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/SliderZoomModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/SliderZoomView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/dataZoomAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/dataZoomProcessor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/roams.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoom/typeDefaulter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoomInside.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataZoomSelect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/dataset.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/geo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/geo/GeoView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/graphic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/grid.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/gridSimple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/BrushController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/BrushTargetManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/MapDraw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/RoamController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/brushHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/cursorHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/interactionMutex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/listComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/roamHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/selectableMixin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/helper/sliderMove.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legend.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legend/LegendModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legend/LegendView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legend/ScrollableLegendModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legend/ScrollableLegendView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legend/legendAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legend/legendFilter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legend/scrollableLegendAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/legendScroll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/markArea.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/markLine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/markPoint.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/MarkAreaModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/MarkAreaView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/MarkLineModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/MarkLineView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/MarkPointModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/MarkPointView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/MarkerModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/MarkerView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/marker/markerHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/parallel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/parallelAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/polar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/radar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/radar/RadarView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/radiusAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/singleAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline/SliderTimelineModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline/SliderTimelineView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline/TimelineAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline/TimelineModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline/TimelineView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline/preprocessor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline/timelineAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/timeline/typeDefaulter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/title.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/ToolboxModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/ToolboxView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/feature/Brush.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/feature/DataView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/feature/DataZoom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/feature/MagicType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/feature/Restore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/feature/SaveAsImage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/toolbox/featureManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/tooltip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/tooltip/TooltipContent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/tooltip/TooltipModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/tooltip/TooltipRichContent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/tooltip/TooltipView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/ContinuousModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/ContinuousView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/PiecewiseModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/PiecewiseView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/VisualMapModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/VisualMapView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/preprocessor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/typeDefaulter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/visualEncoding.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMap/visualMapAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMapContinuous.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/component/visualMapPiecewise.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/Axis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/ICoordinateSystem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/View.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/axisDefault.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/axisHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/axisModelCommonMixin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/axisModelCreator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/axisTickLabelBuilder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/calendar/Calendar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/calendar/CalendarModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/calendar/prepareCustom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/cartesian/Axis2D.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/cartesian/AxisModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/cartesian/Cartesian.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/cartesian/Cartesian2D.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/cartesian/Grid.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/cartesian/GridModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/cartesian/cartesianAxisHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/cartesian/prepareCustom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/Geo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/GeoModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/Region.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/fix/diaoyuIsland.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/fix/geoCoord.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/fix/nanhai.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/fix/textCoord.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/geoCreator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/geoJSONLoader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/geoSVGLoader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/geoSourceManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/mapDataStorage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/parseGeoJson.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/geo/prepareCustom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/parallel/AxisModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/parallel/Parallel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/parallel/ParallelAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/parallel/ParallelModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/parallel/parallelCreator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/parallel/parallelPreprocessor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/polar/AngleAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/polar/AxisModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/polar/Polar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/polar/PolarModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/polar/RadiusAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/polar/polarCreator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/polar/prepareCustom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/radar/IndicatorAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/radar/Radar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/radar/RadarModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/single/AxisModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/single/Single.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/single/SingleAxis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/single/prepareCustom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/single/singleAxisHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/coord/single/singleCreator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/DataDiffer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/Graph.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/List.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/OrdinalMeta.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/Source.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/Tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/helper/completeDimensions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/helper/createDimensions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/helper/dataProvider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/helper/dataStackHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/helper/dimensionHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/helper/linkList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/helper/sourceHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/data/helper/sourceType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/echarts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/export.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/lang.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/langEN.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/langFI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/langTH.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/layout/barGrid.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/layout/barPolar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/layout/points.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/loading/default.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/Component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/Global.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/Model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/OptionManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/Series.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/globalDefault.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/mixin/areaStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/mixin/boxLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/mixin/colorPalette.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/mixin/dataFormat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/mixin/itemStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/mixin/lineStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/mixin/makeStyleMapper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/mixin/textStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/model/referHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/preprocessor/backwardCompat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/preprocessor/helper/compatStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/processor/dataFilter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/processor/dataSample.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/processor/dataStack.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/scale/Interval.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/scale/Log.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/scale/Ordinal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/scale/Scale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/scale/Time.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/scale/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/stream/Scheduler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/stream/task.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/theme/dark.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/theme/light.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/KDTree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/animation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/clazz.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/format.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/graphic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/layout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/number.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/quickSelect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/symbol.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/util/throttle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/view/Chart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/view/Component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/visual/VisualMapping.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/visual/aria.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/visual/dataColor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/visual/seriesColor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/visual/symbol.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/visual/visualDefault.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/src/visual/visualSolution.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/-cases.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/-cases.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/allZero.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/appendData.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/area-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/area-stack.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/area2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/areaLineUpdate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/aria-line-bar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/aria-pie.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axes.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-arrow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-boundaryGap.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-containLabel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-extrema.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-interval.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-interval2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-lastLabel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-multiple.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis-style.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axis.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axisLabel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/axisPosition.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-label-rotation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-overflow-time-plot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-basic-radial.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-basic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-long-label.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-multi-series-radial.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-multi-series.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-null-data-radial.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-null-data.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-real-estate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-polar-stack.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-stack.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-start.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-stream-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-stream-large1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar-t.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bar3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/bmap.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/boxplot-multi.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/boxplot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/brush.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/brush2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/brush3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/expect/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/expect/basic.expect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/expect/export-default0.expect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/expect/export-default1.expect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/expect/export-default2.expect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/expect/export-default3.expect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/expect/forbiden-export.expect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/src/basic.src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/src/export-default0.src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/src/export-default1.src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/src/export-default2.src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/src/export-default3.src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/esm2cjs/src/forbiden-export.src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/removeDEV/expect/code.expect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/removeDEV/src/code.src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/build/test-transform.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-converter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-effectScater.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-graph.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-heatmap.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-month.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-more.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-orient.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-range.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-scatter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-simple.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-size.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-split.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-type.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-vertical.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-week.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar-year.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/calendar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/candlestick-doji.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/candlestick-empty.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/candlestick-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/candlestick-large2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/candlestick-large3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/candlestick.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/candlestickConnect.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/canvas-replay.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/chord.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/circle-packing-with-d3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/color-mix-aqi.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/connect-dynamic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/connect-manually.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/connect.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/connect2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/css-transform.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/custom-bmap-grid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/custom-bmap-polygon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/custom-children-remove.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/custom-feature.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/custom-hexbin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/custom.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/Michelson-Morley.json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/aqi/BJdata.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/aqi/GZdata.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/aqi/SHdata.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/aqi/processAQI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/czech_geo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/disk.tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/ec-option-doc-statistics-201604.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/ec-star.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/energy.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/flare.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/flare.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/flight.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/global-wind.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/handle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/handle2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/hangzhou-tracks.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/hill-Kilimanjaro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/hill-Qomolangma.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/house-price-area2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/ice-bucket-challenge.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/iphone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/kawhi-leonard-16-17-regular.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/les-miserables.gexf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/life-expectancy-table.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/life-expectancy.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/lines-bus.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/map_custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/masterPainterColorChoice.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/nba-court-geo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/nba-court.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/nutrients.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/obama_budget_proposal_2012.tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/option-view.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/option-view2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/pie-texture.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/product.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/rainfall.json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/security-sh-2013.json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/stock-DJI.json.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/symbols.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/timelineGDP.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/tree-simple.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/tree-simple2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/weather/cloudy_128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/weather/showers_128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/weather/sunny_128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/data/weibo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataView.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-action.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-axes.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-axis-type.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-cartesian-h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-cartesian-v.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-clip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-dataShadow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-dataShadow0.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-dataShadow1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-dataShadow2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-dynamic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-extreme.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-geo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-rainfall-connect.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-rainfall-inside.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-rainfall.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-scatter-category.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-scatter-hv-polar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-scatter-hv.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-scroll.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-sync.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoom-toolbox.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataZoomHighPrecision.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataset-category.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataset-charts.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataset-layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dataset-pivot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/diff.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dynamic-splitNumber.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dynamicData.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dynamicData2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/dynamicData3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ec-event.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/effectScatter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/encode.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/finished-gl.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/finished.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/force-case.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/force.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/force2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/force3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/funnel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/gauge.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/geo-data-stream.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/geo-lines.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/geo-map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/geo-random-stream.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/geoLine.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/geoScatter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/getOption.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/graph-grid-life.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/graph-grid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/graph-simple.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/graph.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/graphicOption.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/graphicRemove.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/gridSimple.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/heatmap-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/heatmap-map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/heatmap.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/homepage3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/homepage3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/hoverStyle.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ie11.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ie8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/label-position.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/largeLine-tooltip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/largeLine.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/largeScatterWithEmpty.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lazyUpdate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/legend.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/caseFrame.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/caseFrame.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/countup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/dat.gui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/draggable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/esl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/facePrint.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/frameInsight.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/perlin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/rearrange.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/requireES.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/reset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/rollup.browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lib/testHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/line-animation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/line-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/line-visual.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/line.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-bus.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-flight.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-grid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-ny-appendData.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-ny.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-remove.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-stream-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-stream-not-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-symbol.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/lines-track.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/linesGL-ny-appendData.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/loading.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/logScale.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map-contour.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map-default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map-grid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map-labels.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map-locate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map-nested.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map-parallel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map-province.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/mapWorld.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/markArea.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/markLine.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/markPoint.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/masterPainterColorChoice.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/media-dataZoom.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/media-finance.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/media-pie.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/min-max-function.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/mix.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/mobileBench.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/multipleGrid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/node/scatter-gps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/parallel-aqi.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/parallel-lineStyle.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/parallel-nutrients.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pictorial-repeat.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pictorial-single.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pictorial-svg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pie-action.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pie-calculable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pie-clipPath.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pie-digits.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pie.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pie2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pie3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/pieDynamic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/polarLine.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/polarLine2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/polarScatter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/punchCard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/radar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/radar2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/radar3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/radar4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/richText-fontsize.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/richText.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/roseExtreme.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/roseType.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sankey-horizontal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sankey-jump.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sankey-vertical-energy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sankey-vertical.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sankey.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scale-integer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-gps.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-markline.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-random-stream-fix-axis.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-random-stream.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-single-axis.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-stream-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-stream-not-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-stream-visual.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter-weibo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/scatterMatrix.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/selectedMode.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/showTip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/singleAxisScales.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/smooth.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/stream-filter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sunburst-book.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sunburst-canvas.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sunburst-drink.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sunburst-highlight.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sunburst-simple.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sunburst-visualMap.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/sunburst.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/svg-test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/symbol.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/theme.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/themeRiver.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/themeRiver2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/timeScale.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/timeScale2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/timeZone.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/timeline-dynamic-series.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/timeline-finance.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/timeline-layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tmp-base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip-action.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip-axisPointer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip-cascade.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip-event.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip-link.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip-rich.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip-setOption.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip-touch.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tooltipTestHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/touch-candlestick.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/touch-slide.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/touch-test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-addNode.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-basic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-image.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-legend.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-orient-right-left.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-orient-top-bottom.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-radial.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-recurrentRemoveNode.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-removeNode.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-roam.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/tree-vertical.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/treemap-disk.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/treemap-disk2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/treemap-obama.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/treemap-option.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/treemap-option2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/treemap-simple.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/treemap-visual.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/MIT.LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/configure" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/core/uiHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/core/utHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/lib/canteen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/lib/imagediff.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/lib/jasmine-2.3.4/boot.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/lib/jasmine-2.3.4/jasmine-html.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/lib/jasmine-2.3.4/jasmine.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/lib/jasmine-2.3.4/jasmine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/lib/jasmine-2.3.4/jasmine_favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/api/containPixel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/api/converter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/api/getVisual.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/component/dataZoom/helper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/component/graphic/setOption.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/component/helper/sliderMove.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/component/visualMap/setOption.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/data/List.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/data/completeDimensions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/model/Component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/model/Global.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/model/timelineOptions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/scale/interval.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/ui/axis.boundaryGap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/ui/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/ui/legend.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/ui/series.bar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/ui/title.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/ui/title.subtextStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/ui/title.textStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/util/graphic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/util/layout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/util/model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/spec/util/number.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/ui.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/ut.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/ut/ut.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-categories.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-continuous.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-large.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-opacity.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-performance1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-pieces.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-scatter-colorAndSymbol.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-scatter-symbolSize.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/visualMap-special-case.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/webkit-dep.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/test/worldPopulationBubble.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/dark.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/infographic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/macarons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/roma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/shine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/tool/option/area.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/tool/option/bar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/tool/option/graph.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/tool/option/map.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/tool/option/pie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/tool/option/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/tool/thumb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/incubator-echarts-4.2.1/theme/vintage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/97a4a811-0708-4ffe-a68b-39d078bbfd4c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/97a4a811-0708-4ffe-a68b-39d078bbfd4c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Filter/Login_Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/Login_Filter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Get_Teaching.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Get_Teaching.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/Students.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Students.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/Learn_list.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/Learn_list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/UploadSec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/UploadSec.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Play.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Play.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/students.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/students.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Student_commentary.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Student_commentary.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Teaching.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Teaching.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/JS/Myclass.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/Myclass.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,6 +1082,10 @@
     </expand>
     <select />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="ServletTest">
       <favorite_root url="file://$PROJECT_DIR$/web/PersonalCenter.jsp" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
@@ -68,21 +1094,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/students.jsp">
+        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Play.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="273" column="10" selection-start-line="273" selection-start-column="10" selection-end-line="273" selection-end-column="10" />
+            <state relative-caret-position="-590">
+              <caret line="635" column="22" selection-start-line="635" selection-start-column="13" selection-end-line="635" selection-end-column="22" />
               <folding>
-                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,8 +1111,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Server/Students.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+            <state relative-caret-position="497">
+              <caret line="58" column="22" lean-forward="true" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -103,33 +1123,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7557">
-              <caret line="542" column="56" lean-forward="true" selection-start-line="542" selection-start-column="56" selection-end-line="542" selection-end-column="56" />
+            <state relative-caret-position="370">
+              <caret line="216" column="21" lean-forward="true" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/CSS/Learn_list.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="821" column="1" lean-forward="true" selection-start-line="821" selection-start-column="1" selection-end-line="821" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/JS/Learn_list.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -151,13 +1152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>get_class</find>
-      <find>下载模板</find>
-      <find>h5</find>
-      <find>insert</find>
-      <find>create_class_name</find>
-      <find>get_class_students()</find>
-      <find>curriculum_Name</find>
       <find>modal-content</find>
       <find>查看班级</find>
       <find>删除班级</find>
@@ -181,6 +1175,13 @@
       <find>移动学员</find>
       <find>join_class</find>
       <find>change_stu</find>
+      <find>add_class</find>
+      <find>DruidPooledConnection</find>
+      <find>fileObj.name</find>
+      <find>fileObj</find>
+      <find>select</find>
+      <find>delete_video</find>
+      <find>get_Video</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,29 +1199,24 @@
         <option value="$PROJECT_DIR$/web/HTML_JSP/Search/note.jsp" />
         <option value="$PROJECT_DIR$/web/CSS/search.css" />
         <option value="$PROJECT_DIR$/web/CSS/Myclass.css" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/Teaching.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/Server/DBPoolConnection.java" />
         <option value="$PROJECT_DIR$/src/Server/MailUtil.java" />
         <option value="$PROJECT_DIR$/src/Server/Activation.java" />
         <option value="$PROJECT_DIR$/src/Server/SaveClassInfor.java" />
         <option value="$PROJECT_DIR$/src/Server/ChangePW.java" />
-        <option value="$PROJECT_DIR$/src/Server/Get_Teaching.java" />
         <option value="$PROJECT_DIR$/src/Server/GetLearnFile.java" />
         <option value="$PROJECT_DIR$/src/Server/Notification.java" />
         <option value="$PROJECT_DIR$/src/Server/ChangeInfor.java" />
         <option value="$PROJECT_DIR$/src/Server/PostNote.java" />
         <option value="$PROJECT_DIR$/src/Server/save_image.java" />
-        <option value="$PROJECT_DIR$/src/Server/UploadSec.java" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/PersonalCenter.jsp" />
         <option value="$PROJECT_DIR$/src/Server/PostAsk.java" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/questions.jsp" />
         <option value="$PROJECT_DIR$/web/CSS/My_question.css" />
         <option value="$PROJECT_DIR$/web/CSS/navigation.css" />
-        <option value="$PROJECT_DIR$/web/JS/Myclass.js" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/homepage.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/course.jsp" />
-        <option value="$PROJECT_DIR$/src/Filter/Login_Filter.java" />
         <option value="$PROJECT_DIR$/src/Server/Register.java" />
         <option value="$PROJECT_DIR$/web/CSS/navigation_dark.css" />
         <option value="$PROJECT_DIR$/src/Server/Play.java" />
@@ -232,14 +1228,19 @@
         <option value="$PROJECT_DIR$/web/JS/search.js" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/My_question.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/LearingClass.jsp" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/Student_commentary.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/My_answered.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/note.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/notification.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/Play.jsp" />
         <option value="$PROJECT_DIR$/web/CSS/Learn_list.css" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/students.jsp" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/Teaching.jsp" />
+        <option value="$PROJECT_DIR$/src/Server/Get_Teaching.java" />
+        <option value="$PROJECT_DIR$/src/Filter/Login_Filter.java" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/Student_commentary.jsp" />
+        <option value="$PROJECT_DIR$/web/JS/Myclass.js" />
+        <option value="$PROJECT_DIR$/src/Server/UploadSec.java" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp" />
         <option value="$PROJECT_DIR$/src/Server/Students.java" />
       </list>
     </option>
@@ -277,6 +1278,65 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ServletTest" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ServletTest" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
+          <expand>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="HTML_JSP" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="JS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -356,71 +1416,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
-          <expand>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="CSS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="HTML_JSP" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="JS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ServletTest" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ServletTest" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -430,10 +1425,11 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/IntelliJ IDEA 2018.2/javaweb/ServletTest/src/Server/UploadImage.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553776955703" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553776999676" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="MySQL" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/log4j-1.2.17.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -980,6 +1976,9 @@
       <workItem from="1553306269327" duration="17086000" />
       <workItem from="1553772411414" duration="36000" />
       <workItem from="1553772521067" duration="4051000" />
+      <workItem from="1554019249389" duration="53000" />
+      <workItem from="1554019664454" duration="1000" />
+      <workItem from="1554019755399" duration="9646000" />
     </task>
     <task id="LOCAL-00001" summary="将ionic换成了bootstrap">
       <created>1538102747370</created>
@@ -1202,7 +2201,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1744532000" />
+    <option name="totallyTimeSpent" value="1754232000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1214,10 +2213,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.57859534" visible="true" weight="0.19034852" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.57859534" visible="true" weight="0.20107238" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1228,7 +2227,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3243626" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49061662" weight="0.3470716" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48927614" weight="0.305949" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48927614" weight="0.46600565" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49597856" weight="0.3243626" />
@@ -1249,8 +2248,8 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Coverage" order="6" sideWeight="0.50440526" side_tool="true" weight="0.04155496" />
       <window_info anchor="right" id="Database" order="7" sideWeight="0.4955947" weight="0.04155496" />
-      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
-      <window_info anchor="right" id="Maven Projects" order="9" side_tool="true" weight="0.32942432" />
+      <window_info anchor="right" id="Maven Projects" order="8" side_tool="true" weight="0.32942432" />
+      <window_info anchor="right" id="Ant Build" order="9" weight="0.25" />
       <window_info anchor="right" id="Maven" order="10" weight="0.32995737" />
     </layout>
   </component>
@@ -1357,34 +2356,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Server/UploadSec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-154">
-          <caret line="180" column="57" selection-start-line="180" selection-start-column="57" selection-end-line="180" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/VideoUpload.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1693">
-          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/PersonalCenter.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="86" selection-start-line="8" selection-start-column="86" selection-end-line="8" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/questions.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="492" column="38" selection-start-line="492" selection-start-column="38" selection-end-line="492" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/ChangeInfor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -1422,16 +2393,6 @@
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Resources.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-31" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Filter/Login_Filter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="62" column="30" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/JS/LoginPC.js">
@@ -1487,16 +2448,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="289" column="21" lean-forward="true" selection-start-line="289" selection-start-column="4" selection-end-line="289" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/Register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="184" column="36" lean-forward="true" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1631,13 +2582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Student_commentary.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="248" column="26" lean-forward="true" selection-start-line="248" selection-start-column="26" selection-end-line="248" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/note.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -1683,22 +2627,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Play.jsp">
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/students.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="284" column="94" lean-forward="true" selection-start-line="284" selection-start-column="94" selection-end-line="284" selection-end-column="94" />
+        <state relative-caret-position="618">
+          <caret line="273" column="10" selection-start-line="273" selection-start-column="10" selection-end-line="273" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/CSS/Learn_list.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="821" column="1" selection-start-line="821" selection-start-column="1" selection-end-line="821" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/JS/Learn_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="184" column="36" lean-forward="true" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="36" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/PostAsk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="296" column="13" lean-forward="true" selection-start-line="296" selection-start-column="13" selection-end-line="296" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Teaching.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="95" column="37" lean-forward="true" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Filter/Login_Filter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="68" column="23" lean-forward="true" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Get_Teaching.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="216" column="32" lean-forward="true" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/ToH264.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1534">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Student_commentary.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="248" column="62" lean-forward="true" selection-start-line="248" selection-start-column="62" selection-end-line="248" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/UploadSec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="155" column="54" selection-start-line="155" selection-start-column="54" selection-end-line="155" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/JS/Myclass.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+        <state relative-caret-position="166">
+          <caret line="333" column="16" selection-start-line="333" selection-start-column="16" selection-end-line="333" selection-end-column="16" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1712,67 +2741,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/JS/Learn_list.js">
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Play.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/CSS/Learn_list.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="821" column="1" lean-forward="true" selection-start-line="821" selection-start-column="1" selection-end-line="821" selection-end-column="1" />
+        <state relative-caret-position="-590">
+          <caret line="635" column="22" selection-start-line="635" selection-start-column="13" selection-end-line="635" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Learn_list.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7557">
-          <caret line="542" column="56" lean-forward="true" selection-start-line="542" selection-start-column="56" selection-end-line="542" selection-end-column="56" />
+        <state relative-caret-position="370">
+          <caret line="216" column="21" lean-forward="true" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/PostAsk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="364" column="22" selection-start-line="364" selection-start-column="22" selection-end-line="364" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/students.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="273" column="10" selection-start-line="273" selection-start-column="10" selection-end-line="273" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/Students.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+        <state relative-caret-position="497">
+          <caret line="58" column="22" lean-forward="true" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

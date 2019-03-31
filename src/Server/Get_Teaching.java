@@ -28,7 +28,7 @@ public class Get_Teaching extends HttpServlet {
             case "found_class":
                 String Class_Name = request.getParameter("Class_Name");
                 int Class_Type = Integer.parseInt(request.getParameter("Class_Type"));
-                add_class(response, username, Class_Name, Class_Type);
+                add_class(request,response, username, Class_Name, Class_Type);
                 break;
             case "get_Class":
                 get_Infor(response, username);
@@ -187,7 +187,7 @@ public class Get_Teaching extends HttpServlet {
         }
     }
 
-    private void add_class(HttpServletResponse response,String username,String Class_Name,int type){
+    private void add_class(HttpServletRequest request,HttpServletResponse response,String username,String Class_Name,int type){
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -203,6 +203,13 @@ public class Get_Teaching extends HttpServlet {
             PrintWriter out = response.getWriter();
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("state","1");
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ID() class_ID");
+            while (rs.next()){
+                HttpSession session=request.getSession();
+                String class_id = (String)session.getAttribute("class_id");
+                session.setAttribute("class_id",class_id+","+rs.getString("class_ID"));
+            }
             out.flush();
             out.print(jsonObj);
             out.close();

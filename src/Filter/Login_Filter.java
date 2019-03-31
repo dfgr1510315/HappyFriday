@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 
 @WebFilter(filterName = "Login_Filter")
@@ -61,7 +62,7 @@ public class Login_Filter implements Filter {
             if (isHave(path,teacher_paths)){
                 String[] class_id = ((String) session.getAttribute("class_id")).split(",");
                 String class_id1 = request.getParameter("class_id");
-                //System.out.println("Filter_class_id1"+class_id1);
+                //System.out.println("Filter_class_id"+ Arrays.toString(class_id));
                 if (usertype.equals("teacher")&&isHave(class_id1,class_id)) {
                     chain.doFilter(request, response);
                     return;

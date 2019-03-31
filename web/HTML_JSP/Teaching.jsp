@@ -90,7 +90,6 @@
         }
 
         function found_class() {
-            //alert($('#found_class_name').val());
             var Class_Name = $('#found_class_name').val();
             var Class_Type = $('#sel1').val();
             if ('' === Class_Name||'类型' === Class_Type){

@@ -330,7 +330,10 @@ function Delete_Class(Delete_button_id) {
 }
 
 function delete_video(event){
+    //console.log('val:'+$(event).prev().children().val());
+    $(event).prev().children().val('');
     $(event).parent().next().next().children().attr("src","");
+    $(event).parent().next().next().children().attr("data-cusrc","");
     $(event).prev().find('label').text('选择视频');
 }
 
@@ -394,6 +397,8 @@ function upload(event, type) {
         alert("请选择图片");
         return;
     }*/
+    console.log('!!!!'+fileObj);
+    if (fileObj===undefined) return;
     var formFile = new FormData();
     formFile.append("file", fileObj); //加入文件对象
     var data = formFile;

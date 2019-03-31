@@ -145,6 +145,7 @@ public class UploadSec extends HttpServlet {
                                     ResultSet rs = statement.executeQuery("select video_address,video_title from Video where source_video_address='"+UPLOAD_DIRECTORY+"/"+fileName+"'");
                                     while (rs.next()) {
                                         jsonObj.put("src",rs.getString("video_address"));
+                                        ConnectSQL.my_println("从数据库中查询src："+rs.getString("video_address"));
                                         jsonObj.put("video_name",rs.getString("video_title"));
                                         //ConnectSQL.my_println("fileName::"+fileName);
                                         jsonObj.put("cuSRC",UPLOAD_DIRECTORY+"/"+fileName);
@@ -218,11 +219,5 @@ public class UploadSec extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
-
-
-
-/*    public static void main(String args[]){
-        System.out.println(getFile());
-    }*/
 
 }

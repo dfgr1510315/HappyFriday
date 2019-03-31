@@ -162,56 +162,8 @@
                 dataType: "json",
                 asynch: "false",
                 success: function (jsonObj) {
-                    var page_ul =  $('#page');
-                    page_length = Math.ceil(jsonObj.count/6);
-                    if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?'+(parseInt(page)-1)+'">Previous</a></li>');
-                    else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
-
-                    if (page-1>2&&page_length-page>=2){
-                        for (var i = page-2;i<=page+2;i++){
-                            if (i<page_length+1){
-                                if (i===parseInt(page)){
-                                    page_ul.append(' <li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                                }else page_ul.append(' <li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                            }
-                        }
-                    }else {
-                        if (page<=3){
-                            for (i=1;i<6;i++){
-                                if (i<page_length+1){
-                                    if (i===parseInt(page)){
-                                        page_ul.append(' <li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                                    }else page_ul.append(' <li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                                }
-                            }
-                        }else {
-                            for (i=page_length-4;i<=page_length;i++){
-                                if (i<page_length+1){
-                                    if (i===parseInt(page)){
-                                        page_ul.append(' <li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                                    }else page_ul.append(' <li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                                }
-                            }
-                        }
-
-                    }
-
-                    if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?'+(parseInt(page)+1)+'">Next</a></li>');
-                    else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>');
-
-                    page_ul.append(
-                        '<li class="page-item last">\n' +
-                        '<a >\n' +
-                        '<label>\n' +
-                        '<input id="jump" type="text" class="form-control" onkeydown="go();">\n' +
-                        '</label>\n' +
-                        '<span id="count_page"> </span>\n' +
-                        '</a>\n' +
-                        '</li>');
-                    $('#count_page').text('/ '+page_length);
-
                     var ask_ul = $('#ask_ul');
-                    for (i=0;i<jsonObj.title.length;i++){
+                    for (var i=0;i<jsonObj.title.length;i++){
                         ask_ul.append(
                             ' <li>\n' +
                             '                            <div class="ui-box">\n' +
@@ -264,8 +216,56 @@
 
                     if (ask_ul.html().length === 0) {
                         ask_ul.append(
-                            ' <div class="no_find_class">暂无讨论</div> '
+                            '<div class="no_find_class">暂无讨论</div>'
                         )
+                    }else {
+                        var page_ul =  $('#page');
+                        page_length = Math.ceil(jsonObj.count/6);
+                        if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?'+(parseInt(page)-1)+'">Previous</a></li>');
+                        else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
+
+                        if (page-1>2&&page_length-page>=2){
+                            for (i = page-2;i<=page+2;i++){
+                                if (i<page_length+1){
+                                    if (i===parseInt(page)){
+                                        page_ul.append('<li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+                                    }else page_ul.append('<li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+                                }
+                            }
+                        }else {
+                            if (page<=3){
+                                for (i=1;i<6;i++){
+                                    if (i<page_length+1){
+                                        if (i===parseInt(page)){
+                                            page_ul.append('<li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+                                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+                                    }
+                                }
+                            }else {
+                                for (i=page_length-4;i<=page_length;i++){
+                                    if (i<page_length+1){
+                                        if (i===parseInt(page)){
+                                            page_ul.append('<li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+                                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+                                    }
+                                }
+                            }
+
+                        }
+
+                        if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?'+(parseInt(page)+1)+'">Next</a></li>');
+                        else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>');
+
+                        page_ul.append(
+                            '<li class="page-item last">\n' +
+                            '<a >\n' +
+                            '<label>\n' +
+                            '<input id="jump" type="text" class="form-control" onkeydown="go();">\n' +
+                            '</label>\n' +
+                            '<span id="count_page"> </span>\n' +
+                            '</a>\n' +
+                            '</li>');
+                        $('#count_page').text('/ '+page_length);
                     }
                 }
             });
