@@ -46,6 +46,49 @@ public class Register extends HttpServlet {
                 email = request.getParameter("email");
                 ChangeEmail(response,username,email);
                 break;
+            case "user_infor":
+                user_infor(request,response);
+                break;
+        }
+    }
+
+    private void user_infor(HttpServletRequest request,HttpServletResponse response){
+        HttpSession session=request.getSession();
+        JSONObject jsonObj = new JSONObject();
+        String username=(String) session.getAttribute("user_id");
+        if (username!=null){
+           /* schedule = Arrays.toString((int[]) session.getAttribute("schedule"));
+            last_time = Arrays.toString((String[]) session.getAttribute("last_time"));
+            title = Arrays.toString((String[]) session.getAttribute("title"));*/
+            DBPoolConnection dbp = DBPoolConnection.getInstance();
+            DruidPooledConnection con =null;
+            try {
+                PrintWriter out = response.getWriter();
+                con = dbp.getConnection();
+                Statement statement = con.createStatement();
+                ResultSet rs = statement.executeQuery("SELECT readed from notice where to_user='"+username+"' order by time desc limit 1;");
+                while (rs.next()) jsonObj.put("new_notice",rs.getInt("readed")); /*new_notice = rs.getInt("readed")*/;
+                jsonObj.put("username",username);
+                jsonObj.put("head_image",session.getAttribute("head_image"));
+                jsonObj.put("usertype",session.getAttribute("usertype"));
+                jsonObj.put("history_class_id",session.getAttribute("history_class_id"));
+                jsonObj.put("schedule",session.getAttribute("schedule"));
+                jsonObj.put("last_time",session.getAttribute("last_time"));
+                jsonObj.put("title",session.getAttribute("title"));
+                out.flush();
+                out.print(jsonObj);
+                out.close();
+                rs.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                if (con!=null)
+                    try{
+                        con.close();
+                    }catch (SQLException e){
+                        e.printStackTrace();
+                    }
+            }
         }
     }
 

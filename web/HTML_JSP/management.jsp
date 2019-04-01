@@ -15,7 +15,7 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body >
-<jsp:include page="navigation.jsp"  />
+<jsp:include page="navigation.html"  />
 <jsp:include page="LoginPC.jsp" />
 
 </body>

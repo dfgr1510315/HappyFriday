@@ -23,7 +23,7 @@
     }
 </style>
 
-<jsp:include page="navigation.jsp"/>
+<jsp:include page="navigation.html"/>
 <jsp:include page="LoginPC.jsp" />
 
 <form method="post" action="uploadsec" enctype="multipart/form-data" style="margin-top: 100px">

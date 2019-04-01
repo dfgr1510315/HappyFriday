@@ -147,7 +147,7 @@
 
 </head>
 <body onload="ifActive();addClass(7)">
-<jsp:include page="navigation.jsp"/>
+<jsp:include page="navigation.html"/>
 <div>
     <div style="width: 80%;margin: 10px auto auto;">
         <jsp:include page="VerticalNav.jsp"/>

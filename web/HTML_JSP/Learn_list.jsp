@@ -422,7 +422,7 @@
 </script>
 
 <body onload="ifActive();" style="background-color: #f8fafc;">
-<jsp:include page="navigation.jsp"/>
+<jsp:include page="navigation.html"/>
 <jsp:include page="LoginPC.jsp" />
 <div class="main">
     <div class="inside">

@@ -74,7 +74,7 @@
 </head>
 <body onload="addClass(0)">
 
-<jsp:include page="navigation.jsp"/>
+<jsp:include page="navigation.html"/>
 
 
 <div style="width: 100%;height: 450px">

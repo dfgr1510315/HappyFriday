@@ -381,7 +381,7 @@
 
 </style>
 <body onload="ifActive();">
-<jsp:include page="navigation.jsp"/>
+<jsp:include page="navigation.html"/>
 <div class="questions_main">
     <nav class="breadcrumb" style="display:block">
         <a target="_blank" class="breadcrumb-item" href="homepage.jsp">首页</a>

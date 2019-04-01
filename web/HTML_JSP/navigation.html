@@ -1,9 +1,4 @@
-
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="Server.DBPoolConnection" %>
-<%@ page import="com.alibaba.druid.pool.DruidPooledConnection" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!--
 <%
     String username=(String) session.getAttribute("user_id");
     String head_image = null;
@@ -39,17 +34,36 @@
                 }
         }
     }
-
-%>
-<html>
+%>-->
+<html lang="">
 <head>
-    <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
+    <!--<input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />-->
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <script>
-        var user = '<%=username%>';
-        var head_image = '<%=head_image%>';
-        var usertype = '<%=usertype%>';
-        var new_notice = '<%=new_notice%>';
+    <script type="text/javascript">
+        var user ;
+        var head_image ;
+        var usertype ;
+        var new_notice ;
+
+        function get_user_infor() {
+            $.ajax({
+                type: "POST",
+                asynch: "false",
+                url: getContextPath()+"/Register",
+                data: {
+                    state:'user_infor'
+                },
+                dataType: 'json',
+                success: function (jsonObj) {
+                    user = jsonObj.username;
+                    head_image = jsonObj.head_image;
+                    usertype = jsonObj.usertype;
+                    new_notice = jsonObj.new_notice;
+
+                }
+            })
+        }
+
         function ifActive() {
             var obj = document.getElementsByTagName("body"); //获取当前body的id
             var id = obj[0].getAttribute("id");

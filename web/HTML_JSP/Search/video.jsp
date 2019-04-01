@@ -28,7 +28,7 @@
     });
 </script>
 <body style="background: #f8fafc;">
-<jsp:include page="../navigation.jsp"/>
+<jsp:include page="../navigation.html"/>
 <div id="main">
     <div class="search-main">
         <div class="search-header">

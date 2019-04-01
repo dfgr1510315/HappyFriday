@@ -281,7 +281,7 @@
 
 
 <body  onunload="live();">
-<jsp:include page="navigation.jsp"/>
+<jsp:include page="navigation.html"/>
 <div style="width: 100%;height: 100%;background-color: #1c1f21;padding: 10px;margin-top: 5px">
     <div class='course-sidebar-layout ' id='courseSidebar' >
         <a href="Learn_list.jsp" id="back" onclick="live()">

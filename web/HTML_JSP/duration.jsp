@@ -33,7 +33,7 @@
 </style>
 
 <body onload="ifActive();addAction(3);addHref();getHTML()">
-<jsp:include page="navigation.jsp"/>
+<jsp:include page="navigation.html"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
     <div style="background-size: cover;height: 148px;margin-top: -21px">
         <jsp:include page="ui_box.jsp"/>

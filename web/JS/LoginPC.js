@@ -1,4 +1,9 @@
-
+function getContextPath(){
+    var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    if ('HTML_JSP'===pathName.substr(1, index)) return '';
+    return pathName.substr(1, index);
+}
 function login() {
     $("#loginError").hide();
     var username = $("#username").val();

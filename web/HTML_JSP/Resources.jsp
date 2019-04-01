@@ -108,7 +108,7 @@
 
 <body id="resources" onload="ifActive()">
 
-<jsp:include page="navigation.jsp"  />
+<jsp:include page="navigation.html"  />
 
 <jsp:include page="LoginPC.jsp" />
 
