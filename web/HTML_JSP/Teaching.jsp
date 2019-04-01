@@ -122,7 +122,7 @@
 <jsp:include page="navigation.html"/>
 <div style="width: 100%;min-height: 450px">
     <div style="width: 80%;margin: 10px auto auto;">
-        <jsp:include page="VerticalNav.jsp"/>
+        <jsp:include page="VerticalNav.html"/>
         <div class="container_right">
             <div id="class_table">
                 <h3 class="container_right_head">

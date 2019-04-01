@@ -1,0 +1,39 @@
+body {
+    background-color: #f8fafc;
+    overflow: auto;
+}
+a:hover{
+    text-decoration:none
+}
+.container_left{
+    width: 18%;
+    float: left;
+    /* background-color: pink;*/
+    min-height: 240px;
+    margin-top: 32px;
+    margin-bottom: 64px;
+}
+.container_right{
+    width: 80%;
+    float: right;
+    margin-top: 32px;
+    background-color: white;
+    min-height: 500px;
+    padding: 0 32px 32px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+    margin-bottom: 60px;
+    height: auto;
+}
+
+.main_container{
+    width: 1169px;
+    margin: 10px auto auto;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}

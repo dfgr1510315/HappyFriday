@@ -551,13 +551,13 @@
                 for (var i=0;i< jsonObject.text.length;i++){
                     $('#note_box').prepend(' <div class="ui-box">\n' +
                         '                            <div style="float:left;">\n' +
-                        '                                <a href="PersonalCenter.jsp">\n' +
+                        '                                <a href="PersonalCenter.html">\n' +
                         '                                    <image src="'+"${pageContext.request.contextPath}"+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
                         '                                </a>\n' +
                         '                            </div>\n' +
                         '                            <div style="margin-left: 60px">\n' +
                         '                                <div class="author">\n' +
-                        '                                    <a  href="PersonalCenter.jsp" >'+user+'</a>\n' +
+                        '                                    <a  href="PersonalCenter.html" >'+user+'</a>\n' +
                         '                                </div>\n' +
                         '                                <div style="display: block;">\n' +
                         '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
@@ -796,13 +796,13 @@
                         editor_count++;
                         $('#note_box').prepend(' <div class="ui-box">\n' +
                             '                            <div style="float:left;">\n' +
-                            '                                <a href="PersonalCenter.jsp">\n' +
+                            '                                <a href="PersonalCenter.html">\n' +
                             '                                    <image src="'+"${pageContext.request.contextPath}"+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
                             '                                </a>\n' +
                             '                            </div>\n' +
                             '                            <div style="margin-left: 60px">\n' +
                             '                                <div class="author">\n' +
-                            '                                    <a  href="PersonalCenter.jsp" >'+user+'</a>\n' +
+                            '                                    <a  href="PersonalCenter.html" >'+user+'</a>\n' +
                             '                                </div>\n' +
                             '                                <div style="display: block;">\n' +
                             '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
@@ -918,13 +918,13 @@
     function add_ask_box(ask_title,time2,answer,browse) {
         $('#ask_box').prepend(' <div class="ui-box">\n' +
             '                            <div style="float:left;">\n' +
-            '                                <a href="PersonalCenter.jsp">\n' +
+            '                                <a href="PersonalCenter.html">\n' +
             '                                    <image src="'+"${pageContext.request.contextPath}"+head_image+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
             '                                </a>\n' +
             '                            </div>\n' +
             '                            <div style="margin-left: 60px">\n' +
             '                                <div class="author">\n' +
-            '                                    <a  href="PersonalCenter.jsp" >'+user+'</a>\n' +
+            '                                    <a  href="PersonalCenter.html" >'+user+'</a>\n' +
             '                                </div>\n' +
             '                                <div style="display: block;">\n' +
             '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +

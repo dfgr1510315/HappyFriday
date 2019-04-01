@@ -8,11 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
-
 
 /*@WebServlet(name = "ChangeInfor")*/
 public class ChangeInfor extends HttpServlet {
@@ -24,28 +24,69 @@ public class ChangeInfor extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        if (action.equals("1")){  //更改用户信息
-            String ID = request.getParameter("ID");
-            String nike = request.getParameter("nike");
-            String sex = request.getParameter("sex");
-            String birth = request.getParameter("birth");
-            String teacher = request.getParameter("teacher");
-            String introduction = request.getParameter("introduction");
-            int status = ConnectMysql(ID, nike, sex, birth, teacher, introduction);
-            int msg;
-            if (status == 0) {
-                msg = loginSuccess;
-                PrintWriter out = response.getWriter();
-                out.print(msg);
-                out.flush();
-                out.close();
-            }
-        }else if (action.equals("2")){ //搜索用户
-            String keyword = request.getParameter("keyword");
-            int page = Integer.parseInt(request.getParameter("page"));
-            search_user(response,keyword,page);
+        switch (action) {
+            case "1":   //更改用户信息
+                String ID = request.getParameter("ID");
+                String nike = request.getParameter("nike");
+                String sex = request.getParameter("sex");
+                String birth = request.getParameter("birth");
+                String teacher = request.getParameter("teacher");
+                String introduction = request.getParameter("introduction");
+                int status = ConnectMysql(ID, nike, sex, birth, teacher, introduction);
+                int msg;
+                if (status == 0) {
+                    msg = loginSuccess;
+                    PrintWriter out = response.getWriter();
+                    out.print(msg);
+                    out.flush();
+                    out.close();
+                }
+                break;
+            case "2":  //搜索用户
+                String keyword = request.getParameter("keyword");
+                int page = Integer.parseInt(request.getParameter("page"));
+                search_user(response, keyword, page);
+                break;
+            case "3": //获取用户信息
+                get_infor(request,response);
+                break;
         }
 
+    }
+
+    private void get_infor(HttpServletRequest request, HttpServletResponse response){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        try {
+            HttpSession session=request.getSession();
+            JSONObject jsonObj = new JSONObject();
+            PrintWriter out = response.getWriter();
+            String username=(String) session.getAttribute("user_id");
+            con = dbp.getConnection();
+            String sql = "select * from personal_table where username='" + username + "'";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                jsonObj.put("nike",rs.getString("nike"));
+                jsonObj.put("sex",rs.getString("sex"));
+                jsonObj.put("birth",rs.getString("birth"));
+                jsonObj.put("information",rs.getString("information"));
+                jsonObj.put("teacher",rs.getString("teacher"));
+            }
+            out.flush();
+            out.println(jsonObj);
+            out.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
     }
 
     private void search_user(HttpServletResponse response,String keyword,int page){

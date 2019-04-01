@@ -169,7 +169,7 @@
 <jsp:include page="navigation.html"/>
 <div>
     <div style="width: 80%;margin: 10px auto auto;">
-        <jsp:include page="VerticalNav.jsp"/>
+        <jsp:include page="VerticalNav.html"/>
         <div class="container_right">
             <h3 class="container_right_head">
                 我的讨论

@@ -62,7 +62,6 @@
                 success: function (jsonObj) {
                     user = jsonObj.username;
                     if (user===undefined) return;
-                    console.log('jsonObj.username'+jsonObj.username);
                     head_image = jsonObj.head_image;
                     usertype = jsonObj.usertype;
                     new_notice = jsonObj.new_notice;
@@ -70,7 +69,6 @@
                     schedule = jsonObj.schedule;
                     last_time = jsonObj.last_time;
                     title = jsonObj.title;
-                    console.log('load_history!!!:'+history_class_id);
                     checkCookie();
                     load_history();
                     card_show();
@@ -268,7 +266,7 @@
             <img id="head_image" class="user_imag user"  alt="用户头像" src="">
             <div class="user_card user" id="user_card">
                 <div style="padding: 20px;">
-                    <a  href="../HTML_JSP/PersonalCenter.jsp" target="_blank">个人中心</a>
+                    <a href="PersonalCenter.html" target="_blank">个人中心</a>
                   <!--   <a href="../HTML_JSP/upload.jsp">上传资源</a>
                       <a href="#">账号设置</a>
                       <a  href="#">我的消息</a>
