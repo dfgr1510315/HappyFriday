@@ -44,9 +44,9 @@
                 </div>
             </div>
         </div>
-        <jsp:include page="ui_box.jsp"/>
+        <jsp:include page="ui_box.html"/>
         <div style="width: 80%;margin: auto">
-            <jsp:include page="course_manag_nav.jsp"/>
+            <jsp:include page="course_manag_nav.html"/>
             <div class="container_right">
 
             </div>

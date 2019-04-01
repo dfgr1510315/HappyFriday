@@ -1,16 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 1105379011
-  Date: 2018/9/11
-  Time: 17:06
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html xmlns:v-on="http://www.w3.org/1999/xhtml">
-<head>
-    <script type="text/javascript" src="../JS/LoginPC.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-</head>
+<!DOCTYPE html>
+<html  lang="">
 <style type="text/css">
     .btn-outline-success{
         margin-bottom: 15px;
@@ -99,8 +88,7 @@
         $('#error_waring').css('display','none');
         $.ajax({
             type:"POST",
-            asynch :"false",
-            url:$("#PageContext").val()+"/register",
+            url:getContextPath()+"/register",
             data:{
                 state:'register',
                 username:username,
@@ -129,8 +117,7 @@
         }
         $.ajax({
             type:"POST",
-            asynch :"false",
-            url:$("#PageContext").val()+"/register",
+            url:getContextPath()+"/register",
             data:{
                 state:'forgetPW',
                 forget_user:forget_user
@@ -155,7 +142,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <a id="loginClose" class="close" data-dismiss="modal">&times;</a>
-            <%-- 登录框头部--%>
+
             <div class="modal-header">
                 <ul class="nav nav-tabs login_head_ul" role="tablist" >
                     <li class="nav-item">
@@ -167,7 +154,6 @@
                 </ul>
             </div>
 
-            <%--登录界面--%>
             <div class="modal-body tab-content">
                 <div id="login" class="container tab-pane active">
                     <div class="form-group" >
@@ -226,13 +212,13 @@
 <div class="modal fade" id="forget" style="background-color: transparent; width: 100%; top: 165px;">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%-- 头部--%>
+
             <div class="modal-header">
                 <h5 class="modal-title">请输入账号</h5>
                 <div style="font-size: 14px;margin-top: 7px;">我们会将密码发送至账户绑定的邮箱</div>
                 <a id="forgetClose" class="close" data-dismiss="modal">&times;</a>
             </div>
-            <%--界面--%>
+
             <div class="modal-body">
                 <div class="form-group">
                     <label for="forget_user"><i class="fa fa-user"></i></label>

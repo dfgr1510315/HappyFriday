@@ -50,7 +50,7 @@
         if (usertype==='student'){
             $('#vertical_group').append(
                 '<a id="Nav0" href="PersonalCenter.jsp" class="list-group-item ">个人资料</a>\n' +
-                '<a id="Nav1" href="ChangePW.jsp" class="list-group-item">密码修改</a>\n' +
+                '<a id="Nav1" href="ChangePW.html" class="list-group-item">密码修改</a>\n' +
                 '<a id="Nav2" href="Unbind.jsp" class="list-group-item ">账号绑定</a>\n' +
                 '<a id="Nav5" href="LearingClass.jsp" class="list-group-item ">我的课程</a>\n' +
                 '<a id="Nav6" href="My_question.jsp" class="list-group-item ">我发布的评论</a>\n' +
@@ -61,7 +61,7 @@
         } else {
             $('#vertical_group').append(
                 '<a id="Nav0" href="PersonalCenter.jsp" class="list-group-item ">个人资料</a>\n' +
-                '<a id="Nav1" href="ChangePW.jsp" class="list-group-item">密码修改</a>\n' +
+                '<a id="Nav1" href="ChangePW.html" class="list-group-item">密码修改</a>\n' +
                 '<a id="Nav2" href="Unbind.jsp" class="list-group-item ">账号绑定</a>\n' +
                 '<a id="Nav3" href="Teaching.jsp" class="list-group-item " >在教课程</a>\n' +
                 '<a id="Nav4" href="Student_commentary.jsp" class="list-group-item ">学员讨论</a>\n' +

@@ -24,7 +24,7 @@
 </style>
 
 <jsp:include page="navigation.html"/>
-<jsp:include page="LoginPC.jsp" />
+<jsp:include page="LoginPC.html" />
 
 <form method="post" action="uploadsec" enctype="multipart/form-data" style="margin-top: 100px">
     选择文件:

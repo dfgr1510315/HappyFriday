@@ -423,7 +423,7 @@
 
 <body onload="ifActive();" style="background-color: #f8fafc;">
 <jsp:include page="navigation.html"/>
-<jsp:include page="LoginPC.jsp" />
+<jsp:include page="LoginPC.html" />
 <div class="main">
     <div class="inside">
         <div class="first" id="Bread_crumb_navigation">

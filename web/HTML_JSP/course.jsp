@@ -233,7 +233,7 @@
 </head>
 <body style="background-color: #f8fafc;">
 <jsp:include page="navigation.html"/>
-<jsp:include page="LoginPC.jsp" />
+<jsp:include page="LoginPC.html" />
 <div style="width: 80%;margin-right: auto;margin-left: auto;margin-bottom: 50px;">
     <!-- Nav pills -->
     <ul id="nav_type" class="nav nav-pills"  style="margin-top: 48px;">

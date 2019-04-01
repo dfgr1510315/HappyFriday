@@ -8,7 +8,6 @@ function login() {
     $("#loginError").hide();
     var username = $("#username").val();
     var password = $("#pwd").val();
-    var PageContext = $("#PageContext").val();
     if (!username_model.test(username)){
         $("#loginError").text("用户名以字母开头，允许5-16字节，允许字母数字下划线").show();
         return;
@@ -20,8 +19,7 @@ function login() {
     var data = {username:username,password:password,state:'login'};
     $.ajax({
         type:"POST",
-        asynch :"false",
-        url:PageContext+"/register",
+        url:getContextPath()+"/register",
         data:data,
         dataType:'json',
         success:function (msg) {
@@ -33,7 +31,7 @@ function login() {
             }
             else if (msg.state === 2) {
                 //setCookie("username",username,30);
-                $('#head_image').attr('src',PageContext+msg.head_image);
+                $('#head_image').attr('src',getContextPath()+msg.head_image);
                 $("#loginClose").click();
                 /*$("#loginButton").hide();
                 $("#personalCenter").show();
@@ -75,8 +73,7 @@ function setCookie(cname,cvalue,exday) {
 function deleteCookie() {
     $.ajax({
         type:"POST",
-        asynch :"false",
-        url:"../register",
+        url:getContextPath()+"/register",
         data:{
             state:"Logout"
         },

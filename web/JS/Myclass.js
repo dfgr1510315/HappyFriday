@@ -75,13 +75,15 @@ function saveClass() {
         Total_data.UUNIt.push(Unit);
         //alert(Total_data.UUNIt[i-1].Class[0].Video_Src);
     }
+    console.log(JSON.stringify(Total_data.UUNIt));
     $.ajax({
         type: "POST",
         asynch: "false",
         url: PageContext +"/getlearnfile",
         data: {
             No:No,
-            ds:JSON.stringify(Total_data.UUNIt)},
+            ds:JSON.stringify(Total_data.UUNIt)
+        },
         dataType: 'json'
     });
 

@@ -56,6 +56,7 @@ public class Register extends HttpServlet {
         HttpSession session=request.getSession();
         JSONObject jsonObj = new JSONObject();
         String username=(String) session.getAttribute("user_id");
+        ConnectSQL.my_println("username"+username);
         if (username!=null){
            /* schedule = Arrays.toString((int[]) session.getAttribute("schedule"));
             last_time = Arrays.toString((String[]) session.getAttribute("last_time"));

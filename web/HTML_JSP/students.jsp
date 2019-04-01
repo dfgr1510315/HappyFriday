@@ -86,9 +86,9 @@
 <jsp:include page="navigation.html"/>
 <div style="width: 100%;margin-top:30px;height: 450px">
     <div style="background-size: cover;height: 148px;margin-top: -21px">
-        <jsp:include page="ui_box.jsp"/>
+        <jsp:include page="ui_box.html"/>
         <div style="width: 80%;margin: auto">
-            <jsp:include page="course_manag_nav.jsp"/>
+            <jsp:include page="course_manag_nav.html"/>
             <div class="container_right">
                 <div class="head">
                     <h3 class="container_right_head">

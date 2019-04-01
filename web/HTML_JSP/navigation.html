@@ -35,56 +35,56 @@
         }
     }
 %>-->
+<!DOCTYPE html>
 <html lang="">
 <head>
     <!--<input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />-->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script type="text/javascript">
         var user ;
         var head_image ;
         var usertype ;
         var new_notice ;
-
+        var history_class_id;
+        var schedule;
+        var last_time;
+        var title;
         function get_user_infor() {
             $.ajax({
                 type: "POST",
                 asynch: "false",
-                url: getContextPath()+"/Register",
+                url: getContextPath()+"/register",
                 data: {
                     state:'user_infor'
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
                     user = jsonObj.username;
+                    if (user===undefined) return;
+                    console.log('jsonObj.username'+jsonObj.username);
                     head_image = jsonObj.head_image;
                     usertype = jsonObj.usertype;
                     new_notice = jsonObj.new_notice;
-
+                    history_class_id = jsonObj.history_class_id;
+                    schedule = jsonObj.schedule;
+                    last_time = jsonObj.last_time;
+                    title = jsonObj.title;
+                    console.log('load_history!!!:'+history_class_id);
+                    checkCookie();
+                    load_history();
+                    card_show();
+                    history_show();
                 }
             })
         }
 
-        function ifActive() {
-            var obj = document.getElementsByTagName("body"); //获取当前body的id
-            var id = obj[0].getAttribute("id");
-            switch (id) {
-                case id = "homepage":
-                    document.getElementsByTagName("a")[0].className += ' active';
-                    break;
-                case id = "resources":
-                    document.getElementsByTagName("a")[1].className += ' active';
-                    break;
-            }
-        }
-
-
         function checkCookie() {
-            if (user !== "null") {
+                console.log('user'+user);
                 $("#loginButton").hide();
                 $("#personalCenter").show();
               /*  $("#showname").text(user);*/
-                $("#head_image").attr('src',"${pageContext.request.contextPath}"+head_image);
-            }
+                $("#head_image").attr('src',getContextPath()+head_image);
         }
 
         var cookie = {
@@ -111,41 +111,38 @@
                 }
             }
         };
+
         $(document).ready(function(){
-            if (user==="null") return;
-            checkCookie();
-            load_history();
-            card_show();
-            history_show();
+            get_user_infor();
+            console.log('user'+user);
             search_tips();
-            if (new_notice==='0')  $('.msg_remind').css('display','inline');
             $("#search_input").blur(function(){
                 setTimeout(function(){
                     $('.title_list_box').hide();
                 },500)
             });
+            if (user===undefined) return;
+            if (new_notice==='0')  $('.msg_remind').css('display','inline');
         });
 
         function load_history() {
-            console.log('load_history:');
-            var history_class_id = '<%=history_class_id%>'.replace('[','').replace(']','').split(',');
-            console.log('<%=history_class_id%>');
-            var schedule = '<%=schedule%>'.replace('[','').replace(']','').split(',');
-            var last_time = '<%=last_time%>'.replace('[','').replace(']','').split(',');
-            var title = '<%=title%>'.replace('[','').replace(']','').split(',');
-            for (var i=0;i<history_class_id.length;i++){
-                if (' 0' === history_class_id[i])  continue;
-                var unit = last_time[i].split(':');
+            var load_history_class_id = history_class_id.toString().split(',');
+            var load_schedule = schedule.toString().split(',');
+            var load_last_time = last_time.toString().split(',');
+            var load_title = title.toString().split(',');
+            for (var i=0;i<load_history_class_id.length;i++){
+                if ('0' === load_history_class_id[i])  continue;
+                var unit = load_last_time[i].split(':');
                 /*console.log(unit[0]);*/
                 $('.history_ul').append(
                     '   <li>\n' +
-                    '                        <a href="${pageContext.request.contextPath}/HTML_JSP/Play.jsp?'+history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+last_time[i].trim()+'" class="clearfix">\n' +
-                    '                            <div class="link">'+last_time[i].trim()+'</div>\n' +
+                    '                        <a href="../HTML_JSP/Play.jsp?'+load_history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+load_last_time[i].trim()+'" class="clearfix">\n' +
+                    '                            <div class="link">'+load_last_time[i].trim()+'</div>\n' +
                     '                            <div>\n' +
                     '                                <div class="state">\n' +
-                    '                                    <span class="page">'+title[i]+'</span>\n' +
+                    '                                    <span class="page">'+load_title[i]+'</span>\n' +
                     '                                    <span class="split">|</span>\n' +
-                    '                                    <span>'+schedule[i]+'%</span>\n' +
+                    '                                    <span>'+load_schedule[i]+'%</span>\n' +
                     '                                </div>\n' +
                     '                            </div>\n' +
                     '                        </a>\n' +
@@ -187,7 +184,7 @@
         function search() {
             var keyword = $('#search_input').val();
             if (keyword.trim()==='') return;
-            window.open('${pageContext.request.contextPath}/HTML_JSP/Search/video.jsp?keyword='+encodeURI(keyword),'_blank');
+            window.open(getContextPath()+'/HTML_JSP/Search/video.jsp?keyword='+encodeURI(keyword),'_blank');
         }
         
         function search_tips() {
@@ -204,7 +201,7 @@
                 timeout = setTimeout(function() {
                     $.ajax({
                         type:"POST",
-                        url:"${pageContext.request.contextPath}/SaveClassInfor",
+                        url:getContextPath()+"/SaveClassInfor",
                         data:data,
                         success:function(html){
                             var title_list_box = $('.title_list_box');
@@ -241,16 +238,16 @@
 <div class="user_navigation">
     <ul class="nav nav-pills" style="display: inline">
         <li>
-            <img src="${pageContext.request.contextPath}/image/HUAS.png" style="height: 40px;width: 40px;float: left;margin-right: 21px" alt="湖南文理图标">
+            <img src="../image/HUAS.png" style="height: 40px;width: 40px;float: left;margin-right: 21px" alt="湖南文理图标">
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/HTML_JSP/homepage.jsp" style="float: left;">首页</a>
+            <a class="nav-link" href="../HTML_JSP/homepage.jsp" style="float: left;">首页</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/HTML_JSP/Resources.jsp" style="float:left;">文档</a>
+            <a class="nav-link" href="../HTML_JSP/Resources.jsp" style="float:left;">文档</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/HTML_JSP/course.jsp" style="float:left;">课程类型</a>
+            <a class="nav-link" href="../HTML_JSP/course.jsp" style="float:left;">课程类型</a>
         </li>
         <li class="nav-item">
             <div class="input-group mb-3">
@@ -267,19 +264,19 @@
             <a class="nav-link" data-toggle="modal" data-target="#LoginModal" style="float: right;" href="">登录</a>
         </li>
         <li class="nav-item" id="personalCenter" style="display: none;float: right;position: relative;">
-            <%-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>--%>
+             <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>-->
             <img id="head_image" class="user_imag user"  alt="用户头像" src="">
             <div class="user_card user" id="user_card">
                 <div style="padding: 20px;">
-                    <a  href="${pageContext.request.contextPath}/HTML_JSP/PersonalCenter.jsp" target="_blank">个人中心</a>
-                    <%--  <a href="${pageContext.request.contextPath}/HTML_JSP/upload.jsp">上传资源</a>
+                    <a  href="../HTML_JSP/PersonalCenter.jsp" target="_blank">个人中心</a>
+                  <!--   <a href="../HTML_JSP/upload.jsp">上传资源</a>
                       <a href="#">账号设置</a>
                       <a  href="#">我的消息</a>
-                      <a  href="${pageContext.request.contextPath}/HTML_JSP/management.jsp" >后台管理</a>--%>
-                    <a href="${pageContext.request.contextPath}/HTML_JSP/homepage.jsp" onclick="deleteCookie()">退出登录</a>
+                      <a  href="../HTML_JSP/management.jsp" >后台管理</a>-->
+                    <a href="../HTML_JSP/homepage.jsp" onclick="deleteCookie()">退出登录</a>
                 </div>
             </div>
-            <a class="notice" target="_blank" href="${pageContext.request.contextPath}/HTML_JSP/notification.jsp">
+            <a class="notice" target="_blank" href="../HTML_JSP/notification.jsp">
                 <i class="msg_remind"></i>
                 <i class="fa fa-bell"></i>
             </a>

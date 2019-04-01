@@ -188,7 +188,7 @@
 
 <jsp:include page="navigation.html"  />
 
-<jsp:include page="LoginPC.jsp" />
+<jsp:include page="LoginPC.html" />
 
 <div style="margin: 0 auto;width: 1196px;;">
     <div id="demo" class="carousel slide" data-ride="carousel" style="height: 450px;margin: 71px auto auto ">

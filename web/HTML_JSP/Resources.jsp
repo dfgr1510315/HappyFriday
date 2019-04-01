@@ -110,7 +110,7 @@
 
 <jsp:include page="navigation.html"  />
 
-<jsp:include page="LoginPC.jsp" />
+<jsp:include page="LoginPC.html" />
 
 
 <div>
