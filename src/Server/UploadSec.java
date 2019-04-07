@@ -212,8 +212,8 @@ public class UploadSec extends HttpServlet {
             request.setAttribute("message","错误信息："+ex.getMessage());
 
         }
-        /*getServletContext().getRequestDispatcher("/homepage.jsp").forward(request,response);*/
-       /* response.sendRedirect("/homepage.jsp");*/
+        /*getServletContext().getRequestDispatcher("/homepage.html").forward(request,response);*/
+       /* response.sendRedirect("/homepage.html");*/
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

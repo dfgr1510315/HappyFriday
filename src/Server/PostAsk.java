@@ -521,11 +521,14 @@ public class PostAsk extends HttpServlet {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select class_title,ask_time,ask_title,ask_id,belong_class_id,unit_no,asker,answer_count,visits_count,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from class_teacher_table,ask where teacher='"+user+"' and class_id=belong_class_id order by ask_time desc limit "+(6*(page-1))+","+6);
+            String new_answerer_sql = "(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer";
+            String new_answer_sql = "(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer";
+            ResultSet rs = statement.executeQuery("select class_title,ask_time,ask_title,ask_id,belong_class_id,ask.unit_no,lesson_title,asker,answer_count,visits_count,"+new_answerer_sql+","+new_answer_sql+" from class_teacher_table,ask,class where class_teacher_table.class_id=class.class_id and ask.unit_no=class.unit_no and teacher='"+user+"' and class_teacher_table.class_id=belong_class_id order by ask_time desc limit "+(6*(page-1))+","+6);
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> ask_no = new ArrayList<>();
             ArrayList<String> class_no = new ArrayList<>();
             ArrayList<String> unit_no = new ArrayList<>();
+            ArrayList<String> lesson_title = new ArrayList<>();
             ArrayList<String> asker = new ArrayList<>();
             ArrayList<String> new_answer = new ArrayList<>();
             ArrayList<String> new_answer_text = new ArrayList<>();
@@ -540,6 +543,7 @@ public class PostAsk extends HttpServlet {
                 describe_list.add(rs.getString("ask_title"));
                 ask_no.add(rs.getString("ask_id"));
                 class_no.add(rs.getString("belong_class_id"));
+                lesson_title.add(rs.getString("lesson_title"));
                 unit_no.add(rs.getString("unit_no"));
                 asker.add(rs.getString("asker"));
                 new_answer.add(rs.getString("new_answerer"));
@@ -553,6 +557,7 @@ public class PostAsk extends HttpServlet {
             jsonObj.put("ask_no",ask_no);
             jsonObj.put("class_no",class_no);
             jsonObj.put("unit_no",unit_no);
+            jsonObj.put("lesson_title",lesson_title);
             jsonObj.put("asker",asker);
             jsonObj.put("new_answer",new_answer);
             jsonObj.put("new_answer_text",new_answer_text);

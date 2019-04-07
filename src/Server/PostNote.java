@@ -163,7 +163,7 @@ public class PostNote extends HttpServlet {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select note_id,text,note_time,note.unit_no,belong_class_id,class_title,cover_address from note,class_teacher_table where class_id=belong_class_id and author= '"+author+"'");
+            ResultSet rs = statement.executeQuery("select note_id,text,note_time,note.unit_no,belong_class_id,class_title,cover_address,lesson_title from note,class_teacher_table,class where note.unit_no=class.unit_no and class_teacher_table.class_id=belong_class_id and class.class_id=belong_class_id and author= '"+author+"'");
             JSONObject jsonObj = new JSONObject();
             ArrayList<String> note_no = new ArrayList<>();
             ArrayList<String> title_list = new ArrayList<>();
@@ -181,11 +181,12 @@ public class PostNote extends HttpServlet {
                 image_address.add(rs.getString("cover_address"));
                 class_no.add(rs.getString("note.unit_no"));
                 title_no.add(rs.getString("belong_class_id"));
-            }
-            rs = statement.executeQuery("select lesson_title from note,class where note.unit_no=class.unit_no and author= '"+author+"'");
-            while (rs.next()){
                 class_title.add(rs.getString("lesson_title"));
             }
+           /* rs = statement.executeQuery("select lesson_title from note,class where note.unit_no=class.unit_no and author= '"+author+"'");
+            while (rs.next()){
+                class_title.add(rs.getString("lesson_title"));
+            }*/
             jsonObj.put("note_no",note_no);
             jsonObj.put("text",text_list);
             jsonObj.put("time",time_list);

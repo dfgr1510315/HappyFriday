@@ -1,6 +1,5 @@
-var PageContext = $("#PageContext").val();
+var contextPath = getContextPath();
 var No = GetQueryString('class_id');
-
 
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -14,7 +13,7 @@ function join_class(classification) {
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: PageContext + "/learn_list",
+        url: contextPath + "/learn_list",
         data: {
             action: 'join_class',
             time: time2,
@@ -24,7 +23,7 @@ function join_class(classification) {
         dataType: 'json',
         success: function (jsonObject) {
             if (jsonObject.msg === '1') {
-                window.location.href = "Play.jsp?" + No + "/1-1";
+                window.location.href = "Play.html?" + No + "/1-1";
             }
         }
     })
@@ -32,7 +31,7 @@ function join_class(classification) {
 
 function continue_class(event) {
     var last_time = $(event).prev().data('class');
-    window.location.href = "Play.jsp?" + No + "/" + last_time.substring(0, last_time.indexOf(':'));
+    window.location.href = "Play.html?" + No + "/" + last_time.substring(0, last_time.indexOf(':'));
 }
 
 

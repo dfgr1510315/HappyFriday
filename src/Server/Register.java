@@ -49,7 +49,20 @@ public class Register extends HttpServlet {
             case "user_infor":
                 user_infor(request,response);
                 break;
+            case "get_email":
+                get_email(request,response);
+                break;
         }
+    }
+
+    private void get_email(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        HttpSession session=request.getSession();
+        //JSONObject jsonObj = new JSONObject();
+        String email = (String) session.getAttribute("email");
+        PrintWriter out = response.getWriter();
+        out.flush();
+        out.print(email);
+        out.close();
     }
 
     private void user_infor(HttpServletRequest request,HttpServletResponse response){

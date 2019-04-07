@@ -45,7 +45,7 @@ public class Login_Filter implements Filter {
 
             if(username==null){
                 PrintWriter out = response.getWriter();
-                out.println ("<script language=javascript>alert('请登录');window.location='"+realPath+"/HTML_JSP/homepage.jsp'</script>");
+                out.println ("<script language=javascript>alert('请登录');window.location='"+realPath+"/HTML_JSP/homepage.html'</script>");
                 out.close();
                 return;
             }
@@ -53,7 +53,7 @@ public class Login_Filter implements Filter {
                 if (path.equals(p)) {
                     if (usertype.equals("student")) {
                         PrintWriter out = response.getWriter();
-                        out.println ("<script language=javascript>alert('你的用户权限不足以访问此页面');window.location='"+realPath+"/HTML_JSP/homepage.jsp'</script>");
+                        out.println ("<script language=javascript>alert('你的用户权限不足以访问此页面');window.location='"+realPath+"/HTML_JSP/homepage.html'</script>");
                         out.close();
                         return;
                     }
@@ -68,7 +68,7 @@ public class Login_Filter implements Filter {
                     return;
                 }else {
                     PrintWriter out = response.getWriter();
-                    out.println ("<script language=javascript>alert('你的用户权限不足以访问此页面');window.location='"+realPath+"/HTML_JSP/homepage.jsp'</script>");
+                    out.println ("<script language=javascript>alert('你的用户权限不足以访问此页面');window.location='"+realPath+"/HTML_JSP/homepage.html'</script>");
                     out.close();
                     return;
                 }
@@ -77,7 +77,7 @@ public class Login_Filter implements Filter {
         } catch (Exception e) {
             // TODO Auto-generated catch block
             //判断session是否为空，为空的话就页面重定向到登陆界面
-            response.sendRedirect(request.getContextPath()+"/HTML_JSP/homepage.jsp");
+            response.sendRedirect(request.getContextPath()+"/HTML_JSP/homepage.html");
             e.printStackTrace();
             return;
         }

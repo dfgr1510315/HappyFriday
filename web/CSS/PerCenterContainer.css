@@ -37,3 +37,13 @@ a:hover{
 .fr{
     float: right;
 }
+
+.no_find_class {
+    width: 140px;
+    margin-left: auto;
+    margin-top: 103px;
+    margin-right: auto;
+    font-size: 35px;
+    font-weight: 300;
+    color: #93999f;
+}

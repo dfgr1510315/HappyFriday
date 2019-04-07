@@ -28,36 +28,30 @@
     }
 </style>
 <script type="text/javascript">
-    $(document).ready(function () {
-        var ContextPath = getContextPath();
-        $('#radio_cover_img').attr('src',ContextPath+head_image);
-        $('#pc_head_image').attr('src',ContextPath+head_image);
-        $('#user_id_span').text('ID:'+user);
-    });
     function addClass(no) {
         if (usertype==='student'){
             $('#vertical_group').append(
                 '<a id="Nav0" href="PersonalCenter.html" class="list-group-item ">个人资料</a>\n' +
                 '<a id="Nav1" href="ChangePW.html" class="list-group-item">密码修改</a>\n' +
-                '<a id="Nav2" href="Unbind.jsp" class="list-group-item ">账号绑定</a>\n' +
-                '<a id="Nav5" href="LearingClass.jsp" class="list-group-item ">我的课程</a>\n' +
-                '<a id="Nav6" href="My_question.jsp" class="list-group-item ">我发布的评论</a>\n' +
-                '<a id="Nav7" href="My_answered.jsp" class="list-group-item ">我回复的评论</a>\n' +
-                '<a id="Nav8" href="note.jsp" class="list-group-item ">我的笔记</a>\n' +
-                '<a id="Nav9" href="notification.jsp" class="list-group-item ">我的通知</a>'
+                '<a id="Nav2" href="Unbind.html" class="list-group-item ">账号绑定</a>\n' +
+                '<a id="Nav5" href="LearingClass.html" class="list-group-item ">我的课程</a>\n' +
+                '<a id="Nav6" href="My_question.html" class="list-group-item ">我发布的评论</a>\n' +
+                '<a id="Nav7" href="My_answered.html" class="list-group-item ">我回复的评论</a>\n' +
+                '<a id="Nav8" href="note.html" class="list-group-item ">我的笔记</a>\n' +
+                '<a id="Nav9" href="notification.html" class="list-group-item ">我的通知</a>'
             )
         } else {
             $('#vertical_group').append(
                 '<a id="Nav0" href="PersonalCenter.html" class="list-group-item ">个人资料</a>\n' +
                 '<a id="Nav1" href="ChangePW.html" class="list-group-item">密码修改</a>\n' +
-                '<a id="Nav2" href="Unbind.jsp" class="list-group-item ">账号绑定</a>\n' +
-                '<a id="Nav3" href="Teaching.jsp" class="list-group-item " >在教课程</a>\n' +
-                '<a id="Nav4" href="Student_commentary.jsp" class="list-group-item ">学员讨论</a>\n' +
-                '<a id="Nav5" href="LearingClass.jsp" class="list-group-item ">我的课程</a>\n' +
-                '<a id="Nav6" href="My_question.jsp" class="list-group-item ">我发布的评论</a>\n' +
-                '<a id="Nav7" href="My_answered.jsp" class="list-group-item ">我回复的评论</a>\n' +
-                '<a id="Nav8" href="note.jsp" class="list-group-item ">我的笔记</a>\n' +
-                '<a id="Nav9" href="notification.jsp" class="list-group-item ">我的通知</a>'
+                '<a id="Nav2" href="Unbind.html" class="list-group-item ">账号绑定</a>\n' +
+                '<a id="Nav3" href="Teaching.html" class="list-group-item " >在教课程</a>\n' +
+                '<a id="Nav4" href="Student_commentary.html" class="list-group-item ">学员讨论</a>\n' +
+                '<a id="Nav5" href="LearingClass.html" class="list-group-item ">我的课程</a>\n' +
+                '<a id="Nav6" href="My_question.html" class="list-group-item ">我发布的评论</a>\n' +
+                '<a id="Nav7" href="My_answered.html" class="list-group-item ">我回复的评论</a>\n' +
+                '<a id="Nav8" href="note.html" class="list-group-item ">我的笔记</a>\n' +
+                '<a id="Nav9" href="notification.html" class="list-group-item ">我的通知</a>'
             )
         }
         $("#Nav"+no).addClass('list_action');

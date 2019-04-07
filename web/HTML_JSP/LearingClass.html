@@ -1,20 +1,23 @@
-<%--
+<!--
+
   Created by IntelliJ IDEA.
   User: LI
   Date: 2018/12/10 0010
   Time: 20:00
   To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+-->
+<!DOCTYPE html>
+<html lang="">
 <head>
     <title>在教课程</title>
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/navigation.css">
+    <link rel="stylesheet" href="../CSS/PerCenterContainer.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <style type="text/css">
         body {
@@ -174,18 +177,20 @@
         .catog-points a:hover {
             color: #1c1f21;
         }
-
-        .no_find_class {
-            width: 16%;
-            margin-left: auto;
-            margin-top: 103px;
-            margin-right: auto;
-            font-size: 35px;
-            font-weight: 300;
-            color: #93999f;
-        }
     </style>
     <script type="text/javascript">
+        var contextPath = getContextPath();
+        $(document).ready(function () {
+            getClass();
+            $('#navigation').load('navigation.html',function () {
+                $('#VerticalNav').load('VerticalNav.html',function () {
+                    addClass(5);
+                    $.when(get_user_infor()).done(function () {
+                        $('#radio_cover_img').attr('src',contextPath+head_image);
+                    });
+                });
+            });
+        });
         function addUL(_ul,json,i,note,ask) {
             var star;
             var action;
@@ -201,12 +206,12 @@
                 '<li class="course-one type' + json.class_type[i] + '">\n' +
                 '   <div class="course-list-img l">\n' +
                 '   <a href="" target="_blank">\n' +
-                '        <img width="200" height="113" src="' +"${pageContext.request.contextPath}"+json.img_address[i] + '" />\n' +
+                '        <img width="200" height="113" src="' +contextPath+json.img_address[i] + '"  alt=""/>\n' +
                 '   </a>\n' +
                 '   </div>\n' +
                 '   <div class="course-list-cont">\n' +
                 '       <h3 class="study-hd">\n' +
-                '            <a href="Learn_list.jsp?class_id=' + json.class_no[i] + '" target="_blank">' + json.title[i] + '</a>\n' +
+                '            <a href="Learn_list.html?class_id=' + json.class_no[i] + '" target="_blank">' + json.title[i] + '</a>\n' +
                 '            <div class="share-box">\n' +
                 '                  <a href="javascript:void(0);" onclick="collection(this,'+action+')" title="收藏" ><i class="fa fa-'+star+'"></i></a>\n' +
                 '                  <a href="javascript:void(0);" onclick="delete_class_no(' + json.class_no[i] + ')" data-toggle="modal"  data-target="#Delete_Class"  title="删除" ><i class="fa fa-trash-o"></i></a>\n' +
@@ -217,19 +222,19 @@
                 '             <span class="i-right span-common">学习至' + json.last_time[i] + '</span>\n' +
                 '       </div>\n' +
                 '       <div class="catog-points">\n' +
-                '              <span class="i-left span-common"><a target="_blank" href="Learn_list.jsp?class_id=' + json.class_no[i] + '&page_note=1">笔记 ' + note + '</a></span>\n' +
-                '              <span class="i-right span-common"><a target="_blank" href="Learn_list.jsp?class_id=' + json.class_no[i] + '&page_ask=1">问答 ' + ask + '</a></span>\n' +
+                '              <span class="i-left span-common"><a target="_blank" href=' + json.class_no[i] + '"Learn_list.html?class_id=&page_note=1">笔记 ' + note + '</a></span>\n' +
+                '              <span class="i-right span-common"><a target="_blank" href=' + json.class_no[i] + '"Learn_list.html?class_id=&page_ask=1">问答 ' + ask + '</a></span>\n' +
                 '              <button type="button" class="btn btn-outline-primary" style="right: 32px;position: absolute;" onclick="continue_class(' + json.class_no[i] + ',\'' + json.last_time[i] + '\')">继续学习</button>\n' +
                 '       </div>\n' +
                 '</li>'
             );
         }
 
-        $(document).ready(function () {
+        function getClass(){
             $.ajax({
                 type: "POST",
                 asynch: "false",
-                url: "${pageContext.request.contextPath}/get_teaching",
+                url: contextPath+"/get_teaching",
                 data: {
                     type: 'get_my_class'
                 },
@@ -262,23 +267,23 @@
                     }
                     if (learning_ul.html().length === 0) {
                         learning_ul.append(
-                            ' <div class="no_find_class">暂无课程</div> '
+                            '<div class="no_find_class">暂无课程</div>'
                         )
                     }
                     if (collection_ul.html().length === 0) {
                         collection_ul.append(
-                            ' <div class="no_find_class">暂无课程</div> '
+                            '<div class="no_find_class">暂无课程</div>'
                         )
                     }
                     if (learned_ul.html().length === 0) {
                         learned_ul.append(
-                            ' <div class="no_find_class">暂无课程</div> '
+                            '<div class="no_find_class">暂无课程</div>'
                         )
                     }
                 }
 
             });
-        });
+        }
 
         function collection(event, action) {
             var class_no = $(event).parent().prev().attr("href");
@@ -288,7 +293,7 @@
             $.ajax({
                 type: "POST",
                 asynch: "false",
-                url: "${pageContext.request.contextPath}/get_teaching",
+                url: contextPath+"/get_teaching",
                 data: {
                     class_no: class_no.substring(class_no.lastIndexOf("=") + 1, class_no.length),
                     type: type
@@ -316,7 +321,7 @@
             $.ajax({
                 type: "POST",
                 asynch: "false",
-                url: "${pageContext.request.contextPath}/get_teaching",
+                url: contextPath+"/get_teaching",
                 data: {
                     class_no: ID,
                     type: 'delete_class'
@@ -346,23 +351,23 @@
         }
 
         function continue_class(No, Unit_no) {
-            window.location.href = "Play.jsp?" + No + "/" + Unit_no.substring(0, Unit_no.indexOf(','));
+            window.location.href = "Play.html?" + No + "/" + Unit_no.substring(0, Unit_no.indexOf(','));
         }
     </script>
 
 </head>
-<body onload="ifActive();addClass(5)">
-<jsp:include page="navigation.html"/>
-<div >
-    <div style="width: 80%;margin: 10px auto auto;">
-        <jsp:include page="VerticalNav.html"/>
+<body>
+<div id="navigation"></div>
+<div>
+    <div class="main_container">
+        <div id="VerticalNav"></div>
         <div class="container_right">
             <div>
                 <h3 class="container_right_head">
                     我的课程
                 </h3>
                 <div style="margin-bottom: 12px;">
-                    <div style="width: 88%;float: left;">
+                    <div style="width: 87%;float: left;">
                         <ul class="title-list nav nav-pills ">
                             <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#learning">学习中</a>
                             </li>
@@ -371,7 +376,7 @@
                         </ul>
                     </div>
 
-                    <div class="dropdown" style="margin-left: 40%;">
+                    <div class="dropdown" style="display: inline-block">
                         <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
                             <span>全部课程</span>
                         </button>
@@ -408,17 +413,14 @@
 <div class="modal fade" id="Delete_Class">
     <div class="modal-dialog">
         <div class="modal-content" style="margin-top: 40%">
-            <%-- 头部--%>
             <div class="modal-header">
                 <h5 class="modal-title">提示</h5>
-                <button id="Delete_Class_Close" class="close" data-dismiss="modal">&times;</button>
+                <a id="Delete_Class_Close" class="close" data-dismiss="modal">&times;</a>
             </div>
-            <%--界面--%>
             <div class="modal-body">
                 <h6>是否删除在学课程</h6>
                 <span style="font-size: 13px;color: gray;">你的笔记和提问将会保留</span>
-                <button id="Delete_Class_sure_button" type="button" class="btn btn-primary" onclick=""
-                        style="float: right">确定
+                <button id="Delete_Class_sure_button" type="button" class="btn btn-outline-primary btn-sm" onclick="" style="float: right">确定
                 </button>
             </div>
         </div>

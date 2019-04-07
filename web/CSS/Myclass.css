@@ -37,15 +37,14 @@
 .container_right {
     width: 80%;
     float: right;
-    /* background-color: pink;*/
     min-height: 240px;
-    margin-top: 32px;
     background-color: white;
     box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
     border-radius: 12px;
     margin-bottom: 100px;
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 
@@ -170,4 +169,9 @@ body{
 .input-file-show .custom-file{
     margin-top: 25px;
     width: 80%;
+}
+
+#ui_box{
+    height: 210px;
+    margin-top: 33px;
 }

@@ -283,3 +283,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+#navigation{
+    height: 60px;
+}

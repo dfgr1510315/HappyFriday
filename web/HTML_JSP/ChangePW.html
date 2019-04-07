@@ -140,10 +140,15 @@
         var form_currentPassword;
         var form_confirmPassword;
         var form_newPassword;
+        var contextPath = getContextPath();
         $(document).ready(function(){
             $('#navigation').load('navigation.html',function () {
                 $('#VerticalNav').load('VerticalNav.html',function () {
                     addClass(1);
+                    $.when(get_user_infor()).done(function () {
+                        //console.log('done:'+head_image);
+                        $('#radio_cover_img').attr('src',contextPath+head_image);
+                    });
                 });
             });
             chang_PW();

@@ -1,6 +1,16 @@
-var PageContext = $("#PageContext").val();
+var contextPath = getContextPath();
 var keyword = GetQueryString('keyword');
+var keyword_model = /^\w+$/ ;
 
+function change_src() {
+    $('#logo').attr('src','../../image/HUAS.png');
+    $('#navigation ul li:eq(1) a').attr('href','../homepage.html');
+    $('#navigation ul li:eq(2) a').attr('href','../Resources.html');
+    $('#navigation ul li:eq(3) a').attr('href','../course.html');
+    $('#notice').attr('href','../notification.html');
+    $('#user_card a:eq(0)').attr('href','../PersonalCenter.html');
+    $('#user_card a:eq(1)').attr('href','../homepage.html');
+}
 
 function add_href() {
     $(".nav-justified a").each(function(){
@@ -153,6 +163,10 @@ function search_to() {
     var new_keyword = $('#search_ipt').val();
     //console.log(new_keyword+'!!!');
     if (new_keyword===keyword || new_keyword.trim()==='') return;
+    if (!keyword_model.test(new_keyword)){
+        alert('请勿输入非法字符');
+        return;
+    }
     window.location.href=sp[sp.length-1]+'?keyword='+encodeURI(new_keyword);
 }
 
@@ -164,7 +178,7 @@ function search_note() {
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: PageContext+"/postnote",
+        url: contextPath+"/postnote",
         data: {
             page: page,
             action: 'search_note',
@@ -173,18 +187,23 @@ function search_note() {
         dataType: 'json',
         success: function (jsonObj) {
             $('#count').text('共找到' + jsonObj.count + '个结果');
-            if (jsonObj.count === '0') return;
             var note_box = $('#note_box');
+            if (jsonObj.count === '0') {
+                note_box.append(
+                    '<div class="no_find_class">暂无结果</div>'
+                );
+                return;
+            }
             for (var i = 0; i < jsonObj.author.length; i++) {
                 note_box.prepend('<div class="post-row">\n' +
                     '                            <div style="float:left;">\n' +
-                    '                                <a target="_blank" href="../Learn_list.jsp?class_id='+jsonObj.belong_class_id[i]+'">\n' +
-                    '                                    <image src="'+PageContext+jsonObj.cover_address[i]+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
+                    '                                <a target="_blank" href="../Learn_list.html?class_id='+jsonObj.belong_class_id[i]+'">\n' +
+                    '                                    <image src="'+contextPath+jsonObj.cover_address[i]+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
                     '                                </a>\n' +
                     '                            </div>\n' +
                     '                            <div style="margin-left: 60px">\n' +
                     '                                <div class="title">\n' +
-                    '                                    <a target="_blank" href="../Learn_list.jsp?class_id='+jsonObj.belong_class_id[i]+'" >'+jsonObj.class_title[i]+'</a>\n' +
+                    '                                    <a target="_blank" href="../Learn_list.html?class_id='+jsonObj.belong_class_id[i]+'" >'+jsonObj.class_title[i]+'</a>\n' +
                     '                                </div>\n' +
                     '                                <div class="unit">\n' +
                     '                                    <a target="_blank" href="" >'+jsonObj.author[i]+'</a>\n' +
@@ -214,7 +233,7 @@ function search_user() {
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: PageContext+"/changeInfor",
+        url: contextPath+"/changeInfor",
         data: {
             page: page,
             action: '2',
@@ -223,14 +242,19 @@ function search_user() {
         dataType: 'json',
         success: function (jsonObj) {
             $('#count').text('共找到' + jsonObj.count + '个结果');
-            if (jsonObj.count === '0') return;
+            if (jsonObj.count === '0') {
+                $('.user-list').append(
+                    '<div class="no_find_class">暂无结果</div>'
+                );
+                return;
+            }
             for (var i = 0; i < jsonObj.nike.length; i++) {
                 $('.user-list').append(
                     '      <li class="up-item">\n' +
                     '                        <div class="up-face">\n' +
                     '                            <a href="javascript:void(0)" target="_blank"  class="face-img">\n' +
                     '                                <div class="lazy-img">\n' +
-                    '                                    <img alt="" src="'+PageContext+jsonObj.head[i]+'">\n' +
+                    '                                    <img alt="" src="'+contextPath+jsonObj.head[i]+'">\n' +
                     '                                </div>\n' +
                     '                            </a>\n' +
                     '                        </div>\n' +
@@ -261,7 +285,7 @@ function search_ask() {
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: PageContext + "/postask",
+        url: contextPath + "/postask",
         data: {
             action: 'search_ask',
             page:page,
@@ -270,21 +294,26 @@ function search_ask() {
         dataType: 'json',
         success: function (jsonObj) {
             $('#count').text('共找到' + jsonObj.count + '个结果');
-            if (jsonObj.count === '0') return;
             var ask_ul = $('#ask_ul');
+            if (jsonObj.count === '0') {
+                ask_ul.append(
+                    '<div class="no_find_class">暂无结果</div>'
+                );
+                return;
+            }
             for (var i=0;i<jsonObj.ask_id.length;i++){
                 ask_ul.append(
                     ' <li>\n' +
                     '                            <div class="ui-box">\n' +
                     '                                <div class="headslider qa-medias l">\n' +
                     '                                    <a class="media" target="_blank" href="javascript:void(0)">\n' +
-                    '                                        <img src="'+PageContext+jsonObj.cover_address[i]+'" style="width: 50px;height: 50px;border-radius: 0;" alt="">\n' +
+                    '                                        <img src="'+contextPath+jsonObj.cover_address[i]+'" style="width: 50px;height: 50px;border-radius: 0;" alt="">\n' +
                     '                                    </a>\n' +
                     '                                </div>\n' +
                     '                                <div class="wendaslider qa-content">\n' +
                     '                                    <h2 class="wendaquetitle qa-header">\n' +
                     '                                        <div class="wendatitlecon qa-header-cnt clearfix">\n' +
-                    '                                            <a class="qa-tit" target="_blank" href="../questions.jsp?'+jsonObj.ask_id[i]+'">\n' +
+                    '                                            <a class="qa-tit" target="_blank" href="../questions.html?'+jsonObj.ask_id[i]+'">\n' +
                     '                                                <i>'+jsonObj.ask_title[i]+'</i>\n' +
                     '                                            </a>\n' +
                     '                                        </div>\n' +
@@ -295,11 +324,11 @@ function search_ask() {
                     '                                    </div>\n' +
                     '                                    <div class="replymegfooter qa-footer clearfix">\n' +
                     '                                        <div class="l-box l">\n' +
-                    '                                            <a class="replynumber static-count " target="_blank" href="../questions.jsp?'+jsonObj.ask_id[i]+'">\n' +
+                    '                                            <a class="replynumber static-count " target="_blank" href="../questions.html?'+jsonObj.ask_id[i]+'">\n' +
                     '                                                <span class="static-item answer">'+jsonObj.answer_count[i]+' 回答</span>\n' +
                     '                                                <span class="static-item">'+jsonObj.visits_count[i]+' 浏览</span>\n' +
                     '                                            </a>\n' +
-                    '                                            <a href="../Learn_list.jsp?class_id='+jsonObj.belong_class_id[i]+'" target="_blank">'+jsonObj.class_title[i]+'</a>\n' +
+                    '                                            <a href="../Learn_list.html?class_id='+jsonObj.belong_class_id[i]+'" target="_blank">'+jsonObj.class_title[i]+'</a>\n' +
                     '                                        </div>\n' +
                     '                                        <em class="r">'+jsonObj.ask_time[i]+'</em>\n' +
                     '                                    </div>\n' +
@@ -309,7 +338,7 @@ function search_ask() {
                 );
                 if (jsonObj.new_answer[i]===null){
                     $('#new_reply'+jsonObj.ask_id[i]).append(
-                        '<button type="button" class="btn btn-light" onclick="window.open(\'../questions.jsp?'+jsonObj.ask_id[i]+'\')">我来回答</button>\n'
+                        '<button type="button" class="btn btn-light" onclick="window.open(\'../questions.html?'+jsonObj.ask_id[i]+'\')">我来回答</button>\n'
                     )
                 } else {
                     $('#new_reply'+jsonObj.ask_id[i]).append(
@@ -335,7 +364,7 @@ function search_class() {
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: PageContext+"/SaveClassInfor",
+        url: contextPath+"/SaveClassInfor",
         data: {
             page: page,
             Read_or_Save: 'search_class',
@@ -344,16 +373,21 @@ function search_class() {
         dataType: 'json',
         success: function (jsonObj) {
             $('#count').text('共找到' + jsonObj.count + '个结果');
-            if (jsonObj.class_id.length === 0) return;
+            if (jsonObj.class_id.length === 0) {
+                $('.search-content').append(
+                    '<div class="no_find_class">暂无结果</div>'
+                );
+                return;
+            }
             for (var i = 0; i < jsonObj.class_id.length; i++) {
                 var class_type = get_class_type(jsonObj.class_type[i]);
                 $('.search-content').append(
                     ' <div class="course-item">\n' +
-                    '                    <a href="../Learn_list.jsp?class_id=' + jsonObj.class_id[i] + '" target="_blank" class="course-detail-title">\n' +
-                    '                        <img src="'+PageContext + jsonObj.cover_address[i] + '" alt="">\n' +
+                    '                    <a href="../Learn_list.html?class_id=' + jsonObj.class_id[i] + '" target="_blank" class="course-detail-title">\n' +
+                    '                        <img src="'+contextPath + jsonObj.cover_address[i] + '" alt="">\n' +
                     '                    </a>\n' +
                     '                    <div class="course-item-detail">\n' +
-                    '                        <a href="../Learn_list.jsp?class_id=' + jsonObj.class_id[i] + '" target="_blank" class="course-detail-title">\n' +
+                    '                        <a href="../Learn_list.html?class_id=' + jsonObj.class_id[i] + '" target="_blank" class="course-detail-title">\n' +
                     '                            ' + jsonObj.class_title[i] + '\n' +
                     '                        </a>\n' +
                     '                        <div class="course-item-classify">\n' +

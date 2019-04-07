@@ -2,11 +2,10 @@
 /*function ifActive() {
     document.getElementById("idMyclass").className -= ' nav-link';
 };*/
-
-var PageContext = $("#PageContext").val();
 var UnitCount = 0;
 var ClassCount = 0;
 var No = GetQueryString('class_id');
+var contextPath = getContextPath();
 
 function GetQueryString(name)
 {
@@ -79,7 +78,7 @@ function saveClass() {
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: PageContext +"/getlearnfile",
+        url: contextPath +"/getlearnfile",
         data: {
             No:No,
             ds:JSON.stringify(Total_data.UUNIt)
@@ -97,7 +96,7 @@ function saveClass() {
     $.ajax({
         type: "POST",
         asynch: "false",
-        url: PageContext+"/SaveClassInfor",
+        url: contextPath+"/SaveClassInfor",
         data: data,
         dataType: 'json',
         success: function () {
@@ -113,7 +112,7 @@ function live() {
 
 function Release(state) {
         $.ajax({
-            url: PageContext+"/SaveClassInfor",
+            url: contextPath+"/SaveClassInfor",
             data: {
                 No:No,
                 state:state,
@@ -399,8 +398,11 @@ function upload(event, type) {
         alert("请选择图片");
         return;
     }*/
-    console.log('!!!!'+fileObj);
     if (fileObj===undefined) return;
+    if (type===1&&parseInt(fileObj.size)/1024>100000) {
+        alert('上传的视频不能大于100M');
+        return;
+    }
     var formFile = new FormData();
     formFile.append("file", fileObj); //加入文件对象
     var data = formFile;
@@ -410,7 +412,7 @@ function upload(event, type) {
     var websocket = null;
 
     $.ajax({
-        url: PageContext+"/uploadsec",
+        url: contextPath+"/uploadsec",
         data: data,
         type: "POST",
         dataType: "json",
@@ -433,7 +435,7 @@ function upload(event, type) {
                         local_bar.css('width','0');
 //判断当前浏览器是否支持WebSocket
                         if ('WebSocket' in window) {
-                            websocket = new WebSocket("ws:"+window.location.host+PageContext+"/websocket/"+document.getElementById('user').value+fileObj.name);
+                            websocket = new WebSocket("ws:"+window.location.host+contextPath+"/websocket/"+document.getElementById('user').value+fileObj.name);
                             //websocket = new WebSocket("ws://localhost:8080/websocket/"+document.getElementById('user').value+fileObj.name);
                         }
                         else {
@@ -475,14 +477,14 @@ function upload(event, type) {
         success: function (jsonObj) {
             //alert(jsonObj.src);
             if (1 === type) {
-                //alert(PageContext+"/" + jsonObj.src);
-                $(event).parent().parent().next().next().children().attr("data-cuSRC", PageContext+"/" + jsonObj.cuSRC);
-                $(event).parent().parent().next().next().children().attr("src", PageContext+"/" + jsonObj.src);
+                //alert(contextPath+"/" + jsonObj.src);
+                $(event).parent().parent().next().next().children().attr("data-cuSRC", contextPath+"/" + jsonObj.cuSRC);
+                $(event).parent().parent().next().next().children().attr("src", contextPath+"/" + jsonObj.src);
                 $(event).next().text(jsonObj.video_name);
             } else if (3 === type) {
                 $(event).next().next().append(
                     '<div class="list-group-item list-group-item-action"> ' +
-                    '<a style="text-decoration: none;"  " target="_Blank" href="'+PageContext+"/" + jsonObj.src+ '">' + jsonObj.filename + '' +
+                    '<a style="text-decoration: none;"  " target="_Blank" href="'+contextPath+"/" + jsonObj.src+ '">' + jsonObj.filename + '' +
                     '</a>'+
                     '<button type="button" class="btn btn-light" style="float: right;padding: 0;width: 26px" onclick="Delete_File(this)"><i class="fa fa-times"></i>' +
                     '</button>' +
@@ -502,11 +504,11 @@ function Delete_File(event) {
 
 
 function getHTML() {
-    $("#preview").attr("href","Learn_list.jsp?class_id="+No);
+    $("#preview").attr("href","Learn_list.html?class_id="+No);
      $.ajax({
         type: "POST",
         asynch: "false",
-        url:PageContext+"/SaveClassInfor",
+        url:contextPath+"/SaveClassInfor",
         data: {
             No:No,
             Read_or_Save: "read"

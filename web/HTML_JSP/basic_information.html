@@ -1,20 +1,16 @@
+<!DOCTYPE html>
 <html lang="">
 <head>
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>课程管理</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../CSS/navigation.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Myclass.css">
-    <link rel="stylesheet" type="text/css" href="../webuploader-0.1.5/css/webuploader.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../webuploader-0.1.5/jekyll/js/webuploader.js"></script>
-    <script type="text/javascript" src="../wangEditor-3.1.1/release/wangEditor.min.js"></script>
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <script type="text/javascript" src="../JS/Myclass.js"></script>
-    <script type="text/javascript" src="../JS/drag.js"></script>
 </head>
 <style type="text/css">
     body.modal-open {
@@ -39,10 +35,10 @@
     }
 </style>
 
-<body onload="addAction(1);addHref();getHTML()">
+<body>
 <div id="navigation"></div>
-<div style="width: 100%;margin-top:30px;height: 450px">
-    <div style="background-size: cover;height: 148px;margin-top: -21px">
+<div>
+    <div>
         <div id="ui_box"></div>
         <div style="width: 80%;margin: auto">
             <div id="course_manag_nav"></div>
@@ -56,6 +52,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">标题</span>
                             </div>
+                            <label for="title"></label>
                             <input type="text" class="basic_control form-control" id="title">
                         </div>
                         <div class="group_with">
@@ -67,6 +64,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">分类</span>
                             </div>
+                            <label for="sel1"></label>
                             <select class="form-control found_class_text basic_control " id="sel1" >
                                 <option>类型</option>
                                 <option value=1>前端设计</option>
@@ -100,10 +98,18 @@
 <script type="text/javascript">
     var flag1 = true;
     var flag2 = true;
+    var No = GetQueryString('class_id');
     $(document).ready(function(){
-        $('#navigation').load('navigation.html');
-        $('#course_manag_nav').load('course_manag_nav.html');
-        $('#ui_box').load('ui_box.html');
+        $('#navigation').load('navigation.html',function () {
+            get_user_infor();
+        });
+        $('#ui_box').load('ui_box.html',function () {
+            getHTML();
+        });
+        $('#course_manag_nav').load('course_manag_nav.html',function () {
+            addHref();
+            addAction(1)
+        });
         var title = $("#title");
         var title_waring = $('#title_waring');
         title.focus(function(){
@@ -145,6 +151,12 @@
         });
     });
 
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null) return  unescape(r[2]); return null;
+    }
 
     function save_information() {
         if (flag1===true && flag2===true){

@@ -13162,7 +13162,7 @@
       this.removeClass('vjs-playing');
       this.addClass('vjs-paused'); // change the button text to "Play"
 
-      this.controlText('Play');
+      this.controlText('Play.html');
     };
     /**
      * Add the vjs-ended class to the element so it can change appearance
@@ -13193,7 +13193,7 @@
    */
 
 
-  PlayToggle.prototype.controlText_ = 'Play';
+  PlayToggle.prototype.controlText_ = 'Play.html';
   Component.registerComponent('PlayToggle', PlayToggle);
 
   /**

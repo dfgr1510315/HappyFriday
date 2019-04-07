@@ -1,20 +1,23 @@
-<%--
+<!--
+
   Created by IntelliJ IDEA.
   User: LI
   Date: 2018/12/10 0010
   Time: 20:00
   To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+-->
+<!DOCTYPE html>
+<html lang="">
 <head>
     <title>个人中心</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/My_question.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/My_question.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/navigation.css">
+    <link rel="stylesheet" href="../CSS/PerCenterContainer.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/navigation.css">
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <style type="text/css">
         body{
@@ -74,15 +77,6 @@
         #notice_box .list-group .list-group-item .item_body .notification-time .delete{
             float: right;
         }
-        .no_find_class {
-            width: 140px;
-            margin-left: auto;
-            margin-top: 103px;
-            margin-right: auto;
-            font-size: 35px;
-            font-weight: 300;
-            color: #93999f;
-        }
         .delete{
             cursor: pointer;
         }
@@ -91,8 +85,17 @@
         }
     </style>
     <script type="text/javascript">
+        var contextPath = getContextPath();
         $(document).ready(function () {
-            get_notice();
+            $('#navigation').load('navigation.html',function () {
+                $('#VerticalNav').load('VerticalNav.html',function () {
+                    addClass(9);
+                    $.when(get_user_infor()).done(function () {
+                        get_notice();
+                        $('#radio_cover_img').attr('src',contextPath+head_image);
+                    });
+                });
+            });
         });
 
         function GetQueryString(name)
@@ -127,7 +130,7 @@
             $.ajax({
                 type: "POST",
                 asynch: "false",
-                url: "${pageContext.request.contextPath}/notification",
+                url: contextPath+"/notification",
                 data: {
                     action: 'delete_notice',
                     notice_id:$(event).data('id')
@@ -146,7 +149,7 @@
             if (keycode  === 13) {
                 var jump = $('#jump');
                 if (jump.val()>0&&jump.val()<=page_length&&jump.val()%1 === 0){
-                    window.location.href="notification.jsp?page="+jump.val();
+                    window.location.href="notification.html?page="+jump.val();
                 }else alert('请重新输入页号');
             }
         }
@@ -157,7 +160,7 @@
             $.ajax({
                 type: "POST",
                 asynch: "false",
-                url: "${pageContext.request.contextPath}/notification",
+                url: contextPath+"/notification",
                 data: {
                     action: 'get_notice',
                     user: user,
@@ -169,23 +172,23 @@
                         var notice;
                         switch (jsonObj.notice_type[i]) {
                             case 1:
-                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>加入了课程<a href='Learn_list.jsp?class_id="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>\n";
+                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>加入了课程<a href='Learn_list.html?class_id="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>\n";
                                 break;
                             case 2:
-                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在课程<a href='Learn_list.jsp?class_id="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>发表了问题<a href='questions.jsp?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>\n";
+                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在课程<a href='Learn_list.html?class_id="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>发表了问题<a href='questions.html?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>\n";
                                 break;
                             case 3:
-                                notice = "用户<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在你发布的问题<a href='questions.jsp?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>中回答了你";
+                                notice = "用户<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在你发布的问题<a href='questions.html?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>中回答了你";
                                 break;
                             case 4:
-                                notice = "用户<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在<a href='questions.jsp?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>中回复了你";
+                                notice = "用户<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在<a href='questions.html?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>中回复了你";
                                 break
                         }
                         notice_box_ul(notice,jsonObj.time[i],jsonObj.notice_id[i])
                     }
                     var notice_box_ul_var = $('#notice_box_ul');
                     if (notice_box_ul_var.html().length === 0) {
-                        notice_box_ul_var.append(
+                        $('#notice_box').prepend(
                             '<div class="no_find_class">暂无通知</div>'
                         )
                     }else {
@@ -220,7 +223,6 @@
                                     }
                                 }
                             }
-
                         }
 
                         if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?page='+(parseInt(page)+1)+'">Next</a></li>');
@@ -232,7 +234,7 @@
                             '<label>\n' +
                             '<input id="jump" type="text" class="form-control" onkeydown="go();">\n' +
                             '</label>\n' +
-                            '<span id="count_page"> </span>\n' +
+                            '<span id="count_page"></span>\n' +
                             '</a>\n' +
                             '</li>');
                         $('#count_page').text('/ '+page_length);
@@ -243,11 +245,11 @@
     </script>
 
 </head>
-<body onload="ifActive();addClass(9)">
-<jsp:include page="navigation.html"/>
-<div style="width: 100%;height: 450px">
-    <div style="width: 80%;margin: 10px auto auto;">
-        <jsp:include page="VerticalNav.html"/>
+<body>
+<div id="navigation"></div>
+<div>
+    <div class="main_container">
+        <div id="VerticalNav"></div>
         <div class="container_right">
             <h3 class="container_right_head">
                 我的通知

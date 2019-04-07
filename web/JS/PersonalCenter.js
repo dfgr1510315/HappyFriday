@@ -27,6 +27,12 @@ function get_infor() {
             $("#introduction").val(jsonObj.information);
             $('#VerticalNav').load('VerticalNav.html',function () {
                 addClass(0);
+                $.when(get_user_infor()).done(function () {
+                    console.log('done:'+head_image);
+                    $('#radio_cover_img').attr('src',contextPath+head_image);
+                    $('#pc_head_image').attr('src',contextPath+head_image);
+                    $('#user_id_span').text('ID:'+user);
+                });
             });
         }
     });

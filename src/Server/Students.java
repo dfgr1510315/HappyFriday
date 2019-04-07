@@ -57,6 +57,41 @@ public class Students extends HttpServlet {
                 No = Integer.parseInt(request.getParameter("id"));
                 delete_class(response,No);
                 break;
+            case "move_student":
+                user = request.getParameter("student");
+                No = Integer.parseInt(request.getParameter("id"));
+                move_student(response,No,user);
+                break;
+        }
+    }
+
+    private void move_student(HttpServletResponse response,int id,String user){
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        try {
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("update sc set classification="+id+" where user='"+user+"'");
+            qsql.executeUpdate();
+            PrintWriter out = response.getWriter();
+            out.flush();
+            out.print(1);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
         }
     }
 
@@ -71,6 +106,7 @@ public class Students extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.flush();
             out.print(1);
+            out.close();
         } catch (Exception e) {
             e.printStackTrace();
         }finally {

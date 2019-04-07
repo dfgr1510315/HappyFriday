@@ -189,13 +189,13 @@
 
         <div class="carousel-inner" style="border-radius:4px;box-shadow: 0 12px 24px 0 rgba(7,17,27,.2);">
             <div class="carousel-item active">
-                <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg" alt="">
                 <div class="carousel-caption">
-                   <!-- <h3>计科吴彦祖：</h3>-->
+                    <!-- <h3>计科吴彦祖：</h3>-->
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
+                <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg" alt="">
                 <div class="carousel-caption">
                     <!--<h3>咸鱼桑</h3>-->
                 </div>
@@ -275,15 +275,20 @@
 
 </body>
 <script type="text/javascript">
+    var contextPath = getContextPath();
     $(document).ready(function(){
-        //console.log(getContextPath());
         $('#navigation').load('navigation.html',function () {
             $('.user_navigation ul li:eq(1) a').addClass('active');
+            get_user_infor();
         });
         $('#loginPC').load('LoginPC.html');
+        get_new_class();
+    });
+
+    function get_new_class() {
         $.ajax({
             type: "POST",
-            url: getContextPath()+"/SaveClassInfor",
+            url: contextPath+"/SaveClassInfor",
             data: {
                 Read_or_Save:'get_new_class',
                 limit:'10',
@@ -295,9 +300,9 @@
                 for (var i=0;i<jsonObj.title.length;i++){
                     $('.types-content').append(
                         ' <div class="index-card-container course-card-container ">\n' +
-                        '        <a target="_blank" class="course-card" href="Learn_list.jsp?class_id='+jsonObj.no[i]+'">\n' +
+                        '        <a target="_blank" class="course-card" href="Learn_list.html?class_id='+jsonObj.no[i]+'">\n' +
                         '            <div class="course-card-top hashadow">\n' +
-                        '                <img src="'+getContextPath()+jsonObj.cover[i]+'" alt="" class="course-banner">\n' +
+                        '                <img src="'+contextPath+jsonObj.cover[i]+'" alt="" class="course-banner">\n' +
                         '            </div>\n' +
                         '            <div class="course-card-content">\n' +
                         '                <h3 class="course-card-name">'+jsonObj.title[i]+'</h3>\n' +
@@ -317,6 +322,6 @@
                 }
             }
         });
-    });
+    }
 </script>
 </html>

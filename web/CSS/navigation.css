@@ -53,9 +53,6 @@ a:hover{
 .notification a:hover{
     color: #007bff;
 }
-.container_right .form-control{
-    height: calc(2rem + 2px);
-}
 
 .form-control:focus{
     outline:none;
@@ -261,4 +258,8 @@ a:hover{
 
 .hover{
     background-color: #e0e4e7;
+}
+
+#navigation{
+    height: 60px;
 }
