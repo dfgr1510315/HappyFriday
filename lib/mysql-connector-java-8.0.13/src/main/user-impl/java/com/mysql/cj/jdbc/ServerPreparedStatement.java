@@ -337,7 +337,7 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
                                     ((ServerPreparedQuery) this.query).setQueryBindings((ServerPreparedQueryBindings) arg);
                                     ServerPreparedQueryBindValue[] parameterBindings = ((ServerPreparedQuery) this.query).getQueryBindings().getBindValues();
 
-                                    // We need to check types each time, as the user might have bound different types in each addBatch()
+                                    // We need to check types each time, as the User might have bound different types in each addBatch()
 
                                     if (previousBindValuesForBatch != null) {
                                         for (int j = 0; j < parameterBindings.length; j++) {

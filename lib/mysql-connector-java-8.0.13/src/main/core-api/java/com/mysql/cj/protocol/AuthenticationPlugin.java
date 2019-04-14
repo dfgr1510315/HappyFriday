@@ -89,20 +89,20 @@ public interface AuthenticationPlugin<M extends Message> {
 
     /**
      * This method called from cJ before first nextAuthenticationStep
-     * call. Values of user and password parameters are passed from
+     * call. Values of User and password parameters are passed from
      * those in MysqlIO.changeUser(String userName, String password,
-     * String database) or MysqlIO.doHandshake(String user, String
+     * String database) or MysqlIO.doHandshake(String User, String
      * password, String database).
      * 
      * Plugin should use these values instead of values from connection
      * properties because parent method may be a changeUser call which
-     * saves user and password into connection only after successful
+     * saves User and password into connection only after successful
      * handshake.
      * 
      * @param user
-     *            user name
+     *            User name
      * @param password
-     *            user password
+     *            User password
      */
     void setAuthenticationParameters(String user, String password);
 

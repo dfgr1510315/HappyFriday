@@ -41,7 +41,7 @@ import java.util.Properties;
  * <ul>
  * <li>host: an IP or host name.
  * <li>port: the port number or 0 if not known.
- * <li>user info: a structure containing the user name and password.
+ * <li>User info: a structure containing the User name and password.
  * <li>host properties: host specific connection arguments.
  * </ul>
  */
@@ -64,7 +64,7 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Constructs a {@link HostInfo} instance initialized with the provided host, port and user info.
+     * Constructs a {@link HostInfo} instance initialized with the provided host, port and User info.
      * 
      * @param url
      *            a reference to the original database URL that produced this host info
@@ -73,16 +73,16 @@ public class HostInfo implements DatabaseUrlContainer {
      * @param port
      *            the port
      * @param user
-     *            the user name
+     *            the User name
      * @param password
-     *            the user's password
+     *            the User's password
      */
     public HostInfo(DatabaseUrlContainer url, String host, int port, String user, String password) {
         this(url, host, port, user, password, password == null, null);
     }
 
     /**
-     * Constructs a {@link HostInfo} instance initialized with the provided host, port, user, password and connection arguments.
+     * Constructs a {@link HostInfo} instance initialized with the provided host, port, User, password and connection arguments.
      * 
      * @param url
      *            a reference to the original database URL that produced this host info
@@ -91,9 +91,9 @@ public class HostInfo implements DatabaseUrlContainer {
      * @param port
      *            the port
      * @param user
-     *            the user name
+     *            the User name
      * @param password
-     *            this user's password
+     *            this User's password
      * @param properties
      *            a connection arguments map.
      */
@@ -102,7 +102,7 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Constructs a {@link HostInfo} instance initialized with the provided host, port, user, password and connection arguments.
+     * Constructs a {@link HostInfo} instance initialized with the provided host, port, User, password and connection arguments.
      * 
      * @param url
      *            a reference to the original database URL that produced this host info
@@ -111,9 +111,9 @@ public class HostInfo implements DatabaseUrlContainer {
      * @param port
      *            the port
      * @param user
-     *            the user name
+     *            the User name
      * @param password
-     *            this user's password
+     *            this User's password
      * @param isPasswordless
      *            no password was provided in the connection URL or arguments?
      * @param properties
@@ -159,9 +159,9 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Returns the user name.
+     * Returns the User name.
      * 
-     * @return the user name
+     * @return the User name
      */
     public String getUser() {
         return this.user;
@@ -218,7 +218,7 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Exposes this host info as a single properties instance. The values for host, port, user and password are added to the properties map with their standard
+     * Exposes this host info as a single properties instance. The values for host, port, User and password are added to the properties map with their standard
      * keys.
      * 
      * @return a {@link Properties} instance containing the full host information.
@@ -251,7 +251,7 @@ public class HostInfo implements DatabaseUrlContainer {
     @Override
     public String toString() {
         StringBuilder asStr = new StringBuilder(super.toString());
-        asStr.append(String.format(" :: {host: \"%s\", port: %d, user: %s, password: %s, hostProperties: %s}", this.host, this.port, this.user, this.password,
+        asStr.append(String.format(" :: {host: \"%s\", port: %d, User: %s, password: %s, hostProperties: %s}", this.host, this.port, this.user, this.password,
                 this.hostProperties));
         return asStr.toString();
     }

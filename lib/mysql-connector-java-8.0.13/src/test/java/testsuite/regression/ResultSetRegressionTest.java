@@ -354,7 +354,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         Statement updatableStmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
         try {
-            updatableStmt.execute("SELECT * FROM mysql.user");
+            updatableStmt.execute("SELECT * FROM mysql.User");
 
             this.rs = updatableStmt.getResultSet();
         } catch (SQLException sqlEx) {

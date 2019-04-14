@@ -91,7 +91,7 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
      * @param sessState
      *            The session state object. It's intended to be updated from the handshake
      * @param user
-     *            user name
+     *            User name
      * @param password
      *            password
      * @param database
@@ -394,7 +394,7 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
 
     /**
      * Performs an authentication handshake to authorize connection to a
-     * given database as a given MySQL user. This can happen upon initial
+     * given database as a given MySQL User. This can happen upon initial
      * connection to the server, after receiving Auth Challenge Packet, or
      * at any moment during the connection life-time via a Change User
      * request.
@@ -405,9 +405,9 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
      * @param sessState
      *            The current state of the session
      * @param user
-     *            the MySQL user account to log into
+     *            the MySQL User account to log into
      * @param password
-     *            authentication data for the user account (depends
+     *            authentication data for the User account (depends
      *            on authentication method used - can be empty)
      * @param database
      *            database to connect to (can be empty)
@@ -462,7 +462,7 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
                             | NativeServerSession.CLIENT_PS_MULTI_RESULTS  // We always allow multiple result sets for SSPS
                             | NativeServerSession.CLIENT_SECURE_CONNECTION; // protocol with pluggable authentication always support this
 
-                    // We allow the user to configure whether or not they want to support multiple queries (by default, this is disabled).
+                    // We allow the User to configure whether or not they want to support multiple queries (by default, this is disabled).
                     if (this.propertySet.getBooleanProperty(PropertyKey.allowMultiQueries).getValue()) {
                         clientParam |= NativeServerSession.CLIENT_MULTI_STATEMENTS;
                     }
@@ -510,7 +510,7 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
                         /*
                          * Fall back to default if plugin is 'sha256_password' but required conditions for this to work aren't met. If default is other than
                          * 'sha256_password' this will result in an immediate authentication switch request, allowing for other plugins to authenticate
-                         * successfully. If default is 'sha256_password' then the authentication will fail as expected. In both cases user's password won't be
+                         * successfully. If default is 'sha256_password' then the authentication will fail as expected. In both cases User's password won't be
                          * sent to avoid subjecting it to lesser security levels.
                          */
                         plugin = getAuthenticationPlugin(this.clientDefaultAuthenticationPluginName);
@@ -778,12 +778,12 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     }
 
     /**
-     * Re-authenticates as the given user and password
+     * Re-authenticates as the given User and password
      * 
      * @param serverSession
      *            current {@link ServerSession}
      * @param userName
-     *            user name
+     *            User name
      * @param password
      *            password
      * @param database

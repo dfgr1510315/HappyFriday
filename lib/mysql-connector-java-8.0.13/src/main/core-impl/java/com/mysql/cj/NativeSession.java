@@ -102,12 +102,12 @@ public class NativeSession extends CoreSession implements Serializable {
     private CacheAdapter<String, Map<String, String>> serverConfigCache;
 
     /**
-     * Actual collation index to mysql charset name map of user defined charsets for given server URLs.
+     * Actual collation index to mysql charset name map of User defined charsets for given server URLs.
      */
     private static final Map<String, Map<Integer, String>> customIndexToCharsetMapByUrl = new HashMap<>();
 
     /**
-     * Actual mysql charset name to mblen map of user defined charsets for given server URLs.
+     * Actual mysql charset name to mblen map of User defined charsets for given server URLs.
      */
     private static final Map<String, Map<String, Integer>> customCharsetToMblenMapByUrl = new HashMap<>();
 
@@ -170,7 +170,7 @@ public class NativeSession extends CoreSession implements Serializable {
         this.isClosed = false;
     }
 
-    // TODO: this method should not be used in user-level APIs
+    // TODO: this method should not be used in User-level APIs
     public NativeProtocol getProtocol() {
         return (NativeProtocol) this.protocol;
     }
@@ -469,7 +469,7 @@ public class NativeSession extends CoreSession implements Serializable {
 
                 if (serverEncodingToSet == null || serverEncodingToSet.length() == 0) {
                     if (realJavaEncoding != null) {
-                        // user knows best, try it
+                        // User knows best, try it
                         this.characterEncoding.setValue(realJavaEncoding);
                     } else {
                         throw ExceptionFactory.createException(
@@ -491,7 +491,7 @@ public class NativeSession extends CoreSession implements Serializable {
 
             } catch (ArrayIndexOutOfBoundsException outOfBoundsEx) {
                 if (realJavaEncoding != null) {
-                    // user knows best, try it
+                    // User knows best, try it
                     this.characterEncoding.setValue(realJavaEncoding);
                 } else {
                     throw ExceptionFactory.createException(
@@ -574,7 +574,7 @@ public class NativeSession extends CoreSession implements Serializable {
             }
 
             //
-            // We know how to deal with any charset coming back from the database, so tell the server not to do conversion if the user hasn't 'forced' a
+            // We know how to deal with any charset coming back from the database, so tell the server not to do conversion if the User hasn't 'forced' a
             // result-set character set
             //
 
@@ -644,7 +644,7 @@ public class NativeSession extends CoreSession implements Serializable {
             }
 
         } finally {
-            // Failsafe, make sure that the driver's notion of character encoding matches what the user has specified.
+            // Failsafe, make sure that the driver's notion of character encoding matches what the User has specified.
             //
             this.characterEncoding.setValue(realJavaEncoding);
         }

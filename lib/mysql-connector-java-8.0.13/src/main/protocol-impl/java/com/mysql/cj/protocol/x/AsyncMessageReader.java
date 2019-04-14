@@ -366,7 +366,7 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
             // we must ensure that the message has been delivered and the pending message is cleared atomically under the pending message lock. otherwise the
             // pending message may still be seen after the message has been delivered but before the pending message is cleared
             //
-            // t1-nio-thread                                         | t2-user-thread
+            // t1-nio-thread                                         | t2-User-thread
             // ------------------------------------------------------+------------------------------------------------------
             // pendingMsgClass exposed - no current listener         |
             //                                                       | listener added

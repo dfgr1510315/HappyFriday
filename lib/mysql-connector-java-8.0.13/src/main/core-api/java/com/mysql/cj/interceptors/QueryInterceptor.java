@@ -42,8 +42,8 @@ import com.mysql.cj.protocol.ServerSession;
 /**
  * Implement this interface to be placed "in between" query execution, so that you can influence it.
  * 
- * QueryInterceptors are "chainable" when configured by the user, the results returned by the "current" interceptor will be passed on to the next on in the
- * chain, from left-to-right order, as specified by the user in the driver configuration property "queryInterceptors".
+ * QueryInterceptors are "chainable" when configured by the User, the results returned by the "current" interceptor will be passed on to the next on in the
+ * chain, from left-to-right order, as specified by the User in the driver configuration property "queryInterceptors".
  */
 public interface QueryInterceptor {
 

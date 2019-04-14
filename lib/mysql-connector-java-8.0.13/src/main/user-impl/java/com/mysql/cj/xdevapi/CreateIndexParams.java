@@ -218,7 +218,7 @@ public class CreateIndexParams {
                     // TODO pure "TEXT" is not allowed as a type, server requires the length specification
                     // we're waiting for clarification about whether we set some default on client side in that case, eg.:
                     //    if ("TEXT".equals(this.type)) {this.type = "TEXT(64)";}
-                    // or we do nothing and user has to specify TEXT(n) always
+                    // or we do nothing and User has to specify TEXT(n) always
                 } else {
                     throw new XDevAPIError("Index type must be a string.");
                 }

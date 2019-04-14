@@ -191,7 +191,7 @@
     }
 
     function get_schedule() {
-        if(user === 'null'){
+        if(user === undefined){
             $('.sno1-1 .learn-btn').append(
                 '<button type="button" class="studyfont btn btn-outline-primary" data-toggle="modal" data-target="#LoginModal" >开始学习</button>\n'
             )

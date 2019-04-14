@@ -70,7 +70,7 @@ public interface SocketFactory {
 
     /**
      * Creates a new socket using the given properties. Properties are parsed by
-     * the driver from the URL. All properties other than sensitive ones (user
+     * the driver from the URL. All properties other than sensitive ones (User
      * and password) are passed to this method. The driver will instantiate the
      * socket factory with the class name given in the property
      * &quot;socketFactory&quot;, where the standard is <code>com.mysql.jdbc.StandardSocketFactory</code> Implementing classes

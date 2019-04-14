@@ -50,7 +50,7 @@ public interface JdbcConnection extends java.sql.Connection, MysqlConnection, Tr
     public JdbcPropertySet getPropertySet();
 
     /**
-     * Changes the user on this connection by performing a re-authentication. If
+     * Changes the User on this connection by performing a re-authentication. If
      * authentication fails, the connection is failed.
      * 
      * @param userName

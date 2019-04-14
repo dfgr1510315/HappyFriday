@@ -268,7 +268,7 @@ public final class MysqlxCrud {
   /**
    * <pre>
    * ViewSqlSecurity defines the security context in which the view is going to be
-   * executed, this means that VIEW can be executed with current user permissions or
+   * executed, this means that VIEW can be executed with current User permissions or
    * with permissions of the uses who defined the VIEW
    * </pre>
    *

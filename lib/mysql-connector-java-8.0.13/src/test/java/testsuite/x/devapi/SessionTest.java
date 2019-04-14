@@ -201,7 +201,7 @@ public class SessionTest extends DevApiBaseTestCase {
 
             Properties props = new Properties();
             props.putAll(this.testProperties);
-            props.setProperty("user", "bug21690043user1");
+            props.setProperty("User", "bug21690043user1");
             props.setProperty("password", "");
             new SessionFactory().getSession(props);
         } catch (Throwable t) {
@@ -394,7 +394,7 @@ public class SessionTest extends DevApiBaseTestCase {
         props.clear();
         props.setProperty("host", getTestHost());
         props.setProperty("port", String.valueOf(getTestPort()));
-        props.setProperty("user", getTestUser());
+        props.setProperty("User", getTestUser());
         props.setProperty("password", getTestPassword());
         props.setProperty("dbname", getTestDatabase());
 

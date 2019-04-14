@@ -357,7 +357,7 @@ public class MysqlDataSource extends JdbcPropertySetImpl implements DataSource, 
     }
 
     /**
-     * Sets the user ID.
+     * Sets the User ID.
      * 
      * @param userID
      *            the User ID
@@ -367,9 +367,9 @@ public class MysqlDataSource extends JdbcPropertySetImpl implements DataSource, 
     }
 
     /**
-     * Returns the configured user for this connection
+     * Returns the configured User for this connection
      * 
-     * @return the user for this connection
+     * @return the User for this connection
      */
     public String getUser() {
         return this.user;

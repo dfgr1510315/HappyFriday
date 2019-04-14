@@ -41,7 +41,7 @@ public interface SocketFactory extends SocketMetadata {
 
     /**
      * Creates a new socket or channel using the given properties. Properties are parsed by
-     * the driver from the URL. All properties other than sensitive ones (user
+     * the driver from the URL. All properties other than sensitive ones (User
      * and password) are passed to this method. The driver will instantiate the
      * socket factory with the class name given in the property
      * &quot;socketFactory&quot;, where the standard is <code>com.mysql.cj.protocol.StandardSocketFactory</code> Implementing classes

@@ -44,7 +44,7 @@ import com.mysql.cj.exceptions.InvalidConnectionAttributeException;
  * SessionFactory xFactory = new SessionFactory();
  * 
  * {@link Session} session1 = xFactory.getSession("<b>mysqlx:</b>//[user1[:pwd1]@]host1[:port1]/db");
- * {@link Session} session2 = xFactory.getSession("<b>mysqlx:</b>//host2[:port2]/db?user=user2&amp;password=pwd2");
+ * {@link Session} session2 = xFactory.getSession("<b>mysqlx:</b>//host2[:port2]/db?User=user2&amp;password=pwd2");
  * </pre>
  *
  */

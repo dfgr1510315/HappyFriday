@@ -498,9 +498,9 @@ public abstract class ConnectionUrl implements DatabaseUrlContainer {
     }
 
     /**
-     * Returns the default user. Usually the one provided in the method {@link DriverManager#getConnection(String, String, String)} or as connection argument.
+     * Returns the default User. Usually the one provided in the method {@link DriverManager#getConnection(String, String, String)} or as connection argument.
      * 
-     * @return the default user
+     * @return the default User
      */
     public String getDefaultUser() {
         String user = this.properties.get(PropertyKey.USER.getKeyName());
@@ -633,7 +633,7 @@ public abstract class ConnectionUrl implements DatabaseUrlContainer {
      * @param port
      *            the port
      * @param user
-     *            the user name
+     *            the User name
      * @param password
      *            the password
      * @param isDefaultPwd

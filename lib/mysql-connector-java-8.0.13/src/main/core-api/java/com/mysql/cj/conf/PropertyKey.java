@@ -39,9 +39,9 @@ public enum PropertyKey {
     /*
      * Properties individually managed after parsing connection string. These property keys are case insensitive.
      */
-    /** The database user name. */
-    USER("user", false),
-    /** The database user password. */
+    /** The database User name. */
+    USER("User", false),
+    /** The database User password. */
     PASSWORD("password", false),
     /** The hostname value from the properties instance passed to the driver. */
     HOST("host", false),

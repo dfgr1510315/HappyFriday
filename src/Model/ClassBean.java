@@ -1,4 +1,4 @@
-package Bean;
+package Model;
 
 public class ClassBean {
     private String Class_name;

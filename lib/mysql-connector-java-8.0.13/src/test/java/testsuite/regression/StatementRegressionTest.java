@@ -6587,7 +6587,7 @@ public class StatementRegressionTest extends BaseTestCase {
         testBug71396MultiSettingsCheck("maxRows=2", 2, 1, 1);
         testBug71396MultiSettingsCheck("maxRows=2", 2, 2, 2);
 
-        // Case 8: New session due to user change
+        // Case 8: New session due to User change
         createUser("'testBug71396User'@'%'", "IDENTIFIED BY 'testBug71396User'");
         this.stmt.execute("GRANT SELECT ON *.* TO 'testBug71396User'@'%'");
 

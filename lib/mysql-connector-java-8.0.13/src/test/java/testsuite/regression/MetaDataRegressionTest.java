@@ -2236,8 +2236,8 @@ public class MetaDataRegressionTest extends BaseTestCase {
                 Types.CHAR, // 19. SCOPE_CATLOG String => catalog of table that is the scope of a reference attribute (null if DATA_TYPE isn't REF)
                 Types.CHAR, // 20. SCOPE_SCHEMA String => schema of table that is the scope of a reference attribute (null if the DATA_TYPE isn't REF)
                 Types.CHAR, // 21. SCOPE_TABLE String => table name that this the scope of a reference attribute (null if the DATA_TYPE isn't REF)
-                Types.SMALLINT, // 22. SOURCE_DATA_TYPE short => source type of a distinct type or user-generated Ref type, SQL type from java.sql.Types (null
-                // if DATA_TYPE isn't DISTINCT or user-generated REF)
+                Types.SMALLINT, // 22. SOURCE_DATA_TYPE short => source type of a distinct type or User-generated Ref type, SQL type from java.sql.Types (null
+                // if DATA_TYPE isn't DISTINCT or User-generated REF)
                 Types.CHAR, // 23. IS_AUTOINCREMENT String => Indicates whether this column is auto incremented
                 Types.CHAR // 24. IS_GENERATEDCOLUMN String => Indicates whether this is a generated column 
         };
@@ -2718,7 +2718,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
             }
 
             createUser("'bug61203user'@'%'", "identified by 'foo'");
-            this.stmt.executeUpdate("delete from mysql.db where user='bug61203user'");
+            this.stmt.executeUpdate("delete from mysql.db where User='bug61203user'");
             this.stmt.executeUpdate("insert into mysql.db (Host, Db, User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv,Drop_priv, "
                     + "Grant_priv, References_priv, Index_priv, Alter_priv, Create_tmp_table_priv, Lock_tables_priv, Create_view_priv,"
                     + "Show_view_priv, Create_routine_priv, Alter_routine_priv, Execute_priv, Event_priv, Trigger_priv) VALUES ('%', '" + dbname
@@ -2730,7 +2730,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
                     + "'Y', 'N', 'N')");
             this.stmt.executeUpdate("flush privileges");
 
-            // 1. underprivileged user is the creator
+            // 1. underprivileged User is the creator
             this.stmt.executeUpdate("DROP FUNCTION IF EXISTS testbug61203fn;");
             this.stmt.executeUpdate("CREATE DEFINER='bug61203user'@'%' FUNCTION testbug61203fn(a float) RETURNS INT NO SQL BEGIN RETURN a; END");
             this.stmt.executeUpdate("DROP PROCEDURE IF EXISTS testbug61203pr;");
@@ -2740,7 +2740,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
             this.stmt.executeUpdate("DROP FUNCTION IF EXISTS testbug61203fn;");
             this.stmt.executeUpdate("DROP PROCEDURE IF EXISTS testbug61203pr;");
 
-            // 2. root user is the creator
+            // 2. root User is the creator
             createFunction("testbug61203fn", "(a float) RETURNS INT NO SQL BEGIN RETURN a; END");
             createProcedure("testbug61203pr", "(INOUT a float, b bigint, c int) NO SQL BEGIN SET @a = b + c; END");
             testBug61203checks(rootConn, userConn);
@@ -2765,21 +2765,21 @@ public class MetaDataRegressionTest extends BaseTestCase {
         CallableStatement cStmt = null;
         // 1.1. with information schema
         rootConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=true");
-        userConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=true,user=bug61203user,password=foo");
+        userConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=true,User=bug61203user,password=foo");
         // 1.1.1. root call;
         callFunction(cStmt, rootConn);
         callProcedure(cStmt, rootConn);
-        // 1.1.2. underprivileged user call;
+        // 1.1.2. underprivileged User call;
         callFunction(cStmt, userConn);
         callProcedure(cStmt, userConn);
 
         // 1.2. no information schema
         rootConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=false");
-        userConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=false,user=bug61203user,password=foo");
+        userConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=false,User=bug61203user,password=foo");
         // 1.2.1. root call;
         callFunction(cStmt, rootConn);
         callProcedure(cStmt, rootConn);
-        // 1.2.2. underprivileged user call;
+        // 1.2.2. underprivileged User call;
         callFunction(cStmt, userConn);
         callProcedure(cStmt, userConn);
     }

@@ -62,7 +62,7 @@ public class XDevAPIConnectionUrl extends ConnectionUrl {
 
         /*
          * Validate the hosts list:
-         * 1. Same user and password are required in all hosts.
+         * 1. Same User and password are required in all hosts.
          * 2. If the host property 'priority' is set for one host, then in needs to be set on all others too.
          * 3. 'Priority' value must be between 0 and 100.
          */

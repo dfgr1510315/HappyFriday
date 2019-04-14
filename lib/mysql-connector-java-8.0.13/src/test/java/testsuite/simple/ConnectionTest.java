@@ -258,7 +258,7 @@ public class ConnectionTest extends BaseTestCase {
             // Make sure INNODB Status is getting dumped into error message
 
             if (sqlEx.getMessage().indexOf("PROCESS privilege") != -1) {
-                fail("This test requires user with process privilege");
+                fail("This test requires User with process privilege");
             }
 
             assertTrue("Can't find INNODB MONITOR in:\n\n" + sqlEx.getMessage(), sqlEx.getMessage().indexOf("INNODB MONITOR") != -1);
@@ -1648,7 +1648,7 @@ public class ConnectionTest extends BaseTestCase {
         String password = parsedProps.getProperty(PropertyKey.PASSWORD.getKeyName());
         String database = parsedProps.getProperty(PropertyKey.DBNAME.getKeyName());
 
-        String newUrl = String.format("jdbc:mysql://address=(protocol=tcp)(host=%s)(port=%s)(user=%s)(password=%s)/%s", TestUtils.encodePercent(host), port,
+        String newUrl = String.format("jdbc:mysql://address=(protocol=tcp)(host=%s)(port=%s)(User=%s)(password=%s)/%s", TestUtils.encodePercent(host), port,
                 user != null ? user : "", password != null ? password : "", database);
 
         Properties props = getHostFreePropertiesFromTestsuiteUrl();
@@ -1840,7 +1840,7 @@ public class ConnectionTest extends BaseTestCase {
      * - connect() properties precedence is implementation-defined.
      */
     public void testDriverConnectPropertiesPrecedence() throws Exception {
-        assertThrows(SQLException.class, "Access denied for user 'dummy'@'[^']+' \\(using password: YES\\)", new Callable<Void>() {
+        assertThrows(SQLException.class, "Access denied for User 'dummy'@'[^']+' \\(using password: YES\\)", new Callable<Void>() {
             public Void call() throws Exception {
                 DriverManager.getConnection(BaseTestCase.dbUrl, "dummy", "dummy");
                 return null;
@@ -2113,7 +2113,7 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Test authentication with a user that requires an SSL connection.
+     * Test authentication with a User that requires an SSL connection.
      * 
      * This test requires the CA truststore and the client keystore available in src/test/config/ssl-test-certs.
      * The server needs to be configured with the CA and server certificates from src/test/config/ssl-test-certs.
@@ -2141,7 +2141,7 @@ public class ConnectionTest extends BaseTestCase {
          */
         props.setProperty(PropertyKey.useSSL.getKeyName(), "false");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        assertThrows(SQLException.class, "Access denied for user '" + user + "'@.*", new Callable<Void>() {
+        assertThrows(SQLException.class, "Access denied for User '" + user + "'@.*", new Callable<Void>() {
             public Void call() throws Exception {
                 getConnectionWithProps(props);
                 return null;
@@ -2203,7 +2203,7 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Test authentication with a user that requires an SSL connection and an authorized client certificate.
+     * Test authentication with a User that requires an SSL connection and an authorized client certificate.
      * 
      * This test requires the CA truststore and the client keystore available in src/test/config/ssl-test-certs.
      * The server needs to be configured with the CA and server certificates from src/test/config/ssl-test-certs.
@@ -2231,7 +2231,7 @@ public class ConnectionTest extends BaseTestCase {
          */
         props.setProperty(PropertyKey.useSSL.getKeyName(), "false");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        assertThrows(SQLException.class, "Access denied for user '" + user + "'@.*", new Callable<Void>() {
+        assertThrows(SQLException.class, "Access denied for User '" + user + "'@.*", new Callable<Void>() {
             public Void call() throws Exception {
                 getConnectionWithProps(props);
                 return null;
@@ -2243,7 +2243,7 @@ public class ConnectionTest extends BaseTestCase {
          */
         props.setProperty(PropertyKey.useSSL.getKeyName(), "true");
         props.setProperty(PropertyKey.verifyServerCertificate.getKeyName(), "false");
-        assertThrows(SQLException.class, "Access denied for user '" + user + "'@.*", new Callable<Void>() {
+        assertThrows(SQLException.class, "Access denied for User '" + user + "'@.*", new Callable<Void>() {
             public Void call() throws Exception {
                 getConnectionWithProps(props);
                 return null;
@@ -2257,7 +2257,7 @@ public class ConnectionTest extends BaseTestCase {
         props.setProperty(PropertyKey.trustCertificateKeyStoreUrl.getKeyName(), "file:src/test/config/ssl-test-certs/ca-truststore");
         props.setProperty(PropertyKey.trustCertificateKeyStoreType.getKeyName(), "JKS");
         props.setProperty(PropertyKey.trustCertificateKeyStorePassword.getKeyName(), "password");
-        assertThrows(SQLException.class, "Access denied for user '" + user + "'@.*", new Callable<Void>() {
+        assertThrows(SQLException.class, "Access denied for User '" + user + "'@.*", new Callable<Void>() {
             public Void call() throws Exception {
                 getConnectionWithProps(props);
                 return null;

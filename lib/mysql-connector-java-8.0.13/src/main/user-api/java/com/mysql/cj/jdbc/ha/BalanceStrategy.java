@@ -61,7 +61,7 @@ public interface BalanceStrategy {
      *            use by the application.
      * @param configuredHosts
      *            the list of hosts/ports (in "host:port" form) as passed in by
-     *            the user.
+     *            the User.
      * @param liveConnections
      *            a map of host/ports to "live" connections to them.
      * @param responseTimes

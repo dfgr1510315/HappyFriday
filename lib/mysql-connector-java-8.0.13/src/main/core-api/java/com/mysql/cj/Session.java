@@ -44,9 +44,9 @@ import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.result.Row;
 
 /**
- * {@link Session} exposes logical level which user API uses internally to call {@link Protocol} methods.
+ * {@link Session} exposes logical level which User API uses internally to call {@link Protocol} methods.
  * It's a higher-level abstraction than MySQL server session ({@link ServerSession}). {@link Protocol} and {@link ServerSession} methods
- * should never be used directly from user API.
+ * should never be used directly from User API.
  * 
  */
 public interface Session {
@@ -56,12 +56,12 @@ public interface Session {
     <M extends Message> MessageBuilder<M> getMessageBuilder();
 
     /**
-     * Re-authenticates as the given user and password
+     * Re-authenticates as the given User and password
      * 
      * @param userName
-     *            DB user name
+     *            DB User name
      * @param password
-     *            DB user password
+     *            DB User password
      * @param database
      *            database name
      * 

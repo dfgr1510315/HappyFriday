@@ -1930,7 +1930,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
         fields[6] = new Field("", "PRIVILEGE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.CHAR, 64);
         fields[7] = new Field("", "IS_GRANTABLE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.CHAR, 3);
 
-        StringBuilder grantQueryBuf = new StringBuilder("SELECT c.host, c.db, t.grantor, c.user, c.table_name, c.column_name, c.column_priv");
+        StringBuilder grantQueryBuf = new StringBuilder("SELECT c.host, c.db, t.grantor, c.User, c.table_name, c.column_name, c.column_priv");
         grantQueryBuf.append(" FROM mysql.columns_priv c, mysql.tables_priv t");
         grantQueryBuf.append(" WHERE c.host = t.host AND c.db = t.db AND c.table_name = t.table_name");
         if (catalog != null) {
@@ -3499,7 +3499,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
         fields[5] = new Field("", "PRIVILEGE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.CHAR, 64);
         fields[6] = new Field("", "IS_GRANTABLE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.CHAR, 3);
 
-        StringBuilder grantQueryBuf = new StringBuilder("SELECT host,db,table_name,grantor,user,table_priv FROM mysql.tables_priv");
+        StringBuilder grantQueryBuf = new StringBuilder("SELECT host,db,table_name,grantor,User,table_priv FROM mysql.tables_priv");
 
         StringBuilder conditionBuf = new StringBuilder();
         if (catalog != null) {
@@ -3704,7 +3704,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
                             hasTableTypes = true;
                         } catch (SQLException sqlEx) {
 
-                            // We should probably check SQLState here, but that can change depending on the server version and user properties, however,
+                            // We should probably check SQLState here, but that can change depending on the server version and User properties, however,
                             // we'll get a 'true' SQLException when we actually try to find the 'Type' column
                             // 
                             try {

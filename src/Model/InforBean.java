@@ -1,4 +1,4 @@
-package Bean;
+package Model;
 
 public class InforBean {
     private String nike;

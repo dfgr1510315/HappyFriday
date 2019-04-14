@@ -44,7 +44,7 @@ import com.mysql.cj.xdevapi.SessionFactory;
  */
 public class DevApiSample {
     public static void main(String[] args) {
-        Session session = new SessionFactory().getSession("mysqlx://localhost:33060/test?user=user&password=password1234");
+        Session session = new SessionFactory().getSession("mysqlx://localhost:33060/test?User=User&password=password1234");
         System.err.println("Connected!");
         Schema schema = session.getDefaultSchema();
         System.err.println("Default schema is: " + schema);

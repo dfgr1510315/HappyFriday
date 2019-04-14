@@ -43,12 +43,12 @@ public interface AuthenticationProvider<M extends Message> {
     void connect(ServerSession serverSession, String userName, String password, String database);
 
     /**
-     * Re-authenticates as the given user and password
+     * Re-authenticates as the given User and password
      * 
      * @param serverSession
      *            {@link ServerSession} object
      * @param userName
-     *            user name
+     *            User name
      * @param password
      *            password
      * @param database

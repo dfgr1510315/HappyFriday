@@ -65,7 +65,7 @@ function changeInfor() {
         data: data,
         dataType: 'json',
         success: function (msg) {
-            if (2 === msg) {
+            if (true === msg) {
                 $("#ChangeClose").click();
                 $("#liNike").text("昵称：       " + nike);
                 $("#liSex").text("性别：        " + sex);

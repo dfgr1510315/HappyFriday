@@ -110,10 +110,10 @@ public abstract class CoreSession implements Session {
     }
 
     /**
-     * Change user as given by parameters. This implementation only supports calling this during the initial handshake.
+     * Change User as given by parameters. This implementation only supports calling this during the initial handshake.
      * 
      * @param user
-     *            user name
+     *            User name
      * @param password
      *            password
      * @param database

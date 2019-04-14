@@ -37,7 +37,7 @@ import java.util.Properties;
  */
 public interface ConnectionPropertiesTransform {
     /**
-     * The driver will call this method if the user has loaded your
+     * The driver will call this method if the User has loaded your
      * implementation of this interface by specifying the 'propertiesTransform'
      * property in their URL.
      * 

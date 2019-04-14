@@ -43,7 +43,7 @@ import java.util.TreeMap;
 
 /**
  * Mapping between MySQL charset names and Java charset names. I've investigated placing these in a .properties file, but unfortunately under most appservers
- * this complicates configuration because the security policy needs to be changed by the user to allow the driver to read them :(
+ * this complicates configuration because the security policy needs to be changed by the User to allow the driver to read them :(
  */
 public class CharsetMapping {
 

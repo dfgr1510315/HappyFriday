@@ -305,7 +305,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     /** Point of origin where this Connection was created */
     private String pointOfOrigin;
 
-    /** Properties for this connection specified by user */
+    /** Properties for this connection specified by User */
     protected Properties props = null;
 
     /** Are we in read-only mode? */
@@ -320,7 +320,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
      */
     private Map<String, Class<?>> typeMap;
 
-    /** The user we're connected as */
+    /** The User we're connected as */
     private String user = null;
 
     private LRUCache<String, Boolean> serverSideStatementCheckCache;
@@ -372,7 +372,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
      * Creates a connection to a MySQL Server.
      * 
      * @param hostInfo
-     *            the {@link HostInfo} instance that contains the host, user and connections attributes for this connection
+     *            the {@link HostInfo} instance that contains the host, User and connections attributes for this connection
      * @exception SQLException
      *                if a database access error occurs
      */
@@ -399,7 +399,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
             this.session = new NativeSession(hostInfo, this.propertySet);
             this.session.addListener(this); // listen for session status changes
 
-            // we can't cache fixed values here because properties are still not initialized with user provided values
+            // we can't cache fixed values here because properties are still not initialized with User provided values
             this.autoReconnectForPools = this.propertySet.getBooleanProperty(PropertyKey.autoReconnectForPools);
             this.cachePrepStmts = this.propertySet.getBooleanProperty(PropertyKey.cachePrepStmts);
             this.autoReconnect = this.propertySet.getBooleanProperty(PropertyKey.autoReconnect);
@@ -1459,7 +1459,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                 return true;
             }
 
-            // Has the user explicitly set a resourceId?
+            // Has the User explicitly set a resourceId?
             String otherResourceId = ((ConnectionImpl) otherConnection).getPropertySet().getStringProperty(PropertyKey.resourceId).getValue();
             String myResourceId = this.propertySet.getStringProperty(PropertyKey.resourceId).getValue();
 

@@ -537,7 +537,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
              * In MySQL 8.0.12 this message changed due to fix for Bug#27675699 - FAILED AUTHENTICATION AT X PLUGIN ALWAYS RETURNS ER_ACCESS_DENIED_ERROR.
              * This variable may be redefined as needed along the test.
              */
-            String accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Invalid user or password";
+            String accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Invalid User or password";
 
             /*
              * Authenticate using (default) TLS first. As per MySQL 8.0.4 X Plugin this is required so that SHA2[56] logins get cached in SHA2_MEMORY.
@@ -685,7 +685,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
                 // *** User: testAuthMechSha256; Auth: MYSQL41.
                 props.setProperty(PropertyKey.xdevapiAuth.getKeyName(), "MYSQL41");
                 if (mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.12"))) {
-                    accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Access denied for user 'testAuthMechSha256'@.*";
+                    accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Access denied for User 'testAuthMechSha256'@.*";
                 }
 
                 props.setProperty(PropertyKey.xdevapiUseAsyncProtocol.getKeyName(), "false");
@@ -737,7 +737,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
                 // *** User: testAuthMechCachingSha2; Auth: MYSQL41.
                 props.setProperty(PropertyKey.xdevapiAuth.getKeyName(), "MYSQL41");
                 if (mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.12"))) {
-                    accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Access denied for user 'testAuthMechCachingSha2'@.*";
+                    accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Access denied for User 'testAuthMechCachingSha2'@.*";
                 }
 
                 props.setProperty(PropertyKey.xdevapiUseAsyncProtocol.getKeyName(), "false");
@@ -908,7 +908,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
                 // *** User: testAuthMechSha256; Auth: MYSQL41.
                 props.setProperty(PropertyKey.xdevapiAuth.getKeyName(), "MYSQL41");
                 if (mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.12"))) {
-                    accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Access denied for user 'testAuthMechSha256'@.*";
+                    accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Access denied for User 'testAuthMechSha256'@.*";
                 }
 
                 props.setProperty(PropertyKey.xdevapiUseAsyncProtocol.getKeyName(), "false");
@@ -952,7 +952,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
                 // *** User: testAuthMechCachingSha2; Auth: MYSQL41.
                 props.setProperty(PropertyKey.xdevapiAuth.getKeyName(), "MYSQL41");
                 if (mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.12"))) {
-                    accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Access denied for user 'testAuthMechCachingSha2'@.*";
+                    accessDeniedErrMsg = "ERROR 1045 \\(HY000\\) Access denied for User 'testAuthMechCachingSha2'@.*";
                 }
 
                 props.setProperty(PropertyKey.xdevapiUseAsyncProtocol.getKeyName(), "false");
@@ -1010,8 +1010,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
      * variable compiled with OpenSSL.
      * 
      * For example, add these variables to the ant call:
-     * -Dcom.mysql.cj.testsuite.mysqlx.url=mysqlx://localhost:33060/cjtest_5_1?user=root&password=pwd
-     * -Dcom.mysql.cj.testsuite.mysqlx.url.openssl=mysqlx://localhost:33070/cjtest_5_1?user=root&password=pwd
+     * -Dcom.mysql.cj.testsuite.mysqlx.url=mysqlx://localhost:33060/cjtest_5_1?User=root&password=pwd
+     * -Dcom.mysql.cj.testsuite.mysqlx.url.openssl=mysqlx://localhost:33070/cjtest_5_1?User=root&password=pwd
      */
     @Test
     public void testTLSv1_2() {
@@ -1348,7 +1348,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
         testSession.close();
 
         Properties props = (Properties) this.sslFreeTestProperties.clone();
-        props.setProperty("user", "testBug27629553");
+        props.setProperty("User", "testBug27629553");
         props.remove("password");
         props.setProperty(PropertyKey.xdevapiSSLMode.getKeyName(), PropertyDefinitions.XdevapiSslMode.VERIFY_CA.toString());
         props.setProperty(PropertyKey.xdevapiSSLTrustStoreUrl.getKeyName(), this.trustStoreUrl);

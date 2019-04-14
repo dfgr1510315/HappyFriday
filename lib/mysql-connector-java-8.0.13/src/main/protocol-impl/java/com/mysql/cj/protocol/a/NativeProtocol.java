@@ -1357,10 +1357,10 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * Re-authenticates as the given user and password
+     * Re-authenticates as the given User and password
      * 
      * @param user
-     *            user name
+     *            User name
      * @param password
      *            password
      * @param database
@@ -2228,7 +2228,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
         String canonicalTimezone = getPropertySet().getStringProperty(PropertyKey.serverTimezone).getValue();
 
         if (configuredTimeZoneOnServer != null) {
-            // user can override this with driver properties, so don't detect if that's the case
+            // User can override this with driver properties, so don't detect if that's the case
             if (canonicalTimezone == null || StringUtils.isEmptyOrWhitespaceOnly(canonicalTimezone)) {
                 try {
                     canonicalTimezone = TimeUtil.getCanonicalTimezone(configuredTimeZoneOnServer, getExceptionInterceptor());

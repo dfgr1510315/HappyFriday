@@ -130,7 +130,7 @@ public class XProtocolAuthTest extends InternalXBaseTestCase {
             fail("Auth using wrong password should fail");
         } catch (XProtocolError ex) {
             assertEquals(MysqlErrorNumbers.ER_ACCESS_DENIED_ERROR, ex.getErrorCode());
-            assertEquals("ERROR 1045 (HY000) Invalid user or password", ex.getMessage());
+            assertEquals("ERROR 1045 (HY000) Invalid User or password", ex.getMessage());
         }
     }
 

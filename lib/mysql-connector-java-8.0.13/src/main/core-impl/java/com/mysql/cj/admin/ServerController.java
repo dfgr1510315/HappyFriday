@@ -190,7 +190,7 @@ public class ServerController {
             }
 
             //
-            // Terminate the process if mysqladmin couldn't do it, and the user requested a force stop.
+            // Terminate the process if mysqladmin couldn't do it, and the User requested a force stop.
             //
             if (exitStatus != 0 && forceIfNecessary) {
                 forceStop();

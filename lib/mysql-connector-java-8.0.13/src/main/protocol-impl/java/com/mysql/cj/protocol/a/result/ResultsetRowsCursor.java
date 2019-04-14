@@ -218,7 +218,7 @@ public class ResultsetRowsCursor extends AbstractResultsetRows implements Result
                 }
 
                 if (numRowsToFetch == Integer.MIN_VALUE) {
-                    // Handle the case where the user used 'old' streaming result sets
+                    // Handle the case where the User used 'old' streaming result sets
 
                     numRowsToFetch = 1;
                 }

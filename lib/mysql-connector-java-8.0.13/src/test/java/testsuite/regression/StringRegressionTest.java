@@ -97,7 +97,7 @@ public class StringRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for regression of encoding forced by user, reported by Jive
+     * Tests for regression of encoding forced by User, reported by Jive
      * Software
      * 
      * @throws Exception

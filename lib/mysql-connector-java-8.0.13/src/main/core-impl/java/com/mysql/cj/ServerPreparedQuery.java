@@ -261,7 +261,7 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
         // a) The query is a SELECT
         // b) The server supports it
         // c) We know it is forward-only (note this doesn't preclude updatable result sets)
-        // d) The user has set a fetch size
+        // d) The User has set a fetch size
         if (this.resultFields != null && this.resultFields.getFields() != null && this.useCursorFetch && this.resultSetType == Type.FORWARD_ONLY
                 && this.fetchSize > 0) {
             packet.writeInteger(IntegerDataType.INT1, OPEN_CURSOR_FLAG);

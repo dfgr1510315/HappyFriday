@@ -129,13 +129,13 @@ public class ConnectionUrlTest {
             int counterLen = 0;
             switch (this.urlMode) {
                 case SINGLE_HOST:
-                    counterLen = 5; // protocol + user + host + db + params
+                    counterLen = 5; // protocol + User + host + db + params
                     break;
                 case OUTER_HOSTS_LIST:
-                    counterLen = 3 + 2 * this.numberOfHosts; // protocol + (user + host) * num_of_hosts + db + params
+                    counterLen = 3 + 2 * this.numberOfHosts; // protocol + (User + host) * num_of_hosts + db + params
                     break;
                 case INNER_HOSTS_LIST:
-                    counterLen = 4 + this.numberOfHosts; // protocol + user + host * num_of_hosts + db + params
+                    counterLen = 4 + this.numberOfHosts; // protocol + User + host * num_of_hosts + db + params
                     break;
             }
             this.current = new int[counterLen];
@@ -243,18 +243,18 @@ public class ConnectionUrlTest {
         }
 
         /**
-         * Returns the user info part for the current position and the given host.
+         * Returns the User info part for the current position and the given host.
          * 
          * @param fromHostIndex
-         *            the host from where to get user info
-         * @return the user info part
+         *            the host from where to get User info
+         * @return the User info part
          */
         public String getUserInfo(int fromHostIndex) {
             if (fromHostIndex < 0 || fromHostIndex >= this.numberOfHosts) {
                 throw new IllegalArgumentException("Argument \"fromHostIndex\" out of bounds.");
             }
 
-            int counterIndex = 1; // user (single host or inner hosts list)
+            int counterIndex = 1; // User (single host or inner hosts list)
             if (this.urlMode == UrlMode.OUTER_HOSTS_LIST) {
                 counterIndex += fromHostIndex * 2; // increments of two per additional host
             }
@@ -605,7 +605,7 @@ public class ConnectionUrlTest {
         // schema & db
         assertEquals("jdbc:mysql:", cup.getScheme());
         assertEquals("db", cup.getPath());
-        // single host: user, password, host name, port and host properties
+        // single host: User, password, host name, port and host properties
         assertEquals(1, cup.getHosts().size());
         assertEquals("johndoe", cup.getHosts().get(0).getUser());
         assertEquals("secret", cup.getHosts().get(0).getPassword());
@@ -628,7 +628,7 @@ public class ConnectionUrlTest {
         // schema & db
         assertEquals("jdbc:mysql:", cup.getScheme());
         assertEquals("db", cup.getPath());
-        // single host: user, password, host name, port and host properties
+        // single host: User, password, host name, port and host properties
         assertEquals(1, cup.getHosts().size());
         assertEquals("johndoe", cup.getHosts().get(0).getUser());
         assertEquals("secret", cup.getHosts().get(0).getPassword());
@@ -655,7 +655,7 @@ public class ConnectionUrlTest {
         // schema & db
         assertEquals("jdbc:mysql:", cup.getScheme());
         assertEquals("db", cup.getPath());
-        // single host: user, password, host name, port and host properties
+        // single host: User, password, host name, port and host properties
         assertEquals(1, cup.getHosts().size());
         assertEquals("johndoe", cup.getHosts().get(0).getUser());
         assertEquals("secret", cup.getHosts().get(0).getPassword());
@@ -684,13 +684,13 @@ public class ConnectionUrlTest {
         assertEquals("jdbc:mysql:", cup.getScheme());
         assertEquals("db", cup.getPath());
         assertEquals(3, cup.getHosts().size());
-        // first host: user, password, host name, port and host properties
+        // first host: User, password, host name, port and host properties
         assertEquals("johndoe", cup.getHosts().get(0).getUser());
         assertEquals("secret", cup.getHosts().get(0).getPassword());
         assertEquals("[abcd:9876::1:1000]", cup.getHosts().get(0).getHost());
         assertEquals(1111, cup.getHosts().get(0).getPort());
         assertEquals(0, cup.getHosts().get(0).getHostProperties().size());
-        // second host: user, password, host name, port and host properties
+        // second host: User, password, host name, port and host properties
         assertEquals("janedoe", cup.getHosts().get(1).getUser());
         assertEquals("secret", cup.getHosts().get(1).getPassword());
         assertNull(cup.getHosts().get(1).getHost());
@@ -700,7 +700,7 @@ public class ConnectionUrlTest {
         assertEquals("[abcd:9876::1:2000]", cup.getHosts().get(1).getHostProperties().get("host"));
         assertTrue(cup.getHosts().get(1).getHostProperties().containsKey("port"));
         assertEquals("2222", cup.getHosts().get(1).getHostProperties().get("port"));
-        // third host: user, password, host name, port and host properties
+        // third host: User, password, host name, port and host properties
         assertEquals("jabdoe", cup.getHosts().get(2).getUser());
         assertEquals("secret", cup.getHosts().get(2).getPassword());
         assertNull(cup.getHosts().get(2).getHost());
@@ -729,13 +729,13 @@ public class ConnectionUrlTest {
         assertEquals("jdbc:mysql:", cup.getScheme());
         assertEquals("db", cup.getPath());
         assertEquals(3, cup.getHosts().size());
-        // first host: user, password, host name, port and host properties
+        // first host: User, password, host name, port and host properties
         assertEquals("johndoe", cup.getHosts().get(0).getUser());
         assertEquals("secret", cup.getHosts().get(0).getPassword());
         assertEquals("[abcd:9876::1:1000]", cup.getHosts().get(0).getHost());
         assertEquals(1111, cup.getHosts().get(0).getPort());
         assertEquals(0, cup.getHosts().get(0).getHostProperties().size());
-        // second host: user, password, host name, port and host properties
+        // second host: User, password, host name, port and host properties
         assertEquals("johndoe", cup.getHosts().get(1).getUser());
         assertEquals("secret", cup.getHosts().get(1).getPassword());
         assertNull(cup.getHosts().get(1).getHost());
@@ -745,7 +745,7 @@ public class ConnectionUrlTest {
         assertEquals("[abcd:9876::1:2000]", cup.getHosts().get(1).getHostProperties().get("host"));
         assertTrue(cup.getHosts().get(1).getHostProperties().containsKey("port"));
         assertEquals("2222", cup.getHosts().get(1).getHostProperties().get("port"));
-        // third host: user, password, host name, port and host properties
+        // third host: User, password, host name, port and host properties
         assertEquals("johndoe", cup.getHosts().get(2).getUser());
         assertEquals("secret", cup.getHosts().get(2).getPassword());
         assertNull(cup.getHosts().get(2).getHost());
@@ -828,7 +828,7 @@ public class ConnectionUrlTest {
                 assertEquals(cs + "#host", "localhost", hi.getHost());
                 assertEquals(cs + "#port", connStr.get(cs).intValue(), hi.getPort());
                 assertEquals(cs + "#hostPortPair", "localhost:" + connStr.get(cs), hi.getHostPortPair());
-                assertEquals(cs + "#user", "", hi.getUser());
+                assertEquals(cs + "#User", "", hi.getUser());
                 assertEquals(cs + "#password", "", hi.getPassword());
                 assertEquals(cs + "#database", "", hi.getDatabase());
             }
@@ -1003,10 +1003,10 @@ public class ConnectionUrlTest {
         connStr = new ArrayList<>();
         connStr.add("mysqlx://johndoe:secret@host1:1111,janedoe:secret@host2:2222/db");
         connStr.add("mysqlx://johndoe:secret@host1:1111,johndoe:public@host2:2222/db");
-        connStr.add("mysqlx://johndoe:secret@host1:1111,address=(host=host2)(port=2222)(user=janedoe)(password=secret)/db");
-        connStr.add("mysqlx://johndoe:secret@host1:1111,address=(host=host2)(port=2222)(user=johndoe)(password=public)/db");
-        connStr.add("mysqlx://johndoe:secret@host1:1111,(host=host2,port=2222,user=janedoe,password=secret)/db");
-        connStr.add("mysqlx://johndoe:secret@host1:1111,(host=host2,port=2222,user=johndoe,password=public)/db");
+        connStr.add("mysqlx://johndoe:secret@host1:1111,address=(host=host2)(port=2222)(User=janedoe)(password=secret)/db");
+        connStr.add("mysqlx://johndoe:secret@host1:1111,address=(host=host2)(port=2222)(User=johndoe)(password=public)/db");
+        connStr.add("mysqlx://johndoe:secret@host1:1111,(host=host2,port=2222,User=janedoe,password=secret)/db");
+        connStr.add("mysqlx://johndoe:secret@host1:1111,(host=host2,port=2222,User=johndoe,password=public)/db");
         for (String cs : connStr) {
             try {
                 connUrl = ConnectionUrl.getConnectionUrlInstance(cs, null);
@@ -1081,8 +1081,8 @@ public class ConnectionUrlTest {
         connStr.add("jdbc:mysql://somehost:1234/db?key=value&zeroDateTimeBehavior=convertToNull");
         connStr.add("jdbc:mysql://127.0.0.1:1234/db");
         connStr.add("jdbc:mysql://127.0.0.1:1234/db?key=value&zeroDateTimeBehavior=convertToNull");
-        connStr.add("jdbc:mysql://(port=3306,user=root,password=pwd,zeroDateTimeBehavior=convertToNull)/test");
-        connStr.add("jdbc:mysql://address=(port=3306)(user=root)(password=pwd)(zeroDateTimeBehavior=convertToNull)/test");
+        connStr.add("jdbc:mysql://(port=3306,User=root,password=pwd,zeroDateTimeBehavior=convertToNull)/test");
+        connStr.add("jdbc:mysql://address=(port=3306)(User=root)(password=pwd)(zeroDateTimeBehavior=convertToNull)/test");
 
         Properties props = new Properties();
         props.setProperty(PropertyKey.zeroDateTimeBehavior.getKeyName(), "convertToNull");
@@ -1100,13 +1100,13 @@ public class ConnectionUrlTest {
     public void testBug28150662() {
         List<String> connStr = new ArrayList<>();
         connStr.add(
-                "jdbc:mysql://localhost:3306/db1?connectionCollation=utf8mb4_unicode_ci&user=user1&sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0");
+                "jdbc:mysql://localhost:3306/db1?connectionCollation=utf8mb4_unicode_ci&User=user1&sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0");
         connStr.add(
-                "jdbc:mysql://localhost:3306/db1?connectionCollation=utf8mb4_unicode_ci&sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0&user=user1");
+                "jdbc:mysql://localhost:3306/db1?connectionCollation=utf8mb4_unicode_ci&sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0&User=user1");
         connStr.add(
-                "jdbc:mysql://address=(host=localhost)(port=3306)(connectionCollation=utf8mb4_unicode_ci)(sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0)(user=user1)/db1");
+                "jdbc:mysql://address=(host=localhost)(port=3306)(connectionCollation=utf8mb4_unicode_ci)(sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0)(User=user1)/db1");
         connStr.add(
-                "jdbc:mysql://(host=localhost,port=3306,connectionCollation=utf8mb4_unicode_ci,sessionVariables=sql_mode='IGNORE_SPACE%2CANSI'%2CFOREIGN_KEY_CHECKS=0,user=user1)/db1");
+                "jdbc:mysql://(host=localhost,port=3306,connectionCollation=utf8mb4_unicode_ci,sessionVariables=sql_mode='IGNORE_SPACE%2CANSI'%2CFOREIGN_KEY_CHECKS=0,User=user1)/db1");
 
         for (String cs : connStr) {
             ConnectionUrl url = ConnectionUrl.getConnectionUrlInstance(cs, null);

@@ -49,7 +49,7 @@ import com.mysql.cj.util.Util;
 
 /**
  * A proxy for a dynamic com.mysql.cj.jdbc.JdbcConnection implementation that provides failover features for list of hosts. Connection switching occurs on
- * communications related exceptions and/or user defined settings, namely when one of the conditions set in 'secondsBeforeRetryMaster' or
+ * communications related exceptions and/or User defined settings, namely when one of the conditions set in 'secondsBeforeRetryMaster' or
  * 'queriesBeforeRetryMaster' is met.
  */
 public class FailoverConnectionProxy extends MultiHostConnectionProxy {

@@ -1423,7 +1423,7 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * WL#1326 - GIS: Precise spatial operations
      * WL#8055 - Consistent naming scheme for GIS functions - Deprecation
-     * WL#8034 - More user friendly GIS functions
+     * WL#8034 - More User friendly GIS functions
      * WL#7541 - GIS MBR spatial operations enhancement
      * WL#8157 - Remove deprecated GIS functions
      * WL#8055 - Consistent naming scheme for GIS functions - Deprecation
@@ -1842,7 +1842,7 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * WL#6054 - Temporarily disablement of users
      * 
-     * Test user account locking syntax:
+     * Test User account locking syntax:
      * 
      * CREATE|ALTER USER (...)
      * - lock_option: { ACCOUNT LOCK | ACCOUNT UNLOCK }
@@ -1863,7 +1863,7 @@ public class SyntaxRegressionTest extends BaseTestCase {
             this.stmt.execute("GRANT SELECT ON *.* TO '" + user + "'@'%'");
 
             if (accLock.equals("ACCOUNT LOCK")) {
-                assertThrows("Test case: " + accLock + ",", SQLException.class, "Access denied for user '" + user + "'@'.*'\\. Account is locked\\.",
+                assertThrows("Test case: " + accLock + ",", SQLException.class, "Access denied for User '" + user + "'@'.*'\\. Account is locked\\.",
                         new Callable<Void>() {
                             public Void call() throws Exception {
                                 getConnectionWithProps(props);
@@ -1879,7 +1879,7 @@ public class SyntaxRegressionTest extends BaseTestCase {
             this.stmt.execute("ALTER USER '" + user + "'@'%' ACCOUNT LOCK");
             assertTrue("Test case: " + accLock + ",", testConn1.createStatement().executeQuery("SELECT 1").next()); // Previous authentication still valid.
 
-            assertThrows("Test case: " + accLock + ",", SQLException.class, "Access denied for user '" + user + "'@'.*'\\. Account is locked\\.",
+            assertThrows("Test case: " + accLock + ",", SQLException.class, "Access denied for User '" + user + "'@'.*'\\. Account is locked\\.",
                     new Callable<Void>() {
                         public Void call() throws Exception {
                             ((JdbcConnection) testConn1).changeUser(user, pwd);
@@ -1905,9 +1905,9 @@ public class SyntaxRegressionTest extends BaseTestCase {
     }
 
     /**
-     * WL#7131 - Add timestamp in mysql.user on the last time the password was changed
+     * WL#7131 - Add timestamp in mysql.User on the last time the password was changed
      * 
-     * Test user account password expiration syntax:
+     * Test User account password expiration syntax:
      * 
      * CREATE|ALTER USER (...)
      * - password_option: { PASSWORD EXPIRE | PASSWORD EXPIRE DEFAULT | PASSWORD EXPIRE NEVER | PASSWORD EXPIRE INTERVAL N DAY }

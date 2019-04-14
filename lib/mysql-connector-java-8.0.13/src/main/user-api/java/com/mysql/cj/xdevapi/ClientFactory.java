@@ -40,7 +40,7 @@ import java.util.Properties;
  * ClientFactory xClientFactory = new ClientFactory();
  * 
  * {@link Client} client1 = xClientFactory.getClient("<b>mysqlx:</b>//[user1[:pwd1]@]host1[:port1]/db", poolingProps);
- * {@link Client} client2 = xClientFactory.getClient("<b>mysqlx:</b>//host2[:port2]/db?user=user2&amp;password=pwd2", poolingProps);
+ * {@link Client} client2 = xClientFactory.getClient("<b>mysqlx:</b>//host2[:port2]/db?User=user2&amp;password=pwd2", poolingProps);
  * </pre>
  *
  */

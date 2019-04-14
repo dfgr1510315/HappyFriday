@@ -72,7 +72,7 @@ import com.mysql.cj.util.StringUtils;
  * </p>
  * 
  * <p>
- * When a Driver class is loaded, it should create an instance of itself and register it with the DriverManager. This means that a user can load and register a
+ * When a Driver class is loaded, it should create an instance of itself and register it with the DriverManager. This means that a User can load and register a
  * driver by doing Class.forName("foo.bah.Driver")
  * </p>
  */

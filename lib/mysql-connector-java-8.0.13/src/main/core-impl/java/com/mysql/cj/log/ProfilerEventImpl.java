@@ -129,7 +129,7 @@ public class ProfilerEventImpl implements ProfilerEvent {
      * @param eventDuration
      *            how long did the event last?
      * @param durationUnits
-     *            time units user for eventDuration
+     *            time units User for eventDuration
      * @param eventCreationPointDesc
      *            event creation point as a string
      * @param eventCreationPoint

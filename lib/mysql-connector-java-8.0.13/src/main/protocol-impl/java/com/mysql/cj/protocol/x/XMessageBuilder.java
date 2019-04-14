@@ -536,7 +536,7 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
             public void handle(Callback[] callbacks) throws UnsupportedCallbackException {
                 for (Callback c : callbacks) {
                     if (NameCallback.class.isAssignableFrom(c.getClass())) {
-                        // TODO ((NameCallback) c).setName(user);
+                        // TODO ((NameCallback) c).setName(User);
                         throw new UnsupportedCallbackException(c);
                     } else if (PasswordCallback.class.isAssignableFrom(c.getClass())) {
                         // TODO ((PasswordCallback) c).setPassword(password.toCharArray());

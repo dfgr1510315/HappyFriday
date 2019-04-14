@@ -252,7 +252,7 @@ public interface ServerSession {
      * The default time zone used to marshall date/time values to/from the server. This is used when getDate(), etc methods are called without a calendar
      * argument.
      *
-     * @return The server time zone (which may be user overridden in a connection property)
+     * @return The server time zone (which may be User overridden in a connection property)
      */
     TimeZone getDefaultTimeZone();
 

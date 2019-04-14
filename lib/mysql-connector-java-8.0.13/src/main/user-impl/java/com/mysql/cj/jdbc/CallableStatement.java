@@ -508,7 +508,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
                 return;
             }
 
-            // if the user specified some parameters as literals, we need to provide a map from the specified placeholders to the actual parameter numbers
+            // if the User specified some parameters as literals, we need to provide a map from the specified placeholders to the actual parameter numbers
 
             int parameterCountFromMetaData = this.paramInfo.getParameterCount();
 

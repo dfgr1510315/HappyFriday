@@ -76,7 +76,7 @@ public class PropertyDefinitions {
     /** For testsuite.regression.DataSourceRegressionTest */
     public static final String SYSP_testsuite_ds_db /*                        */ = "com.mysql.cj.testsuite.ds.db";
     /** For testsuite.regression.DataSourceRegressionTest */
-    public static final String SYSP_testsuite_ds_user /*                      */ = "com.mysql.cj.testsuite.ds.user";
+    public static final String SYSP_testsuite_ds_user /*                      */ = "com.mysql.cj.testsuite.ds.User";
     /** For testsuite.regression.DataSourceRegressionTest */
     public static final String SYSP_testsuite_ds_password /*                  */ = "com.mysql.cj.testsuite.ds.password";
 

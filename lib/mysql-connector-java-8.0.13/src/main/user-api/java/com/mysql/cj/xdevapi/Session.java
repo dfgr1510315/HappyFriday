@@ -77,7 +77,7 @@ import java.util.List;
 public interface Session {
 
     /**
-     * Retrieve the list of Schema objects for which the current user has access.
+     * Retrieve the list of Schema objects for which the current User has access.
      * 
      * @return list of Schema objects
      */
