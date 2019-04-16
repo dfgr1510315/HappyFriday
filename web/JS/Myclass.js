@@ -1,14 +1,9 @@
-
-/*function ifActive() {
-    document.getElementById("idMyclass").className -= ' nav-link';
-};*/
 var UnitCount = 0;
 var ClassCount = 0;
 var No = GetQueryString('class_id');
 var contextPath = getContextPath();
 
-function GetQueryString(name)
-{
+function GetQueryString(name) {
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
     if(r!=null) return  unescape(r[2]); return null;
@@ -25,16 +20,16 @@ function send(websocket) {
     websocket.send(message);
 }
 
-
 function saveClass() {
-    var class_name = $('#curriculum_Name').html();
+    var unit_no = 0;
+    var class_no = 0;
     var Total_data = {
-        ClassName:'课程名',
         UUNIt:[]
     };
-
     for (var i=1;i<=UnitCount;i++){
         var flag  = $("#collapse"+i);
+        if (flag.length===0) break;
+        unit_no++;
         var j=0;
         var Unit = {
             Unit_Name:flag.prev().children("h8").text(),
@@ -42,11 +37,12 @@ function saveClass() {
         };
         while (flag.children("div").eq(j).html()!==undefined){
             var source_video_name = flag.children("div").eq(j).children('div').eq(1).find('label').eq(0).text();
-            //alert(flag.children("div").eq(j).children('div').eq(1).find('video').data('cusrc'));
             if ('选择视频'===source_video_name)   source_video_name='';
             var state = 0;
             if (flag.children().eq(j).find('button:first').text()==='已发布') state = 1;
+            console.log(flag.prev().children("h8").text());
             var Class = {
+                //Unit_Name:flag.prev().children("h8").text(),
                 Class_Name:flag.children("div").eq(j).children('div').eq(0).children('h10').text(),
                 Video_Src:flag.children("div").eq(j).children('div').eq(1).find('video').attr('src'),
                 Source_Video_Name:source_video_name,
@@ -56,54 +52,185 @@ function saveClass() {
             };
             var File_Href="";
             var File_Name="";
-            //alert(flag.children("div").eq(j).children('div').eq(1).find('video').parent().parent().next().next().find('a').text());
             flag.children("div").eq(j).children('div').eq(1).find('video').parent().parent().next().next().find('a').each(function(){
-                File_Href=File_Href+this.href+'|';
+                File_Href=File_Href+$(this).attr('href')+'|';
                 File_Name=File_Name+this.text+'|';
             });
-           // alert(File_Name);
             Class.File_Href = File_Href;
             Class.File_Name = File_Name;
             Class.Serial_No = i+"-"+(j+1);
-
             Unit.Class.push(Class);
             //alert(Unit.Class[j].Serial_No);
             j++;
+            class_no++;
             //alert("第0个是"+Unit.Class[0].Class_Name)
         }
         Total_data.UUNIt.push(Unit);
         //alert(Total_data.UUNIt[i-1].Class[0].Video_Src);
     }
-    console.log(JSON.stringify(Total_data.UUNIt));
-    $.ajax({
-        type: "POST",
-        asynch: "false",
-        url: contextPath +"/getlearnfile",
-        data: {
-            No:No,
-            ds:JSON.stringify(Total_data.UUNIt)
-        },
-        dataType: 'json'
-    });
 
-    var data = {
-        Read_or_Save: "save",
-        ClassInfor: $('.sections').html(),
-        No: No,
-        ClassCount: ClassCount + "",
-        UnitCount: UnitCount + ""
-    };
     $.ajax({
         type: "POST",
-        asynch: "false",
         url: contextPath+"/SaveClassInfor",
-        data: data,
+        data: {
+            Read_or_Save: "save",
+            No: No,
+            ClassCount: class_no,
+            UnitCount: unit_no
+        },
         dataType: 'json',
-        success: function () {
-            alert("保存成功");
+        success: function (msg) {
+            if (msg===true) {
+                $.ajax({
+                    type: "POST",
+                    url: contextPath +"/getlearnfile",
+                    data: {
+                        No:No,
+                        action:'post',
+                        ds:JSON.stringify(Total_data.UUNIt)
+                    },
+                    dataType: 'json',
+                    success: function (msg) {
+                        if (msg===true) {
+                            alert("保存成功");
+                        }else alert('保存失败')
+                    }
+                });
+            }else alert('保存失败')
         }
     });
-    alert("保存成功");
+}
+
+function add_collapse(collapse,lesson_title,source_video_title,source_video_address,video_address,release_status,i) {
+    var status_text = '发布';
+    var status_class = 'btn-success';
+    if (release_status===1)   {
+        status_text= '已发布';
+        status_class = 'btn-warning';
+    }
+    collapse.append(
+        '<div class="card Unit_class" draggable="false" >' +
+        '   <div class="card-header">' +
+        '       <span class="badge badge-secondary badge-pill">课时</span>' +
+        '       <h10>'+lesson_title+'</h10>' +
+        '       <div class="btn-group" style="float:right">\n' +
+        '           <button type="button" class="btn '+status_class+' btn-sm" onclick="Change_Release_Statu(this)">'+status_text+'</button>\n' +
+        '           <button type="button" class="btn btn-secondary btn-sm"  data-toggle="modal"  data-target="#Change_class">更改名称</button>\n' +
+        '           <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"  data-target="#Delete_Class">删除课时</button>\n' +
+        '           <button id="hour_button_collapse'+(i+1)+'" type="button" class="btn btn-secondary card-link btn-sm collapsed" data-toggle="collapse" href="#hour_collapse'+(i+1)+'">折叠</button>\n' +
+        '       </div>\n' +
+        '   </div>\n' +
+        '   <div id="hour_collapse'+(i+1)+'" class="collapse" >\n' +
+        '       <div class="card-body">\n' +
+        '           <div class="container">\n' +
+        '               <ul class="nav nav-tabs">\n' +
+        '                   <li class="nav-item ">\n' +
+        '                       <a class="nav-link active" href="javascript:void(0)" onclick="Video_TEXT_FILE(this,1)">视频</a>\n' +
+        '                   </li>\n' +
+        '                   <li class="nav-item ">\n' +
+        '                       <a class="nav-link" href="javascript:void(0)"  onclick="Video_TEXT_FILE(this,2)">图文</a>' +
+        '                   </li>\n' +
+        '                   <li class="nav-item">\n' +
+        '                       <a class="nav-link" href="javascript:void(0)" onclick="Video_TEXT_FILE(this,3)">文件</a>\n' +
+        '                   </li>\n' +
+        '               </ul>\n' +
+        '               <div class="input-file-show" style="">\n' +
+        '                   <div>' +
+        '                       <div class="custom-file mb-3" >\n' +
+        '                           <input type="file" class="custom-file-input" accept="video/*" onchange ="upload(this,1)">\n' +
+        '                           <label class="custom-file-label" style="overflow:hidden">'+source_video_title+'</label>\n' +
+        '                       </div>\n' +
+        '                       <button type="button" class="btn btn-secondary" style="margin-top:4px;margin-left:10px" onclick="delete_video(this)">删除视频</button>\n' +
+        '                   </div>\n' +
+        '                   <div data-percent=""  class="progressbar">\n' +
+        '                       <span class="bfb_span"></span>\n' +
+        '                   </div>\n' +
+        '                   <div>\n' +
+        '                       <video height="180px" width="320px" data-cuSRC="'+source_video_address+'" controls="controls" src="'+video_address+'" type="video/*" />\n' +
+        '                   </div>\n' +
+        '               </div>' +
+        '               <div id="editor'+(i+1)+'" style="display:none;z-index:0"></div>\n' +
+        '               <div  class="custom-file mb-3" style="margin-top:25px;height:auto;display:none">\n' +
+        '                   <input type="file" class="custom-file-input" onchange ="upload(this,3)">\n' +
+        '                   <label class="custom-file-label" >选择文件</label>\n' +
+        '                   <div class="list-group" id="file_list'+i+'">\n' +
+        '                   </div>\n' +
+        '               </div>\n' +
+        '           </div>\n' +
+        '       </div>\n' +
+        '   </div> \n' +
+        '</div>');
+    var E = window.wangEditor;
+    new E('#editor' + (i+1)).create();
+}
+
+function get_class_content() {
+    $.ajax({
+        type: "POST",
+        asynch: "false",
+        url:contextPath+"/getlearnfile",
+        data: {
+            No:No,
+            action:'get'
+        },
+        dataType: 'json',
+        success: function (jsonObj) {
+            //console.log(jsonObj);
+            var unit_titles= [];
+            for (var i=0;i<jsonObj.class_content.length;i++) {
+                if (-1===unit_contain(unit_titles,jsonObj.class_content[i].unit_title)) unit_titles.push(jsonObj.class_content[i].unit_title);
+            }
+            for (i=0;i<unit_titles.length;i++){
+                add_unit(unit_titles[i],i);
+            }
+            UnitCount = unit_titles.length;
+            ClassCount = jsonObj.class_content.length;
+            console.log('ClassCount'+ClassCount);
+            console.log('UnitCount'+UnitCount);
+            for (i=0;i<jsonObj.class_content.length;i++){
+                var belong_unit = unit_contain(unit_titles,jsonObj.class_content[i].unit_title)+1;
+                var source_video_title = '选择视频';
+                if (jsonObj.class_content[i].source_video_title!=='') source_video_title = jsonObj.class_content[i].source_video_title;
+                add_collapse($('#collapse'+belong_unit),jsonObj.class_content[i].lesson_title,source_video_title,jsonObj.class_content[i].source_video_address,jsonObj.class_content[i].video_address,jsonObj.class_content[i].release_status,i);
+                var file_address = jsonObj.class_content[i].file_address.split('|');
+                var file_name = jsonObj.class_content[i].file_name.split('|');
+                for (var j=0;j<file_address.length;j++){
+                    if (file_address[j]==='') break;
+                    $('#file_list'+i).append(
+                        '<div class="list-group-item list-group-item-action">\n' +
+                        '   <a style="text-decoration:none;" target="_Blank" href="'+file_address[j]+'">'+file_name[j]+'</a>\n' +
+                        '   <button type="button" class="btn btn-light" style="float:right;padding:0;width:26px" onclick="Delete_File(this)"><i class="fa fa-times"></i></button>\n' +
+                        '</div>'
+                    )
+                }
+            }
+        }
+    });
+}
+
+function add_unit(unit_title,collapse_id) {
+    $(".sections").append(
+        '<div class="card section Unit" draggable="false">\n' +
+        '   <div class="card-header"><span class="badge badge-pill badge-primary">章节</span>\n' +
+        '       <h8>'+unit_title+'</h8>\n' +
+        '       <div class="btn-group" style="float:right">\n' +
+        '           <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add_class_hour" onclick="cancel_drag()">增加课时</button>\n' +
+        '           <button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal"  data-target="#Change_section">更改名称</button>\n' +
+        '           <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"  data-target="#Delete_Unit">删除章节</button>\n' +
+        '           <button id="Button_collapse'+(collapse_id+1)+'" type="button" class="btn btn-outline-secondary btn-sm ry card-link" data-toggle="collapse" href="#collapse'+(collapse_id+1)+'">折叠</button>\n' +
+        '       </div>\n' +
+        '   </div>\n' +
+        '   <div id="collapse'+(collapse_id+1)+'" class="collapse show" ></div>\n' +
+        '</div>\n'
+    );
+}
+
+function unit_contain(unit_titles,unit_title) {
+    for (var i=0;i<unit_titles.length;i++)
+    {
+        if (unit_titles[i]===unit_title) return i
+    }
+    return -1
 }
 
 function live() {
@@ -132,8 +259,8 @@ function Release(state) {
 
 }
 
-function Change_Unit_Fun(UnitCount, chooseCount) {
-   /* alert("UnitCount:" + UnitCount + " ChooseCount:" + chooseCount);*/
+/*function Change_Unit_Fun(UnitCount, chooseCount) {
+   /!* alert("UnitCount:" + UnitCount + " ChooseCount:" + chooseCount);*!/
     var obj = document.getElementById("collapse" + chooseCount);
     obj.setAttribute("id", "collapse" + UnitCount);
 
@@ -173,160 +300,65 @@ function Change_Class_Fun(ClassCount, chooseCount) {
 
     obj = document.getElementById("editor" + chooseCount);
     obj.setAttribute("id", "editor" + ClassCount);
-}
+}*/
 
 function addSection() {
-    UnitCount = UnitCount + 1;
-    $(".sections").append(
-        '<div class="card section Unit" draggable="false">\n' +
-        '   <div class="card-header"><span class="badge badge-pill badge-primary">章节</span>\n' +
-        '       <h8 id="h8_id">\n' +
-        '       </h8>\n' +
-        '       <div class="btn-group" style="float:right">\n' +
-        '           <button id="button_add_class" data-id="button_add_class" type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add_class_hour" onclick="cancel_drag()">增加课时</button>\n' +
-        '           <button id="button_Change_Unit" data-id="button_Change_Unit" type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal"  data-target="#Change_section">更改名称</button>\n' +
-        '           <button id="button_Delete_Unit" data-id="button_Delete_Unit" type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"  data-target="#Delete_Unit">删除章节</button>\n' +
-                  /*<button type="button" class="btn btn-primary">批量上传</button>*/
-        '           <button id="Button_collapse" type="button" class="btn btn-outline-secondary btn-sm ry card-link" data-toggle="collapse" href="">折叠</button>\n' +
-        '       </div>\n' +
-        '   </div>\n' +
-        '   <div id="collapse" class="collapse show" >\n' +
-        '   </div>\n' +
-        '</div>\n'
-    );
-
-    Change_Unit_Fun(UnitCount, "");
-
     var unit_name = $("#unit_name");
-    $("#collapse" + UnitCount).prev().children("h8").text(unit_name.val());
-
+    add_unit(unit_name.val(),UnitCount);
+    UnitCount = UnitCount + 1;
+    //Change_Unit_Fun(UnitCount, "");
     unit_name.val('');
     //document.getElementById("unit_name").autofocus; 无效果
     $("#unitClose").click();
-
 }
 
 function add_class_hour(add_id) {
-    ClassCount = ClassCount + 1;
-    $(add_id).parent().parent().next().append('' +
-        '<div class="card Unit_class" draggable="false" >' +
-        '   <div class="card-header">' +
-        '       <span class="badge badge-secondary badge-pill">课时</span>' +
-        '       <h10 id="h10_id"></h10>' +
-        '       <div class="btn-group" style="float:right">\n' +
-        '           <button  data-id="button_Release_Class_1"  type="button" class="btn btn-success btn-sm" onclick="Change_Release_Statu(this)">发布</button>\n' +
-        '           <button id="button_Change_Class" data-id="button_Change_Class"  type="button" class="btn btn-secondary btn-sm"  data-toggle="modal"  data-target="#Change_class">更改名称</button>\n' +
-        '           <button id="button_Delete_Class" data-id="button_Delete_Class" type="button" class="btn btn-secondary btn-sm" data-toggle="modal"  data-target="#Delete_Class">删除课时</button>\n' +
-        '           <button id="hour_button_collapse" type="button" class="btn btn-secondary card-link btn-sm" data-toggle="collapse" href="">折叠</button>\n' +
-        '       </div>\n' +
-        '   </div>\n' +
-        '   <div id="hour_collapse" class="collapse show" >\n' +
-        '       <div class="card-body">\n' +
-        '           <div class="container">\n' +
-        '               <ul class="nav nav-tabs">\n' +
-        '                   <li class="nav-item ">\n' +
-        '                       <a class="nav-link active" href="javascript:void(0)" onclick="Video_TEXT_FILE(this,1)" id="a_video">视频</a>\n' +
-        '                   </li>\n' +
-        '                   <li class="nav-item ">\n' +
-        '                       <a class="nav-link" href="javascript:void(0)"  onclick="Video_TEXT_FILE(this,2)" id="a_text" >图文</a>' +
-        '                   </li>\n' +
-        '                   <li class="nav-item">\n' +
-        '                       <a class="nav-link" href="javascript:void(0)" onclick="Video_TEXT_FILE(this,3)" id="a_file" >文件</a>\n' +
-        '                   </li>\n' +
-        '               </ul>\n' +
-        '               <div class="input-file-show" style="">\n' +
-        '                   <div>' +
-        '                       <div class="custom-file mb-3" >\n' +
-        '                           <input type="file" class="custom-file-input" accept="video/*" onchange ="upload(this,1)">\n' +
-        '                           <label class="custom-file-label" style="overflow: hidden">选择视频</label>\n' +
-        '                       </div>\n' +
-        '                       <button type="button" class="btn btn-secondary" style="margin-top: 4px; margin-left: 10px" onclick="delete_video(this)">删除视频</button>\n' +
-        '                   </div>\n' +
-        '                   <div data-percent=""  class="progressbar">\n' +
-        '                       <span class="bfb_span"></span>\n' +
-        '                   </div>\n' +
-        '                   <div>\n' +
-        '                       <video height="180px" width="320px" data-cuSRC="" controls="controls" src="" type="video/*" />\n' +
-        '                   </div>\n' +
-        '               </div>' +
-        '               <div id="editor" style="display: none;z-index: 0"></div>\n' +
-        '               <div  class="custom-file mb-3" style="margin-top: 25px;height: auto;display: none">\n' +
-        '                   <input type="file" class="custom-file-input" onchange ="upload(this,3)">\n' +
-        '                   <label class="custom-file-label" >选择文件</label>\n' +
-        '                   <div class="list-group" >\n' +
-        '                   </div>\n' +
-        '               </div>\n' +
-        '           </div>\n' +
-        '       </div>\n' +
-        '   </div> \n' +
-        '</div>');
-
     var class_name = $("#class_name");
-    $("#hour_collapse" ).prev().children("h10").text(class_name.val());
-    /*alert(($(add_id).parent().parent().parent().next().children("div:last-child").children("div:first-child").children("div:last-child").attr('id')));*/
+    add_collapse($('#'+add_id),class_name.val(),'选择视频','','',0,ClassCount);
+  /*  $("#hour_collapse" ).prev().children("h10").text(class_name.val());
+    /!*alert(($(add_id).parent().parent().parent().next().children("div:last-child").children("div:first-child").children("div:last-child").attr('id')));*!/
     var Next_Class_id = $(add_id).parent().parent().parent().next().children("div:last-child").children("div:first-child").children("div:last-child").attr('id');
     if (Next_Class_id!=null){
         var Next_Class_No = parseInt(Next_Class_id.slice(-1));
         var i = ClassCount-1;
         for(i;i>=Next_Class_No;i--){
-            Change_Class_Fun(i+1,i);
+            //Change_Class_Fun(i+1,i);
         }
         var E = window.wangEditor;
         var editor = new E('#editor' + Next_Class_No);
-        Change_Class_Fun(Next_Class_No, "");
+        //Change_Class_Fun(Next_Class_No, "");
     }else{
-        Change_Class_Fun(ClassCount,"");
+        //Change_Class_Fun(ClassCount,"");
         E = window.wangEditor;
         editor = new E('#editor' + ClassCount);
     }
-    editor.create();
-
+    editor.create();*/
     class_name.val('');
+    ClassCount = ClassCount + 1;
     $("#class_Close").click();
-
 }
 
 function Change_Unit_Name(Change_button_id) {
     var text = $("#Change_unit_name");
-    $(Change_button_id).parent().prev().text(text.val());
+    $('#'+Change_button_id).prev().children().eq(1).text(text.val());
     text.val('');
     $("#Change_section_Close").click();
 }
 
-
 function Change_Class_Name(Change_button_id) {
     var text = $("#Change_class_name");
-    $(Change_button_id).parent().prev().text(text.val());
+    $('#'+Change_button_id).prev().children().eq(1).text(text.val());
     text.val('');
     $("#Change_Class_Close").click();
 }
 
 function Delete_Unit(Delete_button_id) {
-    var i = parseInt(Delete_button_id.id.slice(-1));
-    UnitCount = UnitCount - 1;
-    var Son_div_length = parseInt($(Delete_button_id).parent().parent().next().children('div').length);
-    var Last_Son_id = $(Delete_button_id).parent().parent().next().children("div:last-child").children("div:last-child").attr('id');
-    if (Last_Son_id!=null){
-        var Last_Son_no = parseInt(Last_Son_id.slice(-1));
-        for (Last_Son_no + 1; Last_Son_no < ClassCount; Last_Son_no++) {
-            Change_Class_Fun(Last_Son_no + 1 - Son_div_length, Last_Son_no + 1);
-        }
-    }
-     for (i; i < UnitCount + 1; i++) {
-         Change_Unit_Fun(i, i + 1);
-     }
-    ClassCount = ClassCount - (Son_div_length);
-    $(Delete_button_id).parent().parent().parent().remove();
+    $('#'+Delete_button_id).parent().remove();
     $("#Delete_Unit_Close").click();
 }
 
 function Delete_Class(Delete_button_id) {
-    ClassCount = ClassCount - 1;
-    $(Delete_button_id).parent().parent().parent().remove();
-    var i = parseInt(Delete_button_id.id.slice(-1));
-    for (i; i < ClassCount + 1; i++) {
-        Change_Class_Fun(i, i + 1);
-    }
+    $('#'+Delete_button_id).parent().remove();
     $("#Delete_Class_Close").click();
 }
 
@@ -340,46 +372,33 @@ function delete_video(event){
 
 $(function () {
     $('#add_class_hour').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var button_id = button.data('id'); //获取呼出模态框的按钮ID
-        var obj = document.getElementById("Add_sure_button");
-        obj.setAttribute("onclick", "add_class_hour(" + button_id + ")");
+        $('#Add_sure_button').attr('onclick','add_class_hour("'+$(event.relatedTarget).parent().parent().next().attr('id')+'")')
     })
 });
 
 $(function () {
     $('#Change_section').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var button_id = button.data('id');
-        var obj = document.getElementById("Change_sure_button");
-        obj.setAttribute("onclick", "Change_Unit_Name(" + button_id + ")");
+        $("#Change_unit_name").val($(event.relatedTarget).parent().prev().text());
+        $('#Change_sure_button').attr('onclick','Change_Unit_Name("'+$(event.relatedTarget).parent().parent().next().attr('id')+'")')
     })
 });
 
 $(function () {
     $('#Change_class').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var button_id = button.data('id');
-        var obj = document.getElementById("Change_class_sure_button");
-        obj.setAttribute("onclick", "Change_Class_Name(" + button_id + ")");
+        $("#Change_class_name").val($(event.relatedTarget).parent().prev().text());
+        $('#Change_class_sure_button').attr('onclick','Change_Class_Name("'+$(event.relatedTarget).parent().parent().next().attr('id')+'")')
     })
 });
 
 $(function () {
     $('#Delete_Unit').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var button_id = button.data('id');
-        var obj = document.getElementById("Delete_Unit_sure_button");
-        obj.setAttribute("onclick", "Delete_Unit(" + button_id + ")");
+        $('#Delete_Unit_sure_button').attr('onclick','Delete_Unit("'+$(event.relatedTarget).parent().parent().next().attr('id')+'")')
     })
 });
 
 $(function () {
     $('#Delete_Class').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var button_id = button.data('id');
-        var obj = document.getElementById("Delete_Class_sure_button");
-        obj.setAttribute("onclick", "Delete_Class(" + button_id + ")");
+        $('#Delete_Class_sure_button').attr('onclick','Delete_Class("'+$(event.relatedTarget).parent().parent().next().attr('id')+'")')
     })
 });
 
@@ -502,7 +521,6 @@ function Delete_File(event) {
     $(event).parent().remove();
 }
 
-
 function getHTML() {
     $("#preview").attr("href","Learn_list.html?class_id="+No);
      $.ajax({
@@ -515,23 +533,15 @@ function getHTML() {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            var sections = $(".sections");
             $("#curriculum_Name").text(jsonObj.Title);
-            if (undefined!==sections.html()) {
-                sections.append(jsonObj.Class_html);
-                ClassCount = parseInt(jsonObj.ClassCount);
-                UnitCount = parseInt(jsonObj.UnitCount);
-            }
             $("#teacher_Name").text(jsonObj.教师用户名);
             if (jsonObj.state===1)  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
             else $("#curriculum_button").addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
-            new_Editor();
         }
     });
 }
 
-
-function new_Editor() {
+/*function new_Editor() {
     for (var i = 1; i <= ClassCount; i++) {
         var editor_ID = $('#editor'+i);
         var editor_ID_HTML = editor_ID.find('div:last').html();
@@ -542,7 +552,7 @@ function new_Editor() {
         editor_ID.find('div:last').empty();
         editor_ID.find('div:last').append(editor_ID_HTML);
     }
-}
+}*/
 
 function Video_TEXT_FILE(event, type) {
     if (1 === type) { //显示视频

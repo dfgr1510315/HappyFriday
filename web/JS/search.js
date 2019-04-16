@@ -241,37 +241,38 @@ function search_user() {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            $('#count').text('共找到' + jsonObj.count + '个结果');
-            if (jsonObj.count === '0') {
+            //console.log(jsonObj);
+            $('#count').text('共找到' + jsonObj.user_count + '个结果');
+            if (jsonObj.user_count === '0') {
                 $('.user-list').append(
                     '<div class="no_find_class">暂无结果</div>'
                 );
                 return;
             }
-            for (var i = 0; i < jsonObj.nike.length; i++) {
+            for (var i = 0; i < jsonObj.user_infor.length; i++) {
                 $('.user-list').append(
                     '      <li class="up-item">\n' +
                     '                        <div class="up-face">\n' +
                     '                            <a href="javascript:void(0)" target="_blank"  class="face-img">\n' +
                     '                                <div class="lazy-img">\n' +
-                    '                                    <img alt="" src="'+contextPath+jsonObj.head[i]+'">\n' +
+                    '                                    <img alt="" src="'+contextPath+jsonObj.user_infor[i].head+'">\n' +
                     '                                </div>\n' +
                     '                            </a>\n' +
                     '                        </div>\n' +
                     '                        <div class="info-wrap">\n' +
                     '                            <div class="headline">\n' +
-                    '                                <a href="javascript:void(0)"  target="_blank" class="title">'+jsonObj.nike[i]+'</a>\n' +
+                    '                                <a href="javascript:void(0)"  target="_blank" class="title">'+jsonObj.user_infor[i].nike+'</a>\n' +
                     '                            </div>\n' +
                     '                            <div class="up-info">\n' +
-                    '                                <span>性别：'+jsonObj.sex[i]+'</span>\n' +
-                    '                                <span>'+jsonObj.usertype[i]+'</span>\n' +
+                    '                                <span>性别：'+jsonObj.user_infor[i].sex+'</span>\n' +
+                    '                                <span>'+jsonObj.user_infor[i].usertype+'</span>\n' +
                     '                            </div>\n' +
-                    '                            <div class="desc">'+jsonObj.information[i]+'</div>\n' +
+                    '                            <div class="desc">'+jsonObj.user_infor[i].information+'</div>\n' +
                     '                        </div>\n' +
                     '                    </li>'
                 )
             }
-            page_ul(page, jsonObj.count);
+            page_ul(page, jsonObj.user_count);
             highlight(2);
         }
     })

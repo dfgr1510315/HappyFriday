@@ -15,7 +15,7 @@ public class Mailforget implements Runnable {
     private String email;// 收件人邮箱
     private String PW;// 密码
 
-    public Mailforget(String email, String PW) {
+    Mailforget(String email, String PW) {
         this.email = email;
         this.PW = PW;
     }

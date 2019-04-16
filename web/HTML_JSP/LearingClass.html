@@ -191,10 +191,10 @@
                 });
             });
         });
-        function addUL(_ul,json,i,note,ask) {
+        function addUL(_ul,class_one) {
             var star;
             var action;
-            if (json.collection[i] === '1') {
+            if (class_one.collection ==='1') {
                 star='star';
                 action = 0;
             }
@@ -203,28 +203,28 @@
                 action = 1;
             }
             _ul.append(
-                '<li class="course-one type' + json.class_type[i] + '">\n' +
+                '<li id="'+class_one.class_id+'" class="course-one type' + class_one.class_type + '">\n' +
                 '   <div class="course-list-img l">\n' +
                 '   <a href="" target="_blank">\n' +
-                '        <img width="200" height="113" src="' +contextPath+json.img_address[i] + '"  alt=""/>\n' +
+                '        <img width="200" height="113" src="' +contextPath+class_one.cover_address + '"  alt=""/>\n' +
                 '   </a>\n' +
                 '   </div>\n' +
                 '   <div class="course-list-cont">\n' +
                 '       <h3 class="study-hd">\n' +
-                '            <a href="Learn_list.html?class_id=' + json.class_no[i] + '" target="_blank">' + json.title[i] + '</a>\n' +
+                '            <a href="Learn_list.html?class_id=' + class_one.class_id + '" target="_blank">' + class_one.class_title + '</a>\n' +
                 '            <div class="share-box">\n' +
                 '                  <a href="javascript:void(0);" onclick="collection(this,'+action+')" title="收藏" ><i class="fa fa-'+star+'"></i></a>\n' +
-                '                  <a href="javascript:void(0);" onclick="delete_class_no(' + json.class_no[i] + ')" data-toggle="modal"  data-target="#Delete_Class"  title="删除" ><i class="fa fa-trash-o"></i></a>\n' +
+                '                  <a href="javascript:void(0);" onclick="delete_class_no(' + class_one.class_id + ')" data-toggle="modal"  data-target="#Delete_Class"  title="删除" ><i class="fa fa-trash-o"></i></a>\n' +
                 '            </div>\n' +
                 '       </h3>\n' +
                 '       <div class="study-points">\n' +
-                '             <span class="i-left span-common">已学' + json.schedule[i] + '%</span>\n' +
-                '             <span class="i-right span-common">学习至' + json.last_time[i] + '</span>\n' +
+                '             <span class="i-left span-common">已学' + class_one.schedule + '%</span>\n' +
+                '             <span class="i-right span-common">学习至' + class_one.last_time + '</span>\n' +
                 '       </div>\n' +
                 '       <div class="catog-points">\n' +
-                '              <span class="i-left span-common"><a target="_blank" href=' + json.class_no[i] + '"Learn_list.html?class_id=&page_note=1">笔记 ' + note + '</a></span>\n' +
-                '              <span class="i-right span-common"><a target="_blank" href=' + json.class_no[i] + '"Learn_list.html?class_id=&page_ask=1">问答 ' + ask + '</a></span>\n' +
-                '              <button type="button" class="btn btn-outline-primary" style="right: 32px;position: absolute;" onclick="continue_class(' + json.class_no[i] + ',\'' + json.last_time[i] + '\')">继续学习</button>\n' +
+                '              <span class="i-left span-common"><a target="_blank" href=' + class_one.class_id + '"Learn_list.html?class_id=&page_note=1">笔记 ' + class_one.note_count + '</a></span>\n' +
+                '              <span class="i-right span-common"><a target="_blank" href=' + class_one.class_id + '"Learn_list.html?class_id=&page_ask=1">问答 ' + class_one.ask_count + '</a></span>\n' +
+                '              <button type="button" class="btn btn-outline-primary" style="right: 32px;position: absolute;" onclick="continue_class(' + class_one.class_id + ',\'' + class_one.last_time + '\')">继续学习</button>\n' +
                 '       </div>\n' +
                 '</li>'
             );
@@ -240,29 +240,18 @@
                 },
                 dataType: 'json',
                 success: function (json) {
+                    var class_list = json.class_list;
                     var collection_ul = $('#collection_ul');
                     var learning_ul = $('#learning_ul');
                     var learned_ul = $('#learned_ul');
-                    var note_count = json.note_count;
-                    var note_count_no = json.note_count_no;
-                    var ask_count = json.ask_count;
-                    var ask_count_no = json.ask_count_no;
-                    for (var i = 0; i < json.class_no.length; i++) {
-                        var note;
-                        if (note_count_no.indexOf(json.class_no[i]) !== -1) {
-                            note = note_count[note_count_no.indexOf(json.class_no[i])];
-                        } else note = '0';
-                        var ask;
-                        if (ask_count_no.indexOf(json.class_no[i]) !== -1) {
-                            ask = ask_count[ask_count_no.indexOf(json.class_no[i])];
-                        } else ask = '0';
-                        if (json.schedule[i] === 100) {
-                            addUL(learned_ul,json,i,note,ask)
+                    for (var i = 0; i < class_list.length; i++) {
+                        if (class_list[i].schedule === 100) {
+                            addUL(learned_ul,class_list[i])
                         } else {
-                            addUL(learning_ul,json,i,note,ask)
+                            addUL(learning_ul,class_list[i])
                         }
-                        if (json.collection[i] === '1'){
-                            addUL(collection_ul,json,i,note,ask)
+                        if (class_list[i].collection ==='1'){
+                            addUL(collection_ul,class_list[i])
                         }
                     }
                     if (learning_ul.html().length === 0) {
@@ -281,7 +270,6 @@
                         )
                     }
                 }
-
             });
         }
 
@@ -300,10 +288,11 @@
                 },
                 dataType: 'json',
                 success: function (json) {
-                    if (json.msg === '1') {
-                        $(event).children().removeClass("fa-star-o").addClass("fa-star");
+                    if (json === true) {
+                        if (action===1) $(event).children().removeClass("fa-star-o").addClass("fa-star");
+                        else  $(event).children().removeClass("fa-star").addClass("fa-star-o");
                     } else {
-                        $(event).children().removeClass("fa-star").addClass("fa-star-o");
+                       alert('修改收藏失败');
                     }
                 }
             });
@@ -328,9 +317,9 @@
                 },
                 dataType: 'json',
                 success: function (json) {
-                    if (json.msg === '1') {
+                    if (json === true) {
                         $('#Delete_Class_Close').click();
-                        location.reload();
+                        $('#'+ID).remove()
                     }
                 }
             });
@@ -351,7 +340,7 @@
         }
 
         function continue_class(No, Unit_no) {
-            window.location.href = "Play.html?" + No + "/" + Unit_no.substring(0, Unit_no.indexOf(','));
+            window.location.href = "Play.html?" + No + "/" + Unit_no.substring(0, Unit_no.indexOf(':'));
         }
     </script>
 

@@ -60,6 +60,7 @@ public class ChangeInfor extends HttpServlet {
         JSONObject jsonObj = new JSONObject();
         PrintWriter out = response.getWriter();
         jsonObj.put("user_infor",udl.search_user(keyword,page));
+        jsonObj.put("user_count",udl.count_user(keyword));
         out.println(jsonObj);
         out.flush();
         out.close();

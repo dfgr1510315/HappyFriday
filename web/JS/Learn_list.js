@@ -22,7 +22,7 @@ function join_class(classification) {
         },
         dataType: 'json',
         success: function (jsonObject) {
-            if (jsonObject.msg === '1') {
+            if (jsonObject===true) {
                 window.location.href = "Play.html?" + No + "/1-1";
             }
         }

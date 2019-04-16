@@ -90,7 +90,6 @@ function drag(event) {
             collapse_id.attr("href","#hour_collapse"+count);
             //if (collapse_id.hasClass('collapsed'))  collapse_id.click();
         }
-        new_Editor();
     }
 }
 
@@ -105,13 +104,13 @@ function domdrugstart(e) {
 
 function domdrapend(e) {
     if(flag!==1) $(dragEl).empty().append(save_dragEl);
-    sort_Class('.Unit_class');
+    //sort_Class('.Unit_class');
 }
 
 function Unit_domdrapend(e) {
     if(flag!==1) $(dragEl).empty().append(save_dragEl);
-    sort_Unit('.Unit');
-    sort_Class('.Unit_class');
+    //sort_Unit('.Unit');
+    //sort_Class('.Unit_class');
     for(var count=1;count<=UnitCount;count++){
         var collapse_id = $("#Button_collapse"+count);
         if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
@@ -157,11 +156,11 @@ function domdrop(e) {
     return false;
 }
 
-function sort_Unit(unitName) {
+/*function sort_Unit(unitName) {
     var i = 1;
     $(unitName).each(function(){
-        /* $(this).children().eq(1).attr('id',"hour_collapse"+i);
-         i++;*/
+        /!* $(this).children().eq(1).attr('id',"hour_collapse"+i);
+         i++;*!/
         var flag_id = $(this).children().eq(1).attr('id');
         var flag_id_no = flag_id.substr(flag_id.length-1,1);
         //alert(flag_id_no);
@@ -174,13 +173,13 @@ function sort_Unit(unitName) {
         if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
         collapse_id.removeAttr("href");
     }
-}
+}*/
 
-function sort_Class(className) {
+/*function sort_Class(className) {
     var i = 1;
     $(className).each(function(){
-       /* $(this).children().eq(1).attr('id',"hour_collapse"+i);
-        i++;*/
+       /!* $(this).children().eq(1).attr('id',"hour_collapse"+i);
+        i++;*!/
        var flag_id = $(this).children().eq(1).attr('id');
        var flag_id_no = flag_id.substr(flag_id.length-1,1);
        //alert('将'+flag_id_no+'变成'+i);
@@ -193,7 +192,7 @@ function sort_Class(className) {
         if (!(collapse_id.hasClass('collapsed')))  collapse_id.click();
         collapse_id.removeAttr("href");
     }
-}
+}*/
 
 function cancel_drag() {  //点击增加课时，退出拖动模式
     var user_drag = $("#use_drag");

@@ -1,9 +1,7 @@
 package DAO;
 
-
 import Model.User;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface userDAO {
@@ -23,4 +21,7 @@ public interface userDAO {
 
     //修改用户头像
     boolean change_head(String username, String head);
+
+    //查询匹配的用户数
+    int count_user(String username);
 }

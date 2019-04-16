@@ -132,6 +132,7 @@ public class userDAOlmpl implements userDAO {
             qsql.setString(3, birth);
             qsql.setString(4, information);
             qsql.setString(5, teacher);
+            qsql.setString(6, username);
             state = qsql.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -182,5 +183,31 @@ public class userDAOlmpl implements userDAO {
                 }
         }
         return state!=0;
+    }
+
+    @Override
+    public int count_user(String username) {
+        int count = 0;
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        try {
+            con = dbp.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select count(*) user_count from personal_table where nike like '%"+username+"%'");
+            while (rs.next()) {
+                count = rs.getInt("user_count");
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return count;
     }
 }

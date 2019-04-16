@@ -112,11 +112,8 @@
                 '                            <i class="fa fa-bullhorn"></i>\n' +
                 '                        </div>\n' +
                 '                        <div class="item_body">\n' +
-                '                            <div class="notification-body">\n' +
-                notice +
-                '                            </div>\n' +
-                '                            <div class="notification-time">\n' +
-                time +
+                '                            <div class="notification-body">'+notice+'</div>\n' +
+                '                            <div class="notification-time">'+time+
                 '                                <div class="delete">\n' +
                 '                                    <i class="fa fa-trash-o" style="font-size:19px" data-id="'+notice_id+'" onclick="delete_notice(this)"></i>\n' +
                 '                                </div>\n' +
@@ -137,9 +134,9 @@
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
-                    if (jsonObj===1){
+                    if (jsonObj===true){
                         $(event).parent().parent().parent().parent().remove();
-                    }
+                    }else alert('删除失败')
                 }
             })
         }
@@ -168,23 +165,24 @@
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
-                    for (var i=0;i<jsonObj.notice_id.length;i++){
+                    //console.log(jsonObj);
+                    for (var i=0;i<jsonObj.notice.length;i++){
                         var notice;
-                        switch (jsonObj.notice_type[i]) {
+                        switch (jsonObj.notice[i].notice_type) {
                             case 1:
-                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>加入了课程<a href='Learn_list.html?class_id="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>\n";
+                                notice = "学员<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>加入了课程<a href='Learn_list.html?class_id="+jsonObj.notice[i].class_id+"' target='_blank'>《"+jsonObj.notice[i].class_title+"》</a>\n";
                                 break;
                             case 2:
-                                notice = "学员<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在课程<a href='Learn_list.html?class_id="+jsonObj.class_id[i]+"' target='_blank'>《"+jsonObj.class_title[i]+"》</a>发表了问题<a href='questions.html?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>\n";
+                                notice = "学员<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在课程<a href='Learn_list.html?class_id="+jsonObj.notice[i].class_id+"' target='_blank'>《"+jsonObj.notice[i].class_title+"》</a>发表了问题<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>\n";
                                 break;
                             case 3:
-                                notice = "用户<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在你发布的问题<a href='questions.html?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>中回答了你";
+                                notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在你发布的问题<a href='questions.html?"+jsonObj.notice[i].ask_title+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回答了你";
                                 break;
                             case 4:
-                                notice = "用户<a href='' target='_blank'>"+jsonObj.user[i]+"</a>在<a href='questions.html?"+jsonObj.ask_id[i]+"' target='_blank'>"+jsonObj.describe[i]+"</a>中回复了你";
+                                notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在<a href='questions.html?"+jsonObj.notice[i].ask_title+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回复了你";
                                 break
                         }
-                        notice_box_ul(notice,jsonObj.time[i],jsonObj.notice_id[i])
+                        notice_box_ul(notice,jsonObj.notice[i].time,jsonObj.notice[i].notice_id)
                     }
                     var notice_box_ul_var = $('#notice_box_ul');
                     if (notice_box_ul_var.html().length === 0) {

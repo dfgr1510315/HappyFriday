@@ -13,18 +13,16 @@ function get_infor() {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            $('#liNike').text('昵称：  '+jsonObj.nike);
-            $('#liSex').text('性别：  '+jsonObj.sex);
-            $('#liBirth').text('生日：  '+jsonObj.birth);
-            $('#liTeacher').text('指导老师：  '+jsonObj.teacher);
-            $('#liIntro').text('个人简介：  '+jsonObj.information);
-            /* console.log('pc_head_image:'+head_image);
-             $('#pc_head_image').attr('src',contextPath+head_image);*/
-            $("#nike").val(jsonObj.nike);
-            $("#sex").text(jsonObj.sex);
-            $("#birth").val(jsonObj.birth);
-            $("#teacher").val(jsonObj.teacher);
-            $("#introduction").val(jsonObj.information);
+            $('#liNike').text('昵称：  '+jsonObj.user_infor.nike);
+            $('#liSex').text('性别：  '+jsonObj.user_infor.sex);
+            $('#liBirth').text('生日：  '+jsonObj.user_infor.birth);
+            $('#liTeacher').text('指导老师：  '+jsonObj.user_infor.teacher);
+            $('#liIntro').text('个人简介：  '+jsonObj.user_infor.information);
+            $("#nike").val(jsonObj.user_infor.nike);
+            $("#sex").text(jsonObj.user_infor.sex);
+            $("#birth").val(jsonObj.user_infor.birth);
+            $("#teacher").val(jsonObj.user_infor.teacher);
+            $("#introduction").val(jsonObj.user_infor.information);
             $('#VerticalNav').load('VerticalNav.html',function () {
                 addClass(0);
                 $.when(get_user_infor()).done(function () {

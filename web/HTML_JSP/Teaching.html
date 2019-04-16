@@ -74,20 +74,23 @@
                 },
                 dataType: 'json',
                 success: function (json) {
-                    var clas_ul = $("tbody");
-                    $(json).each(function(){
-                        clas_ul.append(
+                    var class_ul = $("tbody");
+                    var release_status;
+                    for (var i=0;i<json.class_list.length;i++){
+                        if (json.class_list[i].release_status===1) release_status = '已发布';
+                        else release_status = '未发布';
+                        class_ul.append(
                             '<tr>\n' +
-                            '<td><img src="'+contextPath+this.封面地址 +'" class="cover" alt="">'+this.Title+'</td> \n'+
-                            '<td>'+this.学员数+'</td> \n'+
-                            '<td>'+this.状态+'</td> \n'+
-                            '<td><a target="_blank" href="Myclass.html?class_id='+ this.课程编号+'"><button class="btn btn-outline-primary btn-sm" >管理</button></a></td>\n'+
+                            '<td><img src="'+contextPath+json.class_list[i].cover_address +'" class="cover" alt="">'+json.class_list[i].class_title+'</td> \n'+
+                            '<td>'+json.class_list[i].student_count+'</td> \n'+
+                            '<td>'+release_status+'</td> \n'+
+                            '<td><a target="_blank" href="Myclass.html?class_id='+ json.class_list[i].class_id+'"><button class="btn btn-outline-primary btn-sm" >管理</button></a></td>\n'+
                             '<tr>\n '
                         )
-                    });
-                    if (clas_ul.html().length === 0) {
+                    }
+                    if (class_ul.html().length === 0) {
                         $('#class_table').append(
-                            ' <div class="no_find_class">暂无课程</div> '
+                            '<div class="no_find_class">暂无课程</div> '
                         )
                     }
                 }
@@ -111,13 +114,21 @@
                     },
                     dataType: 'json',
                     success: function (jsonObj) {
-                        if ("1"===jsonObj.state) {
+                        if (jsonObj.class_id===0) alert('创建失败') ;
+                        else {
                             $('#found_class_Close').click();
-                            window.location.href = "Teaching.html";
-                        }else alert("创建失败")
+                            var class_ul = $("tbody");
+                            class_ul.prepend(
+                                '<tr>\n' +
+                                '<td><img src="'+contextPath+'/image/efb37fee400582742424a4ce08951213.png" class="cover" alt="">'+Class_Name+'</td> \n'+
+                                '<td>0</td> \n'+
+                                '<td>未发布</td> \n'+
+                                '<td><a target="_blank" href="Myclass.html?class_id='+jsonObj.class_id+'"><button class="btn btn-outline-primary btn-sm" >管理</button></a></td>\n'+
+                                '<tr>\n '
+                            );
+                        }
                     }
                 });
-
             }
         }
     </script>

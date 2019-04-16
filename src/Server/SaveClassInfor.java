@@ -5,8 +5,6 @@ package Server;
 import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
-import javax.servlet.ServletException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +17,7 @@ import java.util.ArrayList;
 
 @WebServlet(name = "SaveClassInfor")
 public class SaveClassInfor extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -27,10 +25,9 @@ public class SaveClassInfor extends HttpServlet {
         switch (Read_or_Save) {
             case "save":
                 int No = Integer.parseInt(request.getParameter("No"));
-                String ClassInfor = request.getParameter("ClassInfor");
                 String ClassCount = request.getParameter("ClassCount");
                 String UnitCount = request.getParameter("UnitCount");
-                save_class(No,ClassInfor, UnitCount, ClassCount);
+                save_class(No, UnitCount, ClassCount,response);
                 break;
             case "read":
                 No = Integer.parseInt(request.getParameter("No"));
@@ -78,7 +75,7 @@ public class SaveClassInfor extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         doPost(request,response);
     }
 
@@ -324,18 +321,19 @@ public class SaveClassInfor extends HttpServlet {
         }
     }
 
-    private void save_class(int No,String ClassInfor,String Unitcount,String Classcount){
+    private void save_class(int No, String Unitcount, String Classcount, HttpServletResponse response) throws  IOException{
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
+        PrintWriter out = response.getWriter();
+        int state = 0;
         try {
             con = dbp.getConnection();
-            qsql = con.prepareStatement("update class_teacher_table set layout=?, UnitCount=?, ClassCount=? where class_id=? ");
-            qsql.setString(1,ClassInfor );
-            qsql.setString(2,Unitcount );
-            qsql.setString(3,Classcount );
-            qsql.setInt(4,No );
-            qsql.executeUpdate();
+            qsql = con.prepareStatement("update class_teacher_table set  UnitCount=?, ClassCount=? where class_id=? ");
+            qsql.setString(1,Unitcount );
+            qsql.setString(2,Classcount );
+            qsql.setInt(3,No );
+            state = qsql.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -352,6 +350,9 @@ public class SaveClassInfor extends HttpServlet {
                     e.printStackTrace();
                 }
         }
+        out.print(state!=0);
+        out.flush();
+        out.close();
     }
 
     private JSONObject read_class(int No){
@@ -361,12 +362,9 @@ public class SaveClassInfor extends HttpServlet {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select class_title,layout,UnitCount,ClassCount,teacher,release_status from class_teacher_table where class_id="+No);
+            ResultSet rs = statement.executeQuery("select class_title,teacher,release_status from class_teacher_table where class_id="+No);
             while (rs.next()){
                 jsonObj.put("Title",rs.getString("class_title"));
-                jsonObj.put("Class_html",rs.getString("layout"));
-                jsonObj.put("UnitCount",rs.getString("UnitCount"));
-                jsonObj.put("ClassCount",rs.getString("ClassCount"));
                 jsonObj.put("教师用户名",rs.getString("teacher"));
                 jsonObj.put("state",rs.getInt("release_status"));
             }

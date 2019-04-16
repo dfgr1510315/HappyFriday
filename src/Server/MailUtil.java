@@ -8,16 +8,12 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
-
-//import com.sun.mail.util.MailSSLSocketFactory;
-
 
 public class MailUtil implements Runnable {
     private String email;// 收件人邮箱
     private String code;// 激活码
     private int action;
-    public MailUtil(String email, String code, int action) {
+    MailUtil(String email, String code, int action) {
         this.email = email;
         this.code = code;
         this.action = action;

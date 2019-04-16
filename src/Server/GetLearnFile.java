@@ -1,154 +1,83 @@
 package Server;
 
-import com.alibaba.druid.pool.DruidPooledConnection;
+import DAOlmpl.classDAOlmpl;
+import Model.Lesson;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-
+import java.util.List;
 
 @WebServlet(name = "GetLearnFile")
 public class GetLearnFile extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
+        String action = request.getParameter("action");
+        switch (action){
+            case "post":
+                set_class_content(response,request);
+                break;
+            case "get":
+                get_class_content(response,request);
+                break;
+        }
+    }
 
-        ArrayList<String> Serial_No = new ArrayList<>();
-        ArrayList<String> Unit_Name = new ArrayList<>();
-        ArrayList<String> Class_Name = new ArrayList<>();
-        ArrayList<String> Video_Src = new ArrayList<>();
-        ArrayList<String> Source_Video_Name = new ArrayList<>();
-        ArrayList<String> Source_Video_Src = new ArrayList<>();
-        ArrayList<String> Editor = new ArrayList<>();
-        ArrayList<String> File_Href = new ArrayList<>();
-        ArrayList<String> File_Name = new ArrayList<>();
-        ArrayList<Integer> State = new ArrayList<>();
-
+    private void get_class_content(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        classDAOlmpl cdl = new classDAOlmpl();
         int No = Integer.parseInt(request.getParameter("No"));
+        PrintWriter out = response.getWriter();
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("class_content",cdl.get_class_content(No));
+        out.print(jsonObj);
+        out.flush();
+        out.close();
+    }
 
-        String ds = java.net.URLDecoder.decode(request.getParameter("ds"),"UTF-8");
+    private void set_class_content(HttpServletResponse response,HttpServletRequest request)throws IOException {
+        List<Lesson> lessons = new ArrayList<>();
+        Lesson lesson;
+        int No = Integer.parseInt(request.getParameter("No"));
+        String ds = java.net.URLDecoder.decode(request.getParameter("ds"), StandardCharsets.UTF_8);
         JSONArray json=JSONArray.fromObject(ds);
-
         for(Object obj : json){
             JSONObject jsonOne = (JSONObject)obj;
-
-            Unit_Name.add(jsonOne.getString("Unit_Name"));//章节名
-            //System.out.println(Unit_Name);
+            String Unit_Name = jsonOne.getString("Unit_Name");
             String Class = jsonOne.getString("Class");
-
             JSONArray classOne = JSONArray.fromObject(Class);
-
             for (Object obj1:classOne){//章节下的所有课程
                 JSONObject jsonOne1 = (JSONObject)obj1;
-
-                Serial_No.add(jsonOne1.getString("Serial_No"));
-
-                Class_Name.add(jsonOne1.getString("Class_Name"));
-                //System.out.println(jsonOne1.getString("Class_Name"));
-
-                Video_Src.add(jsonOne1.getString("Video_Src"));
-                //System.out.println(jsonOne1.getString("Video_Src"));
-
-                Source_Video_Name.add(jsonOne1.getString("Source_Video_Name"));
-
-                Source_Video_Src.add(jsonOne1.getString("Source_Video_Src"));
-
-                Editor.add(jsonOne1.getString("Editor"));
-
-                String inputPath=jsonOne1.getString("File_Href");
-
-                File_Href.add(inputPath);
-
-                String file_Name =jsonOne1.getString("File_Name");
-
-                File_Name.add(file_Name);
-                //System.out.println("File_Name"+File_Name);
-
-                State.add(jsonOne1.getInt("State"));
+                lesson = new Lesson();
+                lesson.setUnit_title(Unit_Name);//章节名
+                lesson.setUnit_no(jsonOne1.getString("Serial_No"));
+                lesson.setLesson_title(jsonOne1.getString("Class_Name"));
+                lesson.setVideo_address(jsonOne1.getString("Video_Src"));
+                lesson.setSource_video_title(jsonOne1.getString("Source_Video_Name"));
+                lesson.setSource_video_address(jsonOne1.getString("Source_Video_Src"));
+                lesson.setImage_text(jsonOne1.getString("Editor"));
+                lesson.setFile_address(jsonOne1.getString("File_Href"));
+                lesson.setFile_name(jsonOne1.getString("File_Name"));
+                lesson.setRelease_status(jsonOne1.getInt("State"));
+                lessons.add(lesson);
             }
         }
-        ConnectMysql(No,Serial_No,Unit_Name,Class_Name,Video_Src,Source_Video_Src,Source_Video_Name,Editor,File_Href,File_Name,State);
+        classDAOlmpl cdl = new classDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(cdl.set_class_content(No,lessons));
+        out.flush();
+        out.close();
     }
 
-    private void ConnectMysql(int No,ArrayList<String> Serial_No, ArrayList<String> Unit_name, ArrayList<String> Class_name, ArrayList<String> Video_src, ArrayList<String> Source_Video_Src,ArrayList<String> Source_Video_Name, ArrayList<String> Editor, ArrayList<String> File_Href,ArrayList<String> File_Name, ArrayList<Integer> state){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        PreparedStatement qsql = null;
-        try {
-            con = dbp.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select unit_no from class where class_id='"+No+"'");
-            ArrayList<String> Unit = new ArrayList<>();
-            while (rs.next()){
-                Unit.add(rs.getString("unit_no"));
-            }
-            for (int i=0;i<Serial_No.size();i++){
-                if (Unit.contains(Serial_No.get(i))) {
-                    qsql = con.prepareStatement("update class set unit_title=?, lesson_title=?, release_status=?,video_address=?,Image_text=?,file_address=?,file_name=?,source_video_title=? ,source_video_address=? where unit_no=? and class_id=?");
-                    qsql.setString(1,Unit_name.get(Integer.parseInt(Serial_No.get(i).substring(0,Serial_No.get(i).indexOf("-")))-1));
-                    qsql.setString(2,Class_name.get(i));
-                    qsql.setInt(3,state.get(i));
-                    qsql.setString(4,Video_src.get(i));
-                    qsql.setString(5,Editor.get(i));
-                    qsql.setString(6,File_Href.get(i));
-                    qsql.setString(7,File_Name.get(i));
-                    qsql.setString(8,Source_Video_Name.get(i));
-                    qsql.setString(9,Source_Video_Src.get(i));
-                    qsql.setString(10,Serial_No.get(i));
-                    qsql.setInt(11,No);
-                    qsql.executeUpdate();
-                }else {
-                    qsql = con.prepareStatement("insert into class values(?,?,?,?,?,?,?,?,?,?,?)");
-                    qsql.setInt(1,No);
-                    qsql.setString(2,Serial_No.get(i));
-                    //System.out.println(Unit_name.get(Integer.parseInt(Serial_No.get(i).substring(0,Serial_No.get(i).indexOf("_")))-1));
-                    qsql.setString(3,Unit_name.get(Integer.parseInt(Serial_No.get(i).substring(0,Serial_No.get(i).indexOf("-")))-1));
-                    qsql.setString(4,Class_name.get(i));
-                    qsql.setInt(5,state.get(i));
-                    qsql.setString(6,Source_Video_Src.get(i));
-                    qsql.setString(7,Source_Video_Name.get(i));
-                    qsql.setString(8,Video_src.get(i));
-                    qsql.setString(9,Editor.get(i));
-                    qsql.setString(10,File_Href.get(i));
-                    qsql.setString(11,File_Name.get(i));
-                    qsql.executeUpdate();
-                }
-            }
-            for (String aUnit : Unit) {
-                if (!Serial_No.contains(aUnit)) {
-                    qsql = con.prepareStatement("delete FROM class WHERE unit_no=?and class_id=?");
-                    qsql.setString(1, aUnit);
-                    qsql.setInt(2, No);
-                    qsql.executeUpdate();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            if (qsql!=null)
-                try{
-                    qsql.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
     }
 }
