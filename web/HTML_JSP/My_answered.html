@@ -54,6 +54,7 @@
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
+                    console.log(jsonObj);
                     var ask_ul = $('#ask_ul');
                     for (i=0;i<jsonObj.ask_no.length;i++){
                         ask_ul.append(

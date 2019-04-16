@@ -1,5 +1,6 @@
 package Server;
 
+import DAOlmpl.askDAOlmpl;
 import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 @WebServlet(name = "PostAsk")
 public class PostAsk extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -75,142 +76,37 @@ public class PostAsk extends HttpServlet {
                 get_my_reply_ask(response,page,user);
                 break;
             case "search_ask":
-                page = Integer.parseInt(request.getParameter("page"));
-                user = request.getParameter("keyword");
-                search_ask(response,page,user);
+                search_ask(request,response);
                 break;
         }
     }
 
-    private void search_ask(HttpServletResponse response,int page,String keyword){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        try {
-            con = dbp.getConnection();
-            Statement statement = con.createStatement();
-            PrintWriter out = response.getWriter();
-            JSONObject jsonObject = new JSONObject();
-            ArrayList<Integer> ask_id = new ArrayList<>();
-            ArrayList<Integer> belong_class_id = new ArrayList<>();
-            ArrayList<String> ask_title = new ArrayList<>();
-            ArrayList<String> ask_time = new ArrayList<>();
-            ArrayList<Integer> answer_count = new ArrayList<>();
-            ArrayList<Integer> visits_count = new ArrayList<>();
-            ArrayList<String> class_title = new ArrayList<>();
-            ArrayList<String> cover_address = new ArrayList<>();
-            ArrayList<String> new_answerer = new ArrayList<>();
-            ArrayList<String> new_answer = new ArrayList<>();
-            ResultSet rs = statement.executeQuery("select ask_id,belong_class_id,ask_title,ask_time,answer_count,visits_count,class_title,cover_address,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answerer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer from ask,class_teacher_table where belong_class_id=class_id and ask_title like '%"+keyword+"%' limit "+(6*(page-1))+","+6);
-            while (rs.next()){
-                ask_id.add(rs.getInt("ask_id"));
-                belong_class_id.add(rs.getInt("belong_class_id"));
-                ask_title.add(rs.getString("ask_title"));
-                ask_time.add(rs.getString("ask_time"));
-                answer_count.add(rs.getInt("answer_count"));
-                visits_count.add(rs.getInt("visits_count"));
-                class_title.add(rs.getString("class_title"));
-                cover_address.add(rs.getString("cover_address"));
-                new_answerer.add(rs.getString("new_answerer"));
-                new_answer.add(rs.getString("new_answer"));
-            }
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM ask where ask_title like '%"+keyword+"%'");
-            while (rs.next()){
-                jsonObject.put("count",rs.getString("count"));
-            }
-            jsonObject.put("ask_id",ask_id);
-            jsonObject.put("belong_class_id",belong_class_id);
-            jsonObject.put("ask_title",ask_title);
-            jsonObject.put("ask_time",ask_time);
-            jsonObject.put("answer_count",answer_count);
-            jsonObject.put("visits_count",visits_count);
-            jsonObject.put("class_title",class_title);
-            jsonObject.put("cover_address",cover_address);
-            jsonObject.put("new_answerer",new_answerer);
-            jsonObject.put("new_answer",new_answer);
-            out.print(jsonObject);
-            out.flush();
-            out.close();
-            rs.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    private void search_ask(HttpServletRequest request,HttpServletResponse response) throws IOException{
+        int page = Integer.parseInt(request.getParameter("page"));
+        String keyword = request.getParameter("keyword");
+        JSONObject jsonObject = new JSONObject();
+        askDAOlmpl al = new askDAOlmpl();
+        String SQL = "SELECT COUNT(*) ask_count FROM ask where ask_title like '%"+keyword+"%'";
+        jsonObject.put("count", al.get_ask_count(SQL));
+        SQL = " ask_title like '%"+keyword+"%' limit "+(6*(page-1))+","+6;
+        jsonObject.put("ask", al.get_ask(page,SQL));
+        PrintWriter out = response.getWriter();
+        out.print(jsonObject);
+        out.flush();
+        out.close();
     }
 
-    private void get_my_reply_ask(HttpServletResponse response,int page,String answer){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        try {
-            con = dbp.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select distinct ask.unit_no,ask_title,asker,ask_time,head,lesson_title,answer_count,ask_id,visits_count,belong_class_id,class_title,(select answerer from answer where belong_ask_id=ask_id order by answer_time  desc limit 1) new_answer,(select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_reply from personal_table,ask,class,class_teacher_table,answer where answerer='"+answer+"'and belong_ask_id=ask_id and asker=username and belong_class_id=class.class_id and class.class_id=class_teacher_table.class_id and class.unit_no=ask.unit_no order by ask_time desc limit "+(6*(page-1))+","+6);
-            JSONObject jsonObj = new JSONObject();
-            ArrayList<String> ask_no = new ArrayList<>();
-            ArrayList<String> asker = new ArrayList<>();
-            ArrayList<Integer> times = new ArrayList<>();
-            ArrayList<String> title_No_list = new ArrayList<>();
-            ArrayList<String> title_list = new ArrayList<>();
-            ArrayList<String> time_list = new ArrayList<>();
-            ArrayList<String> describe_list = new ArrayList<>();
-            ArrayList<String> answer_count = new ArrayList<>();
-            ArrayList<String> new_answer = new ArrayList<>();
-            ArrayList<String> new_answer_text = new ArrayList<>();
-            ArrayList<String> class_no = new ArrayList<>();
-            ArrayList<String> class_title = new ArrayList<>();
-            ArrayList<String> head = new ArrayList<>();
-            while (rs.next()){
-                ask_no.add(rs.getString("ask_id"));
-                asker.add(rs.getString("asker"));
-                times.add(rs.getInt("visits_count"));
-                title_No_list.add(rs.getString("unit_no"));
-                title_list.add(rs.getString("lesson_title"));
-                time_list.add(rs.getString("ask_time"));
-                describe_list.add(rs.getString("ask_title"));
-                answer_count.add(rs.getString("answer_count"));
-                new_answer.add(rs.getString("new_answer"));
-                new_answer_text.add(rs.getString("new_reply"));
-                class_no.add(rs.getString("belong_class_id"));
-                class_title.add(rs.getString("class_title"));
-                head.add(rs.getString("head"));
-            }
-            jsonObj.put("ask_no",ask_no);
-            jsonObj.put("asker",asker);
-            jsonObj.put("times",times);
-            jsonObj.put("title_No_list",title_No_list);
-            jsonObj.put("title",title_list);
-            jsonObj.put("time",time_list);
-            jsonObj.put("describe",describe_list);
-            jsonObj.put("answer_count",answer_count);
-            jsonObj.put("new_answer",new_answer);
-            jsonObj.put("new_answer_text",new_answer_text);
-            jsonObj.put("class_no",class_no);
-            jsonObj.put("class_title",class_title);
-            jsonObj.put("head",head);
-            rs = statement.executeQuery("SELECT COUNT(distinct ask_id) count FROM ask,answer where answerer='"+answer+"' and belong_ask_id=ask_id");
-            while (rs.next()){
-                jsonObj.put("count",rs.getString("count"));
-            }
-            PrintWriter out = response.getWriter();
-            out.flush();
-            out.print(jsonObj);
-            rs.close();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    private void get_my_reply_ask(HttpServletResponse response,int page,String answer)  throws IOException{
+        JSONObject jsonObject = new JSONObject();
+        askDAOlmpl al = new askDAOlmpl();
+        String SQL = "SELECT COUNT(distinct ask_id) ask_count FROM ask,answer where answerer='"+answer+"' and belong_ask_id=ask_id";
+        jsonObject.put("count", al.get_ask_count(SQL));
+        SQL = " answerer='"+answer+"' order by ask_time desc limit "+(6*(page-1))+","+6;
+        jsonObject.put("ask", al.get_ask(page,SQL));
+        PrintWriter out = response.getWriter();
+        out.print(jsonObject);
+        out.flush();
+        out.close();
     }
 
     private void get_my_ask(HttpServletResponse response,int page,String author){

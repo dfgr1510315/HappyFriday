@@ -79,7 +79,7 @@ public class Learn_list extends HttpServlet {
             jsonObject.put("chapter", cdl.get_chapter(No)); //获取目录
             jsonObject.put("recommend", cdl.get_recommend(class_type));//获取推荐课程
             jsonObject.put("note_count", new noteDAOlmpl().get_note_count(No));//获取笔记数量
-            jsonObject.put("ask_count", new askDAOlmpl().get_ask_count(No));//获取问答数量
+            jsonObject.put("ask_count", new askDAOlmpl().get_ask_count("select count(ask_id) ask_count from ask where belong_class_id=" + No));//获取问答数量
         }
         PrintWriter out = response.getWriter();
         out.print(jsonObject);

@@ -2,6 +2,8 @@ package DAO;
 
 import Model.Lesson;
 import Model.Class;
+import Model.Material;
+
 import java.util.List;
 
 public interface classDAO {
@@ -40,4 +42,7 @@ public interface classDAO {
 
     //加入课程学习
     boolean join_class(int class_id, String username, String time, int classification);
+
+    //获取课时视频和文件
+    Material get_material(String username,int class_id,String lesson_no);
 }

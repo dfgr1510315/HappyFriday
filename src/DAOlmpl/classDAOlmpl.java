@@ -1,10 +1,8 @@
 package DAOlmpl;
 
 import DAO.classDAO;
-import Model.Chapter;
+import Model.*;
 import Model.Class;
-import Model.Lesson;
-import Model.Sc;
 import Server.DBPoolConnection;
 import com.alibaba.druid.pool.DruidPooledConnection;
 
@@ -456,5 +454,46 @@ public class classDAOlmpl implements classDAO {
                 }
         }
         return state!=0;
+    }
+
+    @Override
+    public Material get_material(String username, int class_id,String lesson_no) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        Material material = new Material();
+        try {
+            con = dbp.getConnection();
+            Statement statement = con.createStatement();
+            String sql ="select user from sc where user='"+username+"' and class="+class_id;
+            ResultSet rs = statement.executeQuery(sql);
+            String sc_user = null;
+            while (rs.next()){
+                sc_user = rs.getString("user");
+            }
+            if (sc_user==null){
+                material.setPermit(false);
+            }else {
+                sql = "select video_address,Image_text,file_address,file_name from class where class_id=" + class_id + " and unit_no='"+lesson_no+"' and release_status="+1;
+                rs = statement.executeQuery(sql);
+                while (rs.next()){
+                    material.setPermit(true);
+                    material.setVideo_address(rs.getString("video_address"));
+                    material.setImage_text(rs.getString("Image_text"));
+                    material.setFile_address(rs.getString("file_address"));
+                    material.setFile_name(rs.getString("file_name"));
+                }
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return material;
     }
 }
