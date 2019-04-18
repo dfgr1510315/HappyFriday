@@ -11,7 +11,7 @@
 
     <display-name>首页</display-name>
     <welcome-file-list>
-        <welcome-file>HTML_JSP/homepage.jsp</welcome-file>
+        <welcome-file>HTML_JSP/homepage.html</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -181,16 +181,16 @@
         <filter-class>Filter.Login_Filter</filter-class>
         <init-param>
             <param-name>excPath</param-name>
-            <param-value>/HTML_JSP/homepage.jsp,/HTML_JSP/LoginPC.jsp,/HTML_JSP/index.jsp,/HTML_JSP/course.jsp,/HTML_JSP/Learn_list.jsp</param-value>
+            <param-value>/HTML_JSP/homepage.html,/HTML_JSP/LoginPC.html,/HTML_JSP/index.html,/HTML_JSP/Learn_list.html,/HTML_JSP/navigation.html</param-value>
         </init-param>
         <init-param>
             <param-name>teacherPath</param-name>
-            <param-value>/HTML_JSP/Myclass.jsp,/HTML_JSP/basic_information.jsp,/HTML_JSP/image.jsp,/HTML_JSP/duration.jsp,/HTML_JSP/instructors.jsp,/HTML_JSP/students.jsp</param-value>
+            <param-value>/HTML_JSP/Myclass.html,/HTML_JSP/basic_information.html,/HTML_JSP/image.html,/HTML_JSP/duration.html,/HTML_JSP/instructors.html,/HTML_JSP/students.html</param-value>
         </init-param>
     </filter>
     <filter-mapping>
         <filter-name>Login_Filter</filter-name>
-        <url-pattern>*.jsp</url-pattern>
+        <url-pattern>*.html</url-pattern>
     </filter-mapping>
 
     <!--<listener>

@@ -1,5 +1,8 @@
 package Server;
 
+import DAOlmpl.loginDAOlmpl;
+import Model.History;
+import Model.UserBase;
 import com.alibaba.druid.pool.DruidPooledConnection;
 import net.sf.json.JSONObject;
 
@@ -9,6 +12,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.List;
 
 
 @WebServlet(name = "Register")
@@ -17,7 +21,7 @@ public class Register extends HttpServlet {
     private static final int loginSuccess = 2;
     private static final int loginPWerror = 3;
     private static final int registerSuccess = 4;
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -57,7 +61,6 @@ public class Register extends HttpServlet {
 
     private void get_email(HttpServletRequest request,HttpServletResponse response) throws IOException {
         HttpSession session=request.getSession();
-        //JSONObject jsonObj = new JSONObject();
         String email = (String) session.getAttribute("email");
         PrintWriter out = response.getWriter();
         out.flush();
@@ -109,218 +112,72 @@ public class Register extends HttpServlet {
     private void ChangeEmail(HttpServletResponse response,String username,String email) throws IOException{
         String code=CodeUtil.generateUniqueCode();
         PrintWriter out = response.getWriter();
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        PreparedStatement qsql = null;
-        try {
-            con = dbp.getConnection();
-            qsql = con.prepareStatement("update login_table set code=? where username=?");
-            qsql.setString(1,code);
-            qsql.setString(2,username);
-            int state = qsql.executeUpdate();
-            out.flush();
-            out.println(state);
+        loginDAOlmpl lgl = new loginDAOlmpl();
+        boolean flag = lgl.change_email(username,email,code);
+        if (flag){
             new Thread(new MailUtil(email,code,1)).start();
-        } catch (Exception e) {
-            e.printStackTrace();
-            out.flush();
-            out.println(0);
-        }finally {
-            if (qsql!=null)
-                try{
-                    qsql.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
         }
+        out.println(flag);
+        out.flush();
         out.close();
     }
 
     private void forgetPW(HttpServletResponse response,String forget_user) throws IOException{
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        try {
-            con = dbp.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select password,email from login_table where username='"+forget_user+"'");
-            String password = null;
-            String email = null;
-            while (rs.next()){
-                password = rs.getString("password");
-                email = rs.getString("email");
-            }
-            PrintWriter out = response.getWriter();
-            if (password==null){
-                out.flush();
-                out.println(0);
-                return;
-            }
-            out.flush();
-            out.println(1);
-            out.close();
-            new Thread(new Mailforget(email,password)).start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
-    }
-
-    private void register(HttpServletResponse response,String username,String password,String email,int active) throws IOException{
-        //生成激活码
-        String code=CodeUtil.generateUniqueCode();
         PrintWriter out = response.getWriter();
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        PreparedStatement qsql = null;
-        try {
-            con = dbp.getConnection();
-            qsql = con.prepareStatement("insert into  login_table values(?,?,?,?,?)");
-            qsql.setString(1,username);
-            qsql.setString(2,password);
-            qsql.setString(3,email);
-            qsql.setInt(4,active);
-            qsql.setString(5,code);
-            int state = qsql.executeUpdate();
-            ConnectSQL.my_println("state:"+state);
-            out.flush();
-            out.println(state);
-            new Thread(new MailUtil(email, code,0)).start();
-        } catch (Exception e) {
-            e.printStackTrace();
-            out.flush();
-            out.println(0);
-        }finally {
-            if (qsql!=null)
-                try{
-                    qsql.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+        loginDAOlmpl lgl = new loginDAOlmpl();
+        String[] list = lgl.forgetPW(forget_user);
+        if (list.length!=0){
+            new Thread(new Mailforget(list[1],list[0])).start();
+            out.println(true);
+        }else out.println(false);
+        out.flush();
         out.close();
     }
 
-    private void login(HttpServletRequest request,HttpServletResponse response,String name,String password){
-        ConnectSQL.my_println("login");
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        try {
-            con = dbp.getConnection();
-            String sql = "select login_table.username,password,email,nike,head,usertype from login_table,personal_table where login_table.username=personal_table.username and active=1 and login_table.username='"+name+"'";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            String username = null;
-            String paw = null;
-            String nike = null;
-            String head_image = null;
-            String usertype = null;
-            String email = null;
-
-            PrintWriter out = response.getWriter();
-            JSONObject jsonObject = new JSONObject();
-            while (rs.next()){
-                username = rs.getString("login_table.username");
-                paw = rs.getString("password");
-                nike = rs.getString("nike");
-                head_image = rs.getString("head");
-                usertype = rs.getString("usertype");
-                email = rs.getString("email");
-            }
-            if (username!=null&&paw!=null) {
-                if (password.equals(paw)){
-                    HttpSession session = request.getSession();
-                    session.setAttribute("user_id",username);
-                    session.setAttribute("usertype",usertype);
-                    session.setAttribute("head_image",head_image);
-                    session.setAttribute("email",email);
-                    if (usertype.equals("teacher")){
-                        String class_id="";
-                        sql = "select class_id from class_teacher_table where teacher='"+username+"'";
-                        rs = statement.executeQuery(sql);
-                        while (rs.next()){
-                            class_id=class_id +","+rs.getInt("class_id");
-                        }
-                        session.setAttribute("class_id",class_id);
-                        ConnectSQL.my_println(class_id);
-                    }
-                    sql = "SELECT class,schedule,last_time,class_title from sc,class_teacher_table where user='"+username+"' and class=class_id order by time desc limit 6";
-                    rs = statement.executeQuery(sql);
-                    //ArrayList<Integer> history_class_id = new ArrayList<>();
-                    int[] history_class_id = new int[6];
-                    int[] schedule = new int[6];
-                    String[] last_time = new String[6];
-                    String[] title = new String[6];
-                    //ArrayList<Integer> schedule = new ArrayList<>();
-                    //ArrayList<String> last_time = new ArrayList<>();
-                   //ArrayList<String> title = new ArrayList<>();
-                    for (int i=0;i<6;i++){
-                        if (rs.next()){
-                            history_class_id[i]=rs.getInt("class");
-                            schedule[i]=rs.getInt("schedule");
-                            last_time[i]=rs.getString("last_time");
-                            title[i]=rs.getString("class_title");
-                        }
-                    }
-                    session.setAttribute("history_class_id",history_class_id);
-                    session.setAttribute("schedule",schedule);
-                    session.setAttribute("last_time",last_time);
-                    session.setAttribute("title",title);
-                    /*Cookie cookie=new Cookie("JSESSIONID", session.getId());
-                    cookie.setMaxAge(3600*24);
-                    response.addCookie(cookie);*/
-                    jsonObject.put("state",loginSuccess);//2
-                    jsonObject.put("nike",nike);
-                    jsonObject.put("head_image",head_image);
-
-                    out.print(jsonObject);
-                    out.flush();
-                    out.close();
-                }
-                else {
-                    jsonObject.put("state",loginPWerror);//3
-                    out.print(jsonObject);
-                    out.flush();
-                    out.close();
-                }
-            }else {
-                jsonObject.put("state",loginNofind);//1
-                out.print(jsonObject);
-                out.flush();
-                out.close();
-            }
-            rs.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
+    private void register(HttpServletResponse response,String username,String password,String email,int active) throws IOException{
+        String code=CodeUtil.generateUniqueCode();
+        PrintWriter out = response.getWriter();
+        loginDAOlmpl lgl = new loginDAOlmpl();
+        boolean flag = lgl.register(username,password,email,active,code);
+        if (flag){
+            new Thread(new MailUtil(email, code,0)).start();
         }
+        out.println(flag);
+        out.flush();
+        out.close();
+    }
+
+    private void login(HttpServletRequest request,HttpServletResponse response,String name,String password)throws IOException{
+        PrintWriter out = response.getWriter();
+        JSONObject jsonObject = new JSONObject();
+        loginDAOlmpl lgl = new loginDAOlmpl();
+        UserBase userBase = lgl.login(name);
+        if (userBase.getUsername()!=null&& userBase.getPaw().equals(password)){ //账户密码正确判断
+            HttpSession session = request.getSession();
+            session.setAttribute("user_id",userBase.getUsername());
+            session.setAttribute("usertype",userBase.getUsertype());
+            session.setAttribute("head_image",userBase.getHead_image());
+            session.setAttribute("email",userBase.getEmail());
+            if (userBase.getUsertype().equals("teacher")){//账户类型判断,是教师则去获取所教课程的ID
+                String class_id= lgl.get_teacher_class(userBase.getUsername());
+                session.setAttribute("class_id",class_id);
+            }
+            List list = lgl.get_history(name);
+            /*Cookie cookie=new Cookie("history", list.toString());
+            cookie.setMaxAge(3600*24);
+            response.addCookie(cookie);*/
+            //session.setAttribute("history",list);
+            jsonObject.put("state",loginSuccess);//2
+            jsonObject.put("head_image",userBase.getHead_image());
+
+        }else jsonObject.put("state",loginPWerror);
+        out.print(jsonObject);
+        out.flush();
+        out.close();
     }
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
     }
 }

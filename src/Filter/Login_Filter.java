@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-
 
 @WebFilter(filterName = "Login_Filter")
 public class Login_Filter implements Filter {
@@ -27,13 +25,12 @@ public class Login_Filter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-        //设置字符集为utf-8
-        request.setCharacterEncoding("utf-8");
+      /*  request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html; charset=UTF-8");
-        String realPath = "/ServletTest_war";
+        response.setContentType("text/html; charset=UTF-8");*/
+        //String realPath = "/ServletTest_war";
+        String realPath = "";
         String path=request.getServletPath();
-
         if (isHave(path,paths)){
             chain.doFilter(request, response);
             return;
@@ -42,37 +39,25 @@ public class Login_Filter implements Filter {
         try {
             String username=(String) session.getAttribute("user_id");
             String usertype = (String) session.getAttribute("usertype");
-
             if(username==null){
                 PrintWriter out = response.getWriter();
-                out.println ("<script language=javascript>alert('请登录');window.location='"+realPath+"/HTML_JSP/homepage.html'</script>");
+                out.println ("<script type=\"text/javascript\">window.location='"+realPath+"/HTML_JSP/404.html'</script>");
                 out.close();
                 return;
             }
-         /*   for (String p : teacher_paths) {
-                if (path.equals(p)) {
-                    if (usertype.equals("student")) {
-                        PrintWriter out = response.getWriter();
-                        out.println ("<script language=javascript>alert('你的用户权限不足以访问此页面');window.location='"+realPath+"/HTML_JSP/homepage.html'</script>");
-                        out.close();
-                        return;
-                    }
-                }
-            }*/
             if (isHave(path,teacher_paths)){
                 String[] class_id = ((String) session.getAttribute("class_id")).split(",");
                 String class_id1 = request.getParameter("class_id");
-                //System.out.println("Filter_class_id"+ Arrays.toString(class_id));
                 if (usertype.equals("teacher")&&isHave(class_id1,class_id)) {
                     chain.doFilter(request, response);
                     return;
                 }else {
                     PrintWriter out = response.getWriter();
-                    out.println ("<script language=javascript>alert('你的用户权限不足以访问此页面');window.location='"+realPath+"/HTML_JSP/homepage.html'</script>");
+                    out.println ("<script language=javascript>window.location='"+realPath+"/HTML_JSP/404.html'</script>");
                     out.close();
                     return;
                 }
-            }
+            }else  System.out.println("!!!!");
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -84,7 +69,7 @@ public class Login_Filter implements Filter {
         chain.doFilter(request, response);
     }
 
-    public void init(FilterConfig config) throws ServletException {
+    public void init(FilterConfig config){
         paths = config.getInitParameter("excPath").split(",");
         teacher_paths = config.getInitParameter("teacherPath").split(",");
     }

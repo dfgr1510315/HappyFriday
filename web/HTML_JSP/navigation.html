@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script type="text/javascript">
         var user ;
@@ -34,7 +34,7 @@
                     last_time = jsonObj.last_time;
                     title = jsonObj.title;
                     checkCookie();
-                    load_history();
+                    //load_history();
                     card_show();
                     history_show();
                     dtd.resolve();
@@ -44,10 +44,9 @@
         }
 
         function checkCookie() {
-                console.log('user'+user);
+                //console.log('user'+user);
                 $("#loginButton").hide();
                 $("#personalCenter").show();
-              /*  $("#showname").text(User);*/
                 $("#head_image").attr('src',contextPath+head_image);
         }
 
@@ -89,6 +88,7 @@
         });
 
         function load_history() {
+            console.log(history_class_id);
             var load_history_class_id = history_class_id.toString().split(',');
             var load_schedule = schedule.toString().split(',');
             var load_last_time = last_time.toString().split(',');
