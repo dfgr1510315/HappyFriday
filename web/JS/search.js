@@ -186,34 +186,35 @@ function search_note() {
         },
         dataType: 'json',
         success: function (jsonObj) {
+            //console.log(jsonObj);
             $('#count').text('共找到' + jsonObj.count + '个结果');
             var note_box = $('#note_box');
-            if (jsonObj.count === '0') {
+            if (jsonObj.count === 0) {
                 note_box.append(
                     '<div class="no_find_class">暂无结果</div>'
                 );
                 return;
             }
-            for (var i = 0; i < jsonObj.author.length; i++) {
+            for (var i = 0; i < jsonObj.note.length; i++) {
                 note_box.prepend('<div class="post-row">\n' +
                     '                            <div style="float:left;">\n' +
-                    '                                <a target="_blank" href="../Learn_list.html?class_id='+jsonObj.belong_class_id[i]+'">\n' +
-                    '                                    <image src="'+contextPath+jsonObj.cover_address[i]+'" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
+                    '                                <a target="_blank" href="../Learn_list.html?class_id='+jsonObj.note[i].belong_class_id+'">\n' +
+                    '                                    <img src="'+contextPath+jsonObj.note[i].cover_address+'" style="width: 40px;height: 40px;border-radius: 20px;">\n' +
                     '                                </a>\n' +
                     '                            </div>\n' +
                     '                            <div style="margin-left: 60px">\n' +
                     '                                <div class="title">\n' +
-                    '                                    <a target="_blank" href="../Learn_list.html?class_id='+jsonObj.belong_class_id[i]+'" >'+jsonObj.class_title[i]+'</a>\n' +
+                    '                                    <a target="_blank" href="../Learn_list.html?class_id='+jsonObj.note[i].belong_class_id+'" >'+jsonObj.note[i].class_title+'</a>\n' +
                     '                                </div>\n' +
                     '                                <div class="unit">\n' +
-                    '                                    <a target="_blank" href="" >'+jsonObj.author[i]+'</a>\n' +
+                    '                                    <a target="_blank" href="../Play.html?'+jsonObj.note[i].belong_class_id+'/'+jsonObj.note[i].unit_no+'" >'+jsonObj.note[i].unit_no+':'+jsonObj.note[i].lesson_title+'</a>\n' +
                     '                                </div>\n' +
                     '                                <div style="display: block;">\n' +
                     '                                    <div class="note_text">\n' +
-                    '                                        '+jsonObj.text[i]+'\n' +
+                    '                                        '+jsonObj.note[i].text+'\n' +
                     '                                    </div>\n' +
                     '                                    <div class="post" style="margin-left: 445px;">\n' +
-                    '                                        <span >'+jsonObj.note_time[i]+'</span>\n' +
+                    '                                        <span >'+jsonObj.note[i].note_time+'</span>\n' +
                     '                                    </div>\n' +
                     '                                </div>\n' +
                     '                            </div>\n' +
@@ -294,60 +295,61 @@ function search_ask() {
         },
         dataType: 'json',
         success: function (jsonObj) {
+            console.log(jsonObj);
             $('#count').text('共找到' + jsonObj.count + '个结果');
             var ask_ul = $('#ask_ul');
-            if (jsonObj.count === '0') {
+            if (jsonObj.count === 0) {
                 ask_ul.append(
                     '<div class="no_find_class">暂无结果</div>'
                 );
                 return;
             }
-            for (var i=0;i<jsonObj.ask_id.length;i++){
+            for (var i=0;i<jsonObj.ask.length;i++){
                 ask_ul.append(
                     ' <li>\n' +
                     '                            <div class="ui-box">\n' +
                     '                                <div class="headslider qa-medias l">\n' +
                     '                                    <a class="media" target="_blank" href="javascript:void(0)">\n' +
-                    '                                        <img src="'+contextPath+jsonObj.cover_address[i]+'" style="width: 50px;height: 50px;border-radius: 0;" alt="">\n' +
+                    '                                        <img src="'+contextPath+jsonObj.ask[i].cover_address+'" style="width: 50px;height: 50px;border-radius: 0;" alt="">\n' +
                     '                                    </a>\n' +
                     '                                </div>\n' +
                     '                                <div class="wendaslider qa-content">\n' +
                     '                                    <h2 class="wendaquetitle qa-header">\n' +
                     '                                        <div class="wendatitlecon qa-header-cnt clearfix">\n' +
-                    '                                            <a class="qa-tit" target="_blank" href="../questions.html?'+jsonObj.ask_id[i]+'">\n' +
-                    '                                                <i>'+jsonObj.ask_title[i]+'</i>\n' +
+                    '                                            <a class="qa-tit" target="_blank" href="../questions.html?'+jsonObj.ask[i].ask_id+'">\n' +
+                    '                                                <i>'+jsonObj.ask[i].ask_title+'</i>\n' +
                     '                                            </a>\n' +
                     '                                        </div>\n' +
                     '                                    </h2>\n' +
                     '                                    <div class="replycont qa-body clearfix">\n' +
-                    '                                        <div class="l replydes" id="new_reply'+jsonObj.ask_id[i]+'">\n' +
+                    '                                        <div class="l replydes" id="new_reply'+jsonObj.ask[i].ask_id+'">\n' +
                     '                                        </div>\n' +
                     '                                    </div>\n' +
                     '                                    <div class="replymegfooter qa-footer clearfix">\n' +
                     '                                        <div class="l-box l">\n' +
-                    '                                            <a class="replynumber static-count " target="_blank" href="../questions.html?'+jsonObj.ask_id[i]+'">\n' +
-                    '                                                <span class="static-item answer">'+jsonObj.answer_count[i]+' 回答</span>\n' +
-                    '                                                <span class="static-item">'+jsonObj.visits_count[i]+' 浏览</span>\n' +
+                    '                                            <a class="replynumber static-count " target="_blank" href="../questions.html?'+jsonObj.ask[i].ask_id+'">\n' +
+                    '                                                <span class="static-item answer">'+jsonObj.ask[i].answer_count+' 回答</span>\n' +
+                    '                                                <span class="static-item">'+jsonObj.ask[i].visits_count+' 浏览</span>\n' +
                     '                                            </a>\n' +
-                    '                                            <a href="../Learn_list.html?class_id='+jsonObj.belong_class_id[i]+'" target="_blank">'+jsonObj.class_title[i]+'</a>\n' +
+                    '                                            <a href="../Learn_list.html?class_id='+jsonObj.ask[i].belong_class_id+'" target="_blank">'+jsonObj.ask[i].class_title+'</a>\n' +
                     '                                        </div>\n' +
-                    '                                        <em class="r">'+jsonObj.ask_time[i]+'</em>\n' +
+                    '                                        <em class="r">'+jsonObj.ask[i].ask_time+'</em>\n' +
                     '                                    </div>\n' +
                     '                                </div>\n' +
                     '                            </div>\n' +
                     '                        </li>'
                 );
-                if (jsonObj.new_answer[i]===null){
-                    $('#new_reply'+jsonObj.ask_id[i]).append(
-                        '<button type="button" class="btn btn-light" onclick="window.open(\'../questions.html?'+jsonObj.ask_id[i]+'\')">我来回答</button>\n'
+                if (jsonObj.ask[i].new_answer===null){
+                    $('#new_reply'+jsonObj.ask[i].ask_id).append(
+                        '<button type="button" class="btn btn-light" onclick="window.open(\'../questions.html?'+jsonObj.ask[i].ask_id+'\')">我来回答</button>\n'
                     )
                 } else {
-                    $('#new_reply'+jsonObj.ask_id[i]).append(
+                    $('#new_reply'+jsonObj.ask[i].ask_id).append(
                         '<span class="replysign">\n' +
                         ' 最新回复 /\n' +
-                        '   <a class="nickname" target="_blank" href="javascript:void(0)">'+jsonObj.new_answerer[i]+'</a>\n' +
+                        '   <a class="nickname" target="_blank" href="javascript:void(0)">'+jsonObj.ask[i].new_answerer+'</a>\n' +
                         ' </span>\n' +
-                        ' <div class="replydet">'+jsonObj.new_answer[i]+'</div>\n'
+                        ' <div class="replydet">'+jsonObj.ask[i].new_answer+'</div>\n'
                     )
                 }
             }

@@ -331,6 +331,25 @@
         padding: 10px;
         margin-top: 5px
     }
+
+    .replydes {
+        padding-left: 20px;
+        border-left: 2px solid #d9dde1;
+        color: #545c63;
+        font-size: 12px;
+        line-height: 20px;
+        word-wrap: break-word;
+        word-break: break-all;
+        overflow: hidden;
+    }
+    .replydes .btn-light {
+        border-radius: 18px;
+        font-size: 12px;
+    }
+    .replydes .replysign a {
+        font-size: 12px;
+        color: #71777d;
+    }
 </style>
 
 
@@ -452,7 +471,7 @@
     var post_ask_flag = 0;
     var No = window.location.search.replace("?", '').split("/");
     var Unit_length;
-    var Unit;
+    var Unit = [];
     var class_no = No[1];
     No = No[0];
     var editor_count = 0;
@@ -512,8 +531,9 @@
             },
             dataType: 'json',
             success: function (jsonObject) {
-                console.log(jsonObject);
+                //console.log(jsonObject);
                 $("title").text(jsonObject.title);
+                Unit_length = jsonObject.chapter.length;
                 var unit_titles = [];
                 for (i = 0; i < jsonObject.chapter.length; i++) {
                     if (-1 === unit_contain(unit_titles, jsonObject.chapter[i].unit_title)) unit_titles.push(jsonObject.chapter[i].unit_title);
@@ -529,6 +549,7 @@
                     );
                 }
                 for (i = 0; i < jsonObject.chapter.length; i++) {
+                    Unit.push(jsonObject.chapter[i].unit_no);
                     var belong_unit = unit_contain(unit_titles, jsonObject.chapter[i].unit_title);
                     $("#Unit" + belong_unit).append(
                         '<li class="sec-li">' +
@@ -571,8 +592,9 @@
             },
             dataType: 'json',
             success: function (jsonObject) {
-                for (var i = 0; i < jsonObject.title.length; i++) {
-                    add_ask_box(jsonObject.title[i], jsonObject.time[i], jsonObject.answer[i], jsonObject.browse[i]);
+                console.log(jsonObject);
+                for (var i = 0; i < jsonObject.ask.length; i++) {
+                    add_ask_box(jsonObject.ask[i].ask_id,jsonObject.ask[i].belong_class_id,jsonObject.ask[i].ask_title, jsonObject.ask[i].ask_time, jsonObject.ask[i].answer_count, jsonObject.ask[i].visits_count,jsonObject.ask[i].new_answerer,jsonObject.ask[i].new_answer);
                 }
             }
         });
@@ -593,7 +615,8 @@
             },
             dataType: 'json',
             success: function (jsonObject) {
-                for (var i = 0; i < jsonObject.text.length; i++) {
+                console.log(jsonObject);
+                for (var i = 0; i < jsonObject.note.length; i++) {
                     $('#note_box').prepend(' <div class="ui-box">\n' +
                         '                            <div style="float:left;">\n' +
                         '                                <a href="PersonalCenter.html">\n' +
@@ -606,19 +629,19 @@
                         '                                </div>\n' +
                         '                                <div style="display: block;">\n' +
                         '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
-                        '                                        ' + jsonObject.text[i] + '\n' +
+                        '                                        ' + jsonObject.note[i].text + '\n' +
                         '                                    </div>\n' +
                         '                                    <div class="post" style=" margin-left: 12%;">\n' +
                         '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
-                        '                                        <a id="delete_note' + jsonObject.note_no[i] + '" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="' + jsonObject.note_no[i] + '"><i class="fa fa-window-close-o" ></i>删除</a>\n' +
+                        '                                        <a id="delete_note' + jsonObject.note[i].note_id + '" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="' + jsonObject.note[i].note_id + '"><i class="fa fa-window-close-o" ></i>删除</a>\n' +
                         '                                        <a class="post_action">查看全文</a>\n' +
-                        '                                        <span >' + jsonObject.time[i] + '</span>\n' +
+                        '                                        <span >' + jsonObject.note[i].note_time + '</span>\n' +
                         '                                    </div>\n' +
                         '                                </div>\n' +
                         '                                <div style="display: none;">\n' +
                         '                                    <div id="edit_editor' + i + '" style="height: 322px;margin-bottom: 20px"></div>\n' +
                         '                                    <div style="height: 30px;">\n' +
-                        '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="' + jsonObject.note_no[i] + '">提交</button>\n' +
+                        '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="' + jsonObject.note[i].note_id + '">提交</button>\n' +
                         '                                        <button type="button" class="btn btn-outline-secondary btn-mini" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
                         '                                    </div>\n' +
                         '                                </div>\n' +
@@ -627,7 +650,7 @@
                     var edit_editor = new E('#edit_editor' + i);
                     edit_editor.customConfig.menus = edit_configure;
                     edit_editor.create();
-                    edit_editor.txt.html(jsonObject.text[i]);
+                    edit_editor.txt.html(jsonObject.note[i].text);
                     editor_count++;
                 }
             }
@@ -640,7 +663,7 @@
     var cookieTime;
 
     function live() {
-        if (post_note_flag === 1 || post_ask_flag === 1) return;
+        //if (post_note_flag === 1 || post_ask_flag === 1) return;
         var title = $('#adjust').prev().children().eq(2).text();
         cookie.set('class_no_' + user + No, class_no + ',' + title);
         var done_times = 0;
@@ -690,7 +713,7 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                console.log(jsonObj);
+                //console.log(jsonObj);
                 if (jsonObj.material.permit === false) {
                     $('#video').empty().append(
                         '<div class="no_find_video">请先加入本课程学习</div>'
@@ -806,7 +829,7 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                if ('1' === jsonObj.msg) {
+                if (true === jsonObj) {
                     $(event).parent().parent().prev().children().eq(0).html(new_note);
                     $(event).next().click();
                 }
@@ -836,13 +859,13 @@
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
-                    if (null !== jsonObj.note_id) {
+                    if (0 !== jsonObj) {
                         var note_editor = $('#note_editor');
                         editor_count++;
                         $('#note_box').prepend(' <div class="ui-box">\n' +
                             '                            <div style="float:left;">\n' +
                             '                                <a href="PersonalCenter.html">\n' +
-                            '                                    <image src="' + contextPath + head_image + '" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
+                            '                                    <img src="' + contextPath + head_image + '" style="width: 40px;height: 40px;border-radius: 20px;">\n' +
                             '                                </a>\n' +
                             '                            </div>\n' +
                             '                            <div style="margin-left: 60px">\n' +
@@ -855,7 +878,7 @@
                             '                                    </div>\n' +
                             '                                    <div class="post" style=" margin-left: 12%;">\n' +
                             '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
-                            '                                        <a id="delete_note' + jsonObj.note_id + '" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="' + jsonObj.note_id + '"><i class="fa fa-window-close-o"></i>删除</a>\n' +
+                            '                                        <a id="delete_note' + jsonObj + '" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="' + jsonObj + '"><i class="fa fa-window-close-o"></i>删除</a>\n' +
                             '                                        <a class="post_action">查看全文</a>\n' +
                             '                                        <span >' + time2 + '</span>\n' +
                             '                                    </div>\n' +
@@ -863,7 +886,7 @@
                             '                                <div style="display: none;">\n' +
                             '                                    <div id="edit_editor' + editor_count + '" style="height: 60%;margin-bottom: 14px"></div>\n' +
                             '                                    <div style="height: 30px;">\n' +
-                            '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="' + jsonObj.note_id + '">提交</button>\n' +
+                            '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="' + jsonObj + '">提交</button>\n' +
                             '                                        <button type="button" class="btn btn-outline-secondary btn-mini" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
                             '                                    </div>\n' +
                             '                                </div>\n' +
@@ -918,7 +941,7 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                if ('1' === jsonObj.msg) {
+                if (true === jsonObj) {
                     $('#delete_note' + noteno).parent().parent().parent().parent().remove();
                     $("#Delete_Note_Close").click();
                 }
@@ -950,30 +973,32 @@
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
-                    if ('1' === jsonObj.msg) {
-                        add_ask_box(ask_title, time2, 0, 0);
+                    if (jsonObj!==0) {
+                        add_ask_box(jsonObj,ask_text,ask_title, time2, 0, 0,'','');
                         ask_editor.children().eq(1).children().html('<p><br></p>');
                         $('#problem').val('');
-                    }
+                    }else alert('提交失败')
                 }
             });
         }
     }
 
-    function add_ask_box(ask_title, time2, answer, browse) {
+
+    function add_ask_box(ask_id,ask_text,ask_title, time2, answer, browse,new_answerer,new_answer) {
         $('#ask_box').prepend(' <div class="ui-box">\n' +
             '                            <div style="float:left;">\n' +
-            '                                <a href="PersonalCenter.html">\n' +
-            '                                    <image src="' + contextPath + head_image + '" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
+            '                                <a target="_blank" href="questions.html?'+ask_id+'">\n' +
+            '                                    <img src="' + contextPath + head_image + '" style="width: 40px;height: 40px;border-radius: 20px;">\n' +
             '                                </a>\n' +
             '                            </div>\n' +
             '                            <div style="margin-left: 60px">\n' +
             '                                <div class="author">\n' +
-            '                                    <a  href="PersonalCenter.html" >' + user + '</a>\n' +
+            '                                    <a target="_blank" href="questions.html?'+ask_id+'" >' + ask_title + '</a>\n' +
             '                                </div>\n' +
-            '                                <div style="display: block;">\n' +
-            '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
-            '                                        ' + ask_title + '\n' +
+            '                                <div style="display: block;margin-top: 8px;">\n' +
+            '                                    <div style="overflow: hidden">\n' +
+            '                                        <div class="l replydes" id="new_reply'+ask_id+'">\n' +
+            '                                        </div>\n' +
             '                                    </div>\n' +
             '                                    <div class="post" style=" margin-left: 30%;">\n' +
             '                                        <a class="post_action" href="javascript:void(0);"><span>' + answer + '回答</span><span>' + browse + '浏览</span></a>\n' +
@@ -982,6 +1007,19 @@
             '                                </div>\n' +
             '                            </div>\n' +
             '                        </div>');
+        if (new_answerer===''){
+            $('#new_reply'+ask_id).append(
+                '<button type="button" class="btn btn-light" onclick="window.open(\'questions.html?'+ask_id+'\')">我答我自己</button>\n'
+            )
+        } else {
+            $('#new_reply'+ask_id).append(
+                '<span class="replysign">\n' +
+                ' 最新回复 /\n' +
+                '   <a class="nickname" target="_blank" href="questions.html?'+ask_id+'">'+new_answerer+'</a>\n' +
+                ' </span>\n' +
+                ' <div class="replydet">'+new_answer+'</div>\n'
+            )
+        }
     }
 
 </script>

@@ -88,7 +88,7 @@
             },
             dataType: 'json',
             success: function (jsonObject) {
-                console.log(jsonObject);
+                //console.log(jsonObject);
                 if (jsonObject.release_status === 0) {
                     pass = 0;
                     alert('该课程尚未发布');
@@ -286,30 +286,31 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                for (var i = 0; i < jsonObj.text.length; i++) {
+                //console.log(jsonObj);
+                for (var i = 0; i < jsonObj.note.length; i++) {
                     $('#note_ul').append(
                         '<li class="post-row js-find-txt">\n' +
                         '                            <div class="media">\n' +
                         '                                <a href="" target="_blank">\n' +
-                        '                                    <img src="' + contextPath + jsonObj.head[i] + '" width="40" height="40" alt="">\n' +
+                        '                                    <img src="' + contextPath + jsonObj.note[i].head + '" width="40" height="40" alt="">\n' +
                         '                                </a>\n' +
                         '                            </div>\n' +
                         '                            <div class="bd">\n' +
                         '                                <div class="tit">\n' +
-                        '                                    <a href="" target="_blank">' + jsonObj.name[i] + '</a>\n' +
+                        '                                    <a href="" target="_blank">' + jsonObj.note[i].author + '</a>\n' +
                         '                                </div>\n' +
                         '                                <div class="js-note-main">\n' +
                         '                                    <div class="note-media">\n' +
-                        '                                        <a href="" class="from l">' + jsonObj.class_no[i] + '&nbsp&nbsp' + jsonObj.class_title[i] + '</a>\n' +
+                        '                                        <a target="_blank" href="Play.html?' + No + '/'+jsonObj.note[i].unit_no+'" class="from l">' + jsonObj.note[i].unit_no + '&nbsp&nbsp' + jsonObj.note[i].lesson_title + '</a>\n' +
                         '                                    </div>\n' +
                         '                                    <div class="js-notelist-content notelist-content">\n' +
-                        '                                        <div class="autowrap note-content">' + jsonObj.text[i] + '</div>\n' +
+                        '                                        <div class="autowrap note-content">' + jsonObj.note[i].text + '</div>\n' +
                         '                                    </div>\n' +
                         '                                    <div class="footer clearfix">\n' +
                         /*         '                                        <div class="actions l">\n' +
                                  '                                            <a href="" target="_blank" class="post-action">查看全文</a>\n' +
                                  '                                        </div>\n' +*/
-                        '                                        <span class="r timeago">' + jsonObj.time[i] + '</span>\n' +
+                        '                                        <span class="r timeago">' + jsonObj.note[i].note_time + '</span>\n' +
                         '                                    </div>\n' +
                         '                                </div>\n' +
                         '                            </div>\n' +
@@ -340,53 +341,54 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                for (var i = 0; i < jsonObj.ask_no.length; i++) {
+                console.log(jsonObj);
+                for (var i = 0; i < jsonObj.ask.length; i++) {
                     $('#ask_ul').append(
                         ' <li>\n' +
                         '                            <div class="ui-box">\n' +
                         '                                <div class="headslider qa-medias l">\n' +
-                        '                                    <a class="media" target="_blank" href="" title="' + jsonObj.asker[i] + '">\n' +
-                        '                                        <img src="' + contextPath + jsonObj.head[i] + '" width="40px" height="40px">\n' +
+                        '                                    <a class="media" target="_blank" href="" title="' + jsonObj.ask[i].asker + '">\n' +
+                        '                                        <img src="' + contextPath + jsonObj.ask[i].head + '" width="40px" height="40px">\n' +
                         '                                    </a>\n' +
                         '                                </div>\n' +
                         '                                <div class="wendaslider qa-content">\n' +
                         '                                    <h2 class="wendaquetitle qa-header">\n' +
                         '                                        <div class="wendatitlecon qa-header-cnt clearfix">\n' +
-                        '                                            <a class="qa-tit" target="_blank" href="questions.html?' + jsonObj.ask_no[i] + '">\n' +
-                        '                                                <i>' + jsonObj.describe[i] + '</i>\n' +
+                        '                                            <a class="qa-tit" target="_blank" href="questions.html?' + jsonObj.ask[i].ask_id + '">\n' +
+                        '                                                <i>' + jsonObj.ask[i].ask_title + '</i>\n' +
                         '                                            </a>\n' +
                         '                                        </div>\n' +
                         '                                    </h2>\n' +
                         '                                    <div class="replycont qa-body clearfix">\n' +
-                        '                                        <div class="l replydes" id="new_reply' + jsonObj.ask_no[i] + '">\n' +
+                        '                                        <div class="l replydes" id="new_reply' + jsonObj.ask[i].ask_id + '">\n' +
                         '                                        </div>\n' +
                         '                                    </div>\n' +
                         '                                    <div class="replymegfooter qa-footer clearfix">\n' +
                         '                                        <div class="l-box l">\n' +
-                        '                                            <a class="replynumber static-count " target="_blank" href="questions.html?' + jsonObj.ask_no[i] + '">\n' +
-                        '                                                <span class="static-item answer">' + jsonObj.answer_count[i] + ' 回答</span>\n' +
-                        '                                                <span class="static-item">' + jsonObj.times[i] + ' 浏览</span>\n' +
+                        '                                            <a class="replynumber static-count " target="_blank" href="questions.html?' + jsonObj.ask[i].ask_id + '">\n' +
+                        '                                                <span class="static-item answer">' + jsonObj.ask[i].answer_count + ' 回答</span>\n' +
+                        '                                                <span class="static-item">' + jsonObj.ask[i].visits_count + ' 浏览</span>\n' +
                         '                                            </a>\n' +
-                        '                                            <a href="" target="_blank">' + jsonObj.title_No_list[i] + '&nbsp&nbsp' + jsonObj.title[i] + '</a>\n' +
+                        '                                            <a href="Play.html?'+No+'/'+jsonObj.ask[i].unit_no+'" target="_blank">' + jsonObj.ask[i].unit_no + '&nbsp&nbsp' + jsonObj.ask[i].lesson_title + '</a>\n' +
                         '                                        </div>\n' +
-                        '                                        <em class="r">' + jsonObj.time[i] + '</em>\n' +
+                        '                                        <em class="r">' + jsonObj.ask[i].ask_time + '</em>\n' +
                         '                                    </div>\n' +
                         '                                </div>\n' +
                         '                            </div>\n' +
                         '                        </li>'
                     );
                     //$('#ask_no'+jsonObj.ask_no[i]).
-                    if (jsonObj.new_answer[i] === null) {
-                        $('#new_reply' + jsonObj.ask_no[i]).append(
-                            '<button type="button" class="btn btn-light" onclick="window.open(\'questions.html?' + jsonObj.ask_no[i] + '\')">我来回答</button>\n'
+                    if (jsonObj.ask[i].new_answerer === '') {
+                        $('#new_reply' + jsonObj.ask[i].ask_id).append(
+                            '<button type="button" class="btn btn-light" onclick="window.open(\'questions.html?' + jsonObj.ask[i].ask_id + '\')">我来回答</button>\n'
                         )
                     } else {
-                        $('#new_reply' + jsonObj.ask_no[i]).append(
+                        $('#new_reply' + jsonObj.ask[i].ask_id).append(
                             '<span class="replysign">\n' +
                             ' 最新回复 /\n' +
-                            '   <a class="nickname" target="_blank" href="">' + jsonObj.new_answer[i] + '</a>\n' +
+                            '   <a class="nickname" target="_blank" href="">' + jsonObj.ask[i].new_answerer + '</a>\n' +
                             ' </span>\n' +
-                            ' <div class="replydet">' + jsonObj.new_answer_text[i] + '</div>\n'
+                            ' <div class="replydet">' + jsonObj.ask[i].new_answer + '</div>\n'
                         )
                     }
                 }

@@ -1,4 +1,3 @@
-
 <!--  Created by IntelliJ IDEA.
   User: LI
   Date: 2018/12/10 0010
@@ -18,80 +17,92 @@
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <style type="text/css">
-        body{
+        body {
             background-color: #f8fafc;
         }
+
         body.modal-open {
             overflow-y: auto !important;
-            padding-right: 0!important;
+            padding-right: 0 !important;
         }
-        tbody tr td:not(:first-child){
+
+        tbody tr td:not(:first-child) {
             padding-top: 32px !important;
         }
 
-        td button{
+        td button {
             margin-top: -7px;
         }
 
-        .fa-comments{
+        .fa-comments {
             margin-right: 5px;
         }
 
-        body{
+        body {
             background-color: #f8fafc;
         }
 
-        .main-col{
+        .main-col {
             min-height: 546px;
         }
-        .main-default{
+
+        .main-default {
             border-color: #ddd;
         }
+
         .main-col .main-heading {
             background: transparent;
             font-weight: bold;
             color: #393d4d;
             padding: 20px 20px;
         }
-        .main-body{
+
+        .main-body {
             padding: 15px;
         }
+
         .media-list {
             padding-left: 0;
             list-style: none;
             margin: 0;
         }
 
-        .container_right li{
+        .container_right li {
             display: list-item;
             text-align: -webkit-match-parent;
         }
-        .media{
+
+        .media {
             overflow: hidden;
             zoom: 1;
             margin-top: 15px;
         }
+
         .media:first-child {
             margin-top: 0;
         }
+
         .media-list .media:last-child {
             border-bottom: none;
         }
+
         .media-list .media {
             border-bottom: 1px solid #eee;
             padding-bottom: 15px;
         }
+
         .media-body {
             overflow: hidden;
             zoom: 1;
         }
-        .member{
+
+        .member {
             margin-bottom: 10px;
         }
 
-        .member a{
+        .member a {
             color: #333;
-            font-family: "Microsoft YaHei",arial,serif !important;
+            font-family: "Microsoft YaHei", arial, serif !important;
             text-decoration: none;
             background-color: transparent;
         }
@@ -100,36 +111,40 @@
             text-decoration: none;
         }
 
-        .member a:hover,.text-mute a:hover{
+        .member a:hover, .text-mute a:hover {
             color: #007bff
         }
 
         strong {
             font-weight: bold;
         }
+
         .text-normal {
             font-size: 12px;
         }
-        .text-mute {  /*减淡字体颜色，突出显示效果*/
+
+        .text-mute { /*减淡字体颜色，突出显示效果*/
             color: #999;
         }
-        .text-mute a {  /*减淡字体颜色，突出显示效果*/
+
+        .text-mute a { /*减淡字体颜色，突出显示效果*/
             color: #07111b;
         }
 
-        .media-body .bullet {  /*间隔点*/
+        .media-body .bullet { /*间隔点*/
             padding: 0 3px;
             font-size: 75%;
             color: #ccc;
             line-height: 1.4;
         }
-        .last-row{  /*最后一行*/
+
+        .last-row { /*最后一行*/
             width: 50%;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .last a{
+        .last a {
             border-top-right-radius: 4px;
             border-bottom-right-radius: 4px;
         }
@@ -138,80 +153,80 @@
     <script type="text/javascript">
         var page_length;
         var contextPath = getContextPath();
-        $(document).ready(function(){
-            $('#navigation').load('navigation.html',function () {
-                $('#VerticalNav').load('VerticalNav.html',function () {
+        $(document).ready(function () {
+            $('#navigation').load('navigation.html', function () {
+                $('#VerticalNav').load('VerticalNav.html', function () {
                     addClass(4);
                     $.when(get_user_infor()).done(function () {
                         get_All_ask();
-                        $('#radio_cover_img').attr('src',contextPath+head_image);
+                        $('#radio_cover_img').attr('src', contextPath + head_image);
                     });
                 });
             });
         });
 
         function get_All_ask() {
-            var page = window.location.search.replace('?','');
-            if(page==='') page='1';
+            var page = window.location.search.replace('?', '');
+            if (page === '') page = '1';
             $.ajax({
-                url: contextPath+"/postask",
+                url: contextPath + "/postask",
                 data: {
-                    page:page,
-                    user:user,
-                    action:'get_All_ask'
+                    page: page,
+                    user: user,
+                    action: 'get_all_ask'
                 },
                 type: "POST",
                 dataType: "json",
                 asynch: "false",
                 success: function (jsonObj) {
+                    console.log(jsonObj);
                     var ask_ul = $('#ask_ul');
-                    for (var i=0;i<jsonObj.title.length;i++){
+                    for (var i = 0; i < jsonObj.ask.length; i++) {
                         ask_ul.append(
                             ' <li>\n' +
                             '                            <div class="ui-box">\n' +
                             '                                <div class="headslider qa-medias l">\n' +
-                            '                                    <a class="media" target="_blank" href="" title="'+user+'">\n' +
-                            '                                        <img src="'+contextPath+head_image+'" width="40px" height="40px" alt="">\n' +
+                            '                                    <a class="media" target="_blank" href="" title="' + jsonObj.ask[i].class_title + '">\n' +
+                            '                                        <img src="' + contextPath + jsonObj.ask[i].cover_address + '" width="40px" height="40px" alt="">\n' +
                             '                                    </a>\n' +
                             '                                </div>\n' +
                             '                                <div class="wendaslider qa-content">\n' +
                             '                                    <h2 class="wendaquetitle qa-header">\n' +
                             '                                        <div class="wendatitlecon qa-header-cnt clearfix">\n' +
-                            '                                            <a class="qa-tit" target="_blank" href="questions.html?'+jsonObj.ask_no[i]+'">\n' +
-                            '                                                <i>'+jsonObj.describe[i]+'</i>\n' +
+                            '                                            <a class="qa-tit" target="_blank" href="questions.html?' + jsonObj.ask[i].ask_id + '">\n' +
+                            '                                                <i>' + jsonObj.ask[i].ask_title + '</i>\n' +
                             '                                            </a>\n' +
                             '                                        </div>\n' +
                             '                                    </h2>\n' +
                             '                                    <div class="replycont qa-body clearfix">\n' +
-                            '                                        <div class="l replydes" id="new_reply'+jsonObj.ask_no[i]+'">\n' +
+                            '                                        <div class="l replydes" id="new_reply' + jsonObj.ask[i].ask_id + '">\n' +
                             '                                        </div>\n' +
                             '                                    </div>\n' +
                             '                                    <div class="replymegfooter qa-footer clearfix">\n' +
                             '                                        <div class="l-box l">\n' +
-                            '                                            <a class="replynumber static-count " target="_blank" href="questions.html?'+jsonObj.ask_no[i]+'">\n' +
-                            '                                                <span class="static-item answer">'+jsonObj.answer_count[i]+' 回答</span>\n' +
-                            '                                                <span class="static-item">'+jsonObj.times[i]+' 浏览</span>\n' +
+                            '                                            <a class="replynumber static-count " target="_blank" href="questions.html?' + jsonObj.ask[i].ask_id + '">\n' +
+                            '                                                <span class="static-item answer">' + jsonObj.ask[i].answer_count + ' 回答</span>\n' +
+                            '                                                <span class="static-item">' + jsonObj.ask[i].visits_count + ' 浏览</span>\n' +
                             '                                            </a>\n' +
-                            '                                            <a href="Learn_list.html?class_id='+jsonObj.class_no[i]+'" target="_blank">'+jsonObj.title[i]+'</a>\n' +
-                            '                                            <a href="Play.html?'+jsonObj.class_no[i]+'/'+jsonObj.unit_no[i]+'" target="_blank">'+jsonObj.unit_no[i]+'  '+jsonObj.lesson_title[i]+'</a>\n' +
+                            '                                            <a href="Learn_list.html?class_id=' + jsonObj.ask[i].belong_class_id + '" target="_blank">' + jsonObj.ask[i].class_title + '</a>\n' +
                             '                                        </div>\n' +
-                            '                                        <em class="r">'+jsonObj.time[i]+'</em>\n' +
+                            '                                        <em class="r">' + jsonObj.ask[i].ask_time + '</em>\n' +
                             '                                    </div>\n' +
                             '                                </div>\n' +
                             '                            </div>\n' +
                             '                        </li>'
                         );
-                        if (jsonObj.new_answer[i]===null){
-                            $('#new_reply'+jsonObj.ask_no[i]).append(
-                                '<button type="button" class="btn btn-light" onclick="window.open(\'questions.html?'+jsonObj.ask_no[i]+'\')">我来回答</button>\n'
+                        if (jsonObj.ask[i].new_answer === '') {
+                            $('#new_reply' + jsonObj.ask[i].ask_id).append(
+                                '<button type="button" class="btn btn-light" onclick="window.open(\'questions.html?' + jsonObj.ask[i].ask_id + '\')">我来回答</button>\n'
                             )
                         } else {
-                            $('#new_reply'+jsonObj.ask_no[i]).append(
+                            $('#new_reply' + jsonObj.ask[i].ask_id).append(
                                 '<span class="replysign">\n' +
                                 ' 最新回复 /\n' +
-                                '   <a class="nickname" target="_blank" href="">'+jsonObj.new_answer[i]+'</a>\n' +
+                                '   <a class="nickname" target="_blank" href="">' + jsonObj.ask[i].new_answerer + '</a>\n' +
                                 ' </span>\n' +
-                                ' <div class="replydet">'+jsonObj.new_answer_text[i]+'</div>\n'
+                                ' <div class="replydet">' + jsonObj.ask[i].new_answer + '</div>\n'
                             )
                         }
                     }
@@ -220,49 +235,49 @@
                         ask_ul.append(
                             '<div class="no_find_class">暂无讨论</div>'
                         )
-                    }else {
-                        add_page(jsonObj.count,page);
+                    } else {
+                        add_page(jsonObj.count, page);
                     }
                 }
             });
         }
 
-        function add_page(count,page){
-            var page_ul =  $('#page');
-            page_length = Math.ceil(count/6);
-            if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?'+(parseInt(page)-1)+'">Previous</a></li>');
+        function add_page(count, page) {
+            var page_ul = $('#page');
+            page_length = Math.ceil(count / 6);
+            if ((parseInt(page) - 1) > 0) page_ul.append('<li class="page-item"><a class="page-link" href="?' + (parseInt(page) - 1) + '">Previous</a></li>');
             else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
 
-            if (page-1>2&&page_length-page>=2){
-                for (var i = page-2;i<=page+2;i++){
-                    if (i<page_length+1){
-                        if (i===parseInt(page)){
-                            page_ul.append('<li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+            if (page - 1 > 2 && page_length - page >= 2) {
+                for (var i = page - 2; i <= page + 2; i++) {
+                    if (i < page_length + 1) {
+                        if (i === parseInt(page)) {
+                            page_ul.append('<li class="page-item active"><a class="page-link" href="?' + i + '">' + i + '</a></li>');
+                        } else page_ul.append('<li class="page-item"><a class="page-link" href="?' + i + '">' + i + '</a></li>');
                     }
                 }
-            }else {
-                if (page<=3){
-                    for (i=1;i<6;i++){
-                        if (i<page_length+1){
-                            if (i===parseInt(page)){
-                                page_ul.append('<li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                            }else page_ul.append('<li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+            } else {
+                if (page <= 3) {
+                    for (i = 1; i < 6; i++) {
+                        if (i < page_length + 1) {
+                            if (i === parseInt(page)) {
+                                page_ul.append('<li class="page-item active"><a class="page-link" href="?' + i + '">' + i + '</a></li>');
+                            } else page_ul.append('<li class="page-item"><a class="page-link" href="?' + i + '">' + i + '</a></li>');
                         }
                     }
-                }else {
-                    for (i=page_length-4;i<=page_length;i++){
-                        if (i<page_length+1){
-                            if (i===parseInt(page)){
-                                page_ul.append('<li class="page-item active"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
-                            }else page_ul.append('<li class="page-item"><a class="page-link" href="?'+i+'">'+i+'</a></li>');
+                } else {
+                    for (i = page_length - 4; i <= page_length; i++) {
+                        if (i < page_length + 1) {
+                            if (i === parseInt(page)) {
+                                page_ul.append('<li class="page-item active"><a class="page-link" href="?' + i + '">' + i + '</a></li>');
+                            } else page_ul.append('<li class="page-item"><a class="page-link" href="?' + i + '">' + i + '</a></li>');
                         }
                     }
                 }
 
             }
 
-            if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?'+(parseInt(page)+1)+'">Next</a></li>');
+            if ((parseInt(page) + 1) <= page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?' + (parseInt(page) + 1) + '">Next</a></li>');
             else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>');
 
             page_ul.append(
@@ -274,16 +289,16 @@
                 '<span id="count_page"> </span>\n' +
                 '</a>\n' +
                 '</li>');
-            $('#count_page').text('/ '+page_length);
+            $('#count_page').text('/ ' + page_length);
         }
 
-        function go(){
+        function go() {
             var keycode = (event.keyCode ? event.keyCode : event.which);
-            if (keycode  === 13) {
+            if (keycode === 13) {
                 var jump = $('#jump');
-                if (jump.val()>0&&jump.val()<=page_length&&jump.val()%1 === 0){
-                    window.location.href="Student_commentary.html?"+jump.val();
-                }else alert('请重新输入页号');
+                if (jump.val() > 0 && jump.val() <= page_length && jump.val() % 1 === 0) {
+                    window.location.href = "Student_commentary.html?" + jump.val();
+                } else alert('请重新输入页号');
             }
         }
 

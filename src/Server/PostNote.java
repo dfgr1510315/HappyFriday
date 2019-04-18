@@ -1,6 +1,6 @@
 package Server;
 
-import com.alibaba.druid.pool.DruidPooledConnection;
+import DAOlmpl.noteDAOlmpl;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -10,13 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.util.ArrayList;
-
 
 @WebServlet(name = "PostNote")
 public class PostNote extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -63,302 +60,75 @@ public class PostNote extends HttpServlet {
         }
     }
 
-    private void search_note(HttpServletResponse response,String keyword,int page){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        try {
-            con = dbp.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select belong_class_id,author,text,note_time,class_title,cover_address from note,class_teacher_table where belong_class_id=class_id and text like '%"+keyword+"%' limit "+(6*(page-1))+","+6);
-            JSONObject jsonObj = new JSONObject();
-            ArrayList<Integer> belong_class_id = new ArrayList<>();
-            ArrayList<String> author = new ArrayList<>();
-            ArrayList<String> text = new ArrayList<>();
-            ArrayList<String> note_time = new ArrayList<>();
-            ArrayList<String> class_title = new ArrayList<>();
-            ArrayList<String> cover_address = new ArrayList<>();
-            while (rs.next()){
-                belong_class_id.add(rs.getInt("belong_class_id"));
-                author.add(rs.getString("author"));
-                text.add(rs.getString("text"));
-                note_time.add(rs.getString("note_time"));
-                class_title.add(rs.getString("class_title"));
-                cover_address.add(rs.getString("cover_address"));
-            }
-            rs = statement.executeQuery("SELECT COUNT(*) count FROM note where text like '%"+keyword+"%'");
-            while (rs.next()){
-                jsonObj.put("count",rs.getString("count"));
-            }
-            jsonObj.put("belong_class_id",belong_class_id);
-            jsonObj.put("author",author);
-            jsonObj.put("text",text);
-            jsonObj.put("note_time",note_time);
-            jsonObj.put("class_title",class_title);
-            jsonObj.put("cover_address",cover_address);
-            PrintWriter out = response.getWriter();
-            out.flush();
-            out.print(jsonObj);
-            rs.close();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    private void search_note(HttpServletResponse response,String keyword,int page) throws IOException{
+        JSONObject jsonObject = new JSONObject();
+        noteDAOlmpl nl = new noteDAOlmpl();
+        String SQL = "note.unit_no=class.unit_no and class_teacher_table.class_id=belong_class_id and class.class_id=belong_class_id and text like '%"+keyword+"%' limit "+(6*(page-1))+","+6;
+        jsonObject.put("note", nl.get_note(SQL));
+        SQL = "SELECT COUNT(note_id) count from note where text like '%"+keyword+"%'";
+        jsonObject.put("count", nl.get_note_count(SQL));
+        PrintWriter out = response.getWriter();
+        out.print(jsonObject);
+        out.flush();
+        out.close();
     }
 
-    private void get_this_class_note(HttpServletResponse response,int No,int page){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        try {
-            con = dbp.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select text,note_time,note.unit_no,author,head,lesson_title from note,personal_table,class where belong_class_id="+No+" and author=username and belong_class_id=class_id and note.unit_no=class.unit_no order by note_time desc limit "+(6*(page-1))+","+6);
-            JSONObject jsonObj = new JSONObject();
-            ArrayList<String> text_list = new ArrayList<>();
-            ArrayList<String> time_list = new ArrayList<>();
-            ArrayList<String> head = new ArrayList<>();
-            ArrayList<String> class_no = new ArrayList<>();
-            ArrayList<String> name = new ArrayList<>();
-            ArrayList<String> class_title = new ArrayList<>();
-            while (rs.next()){
-                text_list.add(rs.getString("text"));
-                time_list.add(rs.getString("note_time"));
-                head.add(rs.getString("head"));
-                class_no.add(rs.getString("note.unit_no"));
-                name.add(rs.getString("author"));
-                class_title.add(rs.getString("lesson_title"));
-            }
-            jsonObj.put("text",text_list);
-            jsonObj.put("time",time_list);
-            jsonObj.put("head",head);
-            jsonObj.put("class_no",class_no);
-            jsonObj.put("name",name);
-            jsonObj.put("class_title",class_title);
-            PrintWriter out = response.getWriter();
-            out.flush();
-            out.print(jsonObj);
-            rs.close();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    //得到此课程下所有笔记
+    private void get_this_class_note(HttpServletResponse response,int No,int page) throws IOException{
+        JSONObject jsonObject = new JSONObject();
+        noteDAOlmpl nl = new noteDAOlmpl();
+        jsonObject.put("note", nl.get_this_class_note(No,page));
+        PrintWriter out = response.getWriter();
+        out.print(jsonObject);
+        out.flush();
+        out.close();
     }
 
-    private void get_my_all_note(HttpServletResponse response,String author){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        try {
-            con = dbp.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select note_id,text,note_time,note.unit_no,belong_class_id,class_title,cover_address,lesson_title from note,class_teacher_table,class where note.unit_no=class.unit_no and class_teacher_table.class_id=belong_class_id and class.class_id=belong_class_id and author= '"+author+"'");
-            JSONObject jsonObj = new JSONObject();
-            ArrayList<String> note_no = new ArrayList<>();
-            ArrayList<String> title_list = new ArrayList<>();
-            ArrayList<String> text_list = new ArrayList<>();
-            ArrayList<String> time_list = new ArrayList<>();
-            ArrayList<String> image_address = new ArrayList<>();
-            ArrayList<String> class_no = new ArrayList<>();
-            ArrayList<String> title_no = new ArrayList<>();
-            ArrayList<String> class_title = new ArrayList<>();
-            while (rs.next()){
-                note_no.add(rs.getString("note_id"));
-                title_list.add(rs.getString("class_title"));
-                text_list.add(rs.getString("text"));
-                time_list.add(rs.getString("note_time"));
-                image_address.add(rs.getString("cover_address"));
-                class_no.add(rs.getString("note.unit_no"));
-                title_no.add(rs.getString("belong_class_id"));
-                class_title.add(rs.getString("lesson_title"));
-            }
-           /* rs = statement.executeQuery("select lesson_title from note,class where note.unit_no=class.unit_no and author= '"+author+"'");
-            while (rs.next()){
-                class_title.add(rs.getString("lesson_title"));
-            }*/
-            jsonObj.put("note_no",note_no);
-            jsonObj.put("text",text_list);
-            jsonObj.put("time",time_list);
-            jsonObj.put("title",title_list);
-            jsonObj.put("image_address",image_address);
-            jsonObj.put("class_no",class_no);
-            jsonObj.put("title_no",title_no);
-            jsonObj.put("class_title",class_title);
-            jsonObj.put("msg","1");
-            PrintWriter out = response.getWriter();
-            out.flush();
-            out.print(jsonObj);
-            rs.close();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    //获取我的所有笔记
+    private void get_my_all_note(HttpServletResponse response,String author)throws IOException{
+        String SQL = "note.unit_no=class.unit_no and class_teacher_table.class_id=belong_class_id and class.class_id=belong_class_id and author= '"+author+"'";
+        JSONObject jsonObject = new JSONObject();
+        noteDAOlmpl nl = new noteDAOlmpl();
+        jsonObject.put("note", nl.get_note(SQL));
+        PrintWriter out = response.getWriter();
+        out.print(jsonObject);
+        out.flush();
+        out.close();
     }
 
-
-    private void change_note(HttpServletResponse response,int note_no,String note_editor,String time){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        PreparedStatement qsql = null;
-        try {
-            con = dbp.getConnection();
-            qsql  = con.prepareStatement("update note set text=?,note_time=? where note_id=?");
-            qsql.setString(1,note_editor);
-            qsql.setString(2,time);
-            qsql.setInt(3,note_no);
-            qsql.executeUpdate();
-            JSONObject jsonObj = new JSONObject();
-            jsonObj.put("msg","1");
-            PrintWriter out = response.getWriter();
-            out.flush();
-            out.print(jsonObj);
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (qsql!=null)
-                try{
-                    qsql.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    private void change_note(HttpServletResponse response,int note_no,String note_editor,String time)throws IOException{
+        noteDAOlmpl nl = new noteDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(nl.change_note(note_no,note_editor,time));
+        out.flush();
+        out.close();
     }
 
-    private void delete_note(HttpServletResponse response,int note_no){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        PreparedStatement qsql = null;
-        try {
-            con = dbp.getConnection();
-            qsql = con.prepareStatement("delete FROM note WHERE note_id=?");
-            qsql.setInt(1, note_no);
-            qsql.executeUpdate();
-            JSONObject jsonObj = new JSONObject();
-            jsonObj.put("msg","1");
-            PrintWriter out = response.getWriter();
-            //System.out.println(jsonObj+"????");
-            out.flush();
-            out.print(jsonObj);
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (qsql!=null)
-                try{
-                    qsql.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    private void delete_note(HttpServletResponse response,int note_no)throws IOException{
+        noteDAOlmpl nl = new noteDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(nl.delete_note(note_no));
+        out.flush();
+        out.close();
     }
 
-    private void get_note(HttpServletResponse response,int No,String class_No,String author){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        try {
-            con = dbp.getConnection();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select text,note_time,note_id from note where belong_class_id="+No+" and unit_no='"+class_No+"' and author= '"+author+"'");
-            JSONObject jsonObj = new JSONObject();
-            ArrayList<String> text_list = new ArrayList<>();
-            ArrayList<String> time_list = new ArrayList<>();
-            ArrayList<String> note_no = new ArrayList<>();
-            while (rs.next()){
-                text_list.add(rs.getString("text"));
-                time_list.add(rs.getString("note_time"));
-                note_no.add(rs.getString("note_id"));
-            }
-            jsonObj.put("text",text_list);
-            jsonObj.put("time",time_list);
-            jsonObj.put("note_no",note_no);
-            jsonObj.put("msg","1");
-            PrintWriter out = response.getWriter();
-            out.flush();
-            out.print(jsonObj);
-            rs.close();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    //获取当前播放课时下我的笔记
+    private void get_note(HttpServletResponse response,int No,String class_No,String author)throws IOException{
+        JSONObject jsonObject = new JSONObject();
+        noteDAOlmpl nl = new noteDAOlmpl();
+        jsonObject.put("note", nl.get_lesson_note(No,class_No,author));
+        PrintWriter out = response.getWriter();
+        out.print(jsonObject);
+        out.flush();
+        out.close();
     }
 
-    private void post_note(HttpServletResponse response,int No,String class_No,String author,String note_editor,String time){
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
-        PreparedStatement qsql = null;
-        try {
-            con = dbp.getConnection();
-            qsql  = con.prepareStatement("insert into note(belong_class_id,unit_no,author,text,note_time) values(?,?,?,?,?)");
-            qsql.setInt(1,No);
-            qsql.setString(2,class_No);
-            qsql.setString(3,author);
-            qsql.setString(4,note_editor);
-            qsql.setString(5,time);
-            qsql.executeUpdate();
-            JSONObject jsonObj = new JSONObject();
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select LAST_INSERT_ID() note_id");
-            while (rs.next()){
-                jsonObj.put("note_id",rs.getString("note_id"));
-            }
-            PrintWriter out = response.getWriter();
-            out.flush();
-            out.print(jsonObj);
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (qsql!=null)
-                try{
-                    qsql.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-            if (con!=null)
-                try{
-                    con.close();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
-        }
+    private void post_note(HttpServletResponse response,int No,String class_No,String author,String note_editor,String time)throws IOException{
+        noteDAOlmpl nl = new noteDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(nl.post_note(No,class_No,author,note_editor,time));
+        out.flush();
+        out.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

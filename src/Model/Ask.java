@@ -1,24 +1,15 @@
 package Model;
 
 public class Ask {
-    private int ask_id;
     private int belong_class_id;
     private int answer_count;
     private int visits_count;
     private String ask_title;
     private String ask_time;
     private String class_title;
-    private String cover_address;
+    /*private String cover_address;
     private String new_answerer;
-    private String new_answer;
-
-    public int getAsk_id() {
-        return ask_id;
-    }
-
-    public void setAsk_id(int ask_id) {
-        this.ask_id = ask_id;
-    }
+    private String new_answer;*/
 
     public int getBelong_class_id() {
         return belong_class_id;
@@ -68,7 +59,7 @@ public class Ask {
         this.class_title = class_title;
     }
 
-    public String getCover_address() {
+  /*  public String getCover_address() {
         return cover_address;
     }
 
@@ -90,5 +81,5 @@ public class Ask {
 
     public void setNew_answer(String new_answer) {
         this.new_answer = new_answer;
-    }
+    }*/
 }

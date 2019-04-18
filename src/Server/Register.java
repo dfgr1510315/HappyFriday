@@ -24,7 +24,7 @@ public class Register extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String state = request.getParameter("state");
-        ConnectSQL.my_println("获取到的状态、用户名和密码为：" + state + username + password);
+        //ConnectSQL.my_println("获取到的状态、用户名和密码为：" + state + username + password);
         switch (state){
             case "login":
                 login(request,response,username, password);
@@ -69,7 +69,7 @@ public class Register extends HttpServlet {
         HttpSession session=request.getSession();
         JSONObject jsonObj = new JSONObject();
         String username=(String) session.getAttribute("user_id");
-        ConnectSQL.my_println("username"+username);
+        //ConnectSQL.my_println("username"+username);
         if (username!=null){
            /* schedule = Arrays.toString((int[]) session.getAttribute("schedule"));
             last_time = Arrays.toString((String[]) session.getAttribute("last_time"));
