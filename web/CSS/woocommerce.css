@@ -1,0 +1,213 @@
+/**
+  *
+  * Shop Cart 
+  * Flat Filter
+  * Flat Product
+  * Star List 
+  *
+  **/
+
+/* Shop Cart 
+-------------------------------------------------- */
+    .nav-top-cart-wrapper .nav-shop-cart {
+    	width: 270px;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+        position: absolute;
+        right: -10px;
+        top: 100%;
+        z-index: 999999;
+        background-color: #fff;
+        padding: 0px;
+        -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1);
+        -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1);
+        box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1);
+        -webkit-transition: all ease-in-out 0.3s;
+        -moz-transition: all ease-in-out 0.3s;
+        transition: all ease-in-out 0.3s;
+    }
+
+    .nav-top-cart-wrapper .woocommerce-min-cart-wrap {
+    	padding: 10px 30px;
+    }
+
+    .nav-top-cart-wrapper .nav-shop-cart ul li {
+    	display: block;
+        position: relative;
+        width: 100%;
+        font-weight: 500;
+        line-height: 30px;
+    }
+
+    .nav-top-cart-wrapper:hover .nav-shop-cart {
+    	-webkit-transform: translateY(0);
+        transform: translateY(0);
+        filter: alpha(opacity=100);
+        opacity: 1;
+        visibility: visible;
+    }
+
+/* Flat Filter 
+-------------------------------------------------- */
+    .flat-filter {
+        background: #fff;
+        position: relative;
+        margin-bottom: 77px;
+    }
+
+    .flat-filter .show-product p.result-count {
+        position: relative;
+        padding-left: 60px;
+        font-family: "Poppins";
+        line-height: 56px;
+    }
+
+    .flat-filter .show-product p.result-count:after {
+        content: "\ea2f";
+        font-family: "bf-icon";
+        font-size: 18px;
+        color: #f3728b;
+        position: absolute;
+        left: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .flat-filter .show-product p.result-count:before {
+        content: "\ea2e";
+        font-family: "bf-icon";
+        margin-right: 20px;
+    }
+
+    .show-product {
+        float: left;
+    }
+
+    .woocommerce-ordering {
+        width: 169px;
+        float: right;
+    }
+
+    .woocommerce-ordering select.orderby{
+        height: 57px;
+        font-family: "Poppins";
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        font-weight: 500;
+        padding: 2px 10px 0 22px;
+    }
+
+    .woocommerce-ordering  .wrap-select {
+        position: relative;
+    }
+
+    .woocommerce-ordering  .wrap-select:after {
+        content: "\33";
+        font-family: "ElegantIcons";
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #f3728b;
+        font-size: 26px;
+    }
+
+/* Flat Product
+-------------------------------------------------- */
+    .flat-products {
+        margin-bottom: 19px;
+    }
+
+    .product-item {
+        margin-bottom: 29px;
+    }
+
+    .product-item .product-content {
+        padding-top: 26px;
+        padding-bottom: 30px;
+        background: #fff;
+    }
+
+    .product-item .title {
+        margin-bottom: 26px;
+    }
+
+    .product-item .title a {
+        font-family: "Poppins";
+    }
+
+    .price-wrap span {
+        font-family: "Poppins";
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .price-wrap .sale-price {
+        font-size: 30px;
+    }
+
+    .price-wrap .price {
+        font-size: 16px;
+        text-decoration: line-through;
+    } 
+
+    .flat-button.btn-cart {
+        color: #192836;
+        display: block;
+        line-height: 45px;
+        font-family: "Poppins";
+        font-size: 16px;
+        font-weight: 700;
+        background: #fff;
+        padding-left: 32px;
+    }
+
+    .flat-button.btn-cart:after {
+        content: "\ea34";
+        font-family: "bf-icon";
+        position: absolute;
+        left: 109px;
+        color: #f3728b;
+    }
+
+    .flat-button.btn-cart:hover:after,
+    .flat-button.v2.btn-cart:hover:after,
+    .flat-button.btn-cart:hover,
+    .flat-button.v2.btn-cart:hover {
+        color: #fff;
+    }
+
+    .flat-button.btn-cart.v2 {
+        line-height: 35px;
+        border: 2px solid #f3728b;
+        border-radius: 4px;
+        padding: 0px 15px 0 36px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: "Roboto";
+        display: inline-block;
+        color: #f3728b;
+    }
+
+    .flat-button.v2.btn-cart:after {
+        left: 15px;
+        font-size: 16px;
+    }
+
+    .product-item .flat-button.btn-cart:before {
+        content: "";
+    }
+
+/* Star List 
+-------------------------------------------------- */
+    .star-list {
+        display: inline;
+        color: #f4c150;
+    }
+
+    .star-list li {
+        margin-left: -2px;
+    }

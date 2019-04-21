@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'PublicoText';
+	src:url('../fonts/PublicoText-Bold.otf');
+	/*src:url('../fonts/ElegantIcons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/ElegantIcons.woff') format('woff'),
+		url('../fonts/ElegantIcons.ttf') format('truetype'),
+		url('../fonts/ElegantIcons.svg#ElegantIcons') format('svg');*/
+	font-weight: normal;
+	font-style: normal;
+}
