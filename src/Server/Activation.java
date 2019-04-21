@@ -2,12 +2,11 @@ package Server;
 
 import com.alibaba.druid.pool.DruidPooledConnection;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -15,23 +14,17 @@ import java.sql.*;
 @WebServlet(name = "Activation")
 public class Activation extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doGet(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String code=request.getParameter("code");
         String email = request.getParameter("email");
         ConnectSQL.my_println("email:"+email);
-        /*UserService userService=new UserServiceImpl();
-        if(userService.activeUser(code)){
-            request.getRequestDispatcher("/welcome.jsp").forward(request, response);
-        }else{
-            request.getRequestDispatcher("/fail.jsp").forward(request, response);
-        }*/
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -57,14 +50,16 @@ public class Activation extends HttpServlet {
                 qsql.setString(2, null);
                 qsql.setString(3, code);
                 int state = qsql.executeUpdate();
-                HttpSession session = request.getSession();
-                session.setAttribute("email",email);
                 if (state==0){
                     PrintWriter pw=response.getWriter();
                     pw.write("<script language='javascript'>alert('更换失败');window.location.href='HTML_JSP/homepage.html'</script>");
                 }else {
                     PrintWriter pw=response.getWriter();
-                    pw.write("<script language='javascript'>alert('更换成功');window.location.href='HTML_JSP/homepage.html'</script>");
+                    Cookie cookie = new Cookie("email", email);
+                    cookie.setMaxAge(30*12*5*24*60*60);
+                    cookie.setPath("/HTML_JSP");
+                    response.addCookie(cookie);
+                    pw.write("<script language='javascript'>alert('更换成功');window.location.href='HTML_JSP/homepage.html';</script>");
                 }
             }
 

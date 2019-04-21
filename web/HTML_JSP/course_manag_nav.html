@@ -53,9 +53,12 @@
                 },
                 type: "POST",
                 dataType: "json",
-                asynch: "false"
+                success: function (jsonObj) {
+                    if (jsonObj===true) window.location.href = "Teaching.html";
+                    else alert('删除课程失败')
+                }
             });
-            window.location.href = "Teaching.html";
+
         }
     }
 

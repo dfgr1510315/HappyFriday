@@ -167,7 +167,6 @@ function add_collapse(collapse,lesson_title,source_video_title,source_video_addr
 function get_class_content() {
     $.ajax({
         type: "POST",
-        asynch: "false",
         url:contextPath+"/getlearnfile",
         data: {
             No:No,
@@ -247,16 +246,18 @@ function Release(state) {
             },
             type: "POST",
             dataType: "json",
-            asynch: "false"
+            success: function (jsonObj) {
+                if (jsonObj===true) {
+                    if (state===1) {
+                        $("#Open_curriculum_Close").click();
+                        $("#curriculum_button").removeClass('btn-outline-primary').addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
+                    }else {
+                        $("#Close_curriculum_Close").click();
+                        $("#curriculum_button").removeClass('btn-success').addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
+                    }
+                }else alert('修改状态失败')
+            }
         });
-        if (state===1) {
-            $("#Open_curriculum_Close").click();
-            $("#curriculum_button").removeClass('btn-outline-primary').addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
-        }else {
-            $("#Close_curriculum_Close").click();
-            $("#curriculum_button").removeClass('btn-success').addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
-        }
-
 }
 
 /*function Change_Unit_Fun(UnitCount, chooseCount) {
@@ -525,7 +526,6 @@ function getHTML() {
     $("#preview").attr("href","Learn_list.html?class_id="+No);
      $.ajax({
         type: "POST",
-        asynch: "false",
         url:contextPath+"/SaveClassInfor",
         data: {
             No:No,
@@ -533,9 +533,9 @@ function getHTML() {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            $("#curriculum_Name").text(jsonObj.Title);
-            $("#teacher_Name").text(jsonObj.教师用户名);
-            if (jsonObj.state===1)  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
+            $("#curriculum_Name").text(jsonObj.title);
+            $("#teacher_Name").text(jsonObj.teacher);
+            if (jsonObj.state==='1')  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
             else $("#curriculum_button").addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
         }
     });

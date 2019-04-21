@@ -173,59 +173,86 @@
                 url: contextPath+"/SaveClassInfor",
                 data: {
                     Read_or_Save:'get_new_class',
-                    type:type,
-                    limit:'0',
-                    page:page
+                    page:page,
+                    type:type
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
-                    if (jsonObj.title.length===0) $('.types-content').append(
+                    //console.log(jsonObj);
+                    if (jsonObj.count===0) $('.types-content').append(
                         '<div class="no_find_class">暂无课程</div>'
                     ) ;
                     else {
-                        for (var i=0;i<jsonObj.title.length;i++){
-                            add_class(jsonObj.no[i],jsonObj.cover[i],jsonObj.title[i],jsonObj.type[i],jsonObj.teacher[i],jsonObj.student_number[i],jsonObj.outline[i]);
+                        for (var i=0;i<jsonObj.new_class.length;i++){
+                            var class_type = type_text(jsonObj.new_class[i].class_type);
+                            add_class(jsonObj.new_class[i].class_id,jsonObj.new_class[i].cover_address,jsonObj.new_class[i].class_title,class_type,jsonObj.new_class[i].teacher,jsonObj.new_class[i].student_count,jsonObj.new_class[i].outline);
                         }
-
-                        var page_ul =  $('#page');
-                        page_length = Math.ceil(jsonObj.count/25);
-                        if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+(parseInt(page)-1)+'">Previous</a></li>');
-                        else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
-
-                        if (page-1>2&&page_length-page>=2){
-                            for (i = page-2;i<=page+2;i++){
-                                if (i<page_length+1){
-                                    if (i===parseInt(page)){
-                                        page_ul.append('<li class="page-item active"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
-                                    }else page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
-                                }
-                            }
-                        }else {
-                            if (page<=3){
-                                for (i=1;i<6;i++){
-                                    if (i<page_length+1){
-                                        if (i===parseInt(page)){
-                                            page_ul.append('<li class="page-item active"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
-                                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
-                                    }
-                                }
-                            }else {
-                                for (i=page_length-4;i<=page_length;i++){
-                                    if (i<page_length+1){
-                                        if (i===parseInt(page)){
-                                            page_ul.append('<li class="page-item active"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
-                                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
-                                    }
-                                }
-                            }
-
-                        }
-
-                        if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+(parseInt(page)+1)+'">Next</a></li>');
-                        else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
+                        add_page(page,jsonObj.count);
                     }
                 }
             });
+        }
+
+        function type_text(class_type) {
+            var class_text;
+            switch (class_type) {
+                case 1:
+                    class_text = '前端设计';
+                    break;
+                case 2:
+                    class_text = '后台设计';
+                    break;
+                case 3:
+                    class_text = '基础理论';
+                    break;
+                case 4:
+                    class_text = '嵌入式';
+                    break;
+                case 5:
+                    class_text = '移动开发';
+                    break;
+                case 6:
+                    class_text = '项目发布';
+                    break;
+            }
+            return class_text;
+        }
+
+        function add_page(page,count){
+            var page_ul =  $('#page');
+            page_length = Math.ceil(count/25);
+            if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+(parseInt(page)-1)+'">Previous</a></li>');
+            else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
+
+            if (page-1>2&&page_length-page>=2){
+                for (var i = page-2;i<=page+2;i++){
+                    if (i<page_length+1){
+                        if (i===parseInt(page)){
+                            page_ul.append('<li class="page-item active"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
+                        }else page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
+                    }
+                }
+            }else {
+                if (page<=3){
+                    for (i=1;i<6;i++){
+                        if (i<page_length+1){
+                            if (i===parseInt(page)){
+                                page_ul.append('<li class="page-item active"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
+                            }else page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
+                        }
+                    }
+                }else {
+                    for (i=page_length-4;i<=page_length;i++){
+                        if (i<page_length+1){
+                            if (i===parseInt(page)){
+                                page_ul.append('<li class="page-item active"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
+                            }else page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+i+'">'+i+'</a></li>');
+                        }
+                    }
+                }
+            }
+            if ((parseInt(page)+1)<=page_length) page_ul.append('<li class="page-item"><a class="page-link" href="?type='+type+'&page='+(parseInt(page)+1)+'">Next</a></li>');
+            else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
         }
 
         $(document).ready(function(){

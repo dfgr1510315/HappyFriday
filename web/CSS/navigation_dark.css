@@ -68,11 +68,6 @@
     color: white;
 }
 
-.form-control{
-    height: calc(2rem + 2px);
-}
-
-
 /*#search_input{
     font-size: 13px;
     border: none;

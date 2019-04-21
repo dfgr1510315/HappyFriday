@@ -119,32 +119,17 @@
         var email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
         var contextPath = getContextPath();
         $(document).ready(function () {
-            get_email();
             $('#navigation').load('navigation.html',function () {
                 $('#VerticalNav').load('VerticalNav.html',function () {
                     addClass(2);
                     $.when(get_user_infor()).done(function () {
                         $('#radio_cover_img').attr('src',contextPath+head_image);
+                        email = cookie.get('email');
+                        $('.font4').text(email);
                     });
                 });
             });
         });
-
-        function get_email() {
-            $.ajax({
-                type:"POST",
-                asynch :"false",
-                url:contextPath+"/register",
-                data:{
-                    state:'get_email'
-                },
-                dataType:'json',
-                success:function (jsonObj) {
-                    email = jsonObj;
-                    $('.font4').text(email);
-                }
-            });
-        }
 
         function changeBind() {
             var email = $('#ChangeEmail_email').val();
@@ -163,13 +148,11 @@
                 },
                 dataType:'json',
                 success:function (state) {
-                    if (state===1){
+                    if (state===true){
                         alert('请去邮箱确认');
                         $('#ChangeEmailClose').click();
-                    } else if (state===0){
+                    } else{
                         alert('邮箱已被使用');
-                    } else {
-                        alert('未知错误');
                     }
                 }
             });

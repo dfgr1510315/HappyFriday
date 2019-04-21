@@ -3,7 +3,7 @@ package Server;
 import DAOlmpl.askDAOlmpl;
 import DAOlmpl.classDAOlmpl;
 import DAOlmpl.noteDAOlmpl;
-import Model.Class;
+import Model.SubModel.Course_infor;
 import net.sf.json.JSONObject;
 
 import javax.servlet.annotation.WebServlet;
@@ -68,7 +68,7 @@ public class Learn_list extends HttpServlet {
         int class_type;
         int release_status;
         boolean pass;
-        Class my_class = cdl.get_class_infor(No);
+        Course_infor my_class = cdl.get_class_infor(No);
         class_type = my_class.getClass_type();
         release_status = my_class.getRelease_status();
         pass = isHave(request, sNo, release_status);

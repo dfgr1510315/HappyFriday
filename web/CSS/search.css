@@ -137,9 +137,18 @@ a:hover{
 }
 #page{
     margin: 25px 0 auto;
-    overflow: hidden;
-    clear: both;
-    text-align: center;
+    position: relative;
+}
+
+#jump {
+    width: 50px;
+    height: 24px;
+    font-size: 4px;
+}
+
+.last {
+    position: absolute;
+    right: 0;
 }
 
 .last a, .last span {
@@ -191,7 +200,6 @@ a:hover{
     line-height: 21px;
     vertical-align: middle;
     font-size: 16px;
-    color: #222;
     margin-right: 14px;
     font-weight: 700;
 }

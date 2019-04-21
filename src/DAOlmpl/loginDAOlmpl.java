@@ -16,6 +16,30 @@ import java.util.List;
 public class loginDAOlmpl implements loginDAO {
 
     @Override
+    public int unread(String username) {
+            DBPoolConnection dbp = DBPoolConnection.getInstance();
+            DruidPooledConnection con =null;
+            int read = -1;
+            try {
+                con = dbp.getConnection();
+                Statement statement = con.createStatement();
+                ResultSet rs = statement.executeQuery("SELECT readed from notice where to_user='"+username+"' order by time desc limit 1;");
+                while (rs.next()) read = rs.getInt("readed");
+                rs.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                if (con!=null)
+                    try{
+                        con.close();
+                    }catch (SQLException e){
+                        e.printStackTrace();
+                    }
+            }
+            return read;
+    }
+
+    @Override
     public boolean change_email(String username, String email,String code) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
@@ -195,4 +219,5 @@ public class loginDAOlmpl implements loginDAO {
         }
         return list;
     }
+
 }

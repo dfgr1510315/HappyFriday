@@ -53,8 +53,8 @@
             type: "POST",
             dataType: "json",
             success: function (jsonObj) {
-                cover_address = jsonObj.cover_address;
-                $('#ui-box-cover').attr('src',contextPath+cover_address);
+                cover_address = jsonObj.cover;
+                $('#ui-box-cover').attr('src',contextPath+jsonObj.cover);
                 dtd.resolve();
             }
         });

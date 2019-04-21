@@ -1,8 +1,12 @@
 package DAOlmpl;
 
 import DAO.classDAO;
-import Model.*;
-import Model.Class;
+
+import Model.Chapter;
+import Model.Lesson;
+import Model.Material;
+import Model.Sc;
+import Model.SubModel.Course_infor;
 import Server.DBPoolConnection;
 import com.alibaba.druid.pool.DruidPooledConnection;
 
@@ -17,8 +21,8 @@ public class classDAOlmpl implements classDAO {
 
     @Override
     public List get_class(String teacher) {
-        Class c;
-        List<Class> list = new ArrayList<>();
+        Course_infor c;
+        List<Course_infor> list = new ArrayList<>();
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         try {
@@ -26,7 +30,7 @@ public class classDAOlmpl implements classDAO {
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select class_id,class_title,student_count,release_status,cover_address from class_teacher_table where teacher='"+teacher+"'");
             while (rs.next()){
-                c = new Class();
+                c = new Course_infor();
                 c.setClass_title(rs.getString("class_title"));
                 c.setStudent_count(rs.getInt("student_count"));
                 c.setRelease_status(rs.getInt("release_status"));
@@ -336,14 +340,14 @@ public class classDAOlmpl implements classDAO {
     public List get_recommend(int class_type) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
-        List<Class> classes = new ArrayList<>();
-        Class my_class;
+        List<Course_infor> classes = new ArrayList<>();
+        Course_infor my_class;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select class_id,class_title,cover_address from class_teacher_table where release_status=1 and class_type=" + class_type + " limit 5");
             while (rs.next()){
-                my_class = new Class();
+                my_class = new Course_infor();
                 my_class.setClass_id(rs.getInt("class_id"));
                 my_class.setClass_title(rs.getString("class_title"));
                 my_class.setCover_address(rs.getString("cover_address"));
@@ -364,10 +368,10 @@ public class classDAOlmpl implements classDAO {
     }
 
     @Override
-    public Class get_class_infor(int class_id) {
+    public Course_infor get_class_infor(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
-        Class my_class = new Class();
+        Course_infor my_class = new Course_infor();
         String SQL = "select release_status,class_teacher_table.teacher,class_title,head,student_count,class_type,outline from class_teacher_table,personal_table where class_teacher_table.teacher=username and class_id=" + class_id;
         try {
             con = dbp.getConnection();
@@ -457,7 +461,7 @@ public class classDAOlmpl implements classDAO {
     }
 
     @Override
-    public Material get_material(String username, int class_id,String lesson_no) {
+    public Material get_material(String username, int class_id, String lesson_no) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         Material material = new Material();
@@ -495,5 +499,63 @@ public class classDAOlmpl implements classDAO {
                 }
         }
         return material;
+    }
+
+    @Override
+    public boolean set_cover(int class_id, String cover) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        int state=0;
+        try {
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update class_teacher_table set cover_address=? where class_id=?");
+            qsql.setString(1, cover);
+            qsql.setInt(2, class_id);
+            state = qsql.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return state!=0;
+    }
+
+    @Override
+    public String get_cover(int class_id) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        String cover = null;
+        try {
+            con = dbp.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select cover_address from class_teacher_table where class_id="+class_id);
+            while (rs.next()){
+                cover = rs.getString("cover_address");
+            }
+            rs.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return cover;
     }
 }

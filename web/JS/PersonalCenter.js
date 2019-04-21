@@ -58,7 +58,6 @@ function changeInfor() {
     };
     $.ajax({
         type: "POST",
-        asynch: "false",
         url: contextPath+"/changeInfor",
         data: data,
         dataType: 'json',
@@ -102,7 +101,6 @@ function post_head_image(event) {
             data: formFile,
             type: "POST",
             dataType: "json",
-            async: true,
             cache: false,//上传文件无需缓存
             processData: false,//用于对data参数进行序列化处理 这里必须false
             contentType: false, //必须
@@ -110,6 +108,7 @@ function post_head_image(event) {
                 $('#pc_head_image').attr('src',contextPath+jsonObj.head_address);
                 $('#head_image').attr('src',contextPath+jsonObj.head_address);
                 $('#radio_cover').attr('src',contextPath+head_image);
+                cookie.set('head_image',jsonObj.head_address);
                 $.ajax({
                     url: contextPath+"/save_image",
                     data: {
@@ -118,7 +117,10 @@ function post_head_image(event) {
                     },
                     type: "POST",
                     dataType: "json",
-                    async: true
+                    success: function (msg) {
+                        if(msg===true) alert('修改成功');
+                        else alert('修改失败')
+                    }
                 });
             }
         });

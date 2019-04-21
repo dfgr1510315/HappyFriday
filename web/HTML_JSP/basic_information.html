@@ -136,7 +136,6 @@
 
         $.ajax({
             type: "POST",
-            asynch: "false",
             url: getContextPath()+"/SaveClassInfor",
             data: {
                 No:No,
@@ -162,7 +161,6 @@
         if (flag1===true && flag2===true){
             $.ajax({
                 type: "POST",
-                asynch: "false",
                 url: getContextPath()+"/SaveClassInfor",
                 data: {
                     No:No,
@@ -173,7 +171,7 @@
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
-                    if (jsonObj.msg==='1') alert('修改成功');
+                    if (jsonObj===true) alert('修改成功');
                 }
             });
         }

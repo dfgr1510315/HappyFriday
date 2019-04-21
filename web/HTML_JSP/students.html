@@ -143,6 +143,7 @@
 
 <script type="text/javascript">
     var move_student;
+    var move_event;
     var contextPath = getContextPath();
     $(document).ready(function(){
         $('#navigation').load('navigation.html',function () {
@@ -176,11 +177,10 @@
                 },
                 type: "POST",
                 dataType: "json",
-                asynch: "false",
                 success: function (jsonObj) {
-                    if (jsonObj===1){
+                    if (jsonObj===true){
                         $(event).parent().parent().remove();
-                    }
+                    }else alert('移除失败')
                 }
             })
         }
@@ -198,23 +198,10 @@
             },
             type: "POST",
             dataType: "json",
-            asynch: "false",
             success: function (jsonObj) {
-                if (jsonObj!==-1){
-                    $('#class_table').prepend(
-                        '<tr>\n' +
-                        '   <td>'+class_name.val()+'</td>\n' +
-                        '   <td><button type="button" style="margin-top:0;" class="btn btn-outline-primary btn-sm" onclick="get_class_students('+jsonObj+')">查看班级</button>' +
-                        '       <button type="button" style="margin-top:0;" class="btn btn-outline-danger btn-sm" onclick="delete_student_class(this,'+jsonObj+')">删除班级</button>\n' +
-                        '</td>\n' +
-                        '</tr>'
-                    );
-                    $('#modal_class_table').append(
-                        ' <tr>\n' +
-                        '     <td>'+class_name.val()+'</td>\n' +
-                        '     <td><button type="button" style="margin-top: 0;float: right" class="btn btn-outline-primary btn-sm" onclick="join_class('+jsonObj+')">移动至此班级</button></td>\n' +
-                        '</tr>'
-                    );
+                if (jsonObj!==0){
+                    class_table(class_name.val(),jsonObj);
+                    modal_class_table(class_name.val(),jsonObj);
                     class_name.val('');
                 }
             }
@@ -230,7 +217,6 @@
             },
             type: "POST",
             dataType: "json",
-            asynch: "false",
             success: function (jsonObj) {
                 $('#class_box').append(
                     '<table id="class_table" class="table">\n' +
@@ -243,26 +229,34 @@
                     '                    <tbody></tbody>\n' +
                     '                </table>'
                 );
-                for (var i=0;i<jsonObj.id.length;i++){
-                    $('#class_table').prepend(
-                        ' <tr>\n' +
-                        '        <td>'+jsonObj.name[i]+'</td>\n' +
-                        '        <td>' +
-                        '           <button type="button" style="margin-top: 0;" class="btn btn-outline-primary btn-sm" onclick="get_class_students('+jsonObj.id[i]+')">查看班级</button>\n' +
-                        '           <button type="button" style="margin-top:0;" class="btn btn-outline-danger btn-sm" onclick="delete_student_class(this,'+jsonObj.id[i]+')">删除班级</button>\n' +
-                        '       </td>\n' +
-                        '      </tr>'
-                    );
-                    $('#modal_class_table').append(
-                        ' <tr>\n' +
-                        '     <td>'+jsonObj.name[i]+'</td>\n' +
-                        '     <td><button type="button" style="margin-top:0;float:right" class="btn btn-outline-primary btn-sm" onclick="join_class('+jsonObj.id[i]+')">移动至此班级</button></td>\n' +
-                        '</tr>'
-                    )
+                for (var i=0;i<jsonObj.class.length;i++){
+                    class_table(jsonObj.class[i].name,jsonObj.class[i].id);
+                    modal_class_table(jsonObj.class[i].name,jsonObj.class[i].id);
                 }
 
             }
         })
+    }
+
+    function modal_class_table(name,id) {
+        $('#modal_class_table').append(
+            ' <tr>\n' +
+            '     <td>'+name+'</td>\n' +
+            '     <td><button type="button" style="margin-top: 0;float: right" class="btn btn-outline-primary btn-sm" onclick="join_class('+id+')">移动至此班级</button></td>\n' +
+            '</tr>'
+        );
+    }
+
+    function class_table(name,id) {
+        $('#class_table').prepend(
+            ' <tr>\n' +
+            '        <td>'+name+'</td>\n' +
+            '        <td>' +
+            '           <button type="button" style="margin-top: 0;" class="btn btn-outline-primary btn-sm" onclick="get_class_students('+id+')">查看班级</button>\n' +
+            '           <button type="button" style="margin-top:0;" class="btn btn-outline-danger btn-sm" onclick="delete_student_class(this,'+id+')">删除班级</button>\n' +
+            '       </td>\n' +
+            '      </tr>'
+        );
     }
 
     function join_class(id) {
@@ -275,11 +269,17 @@
             },
             type: "POST",
             dataType: "json",
-            asynch: "false",
             success: function (jsonObj) {
-                if (jsonObj===1){
-                    $(event).parent().parent().remove();
-                }
+                if (jsonObj===true){
+                    $('#join_class_Close').click();
+                    var student = $(move_event).parent().parent().html();
+                    $(move_event).parent().parent().remove();
+                    $('#student_table'+id).prepend(
+                        '<tr>\n' +
+                        student+
+                        '</tr>'
+                    )
+                }else alert('学员移动失败')
             }
         })
     }
@@ -295,11 +295,10 @@
                 },
                 type: "POST",
                 dataType: "json",
-                asynch: "false",
                 success: function (jsonObj) {
-                    if (jsonObj===1){
+                    if (jsonObj===true){
                         $(event).parent().parent().remove();
-                    }
+                    }else alert('删除失败')
                 }
             })
         }
@@ -345,8 +344,6 @@
     }
 
     function get_class_students(id){
-/*        var page = GetQueryString('page');
-        if(page===null) page='1';*/
         $('.table-striped').hide();
         var student_table = $('#student_table'+id);
         console.log(student_table.length);
@@ -363,18 +360,17 @@
             },
             type: "POST",
             dataType: "json",
-            asynch: "false",
             success: function (jsonObj) {
+                console.log(jsonObj);
                 var class_box = $('#class_box');
-                if (jsonObj.user.length===0)  {
+                if (jsonObj.students.length===0)  {
                     class_box.append(
-                        '<div id="student_table'+id+'" class=" table table-striped">\n' +
+                        '<div id="student_table'+id+'" class="table table-striped">\n' +
                         '     <div style="text-align: center;color: #93999f;">此班级没有添加学员</div>\n' +
                         '</div>'
                     );
                     return;
                 }
-
                 class_box.append(
                     '  <table id="student_table'+id+'" class="table table-striped">\n' +
                     '                    <thead>\n' +
@@ -387,24 +383,24 @@
                     '                    <tbody></tbody>\n' +
                     '                </table>'
                 );
-                for (var i=0;i<jsonObj.user.length;i++){
+                for (var i=0;i<jsonObj.students.length;i++){
                     $('#student_table'+id).append(
                         '<tr>\n' +
                         '                        <td style="position: relative;">\n' +
                         '                            <a target="_blank" href="" >\n' +
-                        '                                <img src="'+contextPath+jsonObj.head[i]+'">\n' +
-                        '                                <span>'+jsonObj.user[i]+'</span>\n' +
+                        '                                <img src="'+contextPath+jsonObj.students[i].head+'">\n' +
+                        '                                <span>'+jsonObj.students[i].name+'</span>\n' +
                         '                            </a>\n' +
-                        '                            <span class="text-sm" style="position: absolute;">'+jsonObj.time[i]+' 加入</span>\n' +
+                        '                            <span class="text-sm" style="position: absolute;">'+jsonObj.students[i].time+' 加入</span>\n' +
                         '                        </td>\n' +
                         '                        <td>\n' +
                         '                            <div class="progress">\n' +
-                        '                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:'+jsonObj.schedule[i]+'%"></div>\n' +
+                        '                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:'+jsonObj.students[i].schedule+'%"></div>\n' +
                         '                            </div>\n' +
                         '                        </td>\n' +
                         '                        <td>\n' +
                         '                            <button type="button" class="btn btn-outline-primary btn-sm">设为班长</button>\n' +
-                        '                            <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#join_class" data-student="'+jsonObj.user[i]+'" onclick="change_stu(this)">移动学员</button>\n' +
+                        '                            <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#join_class" data-student="'+jsonObj.students[i].name+'" onclick="change_stu(this)">移动学员</button>\n' +
                         '                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="remove_student(this)">移除学员</button>\n' +
                         '                        </td>\n' +
                         '                    </tr>'
@@ -416,6 +412,7 @@
     }
 
     function change_stu(event){
+        move_event = event;
         move_student = $(event).data('student');
     }
 

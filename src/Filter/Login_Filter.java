@@ -2,6 +2,7 @@ package Filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,14 @@ public class Login_Filter implements Filter {
             String username=(String) session.getAttribute("user_id");
             String usertype = (String) session.getAttribute("usertype");
             if(username==null){
+              /*  Cookie[] cookies = request.getCookies();
+                for (Cookie cookie: cookies){
+                    System.out.println(cookie.getName());
+                    if ("user".equals(cookie.getName())){
+                        cookie.setMaxAge(0);
+                        response.addCookie(cookie);
+                    }
+                }*/
                 PrintWriter out = response.getWriter();
                 out.println ("<script type=\"text/javascript\">window.location='"+realPath+"/HTML_JSP/404.html'</script>");
                 out.close();
@@ -53,11 +62,11 @@ public class Login_Filter implements Filter {
                     return;
                 }else {
                     PrintWriter out = response.getWriter();
-                    out.println ("<script language=javascript>window.location='"+realPath+"/HTML_JSP/404.html'</script>");
+                    out.println ("<script type=\"text/javascript\">window.location='"+realPath+"/HTML_JSP/404.html'</script>");
                     out.close();
                     return;
                 }
-            }else  System.out.println("!!!!");
+            }
 
         } catch (Exception e) {
             // TODO Auto-generated catch block

@@ -106,7 +106,6 @@
                 data: formFile,
                 type: "POST",
                 dataType: "json",
-                async: false,
                 cache: false,//上传文件无需缓存
                 processData: false,//用于对data参数进行序列化处理 这里必须false
                 contentType: false, //必须
@@ -128,7 +127,7 @@
             type: "POST",
             dataType: "json",
             success: function (jsonObj) {
-                if (jsonObj.msg==='1') {
+                if (jsonObj===true) {
                     $('#ui-box-cover').attr('src',contextPath+new_cover);
                     $('#radio_cover').attr('src',contextPath+cover_address);
                     alert('保存成功');

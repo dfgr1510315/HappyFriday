@@ -19,4 +19,7 @@ public interface loginDAO {
 
     //获取历史学习数据
     List get_history(String username);
+
+    //查询是否有未读信息
+    int unread(String username);
 }

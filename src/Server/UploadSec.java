@@ -31,7 +31,7 @@ public class UploadSec extends HttpServlet {
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 400; // 40MB
     private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 500; // 50MB
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session=request.getSession();
         String username=(String) session.getAttribute("user_id");
         request.setCharacterEncoding("utf-8");
@@ -216,7 +216,7 @@ public class UploadSec extends HttpServlet {
        /* response.sendRedirect("/homepage.html");*/
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
     }
 

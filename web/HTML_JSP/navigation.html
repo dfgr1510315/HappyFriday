@@ -4,14 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script type="text/javascript">
-        var user ;
+        var user;
         var head_image ;
         var usertype ;
-        var new_notice ;
-        var history_class_id;
-        var schedule;
-        var last_time;
-        var title;
         var contextPath = getContextPath();
         function get_user_infor() {
             var dtd = $.Deferred();
@@ -24,17 +19,17 @@
                 },
                 dataType: 'json',
                 success: function (jsonObj) {
-                    user = jsonObj.username;
-                    if (user===undefined) return;
-                    head_image = jsonObj.head_image;
-                    usertype = jsonObj.usertype;
-                    new_notice = jsonObj.new_notice;
-                    history_class_id = jsonObj.history_class_id;
-                    schedule = jsonObj.schedule;
-                    last_time = jsonObj.last_time;
-                    title = jsonObj.title;
+                    head_image = cookie.get('head_image');
+                    usertype = cookie.get('usertype');
+                    user = jsonObj.user;
+                    if (user===undefined){
+                        $("#loginButton").show();
+                        $('#personalCenter').remove();
+                        return
+                    }
+                    if (jsonObj.read===0)  $('.msg_remind').css('display','inline');
                     checkCookie();
-                    //load_history();
+                    load_history();
                     card_show();
                     history_show();
                     dtd.resolve();
@@ -44,8 +39,7 @@
         }
 
         function checkCookie() {
-                //console.log('user'+user);
-                $("#loginButton").hide();
+                $("#loginButton").remove();
                 $("#personalCenter").show();
                 $("#head_image").attr('src',contextPath+head_image);
         }
@@ -59,7 +53,7 @@
             },
             get: function(name) {
                 var arr, reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
-                if(arr = document.cookie.match(reg)) {
+                if(arr=document.cookie.match(reg)) {
                     return unescape(arr[2]);
                 } else {
                     return null;
@@ -76,27 +70,22 @@
         };
 
         $(document).ready(function(){
-            //get_user_infor();
             search_tips();
             $("#search_input").blur(function(){
                 setTimeout(function(){
                     $('.title_list_box').hide();
                 },500)
             });
-            if (user===undefined) return;
-            if (new_notice==='0')  $('.msg_remind').css('display','inline');
         });
 
         function load_history() {
-            console.log(history_class_id);
-            var load_history_class_id = history_class_id.toString().split(',');
-            var load_schedule = schedule.toString().split(',');
-            var load_last_time = last_time.toString().split(',');
-            var load_title = title.toString().split(',');
+            var load_history_class_id = cookie.get('class_id').toString().split(',');
+            var load_schedule = cookie.get('schedule').toString().split(',');
+            var load_last_time = cookie.get('last_time').toString().split(',');
+            var load_title = cookie.get('class_title').toString().split(',');
             for (var i=0;i<load_history_class_id.length;i++){
                 if ('0' === load_history_class_id[i])  continue;
                 var unit = load_last_time[i].split(':');
-                /*console.log(unit[0]);*/
                 $('.history_ul').append(
                     '   <li>\n' +
                     '                        <a href="Play.html?'+load_history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+load_last_time[i].trim()+'" class="clearfix">\n' +
@@ -224,19 +213,14 @@
                 </div>
             </div>
         </li>
-        <li class="nav-item" id="loginButton">
+        <li class="nav-item" id="loginButton" style="display: none;">
             <a class="nav-link" data-toggle="modal" data-target="#LoginModal" style="float: right;" href="">登录</a>
         </li>
         <li class="nav-item" id="personalCenter" style="display: none;float: right;position: relative;">
-             <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" id="showname"></a>-->
             <img id="head_image" class="user_imag user"  alt="用户头像" src="">
             <div class="user_card user" id="user_card">
                 <div style="padding: 20px;">
                     <a href="PersonalCenter.html" target="_blank">个人中心</a>
-                  <!--   <a href="../HTML_JSP/upload.jsp">上传资源</a>
-                      <a href="#">账号设置</a>
-                      <a  href="#">我的消息</a>
-                      <a  href="../HTML_JSP/management.jsp" >后台管理</a>-->
                     <a href="homepage.html" onclick="deleteCookie()">退出登录</a>
                 </div>
             </div>

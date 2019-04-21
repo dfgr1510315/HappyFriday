@@ -1,7 +1,7 @@
 package DAO;
 
+import Model.Course;
 import Model.Lesson;
-import Model.Class;
 import Model.Material;
 
 import java.util.List;
@@ -19,6 +19,9 @@ public interface classDAO {
     //讲课程添加或取消收藏
     boolean set_collection(String class_id,String student,String collection);
 
+    //获取课程封面
+    String get_cover(int class_id);
+
     //删除学生的学习课程
     boolean delete_student_class(String class_id,String student);
 
@@ -35,7 +38,7 @@ public interface classDAO {
     List get_recommend(int class_type);
 
     //学习页获取课程信息
-    Class get_class_infor(int class_id);
+    Course get_class_infor(int class_id);
 
     //获取课程名
     String get_class_name(int class_id);
@@ -45,4 +48,7 @@ public interface classDAO {
 
     //获取课时视频和文件
     Material get_material(String username,int class_id,String lesson_no);
+
+    //设置课程封面
+    boolean set_cover(int class_id,String cover);
 }
