@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="stylesheet" type="text/css" href="../CSS/settings.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <script type="text/javascript">
         var user;
         var head_image ;
@@ -188,7 +190,85 @@
 </head>
 <body>
 <div class="boxed">
+    <div id="header" class="bg-fff style1">
+        <div class="container">
+            <div class="header-wrap clearfix">
+                <div id="logo">
+                    <a href="index.html"><img src="../image/HUAS.png" alt="bookflare" width="157px" height="29px" data-retina="../image/HUAS.png" data-width="157" data-height="29"></a>
+                </div>
+                <div class="nav-wrap style1">
+                    <nav id="main-nav">
+                        <ul class="menu" >
+                            <li class="active">
+                                <a href="#">首页</a>
+                            </li>
+                            <li>
+                                <a href="#">课程类型</a>
+                                <ul class="submenu">
+                                    <li><a href="courses-grid-v1.html">前端设计</a></li>
+                                    <li><a href="courses-grid-v2.html">后台开发</a></li>
+                                    <li><a href="courses-grid-v3.html">移动开发</a></li>
+                                    <li><a href="courses-single.html"> 嵌入式</a></li>
+                                    <li><a href="courses-single.html"> 基础理论</a></li>
+                                    <li><a href="courses-single.html"> 项目发布</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="extra-menu flat-text-right clearfix">
+                    <div class="wrap-search-header">
+                        <div class="search-header">
+                            <form>
+                                <input type="search" name="key" placeholder="Search for Courses">
+                                <button class="btn-search"><span class="icon-search"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="cart nav-top-cart-wrapper">
+                        <a href="#" style="line-height: 54px;">
+                            <img id="head_image" class="user_imag user"  src="../image/11f5dbcf9ad6ae261aa1656dd78004d9.jpg">
+                        </a>
+                        <div class="nav-shop-cart">
+                            <div class="widget_shopping_cart_content">
+                                <div class="woocommerce-min-cart-wrap">
+                                    <ul class="woocommerce-mini-cart cart_list product_list_widget flat-text-center">
+                                        <li class="woocommerce-mini-cart-item mini_cart_item">
+                                            <span>No Items in Shopping Cart</span>
+                                        </li>
+                                    </ul>
+                                </div><!-- /.widget_shopping_cart_content -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart nav-top-cart-wrapper">
+                        <a data-toggle="modal" data-target="#LoginModal" href="#" style="font-weight: 700;">登录</a>
+                    </div>
+                    <div class="cart nav-top-cart-wrapper">
+                        <a href="#"><span class="fa fa-bell"></span></a> <span class="count-cart">0</span>
+                    </div>
+                    <div class="cart nav-top-cart-wrapper">
+                        <a href="#"><span class="fa fa-history"></span></a>
+                        <div class="nav-shop-cart">
+                            <div class="widget_shopping_cart_content">
+                                <div class="woocommerce-min-cart-wrap">
+                                    <ul class="woocommerce-mini-cart cart_list product_list_widget flat-text-center">
+                                        <li class="woocommerce-mini-cart-item mini_cart_item">
+                                            <span>No Items in Shopping Cart</span>
+                                        </li>
+                                    </ul>
+                                </div><!-- /.widget_shopping_cart_content -->
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="mobile-button">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div> <!-- #header -->
 </div>
 <!--<div class="user_navigation">
     <ul class="nav nav-pills" style="display: inline">

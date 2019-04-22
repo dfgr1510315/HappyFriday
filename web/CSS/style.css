@@ -207,6 +207,10 @@ h6,h6 a{font-size:20px;line-height:24px}
 }
 
 /* nav-menu */
+.menu{
+    display: inline-block;
+}
+
 .nav-wrap {
     float: left;
 }
@@ -306,9 +310,9 @@ h6,h6 a{font-size:20px;line-height:24px}
 
 /* menu-extra */
 .extra-menu {
-    width: 27%;
+    width: 35%;
     float: right;
-    padding: 20px 0 9px;
+    padding: 24px 0 3px;
 }
 
 .extra-menu ul li {
@@ -320,7 +324,7 @@ h6,h6 a{font-size:20px;line-height:24px}
 }
 
 .extra-menu a {
-    line-height: 64px;
+    line-height: 57px;
 }
 
 .extra-menu .cart {
@@ -421,6 +425,18 @@ h6,h6 a{font-size:20px;line-height:24px}
 #header.style2.v2 .show-search a:hover,
 #header.style2.v2 .show-search a i:hover{
     color: #007bff;
+}
+
+#pc-nav > ul > li{
+    position: relative;
+    text-align: left;
+    display: inline-block;
+}
+
+#pc-nav ul li a {
+    line-height: 60px;
+    display: block;
+    font-weight: 700;
 }
 
 /* Header Style2 */
