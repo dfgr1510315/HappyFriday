@@ -552,7 +552,7 @@
         countDownTime();
         swClick();
         Animation();
-        $( window ).load(function() {
+        $( window ).on(function() {
             inViewport();
         });
         preLoader();

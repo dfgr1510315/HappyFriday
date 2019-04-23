@@ -26,7 +26,7 @@
                     user = jsonObj.user;
                     if (user===undefined){
                         $("#loginButton").show();
-                        $('#personalCenter').remove();
+                        $('.personalCenter').remove();
                         return
                     }
                     if (jsonObj.read===0)  $('.msg_remind').css('display','inline');
@@ -42,7 +42,7 @@
 
         function checkCookie() {
                 $("#loginButton").remove();
-                $("#personalCenter").show();
+                $(".personalCenter").show();
                 $("#head_image").attr('src',contextPath+head_image);
         }
 
@@ -89,11 +89,11 @@
                 if ('0' === load_history_class_id[i])  continue;
                 var unit = load_last_time[i].split(':');
                 $('.history_ul').append(
-                    '   <li>\n' +
+                    '   <li  style="width: 100%;text-align: left;line-height: 10px">\n' +
                     '                        <a href="Play.html?'+load_history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+load_last_time[i].trim()+'" class="clearfix">\n' +
                     '                            <div class="link">'+load_last_time[i].trim()+'</div>\n' +
-                    '                            <div>\n' +
-                    '                                <div class="state">\n' +
+                    '                            <div style="float: right">\n' +
+                    '                                <div class="state" style="display: inline;">\n' +
                     '                                    <span class="page">'+load_title[i]+'</span>\n' +
                     '                                    <span class="split">|</span>\n' +
                     '                                    <span>'+load_schedule[i]+'%</span>\n' +
@@ -205,12 +205,12 @@
                             <li>
                                 <a href="#">课程类型</a>
                                 <ul class="submenu">
-                                    <li><a href="courses-grid-v1.html">前端设计</a></li>
-                                    <li><a href="courses-grid-v2.html">后台开发</a></li>
-                                    <li><a href="courses-grid-v3.html">移动开发</a></li>
-                                    <li><a href="courses-single.html"> 嵌入式</a></li>
-                                    <li><a href="courses-single.html"> 基础理论</a></li>
-                                    <li><a href="courses-single.html"> 项目发布</a></li>
+                                    <li><a target="_blank" href="course.html?type=1">前端设计</a></li>
+                                    <li><a target="_blank" href="course.html?type=2">后台开发</a></li>
+                                    <li><a target="_blank" href="course.html?type=3">移动开发</a></li>
+                                    <li><a target="_blank" href="course.html?type=4"> 嵌入式</a></li>
+                                    <li><a target="_blank" href="course.html?type=5"> 基础理论</a></li>
+                                    <li><a target="_blank" href="course.html?type=6"> 项目发布</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -225,43 +225,44 @@
                             </form>
                         </div>
                     </div>
-                    <div class="cart nav-top-cart-wrapper">
-                        <a href="#" style="line-height: 54px;">
+                    <div class="cart nav-top-cart-wrapper personalCenter">
+                        <a style="line-height: 50px;">
                             <img id="head_image" class="user_imag user"  src="../image/11f5dbcf9ad6ae261aa1656dd78004d9.jpg">
                         </a>
-                        <div class="nav-shop-cart">
+                        <div class="nav-shop-cart" style="width: 138px">
                             <div class="widget_shopping_cart_content">
                                 <div class="woocommerce-min-cart-wrap">
                                     <ul class="woocommerce-mini-cart cart_list product_list_widget flat-text-center">
                                         <li class="woocommerce-mini-cart-item mini_cart_item">
-                                            <span>No Items in Shopping Cart</span>
+                                            <a target="_blank" href="PersonalCenter.html" class="pc_item">个人中心</a>
+                                        </li>
+                                        <li class="woocommerce-mini-cart-item mini_cart_item">
+                                            <a href="javascript:void(0);" onclick="deleteCookie()" class="pc_item">退出登录</a>
                                         </li>
                                     </ul>
-                                </div><!-- /.widget_shopping_cart_content -->
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="cart nav-top-cart-wrapper">
-                        <a data-toggle="modal" data-target="#LoginModal" href="#" style="font-weight: 700;">登录</a>
+                    <div class="cart nav-top-cart-wrapper" id="loginButton" style="display:none">
+                        <a data-toggle="modal" data-target="#LoginModal" href="#" style="font-weight: 700;">登录/注册</a>
                     </div>
-                    <div class="cart nav-top-cart-wrapper">
-                        <a href="#"><span class="fa fa-bell"></span></a> <span class="count-cart">0</span>
+                    <div class="cart nav-top-cart-wrapper personalCenter" >
+                        <a href="#">
+                            <span class="fa fa-bell"></span>
+                        </a>
+                        <span class="count-cart">0</span>
                     </div>
-                    <div class="cart nav-top-cart-wrapper">
+                    <div class="cart nav-top-cart-wrapper personalCenter" style="margin-right:15px;" >
                         <a href="#"><span class="fa fa-history"></span></a>
                         <div class="nav-shop-cart">
                             <div class="widget_shopping_cart_content">
-                                <div class="woocommerce-min-cart-wrap">
-                                    <ul class="woocommerce-mini-cart cart_list product_list_widget flat-text-center">
-                                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                                            <span>No Items in Shopping Cart</span>
-                                        </li>
-                                    </ul>
+                                <div class="woocommerce-min-cart-wrap" style="padding-top: 20px">
+                                    <ul class="woocommerce-mini-cart cart_list product_list_widget flat-text-center history_ul"></ul>
                                 </div><!-- /.widget_shopping_cart_content -->
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="mobile-button">
                     <span></span>

@@ -80,4 +80,5 @@ function deleteCookie() {
         },
         dataType:'json'
     });
+    location.reload();
 }
