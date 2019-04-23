@@ -1,37 +1,26 @@
 @font-face {
-    font-family: 'bf-icon';
-    src:  url('../fonts/icomoon.eot?yemmms');
-    src:  url('../fonts/icomoon.eot?yemmms#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?yemmms') format('truetype'),
-    url('../fonts/icomoon.woff?yemmms') format('woff'),
-    url('../fonts/icomoon.svg?yemmms#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: 'bf-icon';
+  src:  url('../fonts/icomoon.eot?yemmms#iefix') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf?yemmms') format('truetype'),
+  url('../fonts/icomoon.woff?yemmms') format('woff'),
+  url('../fonts/icomoon.svg?yemmms#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 [class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'bf-icon' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bf-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
 
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-quote:before {
-  content: "\ea40";
-}
-.icon-video:before {
-  content: "\ea3f";
-}
-.icon-grapphic:before {
-  content: "\ea3e";
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .icon-education .path1:before {
   content: "\e915";
@@ -117,57 +106,6 @@
   margin-left: -1em;
   color: rgb(46, 162, 219);
 }
-.icon-education .path18:before {
-  content: "\ea2b";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.icon-education .path19:before {
-  content: "\ea2c";
-  margin-left: -1em;
-  color: rgb(253, 191, 94);
-}
-.icon-education .path20:before {
-  content: "\ea2d";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-education .path21:before {
-  content: "\ea38";
-  margin-left: -1em;
-  color: rgb(225, 230, 233);
-}
-.icon-education .path22:before {
-  content: "\ea39";
-  margin-left: -1em;
-  color: rgb(207, 208, 209);
-}
-.icon-education .path23:before {
-  content: "\ea3a";
-  margin-left: -1em;
-  color: rgb(207, 208, 209);
-}
-.icon-education .path24:before {
-  content: "\ea3b";
-  margin-left: -1em;
-  color: rgb(207, 208, 209);
-}
-.icon-education .path25:before {
-  content: "\ea3c";
-  margin-left: -1em;
-  color: rgb(207, 208, 209);
-}
-.icon-education .path26:before {
-  content: "\ea3d";
-  margin-left: -1em;
-  color: rgb(207, 208, 209);
-}
-.icon-arrow-left-2:before {
-  content: "\ea36";
-}
-.icon-arrow-right-2:before {
-  content: "\ea37";
-}
 .icon-app .path1:before {
   content: "\e900";
   color: rgb(114, 242, 235);
@@ -249,26 +187,6 @@
 }
 .icon-app .path17:before {
   content: "\e910";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-app .path18:before {
-  content: "\e911";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-app .path19:before {
-  content: "\e912";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-app .path20:before {
-  content: "\e913";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-app .path21:before {
-  content: "\e914";
   margin-left: -1em;
   color: rgb(0, 0, 0);
 }
@@ -540,66 +458,6 @@
 }
 .icon-design .path17:before {
   content: "\e94f";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path18:before {
-  content: "\e950";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path19:before {
-  content: "\e951";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path20:before {
-  content: "\e952";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path21:before {
-  content: "\e953";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path22:before {
-  content: "\e954";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path23:before {
-  content: "\e955";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path24:before {
-  content: "\e956";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path25:before {
-  content: "\e957";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path26:before {
-  content: "\e958";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path27:before {
-  content: "\e959";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path28:before {
-  content: "\e95a";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-design .path29:before {
-  content: "\e95b";
   margin-left: -1em;
   color: rgb(0, 0, 0);
 }
@@ -875,61 +733,6 @@
 }
 .icon-online-learning .path17:before {
   content: "\e996";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path18:before {
-  content: "\e997";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path19:before {
-  content: "\e998";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path20:before {
-  content: "\e999";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path21:before {
-  content: "\e99a";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path22:before {
-  content: "\e99b";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path23:before {
-  content: "\e99c";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path24:before {
-  content: "\e99d";
-  margin-left: -1em;
-  color: rgb(241, 96, 81);
-}
-.icon-online-learning .path25:before {
-  content: "\e99e";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.icon-online-learning .path26:before {
-  content: "\e99f";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path27:before {
-  content: "\e9a0";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-online-learning .path28:before {
-  content: "\e9a1";
   margin-left: -1em;
   color: rgb(25, 54, 81);
 }
@@ -1308,11 +1111,6 @@
   margin-left: -1em;
   color: rgb(0, 0, 0);
 }
-.icon-question .path18:before {
-  content: "\e9f1";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
 .icon-teacher .path1:before {
   content: "\e9f3";
   color: rgb(25, 54, 81);
@@ -1396,192 +1194,6 @@
   content: "\ea03";
   margin-left: -1em;
   color: rgb(255, 255, 255);
-}
-.icon-teacher .path18:before {
-  content: "\ea04";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path19:before {
-  content: "\ea05";
-  margin-left: -1em;
-  color: rgb(253, 191, 94);
-}
-.icon-teacher .path20:before {
-  content: "\ea06";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path21:before {
-  content: "\ea07";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.icon-teacher .path22:before {
-  content: "\ea08";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path23:before {
-  content: "\ea09";
-  margin-left: -1em;
-  color: rgb(207, 208, 209);
-}
-.icon-teacher .path24:before {
-  content: "\ea0a";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path25:before {
-  content: "\ea0b";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path26:before {
-  content: "\ea0c";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path27:before {
-  content: "\ea0d";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path28:before {
-  content: "\ea0e";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path29:before {
-  content: "\ea0f";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path30:before {
-  content: "\ea10";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path31:before {
-  content: "\ea11";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path32:before {
-  content: "\ea12";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path33:before {
-  content: "\ea13";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path34:before {
-  content: "\ea14";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path35:before {
-  content: "\ea15";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path36:before {
-  content: "\ea16";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path37:before {
-  content: "\ea17";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path38:before {
-  content: "\ea18";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path39:before {
-  content: "\ea19";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path40:before {
-  content: "\ea1a";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path41:before {
-  content: "\ea1b";
-  margin-left: -1em;
-  color: rgb(46, 162, 219);
-}
-.icon-teacher .path42:before {
-  content: "\ea1c";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path43:before {
-  content: "\ea1d";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.icon-teacher .path44:before {
-  content: "\ea1e";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path45:before {
-  content: "\ea1f";
-  margin-left: -1em;
-  color: rgb(241, 96, 81);
-}
-.icon-teacher .path46:before {
-  content: "\ea20";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path47:before {
-  content: "\ea21";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.icon-teacher .path48:before {
-  content: "\ea22";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-teacher .path49:before {
-  content: "\ea23";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.icon-teacher .path50:before {
-  content: "\ea24";
-  margin-left: -1em;
-  color: rgb(25, 54, 81);
-}
-.icon-list:before {
-  content: "\ea2e";
-}
-.icon-grid:before {
-  content: "\ea2f";
-}
-.icon-arrow-right:before {
-  content: "\ea30";
-}
-.icon-key:before {
-  content: "\ea31";
-}
-.icon-people:before {
-  content: "\ea32";
-}
-.icon-book:before {
-  content: "\ea33";
-}
-.icon-cart:before {
-  content: "\ea34";
 }
 .icon-search:before {
   content: "\ea35";
