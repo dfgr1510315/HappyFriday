@@ -77,8 +77,15 @@ input[type="search"] {
 }
 
 
-input[type="search"]:focus {
+.style1 input[type="search"]:focus {
     border: 1px solid #007bff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.style2 input[type="search"]:focus {
+    border: 1px solid #f3728b;;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -125,6 +132,32 @@ h6{font-family:"Roboto",sans-serif;font-weight:700;color: #192836;}
 h6,h6 a{font-size:20px;line-height:24px}
 
 /* style2 */
+.top .socails ul li a {
+    color: #515e6f;
+}
+
+.top .socails ul li {
+    margin-left: 11px;
+}
+
+.top .socails {
+    float: left;
+    width: 67.5%;
+    padding: 6px 6px 0px 0;
+}
+
+.top .socails ul li a:hover {
+    color: #f3728b;
+}
+
+.top .socails.v2 ul li a:hover {
+    color: #ec5252;
+}
+
+.top .flat-action.style2 {
+    width: 32.5%;
+    float: left;
+}
 
 /* Header
 -------------------------------------------------- */
@@ -288,6 +321,131 @@ h6,h6 a{font-size:20px;line-height:24px}
 }
 
 /* Header Style2 */
+#header.style2 #logo {
+    padding: 31px 0 29px;
+}
+
+.style2 .fa{
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.style2 .fa:hover{
+    color: #f3728b;
+}
+
+#header.style2 #main-nav > ul > li {
+    margin-right: 31px;
+}
+#header.style2 #main-nav > ul > li > a {
+    color: #fff;
+    padding-right: 0;
+    line-height: 87px;
+}
+
+#header.style2 #main-nav > ul > li > a:after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: #f3728b;
+    position: absolute;
+    bottom: 31px;
+    left: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+#header.style2.v2 .show-search a:hover,
+#header.style2.v2 .show-search a i:hover,
+#header.style2.v2 .show-search.active a .icon-search:hover:before,
+#header.style2.v2  .show-search.active a .icon-search:before {
+    color: #ec5252;
+}
+
+#header.style2.v2 #main-nav > ul > li > a:after {
+    background: #ec5252;
+}
+
+#header.style2 #main-nav > ul > li > a:hover,
+#header.style2 #main-nav > ul > li.active > a,
+#header.style2 .extra-menu ul li.cart:hover a {
+    color: #f3728b;
+}
+
+#header.style2.v2 #main-nav > ul > li > a:hover,
+#header.style2.v2 #main-nav > ul > li.active > a,
+#header.style2.v2 .extra-menu ul li.cart:hover a {
+    color: #ec5252;
+}
+
+#header.style2 #main-nav > ul > li > a:hover:after,
+#header.style2 #main-nav > ul > li.active > a:after {
+    width: 100%;
+}
+
+#header.style2 .extra-menu ul li.cart a {
+    color: #fff;
+}
+
+#header.style2 .extra-menu ul li:not(:last-child) {
+    margin-right: 11px;
+}
+
+
+#header.style2.v2 #main-nav  ul > li.active > a,
+#header.style2.v2 #main-nav ul.submenu > li:hover > a {
+    color: #ec5252;
+}
+
+#header.style2.v2 #main-nav > ul.menu li:hover > a {
+    color: #ec5252;
+}
+
+#header.style2.v2 #main-nav ul.submenu {
+    width: 220px;
+}
+
+#header.style2.v2 #main-nav ul.submenu li ul {
+    left: 191px;
+}
+
+#header.style2.v2 .extra-menu span.count-cart {
+    background: #ec5252;
+}
+
+#header.style2.v3 #main-nav > ul > li > a,
+#header.style2.v3 .extra-menu ul li.cart a {
+    color: #192836;
+}
+
+#header.style2.v3 #main-nav > ul > li > a:hover,
+#header.style2.v3 #main-nav > ul > li.active > a,
+#header.style2.v3 .extra-menu ul li.cart:hover a {
+    color: #f3728b;
+}
+
+#header.style2.v3 #main-nav {
+    margin-right: -14px;
+}
+
+#header.style2.v2 #main-nav {
+    margin-right: -15px;
+}
+
+.flat-title-page.style2 .wrap-title-page {
+    padding: 94px 15px 103px;
+}
+
+.breadcrumbs.style2 {
+    margin-bottom: 55px;
+}
+
+.breadcrumbs.style2 ul li:not(:last-child):after {
+    color: #fff;
+}
 
 .mobile-button {
     display:none;

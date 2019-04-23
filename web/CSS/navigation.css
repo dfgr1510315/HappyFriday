@@ -1,47 +1,3 @@
-.user_card{
-    display: none;
-    background-color:white;
-    position: absolute;
-    right: 12px;
-    top: 44px;
-    width: 110px;
-    box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
-    z-index: 1000;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-.user_navigation{
-    /*position:fixed;*/
-    height: 60px;
-    top:0;
-    left:0;
-    right:0;
-    width: 100% ;
-    padding-left: 40px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    background-color: white;
-    z-index: 6;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
-}
-.container_right_head{
-    font-size: 20px;
-    color: #3d3d3d;
-    height: 90px;
-    line-height: 90px;
-    border-bottom: 1px solid #e0e0e0;
-}
-a:hover{
-    text-decoration: none;
-}
-/*.user_navigation .nav-pills .nav-item .nav-link,.user_card */a{
-    transition: all .3s;
-}
-.notification{
-    position: relative;
-    float: left;
-}
-
 .notification a{
     color: #787d82;
     -webkit-transition: all .5s;
@@ -52,121 +8,6 @@ a:hover{
 }
 .notification a:hover{
     color: #007bff;
-}
-
-.form-control:focus{
-    outline:none;
-    box-shadow: none;
-    border: 1px solid #007bff;
-}
-
-
-/*#search_input{
-    font-size: 13px;
-    border: none;
-    border-bottom: 1px solid #ced4da;
-    border-radius: 0;
-}
-
-#search_input:focus{
-    outline:none;
-    box-shadow: none;
-    border-bottom: 1px solid #007bff;
-}*/
-
-.nav-item .input-group{
-    float: left;
-    width: auto;
-}
-
-#search_input{
-    border: none;
-    border-bottom: 1px solid #ced4da;
-    border-radius: 0;
-    font-size: 13px;
-    position: static;
-    padding-right: 21px;
-
-}
-
-#search_input:focus{
-    outline: none;
-    border-bottom-color: #007bff;
-    box-shadow:none;
-    z-index: 0;
-}
-
-.nav-item .input-group .input-group-append{
-    position: absolute;
-    color: #757a7e;
-    top: 11px;
-    right: 3px;
-    cursor: pointer;
-}
-
-.notice{
-    margin-right: 25px;
-    font-size: 20px;
-    color: #787d82;
-    float: right;
-    margin-top: 5px;
-    position: relative;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -ms-transition: all .5s;
-    -o-transition: all .5s;
-    transition: all .5s;
-}
-
-.notice:hover{
-    color: #007bff;
-}
-
-#head_image{
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-}
-
-.msg_remind {
-    display: none;
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: #007bff;
-    top: 0;
-    left: 21px;
-    border-radius: 50%;
-}
-
-.dd-bubble {
-    position: absolute;
-    z-index: 1;
-}
-
-.history-wnd {
-    width: 400px;
-    left: auto;
-    right: -58px;
-}
-
-.mini-wnd-nav {
-    display: none;
-    position: absolute;
-    right: 153px;
-    top: 45px;
-    background-color: #fff;
-    width: 375px;
-    box-shadow: 0 2px 4px rgba(0,0,0,.16);
-    border: 1px solid #e5e9ef;
-    border-radius: 0 0 4px 4px;
-    z-index: 200;
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-.history_ul{
-    padding-left: 0;
 }
 
 .history_ul li {
@@ -187,62 +28,13 @@ a:hover{
     position: relative;
 }
 .mini-wnd-nav a {
-   /* color: #222;*/
+    /* color: #222;*/
     transition: color .2s;
-}
-
-.mini-wnd-nav .history_ul li .link {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: inline-block;
-    max-width: 240px;
-    float: left;
-}
-
-.mini-wnd-nav.history-wnd .state {
-    font-size: 12px;
-    color: #99a2aa;
-    float: right;
 }
 
 .mini-wnd-nav.history-wnd .state span {
     display: inline-block;
     float: left;
-}
-
-.mini-wnd-nav.history-wnd .split {
-    margin: 0 5px;
-}
-
-.title_list_box{
-    display: none;
-    position: absolute;
-   /* border: 1px solid #e5e9ef;*/
-    margin-top: 2px;
-    top: 40px;
-    width: 100%;
-    background: #fff;
-    z-index: 99999;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,.16);
-    padding-bottom: 5px;
-    font-size: 12px;
-}
-
-.title_list{
-    padding-left: 0;
-}
-
-.list_tips{
-    padding: 6px 10px;
-    cursor: pointer;
-    word-wrap: break-word;
-    word-break: break-all;
-    display: block;
-    color: #222;
-    position: relative;
-    list-style: none;
 }
 
 .list_tips a{
@@ -253,12 +45,3 @@ a:hover{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
-.hover{
-    background-color: #e0e4e7;
-}
-
-/*
-#navigation{
-    height: 60px;
-}*/

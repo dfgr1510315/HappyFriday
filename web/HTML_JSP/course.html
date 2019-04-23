@@ -260,7 +260,7 @@
             if (type==null) type ='0';
             $('#nav_type').children().eq(type).children().addClass('active');
             get_class();
-            $('#navigation').load('navigation.html',function () {
+            $('#navigation').load('navigation_dark.html',function () {
                 $('.user_navigation .nav-pills li:eq(3) a').css('color','white');
                 get_user_infor();
             });

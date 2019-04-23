@@ -13,16 +13,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12850cd1-69d1-43cd-8843-a98321ef88ef" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/HTML_JSP/navigation_dark.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/JS/navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/CSS/muke.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/muke.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/CSS/navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/navigation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/shortcode.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/shortcode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/CSS/navigation_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/navigation_dark.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/woocommerce.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/woocommerce.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/course.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/course.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/HTML_JSP/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/HTML_JSP/navigation.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/navigation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/LoginPC.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/LoginPC.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/waypoints.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/waypoints.min.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,38 +75,44 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/CSS/shortcode.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/HTML_JSP/homepage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="195" column="7" lean-forward="true" selection-start-line="195" selection-start-column="7" selection-end-line="195" selection-end-column="7" />
+            <state relative-caret-position="114">
+              <caret line="9" column="61" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="61" />
               <folding>
-                <element signature="n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/navigation.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/course.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="268" column="22" lean-forward="true" selection-start-line="268" selection-start-column="22" selection-end-line="268" selection-end-column="22" />
+            <state relative-caret-position="344">
+              <caret line="139" column="23" lean-forward="true" selection-start-line="139" selection-start-column="23" selection-end-line="139" selection-end-column="23" />
               <folding>
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#a#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#a#0;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/navigation_dark.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="69" column="43" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="43" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -118,11 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/CSS/muke.css">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/CSS/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+            <state relative-caret-position="284">
+              <caret line="90" column="21" lean-forward="true" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -135,36 +141,21 @@
         <option value="jsf" />
         <option value="AnnotationType" />
         <option value="Jsp File" />
-        <option value="HTML File" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Class" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>input[type=&quot;search&quot;]</find>
-      <find>color</find>
-      <find>sw-even</find>
-      <find>logo</find>
-      <find>courses-grid-v3-page</find>
-      <find>#navigation</find>
-      <find>#main-nav &gt; ul &gt; li</find>
-      <find>menu</find>
-      <find>#head_image</find>
-      <find>.extra-menu</find>
-      <find>cart nav-top-cart-wrapper</find>
-      <find>$( window ).load</find>
-      <find>return i.load</find>
-      <find>woocommerce-mini-cart-item</find>
       <find>nav-shop-cart</find>
       <find>head_image</find>
       <find>pc-nav</find>
       <find>.extra-menu .cart a</find>
       <find>loginButton</find>
       <find>登录</find>
-      <find>.border_shadow</find>
       <find>No Items in Shopping Cart</find>
       <find>.nav-top-cart-wrapper .nav-shop-cart</find>
       <find>.history_ul li</find>
@@ -174,6 +165,21 @@
       <find>personalCenter</find>
       <find>category</find>
       <find>iconbox.style4</find>
+      <find>bg-fff</find>
+      <find>.border_shadow</find>
+      <find>navigation</find>
+      <find>.top .flat-action.style2</find>
+      <find>#header.style2.v2</find>
+      <find>#header.style2.v2 .show-search.active a .icon-search:hover:before,</find>
+      <find>Header Style2</find>
+      <find>#header.style2 .extra-menu</find>
+      <find>#header.style2 .nav-wrap</find>
+      <find>#navigation</find>
+      <find>style2</find>
+      <find>#header.style2 #main-nav &gt; ul &gt; li</find>
+      <find>fa</find>
+      <find>search</find>
+      <find>.style2 input</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,12 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/DAOlmpl/classDAOlmpl.java" />
-        <option value="$PROJECT_DIR$/src/Server/Learn_list.java" />
-        <option value="$PROJECT_DIR$/src/Model/SubModel/Class_infor.java" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/course.html" />
-        <option value="$PROJECT_DIR$/web/CSS/navigation_dark.css" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/Search/user.html" />
         <option value="$PROJECT_DIR$/web/JS/search.js" />
         <option value="$PROJECT_DIR$/web/CSS/search.css" />
         <option value="$PROJECT_DIR$/src/Server/ToH264.java" />
@@ -226,14 +226,20 @@
         <option value="$PROJECT_DIR$/web/CSS/liblary.css" />
         <option value="$PROJECT_DIR$/web/JS/main.js" />
         <option value="$PROJECT_DIR$/web/JS/waypoints.min.js" />
-        <option value="$PROJECT_DIR$/web/CSS/muke.css" />
         <option value="$PROJECT_DIR$/web/CSS/woocommerce.css" />
-        <option value="$PROJECT_DIR$/web/CSS/navigation.css" />
-        <option value="$PROJECT_DIR$/web/CSS/style.css" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/navigation.html" />
         <option value="$PROJECT_DIR$/web/JS/LoginPC.js" />
         <option value="$PROJECT_DIR$/web/CSS/shortcode.css" />
+        <option value="$PROJECT_DIR$/web/CSS/navigation.css" />
+        <option value="$PROJECT_DIR$/web/CSS/navigation_dark.css" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/homepage.html" />
+        <option value="$PROJECT_DIR$/web/CSS/muke.css" />
+        <option value="D:/TIM/TIM下载/Bookflare/Bookflare/courses-grid-v1.html" />
+        <option value="$PROJECT_DIR$/web/JS/navigation.js" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/navigation.html" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/course.html" />
+        <option value="D:/TIM/TIM下载/Bookflare/Bookflare/revolution/js/CSS/style.css" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/navigation_dark.html" />
+        <option value="$PROJECT_DIR$/web/CSS/style.css" />
       </list>
     </option>
   </component>
@@ -257,16 +263,16 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="403" />
-    <option name="y" value="506" />
-    <option name="width" value="1310" />
-    <option name="height" value="964" />
+    <option name="x" value="-510" />
+    <option name="y" value="65" />
+    <option name="width" value="1880" />
+    <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -307,7 +313,7 @@
               <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="WEB-INF" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="JS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -1208,7 +1214,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2028594000" />
+    <option name="totallyTimeSpent" value="2033370000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1220,9 +1226,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.57859534" visible="true" weight="0.17910448" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.57859534" visible="true" weight="0.21447721" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1233,7 +1240,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3177874" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49061662" weight="0.3470716" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48927614" weight="0.48373103" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48927614" weight="0.48300284" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Application Servers" order="6" side_tool="true" weight="0.32765958" />
@@ -1399,36 +1406,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/out/artifacts/ServletTest_war_exploded/CSS/muke.css" />
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/chrome下载/课程测试/5cbc3f046ffd6/index.html" />
-    <entry file="file://D:/chrome下载/课程测试/Bookflare/index - 副本.html" />
-    <entry file="file://$PROJECT_DIR$/web/CSS/settings.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/404.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Filter/Login_Filter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="68" column="13" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DAO/loginDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1543,13 +1520,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/chrome下载/课程测试/Bookflare/stylesheets/woocommerce.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/chrome下载/课程测试/Bookflare/stylesheets/woocommerce.css" />
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Learn_list.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1560,24 +1531,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/CSS/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="198" column="21" lean-forward="true" selection-start-line="198" selection-start-column="21" selection-end-line="198" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/JS/LoginPC.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="758">
           <caret line="83" column="1" lean-forward="true" selection-start-line="83" selection-start-column="1" selection-end-line="83" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/CSS/navigation.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="174" column="1" selection-start-line="174" selection-start-column="1" selection-end-line="174" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1598,32 +1555,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/CSS/settings.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/CSS/muke.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="94">
+          <caret line="225" column="16" selection-start-line="225" selection-start-column="16" selection-end-line="225" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/homepage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="195" column="7" lean-forward="true" selection-start-line="195" selection-start-column="7" selection-end-line="195" selection-end-column="7" />
+        <state relative-caret-position="114">
+          <caret line="9" column="61" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="61" />
           <folding>
-            <element signature="n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/JS/navigation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#a#0;n#li#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/TIM/TIM下载/Bookflare/Bookflare/revolution/js/CSS/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="825" column="5" selection-start-line="825" selection-start-column="5" selection-end-line="825" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/CSS/navigation.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/TIM/TIM下载/Bookflare/Bookflare/courses-grid-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="69" column="52" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="52" />
+          <folding>
+            <element signature="n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/navigation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="268" column="22" lean-forward="true" selection-start-line="268" selection-start-column="22" selection-end-line="268" selection-end-column="22" />
+        <state relative-caret-position="409">
+          <caret line="27" column="63" lean-forward="true" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
           <folding>
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#a#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1631,6 +1633,49 @@
             <element signature="n#style#0;n#div#4;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#4;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/CSS/navigation_dark.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/course.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="139" column="23" lean-forward="true" selection-start-line="139" selection-start-column="23" selection-end-line="139" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/navigation_dark.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="69" column="43" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#4;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/CSS/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="90" column="21" lean-forward="true" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
         </state>
       </provider>
     </entry>
