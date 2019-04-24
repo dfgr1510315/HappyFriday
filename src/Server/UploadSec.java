@@ -6,7 +6,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,7 +44,6 @@ public class UploadSec extends HttpServlet {
             writer.flush();
             return;
         }*/
-
         //配置上传参数
         DiskFileItemFactory factory = new DiskFileItemFactory();
         //设置内存临界值 ，超过后将产生临时文件存储在临时目录中
@@ -54,166 +53,151 @@ public class UploadSec extends HttpServlet {
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setFileSizeMax(MAX_FILE_SIZE);  //设置文件最大上限
         upload.setSizeMax(MAX_REQUEST_SIZE);
-
         upload.setHeaderEncoding("UTF-8");
-
         String uploadPath = getServletContext().getRealPath("/") + UPLOAD_DIRECTORY;//相对于当前应用的目录
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists())  uploadDir.mkdir(); //如果当前目录不存在则创建
-
         try {
             //解析请求的内容提取文件数据
             @SuppressWarnings("unchecked")
             List<FileItem> formItems = upload.parseRequest(request);
-
+            List<String> values = new ArrayList<>();
+            JSONObject jsonObj = new JSONObject();
+            PrintWriter out = response.getWriter();
             if (formItems !=null&&formItems.size()>0){
                 for (FileItem item : formItems){
-                    if (!item.isFormField()){
-                        //String fileName = new File(getHash.getMD5()+"."+type).getName();
-
-                        String fileName = new File(item.getName()).getName();
-                        String filePath = uploadPath + File.separator + fileName;
-                        String oldFileName = fileName;
-                        //System.out.println("fileName:"+fileName);
-                        ConnectSQL.my_println("没有经过处理的fileName:"+fileName);
-                        //System.out.println("filePath"+filePath);
-                       // System.out.println("item.getSize():"+item.getSize());
-                        ConnectSQL.my_println("filePath:"+filePath);
+                    if (item.isFormField()){
+                        values.add(item.getString("utf-8"));
+                    }
+                    else {
+                        String fileName = new File(item.getName()).getName();//获取文件名
+                        String filePath = uploadPath + File.separator + fileName;//文件的绝对路径 如D:\IDEA\IdeaProjects\out\artifacts\ServletTest_war_exploded\Upload\chromedriver_win32.zip
+                        String oldFileName = fileName;//在文件名更换为md5前保存原文件名
                         File storeFile = new File(filePath);
-                        //System.out.println("OLDstoreFile.length():"+storeFile.length());
-                        //System.out.println(item.getContentType());
-                        item.write(storeFile);
-                        //System.out.println("storeFile.length():"+storeFile.length());
-
+                        item.write(storeFile);//写入磁盘
                         getHash getHash = new getHash(uploadPath+"\\"+item.getName());
-                        String type = item.getName().substring(item.getName().lastIndexOf(".") + 1).toLowerCase();
-                        fileName = getHash.getMD5()+"."+type;
-                        //System.out.println("getHash.getMD5():"+getHash.getMD5());
-                        //System.out.println("经过MD5计算后的fileName:"+fileName);
-                        JSONObject jsonObj = new JSONObject();
-                        PrintWriter out = response.getWriter();
-
-                        ToH264 toH264 = new ToH264(uploadPath,oldFileName,username,oldFileName); //判断文件类型
-                        //System.out.println(toH264.getPATH());
-                        //toH264.getPATH();
-
-                        if (toH264.getType()==9){   //如果不是视频文件
+                        String type = item.getName().substring(item.getName().lastIndexOf(".") + 1).toLowerCase();//获取文件类型
+                        fileName = getHash.getMD5()+"."+type;//将文件名重命名为md5值
+                        if (values.get(0).equals("file")){
                             if (Server.getHash.getFile(uploadPath).contains(fileName)){   //是否有重复文件
-                                new File(uploadPath+"\\"+oldFileName).delete();
-                            }else {
-                                new File(uploadPath+"\\"+oldFileName).renameTo(new File(uploadPath+"\\"+fileName));
-                                DBPoolConnection dbp = DBPoolConnection.getInstance();
-                                DruidPooledConnection con =null;
-                                PreparedStatement qsql = null;
-                                try {
-                                    con = dbp.getConnection();
-                                    qsql= con.prepareStatement("insert into File values(?,?)");
-                                    qsql.setString(1,UPLOAD_DIRECTORY+"/"+fileName);
-                                    qsql.setString(2,oldFileName);
-                                    qsql.executeUpdate();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }finally {
-                                    if (qsql!=null)
-                                        try{
-                                            qsql.close();
-                                        }catch (SQLException e){
-                                            e.printStackTrace();
-                                        }
-                                    if (con!=null)
-                                        try{
-                                            con.close();
-                                        }catch (SQLException e){
-                                            e.printStackTrace();
-                                        }
-                                }
+                                File file = new File(uploadPath+"\\"+oldFileName);
+                                file.delete();
                             }
+                            else file_record(uploadPath,oldFileName,fileName,values);//是新文件则记录
                             jsonObj.put("src",UPLOAD_DIRECTORY+"/"+fileName);
                             jsonObj.put("filename",oldFileName);
-                            out.flush();
-                            out.print(jsonObj);
-                            out.close();
-                        }else {  //类型为视频
-                            if (Server.getHash.getFile(uploadPath).contains(fileName)){   //是否有重复文件
-                                ConnectSQL.my_println("getFile(uploadPath).contains(fileName):"+Server.getHash.getFile(uploadPath).contains(fileName));
-                                new File(uploadPath+"\\"+oldFileName).delete();
-                                DBPoolConnection dbp = DBPoolConnection.getInstance();
-                                DruidPooledConnection con =null;
-                                try {
-                                    con = dbp.getConnection();
-                                    Statement statement = con.createStatement();
-                                    ResultSet rs = statement.executeQuery("select video_address,video_title from Video where source_video_address='"+UPLOAD_DIRECTORY+"/"+fileName+"'");
-                                    while (rs.next()) {
-                                        jsonObj.put("src",rs.getString("video_address"));
-                                        ConnectSQL.my_println("从数据库中查询src："+rs.getString("video_address"));
-                                        jsonObj.put("video_name",rs.getString("video_title"));
-                                        //ConnectSQL.my_println("fileName::"+fileName);
-                                        jsonObj.put("cuSRC",UPLOAD_DIRECTORY+"/"+fileName);
-                                    }
-                                    out.flush();
-                                    out.print(jsonObj);
-                                    out.close();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }finally {
-                                    if (con!=null)
-                                        try{
-                                            con.close();
-                                        }catch (SQLException e){
-                                            e.printStackTrace();
-                                        }
-                                }
-                            }else {
-                                toH264.getPATH();
-                                new File(uploadPath+"\\"+oldFileName).renameTo(new File(uploadPath+"\\"+fileName));
-                                String src;
-                                if (type.equals("mp4")) {
-                                    src = fileName;
-                                }else src = toH264.getName();
-                                DBPoolConnection dbp = DBPoolConnection.getInstance();
-                                DruidPooledConnection con =null;
-                                PreparedStatement qsql = null;
-                                try {
-                                    con = dbp.getConnection();
-                                    qsql= con.prepareStatement("insert into Video values(?,?,?)");
-                                    qsql.setString(1,UPLOAD_DIRECTORY+"/"+fileName);
-                                    qsql.setString(2,UPLOAD_DIRECTORY+"/"+src);
-                                    qsql.setString(3,oldFileName);
-                                    qsql.executeUpdate();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }finally {
-                                    if (qsql!=null)
-                                        try{
-                                            qsql.close();
-                                        }catch (SQLException e){
-                                            e.printStackTrace();
-                                        }
-                                    if (con!=null)
-                                        try{
-                                            con.close();
-                                        }catch (SQLException e){
-                                            e.printStackTrace();
-                                        }
-                                }
-                                jsonObj.put("video_name",oldFileName);
-                                //ConnectSQL.my_println("fileName::"+fileName);
-                                jsonObj.put("cuSRC",UPLOAD_DIRECTORY+"/"+fileName);
-                                jsonObj.put("src",UPLOAD_DIRECTORY+"/"+src);
-                                out.flush();
-                                out.print(jsonObj);
-                                out.close();
-                            }
+                        }
+                        else { //教学视频则进行转码
+                            ToH264 toH264 = new ToH264(uploadPath,oldFileName,username,oldFileName);
+                            if (Server.getHash.getFile(uploadPath).contains(fileName)) get_vd(uploadPath,oldFileName,fileName,jsonObj); //有重复视频则从数据库获取视频信息
+                            else vd_record(toH264,uploadPath,oldFileName,fileName,type,jsonObj);
                         }
                     }
                 }
             }
-        }catch (Exception ex){
-            request.setAttribute("message","错误信息："+ex.getMessage());
-
+            out.print(jsonObj);
+            out.flush();
+            out.close();
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        /*getServletContext().getRequestDispatcher("/homepage.html").forward(request,response);*/
-       /* response.sendRedirect("/homepage.html");*/
+    }
+
+    //记录文件
+    private void file_record(String uploadPath,String oldFileName,String fileName,List<String> values){
+        File file = new File(uploadPath+"\\"+oldFileName);
+        file.renameTo(new File(uploadPath+"\\"+fileName));
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        try {
+            con = dbp.getConnection();
+            qsql= con.prepareStatement("insert into File values(?,?,?)");
+            qsql.setString(1,UPLOAD_DIRECTORY+"/"+fileName);
+            qsql.setString(2,oldFileName);
+            qsql.setInt(3,Integer.parseInt(values.get(1)));
+            qsql.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    //如果教学视频重复则删除刚上传的视频并从数据库中获取src
+    private void get_vd(String uploadPath,String oldFileName,String fileName,JSONObject jsonObj){
+        new File(uploadPath+"\\"+oldFileName).delete();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        try {
+            con = dbp.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select video_address,video_title from Video where source_video_address='"+UPLOAD_DIRECTORY+"/"+fileName+"'");
+            while (rs.next()) {
+                jsonObj.put("src",rs.getString("video_address"));
+                jsonObj.put("video_name",rs.getString("video_title"));
+                jsonObj.put("cuSRC",UPLOAD_DIRECTORY+"/"+fileName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    //记录教学视频
+    private void vd_record(ToH264 toH264,String uploadPath,String oldFileName,String fileName,String type,JSONObject jsonObj){
+        toH264.getPATH();
+        new File(uploadPath+"\\"+oldFileName).renameTo(new File(uploadPath+"\\"+fileName));
+        String src;
+        if (type.equals("mp4")) {
+            src = fileName;
+        }else src = toH264.getName();
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        try {
+            con = dbp.getConnection();
+            qsql= con.prepareStatement("insert into Video values(?,?,?)");
+            qsql.setString(1,UPLOAD_DIRECTORY+"/"+fileName);
+            qsql.setString(2,UPLOAD_DIRECTORY+"/"+src);
+            qsql.setString(3,oldFileName);
+            qsql.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        jsonObj.put("video_name",oldFileName);
+        jsonObj.put("cuSRC",UPLOAD_DIRECTORY+"/"+fileName);
+        jsonObj.put("src",UPLOAD_DIRECTORY+"/"+src);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

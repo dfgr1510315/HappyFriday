@@ -45,12 +45,12 @@ class getHash {
         return null;
     }
 
-    public static ArrayList<String> getFile(String uploadPath){
+    public static List<String> getFile(String uploadPath){
         // 获得指定文件对象
         File file = new File(uploadPath);
         // 获得该文件夹内的所有文件
         File[] array = file.listFiles();
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         int n = 0;
         assert array != null;
         for (File anArray : array) {

@@ -60,11 +60,25 @@ public class SaveClassInfor extends HttpServlet {
                 int state = Integer.parseInt(request.getParameter("state"));
                 change_class_state(No,state,response);
                 break;
+            case "get_file":
+                get_file(response,request);
+                break;
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
+    }
+
+    private void get_file(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+        String class_id = request.getParameter("class_id");
+        PrintWriter out = response.getWriter();
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("files",bc.get_files(class_id));
+        out.print(jsonObj);
+        out.flush();
+        out.close();
     }
 
     //首页和课程类型页面都调用此方法获取课程列

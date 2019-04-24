@@ -1,3 +1,5 @@
+
+
 body {
     background-color: #f8fafc;
     overflow: auto;
@@ -46,4 +48,9 @@ a:hover{
     font-size: 35px;
     font-weight: 300;
     color: #93999f;
+}
+
+.container_right_head{
+    margin-top: 25px;
+    font-size: 20px;
 }

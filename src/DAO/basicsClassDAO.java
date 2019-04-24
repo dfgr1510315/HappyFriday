@@ -1,6 +1,4 @@
 package DAO;
-
-
 import java.util.List;
 
 public interface basicsClassDAO {
@@ -24,4 +22,7 @@ public interface basicsClassDAO {
 
     //改变课程发布状态
     boolean change_class_state(int No,int state);
+
+    //获取课程素材
+    List get_files(String class_id);
 }

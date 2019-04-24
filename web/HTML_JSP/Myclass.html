@@ -24,6 +24,7 @@
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
     <script type="text/javascript" src="../JS/Myclass.js"></script>
     <script type="text/javascript" src="../JS/drag.js"></script>
+<!--    <script type="text/javascript" src="../JS/spark-md5.min.js"></script>-->
 </head>
 <style type="text/css">
     body.modal-open {
@@ -45,37 +46,101 @@
             addAction(0)
         });
     });
+    var files_count = 0;
+    var filesName = [];
+    var filesSize = [];
+    function batch_upload(event) {
+        var batch_bar = $("#batch_bar");
+        var batch_span = $("#batch_span");
+        var files =event.files; //获取当前选择的文件对象
+        if (files===undefined) return;
+        batch_bar.css('display','block');
+        for(var m=0;m<files.length;m++){ //循环添加进度条
+            filesName.push(files[m].name);
+            if (files[m].size> 1024 * 1024){
+                filesSize.push( (Math.round(files[m].size /(1024 * 1024))).toString() + 'MB');
+            }
+            else{
+                filesSize.push((Math.round(files[m].size/1024)).toString() + 'KB');
+            }
+        }
+        sendAjax();
+        function sendAjax() {
+            if (files_count>=files.length){
+                $('#batch_file').val('');
+                files_count = 0;
+                filesName = [];
+                filesSize = [];
+                batch_bar.css('display','none');
+                batch_span.text('');
+                alert('上传完成');
+                return
+            }
+            var formData = new FormData();
+            formData.append('action','file');//文件上传,告诉服务器不需转码
+            formData.append('class_id',No);
+            formData.append('files',files[files_count]);
+            $.ajax({
+                url: contextPath+"/uploadsec",
+                type:'POST',
+                cache: false,
+                data: formData,//文件以formData形式传入
+                processData : false,
+                //必须false才会自动加上正确的Content-Type
+                contentType : false ,
+                xhr: function(){   //监听用于上传显示进度
+                    var xhr = $.ajaxSettings.xhr();
+                    if(batch_onprogress && xhr.upload) {
+                        xhr.upload.addEventListener("progress" , batch_onprogress, false);
+                        return xhr;
+                    }
+                } ,
+                success:function(data){
+                    $("#batch_bar").width('0%');//移除进度条样式
+                    files_count++; //递归条件
+                    sendAjax();
+                    //   }
+                },
+                error:function(xhr){
+                    alert("上传出错");
+                }
+            })
+        }
+    }
+    function batch_onprogress(evt){
+        var loaded = evt.loaded;   //已经上传大小情况
+        var tot = evt.total;   //附件总大小
+        var per = Math.floor(100*loaded/tot); //已经上传的百分比
+        $("#batch_span").text('正在上传\''+filesName[files_count]+'\' '+filesSize[files_count]);
+        $("#batch_bar").width(per+"%");
+    }
 </script>
 
 <body onbeforeunload="live();">
+<input type="file" id="batch_file" style="display:none" multiple="multiple" onchange="batch_upload(this)">
 <div id="navigation"></div>
 <div>
     <div>
         <div id="ui_box"></div>
-        <div style="width: 80%;margin: auto">
+        <div class="main_box">
             <div id="course_manag_nav"></div>
             <div class="container_right">
-                <h3 class="container_right_head">
-                    课程管理
-                </h3>
+                <h3 class="container_right_head">课程管理</h3>
                 <form>
-                    <div class="sections">
-
-                    </div>
+                    <div class="sections"></div>
                     <div class="btn-group">
-                        <button data-toggle="modal" data-target="#add_section" type="button" class="btn btn-primary btn-sm" onclick="cancel_drag()">
-                            添加章节
-                        </button>
+                        <button data-toggle="modal" data-target="#add_section" type="button" class="btn btn-primary btn-sm" onclick="cancel_drag()">添加章节</button>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="$('#batch_file').click()">批量上传素材</button>
                         <button id="use_drag" type="button" class="btn btn-primary btn-sm" onclick="drag(this)">拖动排序</button>
-                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-                            <span class="caret"></span>
-                        </button>
+                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"><span class="caret"></span></button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" onclick="set_Unit_Listener(this)" href="javascript:void(0)">章节排序</a>
                             <a class="dropdown-item" onclick="set_Class_Listener(this)" href="javascript:void(0)">课时排序</a>
                         </div>
                     </div>
                     <button type="button" class="btn btn-outline-success btn-sm" onclick="saveClass()">保存</button>
+                    <div data-percent="" class="progressbar" id="batch_bar" style="margin-top: 10px;"></div>
+                    <span id="batch_span" class="bfb_span"></span>
                 </form>
             </div>
         </div>
@@ -85,12 +150,10 @@
     <div class="modal fade" id="add_section">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <div class="modal-title">请输入章节名称</div>
                     <a id="unitClose" class="close" data-dismiss="modal">&times;</a>
                 </div>
-
                 <div class="modal-body">
                     <label for="unit_name"></label>
                     <textarea id="unit_name" class="form-control" title="unit"></textarea>
@@ -104,12 +167,10 @@
     <div class="modal fade" id="Change_section">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <div class="modal-title">请重新输入章节名称</div>
                     <a id="Change_section_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
-
                 <div class="modal-body">
                     <label for="Change_unit_name"></label>
                     <textarea id="Change_unit_name" class="form-control" title="unit"></textarea>
@@ -123,12 +184,10 @@
     <div class="modal fade" id="add_class_hour">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <div class="modal-title">请输入课时名称</div>
                     <a id="class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
-
                 <div class="modal-body">
                     <label for="class_name"></label>
                     <textarea id="class_name" class="form-control" title="class"></textarea>
@@ -142,12 +201,10 @@
     <div class="modal fade" id="Change_class">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <div class="modal-title">请重新输入课时名称</div>
                     <a id="Change_Class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
-
                 <div class="modal-body">
                     <label for="Change_class_name"></label>
                     <textarea id="Change_class_name" class="form-control" title="unit"></textarea>
@@ -161,12 +218,10 @@
     <div class="modal fade" id="Delete_Unit">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <div class="modal-title">提示</div>
                     <a id="Delete_Unit_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
-
                 <div class="modal-body">
                     <h6>是否删除此章节</h6>
                     <button id="Delete_Unit_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="" >确定
@@ -179,12 +234,10 @@
     <div class="modal fade" id="Delete_Class">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <div class="modal-title">提示</div>
                     <a id="Delete_Class_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
-
                 <div class="modal-body">
                     <h6>是否删除此课时</h6>
                     <button id="Delete_Class_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="">确定
@@ -197,12 +250,10 @@
     <div class="modal fade" id="Open_curriculum">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <div class="modal-title">提示</div>
                     <a id="Open_curriculum_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
-
                 <div class="modal-body">
                     <h6>是否发布此课程</h6>
                     <button id="Open_curriculum_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="Release(1)">确定
@@ -215,16 +266,35 @@
     <div class="modal fade" id="Close_curriculum">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <div class="modal-title">提示</div>
                     <a id="Close_curriculum_Close" class="close" data-dismiss="modal">&times;</a>
                 </div>
-
                 <div class="modal-body">
                     <h6>是否关闭此课程</h6>
-                    <button id="Close_curriculum_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="Release(0)">确定
-                    </button>
+                    <button id="Close_curriculum_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="Release(0)">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="files_bank">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">文件素材库</div>
+                    <a id="files_bank_Close" class="close" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body" id="file_box" style="max-height: 440px;overflow-y: scroll;overflow-x: hidden;">
+                    <div class="input-group mb-3 input-group-sm">
+                        <input id="files_search" type="text" class="form-control" style="height: auto" placeholder="请输入关键字">
+                    </div>
+                    <button type="button" class="btn btn-outline-info btn-sm" onclick="highlight()">搜索</button>
+                    <button type="button" class="btn btn-outline-info btn-sm">返回</button>
+                    <table  class="table table-hover table-sm" >
+                        <tbody></tbody>
+                    </table>
+                    <!--<button id="files_bank_sure_button" type="button" class="btn btn-outline-success btn-sm" onclick="">确定</button>-->
                 </div>
             </div>
         </div>

@@ -2,7 +2,6 @@ package Filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,9 +28,11 @@ public class Login_Filter implements Filter {
       /*  request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");*/
-        //String realPath = "/ServletTest_war";
-        String realPath = "";
+        String realPath = "/ServletTest_war";
+       /* String realPath = "";*/
         String path=request.getServletPath();
+/*        System.out.println("path:"+path);
+        System.out.println("paths:"+ Arrays.toString(paths));*/
         if (isHave(path,paths)){
             chain.doFilter(request, response);
             return;

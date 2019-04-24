@@ -26,8 +26,6 @@ public class ToH264 {
             Username = username;
             PATH=path;
             FileName=filename;
-            System.out.println("ToH264-PATH:"+PATH);
-            System.out.println("ToH264-FileName:"+FileName);
         }
 
         public String getName(){

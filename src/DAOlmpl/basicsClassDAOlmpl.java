@@ -2,6 +2,7 @@ package DAOlmpl;
 
 import DAO.basicsClassDAO;
 import Model.Course;
+import Model.File;
 import Server.DBPoolConnection;
 import com.alibaba.druid.pool.DruidPooledConnection;
 
@@ -282,5 +283,35 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
                 }
         }
         return Rstate!=0;
+    }
+
+    @Override
+    public List get_files(String class_id) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        List<File> list = new ArrayList<>();
+        File file;
+        try {
+            con = dbp.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT file_name,file_path FROM file where class_id="+class_id);
+            while (rs.next()){
+                file = new File();
+                file.setFile_add(rs.getString("file_path"));
+                file.setFile_name(rs.getString("file_name"));
+                list.add(file);
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return list;
     }
 }

@@ -4,6 +4,10 @@
     list-style: none;
     text-decoration: none;
 }
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0!important;
+}
 
 .font_small {
     font-size: 12px;
@@ -54,10 +58,12 @@
     margin-bottom: 10px;
 }
 
+.unit-title{
+    margin-bottom: 25px;
+}
+
 .list_box{
-    height: 55px;
-    margin-top: 20px;
-    line-height: 10px;
+    line-height: 0;
 }
 
 /* 盒子公共样式 */
@@ -181,17 +187,26 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.overlay{
+    background: #192836;
+    opacity: 0.71;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
 
 .main{
     height: 200px;
     margin: 0;
     padding: 0;
-    background: #f8fafc url(../image/Learn_list_backgroud.png);
+    /*background: #f8fafc url(../image/Learn_list_backgroud.png);*/
+    background: url(../image/bg-slider-3.png)center center no-repeat;
+
 }
 .inside{
-    height: 200px;
-    max-width: 80%;
     margin: 0 auto;
+    width: 1220px;
     border: 1px;
     position: relative;
 }
@@ -304,16 +319,14 @@ img{
 /*   控制导航栏课程菜单盒子*/
 .w{
     height: 50px;
-    max-width: 80%;
-    margin:0 auto;
+    margin: 0 auto;
+    width: 1220px;
 }
-/*  .course{
-     height: 1660px;
-     width: 80%;
+  .course{
+     width: 1218px;
      margin:0 auto;
-     padding-right: 352px;
-     display: flex;!*给div父元素设置 display: flex; flex弹性盒模型*!
-  }*/
+     display: flex;/*给div父元素设置 display: flex; flex弹性盒模型*/
+  }
 /*侧边栏样式*/
 .course-introduction-main
 {

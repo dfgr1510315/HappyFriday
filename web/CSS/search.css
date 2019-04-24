@@ -70,9 +70,9 @@ a:hover{
     padding-top: 16px;
     box-sizing: border-box;
 }
-.search-main .search-body .search-content .search-classify{
+/*.search-main .search-body .search-content .search-classify{
     margin-top: -57px;
-}
+}*/
 
 .nav-tabs .nav-link.active{
     background-color: #f8fafc;

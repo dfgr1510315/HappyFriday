@@ -12,7 +12,6 @@ function join_class(classification) {
     var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
     $.ajax({
         type: "POST",
-        asynch: "false",
         url: contextPath + "/learn_list",
         data: {
             action: 'join_class',

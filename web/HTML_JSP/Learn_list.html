@@ -28,7 +28,7 @@
     var note_count = -1;
     var contextPath = getContextPath();
     $(document).ready(function () {
-        $('#navigation').load('navigation.html', function () {
+        $('#navigation').load('navigation_dark.html', function () {
             get_user_infor();
         });
         $('#loginPC').load('LoginPC.html');
@@ -41,13 +41,13 @@
         if (ask_count === 0) {
             ask_flag = 1;
             $('#two').append(
-                '<div class="no_find_class">暂无问答</div> '
+                '<div class="no_find_class">暂无问答</div>'
             )
         }
         if (note_count === 0) {
             note_flag = 1;
             $('#three').append(
-                '<div class="no_find_class">暂无笔记</div> '
+                '<div class="no_find_class">暂无笔记</div>'
             )
         }
     }
@@ -156,8 +156,10 @@
                 for (i = 0; i < unit_titles.length; i++) {
                     one.append(
                         '<div id="Unit' + i + '" class="ui-box" draggable="true"  >' +
+                        '<div class="unit-title">' +
                         '<span  style="margin-right:20px;color:#999;font-weight:bold;">第' + (i + 1) + '章 ' + '</span>' +
                         '<span >' + unit_titles[i] + '</span>' +
+                        '</div>'+
                         '</div>'
                     );
                 }
@@ -167,7 +169,7 @@
                         '<div class="list_box" >' +
                         '   <a  href="Play.html?' + GetQueryString('class_id') + '/' + jsonObject.chapter[i].unit_no + '">' +
                         '       <div class="ui-box1">' +
-                        '           <i class="fa fa-adjust"></i>' +
+            /*            '           <i class="fa fa-adjust"></i>' +*/
                         '               <span style="margin-right:20px;color:#999;">课时' + jsonObject.chapter[i].unit_no.charAt(jsonObject.chapter[i].unit_no.length - 1) + '</span>' +
                         '               <span >' + jsonObject.chapter[i].lesson_title + '</span>' +
                         '       </div>' +
@@ -337,7 +339,7 @@
             },
             dataType: 'json',
             success: function (jsonObj) {
-                console.log(jsonObj);
+                //console.log(jsonObj);
                 for (var i = 0; i < jsonObj.ask.length; i++) {
                     $('#ask_ul').append(
                         ' <li>\n' +
@@ -410,18 +412,19 @@
                 type: "POST",
                 dataType: "json",
                 success: function (jsonObj) {
+                    console.log(jsonObj);
                     var class_box = $('#class_box');
-                    if (jsonObj.id.length === 0) {
+                    if (jsonObj.class.length === 0) {
                         class_box.append(
                             '<div class="no_find_join_class">该课程暂未设立班级</div>'
                         );
                         return
                     }
-                    for (var i = 0; i < jsonObj.id.length; i++) {
-                        $('#class_table').append(
-                            ' <tr>\n' +
-                            '     <td>' + jsonObj.name[i] + '</td>\n' +
-                            '     <td><button type="button" style="margin-top: 0;float: right" class="btn btn-outline-primary btn-sm" onclick="join_class(' + jsonObj.id[i] + ')">加入班级</button></td>\n' +
+                    for (var i = 0; i < jsonObj.class.length; i++) {
+                        $('#class_table tbody').append(
+                            '<tr>\n' +
+                            '    <td>' + jsonObj.class[i].name + '</td>\n' +
+                            '    <td><button type="button" style="margin-top:0;float:right" class="btn btn-outline-primary btn-sm" onclick="join_class(' + jsonObj.class[i].id + ')">加入班级</button></td>\n' +
                             '</tr>'
                         )
                     }
@@ -435,7 +438,8 @@
 <body style="background-color: #f8fafc;">
 <div id="navigation"></div>
 <div id="loginPC"></div>
-<div class="main">
+<div class="main" style="position:relative">
+    <div class="overlay"></div>
     <div class="inside">
         <div class="first" id="Bread_crumb_navigation">
         </div>

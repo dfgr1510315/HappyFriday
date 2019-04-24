@@ -1,9 +1,12 @@
 var ContextPath = getContextPath();
 function getContextPath(){
     var pathName = document.location.pathname;
+    console.log(pathName);
     var index = pathName.substr(1).indexOf("/");
+    console.log(index);
+    console.log(pathName.substr(0, index));
     if ('HTML_JSP'===pathName.substr(1, index)) return '';
-    return pathName.substr(1, index);
+    return pathName.substr(0, index+1);
 }
 function login() {
     var loginError = $("#loginError");

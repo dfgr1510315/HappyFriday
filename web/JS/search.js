@@ -1,16 +1,18 @@
+
 var contextPath = getContextPath();
 var keyword = GetQueryString('keyword');
 var keyword_model = /^\w+$/;
 
-function change_src() {
-    $('#logo').attr('src', '../../image/HUAS.png');
+/*function change_src() {
+    $('#logo img').attr('src', '/image/HUAS.png');
     $('#navigation ul li:eq(1) a').attr('href', '../homepage.html');
     $('#navigation ul li:eq(2) a').attr('href', '../Resources.html');
     $('#navigation ul li:eq(3) a').attr('href', '../course.html');
     $('#notice').attr('href', '../notification.html');
     $('#user_card a:eq(0)').attr('href', '../PersonalCenter.html');
     $('#user_card a:eq(1)').attr('href', '../homepage.html');
-}
+}*/
+
 
 function add_href() {
     $(".nav-justified a").each(function () {

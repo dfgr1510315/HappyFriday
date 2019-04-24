@@ -37,7 +37,7 @@ var edit_configure = [
     'code'];
 
 $(document).ready(function () {
-    $('#navigation').load('navigation.html', function () {
+    $('#navigation').load('navigation_dark.html', function () {
         get_user_infor();
     });
     get_Class();

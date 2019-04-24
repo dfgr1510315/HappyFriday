@@ -47,7 +47,16 @@
     padding-bottom: 10px;
 }
 
+#file_box::-webkit-scrollbar {
+    display: none;
+}
 
+#files_bank .btn-outline-info{
+    margin-bottom: 10px;
+    float: none;
+    margin-top: 0;
+    display: inline-block
+}
 
 .container_right_head {
     font-size: 20px;
@@ -56,6 +65,7 @@
     line-height: 90px;
     border-bottom: 1px solid #e0e0e0;
 }
+
 
 .section {
     width: 100%;
@@ -98,12 +108,17 @@ body{
 }
 
 .ui-box{
-    width: 80%;
+    width: 1218px;
     height: 170px;
     margin: 33px auto auto;
     background: #FFF;
     box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
     border-radius: 12px;
+}
+
+.main_box{
+    width: 1218px;
+    margin: auto
 }
 
 .list-group-item{

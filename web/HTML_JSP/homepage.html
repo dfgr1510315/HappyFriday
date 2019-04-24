@@ -52,7 +52,7 @@
                              data-splitin="none"
                              data-splitout="none"
                              data-textAlign="['center','center','center','center']"
-                             data-responsive_offset="on"  >Learning Courses Online</div>
+                             data-responsive_offset="on"  >在线学习课程</div>
 
                         <div class="tp-caption tp-resizeme  color-fff flat-text-center "
                              data-x="['left','left','left','center']" data-hoffset="['-2','-2','-2','0']"
@@ -74,8 +74,17 @@
                              data-textAlign="['center','center','center','center']"
                              data-paddingleft="[135, 60, 30, 0]"
                              data-paddingright="[135, 60, 30, 0]"
-                        > We offer professional SEO services that help websites <span   class="color-fff font-size-20 font-italic text-underline not-hover" data-fontsize="['20','20','16','14']"
-                                                                                        data-lineheight="['32','32','22','20']">increase their organic search</span> score drastically in order to compete for the highest rankings.</div>
+                        > 比较大的版本更新：
+                          <!--  <span class="color-fff font-size-20 font-italic text-underline not-hover" data-fontsize="['20','20','16','14']" data-lineheight="['32','32','22','20']">
+                                1、放弃JSP，采用AJAX加JSON异步获取数据
+                                2、将数据层和控制层分离降低耦合
+                            </span>-->
+                            1、放弃JSP，采用AJAX加JSON异步获取数据
+                            2、将数据层和控制层彻底分离降低耦合
+                            3、用接口抽象出功能，使函数得到最大程度的复用
+                            4、优化部分前端界面
+                            <div class="u_know">5、照这么写下去迟早猝死</div>
+                        </div>
 
                         <div class="tp-caption"
                              data-x="['left','left','left','center']" data-hoffset="['0','0','0','0']"
@@ -94,7 +103,7 @@
                              data-responsive_offset="on"
                              data-paddingtop= "['50','50','50','50']"
                              data-paddingbottom= "['50','50','50','50']"
-                             data-textAlign="['center','center','center','center']"><a href="#" class="flat-button btn-start-slider border-ra4 ">  START A COURSE</a>  </div>
+                             data-textAlign="['center','center','center','center']"><a href="#" class="flat-button btn-start-slider border-ra4 ">开始学习</a>  </div>
                     </li><!-- /End Slide 1 -->
                 </ul>
             </div>
@@ -110,7 +119,7 @@
                             <span class="icon-contract-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span></span>
                         </div>
                         <div class="iconbox-content">
-                            <h6 class="title"><a href="#">Course Management</a></h6>
+                            <h6 class="title"><a href="#">课程管理</a></h6>
                         </div>
                     </div>
                     <div class="iconbox one-of-three style3 flat-text-center active">
@@ -118,7 +127,7 @@
                             <span class="icon-portfolio-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span></span>
                         </div>
                         <div class="iconbox-content">
-                            <h6 class="title"><a href="#">Online Learn Courses</a></h6>
+                            <h6 class="title"><a href="#">在线学习</a></h6>
                         </div>
                     </div>
                     <div class="iconbox one-of-three style3 flat-text-center right ">
@@ -126,7 +135,7 @@
                             <span class="icon-portfolio-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span></span>
                         </div>
                         <div class="iconbox-content style3">
-                            <h6 class="title"><a href="#">Teacher Management</a></h6>
+                            <h6 class="title"><a href="#">教师管理</a></h6>
                         </div>
                     </div>
                 </div>
@@ -201,6 +210,7 @@
         $('#navigation').load('navigation.html',function () {
             $('.user_navigation ul li:eq(1) a').addClass('active');
             get_user_infor();
+            $('.homepage').addClass('active');
         });
         $('#loginPC').load('LoginPC.html');
         get_new_class();

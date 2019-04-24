@@ -1,5 +1,7 @@
 var UnitCount = 0;
 var ClassCount = 0;
+var files_flag = 0;
+var files_list;
 var No = GetQueryString('class_id');
 var contextPath = getContextPath();
 
@@ -150,9 +152,12 @@ function add_collapse(collapse,lesson_title,source_video_title,source_video_addr
         '                   </div>\n' +
         '               </div>' +
         '               <div id="editor'+(i+1)+'" style="display:none;z-index:0"></div>\n' +
-        '               <div  class="custom-file mb-3" style="margin-top:25px;height:auto;display:none">\n' +
-        '                   <input type="file" class="custom-file-input" onchange ="upload(this,3)">\n' +
-        '                   <label class="custom-file-label" >选择文件</label>\n' +
+        '               <div  class="custom-file mb-3" style="margin-top:25px;height:auto;display:none">' +
+        '                   <div style="display: inline-block;width:70%">' +
+        '                       <input type="file" class="custom-file-input" onchange ="upload(this,3)">\n' +
+        '                       <label class="custom-file-label" style="width:70%">选择文件</label>\n' +
+        '                   </div>' +
+        '                   <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"  data-target="#files_bank" style="margin-top:4px;" onclick="get_files(this)">从素材库中选择</button>\n' +
         '                   <div class="list-group" id="file_list'+i+'">\n' +
         '                   </div>\n' +
         '               </div>\n' +
@@ -193,18 +198,23 @@ function get_class_content() {
                 add_collapse($('#collapse'+belong_unit),jsonObj.class_content[i].lesson_title,source_video_title,jsonObj.class_content[i].source_video_address,jsonObj.class_content[i].video_address,jsonObj.class_content[i].release_status,i);
                 var file_address = jsonObj.class_content[i].file_address.split('|');
                 var file_name = jsonObj.class_content[i].file_name.split('|');
+                var file_list = $('#file_list'+i);
                 for (var j=0;j<file_address.length;j++){
                     if (file_address[j]==='') break;
-                    $('#file_list'+i).append(
-                        '<div class="list-group-item list-group-item-action">\n' +
-                        '   <a style="text-decoration:none;" target="_Blank" href="'+file_address[j]+'">'+file_name[j]+'</a>\n' +
-                        '   <button type="button" class="btn btn-light" style="float:right;padding:0;width:26px" onclick="Delete_File(this)"><i class="fa fa-times"></i></button>\n' +
-                        '</div>'
-                    )
+                    add_file(file_list,file_address[j],file_name[j]);
                 }
             }
         }
     });
+}
+
+function add_file(file_list,file_add,file_name) {
+    file_list.append(
+        '<div class="list-group-item list-group-item-action">\n' +
+        '   <a style="text-decoration:none;" target="_Blank" href="'+file_add+'">'+file_name+'</a>\n' +
+        '   <button type="button" class="btn btn-light" style="float:right;padding:0;width:26px" onclick="Delete_File(this)"><i class="fa fa-times"></i></button>\n' +
+        '</div>'
+    )
 }
 
 function add_unit(unit_title,collapse_id) {
@@ -430,13 +440,11 @@ function upload(event, type) {
     data.type = "1";
     var local_bar = $(event).parent().parent().next();
     var websocket = null;
-
     $.ajax({
         url: contextPath+"/uploadsec",
         data: data,
         type: "POST",
         dataType: "json",
-        async: true,
         cache: false,//上传文件无需缓存
         processData: false,//用于对data参数进行序列化处理 这里必须false
         contentType: false, //必须
@@ -502,14 +510,7 @@ function upload(event, type) {
                 $(event).parent().parent().next().next().children().attr("src", contextPath+"/" + jsonObj.src);
                 $(event).next().text(jsonObj.video_name);
             } else if (3 === type) {
-                $(event).next().next().append(
-                    '<div class="list-group-item list-group-item-action"> ' +
-                    '<a style="text-decoration: none;"  " target="_Blank" href="'+contextPath+"/" + jsonObj.src+ '">' + jsonObj.filename + '' +
-                    '</a>'+
-                    '<button type="button" class="btn btn-light" style="float: right;padding: 0;width: 26px" onclick="Delete_File(this)"><i class="fa fa-times"></i>' +
-                    '</button>' +
-                    '</div>'
-                    )
+                add_file($(event).next().next(),contextPath+"/" + jsonObj.src,jsonObj.filename);
             }
             local_bar.css('display','none');
             closeWebSocket(websocket);
@@ -587,6 +588,66 @@ function Change_Release_Statu(event) {
     }else {
         $(event).removeClass("btn-warning").addClass("btn-success").text("发布");
     }
+}
+//获取素材库
+function get_files(event) {
+    files_list = $(event).next();
+    if (files_flag===1) return;
+    $.ajax({
+        type: "POST",
+        url: contextPath+"/SaveClassInfor",
+        data: {
+            Read_or_Save: "get_file",
+            class_id: No
+        },
+        dataType: 'json',
+        success: function (jsonObj) {
+            var tbody = $('#file_box tbody');
+            files_flag = 1;
+            if (jsonObj.files.length===0){
+                tbody.append(
+                    '<div>暂无素材</div>'
+                );
+                return;
+            }
+            for (var i=0;i<jsonObj.files.length;i++){
+                tbody.append(
+                    '<tr>' +
+                    '   <td onclick="add_file(files_list,\'/'+jsonObj.files[i].file_add+'\',\''+jsonObj.files[i].file_name+'\')">'+jsonObj.files[i].file_name+'</td>' +
+                    '   <td><button type="button" class="btn btn-outline-danger btn-sm" style="margin-top: 0">删除</button></td>' +
+                    '</tr>'
+                )
+            }
+        }
+    })
+}
 
+function highlight() {
+    //clearSelection();//先清空一下上次高亮显示的内容；
+    var searchText = $('#files_search').val();//获取你输入的关键字；
+    var regExp = new RegExp(searchText, 'g');//创建正则表达式，g表示全局的，如果不用g，则查找到第一个就不会继续向下查找了；
+    $('#files_bank tr').each(function ()//遍历文章；
+    {
 
+        var html = $(this).text();
+        var newHtml = html.replace(regExp, '1');//将找到的关键字替换，加上highlight属性；
+        $(this).text(newHtml);//更新文章；
+    });
+}
+
+function clearSelection() {
+    $('.course-item-detail p').each(function ()//遍历
+    {
+        $(this).find('.highlight').each(function ()//找到所有highlight属性的元素；
+        {
+            $(this).replaceWith($(this).html());//将他们的属性去掉；
+        });
+    });
+    $('.course-item-detail a').each(function ()//遍历
+    {
+        $(this).find('.highlight').each(function ()//找到所有highlight属性的元素；
+        {
+            $(this).replaceWith($(this).html());//将他们的属性去掉；
+        });
+    });
 }

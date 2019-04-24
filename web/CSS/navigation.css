@@ -1,3 +1,8 @@
+@import url("style.css");
+@import url("settings.css");
+#navigation{
+    height: 108px;
+}
 .notification a{
     color: #787d82;
     -webkit-transition: all .5s;
@@ -10,23 +15,7 @@
     color: #007bff;
 }
 
-.history_ul li {
-    clear: both;
-    position: relative;
-    padding-left: 38px;
-}
 
-.history_ul li {
-    height: 28px;
-    line-height: 28px;
-    text-align: left;
-    font-size: 12px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding: 0 12px 0 22px;
-    position: relative;
-}
 .mini-wnd-nav a {
     /* color: #222;*/
     transition: color .2s;

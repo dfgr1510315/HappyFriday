@@ -73,11 +73,26 @@ input[type="search"] {
     width: 240px;
     background-color: #eff0f1;
     font-size: 12px;
-    font-weight: 700;
 }
 
+.boxed .title_list{
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.boxed .title_list a:hover{
+    color: #007bff;
+}
+
+.boxed .title_list_box{
+    padding-left: 18px;
+    padding-top: 5px;
+    background-color: #fff;
+    border: 1px solid rgba(25,40,54,0.07);
+}
 
 .style1 input[type="search"]:focus {
+    background-color: #fff;
     border: 1px solid #007bff;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -165,6 +180,14 @@ h6,h6 a{font-size:20px;line-height:24px}
     position: relative;
 }
 
+#header .container{
+    max-width: 1218px;
+}
+
+.link{
+    display: inline-block;
+}
+
 /* Logo  */
 #logo {
     float: left;
@@ -240,7 +263,13 @@ h6,h6 a{font-size:20px;line-height:24px}
 #header #main-nav ul li {
     position: relative;
 }
-
+#header .icon-fa{
+    font-size: 20px;
+    color: #b1b2c5;
+}
+#header .icon-fa:hover{
+    color: #007bff;
+}
 #main-nav > ul.menu li:hover > a {
     color: #007bff;
 }
@@ -258,6 +287,10 @@ h6,h6 a{font-size:20px;line-height:24px}
     padding: 24px 0 3px;
 }
 
+.history_ul{
+    margin-bottom: 0;
+}
+
 .extra-menu ul li {
     display: inline-block;
 }
@@ -265,13 +298,23 @@ h6,h6 a{font-size:20px;line-height:24px}
 .extra-menu a {
     line-height: 57px;
 }
-
+.extra-menu ul li a{
+    line-height: 18px;
+}
 .extra-menu .cart {
     float: right;
 }
 
 .extra-menu .cart a {
     padding-right: 10px;
+}
+
+.style2 .extra-menu .cart a {
+    color: #fff;
+}
+
+.style2 .extra-menu .cart a:hover {
+    color: #fa778a;
 }
 
 .extra-menu .cart {
@@ -281,18 +324,26 @@ h6,h6 a{font-size:20px;line-height:24px}
 .extra-menu span.count-cart {
     position: absolute;
     top: 16px;
-    right: 3px;
-    background: #fa778a;
+    right: -3px;
     color: #fff;
-    width: 13px;
-    height: 13px;
+    width: 7px;
+    height: 7px;
     border-radius: 6px;
     line-height: 13px;
     text-align: center;
     font-size: 10px;
+    display: none;
 }
 
-/* search-header */
+.style1 .extra-menu span.count-cart{
+    background: #007bff;;
+}
+
+.style2 .extra-menu span.count-cart{
+    background: #fa778a;
+}
+
+    /* search-header */
 #header .wrap-search-header {
     float: left;
     padding: 4px 0 0 7px;

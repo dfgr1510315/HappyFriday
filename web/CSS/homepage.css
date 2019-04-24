@@ -9,6 +9,14 @@ a:hover{
     text-decoration:none
 }
 
+.u_know{
+     color:transparent
+ }
+
+.u_know:hover{
+    color:#fff
+}
+
 body.modal-open {
     overflow-y: auto !important;
     padding-right: 0!important;
