@@ -78,6 +78,7 @@ public class UploadSec extends HttpServlet {
                         getHash getHash = new getHash(uploadPath+"\\"+item.getName());
                         String type = item.getName().substring(item.getName().lastIndexOf(".") + 1).toLowerCase();//获取文件类型
                         fileName = getHash.getMD5()+"."+type;//将文件名重命名为md5值
+                        ConnectSQL.my_println("fileName:"+fileName);
                         if (values.get(0).equals("file")){
                             if (Server.getHash.getFile(uploadPath).contains(fileName)){   //是否有重复文件
                                 File file = new File(uploadPath+"\\"+oldFileName);
@@ -88,9 +89,13 @@ public class UploadSec extends HttpServlet {
                             jsonObj.put("filename",oldFileName);
                         }
                         else { //教学视频则进行转码
-                            ToH264 toH264 = new ToH264(uploadPath,oldFileName,username,oldFileName);
+                            ToH264 toH264 = new ToH264(uploadPath,fileName,username,oldFileName);
+                            ConnectSQL.my_println("uploadPath:"+uploadPath+";oldFileName:"+oldFileName+";username:"+username+";oldFileName:"+oldFileName);
                             if (Server.getHash.getFile(uploadPath).contains(fileName)) get_vd(uploadPath,oldFileName,fileName,jsonObj); //有重复视频则从数据库获取视频信息
-                            else vd_record(toH264,uploadPath,oldFileName,fileName,type,jsonObj);
+                            else {
+                                new File(uploadPath+"\\"+oldFileName).renameTo(new File(uploadPath+"\\"+fileName));
+                                vd_record(toH264,oldFileName,fileName,type,jsonObj);
+                            }
                         }
                     }
                 }
@@ -112,7 +117,7 @@ public class UploadSec extends HttpServlet {
         PreparedStatement qsql = null;
         try {
             con = dbp.getConnection();
-            qsql= con.prepareStatement("insert into File values(?,?,?)");
+            qsql= con.prepareStatement("insert into file values(?,?,?)");
             qsql.setString(1,UPLOAD_DIRECTORY+"/"+fileName);
             qsql.setString(2,oldFileName);
             qsql.setInt(3,Integer.parseInt(values.get(1)));
@@ -162,13 +167,13 @@ public class UploadSec extends HttpServlet {
     }
 
     //记录教学视频
-    private void vd_record(ToH264 toH264,String uploadPath,String oldFileName,String fileName,String type,JSONObject jsonObj){
+    private void vd_record(ToH264 toH264,String oldFileName,String fileName,String type,JSONObject jsonObj){
         toH264.getPATH();
-        new File(uploadPath+"\\"+oldFileName).renameTo(new File(uploadPath+"\\"+fileName));
         String src;
         if (type.equals("mp4")) {
             src = fileName;
         }else src = toH264.getName();
+        ConnectSQL.my_println("src:"+src);
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;

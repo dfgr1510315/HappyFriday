@@ -342,11 +342,11 @@ function get_Video() {
 
 function add_width() {
     $("#center_box").css('width', '59%');
-    $("#right_box").css('width', '36%');
+    $("#right_box").css('width', '35%');
 }
 
 function sub_width() {
-    $("#center_box").css('width', '72%');
+    $("#center_box").css('width', '71%');
     $("#right_box").css('width', '23%');
 }
 

@@ -39,10 +39,10 @@ public class Activation extends HttpServlet {
                 ConnectSQL.my_println("state"+state);
                 if (state==0){
                     PrintWriter pw=response.getWriter();
-                    pw.write("<script language='javascript'>alert('激活失败');window.location.href='HTML_JSP/homepage.html'</script>");
+                    pw.write("<script language='javascript'>alert('激活失败');window.location.href='/LJZ/HTML_JSP/homepage.html'</script>");
                 }else {
                     PrintWriter pw=response.getWriter();
-                    pw.write("<script language='javascript'>alert('激活成功');window.location.href='HTML_JSP/homepage.html'</script>");
+                    pw.write("<script language='javascript'>alert('激活成功');window.location.href='/LJZ/HTML_JSP/homepage.html'</script>");
                 }
             }else {
                 qsql = con.prepareStatement("update login_table set email=?,code=? where code=?");
@@ -52,14 +52,14 @@ public class Activation extends HttpServlet {
                 int state = qsql.executeUpdate();
                 if (state==0){
                     PrintWriter pw=response.getWriter();
-                    pw.write("<script language='javascript'>alert('更换失败');window.location.href='HTML_JSP/homepage.html'</script>");
+                    pw.write("<script language='javascript'>alert('更换失败');window.location.href='/LJZ/HTML_JSP/homepage.html'</script>");
                 }else {
                     PrintWriter pw=response.getWriter();
                     Cookie cookie = new Cookie("email", email);
                     cookie.setMaxAge(30*12*5*24*60*60);
                     cookie.setPath("/HTML_JSP");
                     response.addCookie(cookie);
-                    pw.write("<script language='javascript'>alert('更换成功');window.location.href='HTML_JSP/homepage.html';</script>");
+                    pw.write("<script language='javascript'>alert('更换成功');window.location.href='/LJZ/HTML_JSP/homepage.html';</script>");
                 }
             }
 

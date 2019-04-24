@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -63,12 +64,28 @@ public class SaveClassInfor extends HttpServlet {
             case "get_file":
                 get_file(response,request);
                 break;
+            case "delete_file":
+                delete_file(response,request);
+                break;
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
     }
+
+    private void delete_file(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+        String address = request.getParameter("address");
+        PrintWriter out = response.getWriter();
+        //ConnectSQL.my_println("RealPath:"+getServletContext().getRealPath("/")+address);
+        File file = new File(getServletContext().getRealPath("/") +address);
+        file.delete();
+        out.print(bc.delete_file(address));
+        out.flush();
+        out.close();
+    }
+
 
     private void get_file(HttpServletResponse response,HttpServletRequest request)throws IOException{
         basicsClassDAOlmpl bc = new basicsClassDAOlmpl();

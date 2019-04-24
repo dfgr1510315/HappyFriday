@@ -25,7 +25,6 @@
     $(document).ready(function () {
         $('#navigation').load('../navigation.html',function () {
             get_user_infor();
-            change_src();
         });
         if (keyword.trim()==='')  return;
         $('#search_ipt').val(keyword);

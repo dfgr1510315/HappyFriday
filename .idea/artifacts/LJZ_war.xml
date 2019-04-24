@@ -1,21 +1,13 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="ServletTest:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/ServletTest_war_exploded</output-path>
-    <root id="root">
-      <element id="javaee-facet-resources" facet="ServletTest/web/Web" />
+  <artifact type="war" name="LJZ:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/LJZ_war</output-path>
+    <root id="archive" name="LJZ.war">
+      <element id="artifact" artifact-name="LJZ:war exploded" />
       <element id="directory" name="WEB-INF">
-        <element id="directory" name="classes">
-          <element id="module-output" name="ServletTest" />
-        </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="$PROJECT_DIR$/lib/annotations-api.jar" />
-          <element id="library" level="project" name="gson-2.8.4" />
-          <element id="library" level="project" name="commons-io-2.5" />
-          <element id="library" level="project" name="commons-fileupload-1.3.2" />
-          <element id="library" level="project" name="JSON" />
-          <element id="library" level="project" name="mysql-connector-java-8.0.13" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/Java-WebSocket-1.3.9.jar" />
           <element id="file-copy" path="D:/apache-tomcat-7.0.88/lib/websocket-api.jar" />
+          <element id="library" level="project" name="websocket-api" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/commons-email-1.5/commons-email-1.5.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/commons-email-1.5/commons-email-1.5-tests.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/commons-email-1.5/commons-email-1.5-javadoc.jar" />
@@ -28,6 +20,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/lib/commons-lang3-3.8.1/commons-lang3-3.8.1-test-sources.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/javax.mail-api-1.6.2.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/activation-1.1.1.jar" />
+          <element id="library" level="project" name="Java EE 6-Java EE 6" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/activation.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/javax.mail-1.5.2.jar" />
           <element id="file-copy" path="D:/apache-tomcat-9.0.16/lib/websocket-api.jar" />

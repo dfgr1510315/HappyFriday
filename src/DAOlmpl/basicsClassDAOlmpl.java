@@ -314,4 +314,34 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
         }
         return list;
     }
+
+    @Override
+    public boolean delete_file(String address) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        int state = 0;
+        try {
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("delete from file where file_path=?");
+            qsql.setString(1,address);
+            state = qsql.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return state!=0;
+    }
 }

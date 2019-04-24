@@ -434,10 +434,9 @@ function upload(event, type) {
         return;
     }
     var formFile = new FormData();
+    formFile.append("action", 'vedio');
     formFile.append("file", fileObj); //加入文件对象
     var data = formFile;
-    data.newParam = "type";
-    data.type = "1";
     var local_bar = $(event).parent().parent().next();
     var websocket = null;
     $.ajax({
@@ -461,42 +460,37 @@ function upload(event, type) {
                     local_bar.css('width' , per +'%');
                     if (per===100)  {
                         local_bar.css('width','0');
-//判断当前浏览器是否支持WebSocket
+                        //判断当前浏览器是否支持WebSocket
                         if ('WebSocket' in window) {
-                            websocket = new WebSocket("ws:"+window.location.host+contextPath+"/websocket/"+document.getElementById('user').value+fileObj.name);
+                            websocket = new WebSocket("ws:"+window.location.host+contextPath+"/websocket/"+user+fileObj.name);
                             //websocket = new WebSocket("ws://localhost:8080/websocket/"+document.getElementById('user').value+fileObj.name);
                         }
                         else {
                             alert('当前浏览器 Not support websocket')
                         }
-
-//连接发生错误的回调方法
+                        //连接发生错误的回调方法
                         websocket.onerror = function () {
                             console.log("WebSocket连接发生错误");
                         };
-
-//连接成功建立的回调方法
+                        //连接成功建立的回调方法
                         websocket.onopen = function () {
                             console.log("WebSocket连接成功");
                         };
-
-//接收到消息的回调方法
+                        //接收到消息的回调方法
                         websocket.onmessage = function (event) {
                             local_bar.children().html('正在进行转码'+event.data+'%');
                             local_bar.css('width' , event.data +'%');
                             //console.log(event.data);
                         };
-
-//连接关闭的回调方法
+                        //连接关闭的回调方法
                         websocket.onclose = function () {
                             //local_bar.css('display','none');
                             console.log("WebSocket连接关闭");
                         };
-//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+                        //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
                         window.onbeforeunload = function () {
                             closeWebSocket(websocket);
                         };
-
                     }
                 }, false);
                 return xhr;
@@ -611,43 +605,50 @@ function get_files(event) {
                 return;
             }
             for (var i=0;i<jsonObj.files.length;i++){
-                tbody.append(
-                    '<tr>' +
-                    '   <td onclick="add_file(files_list,\'/'+jsonObj.files[i].file_add+'\',\''+jsonObj.files[i].file_name+'\')">'+jsonObj.files[i].file_name+'</td>' +
-                    '   <td><button type="button" class="btn btn-outline-danger btn-sm" style="margin-top: 0">删除</button></td>' +
-                    '</tr>'
-                )
+                add_file_list(tbody,jsonObj.files[i].file_add,jsonObj.files[i].file_name);
             }
         }
     })
 }
 
-function highlight() {
-    //clearSelection();//先清空一下上次高亮显示的内容；
-    var searchText = $('#files_search').val();//获取你输入的关键字；
-    var regExp = new RegExp(searchText, 'g');//创建正则表达式，g表示全局的，如果不用g，则查找到第一个就不会继续向下查找了；
-    $('#files_bank tr').each(function ()//遍历文章；
-    {
-
-        var html = $(this).text();
-        var newHtml = html.replace(regExp, '1');//将找到的关键字替换，加上highlight属性；
-        $(this).text(newHtml);//更新文章；
-    });
+function add_file_list(tbody,file_add,file_name) {
+    tbody.append(
+        '<tr>' +
+        '   <td data-add="'+file_add+'" onclick="add_file(files_list,\'/'+file_add+'\',\''+file_name+'\')">'+file_name+'</td>' +
+        '   <td><button type="button" class="btn btn-outline-danger btn-sm" style="margin-top: 0" onclick="delete_files(this)">删除</button></td>' +
+        '</tr>'
+    )
 }
 
-function clearSelection() {
-    $('.course-item-detail p').each(function ()//遍历
+function delete_files(event) {
+    $.ajax({
+        type: "POST",
+        url: contextPath+"/SaveClassInfor",
+        data: {
+            Read_or_Save: "delete_file",
+            address: $(event).parent().prev().data('add')
+        },
+        dataType: 'json',
+        success: function (msg) {
+            if (msg===true){
+                $(event).parent().parent().remove();
+            }else alert('删除失败')
+        }
+    })
+}
+
+function search_files() {
+    var files_bank = $('#files_bank tr');
+    files_bank.show();
+    var searchText = $('#files_search').val();
+    var regExp = new RegExp(searchText, 'g');
+    files_bank.each(function ()//遍历文章；
     {
-        $(this).find('.highlight').each(function ()//找到所有highlight属性的元素；
-        {
-            $(this).replaceWith($(this).html());//将他们的属性去掉；
-        });
-    });
-    $('.course-item-detail a').each(function ()//遍历
-    {
-        $(this).find('.highlight').each(function ()//找到所有highlight属性的元素；
-        {
-            $(this).replaceWith($(this).html());//将他们的属性去掉；
-        });
+        var text = $(this).text();
+        //var newHtml = html.replace(regExp, '1');//将找到的关键字替换，加上highlight属性；
+        if (!regExp.test(text)){
+            $(this).hide();
+        }
+        //$(this).text(newHtml);//更新文章；
     });
 }

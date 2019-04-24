@@ -55,8 +55,8 @@ public class MailUtil implements Runnable {
                 // 2.3设置邮件主题
                 message.setSubject("账号激活");
                 // 2.4设置邮件内容
-                String content = "<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1><h3><a href='http://172.25.24.78:8080/ServletTest_war/activation?code="
-                        + code + "'>http://172.25.24.78:8080/ServletTest_war/activation?code=" + code
+                String content = "<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1><h3><a href='http://172.25.24.78:8080/LJZ/activation?code="
+                        + code + "'>http://172.25.24.78:8080/LJZ/activation?code=" + code
                         + "</href></h3></body></html>";
                 message.setContent(content, "text/html;charset=UTF-8");
                 // 3.发送邮件
@@ -66,7 +66,7 @@ public class MailUtil implements Runnable {
                 //172.25.24.78:8080/ServletTest_war
                 message.setSubject("更换邮箱");
                 // 2.4设置邮件内容
-                String content = "<html><head></head><body><h1>更换邮箱请点击以下链接</h1><h3><a href='http://172.25.24.78:8080/ServletTest_war/activation?code="
+                String content = "<html><head></head><body><h1>更换邮箱请点击以下链接</h1><h3><a href='http://172.25.24.78:8080/LJZ/activation?code="
                         + code + "&email="+email+ "'>确认更换</a></h3></body></html>";
                 message.setContent(content, "text/html;charset=UTF-8");
                 // 3.发送邮件

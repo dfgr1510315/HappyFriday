@@ -59,6 +59,7 @@ public class ToH264 {
 
         private  boolean checkfile() {
             File file = new File(PATH+"\\"+FileName);
+            ConnectSQL.my_println("check:"+PATH+"\\"+FileName);
             return file.isFile();
         }
 

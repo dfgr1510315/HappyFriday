@@ -28,7 +28,7 @@ public class Login_Filter implements Filter {
       /*  request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");*/
-        String realPath = "/ServletTest_war";
+        String realPath = "/LJZ";
        /* String realPath = "";*/
         String path=request.getServletPath();
 /*        System.out.println("path:"+path);

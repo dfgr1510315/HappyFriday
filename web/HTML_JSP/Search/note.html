@@ -24,7 +24,6 @@
     $(document).ready(function () {
         $('#navigation').load('../navigation.html',function () {
             get_user_infor();
-            change_src();
         });
         if (keyword.trim()==='')  return;
         $('#search_ipt').val(keyword);
@@ -67,7 +66,7 @@
                 </div>
                 <div id="note_box"></div>
             </div>
-            <div id="page" class="pagination"></div>
+            <div id="page" class="pagination pagination-sm"></div>
         </div>
 
     </div>

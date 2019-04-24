@@ -81,7 +81,7 @@ function load_history() {
         var unit = load_last_time[i].split(':');
         $('.history_ul').append(
             '   <li  style="width: 100%;text-align: left;line-height: 10px">\n' +
-            '                        <a href="/HTML_JSP/Play.html?'+load_history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+load_last_time[i].trim()+'" class="clearfix">\n' +
+            '                        <a href="/LJZ/HTML_JSP/Play.html?'+load_history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+load_last_time[i].trim()+'" class="clearfix">\n' +
             '                            <div class="link">'+load_last_time[i].trim()+'</div>\n' +
             '                            <div style="float: right">\n' +
             '                                <div class="state" style="display: inline;">\n' +

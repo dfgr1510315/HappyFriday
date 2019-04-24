@@ -95,7 +95,13 @@
                         return xhr;
                     }
                 } ,
-                success:function(data){
+                success:function(jsonObj){
+                    console.log(jsonObj);
+                    var data1=eval("("+jsonObj+")");
+                    console.log(data1.src);
+                    console.log(data1.filename);
+                    var tbody = $('#file_box tbody');
+                    add_file_list(tbody,data1.src,data1.filename);
                     $("#batch_bar").width('0%');//移除进度条样式
                     files_count++; //递归条件
                     sendAjax();
@@ -289,8 +295,8 @@
                     <div class="input-group mb-3 input-group-sm">
                         <input id="files_search" type="text" class="form-control" style="height: auto" placeholder="请输入关键字">
                     </div>
-                    <button type="button" class="btn btn-outline-info btn-sm" onclick="highlight()">搜索</button>
-                    <button type="button" class="btn btn-outline-info btn-sm">返回</button>
+                    <button type="button" class="btn btn-outline-info btn-sm" onclick="search_files()">搜索</button>
+                    <button type="button" class="btn btn-outline-info btn-sm" onclick="$('#files_bank tr').show()">返回</button>
                     <table  class="table table-hover table-sm" >
                         <tbody></tbody>
                     </table>

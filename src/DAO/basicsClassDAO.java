@@ -25,4 +25,6 @@ public interface basicsClassDAO {
 
     //获取课程素材
     List get_files(String class_id);
+
+    boolean delete_file(String address);
 }
