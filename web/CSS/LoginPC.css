@@ -1,272 +1,51 @@
-/*www.uicweb.cn*/
-* {
-    margin: 0;
-    padding: 0
+.btn-outline-success{
+    margin-bottom: 15px;
+    margin-top: 15px
 }
-
-body {
-    font-family: Verdana, Arial, sans-serif;
+.label-link {
+    float: right;
     font-size: 12px;
-    margin: 0;
-    padding: 0
 }
-
-textarea, input {
-    word-wrap: break-word;
-    word-break: break-all;
-    padding: 0px;
-    border: 0px
-}
-
-img {
-    border: 0 none
-}
-
-a {
-    color: #000;
-    text-decoration: none;
-    outline: none
-}
-
-a:hover {
-    color: #628828
-}
-
-i {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.dn {
-    display: none
-}
-
-input:focus, textarea:focus {
-    outline: none;
-}
-
-.id1367 {
-    height: 100%;
-    width: 100%;
-    float: left;
-    background: #fffef5;
-}
-
-
-.id1367 .a1 .b1 {
-    height: 100%;
+.modal-content{
     width: 80%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
-
-.id1367 a1 .b1 .c1 {
-    height: 100%;
-    width: 10%;
-    float: left;
-    text-align: center;
-    line-height: 60px;
-    color: #eeeeee;
+.close{
+    position: absolute;
+    top: -35px;
+    right: 0;
+    color: white !important;
+    font-size: 35px;
 }
-
-.id1367 a1 .b1 .c1:before {
-    content: "\e751";
-}
-
-.id1367 a1 .b1 .c2 {
-    height: 100%;
-    width: 10%;
-    float: left;
-    text-align: center;
-    line-height: 60px;
-    color: #eeeeee;
-}
-
-.id1367 a1.b1 .c2:before {
-    content: "\e753";
-}
-
-.id1367 .a1 .b1 .c3 {
-    height: 100%;
-    width: 10%;
-    float: right;
-    text-align: center;
-    line-height: 60px;
-    color: #eeeeee;
-}
-
-.id1367 .a1 .b1 .c3:before {
-    content: "\e6ff";
-}
-
-.id1367 .a2 {
-    height: 15px;
+.login_head_ul{
     width: 100%;
-    float: left;
-    color: #fffffd;
-    background: #ffffff;
-    border-bottom: 1px solid;
-    border-color: #eeeeee #eeeeee #eeeeee #eeeeee;
 }
-
-.id1367 .a3 {
-    height: 300px;
-    width: 100%;
-    float: left;
-    margin-top: 54px;
-}
-
-.id1367 .a3 .b1 {
-    height: 100%;
-    width: 40%;
-    margin: auto;
-    background: #ffffff;
-    box-shadow: 0px 1px 4px 0px #999999;
-}
-
-.id1367 .a3 .b1 .c1 {
-    height: 21%;
-    width: 100%;
-    float: left;
-    text-align: center;
-    line-height: 70px;
-    font-size: 20px;
-    color: #999999;
-    font-weight: bold;
-}
-
-.id1367 .a3 .b1 .c1 .d1 {
-    height: 100%;
-    width: 90%;
-    margin: auto;
-    border-bottom: 1px solid;
-    border-color: #eeeeee #eeeeee #eeeeee #eeeeee;
-}
-
-.id1367 .a3 .b1 .c2 {
-    height: 60%;
-    width: 100%;
-    float: left;
-    margin-top: 21px;
-}
-
-.id1367 .a3 .b1 .c2 .d1 {
-    height: 100%;
+.login_head_ul .nav-item{
+    margin-bottom: -1px;
     width: 50%;
-    float: left;
-    padding: 0px;
+    text-align: center;
 }
-
-.id1367 .a3 .b1 .c2 .d2 {
-    height: 100%;
-    width: 50%;
-    float: left;
+.modal-header{
+    border-bottom:0
 }
-
-.id1367 .a3 .b1 .c2 .d2 .e1 {
-    height: 30%;
-    width: 100%;
-    float: left;
-    margin-top: 16px;
+.login_control{
+    display: inline-block;
+    padding-left: 35px;
+    font-size: 13px;
 }
-
-.id1367 .a3 .b1 .c2 .d2 .e1 .f1 {
-    height: 40%;
-    width: 100%;
-    float: left;
-    font-weight: bold;
+.form-group{
+    position: relative;
 }
-
-
-
-.id1367 .a3 .b1 .c2 .d2 .e1 .f2 {
-    height: 60%;
-    width: 80%;
-    float: left;
-    padding: 5px;
-    padding-left: 10px;
-    border-top: 1px solid;
-    border-right: 1px solid;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
-    border-color: #dddddd #dddddd #dddddd #dddddd;
-    border-radius: 6px;
-    box-shadow: -1px -1px 1px 0px #999999;
+.form-group label{
+    display: inline-block;
+    position: absolute;
+    top: 11px;
+    left: 9px;
+    color: #cecbcb;
 }
-
-.id1367 .a3 .b1 .c2 .d2 .e2 {
-    height: 30%;
-    width: 100%;
-    float: left;
-    margin-top: 16px;
-}
-
-.id1367 .a3 .b1 .c2 .d2 .e2 .f1 {
-    height: 40%;
-    width: 100%;
-    float: left;
-    font-weight: bold;
-}
-
-.id1367 .a3 .b1 .c2 .d2 .e2 .f2 {
-    height: 60%;
-    width: 80%;
-    float: left;
-    border-top: 1px solid;
-    border-right: 1px solid;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
-    border-color: #dddddd #dddddd #dddddd #dddddd;
-    border-radius: 6px;
-    box-shadow: -1px -1px 1px 0px #999999;
-}
-
-.id1367 .a4 {
-    height: 10%;
-    width: 100%;
-    float: left;
-}
-
-.id1367 .a3 .b1 .c2 .d2 .e3 {
-    height: 22%;
-    width: 100%;
-    float: left;
-    margin-top: 10px;
-}
-
-.id1367 .a3 .b1 .c2 .d2 .e3 .f1 {
-    height: 35%;
-    width: 100%;
-    float: left;
-    font-weight: bold;
-}
-
-.id1367 .a3 .b1 .c2 .d2 .e3 .f2 {
-    height: 65%;
-    width: 80%;
-    float: left;
-}
-
-.id1367 .a3 .b1 .c2 .d2 .e3 .f2 .g1 {
-    height: 100%;
-    width: 45px;
-    float: left;
-    border-radius: 4px;
-    box-shadow: 1px 1px 1px 0px #999999;
-}
-
-.id1367 .a3 .b1 .c2 .d2 .e3 .f2 .g2 {
-    height: 100%;
-    width: 45px;
-    float: right;
-    border-radius: 4px;
-    box-shadow: 1px 1px 1px 0px #999999;
-}
-.id1367 .a3 .b1 .c2 .d2 .e3 .f1 .g1 {
-    height: 100%;
-    width: 45px;
-    float: left;
-    border-radius: 5px;
+.card-body{
+    font-size: 12px;
+    padding: 16px;
 }

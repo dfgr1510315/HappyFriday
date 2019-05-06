@@ -1,0 +1,157 @@
+body {
+    background-color: #f8fafc;
+}
+
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0 !important;
+}
+
+tbody tr td:not(:first-child) {
+    padding-top: 32px !important;
+}
+
+td button {
+    margin-top: -7px;
+}
+
+* {
+    list-style: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.title-list li {
+    float: left;
+}
+
+.title-list li div {
+    height: 33px;
+    width: 70px;
+    background-color: #fff; /* 鼠标未选中背景颜色 */
+    border-radius: 5px;
+    text-align: center;
+    line-height: 33px;
+}
+
+.title-list li a {
+    color: #333; /* 鼠标未选中字体颜色 */
+}
+
+.title-list li a div:hover {
+    color: green; /* 鼠标悬浮字体颜色 */
+    background-color: #ccc; /* 鼠标悬浮背景颜色 */
+}
+
+.a_course a {
+    display: block;
+    width: 254px;
+    height: 159px;
+}
+
+.a_course a .picture {
+    height: 159px;
+    width: 254px;
+}
+
+.a_course a button {
+    height: 30px;
+    width: 70px;
+    border: 1px solid #285e8e;
+    border-radius: 5px;
+    outline: none;
+    background-color: #428bca;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    font-weight: normal;
+    margin: 21px 86px;
+
+}
+
+.a_course a button:hover {
+    background-color: #21629b;
+}
+
+.course-one {
+    padding: 25px 0;
+    position: relative;
+    border-bottom: 1px solid #eff1f0;
+}
+
+.tab-content ul {
+    padding-left: 25px;
+}
+
+.l {
+    float: left;
+}
+
+.course-list-cont {
+    padding-left: 230px;
+}
+
+.course-list-cont .study-hd {
+    font-size: 18px;
+    color: #12171b;
+    height: 29px;
+    line-height: 29px;
+    position: relative;
+}
+
+.course-list-cont .study-hd a {
+    font-weight: 700;
+    color: #1c1f21;
+    margin-right: 17px;
+}
+
+.course-list-cont .study-hd a:hover {
+    color: #007bff
+}
+
+.study-hd .share-box {
+    top: -8px;
+    position: absolute;
+    right: 35px;
+    width: 72px;
+    overflow: visible;
+}
+
+.study-points {
+    padding: 10px 0 22px;
+    height: 21px;
+}
+
+.study-points .i-left {
+    color: #f01400;
+}
+
+.study-points span {
+    margin-right: 14px;
+}
+
+.catog-points {
+    position: relative;
+    word-wrap: break-word;
+}
+
+.catog-points span {
+    display: inline-block;
+    width: 135px;
+    margin-top: 20px;
+}
+
+.span-common {
+    font-size: 14px;
+    color: #787d82;
+}
+
+.catog-points a {
+    color: #787d82;
+}
+
+.catog-points a:hover {
+    color: #1c1f21;
+}

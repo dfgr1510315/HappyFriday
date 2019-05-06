@@ -108,7 +108,8 @@ body{
 }
 
 .ui-box{
-    width: 1218px;
+    /*width: 1218px;*/
+    width: 1169px;
     height: 170px;
     margin: 33px auto auto;
     background: #FFF;
@@ -117,7 +118,8 @@ body{
 }
 
 .main_box{
-    width: 1218px;
+    /*width: 1218px;*/
+    width: 1169px;
     margin: auto
 }
 

@@ -1,0 +1,358 @@
+.questions_main {
+    width: 1169px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.qa-header {
+    position: relative;
+    height: 40px;
+    padding-top: 16px;
+}
+
+.qa-author img {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 7px;
+}
+
+.qa-content {
+    padding: 15px 0;
+    margin: 0 0;
+    border-bottom: 1px solid #edf1f2;
+}
+
+.qa-wenda-title {
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow: hidden;
+    font-weight: bolder;
+    font-size: 16px;
+    line-height: 32px;
+}
+
+.rich-text {
+    margin-top: 5px;
+}
+
+.qa-disscus, .qa-wenda {
+    line-height: 20px;
+    font-size: 14px;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.qa-content-addon {
+    position: relative;
+    padding-top: 15px;
+    font-size: 12px;
+    color: #d0d6d9;
+}
+
+.qa-createtime {
+    margin-left: 20px;
+    color: #c8cdd2;
+    line-height: 24px;
+}
+
+.qa-total-comment, .qa-view-num {
+    margin-left: 20px;
+    line-height: 24px;
+    color: #c8cdd2;
+}
+
+.qa-total-comment, .qa-view-num {
+    margin-left: 20px;
+    line-height: 24px;
+    color: #c8cdd2;
+}
+
+.l {
+    float: left;
+}
+
+.r {
+    float: right;
+}
+
+.qa-comment {
+    position: relative;
+    min-height: 80px;
+    border-bottom: 1px solid #edf1f2;
+}
+
+.qa-comment {
+    position: relative;
+    min-height: 80px;
+    border-bottom: 1px solid #edf1f2;
+}
+
+.qa-comment-wrap {
+    padding: 10px 0;
+    position: relative;
+}
+
+.qa-comment-author {
+    float: left;
+    line-height: 1em;
+    width: 90px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.qa-comment-author img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.qa-comment-nick {
+    display: block;
+    font-size: 13px;
+    line-height: 1.2em;
+    height: 18px;
+    margin: 3px 10px auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.qa-comment-d {
+    position: relative;
+    margin-left: 90px;
+    padding: 10px 0 10px 20px;
+}
+
+.qa-reply {
+    clear: both;
+    margin-top: 9px;
+    border-bottom: 0;
+}
+
+.qa-comment-addon {
+    position: relative;
+    padding: 10px 0 0;
+    font-size: 12px;
+    color: #c8cdd2;
+}
+
+.qa-comment-c {
+    line-height: 20px;
+    font-size: 14px;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.js-qa-tr-num .fa-commenting-o {
+    margin-right: 3px;
+}
+
+.js-qa-tr-num {
+    margin-left: 10px;
+    cursor:pointer;
+}
+.js-qa-tr-num:hover {
+    color: #007bff;
+}
+
+.qa-reply {
+    clear: both;
+    margin-top: 9px;
+    border-bottom: 0;
+}
+
+.qa-replies {
+    margin-bottom: -1px;
+}
+
+.qa-reply-c {
+    position: relative;
+}
+
+.qa-reply-item {
+    position: relative;
+    border-bottom: 1px solid #edf1f2;
+}
+
+.qa-reply-item-author img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.qa-reply-item-inner {
+    margin-left: 50px;
+    font-size: 12px;
+    padding: 17px 0 17px 10px;
+}
+
+.q-reply-item-c {
+    font-size: 12px;
+    line-height: 1.7em;
+    padding-top: 3px;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.qa-reply-item-foot {
+    color: #c8cdd2;
+    font-size: 12px;
+    padding: 10px 0 7px;
+}
+
+.qa-reply-item-author {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    line-height: 1em;
+}
+
+.qa-reply {
+    border-top: 1px solid #edf1f2;
+    padding-left: 110px;
+}
+
+.qa-reply-ibox {
+    padding: 20px 0;
+    border-bottom: 1px solid #e3e5e5;
+}
+
+.qa-reply-iavator {
+    width: 60px;
+    text-align: center;
+}
+
+.qa-reply-iavator img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.qa-reply-iwrap {
+    padding-left: 7px;
+    overflow: hidden;
+    margin-left: 60px;
+}
+
+.qa-reply-iwrap textarea {
+    padding: 7px;
+    resize: none;
+    height: 80px;
+    line-height: 1.7em;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.qa-reply-ifoot {
+    padding: 10px 0 10px 66px;
+}
+
+button.btn-mini {
+    height: 29px;
+    padding: 0 15px;
+    font-size: 12px;
+    width: auto;
+}
+
+.qa-comment-input {
+    position: relative;
+    padding: 20px 0 40px 40px;
+}
+
+.qa-ci-avator {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 120px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.qa-ci-avator img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.qa-ci-wrap {
+    margin-left: 70px;
+}
+
+.qa-ci-footer {
+    padding: 10px 0;
+    position: relative;
+}
+
+.wenda-my {
+    margin-bottom: 30px;
+}
+
+.wenda-my .user-info {
+    position: relative;
+    height: 40px;
+    padding-left: 50px;
+}
+
+.wenda-my .user-info a.user-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.wenda-my .user-info img {
+    width: 40px;
+    height: 40px;
+}
+
+.wenda-my .user-info .username {
+    font-size: 12px;
+    color: #1c1f21;
+    padding-top: 10px;
+}
+
+.panel {
+    padding: 0 20px;
+    background-color: #f8fafc;
+    margin-bottom: 20px;
+}
+
+.panel-heading {
+    border-bottom: solid 1px #d0d6d9;
+}
+
+.panel-title {
+    height: 58px;
+    line-height: 58px;
+    font-size: 16px;
+}
+
+.about-ques .panel-body {
+    padding: 15px 0 5px;
+}
+
+.about-ques .mkhotlist {
+    padding: 9px 0 10px;
+    border: 0 none;
+    line-height: 21px;
+}
+
+/*  .about-ques .mkhotlist a {
+      color: #787d82;
+  }*/
+
+.box_right{
+    width:20%;
+    float:right;
+}
+
+.w-e-text-container{
+    height: 150px !important;/*!important是重点，因为原div是行内样式设置的高度300px*/
+}

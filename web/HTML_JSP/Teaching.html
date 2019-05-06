@@ -13,126 +13,11 @@
     <link rel="stylesheet" type="text/css" href="../CSS/navigation.css">
     <link rel="stylesheet" href="../CSS/PerCenterContainer.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../CSS/main_css/Teaching.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
-    <style type="text/css">
-        body{
-            background-color: #f8fafc;
-        }
-        body.modal-open {
-            overflow-y: auto !important;
-            padding-right: 0!important;
-        }
-        tbody tr td:not(:first-child){
-            padding-top: 32px !important;
-        }
-
-        td button{
-            margin-top: -7px;
-        }
-
-        .cover{
-            width: 100px;height: 65px;margin-right: 5px
-        }
-
-        .found_class {
-            display: inline-block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-
-        .found_class_text{
-            height: 40px !important;
-            resize: none;
-            width: 80%;
-            float: right;
-        }
-
-    </style>
-    <script type="text/javascript">
-        var contextPath = getContextPath();
-        $(document).ready(function () {
-            get_Class();
-            $('#navigation').load('navigation.html',function () {
-                $('#VerticalNav').load('VerticalNav.html',function () {
-                    addClass(3);
-                    $.when(get_user_infor()).done(function () {
-                        $('#radio_cover_img').attr('src',contextPath+head_image);
-                    });
-                });
-            });
-        });
-        function get_Class() {
-            $.ajax({
-                type: "POST",
-                asynch: "false",
-                url: contextPath+"/get_teaching",
-                data:{
-                    type:'get_Class'
-                },
-                dataType: 'json',
-                success: function (json) {
-                    var class_ul = $("tbody");
-                    var release_status;
-                    for (var i=0;i<json.class_list.length;i++){
-                        if (json.class_list[i].release_status===1) release_status = '已发布';
-                        else release_status = '未发布';
-                        class_ul.append(
-                            '<tr>\n' +
-                            '<td><img src="'+contextPath+json.class_list[i].cover_address +'" class="cover" alt="">'+json.class_list[i].class_title+'</td> \n'+
-                            '<td>'+json.class_list[i].student_count+'</td> \n'+
-                            '<td>'+release_status+'</td> \n'+
-                            '<td><a target="_blank" href="Myclass.html?class_id='+ json.class_list[i].class_id+'"><button class="btn btn-outline-primary btn-sm" >管理</button></a></td>\n'+
-                            '<tr>\n '
-                        )
-                    }
-                    if (class_ul.html().length === 0) {
-                        $('#class_table').append(
-                            '<div class="no_find_class">暂无课程</div> '
-                        )
-                    }
-                }
-            });
-        }
-
-        function found_class() {
-            var Class_Name = $('#found_class_name').val();
-            var Class_Type = $('#sel1').val();
-            if ('' === Class_Name||'类型' === Class_Type){
-                alert('课程标题或类型不能为空');
-            } else {
-                $.ajax({
-                    type: "POST",
-                    asynch: "false",
-                    url: contextPath+"/get_teaching",
-                    data: {
-                        type:'found_class',
-                        Class_Name:Class_Name,
-                        Class_Type:Class_Type
-                    },
-                    dataType: 'json',
-                    success: function (jsonObj) {
-                        if (jsonObj.class_id===0) alert('创建失败') ;
-                        else {
-                            $('#found_class_Close').click();
-                            var class_ul = $("tbody");
-                            class_ul.prepend(
-                                '<tr>\n' +
-                                '<td><img src="'+contextPath+'/image/efb37fee400582742424a4ce08951213.png" class="cover" alt="">'+Class_Name+'</td> \n'+
-                                '<td>0</td> \n'+
-                                '<td>未发布</td> \n'+
-                                '<td><a target="_blank" href="Myclass.html?class_id='+jsonObj.class_id+'"><button class="btn btn-outline-primary btn-sm" >管理</button></a></td>\n'+
-                                '<tr>\n '
-                            );
-                        }
-                    }
-                });
-            }
-        }
-    </script>
-
+    <script type="text/javascript" src="../JS/main_js/Teaching.js"></script>
 </head>
 <body>
 <div id="navigation"></div>
@@ -141,12 +26,8 @@
         <div id="VerticalNav"></div>
         <div class="container_right">
             <div id="class_table">
-                <h3 class="container_right_head">
-                    在线课程
-                    <button class="btn btn-outline-primary" style="float: right;margin-top: 28px" data-id="button_Change_Class"    data-toggle="modal"  data-target="#found_class">
-                        创建课程
-                    </button>
-                </h3>
+                <h3 class="container_right_head" >在线课程</h3>
+                <button class="btn btn-outline-primary btn-sm" style="float: right;margin-bottom: 13px;" data-id="button_Change_Class"  data-toggle="modal"  data-target="#found_class">创建课程</button>
                 <table class="table table-hover">
                     <thead>
                     <tr>
@@ -189,8 +70,7 @@
                         <option value="6">项目发布</option>
                     </select>
                 </div>
-                <button id="found_class_sure_button" type="button" class="btn btn-primary" onclick="found_class()" style="float: right;">创建
-                </button>
+                <button id="found_class_sure_button" type="button" class="btn btn-outline-primary btn-sm" onclick="found_class()" style="float: right;">创建</button>
             </div>
         </div>
     </div>

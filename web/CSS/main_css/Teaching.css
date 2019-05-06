@@ -1,0 +1,32 @@
+body{
+    background-color: #f8fafc;
+}
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0!important;
+}
+tbody tr td:not(:first-child){
+    padding-top: 32px !important;
+}
+
+td button{
+    margin-top: -7px;
+}
+
+.cover{
+    width: 100px;height: 65px;margin-right: 5px
+}
+
+.found_class {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.found_class_text{
+    height: 40px !important;
+    resize: none;
+    width: 80%;
+    float: right;
+}

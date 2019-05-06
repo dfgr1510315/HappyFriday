@@ -1,0 +1,63 @@
+body{
+    background-color: #f8fafc;
+}
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0!important;
+}
+tbody tr td:not(:first-child){
+    padding-top: 32px !important;
+}
+
+td button{
+    margin-top: -7px;
+}
+
+.cover{
+    width: 100px;height: 65px;margin-right: 5px
+}
+
+.found_class {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.found_class_text{
+    height: 40px !important;
+    resize: none;
+    width: 80%;
+    float: right;
+}
+#notice_box .list-group .list-group-item .pull-left{
+    margin-right: 10px;
+    float: left;
+    margin-top: 4px;
+}
+#notice_box .list-group .list-group-item{
+    height: 74px;
+    overflow: hidden;
+    zoom: 1;
+    margin-bottom: 10px;
+}
+#notice_box .list-group .list-group-item .item_body{
+    overflow: hidden;
+    zoom: 1;
+}
+#notice_box .list-group .list-group-item .item_body .notification-body{
+    margin-bottom: 6px;
+}
+#notice_box .list-group .list-group-item .item_body .notification-time{
+    font-size: 12px;
+    color: #999;
+}
+#notice_box .list-group .list-group-item .item_body .notification-time .delete{
+    float: right;
+}
+.delete{
+    cursor: pointer;
+}
+.delete:hover{
+    color: #1c1f21;
+}

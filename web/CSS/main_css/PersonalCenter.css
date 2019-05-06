@@ -1,0 +1,415 @@
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0!important;
+}
+#user_id_span {
+    float: left;
+    font-size: 14px;
+    color: #4d4d4d;
+    height: 32px;
+}
+#localUl{
+    list-style: none;
+    padding-left: 0
+}
+#localUl li {
+    height: 32px;
+    list-style: none;padding-left: 0
+}
+#upload label {
+    float: left;
+    margin-right: 15px;
+}
+#upload input {
+    height: 28px;
+}
+.input1 {
+    width: 50%;
+}
+input[type=date]::-webkit-inner-spin-button {
+    visibility: hidden;
+}
+.form-control{
+    height: calc(2.25rem + 2px);
+}
+#pc_head_image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /*margin: 16px auto 0;*/
+}
+.change_img{
+    text-align: center;
+    width: 100px;
+    margin-top: 7px;
+}
+.image_box{
+    width: 100px;
+    height: 100px;
+    margin: 16px auto 0;
+}
+.information{
+    width: 85%;
+}
+.information_top{
+    margin-top: 16px;
+    height: 32px
+}
+
+.am-modal{
+    text-align: center;
+    top: 80px;
+}
+.am-modal .modal-dialog{
+    max-width: none;
+}
+.up-frame-bj .up-frame-radius {
+    padding-bottom: 20px;
+    border-radius: 5px;
+    border-bottom: none;
+}
+.am-modal-dialog {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    width: 270px;
+    max-width: 100%;
+    border-radius: 0;
+    background: #f8f8f8;
+}
+.up-frame-parent .up-frame-header {
+    height: 50px;
+    padding: 0px;
+    line-height: 50px;
+    border-bottom: solid 1px #e5e5e5;
+    margin-bottom: 11px;
+}
+.am-modal-hd {
+    padding: 15px 10px 5px 10px;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+.up-frame-parent .up-frame-header label {
+    font-size: 16px;
+    float: left;
+    margin-left: 14px;
+    color: #808080;
+}
+.am-close {
+    display: inline-block;
+    text-align: center;
+    width: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.am-modal-hd .am-close {
+    position: absolute;
+    top: 4px;
+    right: 25px;
+}
+
+.up-frame-parent .up-frame-body {
+    padding: 20px;
+}
+.am-modal-no-btn .am-modal-bd {
+    border-bottom: none;
+}
+.am-modal-hd+.am-modal-bd {
+    padding-top: 0;
+}
+.am-modal-bd {
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 1px solid #dedede;
+    border-radius: 2px 2px 0 0;
+}
+.am-fl {
+    float: left;
+}
+.am-g {
+    margin: 0 auto;
+    width: 100%;
+}
+.am-form-file {
+    position: relative;
+    overflow: hidden;
+}
+.am-btn-default {
+    color: #444;
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+}
+.am-btn {
+    display: inline-block;
+    margin-bottom: 0;
+    padding: .5em 1em;
+    vertical-align: middle;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: background-color .3s ease-out,border-color .3s ease-out;
+    transition: background-color .3s ease-out,border-color .3s ease-out;
+}
+
+.am-form-group {
+    margin-bottom: 1.5rem;
+}
+.am-form-file input[type=file] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 50rem;
+}
+.up-frame-parent .up-pre-before {
+    width: 327px;
+    height: 327px;
+    padding: 0px;
+    float: left;
+    background: #fcfcfc;
+    border: 1px solid #e3e3e3;
+}
+
+.up-frame-parent .up-pre-before img {
+    width: 100%;
+}
+.cropper-hidden {
+    display: none !important;
+}
+.up-frame-parent .up-frame-body .up-pre-after {
+    background: #fcfcfc;
+    overflow: hidden;
+    width: 186px;
+    height: 186px;
+    border: 1px solid #e3e3e3;
+    float: left;
+    margin-left: 25px;
+}
+.up-frame-parent .up-control-btns {
+    width: 150px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #dddddd;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 30px;
+}
+.up-frame-parent .up-control-btns span {
+    width: 30%;
+}
+[class*=am-icon-] {
+    display: inline-block;
+    font-style: normal;
+}
+.up-frame-parent .up-control-btns {
+    width: 150px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #dddddd;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 30px;
+}
+.cropper-bg {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');
+}
+.cropper-container {
+    font-size: 0;
+    line-height: 0;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    direction: ltr !important;
+}
+.cropper-wrap-box {
+    overflow: hidden;
+}
+.cropper-wrap-box, .cropper-canvas, .cropper-drag-box, .cropper-crop-box, .cropper-modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.cropper-container img {
+    display: block;
+    width: 100%;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 100%;
+    min-height: 0 !important;
+    max-height: none !important;
+    image-orientation: 0deg !important;
+}
+.cropper-crop {
+    cursor: crosshair;
+}
+.cropper-modal {
+    opacity: .5;
+    background-color: #000;
+    filter: alpha(opacity=50);
+}
+.cropper-view-box {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    outline: #0e90d2 solid 1px;
+}
+.cropper-dashed.dashed-h {
+    top: 33.33333%;
+    left: 0;
+    width: 100%;
+    height: 33.33333%;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+.cropper-dashed {
+    position: absolute;
+    display: block;
+    opacity: .5;
+    border: 0 dashed #eee;
+    filter: alpha(opacity=50);
+}
+.cropper-dashed.dashed-v {
+    top: 0;
+    left: 33.33333%;
+    width: 33.33333%;
+    height: 100%;
+    border-right-width: 1px;
+    border-left-width: 1px;
+}
+.cropper-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: .75;
+    filter: alpha(opacity=75);
+}
+.cropper-move {
+    cursor: move;
+}
+.cropper-face {
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+.cropper-face, .cropper-line, .cropper-point {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    filter: alpha(opacity=10);
+}
+.cropper-line.line-e {
+    top: 0;
+    right: -3px;
+    width: 5px;
+    cursor: e-resize;
+}
+.cropper-line {
+    background-color: #39f;
+}
+.cropper-line.line-n {
+    top: -3px;
+    left: 0;
+    height: 5px;
+    cursor: n-resize;
+}
+.cropper-line.line-w {
+    top: 0;
+    left: -3px;
+    width: 5px;
+    cursor: w-resize;
+}
+.cropper-line.line-s {
+    bottom: -3px;
+    left: 0;
+    height: 5px;
+    cursor: s-resize;
+}
+.cropper-point.point-e {
+    top: 50%;
+    right: -3px;
+    margin-top: -3px;
+    cursor: e-resize;
+}
+.cropper-point {
+    width: 5px;
+    height: 5px;
+    opacity: .75;
+    background-color: #0e90d2;
+    filter: alpha(opacity=75);
+}
+.cropper-point.point-n {
+    top: -3px;
+    left: 50%;
+    margin-left: -3px;
+    cursor: n-resize;
+}
+.cropper-point.point-w {
+    top: 50%;
+    left: -3px;
+    margin-top: -3px;
+    cursor: w-resize;
+}
+.cropper-point.point-s {
+    bottom: -3px;
+    left: 50%;
+    margin-left: -3px;
+    cursor: s-resize;
+}
+.cropper-point.point-ne {
+    top: -3px;
+    right: -3px;
+    cursor: ne-resize;
+}
+.cropper-point.point-nw {
+    top: -3px;
+    left: -3px;
+    cursor: nw-resize;
+}
+.cropper-point.point-sw {
+    bottom: -3px;
+    left: -3px;
+    cursor: sw-resize;
+}
+.cropper-point.point-se {
+    width: 5px;
+    height: 5px;
+    opacity: .75;
+    filter: alpha(opacity=75);
+    cursor: se-resize;
+    right: -3px;
+    bottom: -3px;
+}

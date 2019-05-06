@@ -227,13 +227,20 @@ h6,h6 a{font-size:20px;line-height:24px}
 }
 
 #main-nav ul.submenu > li > a {
-    font-weight: 400;
     line-height: 40px;
     display: block;
     margin-bottom: 2px;
     font-family: "Roboto";
     position: relative;
     font-weight: 700;
+}
+
+.style2 #main-nav ul.submenu > li > a {
+     color: #fff;
+}
+
+.style2 #main-nav ul.submenu > li > a:hover{
+    color: #f3728b;
 }
 
 #main-nav ul.submenu {
@@ -258,6 +265,10 @@ h6,h6 a{font-size:20px;line-height:24px}
     top: 100%;
     opacity: 1;
     visibility: visible;
+}
+
+.style2 #main-nav > ul.menu li:hover > ul.submenu{
+    background-color: #192836;
 }
 
 #header #main-nav ul li {

@@ -1,0 +1,92 @@
+body{
+    background-color: #f8fafc;
+}
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0!important;
+}
+tbody tr td:not(:first-child){
+    padding-top: 32px !important;
+}
+
+td button{
+    margin-top: -7px;
+}
+
+.cover{
+    width: 100px;height: 65px;margin-right: 5px
+}
+
+.found_class {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.found_class_text{
+    height: 40px !important;
+    resize: none;
+    width: 80%;
+    float: right;
+}
+.itemBox {
+    height: 88px;
+    overflow: hidden;
+    margin: auto;
+    border-bottom: 1px solid #d9dde1;
+}
+.itemBox .left {
+    width: 80px;
+    float: left;
+    font-size: 36px;
+    color: #d9dde1;
+    padding-left: 24px;
+    padding-top: 5px;
+}
+.itemBox .center {
+    padding-top: 22px;
+    width: 510px;
+    float: left;
+}
+.itemBox p {
+    margin-bottom: 0;
+    font-size: 12px;
+}
+.itemBox .font1 {
+    color: #2b333b;
+    font-size: 16px;
+    font-weight: 700;
+}
+.itemBox .font3 {
+    color: #2b333b;
+    font-size: 14px;
+}
+.itemBox .font2 {
+    color: #93999f;
+    font-size: 14px;
+}
+.itemBox .right {
+    float: right;
+    padding-right: 12px;
+    margin-top: 28px;
+}
+.itemBox .right .moco-btn-normal {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.form-group{
+    position: relative;
+}
+.form-group label{
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+    left: 13px;
+    color: #cecbcb;
+}
+#ChangeEmail_email{
+    display: inline-block;
+    padding-left: 35px;
+    font-size: 13px;
+}

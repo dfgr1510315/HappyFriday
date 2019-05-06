@@ -21,6 +21,10 @@ function login() {
         loginError.text("密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线").show();
         return;
     }
+    if (slideVerify.slideFinishState!==true){
+        loginError.text("请进行验证").show();
+        return;
+    }
     var data = {username:username,password:password,state:'login'};
     $.ajax({
         type:"POST",
@@ -85,3 +89,86 @@ function deleteCookie() {
     });
     location.reload();
 }
+
+var username_model = /^.{3,20}$/;
+var email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+var pasw_model = /^[a-zA-Z]\w{5,17}$/;
+
+$(function () {
+    $('#LoginModal').on('show.bs.modal', function () {
+        $('#username').val(cookie.get('username'));
+        $('#pwd').val(cookie.get('password'));
+    })
+});
+
+function register() {
+    var username = $('#register_username').val();
+    var email = $('#register_email').val();
+    var pasw = $('#register_pwd').val();
+    if (!username_model.test(username)){
+        $('#error_waring').css('display','block').children().text('用户名长度为3~20');
+        return;
+    }
+    if (!email_model.test(email)){
+        $('#error_waring').css('display','block').children().text('邮箱格式不正确，请重新输入');
+        return;
+    }
+    if (!pasw_model.test(pasw)){
+        $('#error_waring').css('display','block').children().text('密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线');
+        return;
+    }
+    if ($('#register_sure_pwd').val()!==pasw){
+        $('#error_waring').css('display','block').children().text('两次输入的密码不一致');
+        return;
+    }
+    $('#error_waring').css('display','none');
+    $.ajax({
+        type:"POST",
+        url:getContextPath()+"/register",
+        data:{
+            state:'register',
+            username:username,
+            password:pasw,
+            email:email
+        },
+        dataType:'json',
+        success:function (state) {
+            if (state===1){
+                alert('注册成功,请去邮箱激活账号');
+                $('#loginClose').click();
+            } else if (state===0){
+                alert('用户名已被使用');
+            } else {
+                alert('未知错误');
+            }
+        }
+    });
+}
+
+function forgetPW() {
+    var forget_user = $('#forget_user').val();
+    if (!username_model.test(forget_user)){
+        alert('请输入正确的用户名格式');
+        return;
+    }
+    $.ajax({
+        type:"POST",
+        url:getContextPath()+"/register",
+        data:{
+            state:'forgetPW',
+            forget_user:forget_user
+        },
+        dataType:'json',
+        success:function (state) {
+            if (state===1){
+                alert('我们已将你当前密码发送至你的邮箱中');
+                $('#forgetClose').click();
+            } else if (state===0){
+                alert('未能通过电子邮件地址找到用户');
+            } else {
+                alert('未知错误,请与管理员联系');
+            }
+        }
+    });
+}
+

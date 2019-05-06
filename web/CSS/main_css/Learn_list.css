@@ -201,7 +201,7 @@ body.modal-open {
     margin: 0;
     padding: 0;
     /*background: #f8fafc url(../image/Learn_list_backgroud.png);*/
-    background: url(../image/bg-slider-3.png)center center no-repeat;
+    background: url(../../image/bg-slider-3.png)center center no-repeat;
 
 }
 .inside{
