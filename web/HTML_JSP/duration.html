@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/navigation.css">
     <link rel="stylesheet" type="text/css" href="../CSS/main_css/Myclass.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="../CSS/dateUI/element.min.css">
+    <link rel="stylesheet" href="../CSS/dateUI/datepicker.css">
 </head>
 <style type="text/css">
     body.modal-open {
@@ -35,14 +35,15 @@
                 <h3 class="container_right_head">
                     基本信息
                 </h3>
-                <div id="chooseDate">
-                    <template>
-                        <div class="block">
-                            <el-date-picker v-model="value9" type="daterange" start-placeholder="开始日期" end-placeholder="结束日期" default-value="2019-10-01" @change="getMyDateTime()"></el-date-picker>
-                            <span>您选择的：{{value9}}</span>
-                        </div>
-                    </template>
+                <div class="mt40" style="display: inline;margin-left: 56px;">
+                    <div class="c-datepicker-date-editor J-datepicker-range-day mt10">
+                        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+                        <input placeholder="开始日期" id="start" class="c-datepicker-data-input only-date" value="">
+                        <span class="c-datepicker-range-separator">-</span>
+                        <input placeholder="结束日期" id="end" class="c-datepicker-data-input only-date" value="">
+                    </div>
                 </div>
+                <button type="button" class="btn btn-outline-success btn-sm" style="display: inline;;margin-bottom: 2px;" onclick="census()">统计</button>
                 <div id="main" style="width: 800px;height:400px;"></div>
             </div>
         </div>
@@ -55,13 +56,13 @@
 <script type="text/javascript" src="../JS/LoginPC.js"></script>
 <script type="text/javascript" src="../JS/main_js/Myclass.js"></script>
 <script type="text/javascript"  src="../JS/echarts.min.js"></script>
-<script type="text/javascript" src="../JS/dateUI/vue.min.js" ></script>
-<script type="text/javascript" src="../JS/dateUI/element.min.js"></script>
+<script type="text/javascript" src="../JS/dateUI/plugins/moment.min.js" ></script>
+<script type="text/javascript" src="../JS/dateUI/datepicker.all.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#navigation').load('navigation_dark.html',function () {
             get_user_infor();
-            get_viewed()
+            get_viewed(0,0,7)
         });
         $('#ui_box').load('ui_box.html',function () {
             getHTML();
@@ -70,28 +71,58 @@
             addHref();
             addAction(3)
         });
+        choose_time();
     });
 
+    function census() {
+        var end = new Date($('#end').val());
+        var start = new Date($('#start').val());
+        var days = getDuration(end-start);
+        get_viewed(start.Format('yyyyMMdd'),end.Format('yyyyMMdd'),days);
+    }
 
-    new Vue({
-        el: '#chooseDate',
-        data() {
-            return {
-                value9: ''
-            }
-        },
-        methods: {
-            getMyDateTime(value9) {
-                console.log(value9);//结果为一个数组，如：2018-12-02T03:24:02.000Z，想要我们需要的时间格式，要进行Date的操作
-            }
-        }
-    });
+    function choose_time() {
+        var DATAPICKERAPI = {
+            // 快捷选项option
+            rangeShortcutOption1: [{
+                name: '最近一周',
+                day: '-7,0'
+            }, {
+                name: '最近一个月',
+                day: '-30,0'
+            }, {
+                name: '最近三个月',
+                day: '-90, 0'
+            }]
+        };
+        //年月日范围
+        $('.J-datepicker-range-day').datePicker({
+            hasShortcut: true,
+            format: 'YYYY-MM-DD',
+            isRange: true,
+            shortcutOptions: DATAPICKERAPI.rangeShortcutOption1
+        });
+    }
 
-    function get_viewed() {
+    function getDuration(my_time) {
+        var days    = my_time / 1000 / 60 / 60 / 24;
+        //var hours = my_time / 1000 / 60 / 60 - (24 * daysRound);
+        //var hoursRound = Math.floor(hours);
+        //var minutes = my_time / 1000 / 60 - (24 * 60 * daysRound) - (60 * hoursRound);
+        //var minutesRound = Math.floor(minutes);
+        //var seconds = my_time / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+        return Math.floor(days);
+    }
+
+    function get_viewed(start,end,days) {
         var time=[];
-        for (var i=7;i>0;i--){
+        for (var i=days;i>0;i--){
             var curDate = new Date();
             time.push(new Date(curDate.setDate(curDate.getDate()-i)).Format("yyyyMMdd"));
+        }
+        if (start===0) {
+            start = time[0];
+            end = time[time.length-1];
         }
         var times=[];
         $.ajax({
@@ -100,8 +131,8 @@
             data:{
                 action:'get_viewed',
                 class_id:No,
-                start:time[0],
-                end:time[time.length-1]
+                start:start,
+                end:end
             },
             dataType:'json',
             success:function (json) {
@@ -118,10 +149,17 @@
                 view(time,times);
             }
         });
+    }
 
+    //规范x轴上的数据
+    function specs(time) {
+        for (var i=0;i<time.length;i++){
+            time[i] = time[i].slice(0,4)+'-'+time[i].slice(4,6)+'-'+time[i].slice(6)
+        }
     }
 
     function view(time,times) {
+        specs(time);
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
         // 指定图表的配置项和数据
