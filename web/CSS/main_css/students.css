@@ -1,0 +1,56 @@
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0!important;
+}
+.head{
+    margin-bottom: 18px;
+}
+.biggest {
+    width: 820px;
+    height: 554px;
+}
+.top-right {
+    float: right !important;
+}
+
+.head .btn-outline-primary{
+    float: right;
+    margin-left: 20px;
+}
+
+.main {
+    padding: 15px;
+}
+
+.media .left {
+    margin-right: 10px;
+}
+.left {
+    float: left !important;
+}
+img {
+    width: 48px;
+    height: 48px;
+}
+
+.table thead th{
+    width: 18%;
+}
+
+.progress{
+    margin-top: 14px;
+}
+
+.btn-sm{
+    margin-top: 8px;
+}
+
+.text-sm {
+    color: #999;
+    font-size: 12px;
+    left: 65px;
+    top: 45px;
+}
+#modal_class_box::-webkit-scrollbar {
+    display: none;
+}

@@ -534,6 +534,70 @@ public class classDAOlmpl implements classDAO {
     }
 
     @Override
+    public void save_viewed(int class_id,int time) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        int state;
+        try {
+            con = dbp.getConnection();
+            qsql = con.prepareStatement("update play_record set play_times=play_times+1 where class_id=? and time=?");
+            qsql.setInt(1, class_id);
+            qsql.setInt(2, time);
+            state = qsql.executeUpdate();
+            if (state==0){
+                qsql = con.prepareStatement("insert into play_record values(?,?,?)");
+                qsql.setInt(1, class_id);
+                qsql.setInt(2, time);
+                qsql.setInt(3, 1);
+                qsql.executeUpdate();
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    @Override
+    public List<String> get_viewed(int class_id, int start, int end) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        List<String> times = new ArrayList<>();
+        try {
+            con = dbp.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select play_times,time from play_record where class_id="+class_id+" and time BETWEEN "+start+" AND "+end);
+            while (rs.next()){
+                times.add(rs.getString("time")+rs.getString("play_times"));
+            }
+            rs.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return times;
+    }
+
+    @Override
     public String get_cover(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;

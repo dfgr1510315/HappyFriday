@@ -23,8 +23,8 @@ function get_user_infor() {
             if (jsonObj.read===0)  $('.count-cart').css('display','inline');
             checkCookie();
             load_history();
-            card_show();
-            history_show();
+     /*       card_show();
+            history_show();*/
             dtd.resolve();
         }
     });
@@ -47,6 +47,7 @@ var cookie = {
     get: function(name) {
         var arr, reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
         if(arr=document.cookie.match(reg)) {
+            //console.log(document.cookie.match(reg));
             return unescape(arr[2]);
         } else {
             return null;
@@ -96,6 +97,7 @@ function load_history() {
     }
 }
 
+/*
 function history_show() {
     var timeout = null;
     var history_card = $(".history");
@@ -125,6 +127,7 @@ function card_show() {
         },1000);
     });
 }
+*/
 
 function search() {
     var keyword = $('#search_input').val();

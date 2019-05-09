@@ -17,11 +17,42 @@ public class Play extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
-        get_address(response,request);
+        String action = request.getParameter("action");
+        switch (action) {
+            case "get_address":
+                get_address(response, request);
+                break;
+            case "save_viewed":
+                save_viewed(request);
+                break;
+            case "get_viewed":
+                get_viewed(response, request);
+                break;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
+    }
+
+    private void get_viewed(HttpServletResponse response,HttpServletRequest request)throws IOException {
+        int class_id = Integer.parseInt(request.getParameter("class_id"));
+        int start = Integer.parseInt(request.getParameter("start"));
+        int end = Integer.parseInt(request.getParameter("end"));
+        JSONObject jsonObject = new JSONObject();
+        classDAOlmpl cl = new classDAOlmpl();
+        jsonObject.put("viewed", cl.get_viewed(class_id,start,end));
+        PrintWriter out = response.getWriter();
+        out.print(jsonObject);
+        out.flush();
+        out.close();
+    }
+
+    private void save_viewed(HttpServletRequest request){
+        int class_id = Integer.parseInt(request.getParameter("class_id"));
+        int day = Integer.parseInt(request.getParameter("day"));
+        classDAOlmpl cl = new classDAOlmpl();
+        cl.save_viewed(class_id,day);
     }
 
     private void get_address(HttpServletResponse response,HttpServletRequest request)throws IOException {

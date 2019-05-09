@@ -51,4 +51,10 @@ public interface classDAO {
 
     //设置课程封面
     boolean set_cover(int class_id,String cover);
+
+    //增加课程播放次数
+    void save_viewed(int class_id,int time);
+
+    //获取播放次数统计
+    List<String> get_viewed(int class_id,int start,int end);
 }

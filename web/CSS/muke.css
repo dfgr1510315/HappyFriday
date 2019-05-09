@@ -3,7 +3,7 @@
 
 a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免出现奇怪的选中区域*/
 :focus{outline:0;}
-label{cursor:pointer;}
+.boxed label{cursor:pointer;}
 img{vertical-align:middle;}
 a{cursor:pointer;}
 a:visited{text-decoration:none !important;}

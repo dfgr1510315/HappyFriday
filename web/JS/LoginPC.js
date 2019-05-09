@@ -1,13 +1,19 @@
 var ContextPath = getContextPath();
 function getContextPath(){
     var pathName = document.location.pathname;
-    console.log(pathName);
+    //console.log(pathName);
     var index = pathName.substr(1).indexOf("/");
-    console.log(index);
-    console.log(pathName.substr(0, index));
+    //console.log(index);
+    //console.log(pathName.substr(0, index));
     if ('HTML_JSP'===pathName.substr(1, index)) return '';
     return pathName.substr(0, index+1);
 }
+
+function get_cookie() {
+    $('#username').val(cookie.get('username'));
+    $('#pwd').val(cookie.get('password'));
+}
+
 function login() {
     var loginError = $("#loginError");
     loginError.hide();
@@ -32,7 +38,7 @@ function login() {
         data:data,
         dataType:'json',
         success:function (msg) {
-            console.log(msg);
+            //console.log(msg);
             if (msg.state === 1) {
                 $("#loginError").text("用户名错误或未激活").show();
             }
@@ -94,12 +100,6 @@ var username_model = /^.{3,20}$/;
 var email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 var pasw_model = /^[a-zA-Z]\w{5,17}$/;
 
-$(function () {
-    $('#LoginModal').on('show.bs.modal', function () {
-        $('#username').val(cookie.get('username'));
-        $('#pwd').val(cookie.get('password'));
-    })
-});
 
 function register() {
     var username = $('#register_username').val();
@@ -124,7 +124,7 @@ function register() {
     $('#error_waring').css('display','none');
     $.ajax({
         type:"POST",
-        url:getContextPath()+"/register",
+        url:ContextPath+"/register",
         data:{
             state:'register',
             username:username,
@@ -153,7 +153,7 @@ function forgetPW() {
     }
     $.ajax({
         type:"POST",
-        url:getContextPath()+"/register",
+        url:ContextPath+"/register",
         data:{
             state:'forgetPW',
             forget_user:forget_user

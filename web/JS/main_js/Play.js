@@ -115,7 +115,6 @@ function get_ask() {
     if (ask_flag === 1) return;
     $.ajax({
         type: "POST",
-        asynch: "false",
         url: contextPath + "/postask",
         data: {
             action: 'get',
@@ -253,6 +252,7 @@ function get_Video() {
         type: "POST",
         url: contextPath + "/play",
         data: {
+            action:'get_address',
             No: No,
             class_No: class_no
         },
@@ -306,6 +306,7 @@ function get_Video() {
                 });
 
                 player.on('loadedmetadata', function () {
+                    save_viewed();
                     if (cookieTime > 0) { //如果记录时间大于0，则设置视频播放后跳转至上次记录时间
                         player.currentTime(cookieTime)
                     }
@@ -339,6 +340,20 @@ function get_Video() {
         }
     });
 }
+//记录一次观看次数
+function save_viewed() {
+    var time = new Date().Format("yyyyMMdd");
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/play",
+        data: {
+            action: 'save_viewed',
+            class_id:No,
+            day:time
+        },
+        dataType: 'json'
+    });
+}
 
 function add_width() {
     $("#center_box").css('width', '59%');
@@ -364,7 +379,6 @@ function change_note(event) {
     var time = new Date().Format("yyyy-MM-dd HH:mm:ss");
     $.ajax({
         type: "POST",
-        asynch: "false",
         url: contextPath + "/postnote",
         data: {
             action: 'change',
@@ -392,7 +406,6 @@ function post_note() {
         var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
         $.ajax({
             type: "POST",
-            asynch: "false",
             url: contextPath + "/postnote",
             data: {
                 action: 'post',
@@ -478,7 +491,6 @@ function delete_note(noteno) {
     //alert($(event).parent().prev().html().replace(/(^\s*)|(\s*$)/g, ""));
     $.ajax({
         type: "POST",
-        asynch: "false",
         url: contextPath + "/postnote",
         data: {
             action: 'delete',
@@ -505,7 +517,6 @@ function post_ask() {
         var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
         $.ajax({
             type: "POST",
-            asynch: "false",
             url: contextPath + "/postask",
             data: {
                 action: 'post',
