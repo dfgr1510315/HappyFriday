@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../CSS/navigation_dark.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../bootstrap-4.1.3-dist/css/bootstrap.min.css">
+    <link href="../CSS/homework/main.css" rel="stylesheet" type="text/css" />
+<!--    <link href="../CSS/homework/iconfont.css" rel="stylesheet" type="text/css" />-->
+    <link href="../CSS/homework/test.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="background-color: #f8fafc;">
+<div id="navigation"></div>
+<div class="main">
+    <div class="test_main">
+        <div class="nr_left">
+            <div class="test">
+                <form method="post">
+                    <div class="test_title">
+                        <p class="test_time">
+                            <i class="fa fa-clock-o"></i><b class="alt-1">00:01</b>
+                        </p>
+                        <span><input type="button" name="test_jiaojuan" value="交卷" onclick="post_work()"></span>
+                    </div>
+
+                    <div class="test_content">
+                        <div class="test_content_title" id="choose_title">
+                            <h2>单选题</h2>
+
+                        </div>
+                    </div>
+                    <div class="test_content_nr">
+                        <ul id="choose"></ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="nr_right">
+            <div class="nr_rt_main">
+                <div class="rt_nr1">
+                    <div class="rt_nr1_title">
+                        <h1>
+                            <i class="fa fa-lightbulb-o"></i>答题卡
+                        </h1>
+                        <p class="test_time">
+                            <i class="fa fa-clock-o"></i><b class="alt-1">00:01</b>
+                        </p>
+                    </div>
+
+                    <div class="rt_content" style="border-top: 1px solid rgb(228, 228, 228)">
+                        <div class="rt_content_tt">
+                            <h2>单选题</h2>
+                            <p>
+                                <span>共</span><i class="content_lit">60</i><span>题</span>
+                            </p>
+                        </div>
+                        <div class="rt_content_nr answerSheet">
+                            <ul id="choose_bar"></ul>
+                        </div>
+                    </div>
+
+                    <div class="rt_content">
+                        <div class="rt_content_tt">
+                            <h2>多选题</h2>
+                            <p>
+                                <span>共</span><i class="content_lit">30</i><span>题</span>
+                            </p>
+                        </div>
+                        <div class="rt_content_nr answerSheet">
+                            <ul>
+
+                                <li><a href="#qu_0_0">1</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="foot"></div>
+</div>
+</body>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../JS/LoginPC.js"></script>
+<script src="../JS/homework/jquery.easy-pie-chart.js"></script>
+<script src="../JS/homework/jquery.countdown.js"></script>
+<script type="text/javascript">
+    let class_id = GetQueryString('class_id');
+    let unit = GetQueryString('unit');
+    let work_length;
+    $(document).ready(function () {
+        $('#navigation').load('navigation_dark.html', function () {
+            get_user_infor();
+            get_work()
+        });
+        //choose_done();
+    });
+    window.jQuery(function($) {
+        "use strict";
+        $('time').countDown({
+            with_separators : false
+        });
+        $('.alt-1').countDown({
+            css_class : 'countdown-alt-1'
+        });
+        $('.alt-2').countDown({
+            css_class : 'countdown-alt-2'
+        });
+    });
+
+    //添加选择题
+    function choice(json) {
+        $('#choose_title').append('<p><span>共</span><i class="content_lit">'+json.work.length+'</i><span>题</span></p>');
+        let work;
+        work_length = json.work.length;
+        for (let i=0;i<work_length;i++){
+            work = json.work[i].split('~~');
+            //console.log(work);
+            $('#choose').append('  <li id="qu_'+i+'">\n' +
+                '                                <div class="test_content_nr_tt">\n' +
+                '                                    <i>'+(i+1)+'</i><span>'+work[0]+'</span>\n' +
+                '                                </div>\n' +
+                '                                <div class="test_content_nr_main">\n' +
+                '                                    <ul>\n' +
+                '                                        <li class="option">\n' +
+                '                                            <input value="A" type="radio" class="radioOrCheck" name="answer'+i+'" id="0_answer_'+i+'_option_1"/>\n' +
+                '                                            <label for="0_answer_'+i+'_option_1"><p class="ue" style="display: inline;">'+work[1]+'</p></label>\n' +
+                '                                        </li>\n' +
+                '                                        <li class="option">\n' +
+                '                                            <input value="B" type="radio" class="radioOrCheck" name="answer'+i+'" id="0_answer_'+i+'_option_2"/>\n' +
+                '                                            <label for="0_answer_'+i+'_option_2"><p class="ue" style="display: inline;">'+work[2]+'</p></label>\n' +
+                '                                        </li>\n' +
+                '                                        <li class="option">\n' +
+                '                                            <input value="C" type="radio" class="radioOrCheck" name="answer'+i+'" id="0_answer_'+i+'_option_3"/>\n' +
+                '                                            <label for="0_answer_'+i+'_option_3"><p class="ue" style="display: inline;">'+work[3]+'</p></label>\n' +
+                '                                        </li>\n' +
+                '                                        <li class="option">\n' +
+                '                                            <input value="D" type="radio" class="radioOrCheck" name="answer'+i+'" id="0_answer_'+i+'_option_4"/>\n' +
+                '                                            <label for="0_answer_'+i+'_option_4"><p class="ue" style="display: inline;">'+work[4]+'</p></label>\n' +
+                '                                        </li>\n' +
+                '                                    </ul>\n' +
+                '                                </div>\n' +
+                '                            </li>');
+            $('#choose_bar').append('<li><a href="#qu_'+i+'">'+(i+1)+'</a></li>')
+        }
+        choose_done();
+        //console.log($('li.option label').closest('.test_content_nr_main').closest('li').attr('id'));
+    }
+
+    function post_work() {
+        //console.log($('input:radio[name="answer1"]:checked').val());
+        let select = '';
+        let value;
+        for (let i=0;i<work_length;i++){
+            value = $('input:radio[name="answer'+i+'"]:checked').val();
+            if (value===undefined)value= '';
+            select = select + value +'|'
+        }
+        let time = new Date().Format("yyyy-MM-dd HH:mm:ss");
+        $.ajax({
+            type:"POST",
+            url:ContextPath+"/HomeWork.do",
+            data:{
+                action:'post_work',
+                work_id:'1',
+                student:user,
+                time:time,
+                select:select,
+                subjective:''
+            },
+            dataType:'json',
+            success:function (msg) {
+                if (msg===true)alert('提交成功');
+                else alert('提交失败')
+            }
+        });
+    }
+
+
+    function get_work(){
+        $.ajax({
+            type:"POST",
+            url:ContextPath+"/HomeWork.do",
+            data:{
+                action:'get',
+                /*class_id:class_id,
+                unit:unit*/
+                work_id:'1'
+            },
+            dataType:'json',
+            success:function (json) {
+                //console.log(json);
+                choice(json)
+            }
+        });
+    }
+
+    function choose_done(){
+        $(function() {
+            $('li.option label').click(function() {
+                //debugger;
+                let examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
+                console.log(examId);
+                let cardLi = $('a[href=\'#' + examId + '\']'); // 根据题目ID找到对应答题卡
+                // 设置已答题
+                if(!cardLi.hasClass('hasBeenAnswer')){
+                    cardLi.addClass('hasBeenAnswer');
+                }
+            });
+        });
+    }
+
+    function GetQueryString(name) {
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        let r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+    Date.prototype.Format = function (fmt) {
+        let o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "H+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (let k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    };
+</script>

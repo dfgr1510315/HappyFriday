@@ -1,6 +1,6 @@
-var email;
-var email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-var contextPath = getContextPath();
+let email;
+//let email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+//let contextPath = getContextPath();
 $(document).ready(function () {
     $('#navigation').load('navigation_dark.html',function () {
         $('#VerticalNav').load('VerticalNav.html',function () {
@@ -15,7 +15,7 @@ $(document).ready(function () {
 });
 
 function changeBind() {
-    var email = $('#ChangeEmail_email').val();
+    let email = $('#ChangeEmail_email').val();
     if (!email_model.test(email)){
         alert('请输入正确的邮箱格式');
         return;

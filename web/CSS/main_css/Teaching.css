@@ -30,3 +30,8 @@ td button{
     width: 80%;
     float: right;
 }
+
+.table thead th{
+    border-bottom:none;
+    border-top: none;
+}

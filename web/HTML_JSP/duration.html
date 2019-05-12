@@ -75,14 +75,14 @@
     });
 
     function census() {
-        var end = new Date($('#end').val());
-        var start = new Date($('#start').val());
-        var days = getDuration(end-start);
+        let end = new Date($('#end').val());
+        let start = new Date($('#start').val());
+        let days = getDuration(end-start);
         get_viewed(start.Format('yyyyMMdd'),end.Format('yyyyMMdd'),days);
     }
 
     function choose_time() {
-        var DATAPICKERAPI = {
+        let DATAPICKERAPI = {
             // 快捷选项option
             rangeShortcutOption1: [{
                 name: '最近一周',
@@ -105,7 +105,7 @@
     }
 
     function getDuration(my_time) {
-        var days    = my_time / 1000 / 60 / 60 / 24;
+        let days    = my_time / 1000 / 60 / 60 / 24;
         //var hours = my_time / 1000 / 60 / 60 - (24 * daysRound);
         //var hoursRound = Math.floor(hours);
         //var minutes = my_time / 1000 / 60 - (24 * 60 * daysRound) - (60 * hoursRound);
@@ -115,16 +115,16 @@
     }
 
     function get_viewed(start,end,days) {
-        var time=[];
-        for (var i=days;i>0;i--){
-            var curDate = new Date();
+        let time=[];
+        for (let i=days;i>0;i--){
+            let curDate = new Date();
             time.push(new Date(curDate.setDate(curDate.getDate()-i)).Format("yyyyMMdd"));
         }
         if (start===0) {
             start = time[0];
             end = time[time.length-1];
         }
-        var times=[];
+        let times=[];
         $.ajax({
             type:"POST",
             url:getContextPath()+"/play",
@@ -137,8 +137,8 @@
             dataType:'json',
             success:function (json) {
                 //console.log(json.viewed);
-                for (var i=0;i<time.length;i++){
-                    for (var j=0;j<json.viewed.length;j++){
+                for (let i=0;i<time.length;i++){
+                    for (let j=0;j<json.viewed.length;j++){
                         if (time[i]===json.viewed[j].substr(0,8)){
                             times.push(json.viewed[j].substring(8,json.viewed[j].length));
                             break;
@@ -153,7 +153,7 @@
 
     //规范x轴上的数据
     function specs(time) {
-        for (var i=0;i<time.length;i++){
+        for (let i=0;i<time.length;i++){
             time[i] = time[i].slice(0,4)+'-'+time[i].slice(4,6)+'-'+time[i].slice(6)
         }
     }
@@ -161,9 +161,9 @@
     function view(time,times) {
         specs(time);
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+        let myChart = echarts.init(document.getElementById('main'));
         // 指定图表的配置项和数据
-        var option = {
+        let option = {
             tooltip : {
                 trigger: 'axis'
             },
@@ -188,7 +188,7 @@
     }
 
     Date.prototype.Format = function (fmt) {
-        var o = {
+        let o = {
             "M+": this.getMonth() + 1, //月份
             "d+": this.getDate(), //日
             "H+": this.getHours(), //小时

@@ -15,7 +15,7 @@ class getHash {
     }
 
     String getMD5(){
-        List<String> commend = new ArrayList<String>();
+        List<String> commend = new ArrayList<>();
         commend.add("certutil");
         commend.add("-hashfile");
         commend.add(path);

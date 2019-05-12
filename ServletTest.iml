@@ -96,8 +96,8 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="easyexcel-1.1.2-beta5" level="project" />
     <orderEntry type="library" name="commons-compress-1.18" level="project" />
-    <orderEntry type="library" name="poi-4.1" level="project" />
+    <orderEntry type="library" name="easyexcel-1.0.4" level="project" />
+    <orderEntry type="library" name="poi-bin-4.1" level="project" />
   </component>
 </module>

@@ -54,3 +54,8 @@ img {
 #modal_class_box::-webkit-scrollbar {
     display: none;
 }
+
+.table thead th{
+    border-bottom:none;
+    border-top: none;
+}

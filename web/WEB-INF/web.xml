@@ -168,6 +168,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>HomeWorkServlet</servlet-name>
+        <servlet-class>Server.HomeWorkServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeWorkServlet</servlet-name>
+        <url-pattern>/HomeWork.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Activation</servlet-name>
         <servlet-class>Server.Activation</servlet-class>
     </servlet>

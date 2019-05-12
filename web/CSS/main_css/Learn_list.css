@@ -35,17 +35,17 @@ body.modal-open {
     font-weight: bold;
     font-size: 16px;
 }
-.col {
+/*.col {
     color: #f20d0d!important;
-}
+}*/
 .under li a {
     color: black;
 }
 .under li a:active {
-    color: #f20d0d;
+    color: #007bff;
 }
 .under li a:hover {
-    color: #f20d0d;
+    color: #007bff;
 }
 
 .course .tab-content {
@@ -91,9 +91,12 @@ body.modal-open {
     font-weight: normal;
 }
 #one .ui-box  a div:hover {
-    background-color: #fef3f3;
-    color: #f20d0d!important;
+   /* background-color: #fef3f3;
+    color: #f20d0d!important;*/
+    background-color: rgba(0, 123, 255, 0.18);
+    color: rgb(0, 124, 253)!important;
 }
+
 .ui-box1 {
     border-radius: 5px;
     /*box-shadow: 0 4px 8px 0 rgba(28,31,33,.1);*/
@@ -106,9 +109,9 @@ body.modal-open {
 #one .ui-box  a div i {/* 字体图标样式 */
     color: #9199A1;
 }
-#one .ui-box  a div i:hover {
+/*#one .ui-box  a div i:hover {
     color: #f20d0d!important;
-}
+}*/
 .circle_1 {/* 开始学习 */
     float: right;
     width: 90px;
@@ -273,7 +276,7 @@ h2{
     /*display: flex;
     flex-wrap: nowrap;*/
 }
-img{
+.main img{
     border-radius: 24px;
 }
 .t2{

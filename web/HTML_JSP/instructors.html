@@ -23,6 +23,112 @@
         overflow-y: auto !important;
         padding-right: 0!important;
     }
+    .box h4 {
+        line-height: 22px;
+        font-size: 18px;
+    }
+    .col_xl_8{
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-top: 25px;
+    }
+    .box {
+        position: relative;
+        margin-bottom: 30px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 0;
+        padding: 0;
+        -webkit-transition: .5s;
+        transition: .5s;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+   /*     border: 1px solid rgba(0, 0, 0, .1);*/
+    }
+    .box-header {
+        color: #455a64;
+        display: block;
+        padding: 1.5rem 1.5rem;
+        position: relative;
+        border-bottom: 1px solid rgba(97, 106, 120, 0.07);
+    }
+    .box-header .box-title{
+        display: inline-block;
+        margin: 0;
+        font-weight: 500;
+    }
+    .box-body {
+        padding: 1.5rem 1.5rem;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+    }
+    .box-body > *:last-child {
+        margin-bottom: 0;
+    }
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    .mb-5 {
+        margin-bottom: 5px !important;
+    }
+    .table {
+        color: #757575;
+        width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+        table-layout:fixed;
+        word-break:break-all;
+    }
+    .table thead:first-child th {
+        border-top: none;
+    }
+    .table>thead>tr>th {
+        border-bottom: 2px solid #f4f4f4;
+    }
+    .table>thead>tr>th {
+        border-top: 1px solid #f4f4f4;
+        padding: 1rem;
+        vertical-align: middle;
+    }
+    .table th, .table thead th {
+        font-weight: 500;
+    }
+    .table>tbody>tr>td{
+        border-top: 1px solid #f4f4f4;
+        padding: 1rem;
+        vertical-align: middle;
+    }
+    .table a {
+        text-decoration: none;
+    }
+    a {
+        color: #455a64;
+    }
+    .badge {
+        font-weight: normal;
+        border-radius: 3px;
+        line-height: 1.3;
+        font-size: 85%;
+    }
+    .badge-success {
+        color: #fff;
+        background-color: #17b3a3;
+    }
+    .badge-warning {
+        color: #fff;
+    }
+    .badge-warning {
+        background-color: #ffd600;
+    }
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -31,12 +137,119 @@
         });
         $('#ui_box').load('ui_box.html',function () {
             getHTML();
+            get_homework();
         });
         $('#course_manag_nav').load('course_manag_nav.html',function () {
             addHref();
             addAction(4)
         });
     });
+
+    function get_homework() {
+        $.ajax({
+            url: ContextPath+"/HomeWork.do",
+            data: {
+                action:'get_homework',
+                course_id:No
+            },
+            type: "POST",
+            dataType: "json",
+            success: function (json) {
+               // console.log(json);
+                let time;
+                for (let i=0;i<json.HW.length;i++){
+                    time = specs(json.HW[i].time.toString());
+                    work_body(time,json.HW[i].class_name,json.HW[i].title,json.HW[i].id,json.HW[i].class_id)
+                }
+            }
+        });
+    }
+
+    //获取此班级作业
+    function get_stu(work_id,class_id) {
+        $.ajax({
+            url: ContextPath+"/HomeWork.do",
+            data: {
+                action:'get_stu',
+                class_id:class_id,
+                course_id:No,
+                work_id:work_id
+            },
+            type: "POST",
+            dataType: "json",
+            success: function (json) {
+                console.log(json);
+                add_table(work_id);
+                stu_split(work_id,json.HW[0],json.HW[1],json.HW[2],json.HW[3])
+            }
+        });
+    }
+
+    //加载此班级作业表头
+    function add_table(work_id) {
+        $('.table-responsive').append(' <table class="table table-hover mb-5 stu_table">\n' +
+            '                                    <thead>\n' +
+            '                                    <tr>\n' +
+            '                                        <th><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">学生</font></font></th>\n' +
+            '                                        <th><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">提交时间</font></font></th>\n' +
+            '                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交状态</font></font></th>\n' +
+            '                                        <th><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">批改状态</font></font></th>\n' +
+            '                                    </tr>\n' +
+            '                                    </thead>\n' +
+            '                                    <tbody id="stu_body'+work_id+'"></tbody>\n' +
+            '                                </table>')
+
+    }
+
+    //对数据进行分割处理
+    function stu_split(work_id,student,post_user,time,pass_flag) {
+        let s_student = student.split('|');
+        let s_post_user = post_user.split('|');
+        let s_time = time.split('|');
+        let s_pass_flag = pass_flag.split('|');
+        let index;
+        for (let i=0;i<s_student.length-1;i++){
+            index = $.inArray(s_student[i],s_post_user);
+            add_stuBody(work_id,s_student[i],s_time[index],index,s_pass_flag[index]);
+        }
+    }
+
+
+    //加载此班级作业表体
+    function add_stuBody(work_id,student,time,post,pass) {
+        let post_class = 'badge-warning';
+        let pass_class = 'badge-warning';
+        let post_text = '未提交';
+        let pass_text = '未批改';
+        if (post!==-1){
+            post_class = 'badge-success';
+            post_text = '已提交';
+            if (pass!==-1) {
+                pass_class = 'badge-success';
+                pass_text = '已批改'
+            }
+        }
+        $('#stu_body'+work_id).append('<tr>\n' +
+            '<td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+student+'</font></font></td>\n' +
+            '<td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+time+'</font></font></td>\n' +
+            '<td><span class="badge '+post_class+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+post_text+'</font></font></span></td>\n' +
+            '<td><span class="badge '+pass_class+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+pass_text+'</font></font></span></td>\n' +
+            '</tr>')
+    }
+
+    //日期格式处理
+    function specs(time) {
+        time = time.slice(0,4)+'-'+time.slice(4,6)+'-'+time.slice(6);
+        return time;
+    }
+
+    function work_body(time,class_name,title,id,class_id) {
+        $('#work_body').append('<tr>\n' +
+            ' <td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+time+'</font></font></td>\n' +
+            ' <td><a href="javascript:void(0);" onclick="get_stu('+id+','+class_id+')"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+class_name+'</font></font></a></td>\n' +
+            ' <td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+title+'</font></font></td>\n' +
+            '</tr>')
+    }
 </script>
 
 <body>
@@ -47,7 +260,29 @@
         <div class="main_box">
             <div id="course_manag_nav"></div>
             <div class="container_right">
-
+                <div class="col_xl_8 col-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">班级作业</font></font></h4>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-5 work_table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 25%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期</font></font></th>
+                                        <th style="width: 25%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">班级</font></font></th>
+                                       <!-- <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">顾客姓名</font></font></th>-->
+                                       <!-- <th style="width: 20%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">批改进度</font></font></th>-->
+                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作业课题</font></font></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="work_body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

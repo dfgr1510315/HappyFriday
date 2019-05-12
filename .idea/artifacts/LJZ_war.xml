@@ -26,9 +26,9 @@
           <element id="file-copy" path="D:/apache-tomcat-9.0.16/lib/websocket-api.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/druid-1.1.14.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/log4j-1.2.17.jar" />
-          <element id="library" level="project" name="easyexcel-1.1.2-beta5" />
           <element id="library" level="project" name="commons-compress-1.18" />
-          <element id="library" level="project" name="poi-4.1" />
+          <element id="library" level="project" name="easyexcel-1.0.4" />
+          <element id="library" level="project" name="poi-bin-4.1" />
         </element>
       </element>
     </root>

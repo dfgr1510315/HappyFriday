@@ -83,7 +83,7 @@ function load_history() {
         $('.history_ul').append(
             '   <li  style="width: 100%;text-align: left;line-height: 10px">\n' +
             '                        <a href="/LJZ/HTML_JSP/Play.html?'+load_history_class_id[i].trim()+'/'+unit[0].trim()+'" target="_blank" title="'+load_last_time[i].trim()+'" class="clearfix">\n' +
-            '                            <div class="link">'+load_last_time[i].trim()+'</div>\n' +
+            '                            <div class="link" style="max-width: 70%">'+load_last_time[i].trim()+'</div>\n' +
             '                            <div style="float: right">\n' +
             '                                <div class="state" style="display: inline;">\n' +
             '                                    <span class="page">'+load_title[i]+'</span>\n' +

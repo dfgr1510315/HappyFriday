@@ -1,8 +1,8 @@
 var ContextPath = getContextPath();
 function getContextPath(){
-    var pathName = document.location.pathname;
+    let pathName = document.location.pathname;
     //console.log(pathName);
-    var index = pathName.substr(1).indexOf("/");
+    let index = pathName.substr(1).indexOf("/");
     //console.log(index);
     //console.log(pathName.substr(0, index));
     if ('HTML_JSP'===pathName.substr(1, index)) return '';
@@ -15,10 +15,10 @@ function get_cookie() {
 }
 
 function login() {
-    var loginError = $("#loginError");
+    let loginError = $("#loginError");
     loginError.hide();
-    var username = $("#username").val();
-    var password = $("#pwd").val();
+    let username = $("#username").val();
+    let password = $("#pwd").val();
     if (!username_model.test(username)){
         loginError.text("用户名以字母开头，允许5-16字节，允许字母数字下划线").show();
         return;
@@ -31,7 +31,7 @@ function login() {
         loginError.text("请进行验证").show();
         return;
     }
-    var data = {username:username,password:password,state:'login'};
+    let data = {username:username,password:password,state:'login'};
     $.ajax({
         type:"POST",
         url:ContextPath+"/register",
@@ -64,11 +64,11 @@ function setCookie(msg,username,password) {
         cookie.del('username');
         cookie.del('password');
     }
-    var class_id = [];
-    var class_title = [];
-    var last_time = [];
-    var schedule = [];
-    for (var i=0;i<msg.history.length;i++){
+    let class_id = [];
+    let class_title = [];
+    let last_time = [];
+    let schedule = [];
+    for (let i=0;i<msg.history.length;i++){
         class_id.push(msg.history[i].class_id);
         class_title.push(msg.history[i].class_title);
         last_time.push(msg.history[i].last_time);
@@ -96,32 +96,33 @@ function deleteCookie() {
     location.reload();
 }
 
-var username_model = /^.{3,20}$/;
-var email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-var pasw_model = /^[a-zA-Z]\w{5,17}$/;
+let username_model = /^.{3,20}$/;
+let email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+let pasw_model = /^[a-zA-Z]\w{5,17}$/;
 
 
 function register() {
-    var username = $('#register_username').val();
-    var email = $('#register_email').val();
-    var pasw = $('#register_pwd').val();
+    let username = $('#register_username').val();
+    let email = $('#register_email').val();
+    let pasw = $('#register_pwd').val();
+    let error_waring = $('#error_waring');
     if (!username_model.test(username)){
-        $('#error_waring').css('display','block').children().text('用户名长度为3~20');
+        error_waring.css('display','block').children().text('用户名长度为3~20');
         return;
     }
     if (!email_model.test(email)){
-        $('#error_waring').css('display','block').children().text('邮箱格式不正确，请重新输入');
+        error_waring.css('display','block').children().text('邮箱格式不正确，请重新输入');
         return;
     }
     if (!pasw_model.test(pasw)){
-        $('#error_waring').css('display','block').children().text('密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线');
+        error_waring.css('display','block').children().text('密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线');
         return;
     }
     if ($('#register_sure_pwd').val()!==pasw){
-        $('#error_waring').css('display','block').children().text('两次输入的密码不一致');
+        error_waring.css('display','block').children().text('两次输入的密码不一致');
         return;
     }
-    $('#error_waring').css('display','none');
+    error_waring.css('display','none');
     $.ajax({
         type:"POST",
         url:ContextPath+"/register",
@@ -146,7 +147,7 @@ function register() {
 }
 
 function forgetPW() {
-    var forget_user = $('#forget_user').val();
+    let forget_user = $('#forget_user').val();
     if (!username_model.test(forget_user)){
         alert('请输入正确的用户名格式');
         return;

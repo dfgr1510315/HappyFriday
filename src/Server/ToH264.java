@@ -121,7 +121,7 @@ public class ToH264 {
 
         // 对ffmpeg无法解析的文件格式(wmv9，rm，rmvb等), 可以先用别的工具（mencoder）转换为avi(ffmpeg能解析的)格式.
         private  String processAVI(int type) {
-            List<String> commend = new ArrayList<String>();
+            List<String> commend = new ArrayList<>();
             commend.add("mencoder");
             commend.add(PATH+"\\"+FileName);
             commend.add("-oac");
