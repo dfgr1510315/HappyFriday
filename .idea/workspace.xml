@@ -13,187 +13,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12850cd1-69d1-43cd-8843-a98321ef88ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/easyexcel_1_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/poi_bin_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/easyexcel-1.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAO/homeWorkDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAOlmpl/hwDAOlmpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/BaseWriteModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Stu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/SubModel/WriteModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/homework.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Server/HomeWorkServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tool/EasyExcelTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tool/ExcelListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/CSS/homework/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/CSS/homework/test.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/HTML_JSP/homework.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/JS/homework/jquery.countdown.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/JS/homework/jquery.easy-pie-chart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/LJZ_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/LJZ_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/LJZ_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/LJZ_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/easyexcel_1_1_2_beta5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/poi_4_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi-bin-4.1.0-20190412/ooxml-lib/curvesapi-1.06.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi-bin-4.1.0-20190412/ooxml-lib/xmlbeans-3.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi-bin-4.1.0-20190412/poi-4.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi-bin-4.1.0-20190412/poi-examples-4.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi-bin-4.1.0-20190412/poi-excelant-4.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi-bin-4.1.0-20190412/poi-ooxml-4.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi-bin-4.1.0-20190412/poi-ooxml-schemas-4.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/poi-bin-4.1.0-20190412/poi-scratchpad-4.1.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServletTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ServletTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/easyexcel-1.1.2-beta5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax.jms.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javax.jms.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/commons-codec-1.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/commons-collections4-4.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/commons-compress-1.18.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/commons-logging-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/commons-math3-3.6.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/curvesapi-1.06.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/jaxb-api-2.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/jaxb-core-2.3.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/jaxb-impl-2.3.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/junit-4.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/poi-4.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/poi-examples-4.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/poi-excelant-4.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/poi-ooxml-4.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/poi-ooxml-schemas-4.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/poi-scratchpad-4.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/poi-4.1.0/xmlbeans-3.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/ToH264.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ToH264.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/getHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/getHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/main_css/Learn_list.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/main_css/Learn_list.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/main_css/Teaching.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/main_css/Teaching.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/main_css/students.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/main_css/students.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Learn_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Learn_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Unbind.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Unbind.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/course.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/course_manag_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/course_manag_nav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/duration.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/duration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/image.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/image.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/homeWorkDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/homeWorkDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAOlmpl/hwDAOlmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAOlmpl/hwDAOlmpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/HomeWorkServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/HomeWorkServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/CSS/homework/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/homework/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/CSS/homework/test.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/homework/test.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/homework.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/homework.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/HTML_JSP/instructors.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/instructors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/LoginPC.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/LoginPC.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/main_js/Learn_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/main_js/Learn_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/main_js/Unbind.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/main_js/Unbind.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/elephantsdream/captions.ar.vtt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/elephantsdream/captions.en.vtt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/elephantsdream/captions.ja.vtt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/elephantsdream/captions.ru.vtt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/elephantsdream/captions.sv.vtt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/elephantsdream/chapters.en.vtt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/elephantsdream/descriptions.en.vtt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/elephantsdream/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/shared/example-captions.vtt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/video-js-7.4.1/examples/simple-embed/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/.eslintignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/.eslintrc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/ISSUE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/bower.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-react/src/registerServiceWorker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/.babelrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/.postcssrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/build.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/check-versions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/dev-client.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/dev-server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/vue-loader.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/webpack.base.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/webpack.dev.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/build/webpack.prod.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/config/dev.env.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/config/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/config/prod.env.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/src/components/Editor.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/src/components/Hello.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/in-vue/static/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-amd-main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-amd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-css-reset.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-emot.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-fullscreen.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-get-content.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-getJSON.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-lang.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-menus.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-mult.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-onblur.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-onchange.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-onfocus.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-paste.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-set-content.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-sperate.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-textarea.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/demo/test-uploadimg.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/Read Me.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/demo-files/demo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/demo-files/demo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/demo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/fonts/icomoon.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/fonts/icomoon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/fonts/icomoon.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/fonts/icomoon.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/selection.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/icomoon/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/pay.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/server/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/example/server/util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/gulpfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wangEditor-3.1.1/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/.jshintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/Gruntfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/bower.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/cropper/cropper.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/cropper/cropper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/cropper/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/cropper/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/cropper/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/cropper/uploader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/expressInstall.swf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/icons.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/icons.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/progress.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/progress.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/success.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/image-upload/upload.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/md5-demo/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/md5-demo/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/requirejs/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/requirejs/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/examples/requirejs/require.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webuploader-0.1.5/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/questions.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/questions.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -247,37 +83,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/course_manag_nav.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="59" column="15" selection-start-line="47" selection-start-column="12" selection-end-line="59" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/homework.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="145" column="53" selection-start-line="145" selection-start-column="53" selection-end-line="145" selection-end-column="53" />
-              <folding>
-                <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#label#0;n#li#0;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#label#0;n#li#1;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#label#0;n#li#2;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#label#0;n#li#3;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/HTML_JSP/instructors.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="214" column="5" lean-forward="true" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
+            <state relative-caret-position="253">
+              <caret line="305" column="21" selection-start-line="305" selection-start-column="21" selection-end-line="305" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#font#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#font#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
@@ -285,22 +95,26 @@
                 <element signature="n#style#0;n#font#0;n#font#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#a#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#font#0;n#a#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#a#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#a#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#span#0;n#td#2;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#font#0;n#span#0;n#td#2;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#span#0;n#td#3;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#font#0;n#span#0;n#td#3;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#a#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#a#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#2;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#2;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#label#0;n#li#0;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#label#0;n#li#1;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#label#0;n#li#2;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#label#0;n#li#3;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#font#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -311,44 +125,17 @@
                 <element signature="n#style#0;n#font#0;n#font#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/duration.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1024">
-              <caret line="154" column="3" selection-start-line="154" selection-start-column="3" selection-end-line="158" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Server/HomeWorkServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="44" column="29" lean-forward="true" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/students.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DAOlmpl/hwDAOlmpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1100">
-              <caret line="127" column="39" lean-forward="true" selection-start-line="127" selection-start-column="39" selection-end-line="127" selection-end-column="39" />
+            <state relative-caret-position="3002">
+              <caret line="168" column="13" selection-start-line="168" selection-start-column="13" selection-end-line="168" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -359,17 +146,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DAO/homeWorkDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="361">
+              <caret line="19" column="31" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Stu.java">
+        <entry file="file://$PROJECT_DIR$/web/HTML_JSP/homework.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="1995">
+              <caret line="164" column="68" selection-start-line="164" selection-start-column="20" selection-end-line="164" selection-end-column="68" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#div#1;n#body#0;n#!!top" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Server/HomeWorkServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="684">
+              <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -391,36 +196,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>learn_list</find>
-      <find>get_class</find>
-      <find>.test_time i</find>
-      <find>fa fa-clock-o</find>
-      <find>icon iconfont</find>
-      <find>&lt;b class=&quot;fa fa-lightbulb-o&quot;&gt;&lt;/b&gt;</find>
-      <find>.option</find>
-      <find>SaxAnalyserV07</find>
-      <find>listUser</find>
-      <find>doAfterAllAnalysed</find>
-      <find>PATH</find>
-      <find>set_infor</find>
-      <find>uploadPath</find>
-      <find>UPLOAD_DIRECTORY</find>
-      <find>0_answer_1_option_</find>
       <find>0_answer</find>
       <find>A</find>
       <find>li.option label</find>
       <find>_answer</find>
       <find>test_content_nr_main</find>
-      <find>.answerSheet li</find>
       <find>test_content_title</find>
       <find>choose_title</find>
-      <find>post_work</find>
       <find>Date</find>
       <find>col-xl-8</find>
       <find>width: 80%;text-align: center</find>
       <find>.table a</find>
       <find>table-responsive</find>
       <find>add_table</find>
+      <find>../JS/main_js/Learn_list.js</find>
+      <find>box-header</find>
+      <find>nr_left</find>
+      <find>test_title</find>
+      <find>.answerSheet li</find>
+      <find>post_work</find>
+      <find>.test_content_nr_t</find>
+      <find>sub_work</find>
+      <find>get_stu</find>
+      <find>student</find>
+      <find>select</find>
+      <find>choose</find>
+      <find>work</find>
+      <find>get_text</find>
+      <find>add_stuBody</find>
+      <find>work_length</find>
+      <find>choose_done</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -430,8 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="D:/chrome下载/前端素材zip/5cd404f2a05d2/index - 副本.html" />
-        <option value="$PROJECT_DIR$/web/CSS/dateUI/datepicker.css" />
         <option value="D:/前端素材/5cd404f2a05d2/index - 副本.html" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/homepage.html" />
         <option value="$PROJECT_DIR$/web/JS/navigation.js" />
@@ -442,7 +245,6 @@
         <option value="$PROJECT_DIR$/web/JS/LoginPC.js" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/Learn_list.html" />
         <option value="$PROJECT_DIR$/web/CSS/homework/iconfont.css" />
-        <option value="$PROJECT_DIR$/web/CSS/homework/main.css" />
         <option value="$PROJECT_DIR$/out/artifacts/LJZ_war_exploded/CSS/homework/iconfont.css" />
         <option value="$PROJECT_DIR$/out/artifacts/LJZ_war_exploded/CSS/homework/test.css" />
         <option value="$PROJECT_DIR$/out/artifacts/LJZ_war_exploded/CSS/homework/main.css" />
@@ -467,19 +269,22 @@
         <option value="$PROJECT_DIR$/src/Server/ToH264.java" />
         <option value="$PROJECT_DIR$/src/Server/getHash.java" />
         <option value="D:/chrome下载/前端素材/jQuery在线答题系统考试页面代码/index.html" />
-        <option value="$PROJECT_DIR$/web/CSS/homework/test.css" />
         <option value="$PROJECT_DIR$/src/Tool/EasyExcelTest.java" />
-        <option value="$PROJECT_DIR$/web/HTML_JSP/homework.html" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/course_manag_nav.html" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/image.html" />
         <option value="$PROJECT_DIR$/web/CSS/main_css/students.css" />
         <option value="$PROJECT_DIR$/web/CSS/main_css/Teaching.css" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/duration.html" />
         <option value="$PROJECT_DIR$/src/Model/Stu.java" />
-        <option value="$PROJECT_DIR$/src/DAO/homeWorkDAO.java" />
         <option value="$PROJECT_DIR$/src/Model/homework.java" />
-        <option value="$PROJECT_DIR$/src/Server/HomeWorkServlet.java" />
+        <option value="$PROJECT_DIR$/web/JS/main_js/questions.js" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/questions.html" />
+        <option value="$PROJECT_DIR$/web/CSS/homework/main.css" />
+        <option value="$PROJECT_DIR$/web/CSS/homework/test.css" />
+        <option value="$PROJECT_DIR$/src/DAO/homeWorkDAO.java" />
         <option value="$PROJECT_DIR$/src/DAOlmpl/hwDAOlmpl.java" />
+        <option value="$PROJECT_DIR$/web/HTML_JSP/homework.html" />
+        <option value="$PROJECT_DIR$/src/Server/HomeWorkServlet.java" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/instructors.html" />
       </list>
     </option>
@@ -504,60 +309,18 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="951" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
-          <expand>
-            <path>
-              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-            <path>
-              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="HTML_JSP" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ServletTest" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ServletTest" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -580,6 +343,47 @@
               <item name="IdeaProjects" type="b2602c69:ProjectViewProjectNode" />
               <item name="IdeaProjects" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ServletTest" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ServletTest" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
+          <expand>
+            <path>
+              <item name="ServletTest" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -613,8 +417,12 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/ServletHello.java" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Server" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IntelliJIDEA2018.2\javaweb\ServletTest\lib" />
+      <recent name="D:\IDEA\IdeaProjects\web\JS\homework" />
+      <recent name="D:\IDEA\IdeaProjects\web\CSS\dateUI" />
+      <recent name="D:\IDEA\IdeaProjects\web\JS" />
+      <recent name="D:\IDEA\IdeaProjects\web\JS\main_js" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\IDEA\IdeaProjects\lib\poi-3.8-beta4-20110826.jar!\org\apache\poi\poifs\eventfilesystem" />
@@ -623,12 +431,8 @@
       <recent name="D:\IDEA\IdeaProjects\out\artifacts\LJZ_war_exploded\CSS\homework" />
       <recent name="D:\IDEA\IdeaProjects\web\CSS\homework" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\IDEA\IdeaProjects\web\JS\homework" />
-      <recent name="D:\IDEA\IdeaProjects\web\CSS\dateUI" />
-      <recent name="D:\IDEA\IdeaProjects\web\JS" />
-      <recent name="D:\IDEA\IdeaProjects\web\JS\main_js" />
-      <recent name="D:\IDEA\IdeaProjects\web\CSS\main_css" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Server" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1072,6 +876,10 @@
       <workItem from="1557544959421" duration="15886000" />
       <workItem from="1557626521498" duration="5132000" />
       <workItem from="1557643236684" duration="12801000" />
+      <workItem from="1557831710604" duration="3360000" />
+      <workItem from="1557835174820" duration="486000" />
+      <workItem from="1557835708912" duration="7251000" />
+      <workItem from="1557891803227" duration="1242000" />
     </task>
     <task id="LOCAL-00001" summary="将ionic换成了bootstrap">
       <created>1538102747370</created>
@@ -1349,9 +1157,9 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2201356000" />
+    <option name="totallyTimeSpent" value="2219073000" />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -1361,10 +1169,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5766526" visible="true" weight="0.1391258" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5766526" visible="true" weight="0.22989276" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1373,19 +1181,56 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Web" order="7" sideWeight="0.42334738" side_tool="true" weight="0.22547974" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3177874" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.31586403" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49061662" weight="0.22885032" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.9301706" weight="0.37852496" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.9301706" weight="0.32577905" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Application Servers" order="6" side_tool="true" weight="0.32765958" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50053304" side_tool="true" weight="0.3177874" />
       <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4914712" weight="0.20498915" />
-      <window_info anchor="bottom" id="TODO" order="9" sideWeight="0.49597856" weight="0.32212582" />
+      <window_info anchor="bottom" id="TODO" order="9" sideWeight="0.49597856" weight="0.32152975" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.3253796" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.3275488" />
       <window_info anchor="bottom" id="Database Changes" order="12" type="SLIDING" weight="0.12340426" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.4936034" weight="0.6876356" />
+      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.4936034" weight="0.68696886" />
+      <window_info anchor="bottom" id="Duplicate detector" order="14" weight="0.3286119" />
+      <window_info anchor="bottom" id="Docker" order="15" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Coverage" order="6" sideWeight="0.50440526" side_tool="true" weight="0.04155496" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info anchor="right" id="Maven Projects" order="8" side_tool="true" weight="0.32942432" />
+      <window_info anchor="right" id="Maven" order="9" weight="0.32995737" />
+      <window_info anchor="right" id="Database" order="10" sideWeight="0.4955947" weight="0.04088472" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.57859534" visible="true" weight="0.25670242" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" sideWeight="0.5007072" side_tool="true" weight="0.17895442" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" sideWeight="0.4214047" side_tool="true" weight="0.13166311" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3177874" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49061662" weight="0.3470716" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48927614" visible="true" weight="0.30878186" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Application Servers" order="6" side_tool="true" weight="0.32765958" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50603217" side_tool="true" weight="0.35032538" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4919571" weight="0.20498915" />
+      <window_info anchor="bottom" id="TODO" order="9" sideWeight="0.49597856" weight="0.32212582" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32577905" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.3286119" />
+      <window_info anchor="bottom" id="Database Changes" order="12" type="SLIDING" weight="0.12340426" />
+      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49396783" weight="0.6876356" />
       <window_info anchor="bottom" id="Duplicate detector" order="14" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="15" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -1399,7 +1244,7 @@
       <window_info anchor="right" id="Database" order="8" sideWeight="0.4955947" weight="0.041044775" />
       <window_info anchor="right" id="Maven Projects" order="9" side_tool="true" weight="0.32942432" />
       <window_info anchor="right" id="Maven" order="10" weight="0.32995737" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1492,18 +1337,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Tool/ExcelReaderFactory.java" />
-    <entry file="file://$PROJECT_DIR$/src/Tool/ExcelReadTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/Tool/FileUtil.java" />
-    <entry file="file://$PROJECT_DIR$/src/Tool/WriteHandler.java" />
-    <entry file="jar://$PROJECT_DIR$/lib/easyexcel-1.0.4.jar!/com/alibaba/excel/read/event/AnalysisEventListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tool/ExcelRead.java" />
     <entry file="file://$PROJECT_DIR$/src/Tool/ExcelWrite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -1638,31 +1471,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/CSS/homework/test.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/Learn_list.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="60" column="20" selection-start-line="58" selection-start-column="8" selection-end-line="60" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DAO/askDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DAOlmpl/askDAOlmpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="89" column="40" lean-forward="true" selection-start-line="89" selection-start-column="40" selection-end-line="89" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1676,16 +1488,6 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Student_commentary.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/radio_cover.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="40" lean-forward="true" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1707,26 +1509,7 @@
         <state relative-caret-position="-610" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tool/EasyExcelTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/chrome下载/前端素材/jQuery在线答题系统考试页面代码/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107464">
-          <caret line="5718" column="30" selection-start-line="5718" selection-start-column="15" selection-end-line="5718" selection-end-column="30" />
-          <folding>
-            <element signature="n#li#27;n#ul#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/chrome下载/前端素材/jQuery在线答题系统考试页面代码/index.html" />
     <entry file="file://$PROJECT_DIR$/web/CSS/main_css/students.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="701">
@@ -1799,27 +1582,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DAO/homeWorkDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Stu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/HomeWorkServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="44" column="29" lean-forward="true" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1828,35 +1594,89 @@
         <state relative-caret-position="-2" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DAOlmpl/hwDAOlmpl.java">
+    <entry file="file://$PROJECT_DIR$/src/Server/Learn_list.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="127" column="39" lean-forward="true" selection-start-line="127" selection-start-column="39" selection-end-line="127" selection-end-column="39" />
+        <state relative-caret-position="137">
+          <caret line="64" column="25" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Play.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/radio_cover.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="40" lean-forward="true" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/LearingClass.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Student_commentary.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Myclass.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-114" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/questions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/JS/main_js/questions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tool/EasyExcelTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="52" column="66" lean-forward="true" selection-start-line="52" selection-start-column="66" selection-end-line="52" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/homework.html">
+    <entry file="file://$PROJECT_DIR$/web/CSS/homework/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="145" column="53" selection-start-line="145" selection-start-column="53" selection-end-line="145" selection-end-column="53" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#label#0;n#li#0;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#label#0;n#li#1;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#label#0;n#li#2;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#label#0;n#li#3;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="95">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DAOlmpl/askDAOlmpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="99" column="33" lean-forward="true" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/CSS/homework/test.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="193" selection-start-line="30" selection-start-column="193" selection-end-line="30" selection-end-column="193" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/instructors.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="214" column="5" lean-forward="true" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
+        <state relative-caret-position="253">
+          <caret line="305" column="21" selection-start-line="305" selection-start-column="21" selection-end-line="305" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#font#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#font#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
@@ -1864,22 +1684,26 @@
             <element signature="n#style#0;n#font#0;n#font#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#a#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#font#0;n#a#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#a#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#a#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#span#0;n#td#2;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#font#0;n#span#0;n#td#2;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#span#0;n#td#3;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#font#0;n#span#0;n#td#3;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#a#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#a#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#2;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#2;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#label#0;n#li#0;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#label#0;n#li#1;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#label#0;n#li#2;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#label#0;n#li#3;n#ul#0;n#div#1;n#li#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#font#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1890,6 +1714,47 @@
             <element signature="n#style#0;n#font#0;n#font#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#font#0;n#font#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DAOlmpl/hwDAOlmpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3002">
+          <caret line="168" column="13" selection-start-line="168" selection-start-column="13" selection-end-line="168" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DAO/homeWorkDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/HTML_JSP/homework.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1995">
+          <caret line="164" column="68" selection-start-line="164" selection-start-column="20" selection-end-line="164" selection-end-column="68" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#body#0;n#!!top" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/HomeWorkServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="../CSS/navigation.css">
     <link rel="stylesheet" type="text/css" href="../CSS/main_css/Myclass.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="../CSS/homework/main.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/homework/test.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../JS/LoginPC.js"></script>
@@ -129,8 +131,22 @@
     .badge-warning {
         background-color: #ffd600;
     }
+    .nr_left{
+        width: 100%;
+    }
+    .test_title{
+        width: 100%;
+    }
+    .fade{
+        top:0;
+    }
+    .modal-lg{
+        max-width: 1169px;
+    }
 </style>
 <script type="text/javascript">
+    let one_work_id;
+    let stu_text = {};
     $(document).ready(function(){
         $('#navigation').load('navigation_dark.html',function () {
            get_user_infor();
@@ -180,7 +196,8 @@
             success: function (json) {
                 console.log(json);
                 add_table(work_id);
-                stu_split(work_id,json.HW[0],json.HW[1],json.HW[2],json.HW[3])
+                stu_split(work_id,json.HW[0],json.HW[1],json.HW[2],json.HW[3]);
+                one_work_id = work_id
             }
         });
     }
@@ -219,22 +236,51 @@
     function add_stuBody(work_id,student,time,post,pass) {
         let post_class = 'badge-warning';
         let pass_class = 'badge-warning';
+        let data_target = '';
         let post_text = '未提交';
         let pass_text = '未批改';
+        let onclick = '';
         if (post!==-1){
             post_class = 'badge-success';
             post_text = '已提交';
-            if (pass!==-1) {
+            data_target = 'sub_work';
+            onclick = "onclick=\"get_text(\'"+student+"\')\"";
+            if (pass!=='0') {
                 pass_class = 'badge-success';
                 pass_text = '已批改'
             }
         }
+        if (time===undefined) time='';
         $('#stu_body'+work_id).append('<tr>\n' +
-            '<td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+student+'</font></font></td>\n' +
+            '<td><a '+onclick+' href="javascript:void(0);" data-toggle="modal" data-target="#'+data_target+'"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+student+'</font></font></a></td>\n' +
             '<td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+time+'</font></font></td>\n' +
             '<td><span class="badge '+post_class+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+post_text+'</font></font></span></td>\n' +
             '<td><span class="badge '+pass_class+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+pass_text+'</font></font></span></td>\n' +
-            '</tr>')
+            '</tr>');
+    }
+
+    //获取学生作业
+    function get_text(student) {
+        if (stu_text[one_work_id+student]!==undefined) {
+            remove_table();
+            choice(stu_text[one_work_id+student]);
+            return;
+        }
+        $.ajax({
+            url: ContextPath+"/HomeWork.do",
+            data: {
+                action:'get_text',
+                stu_id:one_work_id+student
+            },
+            type: "POST",
+            dataType: "json",
+            success: function (json) {
+                //console.log(json);
+                stu_text[one_work_id+student] = json;
+                //console.log(stu_text);
+                choice(json);
+            }
+        });
     }
 
     //日期格式处理
@@ -243,12 +289,69 @@
         return time;
     }
 
-    function work_body(time,class_name,title,id,class_id) {
+    function work_body(time,class_name,title,work_id,class_id) {
         $('#work_body').append('<tr>\n' +
             ' <td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+time+'</font></font></td>\n' +
-            ' <td><a href="javascript:void(0);" onclick="get_stu('+id+','+class_id+')"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+class_name+'</font></font></a></td>\n' +
+            ' <td><a href="javascript:void(0);" onclick="get_stu('+work_id+','+class_id+')"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+class_name+'</font></font></a></td>\n' +
             ' <td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+title+'</font></font></td>\n' +
             '</tr>')
+    }
+
+    function remove_table() {
+        $('#choose_title').empty();
+        $('#choose').empty();
+    }
+
+    //添加选择题
+    function choice(json) {
+        let question = json.text[0].split('|');
+        let option = json.text[1].split('|');
+        let _select = json.text[2].split('|');
+        console.log(_select);
+        $('#choose_title').append('<p><span>共</span><i class="content_lit">' + (question.length-1) + '</i><span>题</span></p>');
+        for (let i = 0; i < question.length-1; i++) {
+            let one_option = option[i].split('.');
+            $('#choose').append('<li id="qu_' + i + '">\n' +
+                '                                <div class="test_content_nr_tt">\n' +
+                '                                    <i>' + (i + 1) + '</i><span>' + question[i] + '</span>\n' +
+                '                                </div>\n' +
+                '                                <div class="test_content_nr_main">\n' +
+                '                                    <ul>\n' +
+                '                                        <li class="option">\n' +
+                '                                            <input disabled value="A" type="radio" class="radioOrCheck" name="answer' + i + '" id="0_answer_' + i + '_option_1"/>\n' +
+                '                                            <label for="0_answer_' + i + '_option_1"><p class="ue" style="display: inline;">' + one_option[1].replace('B','') + '</p></label>\n' +
+                '                                        </li>\n' +
+                '                                        <li class="option">\n' +
+                '                                            <input disabled value="B" type="radio" class="radioOrCheck" name="answer' + i + '" id="0_answer_' + i + '_option_2"/>\n' +
+                '                                            <label for="0_answer_' + i + '_option_2"><p class="ue" style="display: inline;">' + one_option[2].replace('C','') + '</p></label>\n' +
+                '                                        </li>\n' +
+                '                                        <li class="option">\n' +
+                '                                            <input disabled value="C" type="radio" class="radioOrCheck" name="answer' + i + '" id="0_answer_' + i + '_option_3"/>\n' +
+                '                                            <label for="0_answer_' + i + '_option_3"><p class="ue" style="display: inline;">' + one_option[3].replace('D','') + '</p></label>\n' +
+                '                                        </li>\n' +
+                '                                        <li class="option">\n' +
+                '                                            <input disabled value="D" type="radio" class="radioOrCheck" name="answer' + i + '" id="0_answer_' + i + '_option_4"/>\n' +
+                '                                            <label for="0_answer_' + i + '_option_4"><p class="ue" style="display: inline;">' + one_option[4] + '</p></label>\n' +
+                '                                        </li>\n' +
+                '                                    </ul>\n' +
+                '                                </div>\n' +
+                '                            </li>');
+            //let input = $('input:radio[name="answer' + i + '"]');
+            switch (_select[i]) {
+                case 'A':
+                    $('#0_answer_'+i+'_option_1').attr("checked",'checked');
+                    break;
+                case 'B':
+                    $('#0_answer_'+i+'_option_2').attr("checked",'checked');
+                    break;
+                case 'C':
+                    $('#0_answer_'+i+'_option_3').attr("checked",'checked');
+                    break;
+                case 'D':
+                    $('#0_answer_'+i+'_option_4').attr("checked",'checked');
+                    break;
+            }
+        }
     }
 </script>
 
@@ -287,7 +390,37 @@
         </div>
     </div>
 </div>
-
+<!-- 模态框 -->
+<div class="modal fade" id="sub_work" style="height: 100%;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h5 class="modal-title">计科16101 zz1208 密码学第一章第一次作业</h5>
+                <a class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <div class="nr_left">
+                    <div class="test">
+                        <div class="test_content">
+                            <div class="test_content_title" id="choose_title">
+                                <h2>单选题</h2>
+                            </div>
+                        </div>
+                        <div class="test_content_nr">
+                            <ul id="choose"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>

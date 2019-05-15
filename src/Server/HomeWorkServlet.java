@@ -32,7 +32,21 @@ public class HomeWorkServlet extends HttpServlet {
             case "get_stu":
                 get_stu(request,response);
                 break;
+            case "get_text":
+                get_text(request,response);
+                break;
         }
+    }
+
+    private void get_text(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        String stu_id = request.getParameter("stu_id");
+        hwDAOlmpl hw = new hwDAOlmpl();
+        PrintWriter out = response.getWriter();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("text",hw.get_text(stu_id));
+        out.print(jsonObject);
+        out.flush();
+        out.close();
     }
 
     private void get_stu(HttpServletRequest request, HttpServletResponse response)throws IOException{
@@ -65,11 +79,13 @@ public class HomeWorkServlet extends HttpServlet {
         int work_id = Integer.parseInt(request.getParameter("work_id"));
         String student = request.getParameter("student");
         String time = request.getParameter("time");
+        String question = request.getParameter("question");
+        String option = request.getParameter("option");
         String select = request.getParameter("select");
         String subjective = request.getParameter("subjective");
         hwDAOlmpl hw = new hwDAOlmpl();
         PrintWriter out = response.getWriter();
-        out.print(hw.post_work(work_id,student,time,select,subjective));
+        out.print(hw.post_work(work_id,student,time,question,option,select,subjective));
         out.flush();
         out.close();
     }
@@ -86,6 +102,8 @@ public class HomeWorkServlet extends HttpServlet {
         out.flush();
         out.close();
     }
+
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);
