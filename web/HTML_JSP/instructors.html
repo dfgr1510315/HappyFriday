@@ -5,7 +5,6 @@
   Time: 19:58
   To change this template use File | Settings | File Templates.-->
 <!DOCTYPE html>
-<html lang="">
 <head>
     <title>课程管理</title>
     <meta charset="utf-8">
@@ -15,346 +14,8 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <link href="../CSS/homework/main.css" rel="stylesheet" type="text/css"/>
     <link href="../CSS/homework/test.css" rel="stylesheet" type="text/css"/>
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../JS/LoginPC.js"></script>
-    <script type="text/javascript" src="../JS/main_js/Myclass.js"></script>
+    <link href="../CSS/main_css/instructors.css" rel="stylesheet" type="text/css"/>
 </head>
-<style type="text/css">
-    body.modal-open {
-        overflow-y: auto !important;
-        padding-right: 0!important;
-    }
-    .box h4 {
-        line-height: 22px;
-        font-size: 18px;
-    }
-    .col_xl_8{
-        position: relative;
-        width: 100%;
-        min-height: 1px;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-top: 25px;
-    }
-    .box {
-        position: relative;
-        margin-bottom: 30px;
-        width: 100%;
-        background-color: #fff;
-        border-radius: 0;
-        padding: 0;
-        -webkit-transition: .5s;
-        transition: .5s;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: column;
-        flex-direction: column;
-   /*     border: 1px solid rgba(0, 0, 0, .1);*/
-    }
-    .box-header {
-        color: #455a64;
-        display: block;
-        padding: 1.5rem 1.5rem;
-        position: relative;
-        border-bottom: 1px solid rgba(97, 106, 120, 0.07);
-    }
-    .box-header .box-title{
-        display: inline-block;
-        margin: 0;
-        font-weight: 500;
-    }
-    .box-body {
-        padding: 1.5rem 1.5rem;
-        -ms-flex: 1 1 auto;
-        flex: 1 1 auto;
-    }
-    .box-body > *:last-child {
-        margin-bottom: 0;
-    }
-    .table-responsive {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-    }
-    .mb-5 {
-        margin-bottom: 5px !important;
-    }
-    .table {
-        color: #757575;
-        width: 100%;
-        margin-bottom: 1rem;
-        background-color: transparent;
-        table-layout:fixed;
-        word-break:break-all;
-    }
-    .table thead:first-child th {
-        border-top: none;
-    }
-    .table>thead>tr>th {
-        border-bottom: 2px solid #f4f4f4;
-    }
-    .table>thead>tr>th {
-        border-top: 1px solid #f4f4f4;
-        padding: 1rem;
-        vertical-align: middle;
-    }
-    .table th, .table thead th {
-        font-weight: 500;
-    }
-    .table>tbody>tr>td{
-        border-top: 1px solid #f4f4f4;
-        padding: 1rem;
-        vertical-align: middle;
-    }
-    .table a {
-        text-decoration: none;
-    }
-    a {
-        color: #455a64;
-    }
-    .badge {
-        font-weight: normal;
-        border-radius: 3px;
-        line-height: 1.3;
-        font-size: 85%;
-    }
-    .badge-success {
-        color: #fff;
-        background-color: #17b3a3;
-    }
-    .badge-warning {
-        color: #fff;
-    }
-    .badge-warning {
-        background-color: #ffd600;
-    }
-    .nr_left{
-        width: 100%;
-    }
-    .test_title{
-        width: 100%;
-    }
-    .fade{
-        top:0;
-    }
-    .modal-lg{
-        max-width: 1169px;
-    }
-</style>
-<script type="text/javascript">
-    let one_work_id;
-    let stu_text = {};
-    $(document).ready(function(){
-        $('#navigation').load('navigation_dark.html',function () {
-           get_user_infor();
-        });
-        $('#ui_box').load('ui_box.html',function () {
-            getHTML();
-            get_homework();
-        });
-        $('#course_manag_nav').load('course_manag_nav.html',function () {
-            addHref();
-            addAction(4)
-        });
-    });
-
-    function get_homework() {
-        $.ajax({
-            url: ContextPath+"/HomeWork.do",
-            data: {
-                action:'get_homework',
-                course_id:No
-            },
-            type: "POST",
-            dataType: "json",
-            success: function (json) {
-               // console.log(json);
-                let time;
-                for (let i=0;i<json.HW.length;i++){
-                    time = specs(json.HW[i].time.toString());
-                    work_body(time,json.HW[i].class_name,json.HW[i].title,json.HW[i].id,json.HW[i].class_id)
-                }
-            }
-        });
-    }
-
-    //获取此班级作业
-    function get_stu(work_id,class_id) {
-        $.ajax({
-            url: ContextPath+"/HomeWork.do",
-            data: {
-                action:'get_stu',
-                class_id:class_id,
-                course_id:No,
-                work_id:work_id
-            },
-            type: "POST",
-            dataType: "json",
-            success: function (json) {
-                console.log(json);
-                add_table(work_id);
-                stu_split(work_id,json.HW[0],json.HW[1],json.HW[2],json.HW[3]);
-                one_work_id = work_id
-            }
-        });
-    }
-
-    //加载此班级作业表头
-    function add_table(work_id) {
-        $('.table-responsive').append(' <table class="table table-hover mb-5 stu_table">\n' +
-            '                                    <thead>\n' +
-            '                                    <tr>\n' +
-            '                                        <th><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">学生</font></font></th>\n' +
-            '                                        <th><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">提交时间</font></font></th>\n' +
-            '                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交状态</font></font></th>\n' +
-            '                                        <th><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">批改状态</font></font></th>\n' +
-            '                                    </tr>\n' +
-            '                                    </thead>\n' +
-            '                                    <tbody id="stu_body'+work_id+'"></tbody>\n' +
-            '                                </table>')
-
-    }
-
-    //对数据进行分割处理
-    function stu_split(work_id,student,post_user,time,pass_flag) {
-        let s_student = student.split('|');
-        let s_post_user = post_user.split('|');
-        let s_time = time.split('|');
-        let s_pass_flag = pass_flag.split('|');
-        let index;
-        for (let i=0;i<s_student.length-1;i++){
-            index = $.inArray(s_student[i],s_post_user);
-            add_stuBody(work_id,s_student[i],s_time[index],index,s_pass_flag[index]);
-        }
-    }
-
-
-    //加载此班级作业表体
-    function add_stuBody(work_id,student,time,post,pass) {
-        let post_class = 'badge-warning';
-        let pass_class = 'badge-warning';
-        let data_target = '';
-        let post_text = '未提交';
-        let pass_text = '未批改';
-        let onclick = '';
-        if (post!==-1){
-            post_class = 'badge-success';
-            post_text = '已提交';
-            data_target = 'sub_work';
-            onclick = "onclick=\"get_text(\'"+student+"\')\"";
-            if (pass!=='0') {
-                pass_class = 'badge-success';
-                pass_text = '已批改'
-            }
-        }
-        if (time===undefined) time='';
-        $('#stu_body'+work_id).append('<tr>\n' +
-            '<td><a '+onclick+' href="javascript:void(0);" data-toggle="modal" data-target="#'+data_target+'"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+student+'</font></font></a></td>\n' +
-            '<td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+time+'</font></font></td>\n' +
-            '<td><span class="badge '+post_class+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+post_text+'</font></font></span></td>\n' +
-            '<td><span class="badge '+pass_class+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+pass_text+'</font></font></span></td>\n' +
-            '</tr>');
-    }
-
-    //获取学生作业
-    function get_text(student) {
-        if (stu_text[one_work_id+student]!==undefined) {
-            remove_table();
-            choice(stu_text[one_work_id+student]);
-            return;
-        }
-        $.ajax({
-            url: ContextPath+"/HomeWork.do",
-            data: {
-                action:'get_text',
-                stu_id:one_work_id+student
-            },
-            type: "POST",
-            dataType: "json",
-            success: function (json) {
-                //console.log(json);
-                stu_text[one_work_id+student] = json;
-                //console.log(stu_text);
-                choice(json);
-            }
-        });
-    }
-
-    //日期格式处理
-    function specs(time) {
-        time = time.slice(0,4)+'-'+time.slice(4,6)+'-'+time.slice(6);
-        return time;
-    }
-
-    function work_body(time,class_name,title,work_id,class_id) {
-        $('#work_body').append('<tr>\n' +
-            ' <td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+time+'</font></font></td>\n' +
-            ' <td><a href="javascript:void(0);" onclick="get_stu('+work_id+','+class_id+')"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+class_name+'</font></font></a></td>\n' +
-            ' <td><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">'+title+'</font></font></td>\n' +
-            '</tr>')
-    }
-
-    function remove_table() {
-        $('#choose_title').empty();
-        $('#choose').empty();
-    }
-
-    //添加选择题
-    function choice(json) {
-        let question = json.text[0].split('|');
-        let option = json.text[1].split('|');
-        let _select = json.text[2].split('|');
-        console.log(_select);
-        $('#choose_title').append('<p><span>共</span><i class="content_lit">' + (question.length-1) + '</i><span>题</span></p>');
-        for (let i = 0; i < question.length-1; i++) {
-            let one_option = option[i].split('.');
-            $('#choose').append('<li id="qu_' + i + '">\n' +
-                '                                <div class="test_content_nr_tt">\n' +
-                '                                    <i>' + (i + 1) + '</i><span>' + question[i] + '</span>\n' +
-                '                                </div>\n' +
-                '                                <div class="test_content_nr_main">\n' +
-                '                                    <ul>\n' +
-                '                                        <li class="option">\n' +
-                '                                            <input disabled value="A" type="radio" class="radioOrCheck" name="answer' + i + '" id="0_answer_' + i + '_option_1"/>\n' +
-                '                                            <label for="0_answer_' + i + '_option_1"><p class="ue" style="display: inline;">' + one_option[1].replace('B','') + '</p></label>\n' +
-                '                                        </li>\n' +
-                '                                        <li class="option">\n' +
-                '                                            <input disabled value="B" type="radio" class="radioOrCheck" name="answer' + i + '" id="0_answer_' + i + '_option_2"/>\n' +
-                '                                            <label for="0_answer_' + i + '_option_2"><p class="ue" style="display: inline;">' + one_option[2].replace('C','') + '</p></label>\n' +
-                '                                        </li>\n' +
-                '                                        <li class="option">\n' +
-                '                                            <input disabled value="C" type="radio" class="radioOrCheck" name="answer' + i + '" id="0_answer_' + i + '_option_3"/>\n' +
-                '                                            <label for="0_answer_' + i + '_option_3"><p class="ue" style="display: inline;">' + one_option[3].replace('D','') + '</p></label>\n' +
-                '                                        </li>\n' +
-                '                                        <li class="option">\n' +
-                '                                            <input disabled value="D" type="radio" class="radioOrCheck" name="answer' + i + '" id="0_answer_' + i + '_option_4"/>\n' +
-                '                                            <label for="0_answer_' + i + '_option_4"><p class="ue" style="display: inline;">' + one_option[4] + '</p></label>\n' +
-                '                                        </li>\n' +
-                '                                    </ul>\n' +
-                '                                </div>\n' +
-                '                            </li>');
-            //let input = $('input:radio[name="answer' + i + '"]');
-            switch (_select[i]) {
-                case 'A':
-                    $('#0_answer_'+i+'_option_1').attr("checked",'checked');
-                    break;
-                case 'B':
-                    $('#0_answer_'+i+'_option_2').attr("checked",'checked');
-                    break;
-                case 'C':
-                    $('#0_answer_'+i+'_option_3').attr("checked",'checked');
-                    break;
-                case 'D':
-                    $('#0_answer_'+i+'_option_4').attr("checked",'checked');
-                    break;
-            }
-        }
-    }
-</script>
-
 <body>
 <div id="navigation"></div>
 <div>
@@ -366,18 +27,22 @@
                 <div class="col_xl_8 col-12">
                     <div class="box">
                         <div class="box-header">
-                            <h4 class="box-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">班级作业</font></font></h4>
+                            <h4 class="box-title"><span style="vertical-align: inherit;"><span id="class_nav" style="vertical-align: inherit;">班级作业</span></span></h4>
+                            <button id="return_class" type="button" class="btn btn-outline-info btn-sm" style="float: right;display: none" onclick="return_class()">返回</button>
+                            <button id="add_work" type="button" class="btn btn-outline-info btn-sm" style="float: right;" data-toggle="modal" data-target="#add_work_modal">布置作业</button>
                         </div>
                         <div class="box-body">
                             <div class="table-responsive">
                                 <table class="table table-hover mb-5 work_table">
                                     <thead>
                                     <tr>
-                                        <th style="width: 25%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期</font></font></th>
-                                        <th style="width: 25%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">班级</font></font></th>
-                                       <!-- <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">顾客姓名</font></font></th>-->
-                                       <!-- <th style="width: 20%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">批改进度</font></font></th>-->
-                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作业课题</font></font></th>
+                                        <th><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">日期</span></span></th>
+                                        <th><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">班级</span></span></th>
+                                        <!-- <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">顾客姓名</font></font></th>-->
+                                        <!-- <th style="width: 20%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">批改进度</font></font></th>-->
+                                        <th><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">作业课题</span></span></th>
+                                        <th><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">题目源文件</span></span></th>
+                                        <th><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">操作</span></span></th>
                                     </tr>
                                     </thead>
                                     <tbody id="work_body"></tbody>
@@ -391,12 +56,60 @@
     </div>
 </div>
 <!-- 模态框 -->
+<div class="modal fade" id="add_work_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <a id="add_work_close" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <div class="modern-forms">
+                    <div class="modern-container">
+                        <fieldset>
+                            <div class="form-row">
+                                <div class="col col-6">
+                                    <div class="field-group">
+                                        <input id="title" type="text" class="mdn-input">
+                                        <label for="title" class="mdn-label">作业课题</label>
+                                        <span class="mdn-bar"></span>
+                                    </div>
+                                </div>
+                                <div class="col col-6">
+                                    <div class="field-group mdn-select">
+                                        <select id="class" name="select">
+                                        </select>
+                                        <label for="class" class="mdn-label">选择班级</label>
+                                        <span class="mdn-bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="mdn-group">
+                                <label class="field-group mdn-upload">
+                                    <input type="file" class="mdn-file" name="file" id="file" onChange="work_upload(this)">
+                                    <input type="text" class="mdn-input" id="work_input" readonly>
+                                    <label class="mdn-label">题目源文件</label>
+                                    <span class="mdn-bar"></span>
+                                    <span class="mdn-button btn-primary"> 选择文件 </span>
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-outline-info btn-sm" onclick="add_work()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="sub_work" style="height: 100%;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- 模态框头部 -->
             <div class="modal-header">
-                <h5 class="modal-title">计科16101 zz1208 密码学第一章第一次作业</h5>
+                <h5 id="student_title" class="modal-title"></h5>
                 <a class="close" data-dismiss="modal">&times;</a>
             </div>
             <!-- 模态框主体 -->
@@ -412,6 +125,16 @@
                             <ul id="choose"></ul>
                         </div>
                     </div>
+                    <div class="test">
+                        <div class="test_content">
+                            <div class="test_content_title" id="question_title">
+                                <h2>简答题</h2>
+                            </div>
+                        </div>
+                        <div class="test_content_nr">
+                            <ul id="question"></ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- 模态框底部 -->
@@ -422,5 +145,11 @@
     </div>
 </div>
 </body>
-
-</html>
+<link rel="stylesheet" href="../CSS/modernforms.css">
+<link rel="stylesheet" href="../CSS/theme-blue.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../JS/LoginPC.js"></script>
+<script type="text/javascript" src="../JS/navigation.js"></script>
+<script type="text/javascript" src="../JS/Class_info/Class_state.js"></script>
+<script type="text/javascript" src="../JS/main_js/instructors.js"></script>

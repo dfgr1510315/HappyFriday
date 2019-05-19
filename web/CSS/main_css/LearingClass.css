@@ -37,7 +37,7 @@ a:hover {
 }
 
 .title-list li a {
-    color: #333; /* 鼠标未选中字体颜色 */
+    color: #455a64;
 }
 
 .title-list li a div:hover {
@@ -103,12 +103,13 @@ a:hover {
 
 .course-list-cont .study-hd a {
     font-weight: 700;
-    color: #1c1f21;
+    color: #455a64;
     margin-right: 17px;
+    transition: all 0.3s ease-in-out;
 }
 
 .course-list-cont .study-hd a:hover {
-    color: #007bff
+    color: #55bdef;
 }
 
 .study-hd .share-box {

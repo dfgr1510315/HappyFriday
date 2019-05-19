@@ -40,6 +40,7 @@ td button{
     overflow: hidden;
     zoom: 1;
     margin-bottom: 10px;
+    color: #455a64;
 }
 #notice_box .list-group .list-group-item .item_body{
     overflow: hidden;

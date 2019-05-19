@@ -20,11 +20,14 @@ public class HomeWorkServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
         switch (action) {
+            case "get_work_list":
+                get_work_list(request,response);
+                break;
+            case "power_work":
+                power_work(request,response);
+                break;
             case "get":
                 get_work(request,response);
-                break;
-            case "post_work":
-                post_work(request,response);
                 break;
             case "get_homework":
                 get_homework(request,response);
@@ -35,7 +38,59 @@ public class HomeWorkServlet extends HttpServlet {
             case "get_text":
                 get_text(request,response);
                 break;
+            case "post_work":
+                post_work(request,response);
+                break;
+            case "delete_work":
+                delete_work(request,response);
+                break;
+            case "add_work":
+                add_work(request,response);
+                break;
         }
+    }
+    private void power_work(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        int work_id = Integer.parseInt(request.getParameter("work_id"));
+        String student = request.getParameter("student");
+        hwDAOlmpl hw = new hwDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(hw.power_work(work_id,student));
+        out.flush();
+        out.close();
+    }
+
+    private void get_work_list(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        int class_id = Integer.parseInt(request.getParameter("class_id"));
+        String student = request.getParameter("student");
+        hwDAOlmpl hw = new hwDAOlmpl();
+        PrintWriter out = response.getWriter();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("work",hw.get_work_list(student,class_id));
+        out.print(jsonObject);
+        out.flush();
+        out.close();
+    }
+
+    private void add_work(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        int class_id = Integer.parseInt(request.getParameter("class_id"));
+        int course_id = Integer.parseInt(request.getParameter("course_id"));
+        String file_add = request.getParameter("file_add");
+        int time = Integer.parseInt(request.getParameter("time"));
+        String title = request.getParameter("title");
+        hwDAOlmpl hw = new hwDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(hw.add_work(class_id,course_id,file_add,time,title));
+        out.flush();
+        out.close();
+    }
+
+    private void delete_work(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        hwDAOlmpl hw = new hwDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(hw.delete_work(id));
+        out.flush();
+        out.close();
     }
 
     private void get_text(HttpServletRequest request, HttpServletResponse response)throws IOException{
@@ -79,13 +134,16 @@ public class HomeWorkServlet extends HttpServlet {
         int work_id = Integer.parseInt(request.getParameter("work_id"));
         String student = request.getParameter("student");
         String time = request.getParameter("time");
-        String question = request.getParameter("question");
-        String option = request.getParameter("option");
-        String select = request.getParameter("select");
-        String subjective = request.getParameter("subjective");
+        String question = request.getParameter("question");//选择题问题
+        String option = request.getParameter("option");//选项
+        String select = request.getParameter("select");//学生选择的答案
+        String sel_standard = request.getParameter("sel_standard");//选择题标准答案
+        String calculation = request.getParameter("calculation");//计算题
+        String cal_standard = request.getParameter("cal_standard");//计算题标准答案
+        String cal_answer = request.getParameter("cal_answer");//计算题学生答案
         hwDAOlmpl hw = new hwDAOlmpl();
         PrintWriter out = response.getWriter();
-        out.print(hw.post_work(work_id,student,time,question,option,select,subjective));
+        out.print(hw.post_work(work_id,student,time,question,option,select,sel_standard,calculation,cal_standard,cal_answer));
         out.flush();
         out.close();
     }

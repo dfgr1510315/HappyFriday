@@ -7,7 +7,6 @@
   To change this template use File | Settings | File Templates.
 -->
 <!DOCTYPE html>
-<html lang="">
 <head>
     <title>在教课程</title>
     <meta charset="utf-8">
@@ -16,11 +15,6 @@
     <link rel="stylesheet" href="../CSS/PerCenterContainer.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="../CSS/main_css/LearingClass.css">
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../JS/LoginPC.js"></script>
-    <script type="text/javascript" src="../JS/main_js/LearingClass.js"></script>
 </head>
 <body>
 <div id="navigation"></div>
@@ -29,9 +23,7 @@
         <div id="VerticalNav"></div>
         <div class="container_right">
             <div>
-                <h3 class="container_right_head">
-                    我的课程
-                </h3>
+                <h3 class="container_right_head">我的课程</h3>
                 <div style="margin-bottom: 12px;">
                     <div style="width: 87%;float: left;">
                         <ul class="title-list nav nav-pills ">
@@ -41,7 +33,6 @@
                             <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#collection">收藏</a></li>
                         </ul>
                     </div>
-
                     <div class="dropdown" style="display: inline-block">
                         <button type="button" class="btn btn-outline-primary dropdown-toggle btn-sm" data-toggle="dropdown">
                             <span>全部课程</span>
@@ -56,17 +47,14 @@
                             <a class="dropdown-item" href="javascript:void(0);" onclick="screen(this,6)">项目发布</a>
                         </div>
                     </div>
-
                 </div>
                 <div class="tab-content">
                     <div id="learning" class="tab-pane active">
                         <ul id="learning_ul"></ul>
                     </div>
-
                     <div id="learned" class="tab-pane fade">
                         <ul id="learned_ul"></ul>
                     </div>
-
                     <div id="collection" class="tab-pane fade">
                         <ul id="collection_ul"></ul>
                     </div>
@@ -93,4 +81,9 @@
     </div>
 </div>
 </body>
-</html>
+<script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../JS/LoginPC.js"></script>
+<script type="text/javascript" src="../JS/navigation.js"></script>
+<script type="text/javascript" src="../JS/main_js/LearingClass.js"></script>

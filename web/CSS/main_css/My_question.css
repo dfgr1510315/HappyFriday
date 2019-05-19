@@ -78,9 +78,14 @@ ul{
     font-weight: 700;
     word-break: break-all;
     word-wrap: break-word;
-    color: #07111b;
+    color: #455a64;
     line-height: 24px;
+    transition: all 0.3s ease-in-out;
 }
+.ui-box .qa-header .qa-tit:hover{
+    color: #55bdef;
+}
+
 .ui-box .qa-footer {
     margin-top: 12px;
     color: #93999f;

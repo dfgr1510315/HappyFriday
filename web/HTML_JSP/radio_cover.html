@@ -11,10 +11,9 @@
 <meta charset="utf-8">
 <script type="text/javascript">
     $(document).ready(function () {
-        var ContextPath = getContextPath();
-        $('#radio_cover_img').attr('src',ContextPath+head_image);
-        $('#pc_head_image').attr('src',ContextPath+head_image);
-        $('#user_id_span').text('ID:'+user);
+        $('#radio_cover_img').attr('src',contextPath+cookie.get('head_image'));
+        $('#pc_head_image').attr('src',contextPath+cookie.get('head_image'));
+        $('#user_id_span').text('ID:'+cookie.get('user'));
     })
 </script>
 <body>

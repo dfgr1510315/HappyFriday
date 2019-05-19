@@ -1,19 +1,13 @@
-var page_length;
-var contextPath = getContextPath();
+let page_length;
+let user = cookie.get('user');
 $(document).ready(function () {
-    $('#navigation').load('navigation_dark.html', function () {
-        $('#VerticalNav').load('VerticalNav.html', function () {
-            addClass(4);
-            $.when(get_user_infor()).done(function () {
-                get_All_ask();
-                $('#radio_cover_img').attr('src', contextPath + head_image);
-            });
-        });
-    });
+    $('#navigation').load('navigation_dark.html');
+    $('#VerticalNav').load('VerticalNav.html', function () {addClass(4);});
+    get_All_ask();
 });
 
 function get_All_ask() {
-    var page = window.location.search.replace('?', '');
+    let page = window.location.search.replace('?', '');
     if (page === '') page = '1';
     $.ajax({
         url: contextPath + "/postask",
@@ -27,8 +21,8 @@ function get_All_ask() {
         asynch: "false",
         success: function (jsonObj) {
             console.log(jsonObj);
-            var ask_ul = $('#ask_ul');
-            for (var i = 0; i < jsonObj.ask.length; i++) {
+            let ask_ul = $('#ask_ul');
+            for (let i = 0; i < jsonObj.ask.length; i++) {
                 ask_ul.append(
                     ' <li>\n' +
                     '                            <div class="ui-box">\n' +
@@ -90,13 +84,13 @@ function get_All_ask() {
 }
 
 function add_page(count, page) {
-    var page_ul = $('#page');
+    let page_ul = $('#page');
     page_length = Math.ceil(count / 6);
     if ((parseInt(page) - 1) > 0) page_ul.append('<li class="page-item"><a class="page-link" href="?' + (parseInt(page) - 1) + '">Previous</a></li>');
     else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
 
     if (page - 1 > 2 && page_length - page >= 2) {
-        for (var i = page - 2; i <= page + 2; i++) {
+        for (let i = page - 2; i <= page + 2; i++) {
             if (i < page_length + 1) {
                 if (i === parseInt(page)) {
                     page_ul.append('<li class="page-item active"><a class="page-link" href="?' + i + '">' + i + '</a></li>');
@@ -140,9 +134,9 @@ function add_page(count, page) {
 }
 
 function go() {
-    var keycode = (event.keyCode ? event.keyCode : event.which);
+    let keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode === 13) {
-        var jump = $('#jump');
+        let jump = $('#jump');
         if (jump.val() > 0 && jump.val() <= page_length && jump.val() % 1 === 0) {
             window.location.href = "Student_commentary.html?" + jump.val();
         } else alert('请重新输入页号');

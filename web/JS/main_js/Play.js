@@ -1,16 +1,15 @@
-var contextPath = getContextPath();
-var note_flag = 0;
-var ask_flag = 0;
-var post_note_flag = 0;
-var post_ask_flag = 0;
-var No = window.location.search.replace("?", '').split("/");
-var Unit_length;
-var Unit = [];
-var class_no = No[1];
+let note_flag = 0;
+let ask_flag = 0;
+let post_note_flag = 0;
+let post_ask_flag = 0;
+let No = window.location.search.replace("?", '').split("/");
+let Unit_length;
+let Unit = [];
+let class_no = No[1];
 No = No[0];
-var editor_count = 0;
-var E = window.wangEditor;
-var configure = [
+let editor_count = 0;
+let E = window.wangEditor;
+let configure = [
     'head',
     'bold',
     'italic',
@@ -25,7 +24,7 @@ var configure = [
     'table',  // 表格
     'code'
 ];
-var edit_configure = [
+let edit_configure = [
     'head',
     'bold',
     'italic',
@@ -37,16 +36,14 @@ var edit_configure = [
     'code'];
 
 $(document).ready(function () {
-    $('#navigation').load('navigation_dark.html', function () {
-        get_user_infor();
-    });
+    $('#navigation').load('navigation_dark.html');
     get_Class();
     get_Video()
 });
 
 function get_Class() {
-    var note_editor = new E('#note_editor');
-    var ask_editor = new E('#ask_editor');
+    let note_editor = new E('#note_editor');
+    let ask_editor = new E('#ask_editor');
 
     note_editor.customConfig.menus = configure;
     ask_editor.customConfig.menus = configure;
@@ -67,11 +64,11 @@ function get_Class() {
             //console.log(jsonObject);
             $("title").text(jsonObject.title);
             Unit_length = jsonObject.chapter.length;
-            var unit_titles = [];
+            let unit_titles = [];
             for (i = 0; i < jsonObject.chapter.length; i++) {
                 if (-1 === unit_contain(unit_titles, jsonObject.chapter[i].unit_title)) unit_titles.push(jsonObject.chapter[i].unit_title);
             }
-            for (var i = 0; i < unit_titles.length; i++) {
+            for (let i = 0; i < unit_titles.length; i++) {
                 $("#chapter").append(
                     '<ul id="Unit' + i + '" class="" draggable="true"  >' +
                     '<li class="sec-title">' +
@@ -83,7 +80,7 @@ function get_Class() {
             }
             for (i = 0; i < jsonObject.chapter.length; i++) {
                 Unit.push(jsonObject.chapter[i].unit_no);
-                var belong_unit = unit_contain(unit_titles, jsonObject.chapter[i].unit_title);
+                let belong_unit = unit_contain(unit_titles, jsonObject.chapter[i].unit_title);
                 $("#Unit" + belong_unit).append(
                     '<li class="sec-li">' +
                     '    <a href=' + window.location.search.replace(class_no, '') + jsonObject.chapter[i].unit_no + '>' +
@@ -105,7 +102,7 @@ function get_Class() {
 }
 
 function unit_contain(unit_titles, unit_title) {
-    for (var i = 0; i < unit_titles.length; i++) {
+    for (let i = 0; i < unit_titles.length; i++) {
         if (unit_titles[i] === unit_title) return i
     }
     return -1
@@ -125,7 +122,7 @@ function get_ask() {
         dataType: 'json',
         success: function (jsonObject) {
             console.log(jsonObject);
-            for (var i = 0; i < jsonObject.ask.length; i++) {
+            for (let i = 0; i < jsonObject.ask.length; i++) {
                 add_ask_box(jsonObject.ask[i].ask_id, jsonObject.ask[i].belong_class_id, jsonObject.ask[i].ask_title, jsonObject.ask[i].ask_time, jsonObject.ask[i].answer_count, jsonObject.ask[i].visits_count, jsonObject.ask[i].new_answerer, jsonObject.ask[i].new_answer);
             }
         }
@@ -147,7 +144,7 @@ function get_note() {
         dataType: 'json',
         success: function (jsonObject) {
             console.log(jsonObject);
-            for (var i = 0; i < jsonObject.note.length; i++) {
+            for (let i = 0; i < jsonObject.note.length; i++) {
                 $('#note_box').prepend(' <div class="ui-box">\n' +
                     '                            <div style="float:left;">\n' +
                     '                                <a href="PersonalCenter.html">\n' +
@@ -178,7 +175,7 @@ function get_note() {
                     '                                </div>\n' +
                     '                            </div>\n' +
                     '                        </div>');
-                var edit_editor = new E('#edit_editor' + i);
+                let edit_editor = new E('#edit_editor' + i);
                 edit_editor.customConfig.menus = edit_configure;
                 edit_editor.create();
                 edit_editor.txt.html(jsonObject.note[i].text);
@@ -189,19 +186,19 @@ function get_note() {
     note_flag = 1
 }
 
-var player;
-var videoID;
-var cookieTime;
+let player;
+let videoID;
+let cookieTime;
 
 function live() {
-    var title = $('#adjust').prev().children().eq(2).text();
+    let title = $('#adjust').prev().children().eq(2).text();
     cookie.set('class_no_' + user + No, class_no + ',' + title);
-    var done_times = 0;
-    for (var a = 0; a < Unit_length; a++) {
-        var ifDone = cookie.get('time_' + user + No + Unit[a]);
+    let done_times = 0;
+    for (let a = 0; a < Unit_length; a++) {
+        let ifDone = cookie.get('time_' + user + No + Unit[a]);
         if (ifDone === 'done') done_times++;
     }
-    var percentage = parseInt(done_times / Unit_length * 100);
+    let percentage = parseInt(done_times / Unit_length * 100);
     $.ajax({
         type: "POST",
         url: contextPath + "/students",
@@ -214,10 +211,10 @@ function live() {
         },
         dataType: 'json'
     });
-    var class_id = cookie.get('class_id').split(',');
-    var last_time = cookie.get('last_time').split(',');
-    var schedule = cookie.get('schedule').split(',');
-    for (var i = 0; i < class_id.length; i++) {
+    let class_id = cookie.get('class_id').split(',');
+    let last_time = cookie.get('last_time').split(',');
+    let schedule = cookie.get('schedule').split(',');
+    for (let i = 0; i < class_id.length; i++) {
         if (class_id[i] === No) {
             last_time[i] = class_no + ':' + title;
             schedule[i] = percentage + '';
@@ -329,9 +326,9 @@ function get_Video() {
             if (jsonObj.material.file_address === '') {
                 $('#file_li').hide();
             } else {
-                var file_address = jsonObj.material.file_address.split('|');
-                var file_name = jsonObj.material.file_name.split('|');
-                for (var i = 0; i < file_address.length - 1; i++) {
+                let file_address = jsonObj.material.file_address.split('|');
+                let file_name = jsonObj.material.file_name.split('|');
+                for (let i = 0; i < file_address.length - 1; i++) {
                     $('#file_group').append(
                         '<a target="_blank" href="' + file_address[i] + '" class="list-group-item list-group-item-action">' + file_name[i] + '</a>'
                     )
@@ -342,7 +339,7 @@ function get_Video() {
 }
 //记录一次观看次数
 function save_viewed() {
-    var time = new Date().Format("yyyyMMdd");
+    let time = new Date().Format("yyyyMMdd");
     $.ajax({
         type: "POST",
         url: contextPath + "/play",
@@ -367,16 +364,16 @@ function sub_width() {
 
 $(function () {
     $('#Delete_Note').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var button_id = button.data('noteno'); //获取呼出模态框的按钮ID
-        var obj = document.getElementById("Delete_Note_sure_button");
+        let button = $(event.relatedTarget);
+        let button_id = button.data('noteno'); //获取呼出模态框的按钮ID
+        let obj = document.getElementById("Delete_Note_sure_button");
         obj.setAttribute("onclick", "delete_note(" + button_id + ")");
     })
 });
 
 function change_note(event) {
-    var new_note = $(event).parent().prev().children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g, '');
-    var time = new Date().Format("yyyy-MM-dd HH:mm:ss");
+    let new_note = $(event).parent().prev().children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g, '');
+    let time = new Date().Format("yyyy-MM-dd HH:mm:ss");
     $.ajax({
         type: "POST",
         url: contextPath + "/postnote",
@@ -398,12 +395,12 @@ function change_note(event) {
 
 function post_note() {
     if (post_note_flag === 1) return;
-    var note_editor = $('#note_editor');
-    var note_text = note_editor.children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g, '');
+    let note_editor = $('#note_editor');
+    let note_text = note_editor.children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g, '');
     if (note_editor.text().trim().length === 0) {
         alert('内容不能为空');
     } else {
-        var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
+        let time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
         $.ajax({
             type: "POST",
             url: contextPath + "/postnote",
@@ -418,7 +415,7 @@ function post_note() {
             dataType: 'json',
             success: function (jsonObj) {
                 if (0 !== jsonObj) {
-                    var note_editor = $('#note_editor');
+                    let note_editor = $('#note_editor');
                     editor_count++;
                     $('#note_box').prepend(' <div class="ui-box">\n' +
                         '                            <div style="float:left;">\n' +
@@ -450,7 +447,7 @@ function post_note() {
                         '                                </div>\n' +
                         '                            </div>\n' +
                         '                        </div>');
-                    var edit_editor = new E('#edit_editor' + editor_count);
+                    let edit_editor = new E('#edit_editor' + editor_count);
                     edit_editor.customConfig.menus = edit_configure;
                     edit_editor.create();
                     edit_editor.txt.html(note_editor.children().eq(1).children().html());
@@ -472,7 +469,7 @@ function out_edit_note(event) {
 }
 
 Date.prototype.Format = function (fmt) {
-    var o = {
+    let o = {
         "M+": this.getMonth() + 1, //月份
         "d+": this.getDate(), //日
         "H+": this.getHours(), //小时
@@ -482,7 +479,7 @@ Date.prototype.Format = function (fmt) {
         "S": this.getMilliseconds() //毫秒
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
+    for (let k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 };
@@ -508,13 +505,13 @@ function delete_note(noteno) {
 
 function post_ask() {
     if (post_ask_flag === 1) return;
-    var ask_editor = $('#ask_editor');
-    var ask_title = $('#problem').val();
-    var ask_text = ask_editor.children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g, '');
+    let ask_editor = $('#ask_editor');
+    let ask_title = $('#problem').val();
+    let ask_text = ask_editor.children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g, '');
     if (ask_editor.text().trim().length === 0 || ask_title.trim().length === 0) {
         alert('内容不能为空');
     } else {
-        var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
+        let time2 = new Date().Format("yyyy-MM-dd HH:mm:ss");
         $.ajax({
             type: "POST",
             url: contextPath + "/postask",

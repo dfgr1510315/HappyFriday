@@ -1,31 +1,22 @@
-var new_cover;
-var contextPath = getContextPath();
+let new_cover;
+let No = GetQueryString('class_id');
 $(document).ready(function(){
-    $('#navigation').load('navigation_dark.html',function () {
-        get_user_infor();
-    });
-    $('#ui_box').load('ui_box.html',function () {
-        getHTML();
-        $.when(get_cover()).done(function () {
-            new_cover = cover_address;
-            $('#cover').attr('src',contextPath+cover_address);
-        });
-    });
-    $('#course_manag_nav').load('course_manag_nav.html',function () {
-        addHref();
-        addAction(2)
-    });
+    $('#navigation').load('navigation_dark.html');
+    $('#ui_box').load('ui_box.html');
+    $('#course_manag_nav').load('course_manag_nav.html',function () {addAction(2)});
+    new_cover = cookie.get('class_cover'+No);
+    $('#cover').attr('src',contextPath+new_cover);
 });
 
 function post_cover_image(event) {
-    var animateimg = $(event).val(); //获取上传的图片名 带//
-    var imgarr=animateimg.split('\\'); //分割
-    var myimg=imgarr[imgarr.length-1]; //去掉 // 获取图片名
-    var houzui = myimg.lastIndexOf('.'); //获取 . 出现的位置
-    var ext = myimg.substring(houzui, myimg.length).toUpperCase();  //切割 . 获取文件后缀
-    var file = $(event).get(0).files[0]; //获取上传的文件
-    var fileSize = file.size;           //获取上传的文件大小
-    var maxSize = 1048576*20;              //最大20MB
+    let animateimg = $(event).val(); //获取上传的图片名 带//
+    let imgarr=animateimg.split('\\'); //分割
+    let myimg=imgarr[imgarr.length-1]; //去掉 // 获取图片名
+    let houzui = myimg.lastIndexOf('.'); //获取 . 出现的位置
+    let ext = myimg.substring(houzui, myimg.length).toUpperCase();  //切割 . 获取文件后缀
+    let file = $(event).get(0).files[0]; //获取上传的文件
+    let fileSize = file.size;           //获取上传的文件大小
+    let maxSize = 1048576*20;              //最大20MB
     if(ext !=='.PNG' && ext !=='.GIF' && ext !=='.JPG' && ext !=='.JPEG' && ext !=='.BMP'){
         alert('文件类型错误,请上传图片类型');
         return false;
@@ -33,11 +24,12 @@ function post_cover_image(event) {
         alert('上传的文件不能超过20MB');
         return false;
     }else {
-        var fileObj = event.files[0]; // js 获取文件对象
-        var formFile = new FormData();
+        let fileObj = event.files[0]; // js 获取文件对象
+        let formFile = new FormData();
+        formFile.append("type", 'image');
         formFile.append("file", fileObj); //加入文件对象
         $.ajax({
-            url: contextPath+"/uploadimage",
+            url: contextPath+"/UploadFiles.do",
             data: formFile,
             type: "POST",
             dataType: "json",
@@ -63,10 +55,11 @@ function save_cover_image() {
         dataType: "json",
         success: function (jsonObj) {
             if (jsonObj===true) {
+                cookie.set('class_cover'+No,new_cover);
                 $('#ui-box-cover').attr('src',contextPath+new_cover);
-                $('#radio_cover').attr('src',contextPath+cover_address);
+                $('#radio_cover').attr('src',contextPath+cookie.get('class_cover'+No));
                 alert('保存成功');
-            }
+            }else alert('保存失败')
         }
     });
 }

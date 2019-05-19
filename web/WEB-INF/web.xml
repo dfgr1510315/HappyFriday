@@ -33,12 +33,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>UploadImage</servlet-name>
-        <servlet-class>Server.UploadImage</servlet-class>
+        <servlet-name>UploadFiles</servlet-name>
+        <servlet-class>Server.UploadFiles</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UploadImage</servlet-name>
-        <url-pattern>/uploadimage</url-pattern>
+        <servlet-name>UploadFiles</servlet-name>
+        <url-pattern>/UploadFiles.do</url-pattern>
     </servlet-mapping>
 
     <servlet>

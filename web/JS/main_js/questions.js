@@ -1,13 +1,10 @@
-var edit_editor;
-var contextPath = getContextPath();
+let edit_editor;
 $(document).ready(function(){
-    $('#navigation').load('navigation_dark.html',function () {
-        get_user_infor();
-    });
+    $('#navigation').load('navigation_dark.html');
     get_reply();
 });
-var No = window.location.search.substr(1);
-var edit_configure = [
+let No = window.location.search.substr(1);
+let edit_configure = [
     'bold',
     'italic',
     'underline',
@@ -18,8 +15,8 @@ var edit_configure = [
     'redo', // 重复
     'quote',
     'code'];
-var E = window.wangEditor;
-var answer_count = 0;
+let E = window.wangEditor;
+let answer_count = 0;
 
 function get_reply() {
     $.ajax({
@@ -33,7 +30,7 @@ function get_reply() {
         dataType: 'json',
         success: function (jsonObj) {
             //console.log(jsonObj);
-            var asker = $('#asker');
+            let asker = $('#asker');
             asker.children().eq(1).text(jsonObj.ask_infor.asker);
             asker.children().eq(0).attr('src',contextPath+jsonObj.ask_infor.head);
             $('#ask_describe').text(jsonObj.ask_infor.ask_title);
@@ -42,7 +39,7 @@ function get_reply() {
             $('#ask_time').text(jsonObj.ask_infor.ask_time);
             $('#answer_count').text(jsonObj.ask_infor.answer_count+' 回答');
             $('#times').text(jsonObj.ask_infor.visits_count+' 浏览');
-            var class_type;
+            let class_type;
             switch (jsonObj.ask_infor.class_type) {
                 case 1:
                     class_type='前端设计';
@@ -63,10 +60,10 @@ function get_reply() {
                     class_type='项目发布';
                     break;
             }
-            var breadcrumb = $('.breadcrumb');
+            let breadcrumb = $('.breadcrumb');
             breadcrumb.children().eq(1).attr('href','course.html?type='+jsonObj.ask_infor.class_type).text(class_type);
             breadcrumb.children().eq(2).attr('href','Learn_list.html?class_id='+jsonObj.ask_infor.belong_class_id).text(jsonObj.ask_infor.class_title);
-            for (var i=0;i<jsonObj.ask_other.length;i++){
+            for (let i=0;i<jsonObj.ask_other.length;i++){
                 $('#other_ask').append(
                     '<div  class="mkhotlist padtop">\n' +
                     '      <a href="questions.html?'+jsonObj.ask_other[0][i]+'" target="_blank">'+jsonObj.ask_other[1][i]+'</a>\n' +
@@ -125,8 +122,8 @@ function get_reply() {
                     '                    </div>'
 
                 );
-                var answer_no = jsonObj.ask_answer[answer_count];
-                for (var j=0;j<answer_no.replys.length;j++){
+                let answer_no = jsonObj.ask_answer[answer_count];
+                for (let j=0;j<answer_no.replys.length;j++){
                     $('#qa-repky'+answer_count).append(
                         '<div class="qa-replies">\n' +
                         '                        <div class="qa-reply-c">\n' +
@@ -183,13 +180,13 @@ function get_reply() {
     })
 }
 function textarea_show(i,event) {
-    var textarea= $('#textarea'+i);
+    let textarea= $('#textarea'+i);
     textarea.attr('placeholder','写下你的评论...').parent().parent().css('display','block');
     textarea.data('reply_to',$(event).parent().parent().parent().prev().children().children().eq(1).text());
 }
 function textarea_show_to(i,event) {
-    var reply_to = $(event).parent().prev().prev().children().eq(0).text();
-    var textarea= $('#textarea'+i);
+    let reply_to = $(event).parent().prev().prev().children().eq(0).text();
+    let textarea= $('#textarea'+i);
     textarea.attr('placeholder','回复 '+reply_to).parent().parent().css('display','block');
     textarea.data('reply_to',reply_to);
 }
@@ -197,11 +194,11 @@ function textarea_hide(i) {
     $('#textarea'+i).parent().parent().css('display','none');
 }
 function post_reply(ask_no,event,i) {
-    var reply_edit = $(event).parent().parent().prev().children();
-    var reply_text;
+    let reply_edit = $(event).parent().parent().prev().children();
+    let reply_text;
     if (reply_edit.attr('placeholder')==='写下你的评论...') reply_text=reply_edit.val();
     else reply_text=reply_edit.attr('placeholder')+' : '+reply_edit.val();
-    var time = new Date().Format("yyyy-MM-dd HH:mm:ss");
+    let time = new Date().Format("yyyy-MM-dd HH:mm:ss");
     $.ajax({
         type: "POST",
         asynch: "false",
@@ -254,7 +251,7 @@ function post_answer(){
         alert('请输入内容');
         return;
     }
-    var time = new Date().Format("yyyy-MM-dd HH:mm:ss");
+    let time = new Date().Format("yyyy-MM-dd HH:mm:ss");
     $.ajax({
         type: "POST",
         asynch: "false",
@@ -328,7 +325,7 @@ function post_answer(){
 }
 
 Date.prototype.Format = function (fmt) {
-    var o = {
+    let o = {
         "M+": this.getMonth() + 1, //月份
         "d+": this.getDate(), //日
         "H+": this.getHours(), //小时
@@ -338,7 +335,7 @@ Date.prototype.Format = function (fmt) {
         "S": this.getMilliseconds() //毫秒
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
+    for (let k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 };

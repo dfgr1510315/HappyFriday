@@ -85,6 +85,7 @@ input[type="search"] {
 }
 
 .boxed .title_list_box{
+    display: none;
     padding-left: 18px;
     padding-top: 5px;
     background-color: #fff;

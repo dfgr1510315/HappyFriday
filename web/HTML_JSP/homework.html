@@ -67,7 +67,6 @@
                         </div>
                         <div class="rt_content_nr answerSheet">
                             <ul>
-
                                 <li><a href="#qu_0_0">1</a></li>
                             </ul>
                         </div>
@@ -90,10 +89,8 @@
     let unit = GetQueryString('unit');
     let work_length;
     $(document).ready(function () {
-        $('#navigation').load('navigation_dark.html', function () {
-            get_user_infor();
-            get_work()
-        });
+        $('#navigation').load('navigation_dark.html');
+        get_work()
         //choose_done();
     });
     window.jQuery(function ($) {
@@ -170,7 +167,7 @@
         let time = new Date().Format("yyyy-MM-dd HH:mm:ss");
         $.ajax({
             type: "POST",
-            url: ContextPath + "/HomeWork.do",
+            url: contextPath + "/HomeWork.do",
             data: {
                 action: 'post_work',
                 work_id: '1',
@@ -193,7 +190,7 @@
     function get_work() {
         $.ajax({
             type: "POST",
-            url: ContextPath + "/HomeWork.do",
+            url: contextPath + "/HomeWork.do",
             data: {
                 action: 'get',
                 /*class_id:class_id,

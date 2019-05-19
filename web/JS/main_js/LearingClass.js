@@ -1,18 +1,11 @@
-var contextPath = getContextPath();
 $(document).ready(function () {
     getClass();
-    $('#navigation').load('navigation_dark.html',function () {
-        $('#VerticalNav').load('VerticalNav.html',function () {
-            addClass(5);
-            $.when(get_user_infor()).done(function () {
-                $('#radio_cover_img').attr('src',contextPath+head_image);
-            });
-        });
-    });
+    $('#navigation').load('navigation_dark.html');
+    $('#VerticalNav').load('VerticalNav.html',function () {addClass(5);});
 });
 function addUL(_ul,class_one) {
-    var star;
-    var action;
+    let star;
+    let action;
     if (class_one.collection ==='1') {
         star='star';
         action = 0;
@@ -59,11 +52,11 @@ function getClass(){
         },
         dataType: 'json',
         success: function (json) {
-            var class_list = json.class_list;
-            var collection_ul = $('#collection_ul');
-            var learning_ul = $('#learning_ul');
-            var learned_ul = $('#learned_ul');
-            for (var i = 0; i < class_list.length; i++) {
+            let class_list = json.class_list;
+            let collection_ul = $('#collection_ul');
+            let learning_ul = $('#learning_ul');
+            let learned_ul = $('#learned_ul');
+            for (let i = 0; i < class_list.length; i++) {
                 if (class_list[i].schedule === 100) {
                     addUL(learned_ul,class_list[i])
                 } else {
@@ -93,8 +86,8 @@ function getClass(){
 }
 
 function collection(event, action) {
-    var class_no = $(event).parent().prev().attr("href");
-    var type;
+    let class_no = $(event).parent().prev().attr("href");
+    let type;
     if (action === 1) type = 'add_collection';
     else type = 'remove_collection';
     $.ajax({
@@ -147,7 +140,7 @@ function delete_class(ID) {
 function screen(event, type) {
     $(event).parent().prev().children().text($(event).text());
     if (type !== 0) {
-        for (var i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 6; i++) {
             if (i === type) $('.type' + i).css('display', 'block');
             else $('.type' + i).css('display', 'none');
         }

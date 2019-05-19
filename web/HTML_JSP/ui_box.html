@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="">
 <meta charset="utf-8">
 <body>
 <div class="ui-box" >
@@ -29,21 +28,22 @@
                     </span>
                 </div>
             </div>
-            <span  style="padding-left: 20px;color: #999;">教师：<a id="teacher_Name" href=""></a></span>
+            <span style="padding-left: 20px;color: #999;">教师：<a id="teacher_Name" href=""></a></span>
         </div>
     </div>
 </div>
 </body>
 <script type="text/javascript">
-    var cover_address;
-    var flag = 0;
-    var dtd = $.Deferred();
+    //let dtd = $.Deferred();
     $(document).ready(function(){
         get_cover();
+        getHTML();
     });
-
     function get_cover() {
-        if (flag===1) return dtd;
+        if (cookie.get('class_cover'+No)!==null) {
+            $('#ui-box-cover').attr('src',contextPath+cookie.get('class_cover'+No));
+            return;
+        }
         $.ajax({
             url: contextPath+"/save_image",
             data: {
@@ -53,13 +53,9 @@
             type: "POST",
             dataType: "json",
             success: function (jsonObj) {
-                cover_address = jsonObj.cover;
+                cookie.set('class_cover'+No,jsonObj.cover);
                 $('#ui-box-cover').attr('src',contextPath+jsonObj.cover);
-                dtd.resolve();
             }
         });
-        flag = 1;
-        return dtd;
     }
 </script>
-</html>

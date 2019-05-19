@@ -39,11 +39,10 @@ body.modal-open {
     color: #f20d0d!important;
 }*/
 .under li a {
-    color: black;
+    color: #455a64;
+    transition: all 0.3s ease-in-out;
 }
-.under li a:active {
-    color: #007bff;
-}
+
 .under li a:hover {
     color: #007bff;
 }
@@ -60,6 +59,7 @@ body.modal-open {
 
 .unit-title{
     margin-bottom: 25px;
+    color: #455a64;
 }
 
 .list_box{
@@ -85,10 +85,11 @@ body.modal-open {
 #one .ui-box span span {
 
 }
-#one .ui-box  a div {
+#one .ui-box a div {
     font-size: 16px;
-    color: #1c1f21;
+    color: #455a64;
     font-weight: normal;
+    transition: all 0.3s ease-in-out;
 }
 #one .ui-box  a div:hover {
    /* background-color: #fef3f3;
@@ -610,11 +611,13 @@ body a:hover{
 
 .ui-box .qa-header .qa-tit {
     font-size: 16px;
-    font-weight: 700;
-    word-break: break-all;
-    word-wrap: break-word;
-    color: #07111b;
-    line-height: 24px;
+    color: #455a64;
+    line-height: 37px;
+    transition: all 0.3s ease-in-out;
+}
+
+.ui-box .qa-header .qa-tit:hover {
+    color: #55bdef;
 }
 
 i {
@@ -695,8 +698,17 @@ i {
     line-height: 18px;
     left: 70%;
 }
-
-#note_ul .post-row {
+#HW_ul{
+    color: #455a64;
+}
+#HW_ul li a{
+    color: #455a64;
+    transition: all 0.3s ease-in-out;
+}
+#HW_ul li a:hover{
+    color: #55bdef;
+}
+#note_ul .post-row,#HW_ul .post-row {
     position: relative;
     margin-bottom: 8px;
     padding: 32px;
@@ -732,8 +744,12 @@ i {
 
 #note_ul .post-row .tit a {
     font-size: 14px;
-    color: #1c1f21;
+    color: #455a64;
     font-weight: 700;
+    transition: all 0.3s ease-in-out;
+}
+#note_ul .post-row .tit a:hover {
+    color: #55bdef;
 }
 
 #note_ul .post-row .note-media {
@@ -742,8 +758,15 @@ i {
 }
 
 #note_ul .post-row .note-media a {
-    color: #9199a1;
+    font-size: 12px;
+    color: #93999f;
+    line-height: 24px;
+    transition: all 0.3s ease-in-out;
 }
+#note_ul .post-row .note-media a:hover {
+    color: #1c1f21;
+}
+
 
 .notelist-content {
     padding: 8px 0;
@@ -759,6 +782,7 @@ i {
     font-size: 16px;
     line-height: 28px;
     white-space: pre-wrap;
+    color: #455a64;
 }
 
 .autowrap {

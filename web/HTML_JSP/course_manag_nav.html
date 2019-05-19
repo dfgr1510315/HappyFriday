@@ -1,4 +1,3 @@
-
 <!--
   Created by IntelliJ IDEA.
   User: LI
@@ -7,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 -->
 <!DOCTYPE html>
-<html lang="">
 <meta charset="utf-8">
 <style type="text/css">
     .container_left{
@@ -18,27 +16,29 @@
     }
 </style>
 <body >
-    <div class="container_left" >
-        <div class="list-group" id="course_group">
-            <a href="Myclass.html" class="list-group-item ">课时管理</a>
-            <a href="basic_information.html" class="list-group-item">基本信息</a>
-            <a href="image.html" class="list-group-item ">课程封面</a>
-            <a href="duration.html" class="list-group-item ">学员统计</a>
-            <a href="instructors.html" class="list-group-item ">作业管理</a>
-            <a href="students.html" class="list-group-item ">学员管理</a>
-            <a href="javascript:void(0);" class="list-group-item" onclick="delete_class()">删除课程</a>
-        </div>
+<div class="container_left" >
+    <div class="list-group" id="course_group">
+        <a href="Myclass.html" class="list-group-item ">课时管理</a>
+        <a href="basic_information.html" class="list-group-item">基本信息</a>
+        <a href="image.html" class="list-group-item ">课程封面</a>
+        <a href="duration.html" class="list-group-item ">学员统计</a>
+        <a href="instructors.html" class="list-group-item ">作业管理</a>
+        <a href="students.html" class="list-group-item ">学员管理</a>
+        <a href="javascript:void(0);" class="list-group-item" onclick="delete_class()">删除课程</a>
     </div>
+</div>
 </body>
 <script type="text/javascript">
+    $(document).ready(function(){addHref();});
+
     function addAction(no) {
         $('#course_group').children().eq(no).addClass('list_action');
     }
 
     function addHref(){
-        var list_group = $(".list-group");
-        for (var i=0;i<6;i++){
-            var href = list_group.children().eq(i).attr('href');
+        let list_group = $(".list-group");
+        for (let i=0;i<6;i++){
+            let href = list_group.children().eq(i).attr('href');
             list_group.children().eq(i).attr('href',href+location.search);
         }
     }
@@ -58,9 +58,6 @@
                     else alert('删除课程失败')
                 }
             });
-
         }
     }
-
 </script>
-</html>

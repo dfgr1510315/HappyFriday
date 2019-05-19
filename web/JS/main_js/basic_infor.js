@@ -1,19 +1,16 @@
-var flag1 = true;
-var flag2 = true;
-var No = GetQueryString('class_id');
+let flag1 = true;
+let flag2 = true;
+let No;
 $(document).ready(function(){
-    $('#navigation').load('navigation_dark.html',function () {
-        get_user_infor();
-    });
-    $('#ui_box').load('ui_box.html',function () {
-        getHTML();
-    });
-    $('#course_manag_nav').load('course_manag_nav.html',function () {
-        addHref();
-        addAction(1)
-    });
-    var title = $("#title");
-    var title_waring = $('#title_waring');
+    No = GetQueryString('class_id');
+    $('#navigation').load('navigation_dark.html');
+    $('#ui_box').load('ui_box.html',function (){get_information()});
+    $('#course_manag_nav').load('course_manag_nav.html',function () {addAction(1)});
+});
+
+function get_information(){
+    let title = $("#title");
+    let title_waring = $('#title_waring');
     title.focus(function(){
         title_waring.css('display','none');
     });
@@ -24,8 +21,8 @@ $(document).ready(function(){
         }else flag1 = true;
     });
 
-    var sel1 = $("#sel1");
-    var sel1_waring = $('#sel1_waring');
+    let sel1 = $("#sel1");
+    let sel1_waring = $('#sel1_waring');
     sel1.focus(function(){
         sel1_waring.css('display','none');
     });
@@ -38,7 +35,7 @@ $(document).ready(function(){
 
     $.ajax({
         type: "POST",
-        url: getContextPath()+"/SaveClassInfor",
+        url: contextPath+"/SaveClassInfor",
         data: {
             No:No,
             Read_or_Save:'get_infor'
@@ -50,12 +47,12 @@ $(document).ready(function(){
             $('#outline').val(jsonObj.outline);
         }
     });
-});
+}
 
 function GetQueryString(name)
 {
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
+    let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    let r = window.location.search.substr(1).match(reg);
     if(r!=null) return  unescape(r[2]); return null;
 }
 
@@ -63,7 +60,7 @@ function save_information() {
     if (flag1===true && flag2===true){
         $.ajax({
             type: "POST",
-            url: getContextPath()+"/SaveClassInfor",
+            url: contextPath+"/SaveClassInfor",
             data: {
                 No:No,
                 title:$('#title').val(),

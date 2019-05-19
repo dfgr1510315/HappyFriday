@@ -1,6 +1,5 @@
-var contextPath = getContextPath();
 let No = GetQueryString('class_id');
-
+let user = cookie.get('user');
 let pass = -1;
 let ask_flag = 0;
 let note_flag = 0;
@@ -8,9 +7,7 @@ let get_class_flag = 0;
 let ask_count = -1;
 let note_count = -1;
 $(document).ready(function () {
-    $('#navigation').load('navigation_dark.html', function () {
-        get_user_infor();
-    });
+    $('#navigation').load('navigation_dark.html');
     $('#loginPC').load('LoginPC.html');
     get_Class();
     if (GetQueryString('page_ask') != null) get_Ask();
@@ -446,6 +443,37 @@ function continue_class(event) {
     window.location.href = "Play.html?" + No + "/" + last_time.substring(0, last_time.indexOf(':'));
 }
 
+function get_HW(){
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/HomeWork.do",
+        data: {
+            action: 'get_work_list',
+            class_id:No,
+            student:user
+        },
+        dataType: 'json',
+        success: function (json) {
+            //console.log(json);
+            let HW_ul = $('#HW_ul');
+            for (let i=0;i<json.work.length;i++){
+                HW_ul.prepend(
+                    ' <li class="post-row js-find-txt">\n' +
+                    '     <a target="_blank" href="homework2.html?work='+json.work[i].id+'">\n' +
+                    '          <span>'+json.work[i].title+'</span>\n' +
+                    '          <span style="float: right">'+specs(json.work[i].time.toString())+'</span>\n' +
+                    '     </a>\n' +
+                    ' </li>'
+                )
+            }
+        }
+    })
+}
+
+function specs(time) {
+    time = time.slice(0,4)+'-'+time.slice(4,6)+'-'+time.slice(6);
+    return time;
+}
 
 Date.prototype.Format = function (fmt) {
     let o = {

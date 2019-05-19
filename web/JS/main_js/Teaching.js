@@ -1,14 +1,8 @@
-var contextPath = getContextPath();
+let No = GetQueryString('class_id');
 $(document).ready(function () {
+    $('#navigation').load('navigation_dark.html');
+    $('#VerticalNav').load('VerticalNav.html',function () {addClass(3);});
     get_Class();
-    $('#navigation').load('navigation_dark.html',function () {
-        $('#VerticalNav').load('VerticalNav.html',function () {
-            addClass(3);
-            $.when(get_user_infor()).done(function () {
-                $('#radio_cover_img').attr('src',contextPath+head_image);
-            });
-        });
-    });
 });
 function get_Class() {
     $.ajax({
@@ -20,9 +14,9 @@ function get_Class() {
         },
         dataType: 'json',
         success: function (json) {
-            var class_ul = $("tbody");
-            var release_status;
-            for (var i=0;i<json.class_list.length;i++){
+            let class_ul = $("tbody");
+            let release_status;
+            for (let i=0;i<json.class_list.length;i++){
                 if (json.class_list[i].release_status===1) release_status = '已发布';
                 else release_status = '未发布';
                 class_ul.append(
@@ -44,8 +38,8 @@ function get_Class() {
 }
 
 function found_class() {
-    var Class_Name = $('#found_class_name').val();
-    var Class_Type = $('#sel1').val();
+    let Class_Name = $('#found_class_name').val();
+    let Class_Type = $('#sel1').val();
     if ('' === Class_Name||'类型' === Class_Type){
         alert('课程标题或类型不能为空');
     } else {
@@ -63,7 +57,7 @@ function found_class() {
                 if (jsonObj.class_id===0) alert('创建失败') ;
                 else {
                     $('#found_class_Close').click();
-                    var class_ul = $("tbody");
+                    let class_ul = $("tbody");
                     class_ul.prepend(
                         '<tr>\n' +
                         '<td><img src="'+contextPath+'/image/efb37fee400582742424a4ce08951213.png" class="cover" alt="">'+Class_Name+'</td> \n'+

@@ -1,26 +1,13 @@
-var move_student;
-var move_event;
-var contextPath = getContextPath();
+let move_student;
+let move_event;
+let No = GetQueryString('class_id');
 $(document).ready(function(){
-    $('#navigation').load('navigation_dark.html',function () {
-        get_user_infor();
-    });
-    $('#ui_box').load('ui_box.html',function () {
-        getHTML();
-    });
-    $('#course_manag_nav').load('course_manag_nav.html',function () {
-        addHref();
-        addAction(5)
-    });
+    $('#navigation').load('navigation_dark.html');
+    $('#ui_box').load('ui_box.html');
+    $('#course_manag_nav').load('course_manag_nav.html',function () {addAction(5)});
     get_class();
 });
 
-function GetQueryString(name)
-{
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if(r!=null) return  unescape(r[2]); return null;
-}
 
 function remove_student(event){
     if (confirm("确定移除此学员吗？")) {
@@ -43,7 +30,7 @@ function remove_student(event){
 }
 
 function create_class() {
-    var class_name = $('#create_class_name');
+    let class_name = $('#create_class_name');
     $('#create_class_Close').click();
     $.ajax({
         url: contextPath+"/students",
@@ -85,7 +72,7 @@ function get_class() {
                 '                    <tbody></tbody>\n' +
                 '                </table>'
             );
-            for (var i=0;i<jsonObj.class.length;i++){
+            for (let i=0;i<jsonObj.class.length;i++){
                 class_table(jsonObj.class[i].name,jsonObj.class[i].id);
                 modal_class_table(jsonObj.class[i].name,jsonObj.class[i].id);
             }
@@ -128,7 +115,7 @@ function join_class(id) {
         success: function (jsonObj) {
             if (jsonObj===true){
                 $('#join_class_Close').click();
-                var student = $(move_event).parent().parent().html();
+                let student = $(move_event).parent().parent().html();
                 $(move_event).parent().parent().remove();
                 $('#student_table'+id).prepend(
                     '<tr>\n' +
@@ -141,7 +128,7 @@ function join_class(id) {
 }
 
 function delete_student_class(event,id) {
-    var delete_class = confirm("确定删除此班级吗?");
+    let delete_class = confirm("确定删除此班级吗?");
     if (delete_class) {
         $.ajax({
             url: contextPath+"/students",
@@ -161,13 +148,13 @@ function delete_student_class(event,id) {
 }
 
 function add_page(page_id,count,page) {
-    var page_ul =  $(page_id);
+    let page_ul =  $(page_id);
     page_length = Math.ceil(count/6);
     if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?='+No+'&page_ask='+(parseInt(page)-1)+'">Previous</a></li>');
     else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
 
     if (page-1>2&&page_length-page>=2){
-        for (var i = page-2;i<=page+2;i++){
+        for (let i = page-2;i<=page+2;i++){
             if (i<page_length+1){
                 if (i===parseInt(page)){
                     page_ul.append('<li class="page-item active"><a class="page-link" href="?='+No+'&page_ask='+i+'">'+i+'</a></li>');
@@ -201,7 +188,7 @@ function add_page(page_id,count,page) {
 
 function get_class_students(id){
     $('.table-striped').hide();
-    var student_table = $('#student_table'+id);
+    let student_table = $('#student_table'+id);
     console.log(student_table.length);
     if ( student_table.length > 0 ) {
         student_table.show();
@@ -218,7 +205,7 @@ function get_class_students(id){
         dataType: "json",
         success: function (jsonObj) {
             console.log(jsonObj);
-            var class_box = $('#class_box');
+            let class_box = $('#class_box');
             if (jsonObj.students.length===0)  {
                 class_box.append(
                     '<div id="student_table'+id+'" class="table table-striped">\n' +
@@ -239,7 +226,7 @@ function get_class_students(id){
                 '                    <tbody></tbody>\n' +
                 '                </table>'
             );
-            for (var i=0;i<jsonObj.students.length;i++){
+            for (let i=0;i<jsonObj.students.length;i++){
                 $('#student_table'+id).append(
                     '<tr>\n' +
                     '                        <td style="position: relative;">\n' +

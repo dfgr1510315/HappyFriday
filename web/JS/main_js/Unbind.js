@@ -1,17 +1,10 @@
-let email;
+let email = cookie.get('email');
 //let email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 //let contextPath = getContextPath();
 $(document).ready(function () {
-    $('#navigation').load('navigation_dark.html',function () {
-        $('#VerticalNav').load('VerticalNav.html',function () {
-            addClass(2);
-            $.when(get_user_infor()).done(function () {
-                $('#radio_cover_img').attr('src',contextPath+head_image);
-                email = cookie.get('email');
-                $('.font4').text(email);
-            });
-        });
-    });
+    $('.font4').text(email);
+    $('#navigation').load('navigation_dark.html');
+    $('#VerticalNav').load('VerticalNav.html',function () {addClass(2);});
 });
 
 function changeBind() {

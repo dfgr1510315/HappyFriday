@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <link rel="stylesheet" href="../CSS/LoginPC.css">
 <body>
 <div class="modal fade" id="LoginModal" style="background-color: transparent; width: 100%; top: 165px;">
@@ -81,7 +80,6 @@
 <div class="modal fade" id="forget" style="background-color: transparent; width: 100%; top: 165px;">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-header">
                 <h5 class="modal-title">请输入账号</h5>
                 <div style="font-size: 14px;margin-top: 7px;">我们会将密码发送至账户绑定的邮箱</div>
@@ -101,13 +99,12 @@
 </div>
 </body>
 <script type="text/javascript">
-    var slideVerify;
+    let slideVerify;
     $(function(){
-        var SlideVerifyPlug = window.slideVerifyPlug;
+        let SlideVerifyPlug = window.slideVerifyPlug;
         slideVerify = new SlideVerifyPlug('#verify-wrap',{
             initText:'请按住滑块',
             sucessText:'验证通过'
         });
     })
 </script>
-</html>

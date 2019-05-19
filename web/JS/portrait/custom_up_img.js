@@ -6,7 +6,7 @@ $(document).ready(function(){
 $(function() {
     'use strict';
     // 初始化
-    var $image = $('#image');
+    let $image = $('#image');
     $image.cropper({
         aspectRatio: '1',
         autoCropArea:0.8,
@@ -16,9 +16,9 @@ $(function() {
     // 事件代理绑定事件
     $('.docs-buttons').on('click', '[data-method]', function() {
    
-        var $this = $(this);
-        var data = $this.data();
-        var result = $image.cropper(data.method, data.option, data.secondOption);
+        let $this = $(this);
+        let data = $this.data();
+        let result = $image.cropper(data.method, data.option, data.secondOption);
         switch (data.method) {
             case 'getCroppedCanvas':
             if (result) {
@@ -31,14 +31,14 @@ $(function() {
     });
 
     // 上传图片
-    var $inputImage = $('#inputImage');
-    var URL = window.URL || window.webkitURL;
-    var blobURL;
+    let $inputImage = $('#inputImage');
+    let URL = window.URL || window.webkitURL;
+    let blobURL;
 
     if (URL) {
         $inputImage.change(function () {
-            var files = this.files;
-            var file;
+            let files = this.files;
+            let file;
 
             if (files && files.length) {
                file = files[0];
@@ -62,7 +62,7 @@ $(function() {
             }
 
             // Amazi UI 上传文件显示代码
-            var fileNames = '';
+            let fileNames = '';
             $.each(this.files, function() {
                 fileNames += '<span class="am-badge">' + this.name + '</span> ';
             });
@@ -74,9 +74,9 @@ $(function() {
     
     //绑定上传事件
     $('#up-btn-ok').on('click',function(){
-    	var $modal = $('#my-modal-loading');
-    	var $modal_alert = $('#my-alert');
-    	var img_src=$image.attr("src");
+    	let $modal = $('#my-modal-loading');
+    	let $modal_alert = $('#my-alert');
+    	let img_src=$image.attr("src");
     	if(img_src===""){
     		set_alert_info("没有选择上传的图片");
     		$modal_alert.modal();
@@ -85,9 +85,9 @@ $(function() {
     	
     	$modal.modal();
 
-    	var canvas=$("#image").cropper('getCroppedCanvas');
-    	var data=canvas.toDataURL(); //转成base64
-        var _blob = dataURLtoBlob(data);
+    	let canvas=$("#image").cropper('getCroppedCanvas');
+    	let data=canvas.toDataURL(); //转成base64
+        let _blob = dataURLtoBlob(data);
         post_head_image(_blob);
 
       /*  $.ajax( {
@@ -102,7 +102,7 @@ $(function() {
                 	if(data.result==="ok"){
                 		$("#up-img-touch img").attr("src",data.file);
                 	
-                		var img_name=data.file.split('/')[2];
+                		let img_name=data.file.split('/')[2];
                 		console.log(img_name);
                 		$("#pic").text(img_name);
                 	}
@@ -121,7 +121,7 @@ $(function() {
 
 // 图片 base64 url 转 blob
 function dataURLtoBlob(dataurl) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+    let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
     while (n--) {
         u8arr[n] = bstr.charCodeAt(n);

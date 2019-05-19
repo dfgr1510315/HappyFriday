@@ -1,0 +1,106 @@
+
+.entrance-bottom{width: 100%;margin-top: 40px;overflow: hidden;margin-bottom: 50px;position: relative;height: 700px;}
+.entrance-bottom-frame{transition: all 0.8s;width: 10000%;margin: 0 auto;height:630px;margin-top: 40px;position: absolute;left: 50%;margin-left: -550px;}
+/*.entrance-bottom-frame-beijing{position: absolute;z-index: 1;width: 100%;height: 100%;top:0;left: 0;background: url(../img/yincang.png);background-size:cover;}*/
+.entrance-bottom-frame-line{ -webkit-filter: grayscale(100%);/* CSS3 filter方式，webkit内核方式，firefox外的绝大部分的现代浏览器*/
+    -moz-filter: grayscale(100%);            /* 目前没有实现 */
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);            /* CSS3 filter方式，标准写法*/
+    filter: gray;                       /* IE 6-9 */
+    transition: all 0.8s;pointer-events: none;cursor: default;margin-top: 35px;box-shadow: 0 0 15px #c5e2ff;width: 1000px;height: 570px;float: left;margin-left:50px;position: relative;}
+.entrance-bottom-frame-line-id{font-size: 30px;color: white;text-align:center;line-height: 60px;position: absolute;left: 50%;margin-left: -30px;height: 60px;width: 60px;background: url(../img/e-id.png);background-size: cover;top: -30px;}
+.entrance-bottom-frame-line-title{font-size: 14px;width: 900px;margin: 70px auto 20px auto;}
+.entrance-bottom-frame-line-button{transition: margin 0.8s;position: relative;cursor: pointer;width: 420px;height: 70px;margin:10px 20px 0px 45px;float: left;box-sizing: border-box;background: #f2f2f2;border-radius: 36px;padding: 0 35px;}
+.entrance-bottom-frame-line-button-id{width: 30px;line-height: 70px;display: table-cell;font-size: 24px;}
+.entrance-bottom-frame-line-button-frame{line-height: 20px;width: 335px;height: 70px;display: table-cell; vertical-align:middle ;}
+.entrance-bottom-frame-line-button:hover,.selection{color: white; background: -webkit-linear-gradient(left,#ff916a, #ff6a6b); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right,#ff916a, #ff6a6b); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right,#ff916a, #ff6a6b); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right,#ff916a, #ff6a6b); /* 标准的语法 */}
+
+.entrance-bottom-frame-line.active{pointer-events: auto;height: 630px;margin-top: 0;-webkit-filter: grayscale(0%);/* CSS3 filter方式，webkit内核方式，firefox外的绝大部分的现代浏览器*/
+    -moz-filter: grayscale(0%);            /* 目前没有实现 */
+    -ms-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+    filter: grayscale(0%);            /* CSS3 filter方式，标准写法*/
+    filter: none;   }
+.entrance-bottom-frame-line.active .entrance-bottom-frame-line-button{margin-top: 30px;}
+.entrance-bottom-frame-line.active .entrance-bottom-frame-beijing{display: none;}
+.entrance-bottom-frame-beijing.none{background: #000000;opacity: 0.2;}
+.pre_message{
+    width: 900px;
+    height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 35px 90px;
+
+    box-sizing: border-box;
+    outline: none;
+    border: 0;
+    white-space: pre-wrap;
+    word-break: normal;
+    background:url(../img/code.png);
+    margin: 0 auto;
+    font-size: 14px;
+}
+.pre_message::-webkit-scrollbar{display: none;}
+
+
+@charset "utf-8";
+/* CSS Document */
+/*Reset*/
+*{box-sizing:content-box;}
+a:hover, a:focus{text-decoration:none;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+body{max-width: 1920px;-webkit-text-size-adjust:none;}
+fieldset,img{border:0;}
+img{ vertical-align: top; max-width: 100%; }
+address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:normal;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym {border:0;}
+.clearfix:after{visibility:hidden;display: block;font-size:0;content:" ";clear:both;height:0;}
+* html .clearfix{ zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+.cli{ clear:both; font-size:0; height:0; overflow:hidden;display:block;}
+.lclear{clear:left;font-size:0;height:0;overflow:hidden;}
+.fl{float:left;}
+.fr{float:right;}
+
+/* ֹ
+iframe{nifm2:expression(this.src='about:blank',this.outerHTML='');}
+script{no2js:expression((this.src.toLowerCase().indexOf('http')==0)?document.close():'');}
+*/
+/* ıԼ˶
+div{word-wrap: break-word;word-break: normal;}
+p{text-align:justify; text-justify:inter-ideograph;}
+*/
+/*general*/
+body{font-size:12px;font-family:'微软雅黑',"宋体","Arial Narrow",Helvetica,sans-serif;color:#000;line-height:1.2;text-align:left;}
+a{color:#333;text-decoration:none;}
+
+.form-group {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.entrance-bottom-frame-line-prev{
+    position: absolute;
+    top: 5px;
+    color: rgb(187, 183, 183);
+    left: 5px;
+}
+.entrance-bottom-frame-line-next{
+    position: absolute;
+    top: 5px;
+    color: rgb(187, 183, 183);
+    right: 5px;
+}
+.entrance-bottom-frame-line .fa{
+    font-size: 24px;
+}

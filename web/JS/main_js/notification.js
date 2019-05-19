@@ -1,20 +1,14 @@
-var contextPath = getContextPath();
+let user = cookie.get('user');
 $(document).ready(function () {
-    $('#navigation').load('navigation_dark.html',function () {
-        $('#VerticalNav').load('VerticalNav.html',function () {
-            addClass(9);
-            $.when(get_user_infor()).done(function () {
-                get_notice();
-                $('#radio_cover_img').attr('src',contextPath+head_image);
-            });
-        });
-    });
+    $('#navigation').load('navigation_dark.html');
+    $('#VerticalNav').load('VerticalNav.html',function () {addClass(9);});
+    get_notice();
 });
 
 function GetQueryString(name)
 {
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
+    let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    let r = window.location.search.substr(1).match(reg);
     if(r!=null) return  unescape(r[2]); return null;
 }
 
@@ -55,9 +49,9 @@ function delete_notice(event) {
 }
 
 function go(){
-    var keycode = (event.keyCode ? event.keyCode : event.which);
+    let keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode  === 13) {
-        var jump = $('#jump');
+        let jump = $('#jump');
         if (jump.val()>0&&jump.val()<=page_length&&jump.val()%1 === 0){
             window.location.href="notification.html?page="+jump.val();
         }else alert('请重新输入页号');
@@ -65,7 +59,7 @@ function go(){
 }
 
 function get_notice() {
-    var page = GetQueryString('page');
+    let page = GetQueryString('page');
     if (page == null) page = '1';
     $.ajax({
         type: "POST",
@@ -79,8 +73,8 @@ function get_notice() {
         dataType: 'json',
         success: function (jsonObj) {
             //console.log(jsonObj);
-            for (var i=0;i<jsonObj.notice.length;i++){
-                var notice;
+            for (let i=0;i<jsonObj.notice.length;i++){
+                let notice;
                 switch (jsonObj.notice[i].notice_type) {
                     case 1:
                         notice = "学员<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>加入了课程<a href='Learn_list.html?class_id="+jsonObj.notice[i].class_id+"' target='_blank'>《"+jsonObj.notice[i].class_title+"》</a>\n";
@@ -97,13 +91,13 @@ function get_notice() {
                 }
                 notice_box_ul(notice,jsonObj.notice[i].time,jsonObj.notice[i].notice_id)
             }
-            var notice_box_ul_var = $('#notice_box_ul');
+            let notice_box_ul_var = $('#notice_box_ul');
             if (notice_box_ul_var.html().length === 0) {
                 $('#notice_box').prepend(
                     '<div class="no_find_class">暂无通知</div>'
                 )
             }else {
-                var page_ul =  $('#page_ask');
+                let page_ul =  $('#page_ask');
                 page_length = Math.ceil(jsonObj.count/6);
                 if ((parseInt(page)-1)>0) page_ul.append('<li class="page-item"><a class="page-link" href="?page='+(parseInt(page)-1)+'">Previous</a></li>');
                 else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');

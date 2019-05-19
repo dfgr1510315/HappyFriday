@@ -7,7 +7,6 @@
   To change this template use File | Settings | File Templates.
 -->
 <!DOCTYPE html>
-<html lang="">
 <head>
     <title>课程管理</title>
     <meta charset="utf-8">
@@ -16,15 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/main_css/Myclass.css">
     <link rel="stylesheet" type="text/css" href="../webuploader-0.1.5/css/webuploader.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../webuploader-0.1.5/jekyll/js/webuploader.js"></script>
-    <script type="text/javascript" src="../wangEditor-3.1.1/release/wangEditor.min.js"></script>
-    <script type="text/javascript" src="../JS/LoginPC.js"></script>
-    <script type="text/javascript" src="../JS/main_js/Myclass.js"></script>
-    <script type="text/javascript" src="../JS/drag.js"></script>
-<!--    <script type="text/javascript" src="../JS/spark-md5.min.js"></script>-->
+    <!--    <script type="text/javascript" src="../JS/spark-md5.min.js"></script>-->
 </head>
 <style type="text/css">
     body.modal-open {
@@ -32,95 +23,6 @@
         padding-right: 0!important;
     }
 </style>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#navigation').load('navigation_dark.html',function () {
-            get_user_infor();
-        });
-        $('#ui_box').load('ui_box.html',function () {
-            getHTML();
-            get_class_content()
-        });
-        $('#course_manag_nav').load('course_manag_nav.html',function () {
-            addHref();
-            addAction(0)
-        });
-    });
-    var files_count = 0;
-    var filesName = [];
-    var filesSize = [];
-    function batch_upload(event) {
-        var batch_bar = $("#batch_bar");
-        var batch_span = $("#batch_span");
-        var files =event.files; //获取当前选择的文件对象
-        if (files===undefined) return;
-        batch_bar.css('display','block');
-        for(var m=0;m<files.length;m++){ //循环添加进度条
-            filesName.push(files[m].name);
-            if (files[m].size> 1024 * 1024){
-                filesSize.push( (Math.round(files[m].size /(1024 * 1024))).toString() + 'MB');
-            }
-            else{
-                filesSize.push((Math.round(files[m].size/1024)).toString() + 'KB');
-            }
-        }
-        sendAjax();
-        function sendAjax() {
-            if (files_count>=files.length){
-                $('#batch_file').val('');
-                files_count = 0;
-                filesName = [];
-                filesSize = [];
-                batch_bar.css('display','none');
-                batch_span.text('');
-                alert('上传完成');
-                return
-            }
-            var formData = new FormData();
-            formData.append('action','file');//文件上传,告诉服务器不需转码
-            formData.append('class_id',No);
-            formData.append('files',files[files_count]);
-            $.ajax({
-                url: contextPath+"/uploadsec",
-                type:'POST',
-                cache: false,
-                data: formData,//文件以formData形式传入
-                processData : false,
-                //必须false才会自动加上正确的Content-Type
-                contentType : false ,
-                xhr: function(){   //监听用于上传显示进度
-                    var xhr = $.ajaxSettings.xhr();
-                    if(batch_onprogress && xhr.upload) {
-                        xhr.upload.addEventListener("progress" , batch_onprogress, false);
-                        return xhr;
-                    }
-                } ,
-                success:function(jsonObj){
-                    console.log(jsonObj);
-                    var data1=eval("("+jsonObj+")");
-                    console.log(data1.src);
-                    console.log(data1.filename);
-                    var tbody = $('#file_box tbody');
-                    add_file_list(tbody,data1.src,data1.filename);
-                    $("#batch_bar").width('0%');//移除进度条样式
-                    files_count++; //递归条件
-                    sendAjax();
-                    //   }
-                },
-                error:function(xhr){
-                    alert("上传出错");
-                }
-            })
-        }
-    }
-    function batch_onprogress(evt){
-        var loaded = evt.loaded;   //已经上传大小情况
-        var tot = evt.total;   //附件总大小
-        var per = Math.floor(100*loaded/tot); //已经上传的百分比
-        $("#batch_span").text('正在上传\''+filesName[files_count]+'\' '+filesSize[files_count]);
-        $("#batch_bar").width(per+"%");
-    }
-</script>
 
 <body onbeforeunload="live();">
 <input type="file" id="batch_file" style="display:none" multiple="multiple" onchange="batch_upload(this)">
@@ -151,7 +53,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="modal fade" id="add_section">
         <div class="modal-dialog">
@@ -306,7 +207,15 @@
         </div>
     </div>
 </div>
-
 </body>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../webuploader-0.1.5/jekyll/js/webuploader.js"></script>
+<script type="text/javascript" src="../wangEditor-3.1.1/release/wangEditor.min.js"></script>
+<script type="text/javascript" src="../JS/LoginPC.js"></script>
+<script type="text/javascript" src="../JS/navigation.js"></script>
+<script type="text/javascript" src="../JS/Class_info/Class_state.js"></script>
+<script type="text/javascript" src="../JS/main_js/Myclass.js"></script>
+<script type="text/javascript" src="../JS/drag.js"></script>
 
-</html>

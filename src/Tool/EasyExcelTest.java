@@ -36,7 +36,7 @@ public class EasyExcelTest {
             ExcelReader excelReader = new ExcelReader(inputStream, ExcelTypeEnum.XLSX, null, new AnalysisEventListener<List<String>>() {
                         @Override
                         public void invoke(List<String> object, AnalysisContext context) {
-                            System.out.println(object);
+                            //System.out.println(object);
                             StringBuilder stringBuffer = new StringBuilder();
                             if(object != null && !StringUtils.isEmpty(object.get(0))){
                                 for(String s: object){

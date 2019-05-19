@@ -2,17 +2,6 @@ package Model;
 
 public class homework {
     private int id;
-
-    public int getClass_id() {
-        return class_id;
-    }
-
-    public void setClass_id(int class_id) {
-        this.class_id = class_id;
-    }
-
-    private int class_id;
-    private String class_name;//班级名
     //private int course_id;//课程id
     private int time;
     private String title;
@@ -25,15 +14,7 @@ public class homework {
         this.id = id;
     }
 
-    public String getClass_name() {
-        return class_name;
-    }
-
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
-    }
-/*
-    public int getCourse_id() {
+/*    public int getCourse_id() {
         return course_id;
     }
 

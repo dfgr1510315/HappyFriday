@@ -21,6 +21,7 @@ td button{
     overflow: hidden;
     cursor: pointer;
     line-height: 34px;
+    transition: all 0.3s ease-in-out;
 }
 #note_box .post_action:hover{
     text-decoration: none;
@@ -41,16 +42,18 @@ a:hover{
 }
 .title a {
     font-size: 14px;
-    color: #1c1f21;
+    color: #455a64;
     font-weight: 700;
+    transition: all 0.3s ease-in-out;
 }
 .title a:hover{
-    color: #007bff
+    color: #55bdef;
 }
 .unit a{
     font-size: 12px;
     color: #93999f;
     line-height: 24px;
+    transition: all 0.3s ease-in-out;
 }
 .unit a:hover{
     color: #1c1f21;
@@ -69,4 +72,13 @@ button.btn-mini {
     padding: 0 15px;
     font-size: 12px;
     width: auto;
+}
+
+.note_text{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    max-height:63%;
+    min-height:20%;
+    color: #455a64;
 }

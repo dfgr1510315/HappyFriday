@@ -1,13 +1,7 @@
-var ContextPath = getContextPath();
-function getContextPath(){
-    let pathName = document.location.pathname;
-    //console.log(pathName);
-    let index = pathName.substr(1).indexOf("/");
-    //console.log(index);
-    //console.log(pathName.substr(0, index));
-    if ('HTML_JSP'===pathName.substr(1, index)) return '';
-    return pathName.substr(0, index+1);
-}
+let contextPath = getContextPath();
+let username_model = /^.{3,20}$/;
+let email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+let pasw_model = /^[a-zA-Z]\w{5,17}$/;
 
 function get_cookie() {
     $('#username').val(cookie.get('username'));
@@ -34,7 +28,7 @@ function login() {
     let data = {username:username,password:password,state:'login'};
     $.ajax({
         type:"POST",
-        url:ContextPath+"/register",
+        url:contextPath+"/register",
         data:data,
         dataType:'json',
         success:function (msg) {
@@ -74,6 +68,7 @@ function setCookie(msg,username,password) {
         last_time.push(msg.history[i].last_time);
         schedule.push(msg.history[i].schedule);
     }
+    cookie.set('user',username);
     cookie.set('class_id',class_id);
     cookie.set('class_title',class_title);
     cookie.set('last_time',last_time);
@@ -87,19 +82,15 @@ function setCookie(msg,username,password) {
 function deleteCookie() {
     $.ajax({
         type:"POST",
-        url:ContextPath+"/register",
+        url:contextPath+"/register",
         data:{
             state:"Logout"
         },
         dataType:'json'
     });
+    cookie.del('user');
     location.reload();
 }
-
-let username_model = /^.{3,20}$/;
-let email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-let pasw_model = /^[a-zA-Z]\w{5,17}$/;
-
 
 function register() {
     let username = $('#register_username').val();
@@ -125,7 +116,7 @@ function register() {
     error_waring.css('display','none');
     $.ajax({
         type:"POST",
-        url:ContextPath+"/register",
+        url:contextPath+"/register",
         data:{
             state:'register',
             username:username,
@@ -154,7 +145,7 @@ function forgetPW() {
     }
     $.ajax({
         type:"POST",
-        url:ContextPath+"/register",
+        url:contextPath+"/register",
         data:{
             state:'forgetPW',
             forget_user:forget_user
@@ -173,3 +164,12 @@ function forgetPW() {
     });
 }
 
+function getContextPath(){
+    let pathName = document.location.pathname;
+    //console.log(pathName);
+    let index = pathName.substr(1).indexOf("/");
+    //console.log(index);
+    //console.log(pathName.substr(0, index));
+    if ('HTML_JSP'===pathName.substr(1, index)) return '';
+    return pathName.substr(0, index+1);
+}

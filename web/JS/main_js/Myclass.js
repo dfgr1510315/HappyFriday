@@ -1,14 +1,88 @@
-var UnitCount = 0;
-var ClassCount = 0;
-var files_flag = 0;
-var files_list;
-var No = GetQueryString('class_id');
-var contextPath = getContextPath();
+let UnitCount = 0;
+let ClassCount = 0;
+let files_flag = 0;
+let files_list;
+let files_count = 0;
+let filesName = [];
+let filesSize = [];
+let No = GetQueryString('class_id');
+$(document).ready(function(){
+    $('#navigation').load('navigation_dark.html');
+    $('#ui_box').load('ui_box.html');
+    $('#course_manag_nav').load('course_manag_nav.html',function () {addAction(0)});
+    get_class_content()
+});
 
-function GetQueryString(name) {
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if(r!=null) return  unescape(r[2]); return null;
+function batch_upload(event) {
+    let batch_bar = $("#batch_bar");
+    let batch_span = $("#batch_span");
+    let files =event.files; //获取当前选择的文件对象
+    if (files===undefined) return;
+    batch_bar.css('display','block');
+    for(let m=0;m<files.length;m++){ //循环添加进度条
+        filesName.push(files[m].name);
+        if (files[m].size> 1024 * 1024){
+            filesSize.push( (Math.round(files[m].size /(1024 * 1024))).toString() + 'MB');
+        }
+        else{
+            filesSize.push((Math.round(files[m].size/1024)).toString() + 'KB');
+        }
+    }
+    sendAjax();
+    function sendAjax() {
+        if (files_count>=files.length){
+            $('#batch_file').val('');
+            files_count = 0;
+            filesName = [];
+            filesSize = [];
+            batch_bar.css('display','none');
+            batch_span.text('');
+            alert('上传完成');
+            return
+        }
+        let formData = new FormData();
+        formData.append('action','file');//文件上传,告诉服务器不需转码
+        formData.append('class_id',No);
+        formData.append('files',files[files_count]);
+        $.ajax({
+            url: contextPath+"/uploadsec",
+            type:'POST',
+            cache: false,
+            data: formData,//文件以formData形式传入
+            processData : false,
+            //必须false才会自动加上正确的Content-Type
+            contentType : false ,
+            xhr: function(){   //监听用于上传显示进度
+                let xhr = $.ajaxSettings.xhr();
+                if(batch_onprogress && xhr.upload) {
+                    xhr.upload.addEventListener("progress" , batch_onprogress, false);
+                    return xhr;
+                }
+            } ,
+            success:function(jsonObj){
+                console.log(jsonObj);
+                let data1=eval("("+jsonObj+")");
+                console.log(data1.src);
+                console.log(data1.filename);
+                let tbody = $('#file_box tbody');
+                add_file_list(tbody,data1.src,data1.filename);
+                $("#batch_bar").width('0%');//移除进度条样式
+                files_count++; //递归条件
+                sendAjax();
+                //   }
+            },
+            error:function(xhr){
+                alert("上传出错");
+            }
+        })
+    }
+}
+function batch_onprogress(evt){
+    let loaded = evt.loaded;   //已经上传大小情况
+    let tot = evt.total;   //附件总大小
+    let per = Math.floor(100*loaded/tot); //已经上传的百分比
+    $("#batch_span").text('正在上传\''+filesName[files_count]+'\' '+filesSize[files_count]);
+    $("#batch_bar").width(per+"%");
 }
 
 //关闭WebSocket连接
@@ -18,32 +92,32 @@ function closeWebSocket(websocket) {
 
 //发送消息
 function send(websocket) {
-    var message = document.getElementById('text').value;
+    let message = document.getElementById('text').value;
     websocket.send(message);
 }
 
 function saveClass() {
-    var unit_no = 0;
-    var class_no = 0;
-    var Total_data = {
+    let unit_no = 0;
+    let class_no = 0;
+    let Total_data = {
         UUNIt:[]
     };
-    for (var i=1;i<=UnitCount;i++){
-        var flag  = $("#collapse"+i);
+    for (let i=1;i<=UnitCount;i++){
+        let flag  = $("#collapse"+i);
         if (flag.length===0) break;
         unit_no++;
-        var j=0;
-        var Unit = {
+        let j=0;
+        let Unit = {
             Unit_Name:flag.prev().children("h8").text(),
             Class:[]
         };
         while (flag.children("div").eq(j).html()!==undefined){
-            var source_video_name = flag.children("div").eq(j).children('div').eq(1).find('label').eq(0).text();
+            let source_video_name = flag.children("div").eq(j).children('div').eq(1).find('label').eq(0).text();
             if ('选择视频'===source_video_name)   source_video_name='';
-            var state = 0;
+            let state = 0;
             if (flag.children().eq(j).find('button:first').text()==='已发布') state = 1;
             console.log(flag.prev().children("h8").text());
-            var Class = {
+            let Class = {
                 //Unit_Name:flag.prev().children("h8").text(),
                 Class_Name:flag.children("div").eq(j).children('div').eq(0).children('h10').text(),
                 Video_Src:flag.children("div").eq(j).children('div').eq(1).find('video').attr('src'),
@@ -52,8 +126,8 @@ function saveClass() {
                 Editor:flag.children("div").eq(j).children('div').eq(1).find('video').parent().parent().next().children().eq(1).children().html(),
                 State:state
             };
-            var File_Href="";
-            var File_Name="";
+            let File_Href="";
+            let File_Name="";
             flag.children("div").eq(j).children('div').eq(1).find('video').parent().parent().next().next().find('a').each(function(){
                 File_Href=File_Href+$(this).attr('href')+'|';
                 File_Name=File_Name+this.text+'|';
@@ -104,8 +178,8 @@ function saveClass() {
 }
 
 function add_collapse(collapse,lesson_title,source_video_title,source_video_address,video_address,release_status,i) {
-    var status_text = '发布';
-    var status_class = 'btn-success';
+    let status_text = '发布';
+    let status_class = 'btn-success';
     if (release_status===1)   {
         status_text= '已发布';
         status_class = 'btn-warning';
@@ -165,7 +239,7 @@ function add_collapse(collapse,lesson_title,source_video_title,source_video_addr
         '       </div>\n' +
         '   </div> \n' +
         '</div>');
-    var E = window.wangEditor;
+    let E = window.wangEditor;
     new E('#editor' + (i+1)).create();
 }
 
@@ -180,8 +254,8 @@ function get_class_content() {
         dataType: 'json',
         success: function (jsonObj) {
             //console.log(jsonObj);
-            var unit_titles= [];
-            for (var i=0;i<jsonObj.class_content.length;i++) {
+            let unit_titles= [];
+            for (let i=0;i<jsonObj.class_content.length;i++) {
                 if (-1===unit_contain(unit_titles,jsonObj.class_content[i].unit_title)) unit_titles.push(jsonObj.class_content[i].unit_title);
             }
             for (i=0;i<unit_titles.length;i++){
@@ -192,14 +266,14 @@ function get_class_content() {
             console.log('ClassCount'+ClassCount);
             console.log('UnitCount'+UnitCount);
             for (i=0;i<jsonObj.class_content.length;i++){
-                var belong_unit = unit_contain(unit_titles,jsonObj.class_content[i].unit_title)+1;
-                var source_video_title = '选择视频';
+                let belong_unit = unit_contain(unit_titles,jsonObj.class_content[i].unit_title)+1;
+                let source_video_title = '选择视频';
                 if (jsonObj.class_content[i].source_video_title!=='') source_video_title = jsonObj.class_content[i].source_video_title;
                 add_collapse($('#collapse'+belong_unit),jsonObj.class_content[i].lesson_title,source_video_title,jsonObj.class_content[i].source_video_address,jsonObj.class_content[i].video_address,jsonObj.class_content[i].release_status,i);
-                var file_address = jsonObj.class_content[i].file_address.split('|');
-                var file_name = jsonObj.class_content[i].file_name.split('|');
-                var file_list = $('#file_list'+i);
-                for (var j=0;j<file_address.length;j++){
+                let file_address = jsonObj.class_content[i].file_address.split('|');
+                let file_name = jsonObj.class_content[i].file_name.split('|');
+                let file_list = $('#file_list'+i);
+                for (let j=0;j<file_address.length;j++){
                     if (file_address[j]==='') break;
                     add_file(file_list,file_address[j],file_name[j]);
                 }
@@ -235,7 +309,7 @@ function add_unit(unit_title,collapse_id) {
 }
 
 function unit_contain(unit_titles,unit_title) {
-    for (var i=0;i<unit_titles.length;i++)
+    for (let i=0;i<unit_titles.length;i++)
     {
         if (unit_titles[i]===unit_title) return i
     }
@@ -272,7 +346,7 @@ function Release(state) {
 
 /*function Change_Unit_Fun(UnitCount, chooseCount) {
    /!* alert("UnitCount:" + UnitCount + " ChooseCount:" + chooseCount);*!/
-    var obj = document.getElementById("collapse" + chooseCount);
+    let obj = document.getElementById("collapse" + chooseCount);
     obj.setAttribute("id", "collapse" + UnitCount);
 
     obj = document.getElementById("Button_collapse" + chooseCount);
@@ -294,7 +368,7 @@ function Release(state) {
 
 function Change_Class_Fun(ClassCount, chooseCount) {
     //alert("ClassCount:" + ClassCount + " ChooseCount:" + chooseCount);
-    var obj = document.getElementById("hour_button_collapse" + chooseCount);
+    let obj = document.getElementById("hour_button_collapse" + chooseCount);
     obj.setAttribute("id", "hour_button_collapse" + ClassCount);
     obj.setAttribute("href", "#hour_collapse" + ClassCount);
 
@@ -314,7 +388,7 @@ function Change_Class_Fun(ClassCount, chooseCount) {
 }*/
 
 function addSection() {
-    var unit_name = $("#unit_name");
+    let unit_name = $("#unit_name");
     add_unit(unit_name.val(),UnitCount);
     UnitCount = UnitCount + 1;
     //Change_Unit_Fun(UnitCount, "");
@@ -324,19 +398,19 @@ function addSection() {
 }
 
 function add_class_hour(add_id) {
-    var class_name = $("#class_name");
+    let class_name = $("#class_name");
     add_collapse($('#'+add_id),class_name.val(),'选择视频','','',0,ClassCount);
   /*  $("#hour_collapse" ).prev().children("h10").text(class_name.val());
     /!*alert(($(add_id).parent().parent().parent().next().children("div:last-child").children("div:first-child").children("div:last-child").attr('id')));*!/
-    var Next_Class_id = $(add_id).parent().parent().parent().next().children("div:last-child").children("div:first-child").children("div:last-child").attr('id');
+    let Next_Class_id = $(add_id).parent().parent().parent().next().children("div:last-child").children("div:first-child").children("div:last-child").attr('id');
     if (Next_Class_id!=null){
-        var Next_Class_No = parseInt(Next_Class_id.slice(-1));
-        var i = ClassCount-1;
+        let Next_Class_No = parseInt(Next_Class_id.slice(-1));
+        let i = ClassCount-1;
         for(i;i>=Next_Class_No;i--){
             //Change_Class_Fun(i+1,i);
         }
-        var E = window.wangEditor;
-        var editor = new E('#editor' + Next_Class_No);
+        let E = window.wangEditor;
+        let editor = new E('#editor' + Next_Class_No);
         //Change_Class_Fun(Next_Class_No, "");
     }else{
         //Change_Class_Fun(ClassCount,"");
@@ -350,14 +424,14 @@ function add_class_hour(add_id) {
 }
 
 function Change_Unit_Name(Change_button_id) {
-    var text = $("#Change_unit_name");
+    let text = $("#Change_unit_name");
     $('#'+Change_button_id).prev().children().eq(1).text(text.val());
     text.val('');
     $("#Change_section_Close").click();
 }
 
 function Change_Class_Name(Change_button_id) {
-    var text = $("#Change_class_name");
+    let text = $("#Change_class_name");
     $('#'+Change_button_id).prev().children().eq(1).text(text.val());
     text.val('');
     $("#Change_Class_Close").click();
@@ -414,16 +488,16 @@ $(function () {
 });
 
 function onprogress(evt){
-    var loaded = evt.loaded;                  //已经上传大小情况
-    var tot = evt.total;                      //附件总大小
-    var per = Math.floor(100*loaded/tot);     //已经上传的百分比
+    let loaded = evt.loaded;                  //已经上传大小情况
+    let tot = evt.total;                      //附件总大小
+    let per = Math.floor(100*loaded/tot);     //已经上传的百分比
     local_bar.children().html( per +'%'+'('+loaded+'/'+tot+')' );
     local_bar.css('width' , per +'%');
     if (per===100)  local_bar.css('display','none');
 }
 
 function upload(event, type) {
-    var fileObj = event.files[0]; // js 获取文件对象
+    let fileObj = event.files[0]; // js 获取文件对象
     /*if ("undefined" === typeof (fileObj) || fileObj.size <= 0) {
         alert("请选择图片");
         return;
@@ -433,12 +507,12 @@ function upload(event, type) {
         alert('上传的视频不能大于100M');
         return;
     }
-    var formFile = new FormData();
+    let formFile = new FormData();
     formFile.append("action", 'vedio');
     formFile.append("file", fileObj); //加入文件对象
-    var data = formFile;
-    var local_bar = $(event).parent().parent().next();
-    var websocket = null;
+    let data = formFile;
+    let local_bar = $(event).parent().parent().next();
+    let websocket = null;
     $.ajax({
         url: contextPath+"/uploadsec",
         data: data,
@@ -449,13 +523,13 @@ function upload(event, type) {
         contentType: false, //必须
         xhr: function(){
             //取得xmlhttp异步监听
-            var xhr = $.ajaxSettings.xhr();
+            let xhr = $.ajaxSettings.xhr();
             local_bar.css('display','block');
             if(onprogress && xhr.upload) {
                 xhr.upload.addEventListener('progress' , function (evt) {
-                    var loaded = evt.loaded;                  //已经上传大小情况
-                    var tot = evt.total;                      //附件总大小
-                    var per = Math.floor(100*loaded/tot);     //已经上传的百分比
+                    let loaded = evt.loaded;                  //已经上传大小情况
+                    let tot = evt.total;                      //附件总大小
+                    let per = Math.floor(100*loaded/tot);     //已经上传的百分比
                     local_bar.children().html( per +'%'+'('+loaded+'/'+tot+')' );
                     local_bar.css('width' , per +'%');
                     if (per===100)  {
@@ -517,32 +591,13 @@ function Delete_File(event) {
     $(event).parent().remove();
 }
 
-function getHTML() {
-    $("#preview").attr("href","Learn_list.html?class_id="+No);
-     $.ajax({
-        type: "POST",
-        url:contextPath+"/SaveClassInfor",
-        data: {
-            No:No,
-            Read_or_Save: "read"
-        },
-        dataType: 'json',
-        success: function (jsonObj) {
-            $("#curriculum_Name").text(jsonObj.title);
-            $("#teacher_Name").text(jsonObj.teacher);
-            if (jsonObj.state==='1')  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
-            else $("#curriculum_button").addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
-        }
-    });
-}
-
 /*function new_Editor() {
-    for (var i = 1; i <= ClassCount; i++) {
-        var editor_ID = $('#editor'+i);
-        var editor_ID_HTML = editor_ID.find('div:last').html();
+    for (let i = 1; i <= ClassCount; i++) {
+        let editor_ID = $('#editor'+i);
+        let editor_ID_HTML = editor_ID.find('div:last').html();
         editor_ID.empty();
-        var E = window.wangEditor;
-        var editor = new E('#editor' + i);
+        let E = window.wangEditor;
+        let editor = new E('#editor' + i);
         editor.create();
         editor_ID.find('div:last').empty();
         editor_ID.find('div:last').append(editor_ID_HTML);
@@ -596,7 +651,7 @@ function get_files(event) {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            var tbody = $('#file_box tbody');
+            let tbody = $('#file_box tbody');
             files_flag = 1;
             if (jsonObj.files.length===0){
                 tbody.append(
@@ -604,7 +659,7 @@ function get_files(event) {
                 );
                 return;
             }
-            for (var i=0;i<jsonObj.files.length;i++){
+            for (let i=0;i<jsonObj.files.length;i++){
                 add_file_list(tbody,jsonObj.files[i].file_add,jsonObj.files[i].file_name);
             }
         }
@@ -638,14 +693,14 @@ function delete_files(event) {
 }
 
 function search_files() {
-    var files_bank = $('#files_bank tr');
+    let files_bank = $('#files_bank tr');
     files_bank.show();
-    var searchText = $('#files_search').val();
-    var regExp = new RegExp(searchText, 'g');
+    let searchText = $('#files_search').val();
+    let regExp = new RegExp(searchText, 'g');
     files_bank.each(function ()//遍历文章；
     {
-        var text = $(this).text();
-        //var newHtml = html.replace(regExp, '1');//将找到的关键字替换，加上highlight属性；
+        let text = $(this).text();
+        //let newHtml = html.replace(regExp, '1');//将找到的关键字替换，加上highlight属性；
         if (!regExp.test(text)){
             $(this).hide();
         }

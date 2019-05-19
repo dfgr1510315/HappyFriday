@@ -1,8 +1,7 @@
 <!doctype html>
-<html>
 <head>
     <meta charset="utf-8">
-    <title>404页面</title>
+    <title>无法访问页面</title>
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <style>
         html, body {
@@ -58,9 +57,8 @@
             top: 30px;
             height: 18px;
             width: 18px;
-            border: 4px solid;
             border-radius: 50%;
-            border-color: #fff;
+            border: 4px solid #fff;
             opacity: .2;
             animation: shine 4s ease-in-out 1.3s infinite;
         }
@@ -110,9 +108,8 @@
             top: 40px;
             height: 12px;
             width: 12px;
-            border: 3px solid;
             border-radius: 50%;
-            border-color: #fff;
+            border: 3px solid #fff;
             opacity: .2;
             animation: shine 1.7s ease-in-out 7s infinite;
         }
@@ -212,7 +209,7 @@
         }
         .box .box__description .box__description-container .box__description-title {
             font-size: 24px;
-            letter-spacing: .5px;
+            letter-spacing: 1px;
             text-align: center;
         }
         .box .box__description .box__description-container .box__description-text {
@@ -336,20 +333,17 @@
 </div>
 
 <script>
-    var pageX = $(document).width();
-    var pageY = $(document).height();
-    var mouseY=0;
-    var mouseX=0;
+    let pageX = $(document).width();
+    let pageY = $(document).height();
+    let mouseY=0;
+    let mouseX=0;
     $(document).mousemove(function( event ) {
         mouseY = event.pageY;
-        yAxis = (pageY/2-mouseY)/pageY*300;
+        let yAxis = (pageY/2-mouseY)/pageY*300;
         mouseX = event.pageX / -pageX;
-        xAxis = -mouseX * 100 - 100;
+        let xAxis = -mouseX * 100 - 100;
         $('.box__ghost-eyes').css({ 'transform': 'translate('+ xAxis +'%,-'+ yAxis +'%)' });
-
         //console.log('X: ' + xAxis);
-
     });</script>
 
 </body>
-</html>

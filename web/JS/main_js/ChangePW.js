@@ -1,26 +1,19 @@
-var flag1 = false;
-var flag2 = false;
-var flag3 = false;
-var form_currentPassword;
-var form_confirmPassword;
-var form_newPassword;
-var contextPath = getContextPath();
+let flag1 = false;
+let flag2 = false;
+let flag3 = false;
+let user = cookie.get('user');
+let form_currentPassword;
+let form_confirmPassword;
+let form_newPassword;
 $(document).ready(function(){
-    $('#navigation').load('navigation_dark.html',function () {
-        $('#VerticalNav').load('VerticalNav.html',function () {
-            addClass(1);
-            $.when(get_user_infor()).done(function () {
-                //console.log('done:'+head_image);
-                $('#radio_cover_img').attr('src',contextPath+head_image);
-            });
-        });
-    });
+    $('#navigation').load('navigation_dark.html');
+    $('#VerticalNav').load('VerticalNav.html',function () {addClass(1);});
     chang_PW();
 });
 
 function chang_PW() {
     form_currentPassword = $("#form-currentPassword");
-    var currentPassword_waring = $('#currentPassword_waring');
+    let currentPassword_waring = $('#currentPassword_waring');
     form_currentPassword.focus(function(){
         currentPassword_waring.css('display','none');
         flag1 = false;
@@ -32,7 +25,7 @@ function chang_PW() {
     });
 
     form_newPassword = $('#form_newPassword');
-    var form_newPassword_waring = $('#form_newPassword_waring');
+    let form_newPassword_waring = $('#form_newPassword_waring');
     form_newPassword.focus(function () {
         form_newPassword_waring.css('display','none');
         flag2 = false;
@@ -50,8 +43,8 @@ function chang_PW() {
     });
 
     form_confirmPassword = $('#form_confirmPassword');
-    var form_confirmPassword_waring1 = $('#form_confirmPassword_waring1');
-    var form_confirmPassword_waring2 = $('#form_confirmPassword_waring2');
+    let form_confirmPassword_waring1 = $('#form_confirmPassword_waring1');
+    let form_confirmPassword_waring2 = $('#form_confirmPassword_waring2');
     form_confirmPassword.focus(function () {
         form_confirmPassword_waring1.css('display','none');
         form_confirmPassword_waring2.css('display','none');
@@ -68,10 +61,9 @@ function chang_PW() {
 }
 
 function post_PW() {
-    //alert(flag1+','+flag2+','+flag3);
     if (flag1===true&&flag2===true&&flag3===true&&form_confirmPassword.val()===form_newPassword.val()) {
         $.ajax({
-            url: "${pageContext.request.contextPath}/changepw",
+            url: contextPath+"/changepw",
             data: {
                 username:user,
                 form_currentPassword:form_currentPassword.val(),

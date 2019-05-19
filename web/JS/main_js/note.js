@@ -1,5 +1,5 @@
-var E = window.wangEditor;
-var edit_configure = [
+let E = window.wangEditor;
+let edit_configure = [
     'head',
     'bold',
     'italic',
@@ -9,17 +9,11 @@ var edit_configure = [
     'fontSize',  // 字号
     'quote',
     'code'];
-var contextPath = getContextPath();
+let user = cookie.get('user');
 $(document).ready(function(){
-    $('#navigation').load('navigation_dark.html',function () {
-        $('#VerticalNav').load('VerticalNav.html',function () {
-            addClass(8);
-            $.when(get_user_infor()).done(function () {
-                get_note();
-                $('#radio_cover_img').attr('src',contextPath+head_image);
-            });
-        });
-    });
+    $('#navigation').load('navigation_dark.html');
+    $('#VerticalNav').load('VerticalNav.html',function () {addClass(8);});
+    get_note();
 });
 
 function get_note() {
@@ -34,8 +28,8 @@ function get_note() {
         dataType: 'json',
         success: function (jsonObject){
             //console.log(jsonObject);
-            var note_box = $('#note_box');
-            for (var i=0;i< jsonObject.note.length;i++){
+            let note_box = $('#note_box');
+            for (let i=0;i< jsonObject.note.length;i++){
                 note_box.prepend('<div class="post-row">\n' +
                     '                            <div style="float:left;">\n' +
                     '                                <a target="_blank" href="Learn_list.html?class_id='+jsonObject.note[i].belong_class_id+'">\n' +
@@ -50,7 +44,7 @@ function get_note() {
                     '                                    <a target="_blank" href="Play.html?'+jsonObject.note[i].belong_class_id+'/'+jsonObject.note[i].unit_no+'" >'+jsonObject.note[i].unit_no+'&nbsp&nbsp&nbsp'+jsonObject.note[i].lesson_title+'</a>\n' +
                     '                                </div>\n' +
                     '                                <div style="display:block;">\n' +
-                    '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow:ellipsis;max-height:63%;min-height=20%">\n' +
+                    '                                    <div class="note_text">\n' +
                     '                                        '+jsonObject.note[i].text+'\n' +
                     '                                    </div>\n' +
                     '                                    <div class="post" style="margin-left:445px;">\n' +
@@ -68,7 +62,7 @@ function get_note() {
                     '                                </div>\n' +
                     '                            </div>\n' +
                     '                        </div>');
-                var edit_editor = new E('#edit_editor'+i);
+                let edit_editor = new E('#edit_editor'+i);
                 edit_editor.customConfig.menus = edit_configure;
                 edit_editor.create();
                 edit_editor.txt.html(jsonObject.note[i].text);
@@ -83,8 +77,8 @@ function get_note() {
 }
 
 function change_note(event) {
-    var new_note = $(event).parent().prev().children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g,'');
-    var time = new Date().Format("yyyy-MM-dd HH:mm:ss");
+    let new_note = $(event).parent().prev().children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g,'');
+    let time = new Date().Format("yyyy-MM-dd HH:mm:ss");
     $.ajax({
         type: "POST",
         asynch: "false",
@@ -107,9 +101,9 @@ function change_note(event) {
 
 $(function () {
     $('#Delete_Note').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var button_id = button.data('noteno'); //获取呼出模态框的按钮ID
-        var obj = document.getElementById("Delete_Note_sure_button");
+        let button = $(event.relatedTarget);
+        let button_id = button.data('noteno'); //获取呼出模态框的按钮ID
+        let obj = document.getElementById("Delete_Note_sure_button");
         obj.setAttribute("onclick", "delete_note(" + button_id + ")");
     })
 });
@@ -143,7 +137,7 @@ function out_edit_note(event) {
     $(event).parent().parent().prev().css('display','block');
 }
 Date.prototype.Format = function (fmt) {
-    var o = {
+    let o = {
         "M+": this.getMonth() + 1, //月份
         "d+": this.getDate(), //日
         "H+": this.getHours(), //小时
@@ -153,7 +147,7 @@ Date.prototype.Format = function (fmt) {
         "S": this.getMilliseconds() //毫秒
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
+    for (let k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 };
