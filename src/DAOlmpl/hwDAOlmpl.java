@@ -309,18 +309,18 @@ public class hwDAOlmpl implements homeWorkDAO {
     }
 
     @Override
-    public boolean power_work(int work_id, String student) {
+    public String power_work(int work_id, String student) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
-        boolean state = false;
+        String title = null;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select sc.time from homework,sc where user='"+student+"' and class_id=classification and course_id=class and id="+work_id);
-            System.out.println(student);
+            ResultSet rs = statement.executeQuery("select title from homework,sc where user='"+student+"' and class_id=classification and course_id=class and id="+work_id);
+            //System.out.println(student);
             while (rs.next()) {
-                System.out.println(rs.getString("sc.time"));
-                state = true;
+                //System.out.println(rs.getString("sc.time"));
+                title = rs.getString("title");
             }
             rs.close();
         } catch (Exception e) {
@@ -333,6 +333,6 @@ public class hwDAOlmpl implements homeWorkDAO {
                     e.printStackTrace();
                 }
         }
-        return state;
+        return title;
     }
 }

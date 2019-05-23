@@ -1,5 +1,7 @@
-
-
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0!important;
+}
 .dndArea {
     width: 200px;
     height: 100px;
@@ -56,6 +58,10 @@
     float: none;
     margin-top: 0;
     display: inline-block
+}
+
+.badge-primary{
+    background-color: #449dea;
 }
 
 .container_right_head {
@@ -191,4 +197,41 @@ body{
 #ui_box{
     height: 210px;
     margin-top: 33px;
+}
+
+.box-header {
+    color: #455a64;
+    display: block;
+    padding: 1.5rem 1.5rem;
+    position: relative;
+    border-bottom: 1px solid rgba(97, 106, 120, 0.07);
+}
+.box-header .box-title {
+    display: inline-block;
+    margin: 0;
+    font-weight: 500;
+    line-height: 22px;
+    font-size: 18px;
+}
+.col_xl_8 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 25px;
+}
+
+.box-body {
+    padding: 1.5rem 1.5rem;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.no_find_class {
+    width: 247px;
+    margin: 100px auto;
+    font-size: 35px;
+    font-weight: 300;
+    color: #93999f;
 }

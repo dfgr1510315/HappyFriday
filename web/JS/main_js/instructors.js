@@ -5,6 +5,7 @@ let class_name;
 let result = {};//学生成绩
 let work_file;
 let No;
+let get_class_flag = 0;
 $(document).ready(function(){
     No = GetQueryString('class_id');
     $('#navigation').load('navigation_dark.html');
@@ -23,21 +24,35 @@ function get_homework() {
         type: "POST",
         dataType: "json",
         success: function (json) {
-            // console.log(json);
+            if (json.HW.length===0){
+                $('.table-responsive table').hide();
+                $('.table-responsive').append('<div class="no_find_class">暂未布置作业</div>');
+                return
+            }
             let time;
-            let arr_class = [];
-            let arr_class_id = [];
             for (let i=0;i<json.HW.length;i++){
                 time = specs(json.HW[i].time.toString());
                 work_body(time,json.HW[i].class_name,json.HW[i].title,json.HW[i].id,json.HW[i].class_id,json.HW[i].file_add);
-                if ($.inArray(json.HW[i].class_id,arr_class_id)===-1)  {
-                    arr_class_id.push(json.HW[i].class_id);
-                    arr_class.push(json.HW[i].class_name);
-                }
             }
-            add_option(arr_class_id,arr_class);
         }
     });
+}
+
+function get_class() {
+    if (get_class_flag===1) return;
+    $.ajax({
+        url: contextPath+"/students",
+        data: {
+            No:No,
+            action:'get_class'
+        },
+        type: "POST",
+        dataType: "json",
+        success: function (jsonObj) {
+            add_option(jsonObj);
+            get_class_flag = 1
+        }
+    })
 }
 
 //获取此班级作业
@@ -176,7 +191,7 @@ function work_body(time,class_name,title,work_id,class_id,file_add) {
         ' <td><a href="javascript:void(0);" onclick="get_stu(this,'+work_id+','+class_id+')"><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+class_name+'</span></span></a></td>\n' +
         ' <td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+title+'</span></span></td>\n' +
         ' <td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+file_add+'</span></span></td>\n' +
-        ' <td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;"><a href="javascript:void(0);" onclick="delete_work(this,'+work_id+')">删除</a></span></span></td>\n' +
+        ' <td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;"><a href="javascript:void(0);">随机抽题</a> <a href="javascript:void(0);" onclick="delete_work(this,'+work_id+')">删除</a></span></span></td>\n' +
         '</tr>')
 }
 
@@ -312,7 +327,11 @@ function delete_work(event,work_id){
             dataType: 'json',
             success: function (msg) {
                 if (msg===true){
-                    $(event).parent().parent().parent().parent().remove()
+                    $(event).parent().parent().parent().parent().remove();
+                    if ($('#work_body tr').length===0) {
+                        $('.table-responsive table').hide();
+                        $('.table-responsive').append('<div class="no_find_class">暂未布置作业</div>');
+                    }
                 }else alert('删除失败')
             }
         })
@@ -320,8 +339,8 @@ function delete_work(event,work_id){
 }
 
 //添加作业模态框的班级选项
-function add_option(class_id,class_name) {
-    for (let i=0;i<class_id.length;i++) $('#class').append('<option value="'+class_id[i]+'">'+class_name[i]+'</option>')
+function add_option(class_info) {
+    for (let i=0;i<class_info.class.length;i++) $('#class').append('<option value="'+class_info.class[i].id+'">'+class_info.class[i].name+'</option>')
 }
 
 function work_upload(event) {
@@ -388,6 +407,8 @@ function add_work(){
                 success: function (msg) {
                     //function work_body(time,class_name,title,work_id,class_id,file_add)
                     if (msg!==0){
+                        $('.table-responsive table').show();
+                        $('.no_find_class').remove();
                         work_body(specs(time),class_selected.text(),title,msg,No,file.name);
                         work_file = undefined;
                         $('#title').val('');

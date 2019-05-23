@@ -15,13 +15,6 @@
     <link rel="stylesheet" type="text/css" href="../CSS/main_css/Myclass.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 </head>
-<style type="text/css">
-    body.modal-open {
-        overflow-y: auto !important;
-        padding-right: 0!important;
-    }
-</style>
-
 <body>
 <div id="navigation"></div>
 <div>
@@ -30,29 +23,35 @@
         <div class="main_box">
             <div id="course_manag_nav"></div>
             <div class="container_right">
-                <h3 class="container_right_head">
-                    基本信息
-                </h3>
-                <table class="table">
-                    <tr>
-                        <td style="width: 80%;text-align: center;border-top: none;">
-                            <div class="img" style="height: 200px;">
-                                <img  src="" alt="" id="cover" style="height: 200px;">
-                            </div>
-                            <div style="text-align: center; margin-top: 7px">
-                                <label for="head_iamge" class=" btn btn-primary btn-sm" style="font-size: 12px">上传</label>
-                                <input id="head_iamge" type="file" style="display:none" onchange="post_cover_image(this)">
-                            </div>
+                <div class="col_xl_8 col-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title"><span style="vertical-align: inherit;"><span id="class_nav" style="vertical-align: inherit;">课程封面</span></span></h4>
+                        </div>
+                        <div class="box-body">
+                            <table class="table">
+                                <tr>
+                                    <td style="width: 80%;text-align: center;border-top: none;">
+                                        <div class="img" style="height: 200px;">
+                                            <img  src="" alt="" id="cover" style="height: 200px;">
+                                        </div>
+                                        <div style="text-align: center; margin-top: 7px">
+                                            <label for="head_iamge" class=" btn btn-outline-secondary btn-sm" style="font-size: 12px">上传</label>
+                                            <input id="head_iamge" type="file" style="display:none" onchange="post_cover_image(this)">
+                                        </div>
 
-                            <div style="border: 0 solid red;margin-top: 10px;">
-                                <span style="margin-left: 30px;margin-top: 10px;color: red;">您可以上传jpg,gif,png格式的文件，图片建议尺寸至少为480x300，文件大小不能超过20MB</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: center;"><button type="button" class="btn btn-primary btn-sm" onclick="save_cover_image()" >保存</button></td>
-                    </tr>
-                </table>
+                                        <div style="border: 0 solid red;margin-top: 10px;">
+                                            <span style="margin-left: 30px;margin-top: 10px;color: red;">您可以上传jpg,gif,png格式的文件，图片建议尺寸至少为480x300，文件大小不能超过20MB</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: center;"><button type="button" class="btn btn-outline-info btn-sm" onclick="save_cover_image()" >保存</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

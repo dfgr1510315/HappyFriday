@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 </head>
 <style type="text/css">
-    body.modal-open {
-        overflow-y: auto !important;
-        padding-right: 0!important;
-    }
     .group{
         margin-top: 15px;
     }
@@ -38,50 +34,54 @@
         <div class="main_box">
             <div id="course_manag_nav"></div>
             <div class="container_right">
-                <h3 class="container_right_head">
-                    基本信息
-                </h3>
-                <div>
-                    <div class="group">
-                        <div class="input-group group_with">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">标题</span>
+                <div class="col_xl_8 col-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title"><span style="vertical-align: inherit;"><span id="class_nav" style="vertical-align: inherit;">基本信息</span></span></h4>
+                        </div>
+                        <div class="box-body">
+                            <div class="group">
+                                <div class="input-group group_with">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">标题</span>
+                                    </div>
+                                    <label for="title"></label>
+                                    <input type="text" class="basic_control form-control" id="title">
+                                </div>
+                                <div class="group_with">
+                                    <small id="title_waring" data-bv-validator="notEmpty" class="help-block" style="display: none">课程标题的长度为2-60个中文或字母、数字</small>
+                                </div>
                             </div>
-                            <label for="title"></label>
-                            <input type="text" class="basic_control form-control" id="title">
-                        </div>
-                        <div class="group_with">
-                            <small id="title_waring" data-bv-validator="notEmpty" class="help-block" style="display: none">课程标题的长度为2-60个中文或字母、数字</small>
-                        </div>
-                    </div>
-                    <div class="group">
-                        <div class="input-group group_with">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">分类</span>
+                            <div class="group">
+                                <div class="input-group group_with">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">分类</span>
+                                    </div>
+                                    <label for="sel1"></label>
+                                    <select class="form-control found_class_text basic_control " id="sel1" >
+                                        <option>类型</option>
+                                        <option value=1>前端设计</option>
+                                        <option value=2>后台设计</option>
+                                        <option value=3>移动开发</option>
+                                        <option value=4>嵌入式</option>
+                                        <option value=5>基础理论</option>
+                                        <option value=6>项目发布</option>
+                                    </select>
+                                </div>
+                                <div class="group_with">
+                                    <small id="sel1_waring" data-bv-validator="notEmpty" class="help-block" style="display: none">请选择课程类型</small>
+                                </div>
                             </div>
-                            <label for="sel1"></label>
-                            <select class="form-control found_class_text basic_control " id="sel1" >
-                                <option>类型</option>
-                                <option value=1>前端设计</option>
-                                <option value=2>后台设计</option>
-                                <option value=3>移动开发</option>
-                                <option value=4>嵌入式</option>
-                                <option value=5>基础理论</option>
-                                <option value=6>项目发布</option>
-                            </select>
+                            <div class="group">
+                                <div class="input-group group_with">
+                                    <label for="outline" style="margin-right: 9px;margin-left: -16px;">课程概要</label>
+                                    <textarea type="text" class="form-control basic_control " id="outline" style="height: 90px;resize:none"></textarea>
+                                </div>
+                            </div>
+                            <div class="group_with" style="height: 52px;margin-top: 10px;">
+                                <button type="button" class="btn btn-outline-info btn-sm" style="float: right" onclick="save_information()">保存</button>
+                            </div>
                         </div>
-                        <div class="group_with">
-                            <small id="sel1_waring" data-bv-validator="notEmpty" class="help-block" style="display: none">请选择课程类型</small>
-                        </div>
-                    </div>
-                    <div class="group">
-                        <div class="input-group group_with">
-                            <label for="outline" style="margin-right: 9px;margin-left: -16px;">课程概要</label>
-                            <textarea type="text" class="form-control basic_control " id="outline" style="height: 90px;resize:none"></textarea>
-                        </div>
-                    </div>
-                    <div class="group_with" style="height: 52px;margin-top: 10px;">
-                        <button type="button" class="btn btn-light btn-sm" style="float: right" onclick="save_information()">保存</button>
                     </div>
                 </div>
             </div>

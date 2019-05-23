@@ -156,3 +156,7 @@ a:hover {
 .catog-points a:hover {
     color: #1c1f21;
 }
+
+.nav-pills .nav-link.active{
+    background-color: #61c5ff;
+}

@@ -13,7 +13,7 @@ body.modal-open {
     float: right !important;
 }
 
-.head .btn-outline-primary{
+.box-header .btn,#class_table .btn{
     float: right;
     margin-left: 20px;
 }
@@ -35,6 +35,11 @@ img {
 
 .table thead th{
     width: 18%;
+    font-weight: 500;
+}
+
+.table{
+    color: #757575;
 }
 
 .progress{

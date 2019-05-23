@@ -23,9 +23,9 @@ function power_work() {
         },
         dataType: 'json',
         success: function (msg) {
-            if (msg!==true){
+            if (msg.title===undefined){
                 window.location.href="404.html";
-            }
+            }else $('title').text(msg.title)
         }
     });
 }
@@ -228,7 +228,7 @@ function get_work() {
         },
         dataType: 'json',
         success: function (json) {
-            //console.log(json);
+            console.log(json);
             choice(json);
             TiMu();
             questions_text();

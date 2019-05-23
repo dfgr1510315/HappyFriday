@@ -7,6 +7,7 @@ let Unit_length;
 let Unit = [];
 let class_no = No[1];
 No = No[0];
+let user = cookie.get('user');
 let editor_count = 0;
 let E = window.wangEditor;
 let configure = [
@@ -65,7 +66,7 @@ function get_Class() {
             $("title").text(jsonObject.title);
             Unit_length = jsonObject.chapter.length;
             let unit_titles = [];
-            for (i = 0; i < jsonObject.chapter.length; i++) {
+            for (let i = 0; i < jsonObject.chapter.length; i++) {
                 if (-1 === unit_contain(unit_titles, jsonObject.chapter[i].unit_title)) unit_titles.push(jsonObject.chapter[i].unit_title);
             }
             for (let i = 0; i < unit_titles.length; i++) {
@@ -78,7 +79,7 @@ function get_Class() {
                     '</ul>'
                 );
             }
-            for (i = 0; i < jsonObject.chapter.length; i++) {
+            for (let i = 0; i < jsonObject.chapter.length; i++) {
                 Unit.push(jsonObject.chapter[i].unit_no);
                 let belong_unit = unit_contain(unit_titles, jsonObject.chapter[i].unit_title);
                 $("#Unit" + belong_unit).append(

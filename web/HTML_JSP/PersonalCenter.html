@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="../CSS/PerCenterContainer.css">
     <link rel="stylesheet" href="../CSS/main_css/PersonalCenter.css">
+    <link rel="stylesheet" href="../CSS/modernforms.css">
+    <link rel="stylesheet" href="../CSS/theme-blue.css">
 </head>
 <body>
 <div id="navigation"></div>
@@ -24,19 +26,19 @@
                         <div class="change_img">
                             <!--   <label id="up-img-touch" for="head_img" class=" btn btn-primary" style="font-size: 12px;">更换头像</label>
                                <input id="head_img" type="file" style="display:none" onchange="post_head_image(this)">-->
-                            <button data-toggle="modal" data-target="#up_head" class=" btn btn-primary" style="font-size: 12px;">更换头像</button>
+                            <button data-toggle="modal" data-target="#up_head" class=" btn btn-outline-info btn-sm" style="font-size: 12px;">更换头像</button>
                         </div>
                     </div>
                     <div class="fr information">
                         <div class="information_top">
                             <span id="user_id_span"></span>
-                            <a data-toggle="modal" data-target="#information" href="#" class="fr">修改资料</a>
+                            <button data-toggle="modal" data-target="#information" type="button" class="btn btn-outline-info btn-sm fr" >修改资料</button>
                         </div>
                         <ul id="localUl">
                             <li id="liNike"></li>
                             <li id="liSex"></li>
                             <li id="liBirth"></li>
-                            <li id="liTeacher"></li>
+                        <!--    <li id="liTeacher"></li>-->
                             <li id="liIntro"></li>
                         </ul>
                     </div>
@@ -45,39 +47,77 @@
         </div>
     </div>
 
-    <div class="modal fade" id="information" style="background-color: transparent; width: 100%; top: 80px;">
-        <div class="modal-dialog">
+    <div class="modal fade" id="information" >
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">修改资料</h5>
+              <!--      <h5 class="modal-title">修改资料</h5>-->
                     <a id="ChangeClose" class="close" data-dismiss="modal">&times;</a>
                 </div>
                 <div class="modal-body">
-                    <form id="upload" action="http://localhost:8080/ChangeInfor" method="POST">
-                        <div class="form-group">
-                            <label for="nike">昵称:</label>
-                            <input type="text" class="form-control input1" id="nike">
-                        </div>
-                        <!-- <div class="form-group">
-                              <label for="name">实名:</label>
-                              <input type="text" class="form-control input1" id="name">
-                          </div>-->
-                        <div class="form-group">
-                            <label for="sex">性别:</label>
-                            <div class="dropdown">
-                                <button id="sex" type="button" class="btn btn-light dropdown-toggle"
-                                        data-toggle="dropdown" style="font-size: 15px">
-                                    请选择
-                                </button>
-                                <div class="dropdown-menu" style="min-width: 88px;">
-                                    <a class="dropdown-item" style="font-size: 13px"
-                                       onclick="sexChoose('男')">男</a>
-                                    <a class="dropdown-item" style="font-size: 13px"
-                                       onclick="sexChoose('女')">女</a>
+                    <div class="modern-forms">
+                        <div class="modern-container">
+                            <fieldset>
+                                <div class="form-row">
+                                    <div class="col col-6">
+                                        <div class="field-group">
+                                            <input id="nike" type="text" class="mdn-input">
+                                            <label for="nike" class="mdn-label">昵称</label>
+                                            <span class="mdn-bar"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col col-6">
+                                        <div class="field-group mdn-select">
+                                            <select name="sex">
+                                                <option>男</option>
+                                                <option>女</option>
+                                            </select>
+                                            <label  class="mdn-label">性别</label>
+                                            <span class="mdn-bar"></span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-row">
+                                    <div class="col col-6">
+                                        <div class="field-group prepend-icon">
+                                            <input id="year" type="text" class="mdn-input" placeholder="输入年">
+                                            <label for="year" class="mdn-label"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">年</span></span></label>
+                                            <span class="mdn-icon"><i class="fa fa-calendar"></i></span>
+                                            <span class="mdn-bar"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col col-6">
+                                        <div class="field-group mdn-select prepend-icon">
+                                            <select name="month">
+                                                <option value="1"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">一月</span></span></option>
+                                                <option value="2"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">二月</span></span></option>
+                                                <option value="3"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">三月</span></span></option>
+                                                <option value="4"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">四月</span></span></option>
+                                                <option value="5"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">五月</span></span></option>
+                                                <option value="6"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">六月</span></span></option>
+                                                <option value="7"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">七月</span></span></option>
+                                                <option value="8"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">八月</span></span></option>
+                                                <option value="9"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">九月</span></span></option>
+                                                <option value="10"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">十月</span></span></option>
+                                                <option value="11"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">十一月</span></span></option>
+                                                <option value="12"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">十二月</span></span></option>
+                                            </select>
+                                            <label class="mdn-label"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">出生月</span></span></label>
+                                            <span class="mdn-icon"><i class="fa fa-calendar"></i></span>
+                                            <span class="mdn-bar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="field-group">
+                                    <textarea id="introduction" class="mdn-textarea" placeholder="Enter Comments"></textarea>
+                                    <label for="introduction" class="mdn-label"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">个人简介</span></span></label>
+                                    <span class="mdn-bar"></span>
+                                </div>
+                            </fieldset>
                         </div>
-                        <div class="form-group">
+                <!--        <div class="form-group">
                             <label for="birth">生日:</label>
                             <input type="date" id="birth" class="form-control input1">
                         </div>
@@ -88,10 +128,11 @@
                         <div class="form-group">
                             <label for="introduction">简介:</label>
                             <textarea id="introduction" style="width: 80%;height: 60px; resize:none;font-size: 14px;" class="form-control"></textarea>
-                        </div>
-                        <button id="sure" type="button" class="btn btn-outline-primary btn-sm" style="margin-top: 15px;float: right;" onclick="changeInfor() ">确定</button>
-                    </form>
+                        </div>-->
+                    </div>
+                    <button id="sure" type="button" class="btn btn-outline-info btn-sm" style="margin-top: 15px;float: right;" onclick="changeInfor() ">确定</button>
                 </div>
+
             </div>
         </div>
     </div>

@@ -23,15 +23,22 @@
             <div id="course_manag_nav"></div>
             <div class="container_right">
                 <div class="head">
-                    <h3 class="container_right_head">学员管理</h3>
-                    <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#create_class">创建班级</button>
-                    <form  class="top-right">
-                        <button type="button" class="btn btn-outline-primary btn-sm">导入学员</button>
-                    </form>
-                    <button type="button" class="btn btn-outline-primary btn-sm">添加学员</button>
-                    <input class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/resources/csv/course/demo.csv'" value="下载模板">
+                    <div class="col_xl_8 col-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h4 class="box-title"><span style="vertical-align: inherit;"><span id="class_nav" style="vertical-align: inherit;">学员管理</span></span></h4>
+                                <button id="create_class_btn" type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#create_class">创建班级</button>
+                                <button id="return_class" type="button" class="btn btn-outline-success btn-sm" onclick="return_class()" style="display: none">返回</button>
+                                <button type="button" class="btn btn-outline-info btn-sm">导入学员</button>
+                                <button type="button" class="btn btn-outline-info btn-sm">添加学员</button>
+                                <input class="btn btn-outline-info btn-sm" type="button" onclick="location.href='/resources/csv/course/demo.csv'" value="下载模板">
+                            </div>
+                            <div class="box-body">
+                                <div id="class_box" class="table-responsive"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="class_box" class="table-responsive"></div>
                 <!--  <div id="page_box">
                       </div>
                       <ul id="page" class="pagination pagination-sm"></ul>-->
@@ -51,8 +58,7 @@
             <div class="modal-body">
                 <label for="create_class_name"></label>
                 <textarea id="create_class_name" class="form-control"></textarea>
-                <button type="button" class="btn btn-outline-success btn-sm" onclick="create_class()">确定
-                </button>
+                <button type="button" class="btn btn-outline-success btn-sm" onclick="create_class()">确定</button>
             </div>
         </div>
     </div>

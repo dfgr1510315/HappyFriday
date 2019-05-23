@@ -8,6 +8,15 @@ function get_cookie() {
     $('#pwd').val(cookie.get('password'));
 }
 
+/*$(function () {
+    console.log($('#LoginModal').text());
+    $('#LoginModal').on('show.bs.modal', function () {
+        console.log('/?');
+        $('#username').val(cookie.get('username'));
+        $('#pwd').val(cookie.get('password'));
+    })
+});*/
+
 function login() {
     let loginError = $("#loginError");
     loginError.hide();

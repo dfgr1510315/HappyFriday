@@ -43,10 +43,14 @@ function create_class() {
         dataType: "json",
         success: function (jsonObj) {
             if (jsonObj!==0){
+                if ($('#class_table').length===0){
+                    $('.no_find_class').remove();
+                    add_table($('#class_box'))
+                }
                 class_table(class_name.val(),jsonObj);
                 modal_class_table(class_name.val(),jsonObj);
                 class_name.val('');
-            }
+            }else alert('创建失败')
         }
     })
 }
@@ -61,31 +65,41 @@ function get_class() {
         type: "POST",
         dataType: "json",
         success: function (jsonObj) {
-            $('#class_box').append(
-                '<table id="class_table" class="table">\n' +
-                '                    <thead>\n' +
-                '                    <tr>\n' +
-                '                        <th>班级</th>\n' +
-                '                        <th>操作</th>\n' +
-                '                    </tr>\n' +
-                '                    </thead>\n' +
-                '                    <tbody></tbody>\n' +
-                '                </table>'
-            );
+            let class_box = $('#class_box');
+            if (jsonObj.class.length===0){
+                class_box.append(
+                    '<div class="no_find_class">暂未创建班级</div>'
+                );
+                return
+            }
+            add_table(class_box);
             for (let i=0;i<jsonObj.class.length;i++){
                 class_table(jsonObj.class[i].name,jsonObj.class[i].id);
                 modal_class_table(jsonObj.class[i].name,jsonObj.class[i].id);
             }
-
         }
     })
 }
 
+function add_table(class_box) {
+    class_box.append(
+        '<table id="class_table" class="table">\n' +
+        '                    <thead>\n' +
+        '                    <tr>\n' +
+        '                        <th>班级</th>\n' +
+        '                        <th></th>\n' +
+        '                    </tr>\n' +
+        '                    </thead>\n' +
+        '                    <tbody></tbody>\n' +
+        '                </table>'
+    );
+}
+
 function modal_class_table(name,id) {
-    $('#modal_class_table').append(
+    $('#modal_class_table tbody').append(
         ' <tr>\n' +
         '     <td>'+name+'</td>\n' +
-        '     <td><button type="button" style="margin-top: 0;float: right" class="btn btn-outline-primary btn-sm" onclick="join_class('+id+')">移动至此班级</button></td>\n' +
+        '     <td><button type="button" style="margin-top: 0;float: right" class="btn btn-outline-info btn-sm" onclick="join_class('+id+')">移动至此班级</button></td>\n' +
         '</tr>'
     );
 }
@@ -95,8 +109,8 @@ function class_table(name,id) {
         ' <tr>\n' +
         '        <td>'+name+'</td>\n' +
         '        <td>' +
-        '           <button type="button" style="margin-top: 0;" class="btn btn-outline-primary btn-sm" onclick="get_class_students('+id+')">查看班级</button>\n' +
         '           <button type="button" style="margin-top:0;" class="btn btn-outline-danger btn-sm" onclick="delete_student_class(this,'+id+')">删除班级</button>\n' +
+        '           <button type="button" style="margin-top: 0;" class="btn btn-outline-info btn-sm" onclick="get_class_students(this,'+id+')">查看班级</button>\n' +
         '       </td>\n' +
         '      </tr>'
     );
@@ -186,10 +200,14 @@ function add_page(page_id,count,page) {
     else page_ul.append('<li class="page-item disabled"><a class="page-link">Next</a></li>')
 }
 
-function get_class_students(id){
+function get_class_students(event,id){
     $('.table-striped').hide();
+    $('#class_table').hide();
+    $('#create_class_btn').hide();
+    $('#return_class').show();
+    $('#class_nav').text($(event).parent().prev().text());
     let student_table = $('#student_table'+id);
-    console.log(student_table.length);
+    //console.log(student_table.length);
     if ( student_table.length > 0 ) {
         student_table.show();
         return;
@@ -204,7 +222,7 @@ function get_class_students(id){
         type: "POST",
         dataType: "json",
         success: function (jsonObj) {
-            console.log(jsonObj);
+            //console.log(jsonObj);
             let class_box = $('#class_box');
             if (jsonObj.students.length===0)  {
                 class_box.append(
@@ -242,7 +260,7 @@ function get_class_students(id){
                     '                            </div>\n' +
                     '                        </td>\n' +
                     '                        <td>\n' +
-                    '                            <button type="button" class="btn btn-outline-primary btn-sm">设为班长</button>\n' +
+                    '                            <button type="button" class="btn btn-outline-info btn-sm">设为班长</button>\n' +
                     '                            <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#join_class" data-student="'+jsonObj.students[i].name+'" onclick="change_stu(this)">移动学员</button>\n' +
                     '                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="remove_student(this)">移除学员</button>\n' +
                     '                        </td>\n' +
@@ -255,7 +273,20 @@ function get_class_students(id){
 }
 
 function change_stu(event){
+    $('#modal_class_table tr').show();
+    let class_name = $('#class_nav').text();
+    //":contains('W3School')"
+    $('#modal_class_table tr:contains(\''+class_name+'\')').hide();
     move_event = event;
     move_student = $(event).data('student');
 }
 
+
+
+function return_class() {
+    $('.table-striped').hide();
+    $('#class_table').show();
+    $('#class_nav').text('学员管理');
+    $('#create_class_btn').show();
+    $('#return_class').hide()
+}

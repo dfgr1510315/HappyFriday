@@ -36,7 +36,7 @@ function addUL(_ul,class_one) {
         '       <div class="catog-points">\n' +
         '              <span class="i-left span-common"><a target="_blank" href=' + class_one.class_id + '"Learn_list.html?class_id=&page_note=1">笔记 ' + class_one.note_count + '</a></span>\n' +
         '              <span class="i-right span-common"><a target="_blank" href=' + class_one.class_id + '"Learn_list.html?class_id=&page_ask=1">问答 ' + class_one.ask_count + '</a></span>\n' +
-        '              <button type="button" class="btn btn-outline-primary btn-sm" style="right: 32px;position: absolute;" onclick="continue_class(' + class_one.class_id + ',\'' + class_one.last_time + '\')">继续学习</button>\n' +
+        '              <button type="button" class="btn btn-outline-info btn-sm" style="right: 32px;position: absolute;" onclick="continue_class(' + class_one.class_id + ',\'' + class_one.last_time + '\')">继续学习</button>\n' +
         '       </div>\n' +
         '</li>'
     );

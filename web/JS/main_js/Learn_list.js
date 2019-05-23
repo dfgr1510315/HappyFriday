@@ -4,6 +4,7 @@ let pass = -1;
 let ask_flag = 0;
 let note_flag = 0;
 let get_class_flag = 0;
+let hw_flag = 0;
 let ask_count = -1;
 let note_count = -1;
 $(document).ready(function () {
@@ -172,10 +173,11 @@ function unit_contain(unit_titles, unit_title) {
 }
 
 function get_schedule() {
-    if (user === undefined) {
+    if (user === null) {
         $('.sno1-1 .learn-btn').append(
-            '<button type="button" class="studyfont btn btn-outline-primary" data-toggle="modal" data-target="#LoginModal" >开始学习</button>\n'
-        )
+            '<button type="button" class="studyfont btn btn-outline-primary" data-toggle="modal" data-target="#LoginModal" onclick="get_cookie()">开始学习</button>\n'
+        );
+        $('#homeWork_nav').attr('data-toggle','modal').attr('data-target','#LoginModal').attr('href','').attr('onclick','get_cookie()');
     } else {
         $.ajax({
             url: contextPath + "/students",
@@ -444,6 +446,7 @@ function continue_class(event) {
 }
 
 function get_HW(){
+    if (hw_flag===1) return;
     $.ajax({
         type: "POST",
         url: contextPath + "/HomeWork.do",
@@ -456,6 +459,11 @@ function get_HW(){
         success: function (json) {
             //console.log(json);
             let HW_ul = $('#HW_ul');
+            hw_flag = 1;
+            if (json.work.length===0) {
+                HW_ul.prepend( '<div class="no_find_class">暂无发布的作业</div>');
+                return
+            }
             for (let i=0;i<json.work.length;i++){
                 HW_ul.prepend(
                     ' <li class="post-row js-find-txt">\n' +

@@ -25,6 +25,7 @@ function get_user_infor() {
             usertype = cookie.get('usertype');
             let user = cookie.get('user');
             if (jsonObj.user===undefined){
+                cookie.del('user');
                 $("#loginButton").show();
                 $('.personalCenter').remove();
                 return

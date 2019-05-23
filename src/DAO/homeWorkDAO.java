@@ -28,5 +28,5 @@ public interface homeWorkDAO {
     List get_work_list(String student,int class_id);
 
     //作业界面权限判别
-    boolean power_work(int work_id,String student);
+    String power_work(int work_id,String student);
 }

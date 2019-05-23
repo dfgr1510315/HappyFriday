@@ -14,14 +14,16 @@ function get_infor() {
         },
         dataType: 'json',
         success: function (jsonObj) {
+            let birth = jsonObj.user_infor.birth.split('-');
             $('#liNike').text('昵称：  ' + jsonObj.user_infor.nike);
             $('#liSex').text('性别：  ' + jsonObj.user_infor.sex);
             $('#liBirth').text('生日：  ' + jsonObj.user_infor.birth);
-            $('#liTeacher').text('指导老师：  ' + jsonObj.user_infor.teacher);
+            /*$('#liTeacher').text('指导老师：  ' + jsonObj.user_infor.teacher);*/
             $('#liIntro').text('个人简介：  ' + jsonObj.user_infor.information);
             $("#nike").val(jsonObj.user_infor.nike);
-            $("#sex").text(jsonObj.user_infor.sex);
-            $("#birth").val(jsonObj.user_infor.birth);
+            $('select[name=\'sex\']').val(jsonObj.user_infor.sex);
+            $("#year").val(birth[0]);
+            $('select[name=\'month\']').find('option[value='+birth[1]+']').attr("selected",true);
             $("#teacher").val(jsonObj.user_infor.teacher);
             $("#introduction").val(jsonObj.user_infor.information);
             $('#pc_head_image').attr('src', contextPath + cookie.get('head_image'));
@@ -29,15 +31,15 @@ function get_infor() {
     });
 }
 
-function sexChoose(sex) {
+/*function sexChoose(sex) {
     $("#sex").text(sex);
-}
+}*/
+
 
 function changeInfor() {
     let nike = $.trim($("#nike").val());
-    let sex = $.trim($("#sex").text());
-    if (sex === '请选择') sex = '';
-    let birth = $.trim($("#birth").val());
+    let sex = $.trim($('select[name=\'sex\']').val());
+    let birth = $.trim($("#year").val()+'-'+$('select[name=\'month\']').val());
     let teacher = $.trim($("#teacher").val());
     let introduction = $.trim($("#introduction").val());
     let data = {
@@ -56,18 +58,20 @@ function changeInfor() {
         dataType: 'json',
         success: function (msg) {
             if (true === msg) {
+                alert('修改成功');
                 $("#ChangeClose").click();
                 $("#liNike").text("昵称：       " + nike);
                 $("#liSex").text("性别：        " + sex);
                 $("#liBirth").text("生日：        " + birth);
                 $("#liIntro").text("简介：        " + introduction);
-                $("#liTeacher").text("指导老师：" + teacher);
+                // $("#liTeacher").text("指导老师：" + teacher);
             } else {
                 alert("数据更新失败")
             }
         }
     });
 }
+
 
 function post_head_image(_blob) {
     //let animateimg = $(event).val(); //获取上传的图片名 带//

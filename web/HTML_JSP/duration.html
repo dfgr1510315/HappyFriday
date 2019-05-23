@@ -17,13 +17,12 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="../CSS/dateUI/datepicker.css">
 </head>
-<style type="text/css">
+<!--<style type="text/css">
     body.modal-open {
         overflow-y: auto !important;
         padding-right: 0!important;
     }
-</style>
-
+</style>-->
 <body>
 <div id="navigation"></div>
 <div>
@@ -32,19 +31,28 @@
         <div class="main_box">
             <div id="course_manag_nav"></div>
             <div class="container_right">
-                <h3 class="container_right_head">
+               <!-- <h3 class="container_right_head">
                     基本信息
-                </h3>
-                <div class="mt40" style="display: inline;margin-left: 56px;">
-                    <div class="c-datepicker-date-editor J-datepicker-range-day mt10">
-                        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
-                        <input placeholder="开始日期" id="start" class="c-datepicker-data-input only-date" value="">
-                        <span class="c-datepicker-range-separator">-</span>
-                        <input placeholder="结束日期" id="end" class="c-datepicker-data-input only-date" value="">
+                </h3>-->
+                <div class="col_xl_8 col-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title"><span style="vertical-align: inherit;"><span id="class_nav" style="vertical-align: inherit;">播放统计</span></span></h4>
+                            <div style="float: right">
+                                <div class="mt40" style="display: inline;margin-left: 56px;">
+                                    <div class="c-datepicker-date-editor J-datepicker-range-day mt10">
+                                        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+                                        <input placeholder="开始日期" id="start" class="c-datepicker-data-input only-date" value="">
+                                        <span class="c-datepicker-range-separator">-</span>
+                                        <input placeholder="结束日期" id="end" class="c-datepicker-data-input only-date" value="">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-outline-success btn-sm" style="display: inline;;margin-bottom: 2px;" onclick="census()">统计</button>
+                            </div>
+                        </div>
+                        <div id="main" style="width: 800px;height:400px;"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline-success btn-sm" style="display: inline;;margin-bottom: 2px;" onclick="census()">统计</button>
-                <div id="main" style="width: 800px;height:400px;"></div>
             </div>
         </div>
     </div>

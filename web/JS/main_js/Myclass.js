@@ -297,9 +297,9 @@ function add_unit(unit_title,collapse_id) {
         '   <div class="card-header"><span class="badge badge-pill badge-primary">章节</span>\n' +
         '       <h8>'+unit_title+'</h8>\n' +
         '       <div class="btn-group" style="float:right">\n' +
-        '           <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add_class_hour" onclick="cancel_drag()">增加课时</button>\n' +
-        '           <button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal"  data-target="#Change_section">更改名称</button>\n' +
-        '           <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"  data-target="#Delete_Unit">删除章节</button>\n' +
+        '           <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#add_class_hour" onclick="cancel_drag()">增加课时</button>\n' +
+        '           <button type="button" class="btn btn-outline-info btn-sm"  data-toggle="modal"  data-target="#Change_section">更改名称</button>\n' +
+        '           <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal"  data-target="#Delete_Unit">删除章节</button>\n' +
         '           <button id="Button_collapse'+(collapse_id+1)+'" type="button" class="btn btn-outline-secondary btn-sm ry card-link" data-toggle="collapse" href="#collapse'+(collapse_id+1)+'">折叠</button>\n' +
         '       </div>\n' +
         '   </div>\n' +
@@ -334,10 +334,10 @@ function Release(state) {
                 if (jsonObj===true) {
                     if (state===1) {
                         $("#Open_curriculum_Close").click();
-                        $("#curriculum_button").removeClass('btn-outline-primary').addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
+                        $("#curriculum_button").removeClass('btn-outline-info').addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
                     }else {
                         $("#Close_curriculum_Close").click();
-                        $("#curriculum_button").removeClass('btn-success').addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
+                        $("#curriculum_button").removeClass('btn-success').addClass('btn-outline-info').text('发布课程').attr('data-target','#Open_curriculum');
                     }
                 }else alert('修改状态失败')
             }

@@ -29,7 +29,7 @@
                         <div class="box-header">
                             <h4 class="box-title"><span style="vertical-align: inherit;"><span id="class_nav" style="vertical-align: inherit;">班级作业</span></span></h4>
                             <button id="return_class" type="button" class="btn btn-outline-info btn-sm" style="float: right;display: none" onclick="return_class()">返回</button>
-                            <button id="add_work" type="button" class="btn btn-outline-info btn-sm" style="float: right;" data-toggle="modal" data-target="#add_work_modal">布置作业</button>
+                            <button id="add_work" type="button" class="btn btn-outline-info btn-sm" style="float: right;" data-toggle="modal" data-target="#add_work_modal" onclick="get_class()">布置作业</button>
                         </div>
                         <div class="box-body">
                             <div class="table-responsive">
@@ -78,8 +78,7 @@
                                 </div>
                                 <div class="col col-6">
                                     <div class="field-group mdn-select">
-                                        <select id="class" name="select">
-                                        </select>
+                                        <select id="class" name="select"></select>
                                         <label for="class" class="mdn-label">选择班级</label>
                                         <span class="mdn-bar"></span>
                                     </div>

@@ -54,7 +54,9 @@ public class HomeWorkServlet extends HttpServlet {
         String student = request.getParameter("student");
         hwDAOlmpl hw = new hwDAOlmpl();
         PrintWriter out = response.getWriter();
-        out.print(hw.power_work(work_id,student));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("title",hw.power_work(work_id,student));
+        out.print(jsonObject);
         out.flush();
         out.close();
     }

@@ -24,7 +24,7 @@ function get_Class() {
                     '<td><img src="'+contextPath+json.class_list[i].cover_address +'" class="cover" alt="">'+json.class_list[i].class_title+'</td> \n'+
                     '<td>'+json.class_list[i].student_count+'</td> \n'+
                     '<td>'+release_status+'</td> \n'+
-                    '<td><a target="_blank" href="Myclass.html?class_id='+ json.class_list[i].class_id+'"><button class="btn btn-outline-primary btn-sm" >管理</button></a></td>\n'+
+                    '<td><a target="_blank" href="Myclass.html?class_id='+ json.class_list[i].class_id+'"><button class="btn btn-outline-info btn-sm" >管理</button></a></td>\n'+
                     '<tr>\n '
                 )
             }
@@ -63,7 +63,7 @@ function found_class() {
                         '<td><img src="'+contextPath+'/image/efb37fee400582742424a4ce08951213.png" class="cover" alt="">'+Class_Name+'</td> \n'+
                         '<td>0</td> \n'+
                         '<td>未发布</td> \n'+
-                        '<td><a target="_blank" href="Myclass.html?class_id='+jsonObj.class_id+'"><button class="btn btn-outline-primary btn-sm" >管理</button></a></td>\n'+
+                        '<td><a target="_blank" href="Myclass.html?class_id='+jsonObj.class_id+'"><button class="btn btn-outline-info btn-sm" >管理</button></a></td>\n'+
                         '<tr>\n '
                     );
                 }
