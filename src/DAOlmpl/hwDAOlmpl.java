@@ -4,6 +4,7 @@ import DAO.homeWorkDAO;
 import Model.SubModel.Sub_HW;
 import Model.homework;
 import Server.DBPoolConnection;
+import Tool.EasyExcelTest;
 import com.alibaba.druid.pool.DruidPooledConnection;
 
 import java.sql.PreparedStatement;
@@ -15,16 +16,18 @@ import java.util.List;
 
 public class hwDAOlmpl implements homeWorkDAO {
     @Override
-    public String get_class(int id) {
-        String file_add = null;
+    public String[] get_class(int id) {
+        String[] work = new String[3];
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select file_add from homework where id="+id);
+            ResultSet rs = statement.executeQuery("select file_add,setSel,setCal from homework where id="+id);
             while (rs.next()){
-                file_add = rs.getString("file_add");
+                work[0] = rs.getString("file_add");
+                work[1] = rs.getString("setSel");
+                work[2] = rs.getString("setCal");
             }
             rs.close();
         }catch (Exception e){
@@ -37,7 +40,7 @@ public class hwDAOlmpl implements homeWorkDAO {
                     e.printStackTrace();
                 }
         }
-        return file_add;
+        return work;
     }
 
     @Override
@@ -97,7 +100,7 @@ public class hwDAOlmpl implements homeWorkDAO {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select homework.id,time,title,name,homework.class_id,file_add from homework,classification where classification.id=homework.class_id and course_id="+course_id);
+            ResultSet rs = statement.executeQuery("select homework.id,time,title,name,homework.class_id,file_add,selLine,calLine from homework,classification where classification.id=homework.class_id and course_id="+course_id);
             while (rs.next()){
                 hw = new Sub_HW();
                 hw.setId(rs.getInt("id"));
@@ -106,6 +109,8 @@ public class hwDAOlmpl implements homeWorkDAO {
                 hw.setClass_name(rs.getString("name"));
                 hw.setClass_id(rs.getInt("class_id"));
                 hw.setFile_add(rs.getString("file_add"));
+                hw.setSelLine(rs.getInt("selLine"));
+                hw.setCalLine(rs.getInt("calLine"));
                 lists.add(hw);
             }
             rs.close();
@@ -238,19 +243,25 @@ public class hwDAOlmpl implements homeWorkDAO {
     }
 
     @Override
-    public int add_work(int class_id, int course_id, String file_add, int time, String title) {
+    public int add_work(int class_id, int course_id, String file_add,String file_name, int time, String title) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
         int id = 0;
+        EasyExcelTest easyExcelTest = new EasyExcelTest();
+        int[] line = easyExcelTest.getLine(file_add);
         try {
             con = dbp.getConnection();
-            qsql  = con.prepareStatement("insert into homework(class_id,course_id,file_add,time,title) values(?,?,?,?,?)");
+            qsql  = con.prepareStatement("insert into homework(class_id,course_id,file_add,time,title,selLine,calLine,setSel,setCal) values(?,?,?,?,?,?,?,?,?)");
             qsql.setInt(1,class_id);
             qsql.setInt(2,course_id);
-            qsql.setString(3,file_add);
+            qsql.setString(3,file_name);
             qsql.setInt(4,time);
             qsql.setString(5,title);
+            qsql.setInt(6,line[0]);
+            qsql.setInt(7,line[1]);
+            qsql.setInt(8,line[0]);
+            qsql.setInt(9,line[1]);
             qsql.executeUpdate();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select LAST_INSERT_ID() id");
@@ -334,5 +345,65 @@ public class hwDAOlmpl implements homeWorkDAO {
                 }
         }
         return title;
+    }
+
+    @Override
+    public int[] getRandom(int id) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        int[] line = new int[4];
+        try {
+            con = dbp.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select selLine,calLine,setSel,setCal from homework where id="+id);
+            while (rs.next()) {
+                line[0] = rs.getInt("selLine");
+                line[1] = rs.getInt("calLine");
+                line[2] = rs.getInt("setSel");
+                line[3] = rs.getInt("setCal");
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return line;
+    }
+
+    @Override
+    public boolean postRandom(int id,int sel,int cal) {
+        DBPoolConnection dbp = DBPoolConnection.getInstance();
+        DruidPooledConnection con =null;
+        PreparedStatement qsql = null;
+        int state = 0;
+        try {
+            con = dbp.getConnection();
+            qsql  = con.prepareStatement("update homework set setSel=?,setCal=? where id="+id);
+            qsql.setInt(1,sel);
+            qsql.setInt(2,cal);
+            state = qsql.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (qsql!=null)
+                try{
+                    qsql.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            if (con!=null)
+                try{
+                    con.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return state!=0;
     }
 }

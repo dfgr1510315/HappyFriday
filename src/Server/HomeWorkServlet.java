@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 //import java.util.List;
 
 @WebServlet(name = "HomeWorkServlet")
@@ -35,6 +36,9 @@ public class HomeWorkServlet extends HttpServlet {
             case "get_stu":
                 get_stu(request,response);
                 break;
+            case "getRandom":
+                getRandom(request,response);
+                break;
             case "get_text":
                 get_text(request,response);
                 break;
@@ -47,8 +51,31 @@ public class HomeWorkServlet extends HttpServlet {
             case "add_work":
                 add_work(request,response);
                 break;
+            case "postRandom":
+                postRandom(request,response);
+                break;
         }
     }
+    private void postRandom(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        int sel = Integer.parseInt(request.getParameter("sel"));
+        int cal = Integer.parseInt(request.getParameter("cal"));
+        hwDAOlmpl hw = new hwDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(hw.postRandom(id,sel,cal));
+        out.flush();
+        out.close();
+    }
+
+    private void getRandom(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        hwDAOlmpl hw = new hwDAOlmpl();
+        PrintWriter out = response.getWriter();
+        out.print(Arrays.toString(hw.getRandom(id)));
+        out.flush();
+        out.close();
+    }
+
     private void power_work(HttpServletRequest request, HttpServletResponse response)throws IOException{
         int work_id = Integer.parseInt(request.getParameter("work_id"));
         String student = request.getParameter("student");
@@ -76,12 +103,13 @@ public class HomeWorkServlet extends HttpServlet {
     private void add_work(HttpServletRequest request, HttpServletResponse response)throws IOException{
         int class_id = Integer.parseInt(request.getParameter("class_id"));
         int course_id = Integer.parseInt(request.getParameter("course_id"));
-        String file_add = request.getParameter("file_add");
+        String file_name = request.getParameter("file_add");
+        String file_add = getServletContext().getRealPath("/") + "ExcelWrite"+"/"+ file_name;
         int time = Integer.parseInt(request.getParameter("time"));
         String title = request.getParameter("title");
         hwDAOlmpl hw = new hwDAOlmpl();
         PrintWriter out = response.getWriter();
-        out.print(hw.add_work(class_id,course_id,file_add,time,title));
+        out.print(hw.add_work(class_id,course_id,file_add,file_name,time,title));
         out.flush();
         out.close();
     }
@@ -157,7 +185,8 @@ public class HomeWorkServlet extends HttpServlet {
         EasyExcelTest easyExcelTest = new EasyExcelTest();
         PrintWriter out = response.getWriter();
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("work",easyExcelTest.read(getServletContext().getRealPath("/") + "ExcelWrite"+"/"+hw.get_class(work_id)));
+        String[] work = hw.get_class(work_id);
+        jsonObject.put("work",easyExcelTest.read(getServletContext().getRealPath("/") + "ExcelWrite"+"/"+work[0],Integer.parseInt(work[1]),Integer.parseInt(work[2])));
         out.print(jsonObject);
         out.flush();
         out.close();

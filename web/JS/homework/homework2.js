@@ -1,5 +1,5 @@
 let user;
-
+let work_id = GetQueryString('work');
 window.onload = function(){
     user = cookie.get('user');
     /* $('#navigation').load('navigation_dark.html', function () {
@@ -18,7 +18,7 @@ function power_work() {
         url: contextPath + "/HomeWork.do",
         data: {
             action: 'power_work',
-            work_id: GetQueryString('work'),
+            work_id: work_id,
             student:user
         },
         dataType: 'json',
@@ -224,11 +224,11 @@ function get_work() {
             action: 'get',
             /*class_id:class_id,
             unit:unit*/
-            work_id: '1'
+            work_id: work_id
         },
         dataType: 'json',
         success: function (json) {
-            console.log(json);
+            //console.log(json);
             choice(json);
             TiMu();
             questions_text();
@@ -314,7 +314,7 @@ function post_work() {
         url: contextPath + "/HomeWork.do",
         data: {
             action: 'post_work',
-            work_id: '1',
+            work_id: work_id,
             student: user,
             time: time,
             question:question,

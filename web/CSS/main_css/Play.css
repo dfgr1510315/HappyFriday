@@ -334,3 +334,10 @@ button.btn-mini {
     font-size: 12px;
     color: #71777d;
 }
+.no_find_class{
+    width: 245px;
+    margin: 100px auto;
+    font-size: 27px;
+    font-weight: 300;
+    color: #93999f;
+}

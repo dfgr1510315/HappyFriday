@@ -2,6 +2,9 @@ body.modal-open {
     overflow-y: auto !important;
     padding-right: 0!important;
 }
+.modal-header{
+    border-bottom:none
+}
 #user_id_span {
     float: left;
     font-size: 14px;

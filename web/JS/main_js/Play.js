@@ -122,13 +122,17 @@ function get_ask() {
         },
         dataType: 'json',
         success: function (jsonObject) {
-            console.log(jsonObject);
+            //console.log(jsonObject);
+            ask_flag = 1;
+            if (jsonObject.ask.length===0)  {
+                $('#ask_box').prepend('<div class="no_find_class">你还没有发布过问题</div>');
+                return
+            }
             for (let i = 0; i < jsonObject.ask.length; i++) {
                 add_ask_box(jsonObject.ask[i].ask_id, jsonObject.ask[i].belong_class_id, jsonObject.ask[i].ask_title, jsonObject.ask[i].ask_time, jsonObject.ask[i].answer_count, jsonObject.ask[i].visits_count, jsonObject.ask[i].new_answerer, jsonObject.ask[i].new_answer);
             }
         }
     });
-    ask_flag = 1;
 }
 
 function get_note() {
@@ -144,38 +148,14 @@ function get_note() {
         },
         dataType: 'json',
         success: function (jsonObject) {
-            console.log(jsonObject);
+            //console.log(jsonObject);
+            note_flag = 1;
+            if (jsonObject.note.length===0) {
+                $('#note_box').prepend('<div class="no_find_class">你还没有记录过笔记</div>');
+                return
+            }
             for (let i = 0; i < jsonObject.note.length; i++) {
-                $('#note_box').prepend(' <div class="ui-box">\n' +
-                    '                            <div style="float:left;">\n' +
-                    '                                <a href="PersonalCenter.html">\n' +
-                    '                                    <image src="' + contextPath + head_image + '" style="width: 40px;height: 40px;border-radius: 20px;"></image>\n' +
-                    '                                </a>\n' +
-                    '                            </div>\n' +
-                    '                            <div style="margin-left: 60px">\n' +
-                    '                                <div class="author">\n' +
-                    '                                    <a  href="PersonalCenter.html" >' + user + '</a>\n' +
-                    '                                </div>\n' +
-                    '                                <div style="display: block;">\n' +
-                    '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
-                    '                                        ' + jsonObject.note[i].text + '\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="post" style=" margin-left: 12%;">\n' +
-                    '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
-                    '                                        <a id="delete_note' + jsonObject.note[i].note_id + '" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="' + jsonObject.note[i].note_id + '"><i class="fa fa-window-close-o" ></i>删除</a>\n' +
-                    '                                        <a class="post_action">查看全文</a>\n' +
-                    '                                        <span >' + jsonObject.note[i].note_time + '</span>\n' +
-                    '                                    </div>\n' +
-                    '                                </div>\n' +
-                    '                                <div style="display: none;">\n' +
-                    '                                    <div id="edit_editor' + i + '" style="height: 322px;margin-bottom: 20px"></div>\n' +
-                    '                                    <div style="height: 30px;">\n' +
-                    '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="' + jsonObject.note[i].note_id + '">提交</button>\n' +
-                    '                                        <button type="button" class="btn btn-outline-secondary btn-mini" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
-                    '                                    </div>\n' +
-                    '                                </div>\n' +
-                    '                            </div>\n' +
-                    '                        </div>');
+                add_note_box(jsonObject.note[i].text,jsonObject.note[i].note_id,jsonObject.note[i].note_time);
                 let edit_editor = new E('#edit_editor' + i);
                 edit_editor.customConfig.menus = edit_configure;
                 edit_editor.create();
@@ -184,7 +164,6 @@ function get_note() {
             }
         }
     });
-    note_flag = 1
 }
 
 let player;
@@ -396,6 +375,7 @@ function change_note(event) {
 
 function post_note() {
     if (post_note_flag === 1) return;
+    post_note_flag = 1;
     let note_editor = $('#note_editor');
     let note_text = note_editor.children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g, '');
     if (note_editor.text().trim().length === 0) {
@@ -418,42 +398,14 @@ function post_note() {
                 if (0 !== jsonObj) {
                     let note_editor = $('#note_editor');
                     editor_count++;
-                    $('#note_box').prepend(' <div class="ui-box">\n' +
-                        '                            <div style="float:left;">\n' +
-                        '                                <a href="PersonalCenter.html">\n' +
-                        '                                    <img src="' + contextPath + head_image + '" style="width: 40px;height: 40px;border-radius: 20px;">\n' +
-                        '                                </a>\n' +
-                        '                            </div>\n' +
-                        '                            <div style="margin-left: 60px">\n' +
-                        '                                <div class="author">\n' +
-                        '                                    <a  href="PersonalCenter.html" >' + user + '</a>\n' +
-                        '                                </div>\n' +
-                        '                                <div style="display: block;">\n' +
-                        '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
-                        '                                        ' + note_editor.children().eq(1).children().html() + '\n' +
-                        '                                    </div>\n' +
-                        '                                    <div class="post" style=" margin-left: 12%;">\n' +
-                        '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
-                        '                                        <a id="delete_note' + jsonObj + '" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="' + jsonObj + '"><i class="fa fa-window-close-o"></i>删除</a>\n' +
-                        '                                        <a class="post_action">查看全文</a>\n' +
-                        '                                        <span >' + time2 + '</span>\n' +
-                        '                                    </div>\n' +
-                        '                                </div>\n' +
-                        '                                <div style="display: none;">\n' +
-                        '                                    <div id="edit_editor' + editor_count + '" style="height: 60%;margin-bottom: 14px"></div>\n' +
-                        '                                    <div style="height: 30px;">\n' +
-                        '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="' + jsonObj + '">提交</button>\n' +
-                        '                                        <button type="button" class="btn btn-outline-secondary btn-mini" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
-                        '                                    </div>\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </div>');
+                    add_note_box(note_editor.children().eq(1).children().html(),jsonObj,time2);
                     let edit_editor = new E('#edit_editor' + editor_count);
                     edit_editor.customConfig.menus = edit_configure;
                     edit_editor.create();
                     edit_editor.txt.html(note_editor.children().eq(1).children().html());
                     note_editor.children().eq(1).children().html('<br>');
-                }
+                }else alert('笔记提交失败');
+                post_note_flag = 0
             }
         });
     }
@@ -506,6 +458,7 @@ function delete_note(noteno) {
 
 function post_ask() {
     if (post_ask_flag === 1) return;
+    post_ask_flag = 1;
     let ask_editor = $('#ask_editor');
     let ask_title = $('#problem').val();
     let ask_text = ask_editor.children().eq(1).children().html().replace(/(^\s*)|(\s*$)/g, "").replace(/\u200B/g, '');
@@ -531,7 +484,8 @@ function post_ask() {
                     add_ask_box(jsonObj, ask_text, ask_title, time2, 0, 0, '', '');
                     ask_editor.children().eq(1).children().html('<p><br></p>');
                     $('#problem').val('');
-                } else alert('提交失败')
+                } else alert('提交失败');
+                post_ask_flag = 0
             }
         });
     }
@@ -574,4 +528,37 @@ function add_ask_box(ask_id, ask_text, ask_title, time2, answer, browse, new_ans
             ' <div class="replydet">' + new_answer + '</div>\n'
         )
     }
+}
+
+function add_note_box(note_text,note_id,time) {
+    $('#note_box').prepend(' <div class="ui-box">\n' +
+        '                            <div style="float:left;">\n' +
+        '                                <a href="PersonalCenter.html">\n' +
+        '                                    <img src="' + contextPath + head_image + '" style="width: 40px;height: 40px;border-radius: 20px;">\n' +
+        '                                </a>\n' +
+        '                            </div>\n' +
+        '                            <div style="margin-left: 60px">\n' +
+        '                                <div class="author">\n' +
+        '                                    <a  href="PersonalCenter.html" >' + user + '</a>\n' +
+        '                                </div>\n' +
+        '                                <div style="display: block;">\n' +
+        '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +
+        '                                        ' + note_text + '\n' +
+        '                                    </div>\n' +
+        '                                    <div class="post" style=" margin-left: 12%;">\n' +
+        '                                        <a class="post_action" href="javascript:void(0);" onclick="edit_note(this)"><i class="fa fa-eyedropper"></i>编辑</a>\n' +
+        '                                        <a id="delete_note' + note_id + '" class="post_action" data-toggle="modal"  data-target="#Delete_Note" data-noteno="' + note_id + '"><i class="fa fa-window-close-o"></i>删除</a>\n' +
+        '                                        <a class="post_action">查看全文</a>\n' +
+        '                                        <span >' + time + '</span>\n' +
+        '                                    </div>\n' +
+        '                                </div>\n' +
+        '                                <div style="display: none;">\n' +
+        '                                    <div id="edit_editor' + editor_count + '" style="height: 60%;margin-bottom: 14px"></div>\n' +
+        '                                    <div style="height: 30px;">\n' +
+        '                                        <button type="button" class="btn btn-outline-success btn-mini" style="float:right;" onclick="change_note(this)" data-noteno="' + note_id + '">提交</button>\n' +
+        '                                        <button type="button" class="btn btn-outline-secondary btn-mini" style="float:right;margin-right: 10px;" onclick="out_edit_note(this)">取消</button>\n' +
+        '                                    </div>\n' +
+        '                                </div>\n' +
+        '                            </div>\n' +
+        '                        </div>');
 }

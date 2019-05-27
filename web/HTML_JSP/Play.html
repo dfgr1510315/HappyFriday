@@ -48,7 +48,6 @@
 
 
     <div id="right_box">
-
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
@@ -66,20 +65,18 @@
         <div class="tab-content box">
             <div id="chapter" class="tab-pane active"></div>
             <div id="note" class="tab-pane fade"><br>
-                <h6>笔记</h6>
+                <span>笔记</span>
                 <div id="note_editor" style="width: 100%"></div>
                 <div style="margin-top: 5px;margin-bottom: 45px;">
                     <button type="button" class="btn btn-outline-success btn-mini" style="float: right"
                             onclick="post_note()">提交
                     </button>
                 </div>
-                <h6>我的笔记</h6>
-                <div id="note_box">
-
-                </div>
+                <span>我的笔记</span>
+                <div id="note_box"></div>
             </div>
             <div id="ask" class=" tab-pane fade"><br>
-                <h6>提问</h6>
+                <span>提问</span>
                 <div class="form-group" style="padding: 6px;">
                     <input type="text" class="form-control" id="problem" placeholder="一句话描述问题:">
                 </div>
@@ -89,10 +86,8 @@
                             onclick="post_ask()">提交
                     </button>
                 </div>
-                <h6>我的问答</h6>
-                <div id="ask_box">
-
-                </div>
+                <span>我的问答</span>
+                <div id="ask_box"></div>
             </div>
         </div>
     </div>

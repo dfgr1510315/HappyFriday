@@ -3,6 +3,7 @@ let stu_text = {};
 let homework_title;
 let class_name;
 let result = {};//学生成绩
+let random = {};
 let work_file;
 let No;
 let get_class_flag = 0;
@@ -170,7 +171,7 @@ function get_text(student) {
         type: "POST",
         dataType: "json",
         success: function (json) {
-            console.log(json);
+            //console.log(json);
             stu_text[one_work_id+student] = json;
             //console.log(stu_text);
             choice(json);
@@ -191,7 +192,7 @@ function work_body(time,class_name,title,work_id,class_id,file_add) {
         ' <td><a href="javascript:void(0);" onclick="get_stu(this,'+work_id+','+class_id+')"><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+class_name+'</span></span></a></td>\n' +
         ' <td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+title+'</span></span></td>\n' +
         ' <td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+file_add+'</span></span></td>\n' +
-        ' <td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;"><a href="javascript:void(0);">随机抽题</a> <a href="javascript:void(0);" onclick="delete_work(this,'+work_id+')">删除</a></span></span></td>\n' +
+        ' <td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;"><a href="javascript:void(0);" data-toggle="modal" data-target="#random_modal" onclick="getRandom(this,'+work_id+')">随机抽题</a> <a href="javascript:void(0);" onclick="delete_work(this,'+work_id+')">删除</a></span></span></td>\n' +
         '</tr>')
 }
 
@@ -420,6 +421,71 @@ function add_work(){
             })
         }
     })
+}
+//获取题库数量及设置过的抽题
+function getRandom(event,id){
+    //console.log('random[id]'+random[id]);
+    if (random[id]!==undefined){
+        showRandom(random[id]);
+        return
+    }
+    $.ajax({
+        url: contextPath+"/HomeWork.do",
+        data: {
+            action:'getRandom',
+            id:id
+        },
+        type: "POST",
+        dataType: "json",
+        success: function (json) {
+            //console.log(json);
+            showRandom(json);
+            random[id] = json;
+        }
+    });
+    $('#random_title').text($(event).parent().parent().parent().prev().prev().children().children().text());
+    $('#postRandom').attr('onclick','postRandom('+id+')');
+}
+
+function showRandom(json){
+    let sel = $('#sel');
+    let cal = $('#cal');
+    sel.attr('placeholder','共'+json[0]+'题').attr('max',json[0]);
+    cal.attr('placeholder','共'+json[1]+'题').attr('max',json[1]);
+    if (json[2]!==0)  sel.val(json[2]); else sel.val('');
+    if (json[3]!==0)  cal.val(json[3]); else cal.val('');
+}
+
+function postRandom(id){
+    let sel = $('#sel').val().trim();
+    let cal = $('#cal').val().trim();
+    if (sel===''||sel>random[id][0]||sel<=0){
+        alert('设置的选择题题数应小于题库选择题题数'+random[id][0]+'且大于0');
+        return
+    }
+    if (cal===''||cal>random[id][1]||cal<=0){
+        alert('设置的计算题题数应小于题库计算题题数'+random[id][1]+'且大于0');
+        return
+    }
+    $('#random_close').click();
+    $.ajax({
+        url: contextPath+"/HomeWork.do",
+        data: {
+            action:'postRandom',
+            id:id,
+            sel:sel,
+            cal:cal
+        },
+        type: "POST",
+        dataType: "json",
+        success: function (json) {
+            if (json===true){
+                random[id][2] = sel;
+                random[id][3] = cal;
+                alert('设置成功')
+            }else alert('设置失败')
+        }
+    });
 }
 
 Date.prototype.Format = function (fmt) {
