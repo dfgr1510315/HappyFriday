@@ -2352,7 +2352,7 @@ return (function( root, factory ) {
     
         /**
          * 文件类
-         * @class File
+         * @class com.LJZ.Model.File
          * @constructor 构造函数
          * @grammar new File( source ) => File
          * @param {Lib.File} source [lib.File](#Lib.File)实例, 此source对象是带有Runtime信息的。
@@ -2429,7 +2429,7 @@ return (function( root, factory ) {
              * 设置状态，状态变化时会触发`change`事件。
              * @method setStatus
              * @grammar setStatus( status[, statusText] );
-             * @param {File.Status|String} status [文件状态值](#WebUploader:File:File.Status)
+             * @param {com.LJZ.Model.File.Status|String} status [文件状态值](#WebUploader:File:File.Status)
              * @param {String} [statusText=''] 状态说明，常在error时使用，用http, abort,server等来标记是由于什么原因导致文件错误。
              */
             setStatus: function( status, text ) {
@@ -2451,7 +2451,7 @@ return (function( root, factory ) {
     
             /**
              * 获取文件状态
-             * @return {File.Status}
+             * @return {com.LJZ.Model.File.Status}
              * @example
                      文件状态具体包括以下几种类型：
                      {
@@ -2500,8 +2500,8 @@ return (function( root, factory ) {
          * * `invalid` 文件不合格，不能重试上传。会自动从队列中移除。
          * * `cancelled` 文件被移除。
          * @property {Object} Status
-         * @namespace File
-         * @class File
+         * @namespace com.LJZ.Model.File
+         * @class com.LJZ.Model.File
          * @static
          */
         WUFile.Status = {
@@ -2572,7 +2572,7 @@ return (function( root, factory ) {
              * 将新文件加入对队列尾部
              *
              * @method append
-             * @param  {File} file   文件对象
+             * @param  {com.LJZ.Model.File} file   文件对象
              */
             append: function( file ) {
                 this._queue.push( file );
@@ -2584,7 +2584,7 @@ return (function( root, factory ) {
              * 将新文件加入对队列头部
              *
              * @method prepend
-             * @param  {File} file   文件对象
+             * @param  {com.LJZ.Model.File} file   文件对象
              */
             prepend: function( file ) {
                 this._queue.unshift( file );
@@ -2597,7 +2597,7 @@ return (function( root, factory ) {
              *
              * @method getFile
              * @param  {String} fileId   文件ID
-             * @return {File}
+             * @return {com.LJZ.Model.File}
              */
             getFile: function( fileId ) {
                 if ( typeof fileId !== 'string' ) {
@@ -2611,7 +2611,7 @@ return (function( root, factory ) {
              * @grammar fetch( status ) => File
              * @method fetch
              * @param {String} status [文件状态值](#WebUploader:File:File.Status)
-             * @return {File} [File](#WebUploader:File)
+             * @return {com.LJZ.Model.File} [File](#WebUploader:File)
              */
             fetch: function( status ) {
                 var len = this._queue.length,
@@ -2672,7 +2672,7 @@ return (function( root, factory ) {
              * 在队列中删除文件。
              * @grammar removeFile( file ) => Array
              * @method removeFile
-             * @param {File} 文件对象。
+             * @param {com.LJZ.Model.File} 文件对象。
              */
             removeFile: function( file ) {
                 var me = this,
@@ -2860,14 +2860,14 @@ return (function( root, factory ) {
     
             /**
              * @event beforeFileQueued
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 当文件被加入队列之前触发，此事件的handler返回值为`false`，则此文件不会被添加进入队列。
              * @for  Uploader
              */
     
             /**
              * @event fileQueued
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 当文件被加入队列以后触发。
              * @for  Uploader
              */
@@ -2899,7 +2899,7 @@ return (function( root, factory ) {
     
             /**
              * @event filesQueued
-             * @param {File} files 数组，内容为原始File(lib/File）对象。
+             * @param {com.LJZ.Model.File} files 数组，内容为原始File(lib/File）对象。
              * @description 当一批文件添加进队列以后触发。
              * @for  Uploader
              */
@@ -2946,7 +2946,7 @@ return (function( root, factory ) {
     
             /**
              * @event fileDequeued
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 当文件被移除队列后触发。
              * @for  Uploader
              */
@@ -2957,7 +2957,7 @@ return (function( root, factory ) {
              * @grammar removeFile( id ) => undefined
              * @grammar removeFile( file, true ) => undefined
              * @grammar removeFile( id, true ) => undefined
-             * @param {File|id} file File对象或这File对象的id
+             * @param {com.LJZ.Model.File|id} file File对象或这File对象的id
              * @description 移除某一文件, 默认只会标记文件状态为已取消，如果第二个参数为 `true` 则会从 queue 中移除。
              * @for  Uploader
              * @example
@@ -3604,7 +3604,7 @@ return (function( root, factory ) {
              * @method cancelFile
              * @grammar cancelFile( file ) => undefined
              * @grammar cancelFile( id ) => undefined
-             * @param {File|id} file File对象或这File对象的id
+             * @param {com.LJZ.Model.File|id} file File对象或这File对象的id
              * @description 标记文件状态为已取消, 同时将中断文件传输。
              * @for  Uploader
              * @example
@@ -3792,7 +3792,7 @@ return (function( root, factory ) {
     
             /**
              * @event uploadStart
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 某个文件开始上传前触发，一个文件只会触发一次。
              * @for  Uploader
              */
@@ -3923,7 +3923,7 @@ return (function( root, factory ) {
     
             /**
              * @event uploadProgress
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @param {Number} percentage 上传进度
              * @description 上传过程中触发，携带上传进度。
              * @for  Uploader
@@ -3932,7 +3932,7 @@ return (function( root, factory ) {
     
             /**
              * @event uploadError
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @param {String} reason 出错的code
              * @description 当文件上传出错时触发。
              * @for  Uploader
@@ -3940,7 +3940,7 @@ return (function( root, factory ) {
     
             /**
              * @event uploadSuccess
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @param {Object} response 服务端返回的数据
              * @description 当文件上传成功时触发。
              * @for  Uploader
@@ -3948,7 +3948,7 @@ return (function( root, factory ) {
     
             /**
              * @event uploadComplete
-             * @param {File} [file] File对象
+             * @param {com.LJZ.Model.File} [file] File对象
              * @description 不管成功或者失败，文件上传完成时触发。
              * @for  Uploader
              */

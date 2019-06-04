@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="mysql@localhost" uuid="97a4a811-0708-4ffe-a68b-39d078bbfd4c">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="MySQL - mysql@localhost" uuid="97a4a811-0708-4ffe-a68b-39d078bbfd4c">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/mysql</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />

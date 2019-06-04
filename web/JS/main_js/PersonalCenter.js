@@ -60,10 +60,11 @@ function changeInfor() {
             if (true === msg) {
                 alert('修改成功');
                 $("#ChangeClose").click();
-                $("#liNike").text("昵称：       " + nike);
-                $("#liSex").text("性别：        " + sex);
-                $("#liBirth").text("生日：        " + birth);
-                $("#liIntro").text("简介：        " + introduction);
+                $("#liNike").text("昵称:" + nike);
+                $("#liSex").text("性别:" + sex);
+                $("#liBirth").text("生日:" + birth);
+                $("#liIntro").text("简介:" + introduction);
+                cookie.set('nike',nike)
                 // $("#liTeacher").text("指导老师：" + teacher);
             } else {
                 alert("数据更新失败")

@@ -16,7 +16,7 @@
 
     <servlet>
         <servlet-name>Resgister</servlet-name>
-        <servlet-class>Server.Register</servlet-class>
+        <servlet-class>com.LJZ.Server.Register</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Resgister</servlet-name>
@@ -25,7 +25,7 @@
 
     <servlet>
         <servlet-name>UploadSec</servlet-name>
-        <servlet-class>Server.UploadSec</servlet-class>
+        <servlet-class>com.LJZ.Server.UploadSec</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadSec</servlet-name>
@@ -34,7 +34,7 @@
 
     <servlet>
         <servlet-name>UploadFiles</servlet-name>
-        <servlet-class>Server.UploadFiles</servlet-class>
+        <servlet-class>com.LJZ.Server.UploadFiles</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadFiles</servlet-name>
@@ -43,7 +43,7 @@
 
     <servlet>
         <servlet-name>save_image</servlet-name>
-        <servlet-class>Server.save_image</servlet-class>
+        <servlet-class>com.LJZ.Server.save_image</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>save_image</servlet-name>
@@ -52,7 +52,7 @@
 
     <servlet>
         <servlet-name>ChangeInfor</servlet-name>
-        <servlet-class>Server.ChangeInfor</servlet-class>
+        <servlet-class>com.LJZ.Server.ChangeInfor</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangeInfor</servlet-name>
@@ -61,34 +61,16 @@
 
     <servlet>
         <servlet-name>ChangePW</servlet-name>
-        <servlet-class>Server.ChangePW</servlet-class>
+        <servlet-class>com.LJZ.Server.ChangePW</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePW</servlet-name>
         <url-pattern>/changepw</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>UploadActionServlet</servlet-name>
-        <url-pattern>/UploadActionServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>UploadActionServlet</servlet-name>
-        <servlet-class>Server.UploadActionServlet</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>FileUploadServlet</servlet-name>
-        <servlet-class>Server.FileUploadServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FileUploadServlet</servlet-name>
-        <url-pattern>/FileUploadServlet</url-pattern>
-    </servlet-mapping>
-
     <servlet>
         <servlet-name>SaveClassInfor</servlet-name>
-        <servlet-class>Server.SaveClassInfor</servlet-class>
+        <servlet-class>com.LJZ.Server.SaveClassInfor</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SaveClassInfor</servlet-name>
@@ -97,7 +79,7 @@
 
     <servlet>
         <servlet-name>GetLearnFile</servlet-name>
-        <servlet-class>Server.GetLearnFile</servlet-class>
+        <servlet-class>com.LJZ.Server.GetLearnFile</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetLearnFile</servlet-name>
@@ -106,7 +88,7 @@
 
     <servlet>
         <servlet-name>Get_Teaching</servlet-name>
-        <servlet-class>Server.Get_Teaching</servlet-class>
+        <servlet-class>com.LJZ.Server.Get_Teaching</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Get_Teaching</servlet-name>
@@ -115,7 +97,7 @@
 
     <servlet>
         <servlet-name>Students</servlet-name>
-        <servlet-class>Server.Students</servlet-class>
+        <servlet-class>com.LJZ.Server.Students</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Students</servlet-name>
@@ -124,7 +106,7 @@
 
     <servlet>
         <servlet-name>Learn_list</servlet-name>
-        <servlet-class>Server.Learn_list</servlet-class>
+        <servlet-class>com.LJZ.Server.Learn_list</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Learn_list</servlet-name>
@@ -133,7 +115,7 @@
 
     <servlet>
         <servlet-name>Play</servlet-name>
-        <servlet-class>Server.Play</servlet-class>
+        <servlet-class>com.LJZ.Server.Play</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Play</servlet-name>
@@ -142,7 +124,7 @@
 
     <servlet>
         <servlet-name>PostNote</servlet-name>
-        <servlet-class>Server.PostNote</servlet-class>
+        <servlet-class>com.LJZ.Server.PostNote</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PostNote</servlet-name>
@@ -151,7 +133,7 @@
 
     <servlet>
         <servlet-name>PostAsk</servlet-name>
-        <servlet-class>Server.PostAsk</servlet-class>
+        <servlet-class>com.LJZ.Server.PostAsk</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PostAsk</servlet-name>
@@ -160,7 +142,7 @@
 
     <servlet>
         <servlet-name>Notification</servlet-name>
-        <servlet-class>Server.Notification</servlet-class>
+        <servlet-class>com.LJZ.Server.Notification</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Notification</servlet-name>
@@ -169,7 +151,7 @@
 
     <servlet>
         <servlet-name>HomeWorkServlet</servlet-name>
-        <servlet-class>Server.HomeWorkServlet</servlet-class>
+        <servlet-class>com.LJZ.Server.HomeWorkServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeWorkServlet</servlet-name>
@@ -178,7 +160,7 @@
 
     <servlet>
         <servlet-name>Activation</servlet-name>
-        <servlet-class>Server.Activation</servlet-class>
+        <servlet-class>com.LJZ.Server.Activation</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Activation</servlet-name>
@@ -187,7 +169,7 @@
 
     <filter>
         <filter-name>Login_Filter</filter-name>
-        <filter-class>Filter.Login_Filter</filter-class>
+        <filter-class>com.LJZ.Filter.Login_Filter</filter-class>
         <init-param>
             <param-name>excPath</param-name>
             <param-value>/HTML_JSP/homepage.html,/HTML_JSP/LoginPC.html,/HTML_JSP/index.html,/HTML_JSP/Learn_list.html,/HTML_JSP/navigation.html,/HTML_JSP/course.html,/HTML_JSP/404.html,/HTML_JSP/navigation_dark.html</param-value>
@@ -203,7 +185,7 @@
     </filter-mapping>
 
     <!--<listener>
-        <listener-class>Listener.Session_Listener</listener-class>
+        <listener-class>Session_Listener</listener-class>
     </listener>-->
 
 </web-app>

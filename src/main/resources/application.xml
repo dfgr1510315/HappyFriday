@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="com"/>
+    <context:property-placeholder location="classpath:db_server.properties" system-properties-mode="NEVER"/>
+
+<!--    org.springframework.jdbc.datasource.DriverManagerDataSource-->
+<!--    com.alibaba.druid.pool.DruidDataSource init-method="init" destroy-method="close"-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${driverClassName}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/><!-- 文件映射器，指定类文件 -->
+        <!--<property name="mapperLocations" value="classpath:mappers/*.xml"/> -->   <!-- 自动扫描mapping.xml文件 -->
+        <!-- 此处配置了com.pojo,在mapper映射文件中就不用写返回实体类的包名了 -->
+        <property name="typeAliasesPackage" value="com.LJZ.Model"/>
+    </bean>
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 ,包下的类需要使用@MapperScan注解,否则容器注入会失败 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.LJZ.DAO"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!--配置sqlSessionTemplate：通过带参数的构造方法创建对象 -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <!-- 以sqlSessionFactory为参数传入构造函数中 -->
+        <constructor-arg ref="sqlSessionFactory"/>
+        <!-- mybatis执行器，取值范围是SIMPLE/REUSE/BATCH三种类型 -->
+        <constructor-arg value="BATCH"/>
+    </bean>
+
+</beans>

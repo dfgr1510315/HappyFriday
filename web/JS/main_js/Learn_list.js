@@ -434,7 +434,7 @@ function join_class(classification) {
         dataType: 'json',
         success: function (jsonObject) {
             if (jsonObject===true) {
-                window.location.href = "Play.html?" + No + "/1-1";
+                window.location.href = "com.LJZ.Server.Play.html?" + No + "/1-1";
             }
         }
     })
@@ -442,7 +442,7 @@ function join_class(classification) {
 
 function continue_class(event) {
     let last_time = $(event).prev().data('class');
-    window.location.href = "Play.html?" + No + "/" + last_time.substring(0, last_time.indexOf(':'));
+    window.location.href = "com.LJZ.Server.Play.html?" + No + "/" + last_time.substring(0, last_time.indexOf(':'));
 }
 
 function get_HW(){

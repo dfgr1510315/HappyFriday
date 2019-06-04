@@ -97,14 +97,14 @@ define([
 
         /**
          * @event beforeFileQueued
-         * @param {File} file File对象
+         * @param {com.LJZ.Model.File} file File对象
          * @description 当文件被加入队列之前触发，此事件的handler返回值为`false`，则此文件不会被添加进入队列。
          * @for  Uploader
          */
 
         /**
          * @event fileQueued
-         * @param {File} file File对象
+         * @param {com.LJZ.Model.File} file File对象
          * @description 当文件被加入队列以后触发。
          * @for  Uploader
          */
@@ -136,7 +136,7 @@ define([
 
         /**
          * @event filesQueued
-         * @param {File} files 数组，内容为原始File(lib/File）对象。
+         * @param {com.LJZ.Model.File} files 数组，内容为原始File(lib/File）对象。
          * @description 当一批文件添加进队列以后触发。
          * @for  Uploader
          */
@@ -183,7 +183,7 @@ define([
 
         /**
          * @event fileDequeued
-         * @param {File} file File对象
+         * @param {com.LJZ.Model.File} file File对象
          * @description 当文件被移除队列后触发。
          * @for  Uploader
          */
@@ -194,7 +194,7 @@ define([
          * @grammar removeFile( id ) => undefined
          * @grammar removeFile( file, true ) => undefined
          * @grammar removeFile( id, true ) => undefined
-         * @param {File|id} file File对象或这File对象的id
+         * @param {com.LJZ.Model.File|id} file File对象或这File对象的id
          * @description 移除某一文件, 默认只会标记文件状态为已取消，如果第二个参数为 `true` 则会从 queue 中移除。
          * @for  Uploader
          * @example

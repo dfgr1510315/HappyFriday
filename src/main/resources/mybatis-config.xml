@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 根标签 -->
+<configuration>
+<!--    <typeAliases>
+        &lt;!&ndash; 对包进行扫描，可以批量进行别名设置，设置规则是：获取类名称，将其第一个字母变为小写 &ndash;&gt;
+        <package name="com.LJZ.DAO"/>
+    </typeAliases>-->
+    <!--    <mappers>
+            <mapper resource="mappers/askMapper.xml" />
+        </mappers>-->
+
+    <!-- 引用db.properties配置文件 -->
+    <properties resource="db_server.properties"/>
+
+    <typeAliases>
+        <typeAlias type="com.LJZ.DB.DruidDataSourceFactory"
+                   alias="DRUID"/>
+    </typeAliases>
+
+    <!-- development : 开发模式 work : 工作模式 -->
+    <environments default="work">
+        <environment id="work">
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="DRUID">
+                <!-- value属性值引用db.properties配置文件中配置的值 -->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- mybatis的mapper文件，每个xml配置文件对应一个接口 -->
+    <mappers>
+        <mapper resource="mappers/askDAO.xml"/>
+    </mappers>
+
+</configuration>

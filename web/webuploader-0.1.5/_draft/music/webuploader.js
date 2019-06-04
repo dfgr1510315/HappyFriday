@@ -1543,7 +1543,7 @@
     
         /**
          * 文件类
-         * @class File
+         * @class com.LJZ.Model.File
          * @constructor 构造函数
          * @grammar new File( source ) => File
          * @param {Lib.File} source [lib.File](#Lib.File)实例, 此source对象是带有Runtime信息的。
@@ -1620,7 +1620,7 @@
              * 设置状态，状态变化时会触发`change`事件。
              * @method setStatus
              * @grammar setStatus( status[, statusText] );
-             * @param {File.Status|String} status [文件状态值](#WebUploader:File:File.Status)
+             * @param {com.LJZ.Model.File.Status|String} status [文件状态值](#WebUploader:File:File.Status)
              * @param {String} [statusText=''] 状态说明，常在error时使用，用http, abort,server等来标记是由于什么原因导致文件错误。
              */
             setStatus: function( status, text ) {
@@ -1642,7 +1642,7 @@
     
             /**
              * 获取文件状态
-             * @return {File.Status}
+             * @return {com.LJZ.Model.File.Status}
              * @example
                      文件状态具体包括以下几种类型：
                      {
@@ -1690,8 +1690,8 @@
          * * `invalid` 文件不合格，不能重试上传。会自动从队列中移除。
          * * `cancelled` 文件被移除。
          * @property {Object} Status
-         * @namespace File
-         * @class File
+         * @namespace com.LJZ.Model.File
+         * @class com.LJZ.Model.File
          * @static
          */
         WUFile.Status = {
@@ -2073,7 +2073,7 @@
              * 将新文件加入对队列尾部
              *
              * @method append
-             * @param  {File} file   文件对象
+             * @param  {com.LJZ.Model.File} file   文件对象
              */
             append: function( file ) {
                 this._queue.push( file );
@@ -2085,7 +2085,7 @@
              * 将新文件加入对队列头部
              *
              * @method prepend
-             * @param  {File} file   文件对象
+             * @param  {com.LJZ.Model.File} file   文件对象
              */
             prepend: function( file ) {
                 this._queue.unshift( file );
@@ -2098,7 +2098,7 @@
              *
              * @method getFile
              * @param  {String} fileId   文件ID
-             * @return {File}
+             * @return {com.LJZ.Model.File}
              */
             getFile: function( fileId ) {
                 if ( typeof fileId !== 'string' ) {
@@ -2112,7 +2112,7 @@
              * @grammar fetch( status ) => File
              * @method fetch
              * @param {String} status [文件状态值](#WebUploader:File:File.Status)
-             * @return {File} [File](#WebUploader:File)
+             * @return {com.LJZ.Model.File} [File](#WebUploader:File)
              */
             fetch: function( status ) {
                 var len = this._queue.length,
@@ -4410,14 +4410,14 @@
     
             /**
              * @event beforeFileQueued
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 当文件被加入队列之前触发，此事件的handler返回值为`false`，则此文件不会被添加进入队列。
              * @for  Uploader
              */
     
             /**
              * @event fileQueued
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 当文件被加入队列以后触发。
              * @for  Uploader
              */
@@ -4452,7 +4452,7 @@
     
             /**
              * @event filesQueued
-             * @param {File} files 数组，内容为原始File(lib/File）对象。
+             * @param {com.LJZ.Model.File} files 数组，内容为原始File(lib/File）对象。
              * @description 当一批文件添加进队列以后触发。
              * @for  Uploader
              */
@@ -4480,7 +4480,7 @@
     
             /**
              * @event fileDequeued
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 当文件被移除队列后触发。
              * @for  Uploader
              */
@@ -4489,7 +4489,7 @@
              * @method removeFile
              * @grammar removeFile( file ) => undefined
              * @grammar removeFile( id ) => undefined
-             * @param {File|id} file File对象或这File对象的id
+             * @param {com.LJZ.Model.File|id} file File对象或这File对象的id
              * @description 移除某一文件。
              * @for  Uploader
              * @example
@@ -4952,7 +4952,7 @@
     
             /**
              * @event uploadStart
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 某个文件开始上传前触发。
              * @for  Uploader
              */
@@ -5065,7 +5065,7 @@
     
             /**
              * @event uploadProgress
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @param {Number} percentage 上传进度
              * @description 上传过程中触发，携带上传进度。
              * @for  Uploader
@@ -5074,7 +5074,7 @@
     
             /**
              * @event uploadError
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @param {String} reason 出错的code
              * @description 当文件上传出错时触发。
              * @for  Uploader
@@ -5082,14 +5082,14 @@
     
             /**
              * @event uploadSuccess
-             * @param {File} file File对象
+             * @param {com.LJZ.Model.File} file File对象
              * @description 当文件上传成功时触发。
              * @for  Uploader
              */
     
             /**
              * @event uploadComplete
-             * @param {File} [file] File对象
+             * @param {com.LJZ.Model.File} [file] File对象
              * @description 不管成功或者失败，文件上传完成时触发。
              * @for  Uploader
              */

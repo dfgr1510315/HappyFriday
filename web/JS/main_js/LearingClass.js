@@ -152,5 +152,5 @@ function screen(event, type) {
 }
 
 function continue_class(No, Unit_no) {
-    window.location.href = "Play.html?" + No + "/" + Unit_no.substring(0, Unit_no.indexOf(':'));
+    window.location.href = "com.LJZ.Server.Play.html?" + No + "/" + Unit_no.substring(0, Unit_no.indexOf(':'));
 }

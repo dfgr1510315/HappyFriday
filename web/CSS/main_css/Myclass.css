@@ -2,6 +2,9 @@ body.modal-open {
     overflow-y: auto !important;
     padding-right: 0!important;
 }
+a:hover{
+    text-decoration: none;
+}
 .dndArea {
     width: 200px;
     height: 100px;

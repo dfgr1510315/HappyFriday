@@ -82,9 +82,9 @@ function get_stu(event,work_id,class_id) {
         type: "POST",
         dataType: "json",
         success: function (json) {
-            //console.log(json);
+            console.log(json);
             add_table(work_id);
-            stu_split(work_id,json.HW[0],json.HW[1],json.HW[2],json.HW[3]);
+            stu_split(work_id,json.HW[0],json.HW[1],json.HW[2],json.HW[3],json.HW[4]);
             one_work_id = work_id;
             class_name = $(event).children().children().text();
             homework_title = $(event).parent().next().children().children().text();
@@ -113,21 +113,22 @@ function add_table(work_id) {
 }
 
 //对数据进行分割处理
-function stu_split(work_id,student,post_user,time,pass_flag) {
+function stu_split(work_id,student,nike,post_user,time,pass_flag) {
     let s_student = student.split('|');
     let s_post_user = post_user.split('|');
+    let s_nike = nike.split('|');
     let s_time = time.split('|');
     let s_pass_flag = pass_flag.split('|');
     let index;
     for (let i=0;i<s_student.length-1;i++){
         index = $.inArray(s_student[i],s_post_user);
-        add_stuBody(work_id,s_student[i],s_time[index],index,s_pass_flag[index]);
+        add_stuBody(work_id,s_student[i],s_nike[i],s_time[index],index,s_pass_flag[index]);
     }
 }
 
 
 //加载此班级作业表体
-function add_stuBody(work_id,student,time,post,pass) {
+function add_stuBody(work_id,student,nike,time,post,pass) {
     let post_class = 'badge-warning';
 /*    let pass_class = 'badge-warning';*/
     let data_target = '';
@@ -138,7 +139,7 @@ function add_stuBody(work_id,student,time,post,pass) {
         post_class = 'badge-success';
         post_text = '已提交';
         data_target = 'sub_work';
-        onclick = "onclick=\"get_text(\'"+student+"\')\"";
+        onclick = "onclick=\"get_text(\'"+student+"\',\'"+nike+"\')\"";
       /*  if (pass!=='0') {
             pass_class = 'badge-success';
             pass_text = '已批改'
@@ -146,7 +147,7 @@ function add_stuBody(work_id,student,time,post,pass) {
     }
     if (time===undefined) time='';
     $('#stu_body'+work_id).append('<tr>\n' +
-        '<td><a '+onclick+' href="javascript:void(0);" data-toggle="modal" data-target="#'+data_target+'"><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+student+'</span></span></a></td>\n' +
+        '<td><a '+onclick+' href="javascript:void(0);" data-toggle="modal" data-target="#'+data_target+'"><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+nike+'</span></span></a></td>\n' +
         '<td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+time+'</span></span></td>\n' +
         '<td><span class="badge '+post_class+'"><span style="vertical-align:inherit;"><span style="vertical-align: inherit;">'+post_text+'</span></span></span></td>\n' +
         /*            '<td><span class="badge '+pass_class+'"><font style="vertical-align:inherit;"><font style="vertical-align: inherit;">'+pass_text+'</font></font></span></td>\n' +*/
@@ -154,8 +155,8 @@ function add_stuBody(work_id,student,time,post,pass) {
 }
 
 //获取学生作业
-function get_text(student) {
-    $('#student_title').text(class_name+' '+student+' '+homework_title);
+function get_text(student,nike) {
+    $('#student_title').text(class_name+' '+nike+' '+homework_title);
     remove_table();
     if (stu_text[one_work_id+student]!==undefined) {
         choice(stu_text[one_work_id+student]);

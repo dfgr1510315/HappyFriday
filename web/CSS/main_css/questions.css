@@ -1,3 +1,6 @@
+a:hover{
+    text-decoration:none
+}
 .questions_main {
     width: 1169px;
     margin-left: auto;
@@ -114,7 +117,7 @@
     font-size: 13px;
     line-height: 1.2em;
     height: 18px;
-    margin: 3px 10px auto;
+    margin-top: 3px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

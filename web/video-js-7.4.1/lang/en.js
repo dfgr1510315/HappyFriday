@@ -1,7 +1,7 @@
 videojs.addLanguage('en', {
   "Audio Player": "Audio Player",
   "Video Player": "Video Player",
-  "Play": "Play.html",
+  "Play": "com.LJZ.Server.Play.html",
   "Pause": "Pause",
   "Replay": "Replay",
   "Current Time": "Current Time",

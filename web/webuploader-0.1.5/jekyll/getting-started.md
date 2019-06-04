@@ -83,7 +83,7 @@ var uploader = WebUploader.create({
 ```javascript
 // 当有文件被添加进队列的时候
 uploader.on( 'fileQueued', function( file ) {
-    $list.append( '<div id="' + file.id + '" class="item">' +
+    $list.append( IdPOJO + file.id + '" class="item">' +
         '<h4 class="info">' + file.name + '</h4>' +
         '<p class="state">等待上传...</p>' +
     '</div>' );

@@ -41,7 +41,7 @@ function login() {
         data:data,
         dataType:'json',
         success:function (msg) {
-            //console.log(msg);
+            console.log(msg);
             if (msg.state === 1) {
                 $("#loginError").text("用户名错误或未激活").show();
             }
@@ -82,9 +82,10 @@ function setCookie(msg,username,password) {
     cookie.set('class_title',class_title);
     cookie.set('last_time',last_time);
     cookie.set('schedule',schedule);
-    cookie.set('head_image',msg.head_image);
-    cookie.set('email',msg.email);
-    cookie.set('usertype',msg.usertype);
+    cookie.set('nike',msg.user_infor.nike);
+    cookie.set('head_image',msg.user_infor.head_image);
+    cookie.set('email',msg.user_infor.email);
+    cookie.set('usertype',msg.user_infor.usertype);
 }
 
 
@@ -134,10 +135,10 @@ function register() {
         },
         dataType:'json',
         success:function (state) {
-            if (state===1){
+            if (state===true){
                 alert('注册成功,请去邮箱激活账号');
                 $('#loginClose').click();
-            } else if (state===0){
+            } else if (state===false){
                 alert('用户名已被使用');
             } else {
                 alert('未知错误');

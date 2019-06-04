@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.askDAO">
+    <select id="get_ask_count" parameterType="String" resultType="Int">${SQL}</select>
+
+    <select id="get_ask" parameterType="String" resultType="Ask_list">
+        select ask_id,belong_class_id,ask_title,ask_time,answer_count,visits_count,class_title,cover_address,
+        (select nike from answer,personal_table where belong_ask_id=ask_id and answerer=username order by answer_time  desc limit 1) new_answerer,
+        (select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer #{SQL_from}
+    </select>
+
+    <insert id="post_answer">
+        insert into answer(belong_ask_id,answerer,answer_text,answer_time) values(#{arg0},#{arg1},#{arg2},#{arg3})
+        <selectKey keyProperty="id" order="AFTER" resultType="Int">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+    <insert id="post_reply" >
+        insert into reply(belong_answer_id,replyer,text,reply_time,to_reply) values(#{arg0},#{arg1},#{arg2},#{arg3},${arg4})
+        <selectKey keyProperty="id" order="AFTER" resultType="Int">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+    <select id="get_ask_infor" parameterType="Int" resultType="Ask_infor">
+        UPDATE ask SET visits_count =visits_count+1  WHERE ask_id=#{ask_id};
+        select class_title,belong_class_id,ask_title,nike,ask_text,ask_time,head,unit_no,class_type,visits_count from ask,personal_table,class_teacher_table where ask_id=#{ask_id} and username=asker and belong_class_id=class_id;
+    </select>
+
+    <select id="get_answer" parameterType="Int" resultType="Answer">select head,answer_id,nike,answer_text,answer_time from answer,personal_table where belong_ask_id=#{ask_id} and username=answerer order by answer_time;</select>
+
+    <select id="get_reply" parameterType="Int" resultType="Reply">select reply.text,nike,reply_time,head from reply,personal_table where belong_answer_id=#{answer_id} and replyer=username order by reply_time ;</select>
+
+    <select id="get_this_class_ask" resultType="Ask_class">
+        select ask.unit_no,ask_title,asker,ask_time,head,lesson_title,answer_count,ask_id,visits_count,
+        (select nike from answer,personal_table where belong_ask_id=ask_id and answerer=username order by answer_time  desc limit 1) new_answerer,
+        (select answer_text from answer where belong_ask_id=ask_id order by answer_time desc limit 1) new_answer
+        from personal_table,ask,class where belong_class_id=#{arg0} and asker=username and belong_class_id=class_id and ask.unit_no=class.unit_no order by ask_time desc limit #{arg1},6
+    </select>
+
+    <select id="get_other_ask" resultType="AskOther">select ask_id,ask_title from ask where belong_class_id=#{arg0}  and unit_no=#{arg1} and ask_id!=#{arg2} limit 10</select>
+
+    <insert id="post_ask">
+        insert into ask(belong_class_id,unit_no,ask_title,asker,ask_text,ask_time) values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5})
+        <selectKey keyProperty="id" order="AFTER" resultType="Int">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+</mapper>

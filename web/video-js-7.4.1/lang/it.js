@@ -1,5 +1,5 @@
 videojs.addLanguage('it', {
-  "Play": "Play.html",
+  "Play": "com.LJZ.Server.Play.html",
   "Pause": "Pausa",
   "Current Time": "Orario attuale",
   "Duration": "Durata",

@@ -35,7 +35,7 @@ function get_reply() {
             asker.children().eq(0).attr('src',contextPath+jsonObj.ask_infor.head);
             $('#ask_describe').text(jsonObj.ask_infor.ask_title);
             $('#ask_rich_text').append(jsonObj.ask_infor.ask_text);
-            $('#class_no').attr('href','Play.html?'+jsonObj.ask_infor.belong_class_id+'/'+jsonObj.ask_infor.unit_no).text('问题来自：'+jsonObj.ask_infor.class_title+'  '+jsonObj.ask_infor.unit_no);
+            $('#class_no').attr('href','com.LJZ.Server.Play.html?'+jsonObj.ask_infor.belong_class_id+'/'+jsonObj.ask_infor.unit_no).text('问题来自：'+jsonObj.ask_infor.class_title+'  '+jsonObj.ask_infor.unit_no);
             $('#ask_time').text(jsonObj.ask_infor.ask_time);
             $('#answer_count').text(jsonObj.ask_infor.answer_count+' 回答');
             $('#times').text(jsonObj.ask_infor.visits_count+' 浏览');

@@ -8,6 +8,7 @@ let Unit = [];
 let class_no = No[1];
 No = No[0];
 let user = cookie.get('user');
+let nike = cookie.get('nike');
 let editor_count = 0;
 let E = window.wangEditor;
 let configure = [
@@ -539,7 +540,7 @@ function add_note_box(note_text,note_id,time) {
         '                            </div>\n' +
         '                            <div style="margin-left: 60px">\n' +
         '                                <div class="author">\n' +
-        '                                    <a  href="PersonalCenter.html" >' + user + '</a>\n' +
+        '                                    <a target="_blank" href="PersonalCenter.html" >' + nike + '</a>\n' +
         '                                </div>\n' +
         '                                <div style="display: block;">\n' +
         '                                    <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height: 63%;min-height=20%">\n' +

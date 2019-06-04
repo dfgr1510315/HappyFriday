@@ -348,7 +348,7 @@ define([
          * @method cancelFile
          * @grammar cancelFile( file ) => undefined
          * @grammar cancelFile( id ) => undefined
-         * @param {File|id} file File对象或这File对象的id
+         * @param {com.LJZ.Model.File|id} file File对象或这File对象的id
          * @description 标记文件状态为已取消, 同时将中断文件传输。
          * @for  Uploader
          * @example
@@ -536,7 +536,7 @@ define([
 
         /**
          * @event uploadStart
-         * @param {File} file File对象
+         * @param {com.LJZ.Model.File} file File对象
          * @description 某个文件开始上传前触发，一个文件只会触发一次。
          * @for  Uploader
          */
@@ -667,7 +667,7 @@ define([
 
         /**
          * @event uploadProgress
-         * @param {File} file File对象
+         * @param {com.LJZ.Model.File} file File对象
          * @param {Number} percentage 上传进度
          * @description 上传过程中触发，携带上传进度。
          * @for  Uploader
@@ -676,7 +676,7 @@ define([
 
         /**
          * @event uploadError
-         * @param {File} file File对象
+         * @param {com.LJZ.Model.File} file File对象
          * @param {String} reason 出错的code
          * @description 当文件上传出错时触发。
          * @for  Uploader
@@ -684,7 +684,7 @@ define([
 
         /**
          * @event uploadSuccess
-         * @param {File} file File对象
+         * @param {com.LJZ.Model.File} file File对象
          * @param {Object} response 服务端返回的数据
          * @description 当文件上传成功时触发。
          * @for  Uploader
@@ -692,7 +692,7 @@ define([
 
         /**
          * @event uploadComplete
-         * @param {File} [file] File对象
+         * @param {com.LJZ.Model.File} [file] File对象
          * @description 不管成功或者失败，文件上传完成时触发。
          * @for  Uploader
          */

@@ -52,7 +52,7 @@ define([
          * 将新文件加入对队列尾部
          *
          * @method append
-         * @param  {File} file   文件对象
+         * @param  {com.LJZ.Model.File} file   文件对象
          */
         append: function( file ) {
             this._queue.push( file );
@@ -64,7 +64,7 @@ define([
          * 将新文件加入对队列头部
          *
          * @method prepend
-         * @param  {File} file   文件对象
+         * @param  {com.LJZ.Model.File} file   文件对象
          */
         prepend: function( file ) {
             this._queue.unshift( file );
@@ -77,7 +77,7 @@ define([
          *
          * @method getFile
          * @param  {String} fileId   文件ID
-         * @return {File}
+         * @return {com.LJZ.Model.File}
          */
         getFile: function( fileId ) {
             if ( typeof fileId !== 'string' ) {
@@ -91,7 +91,7 @@ define([
          * @grammar fetch( status ) => File
          * @method fetch
          * @param {String} status [文件状态值](#WebUploader:File:File.Status)
-         * @return {File} [File](#WebUploader:File)
+         * @return {com.LJZ.Model.File} [File](#WebUploader:File)
          */
         fetch: function( status ) {
             var len = this._queue.length,
@@ -152,7 +152,7 @@ define([
          * 在队列中删除文件。
          * @grammar removeFile( file ) => Array
          * @method removeFile
-         * @param {File} 文件对象。
+         * @param {com.LJZ.Model.File} 文件对象。
          */
         removeFile: function( file ) {
             var me = this,

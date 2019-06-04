@@ -20,7 +20,7 @@ function get_All_ask() {
         dataType: "json",
         asynch: "false",
         success: function (jsonObj) {
-            console.log(jsonObj);
+            //console.log(jsonObj);
             let ask_ul = $('#ask_ul');
             for (let i = 0; i < jsonObj.ask.length; i++) {
                 ask_ul.append(

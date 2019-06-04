@@ -68,7 +68,7 @@ package webuploader - 0.1
 
             var params:Object = stage.loaderInfo.parameters;
 
-            // Setup id
+            // Setup IdPOJO
             Uploader.uid = Utils.sanitize(params["uid"]);
 
             // Event dispatcher

@@ -18,7 +18,7 @@ define([
 
     /**
      * 文件类
-     * @class File
+     * @class com.LJZ.Model.File
      * @constructor 构造函数
      * @grammar new File( source ) => File
      * @param {Lib.File} source [lib.File](#Lib.File)实例, 此source对象是带有Runtime信息的。
@@ -95,7 +95,7 @@ define([
          * 设置状态，状态变化时会触发`change`事件。
          * @method setStatus
          * @grammar setStatus( status[, statusText] );
-         * @param {File.Status|String} status [文件状态值](#WebUploader:File:File.Status)
+         * @param {com.LJZ.Model.File.Status|String} status [文件状态值](#WebUploader:File:File.Status)
          * @param {String} [statusText=''] 状态说明，常在error时使用，用http, abort,server等来标记是由于什么原因导致文件错误。
          */
         setStatus: function( status, text ) {
@@ -117,7 +117,7 @@ define([
 
         /**
          * 获取文件状态
-         * @return {File.Status}
+         * @return {com.LJZ.Model.File.Status}
          * @example
                  文件状态具体包括以下几种类型：
                  {
@@ -166,8 +166,8 @@ define([
      * * `invalid` 文件不合格，不能重试上传。会自动从队列中移除。
      * * `cancelled` 文件被移除。
      * @property {Object} Status
-     * @namespace File
-     * @class File
+     * @namespace com.LJZ.Model.File
+     * @class com.LJZ.Model.File
      * @static
      */
     WUFile.Status = {
