@@ -3,10 +3,11 @@ package com.LJZ.DAO;
 import com.LJZ.Model.Course;
 import com.LJZ.Model.Lesson;
 import com.LJZ.Model.Material;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface classDAO {
+public interface ClassDAO {
     //查询教师开设的所有课程
     List get_class(String teacher);
 
@@ -26,7 +27,9 @@ public interface classDAO {
     boolean delete_student_class(String class_id,String student);
 
     //教师页修改课程内容
-    boolean set_class_content(int class_id,List<Lesson> lessons);
+    //boolean set_class_content(int class_id,List<Lesson> lessons);
+    List getUnitNo(int class_id);
+    int UpClassContent(@Param("l")Lesson lesson,@Param("class_id")int class_id);
 
     //教师页获取课程内容
     List get_class_content(int class_id);

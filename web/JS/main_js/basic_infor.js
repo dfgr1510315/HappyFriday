@@ -1,8 +1,7 @@
 let flag1 = true;
 let flag2 = true;
-let No;
+let No = GetQueryString('class_id');
 $(document).ready(function(){
-    No = GetQueryString('class_id');
     $('#navigation').load('navigation_dark.html');
     $('#ui_box').load('ui_box.html',function (){get_information()});
     $('#course_manag_nav').load('course_manag_nav.html',function () {addAction(1)});
@@ -42,19 +41,14 @@ function get_information(){
         },
         dataType: 'json',
         success: function (jsonObj) {
-            $('#title').val(jsonObj.title);
-            $('#sel1').val(jsonObj.type);
-            $('#outline').val(jsonObj.outline);
+            //console.log(jsonObj);
+            $('#title').val(jsonObj.baseInfor[0].class_title);
+            $('#sel1').val(jsonObj.baseInfor[0].class_type);
+            $('#outline').val(jsonObj.baseInfor[0].outline);
         }
     });
 }
 
-function GetQueryString(name)
-{
-    let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    let r = window.location.search.substr(1).match(reg);
-    if(r!=null) return  unescape(r[2]); return null;
-}
 
 function save_information() {
     if (flag1===true && flag2===true){

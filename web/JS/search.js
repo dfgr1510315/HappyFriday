@@ -1,7 +1,5 @@
-
-var contextPath = getContextPath();
-var keyword = GetQueryString('keyword');
-var keyword_model = /^\w+$/;
+let keyword = GetQueryString('keyword');
+let keyword_model = /^\w+$/;
 
 /*function change_src() {
     $('#logo img').attr('src', '/image/HUAS.png');
@@ -21,14 +19,14 @@ function add_href() {
 }
 
 function GetQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = decodeURI(window.location.search).substr(1).match(reg);
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    let r = decodeURI(window.location.search).substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
 }
 
 function get_class_type(class_type_in) {
-    var class_type;
+    let class_type;
     console.log(class_type_in);
     switch (class_type_in) {
         case 1:
@@ -55,9 +53,9 @@ function get_class_type(class_type_in) {
 
 function highlight(type) {
     clearSelection();//先清空一下上次高亮显示的内容；
-    var searchText = $('#search_ipt').val();//获取你输入的关键字；
-    var regExp = new RegExp(searchText, 'g');//创建正则表达式，g表示全局的，如果不用g，则查找到第一个就不会继续向下查找了；
-    var get_high;
+    let searchText = $('#search_ipt').val();//获取你输入的关键字；
+    let regExp = new RegExp(searchText, 'g');//创建正则表达式，g表示全局的，如果不用g，则查找到第一个就不会继续向下查找了；
+    let get_high;
     switch (type) {
         case 1:
             get_high = '.course-item-detail p,.course-item-detail a';
@@ -73,8 +71,8 @@ function highlight(type) {
     }
     $(get_high).each(function ()//遍历文章；
     {
-        var html = $(this).html();
-        var newHtml = html.replace(regExp, '<span class="highlight" >' + searchText + '</span>');//将找到的关键字替换，加上highlight属性；
+        let html = $(this).html();
+        let newHtml = html.replace(regExp, '<span class="highlight" >' + searchText + '</span>');//将找到的关键字替换，加上highlight属性；
         $(this).html(newHtml);//更新文章；
     });
 }
@@ -97,13 +95,13 @@ function clearSelection() {
 }
 
 function page_ul(page, count) {
-    var page_ul = $('#page');
+    let page_ul = $('#page');
     page_length = Math.ceil(count / 6);
     if ((parseInt(page) - 1) > 0) page_ul.append('<li class="page-item"><a class="page-link" href="?' + keyword + '&page=' + (parseInt(page) - 1) + '">Previous</a></li>');
     else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
 
     if (page - 1 > 2 && page_length - page >= 2) {
-        for (var i = page - 2; i <= page + 2; i++) {
+        for (let i = page - 2; i <= page + 2; i++) {
             if (i < page_length + 1) {
                 if (i === parseInt(page)) {
                     page_ul.append(' <li class="page-item active"><a class="page-link" href="?' + keyword + '&page=' + i + '">' + i + '</a></li>');
@@ -147,11 +145,11 @@ function page_ul(page, count) {
 }
 
 function go() {
-    var sp = location.pathname.split('/');
+    let sp = location.pathname.split('/');
     //console.log(sp[sp.length-1]);
-    var keycode = (event.keyCode ? event.keyCode : event.which);
+    let keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode === 13) {
-        var jump = $('#jump');
+        let jump = $('#jump');
         if (jump.val() > 0 && jump.val() <= page_length && jump.val() % 1 === 0) {
             window.location.href = sp[sp.length - 1] + "?keyword=" + keyword + '&page=' + jump.val();
         } else alert('请重新输入页号');
@@ -159,8 +157,8 @@ function go() {
 }
 
 function search_to() {
-    var sp = location.pathname.split('/');
-    var new_keyword = $('#search_ipt').val();
+    let sp = location.pathname.split('/');
+    let new_keyword = $('#search_ipt').val();
     //console.log(new_keyword+'!!!');
     if (new_keyword === keyword || new_keyword.trim() === '') return;
     /*if (!keyword_model.test(new_keyword)) {
@@ -171,9 +169,9 @@ function search_to() {
 }
 
 function search_note() {
-    var keyword = $('#search_ipt').val();
+    let keyword = $('#search_ipt').val();
     if (keyword.trim() === '') return;
-    var page = GetQueryString('page');
+    let page = GetQueryString('page');
     if (page == null) page = '1';
     $.ajax({
         type: "POST",
@@ -188,14 +186,14 @@ function search_note() {
         success: function (jsonObj) {
             //console.log(jsonObj);
             $('#count').text('共找到' + jsonObj.count + '个结果');
-            var note_box = $('#note_box');
+            let note_box = $('#note_box');
             if (jsonObj.count === 0) {
                 note_box.append(
                     '<div class="no_find_class">暂无结果</div>'
                 );
                 return;
             }
-            for (var i = 0; i < jsonObj.note.length; i++) {
+            for (let i = 0; i < jsonObj.note.length; i++) {
                 note_box.prepend('<div class="post-row">\n' +
                     '                            <div style="float:left;">\n' +
                     '                                <a target="_blank" href="../Learn_list.html?class_id=' + jsonObj.note[i].belong_class_id + '">\n' +
@@ -227,9 +225,9 @@ function search_note() {
 }
 
 function search_user() {
-    var keyword = $('#search_ipt').val();
+    let keyword = $('#search_ipt').val();
     if (keyword.trim() === '') return;
-    var page = GetQueryString('page');
+    let page = GetQueryString('page');
     if (page == null) page = '1';
     $.ajax({
         type: "POST",
@@ -250,7 +248,7 @@ function search_user() {
                 );
                 return;
             }
-            for (var i = 0; i < jsonObj.user_infor.length; i++) {
+            for (let i = 0; i < jsonObj.user_infor.length; i++) {
                 $('.user-list').append(
                     '      <li class="up-item">\n' +
                     '                        <div class="up-face">\n' +
@@ -280,9 +278,9 @@ function search_user() {
 }
 
 function search_ask() {
-    var keyword = $('#search_ipt').val();
+    let keyword = $('#search_ipt').val();
     if (keyword.trim() === '') return;
-    var page = GetQueryString('page');
+    let page = GetQueryString('page');
     if (page == null) page = '1';
     $.ajax({
         type: "POST",
@@ -297,14 +295,14 @@ function search_ask() {
         success: function (jsonObj) {
             //console.log(jsonObj);
             $('#count').text('共找到' + jsonObj.count + '个结果');
-            var ask_ul = $('#ask_ul');
+            let ask_ul = $('#ask_ul');
             if (jsonObj.count === 0) {
                 ask_ul.append(
                     '<div class="no_find_class">暂无结果</div>'
                 );
                 return;
             }
-            for (var i = 0; i < jsonObj.ask.length; i++) {
+            for (let i = 0; i < jsonObj.ask.length; i++) {
                 ask_ul.append(
                     ' <li>\n' +
                     '                            <div class="ui-box">\n' +
@@ -360,9 +358,9 @@ function search_ask() {
 }
 
 function search_class() {
-    var keyword = $('#search_ipt').val();
+    let keyword = $('#search_ipt').val();
     if (keyword.trim() === '') return;
-    var page = GetQueryString('page');
+    let page = GetQueryString('page');
     if (page == null) page = '1';
     $.ajax({
         type: "POST",
@@ -383,8 +381,8 @@ function search_class() {
                 );
                 return;
             }
-            for (var i = 0; i < jsonObj.class.length; i++) {
-                var class_type = get_class_type(jsonObj.class[i].class_type);
+            for (let i = 0; i < jsonObj.class.length; i++) {
+                let class_type = get_class_type(jsonObj.class[i].class_type);
                 $('.search-content').append(
                     ' <div class="course-item">\n' +
                     '                    <a href="../Learn_list.html?class_id=' + jsonObj.class[i].class_id + '" target="_blank" class="course-detail-title">\n' +

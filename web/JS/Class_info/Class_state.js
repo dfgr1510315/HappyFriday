@@ -9,9 +9,10 @@ function getHTML() {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            $("#curriculum_Name").text(jsonObj.title);
-            $("#teacher_Name").text(jsonObj.teacher);
-            if (jsonObj.state==='1')  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
+            //console.log(jsonObj);
+            $("#curriculum_Name").text(jsonObj.classList[0].class_title);
+            $("#teacher_Name").text(jsonObj.classList[0].teacher);
+            if (jsonObj.classList[0].release_status===1)  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');
             else $("#curriculum_button").addClass('btn-outline-primary').text('发布课程').attr('data-target','#Open_curriculum');
         }
     });

@@ -1,0 +1,51 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.ClassDAO">
+
+    <select id="get_class" resultType="Course_infor">
+        select class_id,class_title,student_count,release_status,cover_address from class_teacher_table where teacher=#{_parameter}
+    </select>
+
+    <insert id="add_class">
+        insert into class_teacher_table(teacher,class_title,release_status,class_type) values(#{arg0},#{arg1},#{arg2},#{arg3})
+        <selectKey keyProperty="id" order="AFTER" resultType="Int">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+    <select id="get_student_class" resultType="Sc">
+        select class_type,collection,class,class_title,cover_address,schedule,last_time,
+        (SELECT COUNT(note_id) from note where belong_class_id=class and author=user) note_count,
+        (SELECT COUNT(ask_id) from ask where belong_class_id=class and asker=user) ask_count
+        from sc,class_teacher_table where user=#{_parameter} and class=class_id
+    </select>
+
+    <update id="set_collection">
+        update sc set collection=#{arg0} where user=#{arg1} and class=#{arg2}
+    </update>
+
+    <delete id="delete_student_class">
+        delete FROM sc WHERE user=#{arg0} and class=#{arg1}
+    </delete>
+
+    <select id="getUnitNo" resultType="String">
+        select unit_no from class where class_id=#{_parameter}
+    </select>
+
+    <update id="UpClassContent">
+        update class set unit_title=#{l.unit_title}, lesson_title=#{l.lesson_title}, release_status=#{l.release_status},video_address=#{l.video_address},Image_text=#{l.Image_text},
+        file_address=#{l.file_address},file_name=#{l.file_name},source_video_title=#{l.source_video_title} ,source_video_address=#{l.source_video_address}
+        where unit_no=#{l.unit_no} and class_id=#{class_id}
+    </update>
+
+    <insert id="InClassContent">
+        SELECT file_name,file_path FROM file where class_id=#{_parameter}
+    </insert>
+
+    <delete id="delete_file" parameterType="String">
+        insert into class values(#{class_id},#{unit_no},#{unit_title},#{lesson_title},#{release_status},
+        #{source_video_address},#{source_video_title},#{video_address},#{image_text},#{file_address},#{file_name})
+    </delete>
+
+</mapper>

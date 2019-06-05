@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.BasicsClassDAO">
+
+    <select id="get_class" resultType="Course">
+        SELECT class_id,class_title,teacher,student_count,cover_address,class_type,outline FROM class_teacher_table where ${arg0} order by #{arg1} limit ${arg2}
+    </select>
+
+    <select id="get_class_count" resultType="Int">
+        select count(class_id) count from class_teacher_table where ${_parameter}
+    </select>
+
+    <select id="search_tips" resultType="String">
+        select class_title from class_teacher_table where class_title like '%${_parameter}%'
+    </select>
+
+    <delete id="delete_class" >
+        delete from class_teacher_table where class_id=#{_parameter}
+    </delete>
+
+    <update id="set_infor">
+        update class_teacher_table set class_title=#{arg0}, class_type=#{arg1}, outline=#{arg2} where class_id=#{arg3}
+    </update>
+
+    <select id="get_infor" parameterType="Int" resultType="ClassBaseInfor">
+        select class_title,outline,class_type from class_teacher_table where class_id=#{_parameter}
+    </select>
+
+    <update id="save_class" >
+        update class_teacher_table set UnitCount=#{arg0}, ClassCount=#{arg1} where class_id=#{arg2}
+    </update>
+
+    <select id="read_class" parameterType="Int" resultType="ClassList">
+        select class_title,teacher,release_status from class_teacher_table where class_id=#{_parameter}
+    </select>
+
+    <update id="change_class_state" >
+        update class_teacher_table set release_status=#{arg0} where class_id=#{arg1}
+    </update>
+
+    <select id="get_files" parameterType="Int" resultType="File">
+        SELECT file_name,file_path FROM file where class_id=#{_parameter}
+    </select>
+
+    <delete id="delete_file" parameterType="String">
+        delete from file where file_path=#{_parameter}
+    </delete>
+
+</mapper>

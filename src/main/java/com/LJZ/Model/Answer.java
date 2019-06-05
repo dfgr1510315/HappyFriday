@@ -10,6 +10,16 @@ public class Answer {
     private String answer_time;
     private List replys;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
+
     public List getReplys() {
         return replys;
     }

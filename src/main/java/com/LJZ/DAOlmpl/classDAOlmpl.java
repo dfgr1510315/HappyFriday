@@ -1,6 +1,6 @@
 package com.LJZ.DAOlmpl;
 
-import com.LJZ.DAO.classDAO;
+import com.LJZ.DAO.ClassDAO;
 
 import com.LJZ.Model.Chapter;
 import com.LJZ.Model.Lesson;
@@ -17,7 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class classDAOlmpl implements classDAO {
+public class classDAOlmpl implements ClassDAO {
 
     @Override
     public List get_class(String teacher) {
@@ -60,12 +60,11 @@ public class classDAOlmpl implements classDAO {
         int id = 0;
         try {
             con = dbp.getConnection();
-            qsql = con.prepareStatement("insert into class_teacher_table(teacher,class_title,release_status,class_type,cover_address)"+"values(?,?,?,?,?)");
+            qsql = con.prepareStatement("insert into class_teacher_table(teacher,class_title,release_status,class_type) values(?,?,?,?)");
             qsql.setString(1,teacher);
             qsql.setString(2,class_title);
             qsql.setInt(3,0);
             qsql.setInt(4,class_type);
-            qsql.setString(5,"/image/efb37fee400582742424a4ce08951213.png");
             qsql.executeUpdate();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ID() class_ID");
@@ -194,6 +193,16 @@ public class classDAOlmpl implements classDAO {
     }
 
     @Override
+    public List getUnitNo(int class_id) {
+        return null;
+    }
+
+    @Override
+    public int UpClassContent(Lesson lesson, int class_id) {
+        return 0;
+    }
+
+    /*@Override
     public boolean set_class_content(int class_id,List<Lesson> lessons) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
@@ -265,7 +274,7 @@ public class classDAOlmpl implements classDAO {
                 }
         }
         return state!=0;
-    }
+    }*/
 
     @Override
     public List get_class_content(int class_id) {

@@ -72,7 +72,7 @@ function get_notice() {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            //console.log(jsonObj);
+            console.log(jsonObj);
             for (let i=0;i<jsonObj.notice.length;i++){
                 let notice;
                 switch (jsonObj.notice[i].notice_type) {
@@ -83,10 +83,10 @@ function get_notice() {
                         notice = "学员<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在课程<a href='Learn_list.html?class_id="+jsonObj.notice[i].class_id+"' target='_blank'>《"+jsonObj.notice[i].class_title+"》</a>发表了问题<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>\n";
                         break;
                     case 3:
-                        notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在你发布的问题<a href='questions.html?"+jsonObj.notice[i].ask_title+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回答了你";
+                        notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在你发布的问题<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回答了你";
                         break;
                     case 4:
-                        notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在<a href='questions.html?"+jsonObj.notice[i].ask_title+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回复了你";
+                        notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回复了你";
                         break
                 }
                 notice_box_ul(notice,jsonObj.notice[i].time,jsonObj.notice[i].notice_id)

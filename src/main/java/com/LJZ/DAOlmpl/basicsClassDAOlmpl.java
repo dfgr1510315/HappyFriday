@@ -1,6 +1,6 @@
 package com.LJZ.DAOlmpl;
 
-import com.LJZ.DAO.basicsClassDAO;
+import com.LJZ.DAO.BasicsClassDAO;
 import com.LJZ.Model.Course;
 import com.LJZ.Model.File;
 import com.LJZ.DB.DBPoolConnection;
@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class basicsClassDAOlmpl  implements basicsClassDAO {
+public class basicsClassDAOlmpl  implements BasicsClassDAO {
 
     @Override
     public List get_class(String where,String order,String limit) {
@@ -104,7 +104,7 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
     }
 
     @Override
-    public boolean delete_class(int class_id) {
+    public int delete_class(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -130,11 +130,11 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
-    public boolean set_infor(int class_id, String title, int class_type, String outline) {
+    public int set_infor(int class_id, String title, int class_type, String outline) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -163,12 +163,12 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
-    public String[] get_infor(int class_id) {
-        DBPoolConnection dbp = DBPoolConnection.getInstance();
+    public List get_infor(int class_id) {
+        /*DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         String[] infor = new String[3];
         try {
@@ -191,11 +191,12 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
                     e.printStackTrace();
                 }
         }
-        return infor;
+        return infor;*/
+        return null;
     }
 
     @Override
-    public boolean save_class(int class_id, String UnitCount, String ClassCount) {
+    public int save_class(int class_id, String UnitCount, String ClassCount) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -223,11 +224,11 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
-    public String[] read_class(int class_id) {
+    public List read_class(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         String[] cl = new String[3];
@@ -251,11 +252,11 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
                     e.printStackTrace();
                 }
         }
-        return cl;
+        return null;
     }
 
     @Override
-    public boolean change_class_state(int No, int state) {
+    public int change_class_state(int No, int state) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -282,7 +283,7 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
                     e.printStackTrace();
                 }
         }
-        return Rstate!=0;
+        return Rstate;
     }
 
     @Override
@@ -316,7 +317,7 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
     }
 
     @Override
-    public boolean delete_file(String address) {
+    public int delete_file(String address) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -342,6 +343,6 @@ public class basicsClassDAOlmpl  implements basicsClassDAO {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 }

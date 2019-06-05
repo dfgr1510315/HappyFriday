@@ -1,17 +1,27 @@
 package com.LJZ.Model;
 
 public class Reply {
-    private String replyer;
+    private String nike;
     private String text;
     private String reply_time;
     private String head;
 
-    public String getReplyer() {
-        return replyer;
+    public String getUsername() {
+        return username;
     }
 
-    public void setReplyer(String replyer) {
-        this.replyer = replyer;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
+
+    public String getNike() {
+        return nike;
+    }
+
+    public void setNike(String nike) {
+        this.nike = nike;
     }
 
     public String getText() {

@@ -8,7 +8,6 @@
           <element id="module-output" name="ServletTest" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="D:/apache-tomcat-9.0.16/lib/websocket-api.jar" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.1.14" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.0.2" />
           <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-component-annotations:1.5.5" />

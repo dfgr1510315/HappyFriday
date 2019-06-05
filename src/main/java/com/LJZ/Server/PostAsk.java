@@ -35,62 +35,36 @@ public class PostAsk extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        String class_No = request.getParameter("class_No");
-        String author = request.getParameter("author");
-        String time;
         switch (action) {
-            case "post":
-                int No = Integer.parseInt(request.getParameter("No"));
-                String note_editor = request.getParameter("note_editor");
-                //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-                time = request.getParameter("time");
-                String ask_title = request.getParameter("ask_title");
-                post_ask(response, No, class_No, author, note_editor, time,ask_title);
-                break;
             case "get":
-                No = Integer.parseInt(request.getParameter("No"));
-                get_ask(response,No,class_No,author);
+                get_ask(response, request);
                 break;
             case "get_all_ask" :
-                int page = Integer.parseInt(request.getParameter("page"));
-                String user = request.getParameter("user");
-                get_all_ask(response,user,page);
+                get_all_ask(response, request);
                 break;
             case "get_this_class_ask" :
-                No = Integer.parseInt(request.getParameter("No"));
-                page = Integer.parseInt(request.getParameter("page"));
-                get_this_class_ask(response,No,page);
+                get_this_class_ask(response, request);
                 break;
             case "get_reply" :
-                No = Integer.parseInt(request.getParameter("No"));
-                get_reply(response,No);
-                break;
-            case "post_reply" :
-                No = Integer.parseInt(request.getParameter("No"));
-                user = request.getParameter("reply");
-                note_editor = request.getParameter("reply_text");
-                time = request.getParameter("time");
-                String reply_to = request.getParameter("reply_to");
-                post_reply(response,No,user,time,note_editor,reply_to);
-                break;
-            case "post_answer" :
-                No = Integer.parseInt(request.getParameter("No"));
-                user = request.getParameter("answer");
-                note_editor = request.getParameter("answer_text");
-                time = request.getParameter("time");
-                post_answer(response,No,user,time,note_editor);
+                get_reply(response, request);
                 break;
             case "get_my_ask" :
-                page = Integer.parseInt(request.getParameter("page"));
-                get_my_ask(response,page,author);
+                get_my_ask(response,request);
                 break;
             case "get_my_reply_ask" :
-                page = Integer.parseInt(request.getParameter("page"));
-                user = request.getParameter("answer");
-                get_my_reply_ask(response,page,user);
+                get_my_reply_ask(response,request);
                 break;
             case "search_ask":
                 search_ask(request,response);
+                break;
+            case "post":
+                post_ask(response, request);
+                break;
+            case "post_reply" :
+                post_reply(response, request);
+                break;
+            case "post_answer" :
+                post_answer(response,request);
                 break;
         }
     }
@@ -110,7 +84,9 @@ public class PostAsk extends HttpServlet {
     }
 
     //我回复过的提问
-    private void get_my_reply_ask(HttpServletResponse response,int page,String answer) throws IOException{
+    private void get_my_reply_ask(HttpServletResponse response,HttpServletRequest request) throws IOException{
+        int page = Integer.parseInt(request.getParameter("page"));
+        String answer = request.getParameter("answer");
         JSONObject jsonObject = new JSONObject();
         String SQL = "SELECT COUNT(distinct ask_id) ask_count FROM ask,answer where answerer='"+answer+"' and belong_ask_id=ask_id";
         jsonObject.put("count", al.get_ask_count(SQL));
@@ -123,7 +99,9 @@ public class PostAsk extends HttpServlet {
     }
 
     //我发布的提问
-    private void get_my_ask(HttpServletResponse response,int page,String author) throws IOException{
+    private void get_my_ask(HttpServletResponse response,HttpServletRequest request) throws IOException{
+        int page = Integer.parseInt(request.getParameter("page"));
+        String author = request.getParameter("author");
         String SQL_from = " from ask,class_teacher_table where asker='"+author+"'and belong_class_id=class_id order by ask_time desc limit "+(6*(page-1))+","+6;
         String SQL_count = "SELECT COUNT(ask_id) ask_count FROM ask where asker='"+author+"'";
         JSONObject jsonObject = new JSONObject();
@@ -136,24 +114,41 @@ public class PostAsk extends HttpServlet {
     }
 
     //回答讨论
-    private void post_answer(HttpServletResponse response,int No,String answer,String answer_time,String answer_text)throws IOException{
+    private void post_answer(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
+        String answer = request.getParameter("answer");
+        String answer_text = request.getParameter("answer_text");
+        String answer_time = request.getParameter("time");
+        String Landlord = request.getParameter("landlord");
+        System.out.println(Landlord);
         PrintWriter out = response.getWriter();
         out.print(al.post_answer(No,answer,answer_time,answer_text));
+        al.inNotice(answer,No,3,Landlord,answer_time);
         out.flush();
         out.close();
     }
 
     //在回答下回复
-    private void post_reply(HttpServletResponse response,int No,String reply,String reply_time,String reply_text,String reply_to)throws IOException{
+    private void post_reply(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
+        int askId = Integer.parseInt(request.getParameter("askId"));
+        String reply = request.getParameter("reply");
+        String reply_text = request.getParameter("reply_text");
+        String reply_time = request.getParameter("time");
+        String reply_to = request.getParameter("reply_to");
         PrintWriter out = response.getWriter();
         out.print(al.post_reply(No,reply,reply_time,reply_text,reply_to));
+        //System.out.println(reply+","+reply_to);
+        al.inNotice(reply,askId,4,reply_to,reply_time);
         out.flush();
         out.close();
     }
 
     //得到此问答下所有回复内容
-    private void get_reply(HttpServletResponse response,int No)throws IOException{
+    private void get_reply(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
         JSONObject jsonObject = new JSONObject();
+        al.visits_count(No);
         Ask_infor ask_infor = al.get_ask_infor(No);
         List ask_List = al.get_answer(No);
         for (Object o : ask_List) {
@@ -171,7 +166,9 @@ public class PostAsk extends HttpServlet {
     }
 
     //得到此课程下所有问答
-    private void get_this_class_ask(HttpServletResponse response,int No,int page)throws IOException{
+    private void get_this_class_ask(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
+        int page = Integer.parseInt(request.getParameter("page"));
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ask", al.get_this_class_ask(No,6*(page-1)));
         PrintWriter out = response.getWriter();
@@ -181,7 +178,9 @@ public class PostAsk extends HttpServlet {
     }
 
     //获取该教师发布的所有课程下的所有问答
-    private void get_all_ask(HttpServletResponse response,String user,int page)throws IOException{
+    private void get_all_ask(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        int page = Integer.parseInt(request.getParameter("page"));
+        String user = request.getParameter("user");
         String SQL_from = " from class_teacher_table,ask where teacher='"+user+"' and class_teacher_table.class_id=belong_class_id order by ask_time desc limit "+(6*(page-1))+","+6;
         String SQL_count = "SELECT COUNT(*) ask_count FROM ask,class_teacher_table where teacher='"+user+"' and class_id=belong_class_id";
         JSONObject jsonObject = new JSONObject();
@@ -194,7 +193,10 @@ public class PostAsk extends HttpServlet {
     }
 
     //获取当前播放课时下我的问答
-    private void get_ask(HttpServletResponse response,int No,String class_No,String author)throws IOException{
+    private void get_ask(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        String class_No = request.getParameter("class_No");
+        int No = Integer.parseInt(request.getParameter("No"));
+        String author = request.getParameter("author");
         String SQL_from = " from class_teacher_table,ask where belong_class_id="+No+" and unit_no='"+class_No+"' and asker= '"+author+"' and class_teacher_table.class_id=belong_class_id";
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ask", al.get_ask(SQL_from));
@@ -205,7 +207,14 @@ public class PostAsk extends HttpServlet {
     }
 
 
-    private void post_ask(HttpServletResponse response,int No,String class_No,String author,String note_editor,String time,String ask_title)throws IOException{
+    private void post_ask(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        String class_No = request.getParameter("class_No");
+        String author = request.getParameter("author");
+        int No = Integer.parseInt(request.getParameter("No"));
+        String note_editor = request.getParameter("note_editor");
+        //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String time = request.getParameter("time");
+        String ask_title = request.getParameter("ask_title");
         PrintWriter out = response.getWriter();
         out.print(al.post_ask(No,class_No,author,note_editor,time,ask_title));
         out.flush();

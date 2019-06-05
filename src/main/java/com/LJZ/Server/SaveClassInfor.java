@@ -1,7 +1,14 @@
 package com.LJZ.Server;
+import com.LJZ.DAO.BasicsClassDAO;
 import com.LJZ.DAOlmpl.basicsClassDAOlmpl;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +20,14 @@ import java.util.List;
 
 @WebServlet(name = "SaveClassInfor")
 public class SaveClassInfor extends HttpServlet {
+    private BasicsClassDAO bc;
+    public void init(ServletConfig config) throws ServletException {
+        super.init();
+        ApplicationContext ctx=new ClassPathXmlApplicationContext("application.xml");
+        SqlSessionFactory factory = (SqlSessionFactory) ctx.getBean("sqlSessionFactory");
+        SqlSession sqlSession = factory.openSession();
+        bc = sqlSession.getMapper(BasicsClassDAO.class);
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
@@ -20,46 +35,31 @@ public class SaveClassInfor extends HttpServlet {
         String Read_or_Save = request.getParameter("Read_or_Save");
         switch (Read_or_Save) {
             case "save":
-                int No = Integer.parseInt(request.getParameter("No"));
-                String ClassCount = request.getParameter("ClassCount");
-                String UnitCount = request.getParameter("UnitCount");
-                save_class(No, UnitCount, ClassCount,response);
+                save_class(request,response);
                 break;
             case "read":
-                No = Integer.parseInt(request.getParameter("No"));
-                read_class(No,response);
+                read_class(request,response);
                 break;
             case "search_tips":
-                String keyword = request.getParameter("keyword");
-                search_tips(keyword,response);
+                search_tips(request,response);
                 break;
             case "search_class":
-                keyword = request.getParameter("keyword");
-                int page = Integer.parseInt(request.getParameter("page"));
-                search_class(response,keyword,page);
+                search_class(request,response);
                 break;
             case "get_infor":
-                No = Integer.parseInt(request.getParameter("No"));
-                get_infor(response,No);
+                get_infor(request,response);
                 break;
             case "set_infor":
-                No = Integer.parseInt(request.getParameter("No"));
-                String title = request.getParameter("title");
-                int sel1 = Integer.parseInt(request.getParameter("sel1"));
-                String outline = request.getParameter("outline");
-                set_infor(response,No,title,sel1,outline);
+                set_infor(request,response);
                 break;
             case "get_new_class":
                 get_new_class(request,response);
                 break;
             case "delete_class":
-                No = Integer.parseInt(request.getParameter("No"));
-                delete_class(No,response);
+                delete_class(request,response);
                 break;
             case "release":
-                No = Integer.parseInt(request.getParameter("No"));
-                int state = Integer.parseInt(request.getParameter("state"));
-                change_class_state(No,state,response);
+                change_class_state(request,response);
                 break;
             case "get_file":
                 get_file(response,request);
@@ -75,7 +75,6 @@ public class SaveClassInfor extends HttpServlet {
     }
 
     private void delete_file(HttpServletResponse response,HttpServletRequest request)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
         String address = request.getParameter("address");
         PrintWriter out = response.getWriter();
         //ConnectSQL.my_println("RealPath:"+getServletContext().getRealPath("/")+address);
@@ -88,7 +87,6 @@ public class SaveClassInfor extends HttpServlet {
 
 
     private void get_file(HttpServletResponse response,HttpServletRequest request)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
         String class_id = request.getParameter("class_id");
         PrintWriter out = response.getWriter();
         JSONObject jsonObj = new JSONObject();
@@ -117,8 +115,9 @@ public class SaveClassInfor extends HttpServlet {
         out.close();
     }
 
-    private void search_class(HttpServletResponse response,String keyword,int page)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void search_class(HttpServletRequest request,HttpServletResponse response)throws IOException{
+        String keyword = request.getParameter("keyword");
+        int page = Integer.parseInt(request.getParameter("page"));
         PrintWriter out = response.getWriter();
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("class",bc.get_class("class_title like '%"+keyword+"%' and release_status=1","student_count desc",(6*(page-1))+","+6));
@@ -128,8 +127,8 @@ public class SaveClassInfor extends HttpServlet {
         out.close();
     }
 
-    private void search_tips(String keyword,HttpServletResponse response)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void search_tips(HttpServletRequest request,HttpServletResponse response)throws IOException{
+        String keyword = request.getParameter("keyword");
         PrintWriter out = response.getWriter();
         List<String> list = bc.search_tips(keyword);
         for (String i : list) {
@@ -139,59 +138,59 @@ public class SaveClassInfor extends HttpServlet {
         out.close();
     }
 
-    private void delete_class(int No,HttpServletResponse response)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void delete_class(HttpServletRequest request,HttpServletResponse response)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
         PrintWriter out = response.getWriter();
         out.print(bc.delete_class(No));
         out.flush();
         out.close();
     }
 
-    private void set_infor(HttpServletResponse response,int No,String title,int sel1,String outline)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void set_infor(HttpServletRequest request,HttpServletResponse response)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
+        String title = request.getParameter("title");
+        int sel1 = Integer.parseInt(request.getParameter("sel1"));
+        String outline = request.getParameter("outline");
         PrintWriter out = response.getWriter();
         out.print(bc.set_infor(No,title,sel1,outline));
         out.flush();
         out.close();
     }
 
-    private void get_infor(HttpServletResponse response,int No)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void get_infor(HttpServletRequest request,HttpServletResponse response)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
         JSONObject jsonObj = new JSONObject();
         PrintWriter out = response.getWriter();
-        String[] infor = bc.get_infor(No);
-        jsonObj.put("title",infor[0]);
-        jsonObj.put("outline",infor[1]);
-        jsonObj.put("type",infor[2]);
+        jsonObj.put("baseInfor",bc.get_infor(No));
         out.print(jsonObj);
         out.flush();
         out.close();
     }
 
 
-    private void save_class(int No, String UnitCount, String ClassCount, HttpServletResponse response) throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void save_class(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
+        String ClassCount = request.getParameter("ClassCount");
+        String UnitCount = request.getParameter("UnitCount");
         PrintWriter out = response.getWriter();
         out.print(bc.save_class(No,UnitCount,ClassCount));
         out.flush();
         out.close();
     }
 
-    private void read_class(int No, HttpServletResponse response)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void read_class(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
         JSONObject jsonObj = new JSONObject();
         PrintWriter out = response.getWriter();
-        String[] cl = bc.read_class(No);
-        jsonObj.put("title",cl[0]);
-        jsonObj.put("teacher",cl[1]);
-        jsonObj.put("state",cl[2]);
+        jsonObj.put("classList",bc.read_class(No));
         out.print(jsonObj);
         out.flush();
         out.close();
     }
 
-    private void change_class_state(int No,int state,HttpServletResponse response)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void change_class_state(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        int No = Integer.parseInt(request.getParameter("No"));
+        int state = Integer.parseInt(request.getParameter("state"));
         PrintWriter out = response.getWriter();
         out.print(bc.change_class_state(No,state));
         out.flush();

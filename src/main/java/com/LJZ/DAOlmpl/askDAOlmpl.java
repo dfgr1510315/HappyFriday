@@ -194,6 +194,11 @@ public class askDAOlmpl implements askDAO {
     }
 
     @Override
+    public void visits_count(int ask_id) {
+
+    }
+
+    @Override
     public Ask_infor get_ask_infor(int ask_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
@@ -209,7 +214,7 @@ public class askDAOlmpl implements askDAO {
                 ask_infor.setClass_title(rs.getString("class_title"));
                 ask_infor.setBelong_class_id(rs.getInt("belong_class_id"));
                 ask_infor.setAsk_title(rs.getString("ask_title"));
-                ask_infor.setAsker(rs.getString("nike"));
+                ask_infor.setNike(rs.getString("nike"));
                 ask_infor.setAsk_text(rs.getString("ask_text"));
                 ask_infor.setAsk_time(rs.getString("ask_time"));
                 ask_infor.setHead(rs.getString("head"));
@@ -264,7 +269,7 @@ public class askDAOlmpl implements askDAO {
                 while (ns.next()) {
                     reply = new Reply();
                     reply.setText(ns.getString("reply.text"));
-                    reply.setReplyer(ns.getString("nike"));
+                    reply.setNike(ns.getString("nike"));
                     reply.setReply_time(ns.getString("reply_time"));
                     reply.setHead(ns.getString("head"));
                     replys.add(reply);
@@ -404,6 +409,11 @@ public class askDAOlmpl implements askDAO {
                 }
         }
         return ask_id;
+    }
+
+    @Override
+    public void inNotice(String fromUser, int askId, int type, String toUser, String time) {
+
     }
 
 }

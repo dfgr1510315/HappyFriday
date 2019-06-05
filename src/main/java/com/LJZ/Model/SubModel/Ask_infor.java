@@ -6,8 +6,26 @@ public class Ask_infor extends Ask {
     private String head;
     private String unit_no;
     private int class_type;
-    private String asker;
+    private String nike;
     private String ask_text;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
+
+    public String getNike() {
+        return nike;
+    }
+
+    public void setNike(String nike) {
+        this.nike = nike;
+    }
 
     public String getAsk_text() {
         return ask_text;
@@ -17,13 +35,7 @@ public class Ask_infor extends Ask {
         this.ask_text = ask_text;
     }
 
-    public String getAsker() {
-        return asker;
-    }
 
-    public void setAsker(String asker) {
-        this.asker = asker;
-    }
 
     public String getHead() {
         return head;

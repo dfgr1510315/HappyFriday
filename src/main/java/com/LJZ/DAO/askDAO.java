@@ -19,6 +19,9 @@ public interface askDAO {
     //添加回复(楼中楼)
     int post_reply(int class_id,String replyer,String reply_time,String reply_text,String reply_to);
 
+    //访问数+1
+    void visits_count(int ask_id);
+
     //得到此问答的基本信息
     Ask_infor get_ask_infor(int ask_id);
 
@@ -35,4 +38,7 @@ public interface askDAO {
     List get_this_class_ask(int class_id,int page);
 
     int post_ask(int class_id,String unit_no,String asker,String ask_text,String time,String ask_title);
+
+    //插入通知
+    void inNotice(String fromUser,int askId,int type,String toUser,String time);
 }

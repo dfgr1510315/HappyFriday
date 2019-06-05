@@ -72,7 +72,7 @@ public class GetLearnFile extends HttpServlet {
         }
         classDAOlmpl cdl = new classDAOlmpl();
         PrintWriter out = response.getWriter();
-        out.print(cdl.set_class_content(No,lessons));
+        //out.print(cdl.set_class_content(No,lessons));
         out.flush();
         out.close();
     }
