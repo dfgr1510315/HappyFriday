@@ -15,10 +15,10 @@
     </insert>
 
     <select id="get_student_class" resultType="Sc">
-        select class_type,collection,class,class_title,cover_address,schedule,last_time,
-        (SELECT COUNT(note_id) from note where belong_class_id=class and author=user) note_count,
-        (SELECT COUNT(ask_id) from ask where belong_class_id=class and asker=user) ask_count
-        from sc,class_teacher_table where user=#{_parameter} and class=class_id
+        select class_type,collection,classId,class_title,cover_address,schedule,last_time,
+        (SELECT COUNT(note_id) from note where belong_class_id=classId and author=user) note_count,
+        (SELECT COUNT(ask_id) from ask where belong_class_id=classId and asker=user) ask_count
+        from sc,class_teacher_table where user=#{_parameter} and classId=class_id
     </select>
 
     <update id="set_collection">
@@ -40,12 +40,62 @@
     </update>
 
     <insert id="InClassContent">
-        SELECT file_name,file_path FROM file where class_id=#{_parameter}
+        insert into class values(#{class_id},#{l.unit_no},#{l.unit_title},#{l.lesson_title},#{l.release_status},#{l.source_video_address},#{l.source_video_title},#{l.video_address},#{l.Image_text},#{l.file_address},#{l.file_name})
     </insert>
 
-    <delete id="delete_file" parameterType="String">
-        insert into class values(#{class_id},#{unit_no},#{unit_title},#{lesson_title},#{release_status},
-        #{source_video_address},#{source_video_title},#{video_address},#{image_text},#{file_address},#{file_name})
+    <delete id="DeClassContent">
+        delete FROM class WHERE class_id=#{arg0} and unit_no=#{arg1}
     </delete>
 
+    <select id="get_class_content" resultType="Lesson">
+        select unit_no,unit_title,lesson_title,release_status,source_video_address,source_video_title,video_address,Image_text,file_address,file_name from class where class_id=#{class_id} order by unit_no
+    </select>
+
+    <select id="get_chapter" resultType="Chapter">
+        select unit_no,unit_title,lesson_title from class where class_id=#{class_id} and release_status=1 order by unit_no
+    </select>
+
+    <select id="get_recommend" resultType="Course_infor">
+        select class_id,class_title,cover_address from class_teacher_table where release_status=1 and class_type=#{class_type} limit 5
+    </select>
+
+    <select id="get_class_infor" resultType="Course_infor">
+        select release_status,class_teacher_table.teacher,class_title,head,student_count,class_type,outline,nike from class_teacher_table,personal_table where class_teacher_table.teacher=username and class_id=#{class_id}
+    </select>
+
+    <select id="get_class_name" resultType="String">
+        select class_title from class_teacher_table where class_id=#{class_id}
+    </select>
+
+    <insert id="join_class">
+        insert into sc(user,class,time,classification) value (#{arg0},#{arg1},#{arg2},#{arg3})
+    </insert>
+
+    <select id="PlayPower" resultType="String">
+        select user from sc where user=#{arg0} and class=#{arg1}
+    </select>
+
+    <select id="get_material" resultType="Material">
+        select video_address,Image_text,file_address,file_name from class where class_id=#{arg0} and unit_no=#{arg1} and release_status=1
+    </select>
+
+    <update id="set_cover">
+        update class_teacher_table set cover_address=#{arg0} where class_id=#{arg1}
+    </update>
+
+    <update id="save_viewed">
+        update play_record set play_times=play_times+1 where class_id=#{arg0} and time=#{arg1}
+    </update>
+
+    <insert id="insertViewed">
+        insert into play_record(class_id,time) values(#{arg0},#{arg1})
+    </insert>
+
+    <select id="get_viewed" resultType="PlayView">
+        select play_times,time from play_record where class_id=#{arg0} and time BETWEEN #{arg1} AND #{arg2}
+    </select>
+
+    <select id="get_cover" resultType="String">
+        select cover_address from class_teacher_table where class_id=#{class_id}
+    </select>
 </mapper>

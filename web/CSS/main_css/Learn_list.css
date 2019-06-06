@@ -40,11 +40,11 @@ body.modal-open {
 }*/
 .under li a {
     color: #455a64;
-    transition: all 0.3s ease-in-out;
 }
 
 .under li a:hover {
     color: #007bff;
+    transition: all 0.3s ease-in-out;
 }
 
 .course .tab-content {
@@ -89,13 +89,13 @@ body.modal-open {
     font-size: 16px;
     color: #455a64;
     font-weight: normal;
-    transition: all 0.3s ease-in-out;
 }
 #one .ui-box  a div:hover {
    /* background-color: #fef3f3;
     color: #f20d0d!important;*/
     background-color: rgba(0, 123, 255, 0.18);
     color: rgb(0, 124, 253)!important;
+    transition: all 0.3s ease-in-out;
 }
 
 .ui-box1 {

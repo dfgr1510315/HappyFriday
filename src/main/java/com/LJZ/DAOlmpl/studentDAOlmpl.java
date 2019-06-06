@@ -209,7 +209,7 @@ public class studentDAOlmpl implements studentDAO {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select schedule,last_time from sc where user='"+student+"' and class="+course_id);
+            ResultSet rs = statement.executeQuery("select schedule,last_time from sc where user='"+student+"' and classId="+course_id);
             while (rs.next()){
                 string[0] = rs.getString("schedule");
                 string[1] = rs.getString("last_time");

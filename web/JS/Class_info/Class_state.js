@@ -1,4 +1,5 @@
 function getHTML() {
+    console.log('!!111');
     $("#preview").attr("href","Learn_list.html?class_id="+No);
     $.ajax({
         type: "POST",
@@ -9,7 +10,8 @@ function getHTML() {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            //console.log(jsonObj);
+            console.log('!!11');
+            console.log(jsonObj+'!!');
             $("#curriculum_Name").text(jsonObj.classList[0].class_title);
             $("#teacher_Name").text(jsonObj.classList[0].teacher);
             if (jsonObj.classList[0].release_status===1)  $("#curriculum_button").addClass('btn-success').text('已发布').attr('data-target','#Close_curriculum');

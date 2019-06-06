@@ -3,17 +3,25 @@ package com.LJZ.Model.SubModel;
 import com.LJZ.Model.Course;
 
 public class Course_infor extends Course {
-    private String teacher_head;
-
+    private String head;
+    private String nike;
     private int unit_count;
     private int release_status;
 
-    public String getTeacher_head() {
-        return teacher_head;
+    public String getNike() {
+        return nike;
     }
 
-    public void setTeacher_head(String teacher_head) {
-        this.teacher_head = teacher_head;
+    public void setNike(String nike) {
+        this.nike = nike;
+    }
+
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head;
     }
 
     public int getUnit_count() {

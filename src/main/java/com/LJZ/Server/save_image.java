@@ -1,40 +1,42 @@
 package com.LJZ.Server;
 
-import com.LJZ.DAOlmpl.classDAOlmpl;
+import com.LJZ.DAO.ClassDAO;
 import com.LJZ.DAOlmpl.userDAOlmpl;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class save_image extends HttpServlet {
-
+    private static SqlSessionFactory factory = (SqlSessionFactory) new ClassPathXmlApplicationContext("application.xml").getBean("sqlSessionFactory");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
-        HttpSession session=request.getSession();
-        String username=(String) session.getAttribute("user_id");
         String action = request.getParameter("action");
-        String image = request.getParameter("image");
-        switch (action) {
-            case "set_head":
-                set_head(response,username, image);
-                break;
-            case "set_cover": {
-                int No = Integer.parseInt(request.getParameter("No"));
-                set_cover(response, image, No);
-                break;
-            }
-            case "get_cover": {
-                int No = Integer.parseInt(request.getParameter("No"));
-                get_cover(response, No);
-                break;
+        try (SqlSession sqlSession = factory.openSession()){
+            ClassDAO cl = sqlSession.getMapper(ClassDAO.class);
+            switch (action) {
+                case "set_head":
+                    set_head(response,request);
+                    break;
+                case "set_cover": {
+                    int No = Integer.parseInt(request.getParameter("No"));
+                    set_cover(response, request, No,cl);
+                    break;
+                }
+                case "get_cover": {
+                    int No = Integer.parseInt(request.getParameter("No"));
+                    get_cover(response, No,cl);
+                    break;
+                }
             }
         }
     }
@@ -43,8 +45,7 @@ public class save_image extends HttpServlet {
         doPost(request,response);
     }
 
-    private void get_cover(HttpServletResponse response,int class_no)throws IOException {
-        classDAOlmpl cl = new classDAOlmpl();
+    private void get_cover(HttpServletResponse response,int class_no,ClassDAO cl)throws IOException {
         PrintWriter out = response.getWriter();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("cover",cl.get_cover(class_no));
@@ -53,15 +54,18 @@ public class save_image extends HttpServlet {
         out.close();
     }
 
-    private void set_cover(HttpServletResponse response,String image,int class_no)throws IOException{
-        classDAOlmpl cl = new classDAOlmpl();
+    private void set_cover(HttpServletResponse response,HttpServletRequest request,int class_no,ClassDAO cl)throws IOException{
+        String image = request.getParameter("image");
         PrintWriter out = response.getWriter();
         out.print(cl.set_cover(class_no,image));
         out.flush();
         out.close();
     }
 
-    private void set_head(HttpServletResponse response,String username, String head_image)throws IOException{
+    private void set_head(HttpServletResponse response,HttpServletRequest request)throws IOException{
+        HttpSession session=request.getSession();
+        String username=(String) session.getAttribute("user_id");
+        String head_image = request.getParameter("image");
         userDAOlmpl ul = new userDAOlmpl();
         PrintWriter out = response.getWriter();
         out.print(ul.change_head(username,head_image));

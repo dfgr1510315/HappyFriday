@@ -1,3 +1,4 @@
+/*
 package com.LJZ.DAOlmpl;
 
 import com.LJZ.DAO.ClassDAO;
@@ -24,12 +25,12 @@ public class classDAOlmpl implements ClassDAO {
         Course_infor c;
         List<Course_infor> list = new ArrayList<>();
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select class_id,class_title,student_count,release_status,cover_address from class_teacher_table where teacher='"+teacher+"'");
-            while (rs.next()){
+            ResultSet rs = statement.executeQuery("select class_id,class_title,student_count,release_status,cover_address from class_teacher_table where teacher='" + teacher + "'");
+            while (rs.next()) {
                 c = new Course_infor();
                 c.setClass_title(rs.getString("class_title"));
                 c.setStudent_count(rs.getInt("student_count"));
@@ -39,13 +40,13 @@ public class classDAOlmpl implements ClassDAO {
                 list.add(c);
             }
             rs.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
@@ -55,35 +56,35 @@ public class classDAOlmpl implements ClassDAO {
     @Override
     public int add_class(String teacher, String class_title, int class_type) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         PreparedStatement qsql = null;
         int id = 0;
         try {
             con = dbp.getConnection();
             qsql = con.prepareStatement("insert into class_teacher_table(teacher,class_title,release_status,class_type) values(?,?,?,?)");
-            qsql.setString(1,teacher);
-            qsql.setString(2,class_title);
-            qsql.setInt(3,0);
-            qsql.setInt(4,class_type);
+            qsql.setString(1, teacher);
+            qsql.setString(2, class_title);
+            qsql.setInt(3, 0);
+            qsql.setInt(4, class_type);
             qsql.executeUpdate();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ID() class_ID");
-            while (rs.next()){
+            while (rs.next()) {
                 id = rs.getInt("class_ID");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            if (qsql!=null)
-                try{
+            if (qsql != null)
+                try {
                     qsql.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
@@ -95,14 +96,14 @@ public class classDAOlmpl implements ClassDAO {
         Sc sc;
         List<Sc> list = new ArrayList<>();
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         String SQL_note = "(SELECT COUNT(note_id) from note where belong_class_id=class and author=user) note_count";
         String SQL_ask = ",(SELECT COUNT(ask_id) from ask where belong_class_id=class and asker=user) ask_count";
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select class_type,collection,class,class_title,cover_address,schedule,last_time,"+SQL_note+SQL_ask+" from sc,class_teacher_table where user='"+student+"' and class=class_id");
-            while (rs.next()){
+            ResultSet rs = statement.executeQuery("select class_type,collection,class,class_title,cover_address,schedule,last_time," + SQL_note + SQL_ask + " from sc,class_teacher_table where user='" + student + "' and class=class_id");
+            while (rs.next()) {
                 sc = new Sc();
                 sc.setClass_id(rs.getInt("class"));
                 sc.setClass_title(rs.getString("class_title"));
@@ -116,13 +117,13 @@ public class classDAOlmpl implements ClassDAO {
                 list.add(sc);
             }
             rs.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
@@ -130,41 +131,41 @@ public class classDAOlmpl implements ClassDAO {
     }
 
     @Override
-    public boolean set_collection(String class_id, String student, String collection) {
+    public int set_collection(String class_id, String student, String collection) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         PreparedStatement qsql = null;
         int state = 0;
         try {
             con = dbp.getConnection();
-            qsql  = con.prepareStatement("update sc set collection=? where user=? and class=?");
-            qsql.setString(1,collection);
-            qsql.setString(2,student);
-            qsql.setString(3,class_id);
+            qsql = con.prepareStatement("update sc set collection=? where user=? and class=?");
+            qsql.setString(1, collection);
+            qsql.setString(2, student);
+            qsql.setString(3, class_id);
             state = qsql.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            if (qsql!=null)
-                try{
+            if (qsql != null)
+                try {
                     qsql.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
-    public boolean delete_student_class(String class_id,String student) {
+    public int delete_student_class(String class_id, String student) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         PreparedStatement qsql = null;
         int state = 0;
         try {
@@ -175,21 +176,21 @@ public class classDAOlmpl implements ClassDAO {
             state = qsql.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            if (qsql!=null)
-                try{
+            if (qsql != null)
+                try {
                     qsql.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
@@ -198,23 +199,32 @@ public class classDAOlmpl implements ClassDAO {
     }
 
     @Override
-    public int UpClassContent(Lesson lesson, int class_id) {
-        return 0;
+    public void UpClassContent(Lesson lesson, int class_id) {
     }
 
-    /*@Override
-    public boolean set_class_content(int class_id,List<Lesson> lessons) {
+    @Override
+    public void InClassContent(Lesson lesson, int class_id) {
+    }
+
+    @Override
+    public void DeClassContent(int class_id, String unit_no) {
+
+    }
+
+ */
+/*   @Override
+    public int set_class_content(int class_id, List<Lesson> lessons) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         PreparedStatement qsql = null;
         int state = 0;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select unit_no from class where class_id='"+class_id+"'");
+            ResultSet rs = statement.executeQuery("select unit_no from class where class_id='" + class_id + "'");
             ArrayList<String> Unit = new ArrayList<>();
             ArrayList<String> Serial_No = new ArrayList<>();
-            while (rs.next()){
+            while (rs.next()) {
                 Unit.add(rs.getString("unit_no"));
             }
             for (Lesson lesson : lessons) {
@@ -251,7 +261,7 @@ public class classDAOlmpl implements ClassDAO {
             }
             for (String aUnit : Unit) {
                 if (!Serial_No.contains(aUnit)) {
-                    qsql = con.prepareStatement("delete FROM class WHERE unit_no=?and class_id=?");
+                    qsql = con.prepareStatement("delete FROM class WHERE unit_no=? and class_id=?");
                     qsql.setString(1, aUnit);
                     qsql.setInt(2, class_id);
                     state = qsql.executeUpdate();
@@ -259,34 +269,36 @@ public class classDAOlmpl implements ClassDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            if (qsql!=null)
-                try{
+            if (qsql != null)
+                try {
                     qsql.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
-    }*/
+        return state != 0;
+    }*//*
+
+
 
     @Override
     public List get_class_content(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         List<Lesson> lessons = new ArrayList<>();
         Lesson lesson;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select * from class where class_id="+class_id+" order by unit_no");
-            while (rs.next()){
+            ResultSet rs = statement.executeQuery("select * from class where class_id=" + class_id + " order by unit_no");
+            while (rs.next()) {
                 lesson = new Lesson();
                 lesson.setUnit_no(rs.getString("unit_no"));
                 lesson.setUnit_title(rs.getString("unit_title"));
@@ -303,11 +315,11 @@ public class classDAOlmpl implements ClassDAO {
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
@@ -317,14 +329,14 @@ public class classDAOlmpl implements ClassDAO {
     @Override
     public List get_chapter(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         List<Chapter> Chapters = new ArrayList<>();
         Chapter chapter;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select unit_no,unit_title,lesson_title from class where class_id=" + class_id + " and release_status=1 order by unit_no");
-            while (rs.next()){
+            while (rs.next()) {
                 chapter = new Chapter();
                 chapter.setUnit_no(rs.getString("unit_no"));
                 chapter.setUnit_title(rs.getString("unit_title"));
@@ -334,11 +346,11 @@ public class classDAOlmpl implements ClassDAO {
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
@@ -348,14 +360,14 @@ public class classDAOlmpl implements ClassDAO {
     @Override
     public List get_recommend(int class_type) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         List<Course_infor> classes = new ArrayList<>();
         Course_infor my_class;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select class_id,class_title,cover_address from class_teacher_table where release_status=1 and class_type=" + class_type + " limit 5");
-            while (rs.next()){
+            while (rs.next()) {
                 my_class = new Course_infor();
                 my_class.setClass_id(rs.getInt("class_id"));
                 my_class.setClass_title(rs.getString("class_title"));
@@ -365,11 +377,11 @@ public class classDAOlmpl implements ClassDAO {
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
@@ -377,16 +389,16 @@ public class classDAOlmpl implements ClassDAO {
     }
 
     @Override
-    public Course_infor get_class_infor(int class_id) {
+    public List get_class_infor(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         Course_infor my_class = new Course_infor();
-        String SQL = "select release_status,class_teacher_table.teacher,class_title,head,student_count,class_type,outline from class_teacher_table,personal_table where class_teacher_table.teacher=username and class_id=" + class_id;
+        String SQL = "select release_status,class_teacher_table.teacher,class_title,head,student_count,class_type,outline,nike from class_teacher_table,personal_table where class_teacher_table.teacher=username and class_id=" + class_id;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(SQL);
-            while (rs.next()){
+            while (rs.next()) {
                 my_class.setRelease_status(rs.getInt("release_status"));
                 my_class.setTeacher(rs.getString("class_teacher_table.teacher"));
                 my_class.setClass_title(rs.getString("class_title"));
@@ -398,46 +410,46 @@ public class classDAOlmpl implements ClassDAO {
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        return my_class;
+        return null;
     }
 
     @Override
-    public String get_class_name(int class_id) {
+    public List get_class_name(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         String SQL = "select class_title from class_teacher_table where class_id=" + class_id;
         String class_name = null;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(SQL);
-            while (rs.next()){
+            while (rs.next()) {
                 class_name = rs.getString("class_title");
             }
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        return class_name;
+        return null;
     }
 
     @Override
-    public boolean join_class(int class_id, String username, String time, int classification) {
+    public int join_class(int class_id, String username, String time, int classification) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con = null;
         PreparedStatement qsql = null;
@@ -466,29 +478,29 @@ public class classDAOlmpl implements ClassDAO {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
-    public Material get_material(String username, int class_id, String lesson_no) {
+    public List get_material(String username, int class_id, String lesson_no) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         Material material = new Material();
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            String sql ="select user from sc where user='"+username+"' and class="+class_id;
+            String sql = "select user from sc where user='" + username + "' and class=" + class_id;
             ResultSet rs = statement.executeQuery(sql);
             String sc_user = null;
-            while (rs.next()){
+            while (rs.next()) {
                 sc_user = rs.getString("user");
             }
-            if (sc_user==null){
+            if (sc_user == null) {
                 material.setPermit(false);
-            }else {
-                sql = "select video_address,Image_text,file_address,file_name from class where class_id=" + class_id + " and unit_no='"+lesson_no+"' and release_status="+1;
+            } else {
+                sql = "select video_address,Image_text,file_address,file_name from class where class_id=" + class_id + " and unit_no='" + lesson_no + "' and release_status=1";
                 rs = statement.executeQuery(sql);
-                while (rs.next()){
+                while (rs.next()) {
                     material.setPermit(true);
                     material.setVideo_address(rs.getString("video_address"));
                     material.setImage_text(rs.getString("Image_text"));
@@ -499,53 +511,57 @@ public class classDAOlmpl implements ClassDAO {
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        return material;
+        return null;
     }
 
     @Override
-    public boolean set_cover(int class_id, String cover) {
+    public List PlayPower(String username, int class_id) {
+        return null;
+    }
+
+    @Override
+    public int set_cover(int class_id, String cover) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         PreparedStatement qsql = null;
-        int state=0;
+        int state = 0;
         try {
             con = dbp.getConnection();
             qsql = con.prepareStatement("update class_teacher_table set cover_address=? where class_id=?");
             qsql.setString(1, cover);
             qsql.setInt(2, class_id);
             state = qsql.executeUpdate();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (qsql!=null)
-                try{
+        } finally {
+            if (qsql != null)
+                try {
                     qsql.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            if (con!=null)
-                try{
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
-    public void save_viewed(int class_id,int time) {
+    public int save_viewed(int class_id, int time) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         PreparedStatement qsql = null;
         int state;
         try {
@@ -554,52 +570,57 @@ public class classDAOlmpl implements ClassDAO {
             qsql.setInt(1, class_id);
             qsql.setInt(2, time);
             state = qsql.executeUpdate();
-            if (state==0){
+            if (state == 0) {
                 qsql = con.prepareStatement("insert into play_record values(?,?,?)");
                 qsql.setInt(1, class_id);
                 qsql.setInt(2, time);
                 qsql.setInt(3, 1);
                 qsql.executeUpdate();
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (qsql!=null)
-                try{
+        } finally {
+            if (qsql != null)
+                try {
                     qsql.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            if (con!=null)
-                try{
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
+        return 0;
     }
 
     @Override
-    public List<String> get_viewed(int class_id, int start, int end) {
+    public int insertViewed(int class_id, int time) {
+        return 0;
+    }
+
+    @Override
+    public List get_viewed(int class_id, int start, int end) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         List<String> times = new ArrayList<>();
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select play_times,time from play_record where class_id="+class_id+" and time BETWEEN "+start+" AND "+end);
-            while (rs.next()){
-                times.add(rs.getString("time")+rs.getString("play_times"));
+            ResultSet rs = statement.executeQuery("select play_times,time from play_record where class_id=" + class_id + " and time BETWEEN " + start + " AND " + end);
+            while (rs.next()) {
+                times.add(rs.getString("time") + rs.getString("play_times"));
             }
             rs.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
@@ -607,28 +628,29 @@ public class classDAOlmpl implements ClassDAO {
     }
 
     @Override
-    public String get_cover(int class_id) {
+    public List get_cover(int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
-        DruidPooledConnection con =null;
+        DruidPooledConnection con = null;
         String cover = null;
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select cover_address from class_teacher_table where class_id="+class_id);
-            while (rs.next()){
+            ResultSet rs = statement.executeQuery("select cover_address from class_teacher_table where class_id=" + class_id);
+            while (rs.next()) {
                 cover = rs.getString("cover_address");
             }
             rs.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if (con!=null)
-                try{
+        } finally {
+            if (con != null)
+                try {
                     con.close();
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        return cover;
+        return null;
     }
 }
+*/

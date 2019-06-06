@@ -70,11 +70,11 @@ function get_viewed(start, end, days) {
         },
         dataType: 'json',
         success: function (json) {
-            //console.log(json.viewed);
+            //console.log(json);
             for (let i = 0; i < time.length; i++) {
                 for (let j = 0; j < json.viewed.length; j++) {
-                    if (time[i] === json.viewed[j].substr(0, 8)) {
-                        times.push(json.viewed[j].substring(8, json.viewed[j].length));
+                    if (time[i] === json.viewed[j].time) {
+                        times.push(json.viewed[j].play_times);
                         break;
                     }
                 }

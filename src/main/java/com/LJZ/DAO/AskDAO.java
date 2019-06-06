@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface askDAO {
+public interface AskDAO {
     //获取该课程问答数量
     int get_ask_count(String SQL);
 

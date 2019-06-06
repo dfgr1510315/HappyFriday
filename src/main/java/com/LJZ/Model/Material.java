@@ -1,19 +1,11 @@
 package com.LJZ.Model;
 
 public class Material {
-    private boolean permit;
     private String video_address;
     private String Image_text;
     private String file_address;
     private String file_name;
 
-    public boolean isPermit() {
-        return permit;
-    }
-
-    public void setPermit(boolean permit) {
-        this.permit = permit;
-    }
 
     public String getVideo_address() {
         return video_address;

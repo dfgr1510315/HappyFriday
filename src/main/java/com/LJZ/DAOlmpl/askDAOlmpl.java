@@ -1,3 +1,4 @@
+/*
 package com.LJZ.DAOlmpl;
 
 import com.LJZ.DAO.askDAO;
@@ -30,16 +31,22 @@ public class askDAOlmpl implements askDAO {
         sqlSession = sqlSessionFactory.openSession();
     }
 
+*/
 /*    private String resource = "mybatis-config.xml";
     private InputStream is = Resources.getResourceAsStream(resource);
     private SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-    private SqlSession sqlSession = sqlSessionFactory.openSession();*/
+    private SqlSession sqlSession = sqlSessionFactory.openSession();*//*
+
+*/
 /*    public askDAOlmpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
-    }*/
+    }*//*
 
-    /*public askDAOlmpl() throws Exception{
-    }*/
+
+    */
+/*public askDAOlmpl() throws Exception{
+    }*//*
+
 
     @Override
     public int get_ask_count(String SQL) {
@@ -48,7 +55,8 @@ public class askDAOlmpl implements askDAO {
         return this.sqlSession.selectOne("mappers.askMapper.get_ask_count");
     }
 
-   /* @Override
+   */
+/* @Override
     public int get_ask_count(String SQL) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
@@ -71,7 +79,8 @@ public class askDAOlmpl implements askDAO {
                 }
         }
         return count;
-    }*/
+    }*//*
+
 
     @Override
     public List get_ask(String SQL_from) {
@@ -417,3 +426,4 @@ public class askDAOlmpl implements askDAO {
     }
 
 }
+*/

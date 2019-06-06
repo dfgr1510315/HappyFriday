@@ -16,7 +16,7 @@ public interface BasicsClassDAO {
     List get_infor(int class_id);
 
     //保存课程内容基本信息
-    int save_class(int class_id, String UnitCount, String ClassCount);
+    int save_class( String UnitCount, String ClassCount,int class_id);
 
     List read_class(int class_id);
 

@@ -196,12 +196,12 @@ public class loginDAOlmpl implements loginDAO {
         History history;
         try {
             con = dbp.getConnection();
-            String sql = "SELECT class,schedule,last_time,class_title from sc,class_teacher_table where user='"+username+"' and class=class_id order by time desc limit 6";
+            String sql = "SELECT classId,schedule,last_time,class_title from sc,class_teacher_table where user='"+username+"' and classId=class_id order by time desc limit 6";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()){
                 history = new History();
-                history.setClass_id(rs.getInt("class"));
+                history.setClass_id(rs.getInt("classId"));
                 history.setSchedule(rs.getInt("schedule"));
                 history.setLast_time(rs.getString("last_time"));
                 history.setClass_title(rs.getString("class_title"));

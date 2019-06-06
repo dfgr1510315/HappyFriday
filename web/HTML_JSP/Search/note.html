@@ -22,9 +22,7 @@
 </head>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#navigation').load('../navigation_dark.html',function () {
-            get_user_infor();
-        });
+        $('#navigation').load('../navigation_dark.html');
         if (keyword.trim()==='')  return;
         $('#search_ipt').val(keyword);
         add_href();

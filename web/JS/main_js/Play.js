@@ -236,8 +236,8 @@ function get_Video() {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            //console.log(jsonObj);
-            if (jsonObj.material.permit === false) {
+            console.log(jsonObj);
+            if (jsonObj.material === 0) {
                 $('#video').empty().append(
                     '<div class="no_find_video">请先加入本课程学习</div>'
                 );
@@ -249,7 +249,7 @@ function get_Video() {
                 $('#file_li').hide();
                 return;
             }
-            if (jsonObj.material.video_address === '' && jsonObj.material.image_text === '<p><br></p>' && jsonObj.material.file_address === '') {
+            if (jsonObj.material[0].video_address === '' && jsonObj.material[0].image_text === '<p><br></p>' && jsonObj.material[0].file_address === '') {
                 $('#video').empty().append(
                     '<div class="no_find_video">本课时无内容或尚未发布</div>'
                 );
@@ -261,7 +261,7 @@ function get_Video() {
                 $('#file_li').hide();
                 return;
             }
-            if (jsonObj.material.video_address !== '') {
+            if (jsonObj.material[0].video_address !== '') {
                 videoID = user + No + class_no; //视频的区分ID，每个视频分配一个唯一的ID
                 cookieTime = cookie.get('time_' + videoID); //调用已记录的time
                 if (!cookieTime || cookieTime === 'done') { //如果没有记录值，则设置时间0开始播放
@@ -271,7 +271,7 @@ function get_Video() {
                      alert('本视频记录的上次观看时间(秒)为：' + cookieTime);
                  }*/
 
-                $('#video1').children().attr('src', jsonObj.material.video_address);
+                $('#video1').children().attr('src', jsonObj.material[0].video_address);
 
                 player = videojs('video1', {});
 
@@ -296,19 +296,19 @@ function get_Video() {
                 $('#video_li').hide();
 
             }
-            if (jsonObj.material.image_text === '<p><br></p>') {
+            if (jsonObj.material[0].image_text === '<p><br></p>') {
                 $('#text_li').hide()
             } else {
                 $('#text').append(
-                    jsonObj.material.image_text
+                    jsonObj.material[0].image_text
                 );
             }
 
-            if (jsonObj.material.file_address === '') {
+            if (jsonObj.material[0].file_address === '') {
                 $('#file_li').hide();
             } else {
-                let file_address = jsonObj.material.file_address.split('|');
-                let file_name = jsonObj.material.file_name.split('|');
+                let file_address = jsonObj.material[0].file_address.split('|');
+                let file_name = jsonObj.material[0].file_name.split('|');
                 for (let i = 0; i < file_address.length - 1; i++) {
                     $('#file_group').append(
                         '<a target="_blank" href="' + file_address[i] + '" class="list-group-item list-group-item-action">' + file_name[i] + '</a>'

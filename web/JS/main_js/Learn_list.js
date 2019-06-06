@@ -65,7 +65,7 @@ function get_Class() {
         },
         dataType: 'json',
         success: function (jsonObject) {
-            //console.log(jsonObject);
+            console.log(jsonObject);
             if (jsonObject.release_status === 0) {
                 pass = 0;
                 alert('该课程尚未发布');
@@ -73,11 +73,11 @@ function get_Class() {
                 return
             }
             get_schedule();
-            $("title").text(jsonObject.class_infor.class_title);
-            $("#title").text(jsonObject.class_infor.class_title);
-            $("#teacher").text(jsonObject.class_infor.teacher);
-            $('#head').attr('src', contextPath + jsonObject.class_infor.teacher_head);
-            $('#student_number').text(jsonObject.class_infor.student_count);
+            $("title").text(jsonObject.class_infor[0].class_title);
+            $("#title").text(jsonObject.class_infor[0].class_title);
+            $("#teacher").text(jsonObject.class_infor[0].teacher);
+            $('#head').attr('src', contextPath + jsonObject.class_infor[0].head);
+            $('#student_number').text(jsonObject.class_infor[0].student_count);
             ask_count = jsonObject.ask_count;
             note_count = jsonObject.note_count;
             no_count(ask_count, note_count);
@@ -85,7 +85,7 @@ function get_Class() {
             let note_nav = $('#note_nav');
             ask_nav.prev().text(ask_count);
             note_nav.prev().text(note_count);
-            let class_type = type_text(jsonObject.class_infor.class_type);
+            let class_type = type_text(jsonObject.class_infor[0].class_type);
             let other_class = $('#other_class');
             let one = $('#one');
             other_class.text(class_type + '相关课程');
@@ -103,9 +103,9 @@ function get_Class() {
             $('#Bread_crumb_navigation').append(
                 '  <a target="_blank" href="homepage.html">首页</a>\n' +
                 '  <i class="i">\\</i>\n' +
-                '  <a target="_blank" href="course.html?type=' + jsonObject.class_infor.class_type + '">' + class_type + '</a>\n' +
+                '  <a target="_blank" href="course.html?type=' + jsonObject.class_infor[0].class_type + '">' + class_type + '</a>\n' +
                 '  <i class="i">\\</i>\n' +
-                '  <a href="">' + jsonObject.class_infor.class_title + '</a>\n' +
+                '  <a href="">' + jsonObject.class_infor[0].class_title + '</a>\n' +
                 '  <i class="i">\\</i>'
             );
             if (GetQueryString('page_ask') == null && GetQueryString('page_note') == null) {
@@ -122,7 +122,7 @@ function get_Class() {
             $('.sno1-1 .course-info-tip').append(
                 '      <dl class="first">\n' +
                 '          <dt>课程概要</dt>\n' +
-                '          <dd class="autowrap">' + jsonObject.class_infor.outline + '</dd>\n' +
+                '          <dd class="autowrap">' + jsonObject.class_infor[0].outline + '</dd>\n' +
                 '      </dl>'
             );
 
@@ -442,7 +442,7 @@ function join_class(classification) {
 
 function continue_class(event) {
     let last_time = $(event).prev().data('class');
-    window.location.href = "com.LJZ.Server.Play.html?" + No + "/" + last_time.substring(0, last_time.indexOf(':'));
+    window.location.href = "Play.html?" + No + "/" + last_time.substring(0, last_time.indexOf(':'));
 }
 
 function get_HW(){

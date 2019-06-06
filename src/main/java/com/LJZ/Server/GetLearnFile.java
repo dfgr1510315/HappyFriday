@@ -1,9 +1,12 @@
 package com.LJZ.Server;
 
-import com.LJZ.DAOlmpl.classDAOlmpl;
+import com.LJZ.DAO.ClassDAO;
 import com.LJZ.Model.Lesson;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,23 +20,26 @@ import java.util.List;
 
 @WebServlet(name = "GetLearnFile")
 public class GetLearnFile extends HttpServlet {
+    private static SqlSessionFactory factory = (SqlSessionFactory) new ClassPathXmlApplicationContext("application.xml").getBean("sqlSessionFactory");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        switch (action){
-            case "post":
-                set_class_content(response,request);
-                break;
-            case "get":
-                get_class_content(response,request);
-                break;
+        try(SqlSession sqlSession = factory.openSession()){
+            ClassDAO cdl = sqlSession.getMapper(ClassDAO.class);
+            switch (action){
+                case "post":
+                    set_class_content(response,request,cdl);
+                    break;
+                case "get":
+                    get_class_content(response,request,cdl);
+                    break;
+            }
         }
     }
 
-    private void get_class_content(HttpServletResponse response,HttpServletRequest request)throws IOException{
-        classDAOlmpl cdl = new classDAOlmpl();
+    private void get_class_content(HttpServletResponse response,HttpServletRequest request,ClassDAO cdl)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         PrintWriter out = response.getWriter();
         JSONObject jsonObj = new JSONObject();
@@ -43,12 +49,13 @@ public class GetLearnFile extends HttpServlet {
         out.close();
     }
 
-    private void set_class_content(HttpServletResponse response,HttpServletRequest request)throws IOException {
-        List<Lesson> lessons = new ArrayList<Lesson>();
+    private void set_class_content(HttpServletResponse response,HttpServletRequest request,ClassDAO cdl)throws IOException {
         Lesson lesson;
         int No = Integer.parseInt(request.getParameter("No"));
         String ds = java.net.URLDecoder.decode(request.getParameter("ds"), StandardCharsets.UTF_8);
         JSONArray json=JSONArray.fromObject(ds);
+        List unit = cdl.getUnitNo(No);
+        List<String> Serial_No = new ArrayList<>();
         for(Object obj : json){
             JSONObject jsonOne = (JSONObject)obj;
             String Unit_Name = jsonOne.getString("Unit_Name");
@@ -67,12 +74,22 @@ public class GetLearnFile extends HttpServlet {
                 lesson.setFile_address(jsonOne1.getString("File_Href"));
                 lesson.setFile_name(jsonOne1.getString("File_Name"));
                 lesson.setRelease_status(jsonOne1.getInt("State"));
-                lessons.add(lesson);
+                if (unit.contains(jsonOne1.getString("Serial_No"))){
+                    cdl.UpClassContent(lesson,No);
+                }else {
+                    cdl.InClassContent(lesson,No);
+                }
+                Serial_No.add(jsonOne1.getString("Serial_No"));
             }
         }
-        classDAOlmpl cdl = new classDAOlmpl();
+        for (Object aUnit : unit) {
+            String sUnit = (String) aUnit;
+            if (!Serial_No.contains(sUnit)) {
+                cdl.DeClassContent(No,sUnit);
+            }
+        }
         PrintWriter out = response.getWriter();
-        //out.print(cdl.set_class_content(No,lessons));
+        out.print(true);
         out.flush();
         out.close();
     }

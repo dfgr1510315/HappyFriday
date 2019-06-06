@@ -1,7 +1,7 @@
 package com.LJZ.Model;
 
 public class Sc {
-    private int class_id;
+    private int classId;
     private String collection;
     private String last_time;
     private String class_type;
@@ -11,12 +11,12 @@ public class Sc {
     private int note_count;
     private int ask_count;
 
-    public int getClass_id() {
-        return class_id;
+    public int getClassId() {
+        return classId;
     }
 
-    public void setClass_id(int class_id) {
-        this.class_id = class_id;
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
     public String getCollection() {

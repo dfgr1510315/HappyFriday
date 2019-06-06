@@ -1,3 +1,4 @@
+/*
 package com.LJZ.DAOlmpl;
 
 import com.LJZ.DAO.BasicsClassDAO;
@@ -168,7 +169,8 @@ public class basicsClassDAOlmpl  implements BasicsClassDAO {
 
     @Override
     public List get_infor(int class_id) {
-        /*DBPoolConnection dbp = DBPoolConnection.getInstance();
+        */
+/*DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         String[] infor = new String[3];
         try {
@@ -191,12 +193,13 @@ public class basicsClassDAOlmpl  implements BasicsClassDAO {
                     e.printStackTrace();
                 }
         }
-        return infor;*/
+        return infor;*//*
+
         return null;
     }
 
     @Override
-    public int save_class(int class_id, String UnitCount, String ClassCount) {
+    public int save_class( String UnitCount, String ClassCount,int class_id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -346,3 +349,4 @@ public class basicsClassDAOlmpl  implements BasicsClassDAO {
         return state;
     }
 }
+*/

@@ -52,6 +52,7 @@ function getClass(){
         },
         dataType: 'json',
         success: function (json) {
+            //console.log(json);
             let class_list = json.class_list;
             let collection_ul = $('#collection_ul');
             let learning_ul = $('#learning_ul');

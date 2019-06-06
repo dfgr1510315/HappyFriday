@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.LJZ.DAO.askDAO">
+<mapper namespace="com.LJZ.DAO.AskDAO">
     <select id="get_ask_count" parameterType="String" resultType="Int">${_parameter}</select>
 
     <select id="get_ask" parameterType="String" resultType="Ask_list">

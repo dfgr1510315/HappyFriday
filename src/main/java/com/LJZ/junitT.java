@@ -1,13 +1,15 @@
 package com.LJZ;
 
 import com.LJZ.DAO.ClassDAO;
-import com.LJZ.DAO.askDAO;
+import com.LJZ.DAO.AskDAO;
 import com.LJZ.Model.Lesson;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 public class junitT {
 
@@ -16,7 +18,7 @@ public class junitT {
         ApplicationContext ctx=new ClassPathXmlApplicationContext("application.xml");
         SqlSessionFactory factory = (SqlSessionFactory) ctx.getBean("sqlSessionFactory");
         SqlSession sqlSession = factory.openSession();
-        askDAO al = sqlSession.getMapper(askDAO.class);
+        AskDAO al = sqlSession.getMapper(AskDAO.class);
        /* List ask_List = al.get_answer(43);
         for (Object o : ask_List) {
             Answer answer = (Answer) o;
@@ -45,7 +47,11 @@ public class junitT {
         ClassDAO classDAO = sqlSession.getMapper(ClassDAO.class);
         Lesson lesson = new Lesson();
         lesson.setUnit_no("1-4");
-        int i = classDAO.UpClassContent(lesson,7);
-        System.out.println(i);
+        lesson.setClass_id(7);
+        //int i = classDAO.UpClassContent(lesson,7);
+        //int i = classDAO.InClassContent(lesson,7);
+        //int i = classDAO.DeClassContent(7,"1-4");
+        List list = classDAO.get_class_content(7);
+        System.out.println(list);
     }
 }

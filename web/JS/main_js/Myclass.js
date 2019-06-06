@@ -156,7 +156,7 @@ function saveClass() {
         },
         dataType: 'json',
         success: function (msg) {
-            if (msg===true) {
+            if (msg===1) {
                 $.ajax({
                     type: "POST",
                     url: contextPath +"/getlearnfile",

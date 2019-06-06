@@ -1,9 +1,12 @@
 package com.LJZ.Server;
 
-import com.LJZ.DAOlmpl.classDAOlmpl;
+import com.LJZ.DAO.ClassDAO;
 import com.LJZ.DAOlmpl.noteDAOlmpl;
 import com.LJZ.Model.SubModel.Course_infor;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,46 +15,49 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "Learn_list")
 public class Learn_list extends HttpServlet {
-
+    private static SqlSessionFactory factory = (SqlSessionFactory) new ClassPathXmlApplicationContext("application.xml").getBean("sqlSessionFactory");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        switch (action) {
-            case "get_class":
-                String s_No = request.getParameter("No");
-                get_class(request,response, s_No);
-                break;
-            case "join_class":
-                join_class(request,response);
-                break;
-            case "get_play_class":
-                s_No = request.getParameter("No");
-                get_play_class(response, s_No);
-                break;
+        try (SqlSession sqlSession = factory.openSession()) {
+            ClassDAO cdl = sqlSession.getMapper(ClassDAO.class);
+            switch (action) {
+                case "get_class":
+                    String s_No = request.getParameter("No");
+                    get_class(request, response, s_No, cdl);
+                    break;
+                case "join_class":
+                    join_class(request, response, cdl);
+                    break;
+                case "get_play_class":
+                    s_No = request.getParameter("No");
+                    get_play_class(response, s_No, cdl);
+                    break;
+            }
         }
     }
 
-    private void join_class(HttpServletRequest request,HttpServletResponse response)throws IOException {
+    private void join_class(HttpServletRequest request,HttpServletResponse response,ClassDAO cdl)throws IOException {
         int No = Integer.parseInt(request.getParameter("No"));
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("user_id");
         String time = request.getParameter("time");
         int classification = Integer.parseInt(request.getParameter("classification"));
         PrintWriter out = response.getWriter();
-        out.print(new classDAOlmpl().join_class(No,username,time,classification));
+        out.print(cdl.join_class(No,username,time,classification));
         out.flush();
         out.close();
     }
 
-    private void get_play_class(HttpServletResponse response, String sNo)throws IOException{
+    private void get_play_class(HttpServletResponse response, String sNo,ClassDAO cdl)throws IOException{
         int No = Integer.parseInt(sNo);
         JSONObject jsonObject = new JSONObject();
-        classDAOlmpl cdl = new classDAOlmpl();
         jsonObject.put("chapter", cdl.get_chapter(No)); //获取目录
         jsonObject.put("title", cdl.get_class_name(No));
         PrintWriter out = response.getWriter();
@@ -60,25 +66,21 @@ public class Learn_list extends HttpServlet {
         out.close();
     }
 
-    private void get_class(HttpServletRequest request, HttpServletResponse response, String sNo) throws IOException {
+    private void get_class(HttpServletRequest request, HttpServletResponse response, String sNo,ClassDAO cdl) throws IOException {
         int No = Integer.parseInt(sNo);
+        //AskDAO askDAO = sqlSession.getMapper(AskDAO.class);
         JSONObject jsonObject = new JSONObject();
-        classDAOlmpl cdl = new classDAOlmpl();
-        int class_type;
-        int release_status;
-        boolean pass;
-        Course_infor my_class = cdl.get_class_infor(No);
-        class_type = my_class.getClass_type();
-        release_status = my_class.getRelease_status();
-        pass = isHave(request, sNo, release_status);
+        List my_class = cdl.get_class_infor(No);
+        Course_infor course_infor = (Course_infor)my_class.get(0);
+        boolean pass = isHave(request, sNo, course_infor.getRelease_status());
         if (!pass) {
             jsonObject.put("release_status", 0);
         } else {
             jsonObject.put("class_infor",my_class);
             jsonObject.put("chapter", cdl.get_chapter(No)); //获取目录
-            jsonObject.put("recommend", cdl.get_recommend(class_type));//获取推荐课程
+            jsonObject.put("recommend", cdl.get_recommend(course_infor.getClass_type()));//获取推荐课程
             jsonObject.put("note_count", new noteDAOlmpl().get_note_count("select count(note_id) count from note where belong_class_id=" + No));//获取笔记数量
-            //jsonObject.put("ask_count", new askDAOlmpl().get_ask_count("select count(ask_id) ask_count from ask where belong_class_id=" + No));//获取问答数量
+            //jsonObject.put("ask_count",askDAO.get_ask_count("select count(ask_id) ask_count from ask where belong_class_id=" + No));//获取问答数量
         }
         PrintWriter out = response.getWriter();
         out.print(jsonObject);

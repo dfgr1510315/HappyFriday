@@ -1,14 +1,10 @@
 package com.LJZ.Server;
 import com.LJZ.DAO.BasicsClassDAO;
-import com.LJZ.DAOlmpl.basicsClassDAOlmpl;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,53 +16,49 @@ import java.util.List;
 
 @WebServlet(name = "SaveClassInfor")
 public class SaveClassInfor extends HttpServlet {
-    private BasicsClassDAO bc;
-    public void init(ServletConfig config) throws ServletException {
-        super.init();
-        ApplicationContext ctx=new ClassPathXmlApplicationContext("application.xml");
-        SqlSessionFactory factory = (SqlSessionFactory) ctx.getBean("sqlSessionFactory");
-        SqlSession sqlSession = factory.openSession();
-        bc = sqlSession.getMapper(BasicsClassDAO.class);
-    }
+    private static SqlSessionFactory factory = (SqlSessionFactory) new ClassPathXmlApplicationContext("application.xml").getBean("sqlSessionFactory");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String Read_or_Save = request.getParameter("Read_or_Save");
-        switch (Read_or_Save) {
-            case "save":
-                save_class(request,response);
-                break;
-            case "read":
-                read_class(request,response);
-                break;
-            case "search_tips":
-                search_tips(request,response);
-                break;
-            case "search_class":
-                search_class(request,response);
-                break;
-            case "get_infor":
-                get_infor(request,response);
-                break;
-            case "set_infor":
-                set_infor(request,response);
-                break;
-            case "get_new_class":
-                get_new_class(request,response);
-                break;
-            case "delete_class":
-                delete_class(request,response);
-                break;
-            case "release":
-                change_class_state(request,response);
-                break;
-            case "get_file":
-                get_file(response,request);
-                break;
-            case "delete_file":
-                delete_file(response,request);
-                break;
+        try (SqlSession sqlSession = factory.openSession()){
+            BasicsClassDAO bc = sqlSession.getMapper(BasicsClassDAO.class);
+            switch (Read_or_Save) {
+                case "save":
+                    save_class(request,response,bc);
+                    break;
+                case "read":
+                    read_class(request,response,bc);
+                    break;
+                case "search_tips":
+                    search_tips(request,response,bc);
+                    break;
+                case "search_class":
+                    search_class(request,response,bc);
+                    break;
+                case "get_infor":
+                    get_infor(request,response,bc);
+                    break;
+                case "set_infor":
+                    set_infor(request,response,bc);
+                    break;
+                case "get_new_class":
+                    get_new_class(request,response,bc);
+                    break;
+                case "delete_class":
+                    delete_class(request,response,bc);
+                    break;
+                case "release":
+                    change_class_state(request,response,bc);
+                    break;
+                case "get_file":
+                    get_file(response,request,bc);
+                    break;
+                case "delete_file":
+                    delete_file(response,request,bc);
+                    break;
+            }
         }
     }
 
@@ -74,7 +66,7 @@ public class SaveClassInfor extends HttpServlet {
         doPost(request,response);
     }
 
-    private void delete_file(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void delete_file(HttpServletResponse response,HttpServletRequest request,BasicsClassDAO bc)throws IOException{
         String address = request.getParameter("address");
         PrintWriter out = response.getWriter();
         //ConnectSQL.my_println("RealPath:"+getServletContext().getRealPath("/")+address);
@@ -86,7 +78,7 @@ public class SaveClassInfor extends HttpServlet {
     }
 
 
-    private void get_file(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void get_file(HttpServletResponse response,HttpServletRequest request,BasicsClassDAO bc)throws IOException{
         String class_id = request.getParameter("class_id");
         PrintWriter out = response.getWriter();
         JSONObject jsonObj = new JSONObject();
@@ -97,8 +89,7 @@ public class SaveClassInfor extends HttpServlet {
     }
 
     //首页和课程类型页面都调用此方法获取课程列
-    private void get_new_class(HttpServletRequest request, HttpServletResponse response)throws IOException{
-        basicsClassDAOlmpl bc = new basicsClassDAOlmpl();
+    private void get_new_class(HttpServletRequest request, HttpServletResponse response,BasicsClassDAO bc)throws IOException{
         PrintWriter out = response.getWriter();
         JSONObject jsonObj = new JSONObject();
         int page = Integer.parseInt(request.getParameter("page"));
@@ -115,7 +106,7 @@ public class SaveClassInfor extends HttpServlet {
         out.close();
     }
 
-    private void search_class(HttpServletRequest request,HttpServletResponse response)throws IOException{
+    private void search_class(HttpServletRequest request,HttpServletResponse response,BasicsClassDAO bc)throws IOException{
         String keyword = request.getParameter("keyword");
         int page = Integer.parseInt(request.getParameter("page"));
         PrintWriter out = response.getWriter();
@@ -127,18 +118,18 @@ public class SaveClassInfor extends HttpServlet {
         out.close();
     }
 
-    private void search_tips(HttpServletRequest request,HttpServletResponse response)throws IOException{
+    private void search_tips(HttpServletRequest request,HttpServletResponse response,BasicsClassDAO bc)throws IOException{
         String keyword = request.getParameter("keyword");
         PrintWriter out = response.getWriter();
-        List<String> list = bc.search_tips(keyword);
-        for (String i : list) {
+        List list = bc.search_tips(keyword);
+        for (Object i : list) {
             out.print("<li class='list_tips'><a>"+i+"</a></li>");
         }
         out.flush();
         out.close();
     }
 
-    private void delete_class(HttpServletRequest request,HttpServletResponse response)throws IOException{
+    private void delete_class(HttpServletRequest request,HttpServletResponse response,BasicsClassDAO bc)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         PrintWriter out = response.getWriter();
         out.print(bc.delete_class(No));
@@ -146,7 +137,7 @@ public class SaveClassInfor extends HttpServlet {
         out.close();
     }
 
-    private void set_infor(HttpServletRequest request,HttpServletResponse response)throws IOException{
+    private void set_infor(HttpServletRequest request,HttpServletResponse response,BasicsClassDAO bc)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         String title = request.getParameter("title");
         int sel1 = Integer.parseInt(request.getParameter("sel1"));
@@ -157,7 +148,7 @@ public class SaveClassInfor extends HttpServlet {
         out.close();
     }
 
-    private void get_infor(HttpServletRequest request,HttpServletResponse response)throws IOException{
+    private void get_infor(HttpServletRequest request,HttpServletResponse response,BasicsClassDAO bc)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         JSONObject jsonObj = new JSONObject();
         PrintWriter out = response.getWriter();
@@ -168,27 +159,28 @@ public class SaveClassInfor extends HttpServlet {
     }
 
 
-    private void save_class(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private void save_class(HttpServletRequest request, HttpServletResponse response,BasicsClassDAO bc) throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         String ClassCount = request.getParameter("ClassCount");
         String UnitCount = request.getParameter("UnitCount");
         PrintWriter out = response.getWriter();
-        out.print(bc.save_class(No,UnitCount,ClassCount));
+        out.print(bc.save_class(UnitCount,ClassCount,No));
         out.flush();
         out.close();
     }
 
-    private void read_class(HttpServletRequest request, HttpServletResponse response)throws IOException{
+    private void read_class(HttpServletRequest request, HttpServletResponse response,BasicsClassDAO bc)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         JSONObject jsonObj = new JSONObject();
         PrintWriter out = response.getWriter();
         jsonObj.put("classList",bc.read_class(No));
+        //System.out.println(jsonObj.get("classList"));
         out.print(jsonObj);
         out.flush();
         out.close();
     }
 
-    private void change_class_state(HttpServletRequest request, HttpServletResponse response)throws IOException{
+    private void change_class_state(HttpServletRequest request, HttpServletResponse response,BasicsClassDAO bc)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         int state = Integer.parseInt(request.getParameter("state"));
         PrintWriter out = response.getWriter();

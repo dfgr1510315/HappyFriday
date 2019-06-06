@@ -1,16 +1,13 @@
 package com.LJZ.Server;
 
-import com.LJZ.DAO.askDAO;
+import com.LJZ.DAO.AskDAO;
 import com.LJZ.Model.Answer;
 import com.LJZ.Model.SubModel.Ask_infor;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,55 +18,51 @@ import java.util.List;
 
 @WebServlet(name = "PostAsk")
 public class PostAsk extends HttpServlet {
-    private askDAO al;
-    public void init(ServletConfig config) throws ServletException {
-        super.init();
-        ApplicationContext ctx=new ClassPathXmlApplicationContext("application.xml");
-        SqlSessionFactory factory = (SqlSessionFactory) ctx.getBean("sqlSessionFactory");
-        SqlSession sqlSession = factory.openSession();
-        al = sqlSession.getMapper(askDAO.class);
-    }
-
+    private static SqlSessionFactory factory = (SqlSessionFactory) new ClassPathXmlApplicationContext("application.xml").getBean("sqlSessionFactory");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        switch (action) {
-            case "get":
-                get_ask(response, request);
-                break;
-            case "get_all_ask" :
-                get_all_ask(response, request);
-                break;
-            case "get_this_class_ask" :
-                get_this_class_ask(response, request);
-                break;
-            case "get_reply" :
-                get_reply(response, request);
-                break;
-            case "get_my_ask" :
-                get_my_ask(response,request);
-                break;
-            case "get_my_reply_ask" :
-                get_my_reply_ask(response,request);
-                break;
-            case "search_ask":
-                search_ask(request,response);
-                break;
-            case "post":
-                post_ask(response, request);
-                break;
-            case "post_reply" :
-                post_reply(response, request);
-                break;
-            case "post_answer" :
-                post_answer(response,request);
-                break;
+        try (SqlSession sqlSession = factory.openSession()){
+            AskDAO al = sqlSession.getMapper(AskDAO.class);
+            switch (action) {
+                case "get":
+                    get_ask(response, request,al);
+                    break;
+                case "get_all_ask" :
+                    get_all_ask(response, request,al);
+                    break;
+                case "get_this_class_ask" :
+                    get_this_class_ask(response, request,al);
+                    break;
+                case "get_reply" :
+                    get_reply(response, request,al);
+                    break;
+                case "get_my_ask" :
+                    get_my_ask(response,request,al);
+                    break;
+                case "get_my_reply_ask" :
+                    get_my_reply_ask(response,request,al);
+                    break;
+                case "search_ask":
+                    search_ask(request,response,al);
+                    break;
+                case "post":
+                    post_ask(response, request,al);
+                    break;
+                case "post_reply" :
+                    post_reply(response, request,al);
+                    break;
+                case "post_answer" :
+                    post_answer(response,request,al);
+                    break;
+            }
         }
+
     }
 
-    private void search_ask(HttpServletRequest request,HttpServletResponse response) throws IOException{
+    private void search_ask(HttpServletRequest request,HttpServletResponse response,AskDAO al) throws IOException{
         int page = Integer.parseInt(request.getParameter("page"));
         String keyword = request.getParameter("keyword");
         JSONObject jsonObject = new JSONObject();
@@ -84,7 +77,7 @@ public class PostAsk extends HttpServlet {
     }
 
     //我回复过的提问
-    private void get_my_reply_ask(HttpServletResponse response,HttpServletRequest request) throws IOException{
+    private void get_my_reply_ask(HttpServletResponse response,HttpServletRequest request,AskDAO al) throws IOException{
         int page = Integer.parseInt(request.getParameter("page"));
         String answer = request.getParameter("answer");
         JSONObject jsonObject = new JSONObject();
@@ -99,7 +92,7 @@ public class PostAsk extends HttpServlet {
     }
 
     //我发布的提问
-    private void get_my_ask(HttpServletResponse response,HttpServletRequest request) throws IOException{
+    private void get_my_ask(HttpServletResponse response,HttpServletRequest request,AskDAO al) throws IOException{
         int page = Integer.parseInt(request.getParameter("page"));
         String author = request.getParameter("author");
         String SQL_from = " from ask,class_teacher_table where asker='"+author+"'and belong_class_id=class_id order by ask_time desc limit "+(6*(page-1))+","+6;
@@ -114,7 +107,7 @@ public class PostAsk extends HttpServlet {
     }
 
     //回答讨论
-    private void post_answer(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void post_answer(HttpServletResponse response,HttpServletRequest request,AskDAO al)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         String answer = request.getParameter("answer");
         String answer_text = request.getParameter("answer_text");
@@ -129,7 +122,7 @@ public class PostAsk extends HttpServlet {
     }
 
     //在回答下回复
-    private void post_reply(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void post_reply(HttpServletResponse response,HttpServletRequest request,AskDAO al)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         int askId = Integer.parseInt(request.getParameter("askId"));
         String reply = request.getParameter("reply");
@@ -145,7 +138,7 @@ public class PostAsk extends HttpServlet {
     }
 
     //得到此问答下所有回复内容
-    private void get_reply(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void get_reply(HttpServletResponse response,HttpServletRequest request,AskDAO al)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         JSONObject jsonObject = new JSONObject();
         al.visits_count(No);
@@ -166,7 +159,7 @@ public class PostAsk extends HttpServlet {
     }
 
     //得到此课程下所有问答
-    private void get_this_class_ask(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void get_this_class_ask(HttpServletResponse response,HttpServletRequest request,AskDAO al)throws IOException{
         int No = Integer.parseInt(request.getParameter("No"));
         int page = Integer.parseInt(request.getParameter("page"));
         JSONObject jsonObject = new JSONObject();
@@ -178,7 +171,7 @@ public class PostAsk extends HttpServlet {
     }
 
     //获取该教师发布的所有课程下的所有问答
-    private void get_all_ask(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void get_all_ask(HttpServletResponse response,HttpServletRequest request,AskDAO al)throws IOException{
         int page = Integer.parseInt(request.getParameter("page"));
         String user = request.getParameter("user");
         String SQL_from = " from class_teacher_table,ask where teacher='"+user+"' and class_teacher_table.class_id=belong_class_id order by ask_time desc limit "+(6*(page-1))+","+6;
@@ -193,7 +186,7 @@ public class PostAsk extends HttpServlet {
     }
 
     //获取当前播放课时下我的问答
-    private void get_ask(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void get_ask(HttpServletResponse response,HttpServletRequest request,AskDAO al)throws IOException{
         String class_No = request.getParameter("class_No");
         int No = Integer.parseInt(request.getParameter("No"));
         String author = request.getParameter("author");
@@ -207,7 +200,7 @@ public class PostAsk extends HttpServlet {
     }
 
 
-    private void post_ask(HttpServletResponse response,HttpServletRequest request)throws IOException{
+    private void post_ask(HttpServletResponse response,HttpServletRequest request,AskDAO al)throws IOException{
         String class_No = request.getParameter("class_No");
         String author = request.getParameter("author");
         int No = Integer.parseInt(request.getParameter("No"));
