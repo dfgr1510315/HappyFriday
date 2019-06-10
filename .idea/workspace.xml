@@ -13,19 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12850cd1-69d1-43cd-8843-a98321ef88ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Model/PlayView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DB/GetSqlSessionFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/BasicsClassDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/BasicsClassDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/ClassDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/ClassDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/askDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/AskDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/askDAOlmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/askDAOlmpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/basicsClassDAOlmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/basicsClassDAOlmpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/classDAOlmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/classDAOlmpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/loginDAOlmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/loginDAOlmpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/hwDAOlmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/hwDAOlmpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/studentDAOlmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/studentDAOlmpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Model/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Model/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Model/Sc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Model/Sc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Model/SubModel/Course_infor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Model/SubModel/Course_infor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/ChangePW.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/ChangePW.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/GetLearnFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/GetLearnFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Get_Teaching.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Get_Teaching.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Learn_list.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Learn_list.java" afterDir="false" />
@@ -33,20 +25,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/PostAsk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/PostAsk.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/SaveClassInfor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/SaveClassInfor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/save_image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/Server/save_image.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LJZ/junitT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LJZ/junitT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/askDAO.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/askDAO.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/classDAO.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/classDAO.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/main_css/Learn_list.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/main_css/Learn_list.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/CSS/muke.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/CSS/muke.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Search/ask.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Search/ask.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Search/note.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Search/note.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/HTML_JSP/Search/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/HTML_JSP/Search/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/Class_info/Class_state.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/Class_info/Class_state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/main_js/LearingClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/main_js/LearingClass.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/main_js/Learn_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/main_js/Learn_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/main_js/Myclass.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/main_js/Myclass.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/main_js/Play.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/main_js/Play.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/JS/main_js/duration.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/main_js/duration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -108,11 +87,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Get_Teaching.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/junitT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+            <state relative-caret-position="380">
+              <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,10 +100,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DB/GetSqlSessionFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/GetLearnFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+            <state relative-caret-position="387">
+              <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Get_Teaching.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1083">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,8 +138,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Learn_list.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            <state relative-caret-position="95">
+              <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -147,8 +150,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Play.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="24" column="54" lean-forward="true" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+            <state relative-caret-position="266">
+              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -157,13 +160,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/save_image.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/PostAsk.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
-              <caret line="17" column="150" selection-start-line="17" selection-start-column="150" selection-end-line="17" selection-end-column="150" />
+              <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="703">
+              <caret line="37" column="24" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -189,7 +201,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Course_infor</find>
       <find>get_class_name</find>
       <find>delete_student_class</find>
       <find>get_cover</find>
@@ -219,6 +230,7 @@
       <find>get_student_class</find>
       <find>study-hd</find>
       <find>select class_type,collection,classId,class_title,cover_address,schedule,last_time</find>
+      <find>class</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -228,9 +240,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/AskTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Model/AskOther.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/askDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Model/Answer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Model/Reply.java" />
         <option value="$PROJECT_DIR$/web/JS/main_js/questions.js" />
@@ -246,7 +255,6 @@
         <option value="$PROJECT_DIR$/web/HTML_JSP/Search/video.html" />
         <option value="$PROJECT_DIR$/src/main/resources/mappers/basicsClassDAO.xml" />
         <option value="$PROJECT_DIR$/web/JS/main_js/notification.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/LJZ/junitT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Model/PlayView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/LJZ/DAO/BasicsClassDAO.java" />
@@ -267,18 +275,22 @@
         <option value="$PROJECT_DIR$/web/CSS/main_css/Learn_list.css" />
         <option value="$PROJECT_DIR$/web/HTML_JSP/Learn_list.html" />
         <option value="$PROJECT_DIR$/web/JS/Class_info/Class_state.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Learn_list.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/GetLearnFile.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Get_Teaching.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Play.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/PostAsk.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/SaveClassInfor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/save_image.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Model/Sc.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mappers/classDAO.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/loginDAOlmpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/studentDAOlmpl.java" />
         <option value="$PROJECT_DIR$/web/JS/main_js/LearingClass.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/ChangePW.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Get_Teaching.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Learn_list.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/Play.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/PostAsk.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/save_image.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/SaveClassInfor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/hwDAOlmpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/studentDAOlmpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/DB/GetSqlSessionFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/LJZ/Server/GetLearnFile.java" />
       </list>
     </option>
   </component>
@@ -322,10 +334,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="477" />
-    <option name="y" value="117" />
-    <option name="width" value="1501" />
-    <option name="height" value="1047" />
+    <option name="x" value="475" />
+    <option name="y" value="115" />
+    <option name="width" value="1505" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -335,22 +347,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="IdeaProjects" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ServletTest" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ServletTest" type="616d4139:PackageViewModuleNode" />
-              <item name="com" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
           <expand>
@@ -364,86 +360,71 @@
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
             </path>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="LJZ" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="LJZ" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Model" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="LJZ" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="mappers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="LJZ" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="JS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="IdeaProjects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ServletTest" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="JS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main_js" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -497,6 +478,22 @@
               <item name="IdeaProjects" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="IdeaProjects" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ServletTest" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="IdeaProjects" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ServletTest" type="616d4139:PackageViewModuleNode" />
+              <item name="com" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
@@ -1110,6 +1107,7 @@
       <workItem from="1559715100104" duration="592000" />
       <workItem from="1559745136582" duration="4929000" />
       <workItem from="1559802902095" duration="5131000" />
+      <workItem from="1559964059774" duration="2405000" />
     </task>
     <task id="LOCAL-00001" summary="将ionic换成了bootstrap">
       <created>1538102747370</created>
@@ -1427,7 +1425,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2455236000" />
+    <option name="totallyTimeSpent" value="2465762000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1439,9 +1437,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.533052" visible="true" weight="0.18923241" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.533052" visible="true" weight="0.22117962" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1453,7 +1451,7 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" sideWeight="0.49946696" weight="0.31444758" />
       <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49061662" weight="0.22885032" />
-      <window_info active="true" anchor="bottom" id="Debug" order="4" sideWeight="0.6487207" visible="true" weight="0.29501083" />
+      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.6487207" weight="0.41218132" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Application Servers" order="7" side_tool="true" weight="0.32765958" />
@@ -1575,129 +1573,6 @@
     </SUITE>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/JS/main_js/notification.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="88" column="149" selection-start-line="88" selection-start-column="149" selection-end-line="88" selection-end-column="149" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#div#0;n#div#1;n#div#1;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/JS/navigation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#a#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/JS/search.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="381" column="23" lean-forward="true" selection-start-line="381" selection-start-column="23" selection-end-line="381" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#label#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DAO/AskDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Model/PlayView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="21" />
-          <folding>
-            <element signature="e#133#134#0" expanded="true" />
-            <element signature="e#166#167#0" expanded="true" />
-            <element signature="e#215#216#0" expanded="true" />
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#290#291#0" expanded="true" />
-            <element signature="e#317#318#0" expanded="true" />
-            <element signature="e#357#358#0" expanded="true" />
-            <element signature="e#389#390#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Model/Lesson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-464">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="28" />
-          <folding>
-            <element signature="e#735#736#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/ChangeInfor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/junitT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/JS/main_js/Myclass.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="831">
-          <caret line="168" column="45" lean-forward="true" selection-start-line="168" selection-start-column="45" selection-end-line="168" selection-end-column="45" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/basicsClassDAOlmpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/askDAOlmpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1756,13 +1631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="15" column="53" lean-forward="true" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Search/user.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -1800,11 +1668,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/classDAOlmpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="484" column="28" selection-start-line="484" selection-start-column="16" selection-end-line="484" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#24640#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="3439">
+          <caret line="197" column="8" selection-start-line="197" selection-start-column="8" selection-end-line="197" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1856,13 +1721,6 @@
         <state relative-caret-position="-3645" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/ChangePW.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-133">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/HTML_JSP/Learn_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2375">
@@ -1905,26 +1763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/SaveClassInfor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="24" column="60" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/PostAsk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="26" column="60" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/JS/main_js/Learn_list.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="562">
@@ -1948,8 +1786,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DAO/ClassDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="26" />
+        <state relative-caret-position="418">
+          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1968,13 +1806,6 @@
             <element signature="e#490#491#0" expanded="true" />
             <element signature="e#523#524#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/studentDAOlmpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3800">
-          <caret line="211" column="121" selection-start-line="211" selection-start-column="121" selection-end-line="211" selection-end-column="121" />
         </state>
       </provider>
     </entry>
@@ -2015,20 +1846,133 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/save_image.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/classDAO.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="17" column="150" selection-start-line="17" selection-start-column="150" selection-end-line="17" selection-end-column="150" />
+        <state relative-caret-position="760">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/ChangePW.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1330">
+          <caret line="70" column="90" lean-forward="true" selection-start-line="70" selection-start-column="90" selection-end-line="70" selection-end-column="90" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Play.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/save_image.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="24" column="54" lean-forward="true" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+        <state relative-caret-position="342">
+          <caret line="29" column="63" lean-forward="true" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/SaveClassInfor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/UploadFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/UploadSec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/ChangeInfor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Notification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/PostNote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Students.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/hwDAOlmpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DAOlmpl/studentDAOlmpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="129" column="32" lean-forward="true" selection-start-line="129" selection-start-column="32" selection-end-line="129" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/junitT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/DB/GetSqlSessionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Get_Teaching.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2037,35 +1981,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Learn_list.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+        <state relative-caret-position="95">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Play.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/PostAsk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/GetLearnFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/classDAO.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="20" column="72" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/LJZ/Server/Get_Teaching.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+        <state relative-caret-position="387">
+          <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

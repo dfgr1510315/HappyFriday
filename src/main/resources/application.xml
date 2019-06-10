@@ -13,7 +13,10 @@
         <property name="url" value="${url}"/>
         <property name="username" value="${username}"/>
         <property name="password" value="${password}"/>
-        <property name="testOnBorrow" value="true" />
+       <!-- <property name="testOnBorrow" value="true" />-->
+        <!--removeAbandoned: 是否自动回收超时连接-->
+        <property name="removeAbandoned" value="true"/>
+        <property name="testWhileIdle" value="true"/>
     </bean>
 
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
@@ -32,11 +35,11 @@
     </bean>
 
     <!--配置sqlSessionTemplate：通过带参数的构造方法创建对象 -->
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <!-- 以sqlSessionFactory为参数传入构造函数中 -->
         <constructor-arg ref="sqlSessionFactory"/>
         <!-- mybatis执行器，取值范围是SIMPLE/REUSE/BATCH三种类型 -->
-        <constructor-arg value="BATCH"/>
+       <!-- <constructor-arg value="BATCH"/>-->
     </bean>
 
 </beans>

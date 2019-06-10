@@ -140,7 +140,7 @@ public class hwDAOlmpl implements homeWorkDAO {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select user,nike from sc,personal_table where username=user and class="+course_id+" and classification="+class_id);
+            ResultSet rs = statement.executeQuery("select user,nike from sc,personal_table where username=user and classId="+course_id+" and classification="+class_id);
             while (rs.next()) {
                 user.append(rs.getString("user")).append("|");
                 nike.append(rs.getString("nike")).append("|");
@@ -300,7 +300,7 @@ public class hwDAOlmpl implements homeWorkDAO {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select id,homework.time,title from homework,sc where user='"+student+"' and class="+class_id+" and classification=class_id and course_id="+class_id);
+            ResultSet rs = statement.executeQuery("select id,homework.time,title from homework,sc where user='"+student+"' and classId="+class_id+" and classification=class_id and course_id="+class_id);
             while (rs.next()) {
                 hw = new homework();
                 hw.setId(rs.getInt("id"));
@@ -330,7 +330,7 @@ public class hwDAOlmpl implements homeWorkDAO {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select title from homework,sc where user='"+student+"' and class_id=classification and course_id=class and id="+work_id);
+            ResultSet rs = statement.executeQuery("select title from homework,sc where user='"+student+"' and class_id=classification and course_id=classId and id="+work_id);
             //System.out.println(student);
             while (rs.next()) {
                 //System.out.println(rs.getString("sc.time"));

@@ -147,7 +147,7 @@ public class studentDAOlmpl implements studentDAO {
         int state = 0;
         try {
             con = dbp.getConnection();
-            qsql  = con.prepareStatement("delete from sc where user=? and class=?");
+            qsql  = con.prepareStatement("delete from sc where user=? and classId=?");
             qsql.setString(1,student);
             qsql.setInt(2,course_id);
             state = qsql.executeUpdate();
@@ -177,7 +177,7 @@ public class studentDAOlmpl implements studentDAO {
         PreparedStatement qsql = null;
         try {
             con = dbp.getConnection();
-            qsql  = con.prepareStatement("update sc set schedule=?,last_time=? where user=? and class=?");
+            qsql  = con.prepareStatement("update sc set schedule=?,last_time=? where user=? and classId=?");
             qsql.setInt(1,percentage);
             qsql.setString(2,last_time);
             qsql.setString(3,student);
@@ -237,7 +237,7 @@ public class studentDAOlmpl implements studentDAO {
         try {
             con = dbp.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("select nike,head,schedule,time from sc,personal_table where class="+course_id+" and username=user and classification="+class_id);
+            ResultSet rs = statement.executeQuery("select nike,head,schedule,time from sc,personal_table where classId="+course_id+" and username=user and classification="+class_id);
             while (rs.next()){
                 student = new Student();
                 student.setName(rs.getString("nike"));
