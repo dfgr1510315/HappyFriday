@@ -15,11 +15,11 @@ function get_infor() {
         dataType: 'json',
         success: function (jsonObj) {
             let birth = jsonObj.user_infor.birth.split('-');
-            $('#liNike').text('昵称：  ' + jsonObj.user_infor.nike);
-            $('#liSex').text('性别：  ' + jsonObj.user_infor.sex);
-            $('#liBirth').text('生日：  ' + jsonObj.user_infor.birth);
+            $('#liNike span').text(jsonObj.user_infor.nike);
+            $('#liSex span').text(jsonObj.user_infor.sex);
+            $('#liBirth span').text(jsonObj.user_infor.birth);
             /*$('#liTeacher').text('指导老师：  ' + jsonObj.user_infor.teacher);*/
-            $('#liIntro').text('个人简介：  ' + jsonObj.user_infor.information);
+            $('#liIntro span').text(jsonObj.user_infor.information);
             $("#nike").val(jsonObj.user_infor.nike);
             $('select[name=\'sex\']').val(jsonObj.user_infor.sex);
             $("#year").val(birth[0]);
@@ -57,13 +57,12 @@ function changeInfor() {
         data: data,
         dataType: 'json',
         success: function (msg) {
-            if (true === msg) {
-                alert('修改成功');
+            if (1 === msg) {
                 $("#ChangeClose").click();
-                $("#liNike").text("昵称:" + nike);
-                $("#liSex").text("性别:" + sex);
-                $("#liBirth").text("生日:" + birth);
-                $("#liIntro").text("简介:" + introduction);
+                $("#liNike span").text(nike);
+                $("#liSex span").text(sex);
+                $("#liBirth span").text(birth);
+                $("#liIntro span").text(introduction);
                 cookie.set('nike',nike)
                 // $("#liTeacher").text("指导老师：" + teacher);
             } else {
@@ -114,7 +113,7 @@ function post_head_image(_blob) {
                 type: "POST",
                 dataType: "json",
                 success: function (msg) {
-                    if (msg === true) {
+                    if (msg === 1) {
                         alert('修改成功');
                         $('#am-close_a').click();
                     }

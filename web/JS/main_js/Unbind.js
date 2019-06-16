@@ -1,4 +1,5 @@
 let email = cookie.get('email');
+let user = cookie.get('user');
 //let email_model = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 //let contextPath = getContextPath();
 $(document).ready(function () {
@@ -24,7 +25,7 @@ function changeBind() {
         },
         dataType:'json',
         success:function (state) {
-            if (state===true){
+            if (state===1){
                 alert('请去邮箱确认');
                 $('#ChangeEmailClose').click();
             } else{

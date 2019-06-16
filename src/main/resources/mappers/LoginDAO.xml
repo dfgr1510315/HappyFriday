@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.LoginDAO">
+    <select id="unread" resultType="int">
+        SELECT readed from notice where to_user=#{_parameter} order by time desc limit 1;
+    </select>
+
+    <update id="change_email">
+        update login_table set code=#{arg0} where username=#{arg1}
+    </update>
+
+    <select id="forgetPW" resultType="java.util.HashMap">
+        select email,password from login_table where username=#{_parameter}
+    </select>
+
+    <insert id="register">
+        insert into login_table values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4})
+    </insert>
+
+    <select id="login" resultType="UserBase">
+        select login_table.username,password,email,nike,head,usertype from login_table,personal_table where login_table.username=personal_table.username and active=1 and login_table.username=#{_parameter}
+    </select>
+
+    <select id="get_teacher_class" resultType="String">
+        select class_id from class_teacher_table where teacher=#{_parameter}
+    </select>
+
+    <select id="get_history" resultType="History">
+        select classId,schedule,last_time,class_title from sc,class_teacher_table where user=#{_parameter} and classId=class_id order by time desc limit 6
+    </select>
+</mapper>

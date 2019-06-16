@@ -21,7 +21,7 @@ function remove_student(event){
             type: "POST",
             dataType: "json",
             success: function (jsonObj) {
-                if (jsonObj===true){
+                if (jsonObj===1){
                     $(event).parent().parent().remove();
                 }else alert('移除失败')
             }
@@ -122,12 +122,14 @@ function join_class(id) {
         data: {
             student:move_student,
             id:id,
+            courseId:No,
             action:'move_student'
         },
         type: "POST",
         dataType: "json",
         success: function (jsonObj) {
-            if (jsonObj===true){
+            console.log(jsonObj);
+            if (jsonObj===1){
                 $('#join_class_Close').click();
                 let student = $(move_event).parent().parent().html();
                 $(move_event).parent().parent().remove();
@@ -153,7 +155,7 @@ function delete_student_class(event,id) {
             type: "POST",
             dataType: "json",
             success: function (jsonObj) {
-                if (jsonObj===true){
+                if (jsonObj===1){
                     $(event).parent().parent().remove();
                 }else alert('删除失败')
             }
@@ -222,7 +224,7 @@ function get_class_students(event,id){
         type: "POST",
         dataType: "json",
         success: function (jsonObj) {
-            //console.log(jsonObj);
+            console.log(jsonObj);
             let class_box = $('#class_box');
             if (jsonObj.students.length===0)  {
                 class_box.append(
@@ -250,7 +252,7 @@ function get_class_students(event,id){
                     '                        <td style="position: relative;">\n' +
                     '                            <a target="_blank" href="" >\n' +
                     '                                <img src="'+contextPath+jsonObj.students[i].head+'">\n' +
-                    '                                <span>'+jsonObj.students[i].name+'</span>\n' +
+                    '                                <span>'+jsonObj.students[i].nike+'</span>\n' +
                     '                            </a>\n' +
                     '                            <span class="text-sm" style="position: absolute;">'+jsonObj.students[i].time+' 加入</span>\n' +
                     '                        </td>\n' +
@@ -261,7 +263,7 @@ function get_class_students(event,id){
                     '                        </td>\n' +
                     '                        <td>\n' +
                     '                            <button type="button" class="btn btn-outline-info btn-sm">设为班长</button>\n' +
-                    '                            <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#join_class" data-student="'+jsonObj.students[i].name+'" onclick="change_stu(this)">移动学员</button>\n' +
+                    '                            <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#join_class" data-student="'+jsonObj.students[i].nike+'" onclick="change_stu(this)">移动学员</button>\n' +
                     '                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="remove_student(this)">移除学员</button>\n' +
                     '                        </td>\n' +
                     '                    </tr>'

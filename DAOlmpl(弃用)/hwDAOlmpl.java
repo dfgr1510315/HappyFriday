@@ -1,6 +1,7 @@
+/*
 package com.LJZ.DAOlmpl;
 
-import com.LJZ.DAO.homeWorkDAO;
+import com.LJZ.DAO.HwDAO;
 import com.LJZ.Model.SubModel.Sub_HW;
 import com.LJZ.Model.homework;
 import com.LJZ.DB.DBPoolConnection;
@@ -12,11 +13,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class hwDAOlmpl implements homeWorkDAO {
+public class hwDAOlmpl implements HwDAO {
     @Override
-    public String[] get_class(int id) {
+    public List<HashMap<String,Object>> get_class(int id) {
         String[] work = new String[3];
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
@@ -40,11 +42,11 @@ public class hwDAOlmpl implements homeWorkDAO {
                     e.printStackTrace();
                 }
         }
-        return work;
+        return null;
     }
 
     @Override
-    public boolean post_work(int work_id,String student,String time,String question,String option,String select,String sel_standard,String calculation,String cal_standard,String cal_answer) {
+    public int post_work(int work_id,String student,String time,String question,String option,String select,String sel_standard,String calculation,String cal_standard,String cal_answer) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -88,7 +90,7 @@ public class hwDAOlmpl implements homeWorkDAO {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
@@ -217,7 +219,7 @@ public class hwDAOlmpl implements homeWorkDAO {
     }
 
     @Override
-    public boolean delete_work(int id) {
+    public int delete_work(int id) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -242,7 +244,7 @@ public class hwDAOlmpl implements homeWorkDAO {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 
     @Override
@@ -380,7 +382,7 @@ public class hwDAOlmpl implements homeWorkDAO {
     }
 
     @Override
-    public boolean postRandom(int id,int sel,int cal) {
+    public int postRandom(int id,int sel,int cal) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
         DruidPooledConnection con =null;
         PreparedStatement qsql = null;
@@ -407,6 +409,7 @@ public class hwDAOlmpl implements homeWorkDAO {
                     e.printStackTrace();
                 }
         }
-        return state!=0;
+        return state;
     }
 }
+*/

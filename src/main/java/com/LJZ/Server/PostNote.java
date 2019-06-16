@@ -1,9 +1,11 @@
 package com.LJZ.Server;
 
-import com.LJZ.DAOlmpl.noteDAOlmpl;
+import com.LJZ.DAO.NoteDAO;
+import com.LJZ.DB.GetSqlSessionFactory;
+import com.LJZ.Model.SubModel.NoteInsert;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.session.SqlSession;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,52 +19,38 @@ public class PostNote extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
+        SqlSession sqlSession = GetSqlSessionFactory.getSqlSession();
+        NoteDAO nl = sqlSession.getMapper(NoteDAO.class);
         String action = request.getParameter("action");
-        int No;
-        String class_No = request.getParameter("class_No");
-        String author = request.getParameter("author");
-        String time;
         switch (action) {
             case "post":
-                No = Integer.parseInt(request.getParameter("No"));
-                String note_editor = request.getParameter("note_editor");
-               /* SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式*/
-                time = request.getParameter("time");
-                post_note(response, No, class_No, author, note_editor, time);
+                post_note(request,response,nl);
                 break;
             case "get":
-                No = Integer.parseInt(request.getParameter("No"));
-                get_note(response, No, class_No, author);
+                get_note(request,response,nl);
                 break;
             case "delete":
-                int note_no = Integer.parseInt(request.getParameter("note_no"));
-                delete_note(response, note_no);
+                delete_note(request,response,nl);
                 break;
             case "change":
-                note_no = Integer.parseInt(request.getParameter("note_no"));
-                note_editor = request.getParameter("note_editor");
-                time = request.getParameter("time");
-                change_note(response, note_no,note_editor,time);
+                change_note(request,response,nl);
                 break;
             case "get_my_all_note":
-                get_my_all_note(response, author);
+                get_my_all_note(request,response,nl);
                 break;
             case "get_this_class_note":
-                No = Integer.parseInt(request.getParameter("No"));
-                int page = Integer.parseInt(request.getParameter("page"));
-                get_this_class_note(response, No,page);
+                get_this_class_note(request,response,nl);
                 break;
             case "search_note":
-                page = Integer.parseInt(request.getParameter("page"));
-                note_editor = request.getParameter("keyword");
-                search_note(response,note_editor,page);
+                search_note(request,response,nl);
                 break;
         }
     }
 
-    private void search_note(HttpServletResponse response,String keyword,int page) throws IOException{
+    private void search_note(HttpServletRequest request,HttpServletResponse response,NoteDAO nl) throws IOException{
+        int page = Integer.parseInt(request.getParameter("page"));
+        String keyword = request.getParameter("keyword");
         JSONObject jsonObject = new JSONObject();
-        noteDAOlmpl nl = new noteDAOlmpl();
         String SQL = "note.unit_no=class.unit_no and class_teacher_table.class_id=belong_class_id and class.class_id=belong_class_id and text like '%"+keyword+"%' limit "+(6*(page-1))+","+6;
         jsonObject.put("note", nl.get_note(SQL));
         SQL = "SELECT COUNT(note_id) count from note where text like '%"+keyword+"%'";
@@ -74,9 +62,10 @@ public class PostNote extends HttpServlet {
     }
 
     //得到此课程下所有笔记
-    private void get_this_class_note(HttpServletResponse response,int No,int page) throws IOException{
+    private void get_this_class_note(HttpServletRequest request,HttpServletResponse response,NoteDAO nl) throws IOException{
         JSONObject jsonObject = new JSONObject();
-        noteDAOlmpl nl = new noteDAOlmpl();
+        int No = Integer.parseInt(request.getParameter("No"));
+        int page = Integer.parseInt(request.getParameter("page"));
         jsonObject.put("note", nl.get_this_class_note(No,page));
         PrintWriter out = response.getWriter();
         out.print(jsonObject);
@@ -85,10 +74,10 @@ public class PostNote extends HttpServlet {
     }
 
     //获取我的所有笔记
-    private void get_my_all_note(HttpServletResponse response,String author)throws IOException{
+    private void get_my_all_note(HttpServletRequest request,HttpServletResponse response,NoteDAO nl)throws IOException{
+        String author = request.getParameter("author");
         String SQL = "note.unit_no=class.unit_no and class_teacher_table.class_id=belong_class_id and class.class_id=belong_class_id and author= '"+author+"'";
         JSONObject jsonObject = new JSONObject();
-        noteDAOlmpl nl = new noteDAOlmpl();
         jsonObject.put("note", nl.get_note(SQL));
         PrintWriter out = response.getWriter();
         out.print(jsonObject);
@@ -96,16 +85,18 @@ public class PostNote extends HttpServlet {
         out.close();
     }
 
-    private void change_note(HttpServletResponse response,int note_no,String note_editor,String time)throws IOException{
-        noteDAOlmpl nl = new noteDAOlmpl();
+    private void change_note(HttpServletRequest request,HttpServletResponse response,NoteDAO nl)throws IOException{
+        int note_no = Integer.parseInt(request.getParameter("note_no"));
+        String note_editor = request.getParameter("note_editor");
+        String time = request.getParameter("time");
         PrintWriter out = response.getWriter();
-        out.print(nl.change_note(note_no,note_editor,time));
+        out.print(nl.change_note(note_editor,time,note_no));
         out.flush();
         out.close();
     }
 
-    private void delete_note(HttpServletResponse response,int note_no)throws IOException{
-        noteDAOlmpl nl = new noteDAOlmpl();
+    private void delete_note(HttpServletRequest request,HttpServletResponse response,NoteDAO nl)throws IOException{
+        int note_no = Integer.parseInt(request.getParameter("note_no"));
         PrintWriter out = response.getWriter();
         out.print(nl.delete_note(note_no));
         out.flush();
@@ -113,9 +104,11 @@ public class PostNote extends HttpServlet {
     }
 
     //获取当前播放课时下我的笔记
-    private void get_note(HttpServletResponse response,int No,String class_No,String author)throws IOException{
+    private void get_note(HttpServletRequest request,HttpServletResponse response,NoteDAO nl)throws IOException{
         JSONObject jsonObject = new JSONObject();
-        noteDAOlmpl nl = new noteDAOlmpl();
+        int No = Integer.parseInt(request.getParameter("No"));
+        String class_No = request.getParameter("class_No");
+        String author = request.getParameter("author");
         jsonObject.put("note", nl.get_lesson_note(No,class_No,author));
         PrintWriter out = response.getWriter();
         out.print(jsonObject);
@@ -123,15 +116,22 @@ public class PostNote extends HttpServlet {
         out.close();
     }
 
-    private void post_note(HttpServletResponse response,int No,String class_No,String author,String note_editor,String time)throws IOException{
-        noteDAOlmpl nl = new noteDAOlmpl();
+    private void post_note(HttpServletRequest request,HttpServletResponse response,NoteDAO nl)throws IOException{
+        NoteInsert noteInsert = new NoteInsert();
+        noteInsert.setUnit_no(request.getParameter("class_No"));
+        noteInsert.setAuthor(request.getParameter("author"));
+        noteInsert.setBelong_class_id(Integer.parseInt(request.getParameter("No")));
+        noteInsert.setText(request.getParameter("note_editor"));
+        noteInsert.setNote_time(request.getParameter("time"));
+        /* SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式*/
+        nl.post_note(noteInsert);
         PrintWriter out = response.getWriter();
-        out.print(nl.post_note(No,class_No,author,note_editor,time));
+        out.print(noteInsert.getNote_id());
         out.flush();
         out.close();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
     }
 }

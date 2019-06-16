@@ -1,51 +1,49 @@
 package com.LJZ.Server;
 
-import com.LJZ.DAOlmpl.loginDAOlmpl;
+import com.LJZ.DAO.LoginDAO;
+import com.LJZ.DB.GetSqlSessionFactory;
 import com.LJZ.Model.UserBase;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.session.SqlSession;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
 
-
-@WebServlet(name = "Register")
 public class Register extends HttpServlet {
-    private static final int loginNofind = 1;
     private static final int loginSuccess = 2;
-    private static final int loginPWerror = 3;
-    private static final int registerSuccess = 4;
+    private static final int loginPwError = 3;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
         String state = request.getParameter("state");
+        SqlSession sqlSession = GetSqlSessionFactory.getSqlSession();
+        LoginDAO lgl = sqlSession.getMapper(LoginDAO.class);
         //ConnectSQL.my_println("获取到的状态、用户名和密码为：" + state + username + password);
         switch (state){
             case "user_infor":
-                user_infor(request,response);
+                user_infor(request,response,lgl);
                 break;
             case "login":
-                login(request,response,username, password);
+                login(request,response,lgl);
                 break;
             case "Logout":
                 login_out(request);
                 break;
             case "register":
-                String email = request.getParameter("email");
-                int active = 0;
-                register(response,username,password,email,active);
+                register(request,response,lgl);
                 break;
             case "forgetPW":
-                String forget_user = request.getParameter("forget_user");
-                forgetPW(response,forget_user);
+                forgetPW(request,response,lgl);
                 break;
             case "ChangeEmail":
-                email = request.getParameter("email");
-                ChangeEmail(response,username,email);
+                ChangeEmail(request,response,lgl);
                 break;
         }
     }
@@ -56,12 +54,11 @@ public class Register extends HttpServlet {
     }
 
 
-    private void user_infor(HttpServletRequest request,HttpServletResponse response)throws IOException{
+    private void user_infor(HttpServletRequest request,HttpServletResponse response,LoginDAO lgl)throws IOException{
         HttpSession session=request.getSession();
         JSONObject jsonObject = new JSONObject();
         String username=(String) session.getAttribute("user_id");
         PrintWriter out = response.getWriter();
-        loginDAOlmpl lgl = new loginDAOlmpl();
         jsonObject.put("read",lgl.unread(username));
         jsonObject.put("user",username);
         out.println(jsonObject);
@@ -69,64 +66,65 @@ public class Register extends HttpServlet {
         out.close();
     }
 
-    private void ChangeEmail(HttpServletResponse response,String username,String email) throws IOException{
+    private void ChangeEmail(HttpServletRequest request,HttpServletResponse response,LoginDAO lgl) throws IOException{
+        String email = request.getParameter("email");
+        String username = request.getParameter("username");
+        System.out.println(username);
         String code=CodeUtil.generateUniqueCode();
         PrintWriter out = response.getWriter();
-        loginDAOlmpl lgl = new loginDAOlmpl();
-        boolean flag = lgl.change_email(username,email,code);
-        if (flag){
-            new Thread(new MailUtil(email,code,1)).start();
-        }
+        int flag = lgl.change_email(code,username);
+        if (flag!=0) new Thread(new MailUtil(email,code,1)).start();
         out.println(flag);
         out.flush();
         out.close();
     }
 
-    private void forgetPW(HttpServletResponse response,String forget_user) throws IOException{
+    private void forgetPW(HttpServletRequest request,HttpServletResponse response,LoginDAO lgl) throws IOException{
         PrintWriter out = response.getWriter();
-        loginDAOlmpl lgl = new loginDAOlmpl();
-        String[] list = lgl.forgetPW(forget_user);
-        if (list.length!=0){
-            new Thread(new Mailforget(list[1],list[0])).start();
+        String forget_user = request.getParameter("forget_user");
+        List<HashMap<String,Object>> list = lgl.forgetPW(forget_user);
+        if (list.size()!=0){
+            new Thread(new Mailforget((String) list.get(0).get("email"),(String)list.get(0).get("password"))).start();
             out.println(true);
         }else out.println(false);
         out.flush();
         out.close();
     }
 
-    private void register(HttpServletResponse response,String username,String password,String email,int active) throws IOException{
+    private void register(HttpServletRequest request,HttpServletResponse response,LoginDAO lgl) throws IOException{
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
         String code=CodeUtil.generateUniqueCode();
         PrintWriter out = response.getWriter();
-        loginDAOlmpl lgl = new loginDAOlmpl();
-        boolean flag = lgl.register(username,password,email,active,code);
-        if (flag){
-            new Thread(new MailUtil(email, code,0)).start();
-        }
-        System.out.println(flag);
+        int flag = lgl.register(username,password,email,0,code);
+        if (flag!=0) new Thread(new MailUtil(email, code,0)).start();
+        //System.out.println(flag);
         out.println(flag);
         out.flush();
         out.close();
     }
 
-    private void login(HttpServletRequest request,HttpServletResponse response,String name,String password)throws IOException{
+    private void login(HttpServletRequest request,HttpServletResponse response,LoginDAO lgl)throws IOException{
         PrintWriter out = response.getWriter();
         JSONObject jsonObject = new JSONObject();
-        loginDAOlmpl lgl = new loginDAOlmpl();
-        UserBase userBase = lgl.login(name);
-        if (userBase.getUsername()!=null&& userBase.getPaw().equals(password)){ //账户密码正确判断
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        UserBase userBase = lgl.login(username);
+        if (userBase.getUsername()!=null&& userBase.getPassword().equals(password)){ //账户密码正确判断
             HttpSession session = request.getSession();
             session.setAttribute("user_id",userBase.getUsername());
             session.setAttribute("usertype",userBase.getUsertype());
             //session.setAttribute("head_image",userBase.getHead_image());
             //session.setAttribute("email",userBase.getEmail());
             if (userBase.getUsertype().equals("teacher")){//账户类型判断,是教师则去获取所教课程的ID
-                String class_id= lgl.get_teacher_class(userBase.getUsername());
+                List class_id= lgl.get_teacher_class(userBase.getUsername());
                 session.setAttribute("class_id",class_id);
             }
-            jsonObject.put("history",lgl.get_history(name));
+            jsonObject.put("history",lgl.get_history(username));
             jsonObject.put("user_infor",userBase);
             jsonObject.put("state",loginSuccess);//2
-        }else jsonObject.put("state",loginPWerror);
+        }else jsonObject.put("state",loginPwError);
         out.print(jsonObject);
         out.flush();
         out.close();

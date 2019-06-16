@@ -1,6 +1,7 @@
+/*
 package com.LJZ.DAOlmpl;
 
-import com.LJZ.DAO.noteDAO;
+import com.LJZ.DAO.NoteDAO;
 import com.LJZ.Model.Note;
 import com.LJZ.Model.SubModel.Note_class;
 import com.LJZ.Model.SubModel.Note_list;
@@ -14,7 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class noteDAOlmpl implements noteDAO {
+public class noteDAOlmpl implements NoteDAO {
     @Override
     public int get_note_count(String SQL) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
@@ -250,3 +251,4 @@ public class noteDAOlmpl implements noteDAO {
         return note_id;
     }
 }
+*/

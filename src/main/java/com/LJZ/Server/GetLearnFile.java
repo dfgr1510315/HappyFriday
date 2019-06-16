@@ -27,7 +27,6 @@ public class GetLearnFile extends HttpServlet {
         String action = request.getParameter("action");
         SqlSession sqlSession = GetSqlSessionFactory.getSqlSession();
         ClassDAO cdl = sqlSession.getMapper(ClassDAO.class);
-
         switch (action){
             case "post":
                 set_class_content(response,request,cdl);

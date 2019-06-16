@@ -65,7 +65,7 @@ function get_Class() {
         },
         dataType: 'json',
         success: function (jsonObject) {
-            console.log(jsonObject);
+            //console.log(jsonObject);
             if (jsonObject.release_status === 0) {
                 pass = 0;
                 alert('该课程尚未发布');
@@ -189,8 +189,10 @@ function get_schedule() {
             type: "POST",
             dataType: "json",
             success: function (jsonObj) {
-                let percentage = jsonObj.schedule;
-                let last_time = jsonObj.last_time;
+                console.log(jsonObj);
+                if (jsonObj.schedule.length===0) return;
+                let percentage = jsonObj.schedule[0].schedule;
+                let last_time = jsonObj.schedule[0].last_time;
                 if (percentage === undefined) {
                     $('.sno1-1 .learn-btn').append(
                         '<button type="button" class="studyfont btn btn-outline-primary" data-toggle="modal" data-target="#join_class">开始学习</button>\n'
@@ -433,8 +435,8 @@ function join_class(classification) {
         },
         dataType: 'json',
         success: function (jsonObject) {
-            if (jsonObject===true) {
-                window.location.href = "com.LJZ.Server.Play.html?" + No + "/1-1";
+            if (jsonObject===1) {
+                window.location.href = "Play.html?" + No + "/1-1";
             }
         }
     })

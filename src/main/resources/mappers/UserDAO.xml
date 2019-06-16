@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.UserDAO">
+    <select id="get_user" resultType="User">
+        select nike,sex,birth,information,teacher from personal_table where username=#{_parameter}
+    </select>
+
+    <insert id="add_user">
+        insert into personal_table (username,nike)values(#{_parameter},#{_parameter})
+    </insert>
+
+    <select id="search_user" resultType="User">
+        select nike,usertype,sex,head,information from personal_table where nike like #{arg0} limit #{arg1},6
+    </select>
+
+    <update id="change_user">
+        update personal_table set nike=#{arg0},sex=#{arg1},birth=#{arg2},information=#{arg3},teacher=#{arg4} where username=#{arg5}
+    </update>
+
+    <update id="change_head">
+        update personal_table set head=#{arg0} where username=#{arg1}
+    </update>
+
+    <select id="count_user" resultType="Int">
+        select count(*) user_count from personal_table where nike like #{_parameter}
+    </select>
+</mapper>

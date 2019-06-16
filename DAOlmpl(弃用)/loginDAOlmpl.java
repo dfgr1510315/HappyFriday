@@ -1,6 +1,7 @@
+/*
 package com.LJZ.DAOlmpl;
 
-import com.LJZ.DAO.loginDAO;
+import com.LJZ.DAO.LoginDAO;
 import com.LJZ.Model.UserBase;
 import com.LJZ.Model.History;
 import com.LJZ.DB.DBPoolConnection;
@@ -13,7 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class loginDAOlmpl implements loginDAO {
+public class loginDAOlmpl implements LoginDAO {
 
     @Override
     public int unread(String username) {
@@ -105,7 +106,7 @@ public class loginDAOlmpl implements loginDAO {
         int state = 0;
         try {
             con = dbp.getConnection();
-            qsql = con.prepareStatement("insert into  login_table values(?,?,?,?,?)");
+            qsql = con.prepareStatement("insert into login_table values(?,?,?,?,?)");
             qsql.setString(1,username);
             qsql.setString(2,password);
             qsql.setString(3,email);
@@ -221,3 +222,4 @@ public class loginDAOlmpl implements loginDAO {
     }
 
 }
+*/

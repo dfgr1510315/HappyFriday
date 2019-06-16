@@ -1,17 +1,17 @@
 package com.LJZ.Model;
 
 public class Student {
-    private String name;
+    private String nike;
     private String time;
     private String head;
     private String schedule;
 
-    public String getName() {
-        return name;
+    public String getNike() {
+        return nike;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNike(String nike) {
+        this.nike = nike;
     }
 
     public String getTime() {

@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.StudentDAO">
+    <update id="move_student">
+        update sc set classification=#{arg0} where user=#{arg1} and classId=#{arg2}
+    </update>
+
+    <delete id="delete_class">
+        delete from classification where id=#{_parameter}
+    </delete>
+
+    <insert id="create_class" parameterType="CreateClass">
+        insert into classification(class_id,name) value (#{class_id},#{name})
+        <selectKey keyProperty="id" order="AFTER" resultType="Int" >
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+    <select id="get_class" resultType="Class">
+        select id,name from classification where class_id=#{_parameter}
+    </select>
+
+    <delete id="remove_student">
+        delete from sc where user=#{arg0} and classId=#{arg1}
+    </delete>
+
+    <update id="save_schedule">
+        update sc set schedule=#{arg0},last_time=#{arg1} where classId=#{arg2} and user=#{arg3}
+    </update>
+
+    <select id="get_schedule" resultType="java.util.HashMap">
+        select schedule,last_time from sc where classId=#{arg0} and user=#{arg1}
+    </select>
+
+    <select id="get_class_students" resultType="Student">
+        select nike,head,schedule,time from sc,personal_table where classId=#{arg0}  and username=user and classification=#{arg1}
+    </select>
+</mapper>

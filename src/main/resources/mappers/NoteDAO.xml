@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.NoteDAO">
+    <select id="get_note_count" parameterType="String" resultType="Int">${_parameter}</select>
+
+    <select id="get_note" resultType="Note_list">
+        select note_id,text,note_time,note.unit_no,belong_class_id,class_title,cover_address,lesson_title from note,class_teacher_table,class where ${_parameter}
+    </select>
+
+    <select id="get_this_class_note" resultType="Note_class">
+        select note_id,text,note_time,note.unit_no,nike,head,lesson_title from note,personal_table,class where
+        belong_class_id=#{arg0} and author=username and belong_class_id=class_id and note.unit_no=class.unit_no order by note_time desc limit #{arg1},6
+    </select>
+
+    <update id="change_note">
+        update note set text=#{arg0},note_time=#{arg1} where note_id=#{arg2}
+    </update>
+
+    <delete id="delete_note">
+        delete from note where note_id=#{_parameter}
+    </delete>
+
+    <select id="get_lesson_note" resultType="Note">
+        select text,note_time,note_id from note where belong_class_id=#{arg0} and unit_no=#{arg1} and author=#{arg2}
+    </select>
+
+    <insert id="post_note" parameterType="NoteInsert">
+        insert into note(belong_class_id,unit_no,author,text,note_time) values(#{belong_class_id},#{unit_no},#{author},#{text},#{note_time})
+        <selectKey keyProperty="note_id" order="AFTER" resultType="Int" >
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+</mapper>

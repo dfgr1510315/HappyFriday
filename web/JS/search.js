@@ -110,7 +110,7 @@ function page_ul(page, count) {
         }
     } else {
         if (page <= 3) {
-            for (i = 1; i < 6; i++) {
+            for (let i = 1; i < 6; i++) {
                 if (i < page_length + 1) {
                     if (i === parseInt(page)) {
                         page_ul.append(' <li class="page-item active"><a class="page-link" href="?' + keyword + '&page=' + i + '">' + i + '</a></li>');
@@ -118,7 +118,7 @@ function page_ul(page, count) {
                 }
             }
         } else {
-            for (i = page_length - 4; i <= page_length; i++) {
+            for (let i = page_length - 4; i <= page_length; i++) {
                 if (i < page_length + 1) {
                     if (i === parseInt(page)) {
                         page_ul.append(' <li class="page-item active"><a class="page-link" href="?' + keyword + '&page=' + i + '">' + i + '</a></li>');

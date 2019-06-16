@@ -41,7 +41,7 @@ function delete_notice(event) {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            if (jsonObj===true){
+            if (jsonObj===1){
                 $(event).parent().parent().parent().parent().remove();
             }else alert('删除失败')
         }
@@ -76,17 +76,18 @@ function get_notice() {
             for (let i=0;i<jsonObj.notice.length;i++){
                 let notice;
                 switch (jsonObj.notice[i].notice_type) {
+                    //from_user
                     case 1:
-                        notice = "学员<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>加入了课程<a href='Learn_list.html?class_id="+jsonObj.notice[i].class_id+"' target='_blank'>《"+jsonObj.notice[i].class_title+"》</a>\n";
+                        notice = "学员<a href='' target='_blank'>"+jsonObj.notice[i].nike+"</a>加入了课程<a href='Learn_list.html?class_id="+jsonObj.notice[i].class_id+"' target='_blank'>《"+jsonObj.notice[i].class_title+"》</a>\n";
                         break;
                     case 2:
-                        notice = "学员<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在课程<a href='Learn_list.html?class_id="+jsonObj.notice[i].class_id+"' target='_blank'>《"+jsonObj.notice[i].class_title+"》</a>发表了问题<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>\n";
+                        notice = "学员<a href='' target='_blank'>"+jsonObj.notice[i].nike+"</a>在课程<a href='Learn_list.html?class_id="+jsonObj.notice[i].class_id+"' target='_blank'>《"+jsonObj.notice[i].class_title+"》</a>发表了问题<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>\n";
                         break;
                     case 3:
-                        notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在你发布的问题<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回答了你";
+                        notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].nike+"</a>在你发布的问题<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回答了你";
                         break;
                     case 4:
-                        notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].from_user+"</a>在<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回复了你";
+                        notice = "用户<a href='' target='_blank'>"+jsonObj.notice[i].nike+"</a>在<a href='questions.html?"+jsonObj.notice[i].ask_id+"' target='_blank'>"+jsonObj.notice[i].ask_title+"</a>中回复了你";
                         break
                 }
                 notice_box_ul(notice,jsonObj.notice[i].time,jsonObj.notice[i].notice_id)
@@ -103,7 +104,7 @@ function get_notice() {
                 else page_ul.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
 
                 if (page-1>2&&page_length-page>=2){
-                    for (i = page-2;i<=page+2;i++){
+                    for (let i = page-2;i<=page+2;i++){
                         if (i<page_length+1){
                             if (i===parseInt(page)){
                                 page_ul.append('<li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
@@ -112,7 +113,7 @@ function get_notice() {
                     }
                 }else {
                     if (page<=3){
-                        for (i=1;i<6;i++){
+                        for (let i=1;i<6;i++){
                             if (i<page_length+1){
                                 if (i===parseInt(page)){
                                     page_ul.append('<li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');
@@ -120,7 +121,7 @@ function get_notice() {
                             }
                         }
                     }else {
-                        for (i=page_length-4;i<=page_length;i++){
+                        for (let i=page_length-4;i<=page_length;i++){
                             if (i<page_length+1){
                                 if (i===parseInt(page)){
                                     page_ul.append('<li class="page-item active"><a class="page-link" href="?page='+i+'">'+i+'</a></li>');

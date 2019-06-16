@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebFilter(filterName = "Login_Filter")
 public class Login_Filter implements Filter {
@@ -56,7 +57,9 @@ public class Login_Filter implements Filter {
                 return;
             }
             if (isHave(path,teacher_paths)){
-                String[] class_id = ((String) session.getAttribute("class_id")).split(",");
+                List<String> classListId = (List<String>) session.getAttribute("class_id");//类型安全性警告,规范数据来源即可规避异常情况
+                String[] class_id = new String[classListId.size()];
+                classListId.toArray(class_id);
                 String class_id1 = request.getParameter("class_id");
                 if (usertype.equals("teacher")&&isHave(class_id1,class_id)) {
                     chain.doFilter(request, response);

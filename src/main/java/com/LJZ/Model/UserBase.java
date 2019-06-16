@@ -2,9 +2,9 @@ package com.LJZ.Model;
 
 public class UserBase {
     private String username;
-    private String paw;
+    private String password;
     private String nike;
-    private String head_image;
+    private String head;
     private String usertype;
     private String email;
 
@@ -16,12 +16,12 @@ public class UserBase {
         this.username = username;
     }
 
-    public String getPaw() {
-        return paw;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPaw(String paw) {
-        this.paw = paw;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNike() {
@@ -32,12 +32,12 @@ public class UserBase {
         this.nike = nike;
     }
 
-    public String getHead_image() {
-        return head_image;
+    public String getHead() {
+        return head;
     }
 
-    public void setHead_image(String head_image) {
-        this.head_image = head_image;
+    public void setHead(String head) {
+        this.head = head;
     }
 
     public String getUsertype() {

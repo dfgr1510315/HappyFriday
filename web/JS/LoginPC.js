@@ -72,7 +72,7 @@ function setCookie(msg,username,password) {
     let last_time = [];
     let schedule = [];
     for (let i=0;i<msg.history.length;i++){
-        class_id.push(msg.history[i].class_id);
+        class_id.push(msg.history[i].classId);
         class_title.push(msg.history[i].class_title);
         last_time.push(msg.history[i].last_time);
         schedule.push(msg.history[i].schedule);
@@ -83,11 +83,10 @@ function setCookie(msg,username,password) {
     cookie.set('last_time',last_time);
     cookie.set('schedule',schedule);
     cookie.set('nike',msg.user_infor.nike);
-    cookie.set('head_image',msg.user_infor.head_image);
+    cookie.set('head_image',msg.user_infor.head);
     cookie.set('email',msg.user_infor.email);
     cookie.set('usertype',msg.user_infor.usertype);
 }
-
 
 function deleteCookie() {
     $.ajax({
@@ -162,7 +161,7 @@ function forgetPW() {
         },
         dataType:'json',
         success:function (state) {
-            if (state===1){
+            if (state===true){
                 alert('我们已将你当前密码发送至你的邮箱中');
                 $('#forgetClose').click();
             } else if (state===0){

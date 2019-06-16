@@ -4,8 +4,6 @@ import com.LJZ.DAO.BasicsClassDAO;
 import com.LJZ.DB.GetSqlSessionFactory;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +16,6 @@ import java.util.List;
 
 @WebServlet(name = "SaveClassInfor")
 public class SaveClassInfor extends HttpServlet {
-    private static SqlSessionFactory factory = (SqlSessionFactory) new ClassPathXmlApplicationContext("application.xml").getBean("sqlSessionFactory");
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");

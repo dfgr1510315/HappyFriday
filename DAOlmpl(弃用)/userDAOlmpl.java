@@ -1,6 +1,7 @@
+/*
 package com.LJZ.DAOlmpl;
 
-import com.LJZ.DAO.userDAO;
+import com.LJZ.DAO.UserDAO;
 import com.LJZ.Model.User;
 import com.LJZ.DB.DBPoolConnection;
 import com.alibaba.druid.pool.DruidPooledConnection;
@@ -12,7 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class userDAOlmpl implements userDAO {
+public class userDAOlmpl implements UserDAO {
 
     @Override
     public User get_user(String username) {
@@ -211,3 +212,4 @@ public class userDAOlmpl implements userDAO {
         return count;
     }
 }
+*/

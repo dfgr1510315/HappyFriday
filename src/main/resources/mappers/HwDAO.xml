@@ -1,0 +1,61 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.HwDAO">
+
+    <select id="get_class" resultType="java.util.HashMap">
+        select file_add,setSel,setCal from homework where id=#{id}
+    </select>
+
+    <select id="power_work" resultType="String">
+        select title from homework,sc where user=#{arg0} and class_id=classification and course_id=classId and id=#{arg1}
+    </select>
+
+    <insert id="post_work">
+        insert into stu_work values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4})
+    </insert>
+
+    <insert id="post_text">
+        insert into stu_text values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5},#{arg6},#{arg7})
+    </insert>
+
+    <select id="get_homework" resultType="Sub_HW">
+        select homework.id,time,title,name,homework.class_id,file_add,selLine,calLine from homework,classification where classification.id=homework.class_id and course_id=#{_parameter}
+    </select>
+
+    <select id="get_stu" resultType="java.util.HashMap">
+        select user,nike from sc,personal_table where username=user and classId=#{arg0} and classification=#{arg1}
+    </select>
+
+    <select id="get_stu_hw" resultType="java.util.HashMap">
+        select student,time,flag from stu_work where belong_work=#{_parameter}
+    </select>
+
+    <select id="get_text" resultType="java.util.HashMap">
+        select question,_option,_select,sel_standard,calculation,cal_standard,cal_answer from stu_text where belong_stu=#{_parameter}
+    </select>
+
+    <delete id="delete_work">
+        delete from homework where id=#{_parameter}
+    </delete>
+
+    <insert id="add_work" parameterType="SubAddHW">
+        insert into homework(class_id,course_id,file_add,time,title,selLine,calLine,setSel,setCal) values(#{class_id},#{course_id},#{file_name},#{time},#{title},#{selLine},#{calLine},#{selLine},#{calLine})
+        <selectKey keyProperty="id" order="AFTER" resultType="Int" >
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+
+    <select id="get_work_list" resultType="homework">
+        select id,homework.time,title from homework,sc where user=#{arg0} and classId=#{arg1} and classification=class_id and course_id=#{arg1}
+    </select>
+
+    <select id="getRandom" resultType="java.util.HashMap">
+        select selLine,calLine,setSel,setCal from homework where id=#{_parameter}
+    </select>
+
+    <update id="postRandom">
+        update homework set setSel=#{arg0},setCal=#{arg1} where id=#{arg2}
+    </update>
+
+</mapper>

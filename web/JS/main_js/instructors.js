@@ -25,6 +25,7 @@ function get_homework() {
         type: "POST",
         dataType: "json",
         success: function (json) {
+            //console.log(json);
             if (json.HW.length===0){
                 $('.table-responsive table').hide();
                 $('.table-responsive').append('<div class="no_find_class">暂未布置作业</div>');
@@ -33,7 +34,7 @@ function get_homework() {
             let time;
             for (let i=0;i<json.HW.length;i++){
                 time = specs(json.HW[i].time.toString());
-                work_body(time,json.HW[i].class_name,json.HW[i].title,json.HW[i].id,json.HW[i].class_id,json.HW[i].file_add);
+                work_body(time,json.HW[i].name,json.HW[i].title,json.HW[i].id,json.HW[i].class_id,json.HW[i].file_add);
             }
         }
     });
@@ -82,9 +83,9 @@ function get_stu(event,work_id,class_id) {
         type: "POST",
         dataType: "json",
         success: function (json) {
-            console.log(json);
+            //console.log(json);
             add_table(work_id);
-            stu_split(work_id,json.HW[0],json.HW[1],json.HW[2],json.HW[3],json.HW[4]);
+            stu_split(work_id,json);
             one_work_id = work_id;
             class_name = $(event).children().children().text();
             homework_title = $(event).parent().next().children().children().text();
@@ -113,22 +114,23 @@ function add_table(work_id) {
 }
 
 //对数据进行分割处理
-function stu_split(work_id,student,nike,post_user,time,pass_flag) {
-    let s_student = student.split('|');
-    let s_post_user = post_user.split('|');
-    let s_nike = nike.split('|');
-    let s_time = time.split('|');
-    let s_pass_flag = pass_flag.split('|');
+function stu_split(work_id,json) {
     let index;
-    for (let i=0;i<s_student.length-1;i++){
-        index = $.inArray(s_student[i],s_post_user);
-        add_stuBody(work_id,s_student[i],s_nike[i],s_time[index],index,s_pass_flag[index]);
+    let student = [];
+    for (let i=0;i<json.student.length;i++) student.push(json.student[i].user);
+    for (let i=0;i<json.student.length;i++){
+        if (json.hw[i]!==undefined) {
+            index = $.inArray(json.hw[i].student,student);
+            add_stuBody(work_id,json.student[i].user,json.student[i].nike,json.hw[index].time,json.hw[index].flag);
+        }else {
+            add_stuBody(work_id,json.student[i].user,json.student[i].nike,'',-1);
+        }
     }
 }
 
 
 //加载此班级作业表体
-function add_stuBody(work_id,student,nike,time,post,pass) {
+function add_stuBody(work_id,student,nike,time,post) {
     let post_class = 'badge-warning';
 /*    let pass_class = 'badge-warning';*/
     let data_target = '';
@@ -145,7 +147,6 @@ function add_stuBody(work_id,student,nike,time,post,pass) {
             pass_text = '已批改'
         }*/
     }
-    if (time===undefined) time='';
     $('#stu_body'+work_id).append('<tr>\n' +
         '<td><a '+onclick+' href="javascript:void(0);" data-toggle="modal" data-target="#'+data_target+'"><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+nike+'</span></span></a></td>\n' +
         '<td><span style="vertical-align:inherit;"><span style="vertical-align:inherit;">'+time+'</span></span></td>\n' +
@@ -172,7 +173,7 @@ function get_text(student,nike) {
         type: "POST",
         dataType: "json",
         success: function (json) {
-            //console.log(json);
+            console.log(json);
             stu_text[one_work_id+student] = json;
             //console.log(stu_text);
             choice(json);
@@ -204,9 +205,9 @@ function remove_table() {
 
 //添加简答题
 function questions(json) {
-    let question = json.text[4].split('|');
-    let standard_answer = json.text[5].split('|');
-    let answer = json.text[6].split('|');
+    let question = json.text[0].calculation.split('|');
+    let standard_answer = json.text[0].cal_standard.split('|');
+    let answer = json.text[0].cal_answer.split('|');
     let right_count = 0;
     for (let i = 0; i < question.length-1; i++) {
         $('#question').append(
@@ -234,10 +235,10 @@ function questions(json) {
 
 //添加选择题
 function choice(json) {
-    let question = json.text[0].split('|');
-    let option = json.text[1].split('|');
-    let _select = json.text[2].split('|');
-    let sel_standard = json.text[3].split('|');
+    let question = json.text[0].question.split('|');
+    let option = json.text[0]._option.split('|');
+    let _select = json.text[0]._select.split('|');
+    let sel_standard = json.text[0].sel_standard.split('|');
     let right_count = 0;
     //console.log(_select);
     for (let i = 0; i < question.length-1; i++) {
@@ -328,7 +329,7 @@ function delete_work(event,work_id){
             },
             dataType: 'json',
             success: function (msg) {
-                if (msg===true){
+                if (msg===1){
                     $(event).parent().parent().parent().parent().remove();
                     if ($('#work_body tr').length===0) {
                         $('.table-responsive table').hide();
@@ -390,6 +391,7 @@ function add_work(){
 
           },*/
         success: function (jsonObj) {
+            console.log(class_selected.val());
             if (jsonObj===undefined) {
                 alert('上传失败');
                 return;
@@ -407,14 +409,15 @@ function add_work(){
                 },
                 dataType: 'json',
                 success: function (msg) {
+                    //console.log(msg);
                     //function work_body(time,class_name,title,work_id,class_id,file_add)
                     if (msg!==0){
-                        $('.table-responsive table').show();
+                        $('.work_table').show();
                         $('.no_find_class').remove();
-                        work_body(specs(time),class_selected.text(),title,msg,No,file.name);
+                        work_body(specs(time),class_selected.text(),title,msg,class_selected.val(),file.name);
                         work_file = undefined;
                         $('#title').val('');
-                        $('#class option:selected').val('');
+                        //$('#class option:selected').val('');
                         $('#file').val('');
                         $('#work_input').val('');
                     }else alert('作业添加失败')
@@ -427,7 +430,7 @@ function add_work(){
 function getRandom(event,id){
     //console.log('random[id]'+random[id]);
     if (random[id]!==undefined){
-        showRandom(random[id]);
+        showRandom(random[id].ran[0]);
         return
     }
     $.ajax({
@@ -440,7 +443,7 @@ function getRandom(event,id){
         dataType: "json",
         success: function (json) {
             //console.log(json);
-            showRandom(json);
+            showRandom(json.ran[0]);
             random[id] = json;
         }
     });
@@ -451,10 +454,10 @@ function getRandom(event,id){
 function showRandom(json){
     let sel = $('#sel');
     let cal = $('#cal');
-    sel.attr('placeholder','共'+json[0]+'题').attr('max',json[0]);
-    cal.attr('placeholder','共'+json[1]+'题').attr('max',json[1]);
-    if (json[2]!==0)  sel.val(json[2]); else sel.val('');
-    if (json[3]!==0)  cal.val(json[3]); else cal.val('');
+    sel.attr('placeholder','共'+json.selLine+'题').attr('max',json.selLine);
+    cal.attr('placeholder','共'+json.calLine+'题').attr('max',json.calLine);
+    if (json.setSel!==0)  sel.val(json.setSel); else sel.val('');
+    if (json.setCal!==0)  cal.val(json.setCal); else cal.val('');
 }
 
 function postRandom(id){
@@ -480,9 +483,10 @@ function postRandom(id){
         type: "POST",
         dataType: "json",
         success: function (json) {
-            if (json===true){
-                random[id][2] = sel;
-                random[id][3] = cal;
+            if (json===1){
+                console.log(random[id].ran);
+                random[id].ran[0].setSel = sel;
+                random[id].ran[0].setCal = cal;
                 alert('设置成功')
             }else alert('设置失败')
         }

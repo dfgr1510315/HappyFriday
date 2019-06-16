@@ -1,17 +1,17 @@
 package com.LJZ.Model;
 
 public class History {
-    private int class_id;
+    private int classId;
     private int schedule;
     private String last_time;
     private String class_title;
 
-    public int getClass_id() {
-        return class_id;
+    public int getClassId() {
+        return classId;
     }
 
-    public void setClass_id(int class_id) {
-        this.class_id = class_id;
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
     public int getSchedule() {

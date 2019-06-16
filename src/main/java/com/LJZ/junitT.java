@@ -1,7 +1,8 @@
 package com.LJZ;
 
-import com.LJZ.DAO.ClassDAO;
 import com.LJZ.DAO.AskDAO;
+import com.LJZ.DAO.ClassDAO;
+import com.LJZ.DB.GetSqlSessionFactory;
 import com.LJZ.Model.Lesson;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -53,5 +54,13 @@ public class junitT {
         //int i = classDAO.DeClassContent(7,"1-4");
         List list = classDAO.get_class_content(7);
         System.out.println(list);
+    }
+
+    @Test
+    public void TestRollBack(){
+        SqlSession sqlSession = GetSqlSessionFactory.getSqlSession();
+        ClassDAO hw = sqlSession.getMapper(ClassDAO.class);
+        int work = hw.add_class("admin","11",1);
+        System.out.println(work);
     }
 }

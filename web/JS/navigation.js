@@ -7,7 +7,6 @@ $(document).ready(function(){
             $('.title_list_box').hide();
         },500)
     });
-    search_tips();
 });
 
 function get_user_infor() {
@@ -21,21 +20,22 @@ function get_user_infor() {
         },
         dataType: 'json',
         success: function (jsonObj) {
+            //console.log(jsonObj);
             head_image = cookie.get('head_image');
             usertype = cookie.get('usertype');
             let user = cookie.get('user');
             if (jsonObj.user===undefined){
                 cookie.del('user');
-                $("#loginButton").show();
+                $('#loginButton').show();
                 $('.personalCenter').remove();
-                return
+                return;
             }
             if (jsonObj.user!==user){
                 cookie.set('user',jsonObj.user);
                 window.location.href="/LJZ/HTML_JSP/404.html";
                 return;
             }
-            if (jsonObj.read===0)  $('.count-cart').css('display','inline');
+            if (jsonObj.read[0]===0)  $('.count-cart').css('display','inline');
             checkCookie();
             load_history();
      /*       card_show();
@@ -124,6 +124,11 @@ function search_tips() {
         }, 600);
         return false;
     });
+}
+
+function hide_tips(){
+    $('.title_list').html('');
+    $('.title_list_box').hide()
 }
 
 let cookie = {

@@ -81,7 +81,7 @@ input[type="search"] {
 }
 
 .boxed .title_list a:hover{
-    color: #007bff;
+    color: #007bff !important;
 }
 
 .boxed .title_list_box{

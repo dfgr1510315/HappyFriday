@@ -1,6 +1,7 @@
+/*
 package com.LJZ.DAOlmpl;
 
-import com.LJZ.DAO.studentDAO;
+import com.LJZ.DAO.StudentDAO;
 import com.LJZ.Model.Class;
 import com.LJZ.Model.Student;
 import com.LJZ.DB.DBPoolConnection;
@@ -13,7 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class studentDAOlmpl implements studentDAO {
+public class studentDAOlmpl implements StudentDAO {
     @Override
     public boolean move_student(int class_id, String student) {
         DBPoolConnection dbp = DBPoolConnection.getInstance();
@@ -260,3 +261,4 @@ public class studentDAOlmpl implements studentDAO {
         return list;
     }
 }
+*/

@@ -1,7 +1,7 @@
 package com.LJZ.Server;
 
 import com.LJZ.DAO.ClassDAO;
-import com.LJZ.DAOlmpl.userDAOlmpl;
+import com.LJZ.DAO.UserDAO;
 import com.LJZ.DB.GetSqlSessionFactory;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
@@ -64,7 +64,8 @@ public class save_image extends HttpServlet {
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("user_id");
         String head_image = request.getParameter("image");
-        userDAOlmpl ul = new userDAOlmpl();
+        SqlSession sqlSession = GetSqlSessionFactory.getSqlSession();
+        UserDAO ul = sqlSession.getMapper(UserDAO.class);
         PrintWriter out = response.getWriter();
         out.print(ul.change_head(username, head_image));
         out.flush();

@@ -10,6 +10,18 @@ public class Notice {
     private String ask_title;
     private String class_title;
 
+    public String getNike() {
+        return nike;
+    }
+
+    public void setNike(String nike) {
+        this.nike = nike;
+    }
+
+    private String nike;
+
+
+
     public int getNotice_id() {
         return notice_id;
     }

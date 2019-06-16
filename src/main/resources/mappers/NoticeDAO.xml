@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.LJZ.DAO.NoticeDAO">
+    <select id="get_notice" resultType="Notice">
+        select notice_id,nike,from_user,class_id,ask_id,notice_type,time,(select class_title from class_teacher_table where class_teacher_table.class_id=notice.class_id) class_title,
+        (select ask_title from ask where ask.ask_id=notice.ask_id) ask_title from notice,personal_table where to_user=#{arg0} and username=from_user order by time desc limit #{arg1},6
+    </select>
+
+    <update id="upRead">
+        update notice set readed=1 where readed=0 and to_user=#{arg0} order by time desc limit #{arg1}
+    </update>
+
+    <delete id="delete_notice">
+        delete from notice where notice_id=#{_parameter}
+    </delete>
+
+    <select id="get_notice_count" resultType="int">
+        select COUNT(*) count FROM notice where to_user=#{_parameter}
+    </select>
+</mapper>

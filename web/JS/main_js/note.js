@@ -91,10 +91,11 @@ function change_note(event) {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            if (true===jsonObj){
+            //console.log(jsonObj);
+            if (1===jsonObj){
                 $(event).parent().parent().prev().children().eq(0).html(new_note);
                 $(event).next().click();
-            }
+            }else alert('修改失败')
         }
     });
 }
@@ -120,10 +121,10 @@ function delete_note(noteno) {
         },
         dataType: 'json',
         success: function (jsonObj) {
-            if (true===jsonObj){
+            if (1===jsonObj){
                 $('#delete_note'+noteno).parent().parent().parent().parent().remove();
                 $("#Delete_Note_Close").click();
-            }
+            }else alert('删除失败')
         }
     });
 }

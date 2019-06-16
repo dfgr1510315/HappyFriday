@@ -1,6 +1,7 @@
+/*
 package com.LJZ.DAOlmpl;
 
-import com.LJZ.DAO.noticeDAO;
+import com.LJZ.DAO.NoticeDAO;
 import com.LJZ.Model.Notice;
 import com.LJZ.DB.DBPoolConnection;
 import com.alibaba.druid.pool.DruidPooledConnection;
@@ -12,7 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class noticeDAOlmpl implements noticeDAO {
+public class noticeDAOlmpl implements NoticeDAO {
 
     @Override
     public List get_notice(int page, String user) {
@@ -120,3 +121,4 @@ public class noticeDAOlmpl implements noticeDAO {
         return count;
     }
 }
+*/

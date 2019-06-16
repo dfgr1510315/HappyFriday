@@ -1,7 +1,8 @@
 package com.LJZ.Server;
 
+import com.LJZ.DAO.AskDAO;
 import com.LJZ.DAO.ClassDAO;
-import com.LJZ.DAOlmpl.noteDAOlmpl;
+import com.LJZ.DAO.NoteDAO;
 import com.LJZ.DB.GetSqlSessionFactory;
 import com.LJZ.Model.SubModel.Course_infor;
 import net.sf.json.JSONObject;
@@ -77,8 +78,9 @@ public class Learn_list extends HttpServlet {
             jsonObject.put("class_infor", my_class);
             jsonObject.put("chapter", cdl.get_chapter(No)); //获取目录
             jsonObject.put("recommend", cdl.get_recommend(course_infor.getClass_type()));//获取推荐课程
-            jsonObject.put("note_count", new noteDAOlmpl().get_note_count("select count(note_id) count from note where belong_class_id=" + No));//获取笔记数量
-            //jsonObject.put("ask_count",askDAO.get_ask_count("select count(ask_id) ask_count from ask where belong_class_id=" + No));//获取问答数量
+            SqlSession sqlSession = GetSqlSessionFactory.getSqlSession();
+            jsonObject.put("note_count", sqlSession.getMapper(NoteDAO.class).get_note_count("select count(note_id) count from note where belong_class_id=" + No));//获取笔记数量
+            jsonObject.put("ask_count",sqlSession.getMapper(AskDAO.class).get_ask_count("select count(ask_id) ask_count from ask where belong_class_id=" + No));//获取问答数量
         }
         PrintWriter out = response.getWriter();
         out.print(jsonObject);

@@ -4,9 +4,10 @@ import com.LJZ.Model.homework;
 
 public class Sub_HW extends homework {
     private int class_id;
-    private String class_name;//班级名
+    private String name;//班级名
     private String file_add;
     private int selLine; //选择题数
+    private int calLine; //计算题or简答题数
 
     public int getSelLine() {
         return selLine;
@@ -24,8 +25,6 @@ public class Sub_HW extends homework {
         this.calLine = calLine;
     }
 
-    private int calLine; //计算题or简答题数
-
     public String getFile_add() {
         return file_add;
     }
@@ -42,11 +41,11 @@ public class Sub_HW extends homework {
         this.class_id = class_id;
     }
 
-    public String getClass_name() {
-        return class_name;
+    public String getName() {
+        return name;
     }
 
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
+    public void setName(String name) {
+        this.name = name;
     }
 }
