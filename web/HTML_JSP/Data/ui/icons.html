@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" >
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" >
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+
+    <title>Amaze - Bootstrap Admin Dashboard Template</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' >
+    <meta name="viewport" content="width=device-width" >
+
+    <!-- Bootstrap core CSS     -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!--  Paper Dashboard CSS    -->
+    <link href="../assets/css/amaze.css" rel="stylesheet" >
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="../assets/css/demo.css" rel="stylesheet" >
+
+    <!--     Fonts and icons     -->
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/css/font-muli.css" rel='stylesheet' type='text/css'>
+    <link href="../assets/css/themify-icons.css" rel="stylesheet">
+    <!--    JQuery UI     -->
+    <link href="../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
+    <link href="../assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet" >
+</head>
+
+<body>
+    <div class="wrapper">
+		<div class="sidebar" data-background-color="brown" data-active-color="danger">
+	    <!--
+			Tip 1: you can change the color of the sidebar's background using: data-background-color="white | brown"
+			Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+		-->
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Amaze Admin
+                </a>
+            </div>
+            <div class="logo logo-mini">
+                <a href="#" class="simple-text">
+                    A
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+				<ul class="nav">
+                    <li>
+                        <a href="../index.html">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+					<li>
+						<a href="../widgets/widgets.html">
+							<i class="ti-widget"></i>
+							<p>Widgets</p>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="collapse" href="#charts" class="collapsed" aria-expanded="false">
+							<i class="ti-bar-chart-alt"></i>
+							<p>Charts
+								<b class="caret"></b>
+							</p>
+						</a>
+						<div class="collapse" id="charts" role="navigation" aria-expanded="false" style="height: 0px;">
+							<ul class="nav">
+								<li>
+									<a href="../chart-js-charts.html">ChartJS</a>
+								</li>
+								<li>
+									<a href="../charts/flot-charts.html">Flot</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="active">
+						<a data-toggle="collapse" href="#ui-elements" class="collapsed" aria-expanded="false">
+							<i class="ti-package"></i>
+							<p>UI Elements
+								<b class="caret"></b>
+							</p>
+						</a>
+						<div class="collapse" id="ui-elements" role="navigation" aria-expanded="false" style="height: 0px;">
+							<ul class="nav">
+								<li><a href="../ui/accordions.html">Accordions</a></li>
+								<li><a href="../ui/alerts.html">Alerts</a></li>
+								<li><a href="../ui/buttons.html">Buttons</a></li>
+								<li><a href="../ui/grid.html">Grid System</a></li>
+								<li class="active"><a href="../ui/icons.html">Icons</a></li>
+								<li><a href="../ui/modals.html">Modals</a></li>
+								<li><a href="../ui/notifications.html">Notifications</a></li>
+								<li><a href="../ui/tabs.html">Tabs</a></li>
+								<li><a href="../ui/typography.html">Typography</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a data-toggle="collapse" href="#forms" class="collapsed" aria-expanded="false">
+							<i class="ti-clipboard"></i>
+							<p>Forms
+								<b class="caret"></b>
+							</p>
+						</a>
+						<div class="collapse" id="forms" role="navigation" aria-expanded="false" style="height: 0px;">
+							<ul class="nav">
+								<li><a href="../forms/basic-elements.html">Basic Elements</a></li>
+								<li><a href="../forms/advanced-elements.html">Advanced Elements</a></li>
+								<li><a href="../forms/form-validation.html">Form Validation</a></li>
+								<li><a href="../forms/form-wizard.html">Form Wizard</a></li>
+								<li><a href="../forms/sample-forms.html">Sample Forms</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a data-toggle="collapse" href="#tables" class="collapsed" aria-expanded="false">
+							<i class="ti-view-list-alt"></i>
+							<p>Tables
+								<b class="caret"></b>
+							</p>
+						</a>
+						<div class="collapse" id="tables" role="navigation" aria-expanded="false" style="height: 0px;">
+							<ul class="nav">
+								<li><a href="../tables/tables.html">Simple Tables</a></li>
+								<li><a href="../tables/data-tables.html">Data Tables</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a data-toggle="collapse" href="#pages" class="collapsed" aria-expanded="false">
+							<i class="ti-gift"></i>
+							<p>Pages
+								<b class="caret"></b>
+							</p>
+						</a>
+						<div class="collapse" id="pages" role="navigation" aria-expanded="false" style="height: 0px;">
+							<ul class="nav">
+								<li><a href="../sample-pages/template.html">Template</a></li>
+								<li><a href="../sample-pages/user-profile.html">User Profile</a></li>
+								<li><a href="../sample-pages/login.html">Login</a></li>
+								<li><a href="../sample-pages/signup.html">Sign Up</a></li>
+								<li><a href="../sample-pages/pricing-table.html">Pricing Table</a></li>
+								<li><a href="../sample-pages/invoice.html">Invoice</a></li>
+								<li><a href="../sample-pages/help-faqs.html">Help & FAQs</a></li>
+								<li><a href="../sample-pages/timeline.html">Timeline</a></li>
+								<li><a href="../sample-pages/404.html">404</a></li>
+								<li><a href="../sample-pages/500.html">500</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a href="../calendar/calendar.html">
+							<i class="ti-calendar"></i>
+							<p>Calendar
+								<b class="caret"></b>
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="../docs/documentation.html">
+							<i class="ti-help"></i>
+							<p>Documentation</p>
+						</a>
+					</li>
+				</ul>
+
+            </div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-minimize">
+                        <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">
+							<i class="ti-arrow-left"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"> Icons </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-bell"></i>
+                                    <span class="notification">6</span>
+                                    <p class="hidden-lg hidden-md">
+                                        Notifications
+                                        <b class="caret"></b>
+                                    </p>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">You have 5 new messages</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">You're now friend with Mike</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Wish Mary on her birthday!</a>
+                                    </li>                                    <li>
+                                        <a href="#">5 warnings in Server Console</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Jane completed 'Induction Training'</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">'Prepare Marketing Report' is overdue</a>
+                                    </li>
+                                </ul>
+                            </li>
+							<li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-layout-grid3-alt"></i>
+                                    <p class="hidden-lg hidden-md">Apps</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-user"></i>
+                                    <p class="hidden-lg hidden-md">Profile</p>
+                                </a>
+                            </li>
+							<li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-settings"></i>
+                                    <p class="hidden-lg hidden-md">Settings</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+					<div class="header text-center">
+						<h3 class="title">Themify Icons</h3>
+						<p class="category">Visit <a href="https://themify.me/themify-icons">https://themify.me/themify-icons</a> for details
+						</p>
+					</div>
+                    <div class="card icons-card">
+                        <div class="header">
+                            <h3>Arrows & Direction Icons</h3>
+                        </div>
+
+                        <div class="content card-padding">
+                        	<ul>
+                            	<li data-name="ti-arrow-up" data-code="e627"><i class="zpdi ti-arrow-up"></i> <span>ti-arrow-up</span></li>
+								<li data-name="ti-arrow-right" data-code="e628"><i class="zpdi ti-arrow-right"></i> <span>ti-arrow-right</span></li>
+								<li data-name="ti-arrow-left" data-code="e629"><i class="zpdi ti-arrow-left"></i> <span>ti-arrow-left</span></li>
+								<li data-name="ti-arrow-down" data-code="e62a"><i class="zpdi ti-arrow-down"></i> <span>ti-arrow-down</span></li>
+
+								<li data-name="ti-arrows-vertical" data-code=""><i class="zpdi ti-arrows-vertical"></i> <span>ti-arrows-vertical</span></li>
+								<li data-name="ti-arrows-horizontal" data-code=""><i class="zpdi ti-arrows-horizontal"></i> <span>ti-arrows-horizontal</span></li>
+								<li data-name="ti-angle-up" data-code=""><i class="zpdi ti-angle-up"></i> <span>ti-angle-up</span></li>
+								<li data-name="ti-angle-right" data-code=""><i class="zpdi ti-angle-right"></i> <span>ti-angle-right</span></li>
+
+								<li data-name="ti-angle-left" data-code=""><i class="zpdi ti-angle-left"></i> <span>ti-angle-left</span></li>
+								<li data-name="ti-angle-down" data-code=""><i class="zpdi ti-angle-down"></i> <span>ti-angle-down</span></li>
+								<li data-name="ti-angle-double-up" data-code=""><i class="zpdi ti-angle-double-up"></i> <span>ti-angle-double-up</span></li>
+								<li data-name="ti-angle-double-right" data-code=""><i class="zpdi ti-angle-double-right"></i> <span>ti-angle-double-right</span></li>
+
+								<li data-name="ti-angle-double-left" data-code=""><i class="zpdi ti-angle-double-left"></i> <span>ti-angle-double-left</span></li>
+								<li data-name="ti-angle-double-down" data-code=""><i class="zpdi ti-angle-double-down"></i> <span>ti-angle-double-down</span></li>
+								<li data-name="ti-move" data-code=""><i class="zpdi ti-move"></i> <span>ti-move</span></li>
+								<li data-name="ti-fullscreen" data-code=""><i class="zpdi ti-fullscreen"></i> <span>ti-fullscreen</span></li>
+
+								<li data-name="ti-arrow-top-right" data-code=""><i class="zpdi ti-arrow-top-right"></i> <span>ti-arrow-top-right</span></li>
+								<li data-name="ti-arrow-top-left" data-code=""><i class="zpdi ti-arrow-top-left"></i> <span>ti-arrow-top-left</span></li>
+								<li data-name="ti-arrow-circle-up" data-code=""><i class="zpdi ti-arrow-circle-up"></i> <span>ti-arrow-circle-up</span></li>
+								<li data-name="ti-arrow-circle-right" data-code=""><i class="zpdi ti-arrow-circle-right"></i> <span>ti-arrow-circle-right</span></li>
+
+								<li data-name="ti-arrow-circle-left" data-code=""><i class="zpdi ti-arrow-circle-left"></i> <span>ti-arrow-circle-left</span></li>
+								<li data-name="ti-arrow-circle-down" data-code=""><i class="zpdi ti-arrow-circle-down"></i> <span>ti-arrow-circle-down</span></li>
+								<li data-name="ti-arrows-corner" data-code=""><i class="zpdi ti-arrows-corner"></i> <span>ti-arrows-corner</span></li>
+								<li data-name="ti-split-v" data-code=""><i class="zpdi ti-split-v"></i> <span>ti-split-v</span></li>
+
+								<li data-name="ti-split-v-alt" data-code=""><i class="zpdi ti-split-v-alt"></i> <span>ti-split-v-alt</span></li>
+								<li data-name="ti-split-h" data-code=""><i class="zpdi ti-split-h"></i> <span>ti-split-h</span></li>
+								<li data-name="ti-hand-point-up" data-code=""><i class="zpdi ti-hand-point-up"></i> <span>ti-hand-point-up</span></li>
+								<li data-name="ti-hand-point-right" data-code=""><i class="zpdi ti-hand-point-right"></i> <span>ti-hand-point-right</span></li>
+
+								<li data-name="ti-hand-point-left" data-code=""><i class="zpdi ti-hand-point-left"></i> <span>ti-hand-point-left</span></li>
+								<li data-name="ti-hand-point-down" data-code=""><i class="zpdi ti-hand-point-down"></i> <span>ti-hand-point-down</span></li>
+								<li data-name="ti-back-right" data-code=""><i class="zpdi ti-back-right"></i> <span>ti-back-right</span></li>
+								<li data-name="ti-back-left" data-code=""><i class="zpdi ti-back-left"></i> <span>ti-back-left</span></li>
+
+								<li data-name="ti-exchange-vertical" data-code=""><i class="zpdi ti-exchange-vertical"></i> <span>ti-exchange-vertical</span></li>
+                            </ul>
+                    	</div>
+                    </div>
+
+                    <div class="card icons-card">
+                        <div class="header">
+                            <h3>Web App Icons</h3>
+                        </div>
+
+                        <div class="content card-padding">
+                            <div class="row">
+                                <ul>
+									<li data-name="ti-wand" data-code=""><i class="zpdi ti-wand"></i> <span>ti-wand</span></li>
+									<li data-name="ti-save" data-code=""><i class="zpdi ti-save"></i> <span>ti-save</span></li>
+									<li data-name="ti-save-alt" data-code=""><i class="zpdi ti-save-alt"></i> <span>ti-save-alt</span></li>
+									<li data-name="ti-direction" data-code=""><i class="zpdi ti-direction"></i> <span>ti-direction</span></li>
+
+									<li data-name="ti-direction-alt" data-code=""><i class="zpdi ti-direction-alt"></i> <span>ti-direction-alt</span></li>
+									<li data-name="ti-user" data-code=""><i class="zpdi ti-user"></i> <span>ti-user</span></li>
+									<li data-name="ti-link" data-code=""><i class="zpdi ti-link"></i> <span>ti-link</span></li>
+									<li data-name="ti-unlink" data-code=""><i class="zpdi ti-unlink"></i> <span>ti-unlink</span></li>
+
+									<li data-name="ti-trash" data-code=""><i class="zpdi ti-trash"></i> <span>ti-trash</span></li>
+									<li data-name="ti-target" data-code=""><i class="zpdi ti-target"></i> <span>ti-target</span></li>
+									<li data-name="ti-tag" data-code=""><i class="zpdi ti-tag"></i> <span>ti-tag</span></li>
+									<li data-name="ti-desktop" data-code=""><i class="zpdi ti-desktop"></i> <span>ti-desktop</span></li>
+
+									<li data-name="ti-tablet" data-code=""><i class="zpdi ti-tablet"></i> <span>ti-tablet</span></li>
+									<li data-name="ti-mobile" data-code=""><i class="zpdi ti-mobile"></i> <span>ti-mobile</span></li>
+									<li data-name="ti-email" data-code=""><i class="zpdi ti-email"></i> <span>ti-email</span></li>
+									<li data-name="ti-star" data-code=""><i class="zpdi ti-star"></i> <span>ti-star</span></li>
+
+									<li data-name="ti-spray" data-code=""><i class="zpdi ti-spray"></i> <span>ti-spray</span></li>
+									<li data-name="ti-signal" data-code=""><i class="zpdi ti-signal"></i> <span>ti-signal</span></li>
+									<li data-name="ti-shopping-cart" data-code=""><i class="zpdi ti-shopping-cart"></i> <span>ti-shopping-cart</span></li>
+									<li data-name="ti-shopping-cart-full" data-code=""><i class="zpdi ti-shopping-cart-full"></i> <span>ti-shopping-cart-full</span></li>
+
+									<li data-name="ti-settings" data-code=""><i class="zpdi ti-settings"></i> <span>ti-settings</span></li>
+									<li data-name="ti-search" data-code=""><i class="zpdi ti-search"></i> <span>ti-search</span></li>
+									<li data-name="ti-zoom-in" data-code=""><i class="zpdi ti-zoom-in"></i> <span>ti-zoom-in</span></li>
+									<li data-name="ti-zoom-out" data-code=""><i class="zpdi ti-zoom-out"></i> <span>ti-zoom-out</span></li>
+									<li data-name="ti-cut" data-code=""><i class="zpdi ti-cut"></i> <span>ti-cut</span></li>
+									<li data-name="ti-ruler" data-code=""><i class="zpdi ti-ruler"></i> <span>ti-ruler</span></li>
+									<li data-name="ti-ruler-alt-2" data-code=""><i class="zpdi ti-ruler-alt-2"></i> <span>ti-ruler-alt-2</span></li>
+									<li data-name="ti-ruler-pencil" data-code=""><i class="zpdi ti-ruler-pencil"></i> <span>ti-ruler-pencil</span></li>
+									<li data-name="ti-ruler-alt" data-code=""><i class="zpdi ti-ruler-alt"></i> <span>ti-ruler-alt</span></li>
+
+									<li data-name="ti-bookmark" data-code=""><i class="zpdi ti-bookmark"></i> <span>ti-bookmark</span></li>
+									<li data-name="ti-bookmark-alt" data-code=""><i class="zpdi ti-bookmark-alt"></i> <span>ti-bookmark-alt</span></li>
+									<li data-name="ti-reload" data-code=""><i class="zpdi ti-reload"></i> <span>ti-reload</span></li>
+									<li data-name="ti-plus" data-code=""><i class="zpdi ti-plus"></i> <span>ti-plus</span></li>
+									<li data-name="ti-minus" data-code=""><i class="zpdi ti-minus"></i> <span>ti-minus</span></li>
+									<li data-name="ti-close" data-code=""><i class="zpdi ti-close"></i> <span>ti-close</span></li>
+									<li data-name="ti-pin" data-code=""><i class="zpdi ti-pin"></i> <span>ti-pin</span></li>
+									<li data-name="ti-pencil" data-code=""><i class="zpdi ti-pencil"></i> <span>ti-pencil</span></li>
+									<li data-name="ti-pencil-alt" data-code=""><i class="zpdi ti-pencil-alt"></i> <span>ti-pencil-alt</span></li>
+									<li data-name="ti-paint-roller" data-code=""><i class="zpdi ti-paint-roller"></i> <span>ti-paint-roller</span></li>
+
+
+									<li data-name="ti-paint-bucket" data-code=""><i class="zpdi ti-paint-bucket"></i> <span>ti-paint-bucket</span></li>
+									<li data-name="ti-na" data-code=""><i class="zpdi ti-na"></i> <span>ti-na</span></li>
+									<li data-name="ti-medall" data-code=""><i class="zpdi ti-medall"></i> <span>ti-medall</span></li>
+									<li data-name="ti-medall-alt" data-code=""><i class="zpdi ti-medall-alt"></i> <span>ti-medall-alt</span></li>
+									<li data-name="ti-marker" data-code=""><i class="zpdi ti-marker"></i> <span>ti-marker</span></li>
+									<li data-name="ti-marker-alt" data-code=""><i class="zpdi ti-marker-alt"></i> <span>ti-marker-alt</span></li>
+									<li data-name="ti-lock" data-code=""><i class="zpdi ti-lock"></i> <span>ti-lock</span></li>
+									<li data-name="ti-unlock" data-code=""><i class="zpdi ti-unlock"></i> <span>ti-unlock</span></li>
+									<li data-name="ti-location-arrow" data-code=""><i class="zpdi ti-location-arrow"></i> <span>ti-location-arrow</span></li>
+									<li data-name="ti-layout" data-code=""><i class="zpdi ti-layout"></i> <span>ti-layout</span></li>
+
+									<li data-name="ti-layers" data-code=""><i class="zpdi ti-layers"></i> <span>ti-layers</span></li>
+									<li data-name="ti-layers-alt" data-code=""><i class="zpdi ti-layers-alt"></i> <span>ti-layers-alt</span></li>
+									<li data-name="ti-key" data-code=""><i class="zpdi ti-key"></i> <span>ti-key</span></li>
+									<li data-name="ti-image" data-code=""><i class="zpdi ti-image"></i> <span>ti-image</span></li>
+									<li data-name="ti-heart" data-code=""><i class="zpdi ti-heart"></i> <span>ti-heart</span></li>
+									<li data-name="ti-heart-broken" data-code=""><i class="zpdi ti-heart-broken"></i> <span>ti-heart-broken</span></li>
+									<li data-name="ti-hand-stop" data-code=""><i class="zpdi ti-hand-stop"></i> <span>ti-hand-stop</span></li>
+									<li data-name="ti-hand-open" data-code=""><i class="zpdi ti-hand-open"></i> <span>ti-hand-open</span></li>
+									<li data-name="ti-hand-drag" data-code=""><i class="zpdi ti-hand-drag"></i> <span>ti-hand-drag</span></li>
+									<li data-name="ti-flag" data-code=""><i class="zpdi ti-flag"></i> <span>ti-flag</span></li>
+
+									<li data-name="ti-flag-alt" data-code=""><i class="zpdi ti-flag-alt"></i> <span>ti-flag-alt</span></li>
+									<li data-name="ti-flag-alt-2" data-code=""><i class="zpdi ti-flag-alt-2"></i> <span>ti-flag-alt-2</span></li>
+									<li data-name="ti-eye" data-code=""><i class="zpdi ti-eye"></i> <span>ti-eye</span></li>
+									<li data-name="ti-import" data-code=""><i class="zpdi ti-import"></i> <span>ti-import</span></li>
+									<li data-name="ti-export" data-code=""><i class="zpdi ti-export"></i> <span>ti-export</span></li>
+									<li data-name="ti-cup" data-code=""><i class="zpdi ti-cup"></i> <span>ti-cup</span></li>
+									<li data-name="ti-crown" data-code=""><i class="zpdi ti-crown"></i> <span>ti-crown</span></li>
+									<li data-name="ti-comments" data-code=""><i class="zpdi ti-comments"></i> <span>ti-comments</span></li>
+									<li data-name="ti-comment" data-code=""><i class="zpdi ti-comment"></i> <span>ti-comment</span></li>
+									<li data-name="ti-comment-alt" data-code=""><i class="zpdi ti-comment-alt"></i> <span>ti-comment-alt</span></li>
+
+									<li data-name="ti-thought" data-code=""><i class="zpdi ti-thought"></i> <span>ti-thought</span></li>
+									<li data-name="ti-clip" data-code=""><i class="zpdi ti-clip"></i> <span>ti-clip</span></li>
+									<li data-name="ti-check" data-code=""><i class="zpdi ti-check"></i> <span>ti-check</span></li>
+									<li data-name="ti-check-box" data-code=""><i class="zpdi ti-check-box"></i> <span>ti-check-box</span></li>
+									<li data-name="ti-camera" data-code=""><i class="zpdi ti-camera"></i> <span>ti-camera</span></li>
+									<li data-name="ti-announcement" data-code=""><i class="zpdi ti-announcement"></i> <span>ti-announcement</span></li>
+									<li data-name="ti-brush" data-code=""><i class="zpdi ti-brush"></i> <span>ti-brush</span></li>
+									<li data-name="ti-brush-alt" data-code=""><i class="zpdi ti-brush-alt"></i> <span>ti-brush-alt</span></li>
+									<li data-name="ti-palette" data-code=""><i class="zpdi ti-palette"></i> <span>ti-palette</span></li>
+									<li data-name="ti-briefcase" data-code=""><i class="zpdi ti-briefcase"></i> <span>ti-briefcase</span></li>
+
+									<li data-name="ti-bolt" data-code=""><i class="zpdi ti-bolt"></i> <span>ti-bolt</span></li>
+									<li data-name="ti-bolt-alt" data-code=""><i class="zpdi ti-bolt-alt"></i> <span>ti-bolt-alt</span></li>
+									<li data-name="ti-blackboard" data-code=""><i class="zpdi ti-blackboard"></i> <span>ti-blackboard</span></li>
+									<li data-name="ti-bag" data-code=""><i class="zpdi ti-bag"></i> <span>ti-bag</span></li>
+									<li data-name="ti-world" data-code=""><i class="zpdi ti-world"></i> <span>ti-world</span></li>
+									<li data-name="ti-wheelchair" data-code=""><i class="zpdi ti-wheelchair"></i> <span>ti-wheelchair</span></li>
+									<li data-name="ti-car" data-code=""><i class="zpdi ti-car"></i> <span>ti-car</span></li>
+									<li data-name="ti-truck" data-code=""><i class="zpdi ti-truck"></i> <span>ti-truck</span></li>
+									<li data-name="ti-timer" data-code=""><i class="zpdi ti-timer"></i> <span>ti-timer</span></li>
+									<li data-name="ti-ticket" data-code=""><i class="zpdi ti-ticket"></i> <span>ti-ticket</span></li>
+
+									<li data-name="ti-thumb-up" data-code=""><i class="zpdi ti-thumb-up"></i> <span>ti-thumb-up</span></li>
+									<li data-name="ti-thumb-down" data-code=""><i class="zpdi ti-thumb-down"></i> <span>ti-thumb-down</span></li>
+									<li data-name="ti-stats-up" data-code=""><i class="zpdi ti-stats-up"></i> <span>ti-stats-up</span></li>
+									<li data-name="ti-stats-down" data-code=""><i class="zpdi ti-stats-down"></i> <span>ti-stats-down</span></li>
+									<li data-name="ti-shine" data-code=""><i class="zpdi ti-shine"></i> <span>ti-shine</span></li>
+									<li data-name="ti-shift-right" data-code=""><i class="zpdi ti-shift-right"></i> <span>ti-shift-right</span></li>
+									<li data-name="ti-shift-left" data-code=""><i class="zpdi ti-shift-left"></i> <span>ti-shift-left</span></li>
+									<li data-name="ti-shift-right-alt" data-code=""><i class="zpdi ti-shift-right-alt"></i> <span>ti-shift-right-alt</span></li>
+									<li data-name="ti-shift-left-alt" data-code=""><i class="zpdi ti-shift-left-alt"></i> <span>ti-shift-left-alt</span></li>
+									<li data-name="ti-shield" data-code=""><i class="zpdi ti-shield"></i> <span>ti-shield</span></li>
+
+									<li data-name="ti-notepad" data-code=""><i class="zpdi ti-notepad"></i> <span>ti-notepad</span></li>
+									<li data-name="ti-server" data-code=""><i class="zpdi ti-server"></i> <span>ti-server</span></li>
+									<li data-name="ti-pulse" data-code=""><i class="zpdi ti-pulse"></i> <span>ti-pulse</span></li>
+									<li data-name="ti-printer" data-code=""><i class="zpdi ti-printer"></i> <span>ti-printer</span></li>
+									<li data-name="ti-power-off" data-code=""><i class="zpdi ti-power-off"></i> <span>ti-power-off</span></li>
+									<li data-name="ti-plug" data-code=""><i class="zpdi ti-plug"></i> <span>ti-plug</span></li>
+									<li data-name="ti-pie-chart" data-code=""><i class="zpdi ti-pie-chart"></i> <span>ti-pie-chart</span></li>
+									<li data-name="ti-panel" data-code=""><i class="zpdi ti-panel"></i> <span>ti-panel</span></li>
+									<li data-name="ti-package" data-code=""><i class="zpdi ti-package"></i> <span>ti-package</span></li>
+									<li data-name="ti-music" data-code=""><i class="zpdi ti-music"></i> <span>ti-music</span></li>
+
+									<li data-name="ti-music-alt" data-code=""><i class="zpdi ti-music-alt"></i> <span>ti-music-alt</span></li>
+									<li data-name="ti-mouse" data-code=""><i class="zpdi ti-mouse"></i> <span>ti-mouse</span></li>
+									<li data-name="ti-mouse-alt" data-code=""><i class="zpdi ti-mouse-alt"></i> <span>ti-mouse-alt</span></li>
+									<li data-name="ti-money" data-code=""><i class="zpdi ti-money"></i> <span>ti-money</span></li>
+									<li data-name="ti-microphone" data-code=""><i class="zpdi ti-microphone"></i> <span>ti-microphone</span></li>
+									<li data-name="ti-menu" data-code=""><i class="zpdi ti-menu"></i> <span>ti-menu</span></li>
+									<li data-name="ti-menu-alt" data-code=""><i class="zpdi ti-menu-alt"></i> <span>ti-menu-alt</span></li>
+									<li data-name="ti-map" data-code=""><i class="zpdi ti-map"></i> <span>ti-map</span></li>
+									<li data-name="ti-map-alt" data-code=""><i class="zpdi ti-map-alt"></i> <span>ti-map-alt</span></li>
+									<li data-name="ti-location-pin" data-code=""><i class="zpdi ti-location-pin"></i> <span>ti-location-pin</span></li>
+
+									<li data-name="ti-light-bulb" data-code=""><i class="zpdi ti-light-bulb"></i> <span>ti-light-bulb</span></li>
+									<li data-name="ti-info" data-code=""><i class="zpdi ti-info"></i> <span>ti-info</span></li>
+									<li data-name="ti-infinite" data-code=""><i class="zpdi ti-infinite"></i> <span>ti-infinite</span></li>
+									<li data-name="ti-id-badge" data-code=""><i class="zpdi ti-id-badge"></i> <span>ti-id-badge</span></li>
+									<li data-name="ti-hummer" data-code=""><i class="zpdi ti-hummer"></i> <span>ti-hummer</span></li>
+									<li data-name="ti-home" data-code=""><i class="zpdi ti-home"></i> <span>ti-home</span></li>
+									<li data-name="ti-help" data-code=""><i class="zpdi ti-help"></i> <span>ti-help</span></li>
+									<li data-name="ti-headphone" data-code=""><i class="zpdi ti-headphone"></i> <span>ti-headphone</span></li>
+									<li data-name="ti-harddrives" data-code=""><i class="zpdi ti-harddrives"></i> <span>ti-harddrives</span></li>
+									<li data-name="ti-harddrive" data-code=""><i class="zpdi ti-harddrive"></i> <span>ti-harddrive</span></li>
+
+									<li data-name="ti-gift" data-code=""><i class="zpdi ti-gift"></i> <span>ti-gift</span></li>
+									<li data-name="ti-game" data-code=""><i class="zpdi ti-game"></i> <span>ti-game</span></li>
+									<li data-name="ti-filter" data-code=""><i class="zpdi ti-filter"></i> <span>ti-filter</span></li>
+									<li data-name="ti-files" data-code=""><i class="zpdi ti-files"></i> <span>ti-files</span></li>
+									<li data-name="ti-file" data-code=""><i class="zpdi ti-file"></i> <span>ti-file</span></li>
+									<li data-name="ti-zip" data-code=""><i class="zpdi ti-zip"></i> <span>ti-zip</span></li>
+									<li data-name="ti-folder" data-code=""><i class="zpdi ti-folder"></i> <span>ti-folder</span></li>
+									<li data-name="ti-envelope" data-code=""><i class="zpdi ti-envelope"></i> <span>ti-envelope</span></li>
+									<li data-name="ti-dashboard" data-code=""><i class="zpdi ti-dashboard"></i> <span>ti-dashboard</span></li>
+									<li data-name="ti-cloud" data-code=""><i class="zpdi ti-cloud"></i> <span>ti-cloud</span></li>
+
+									<li data-name="ti-cloud-up" data-code=""><i class="zpdi ti-cloud-up"></i> <span>ti-cloud-up</span></li>
+									<li data-name="ti-cloud-down" data-code=""><i class="zpdi ti-cloud-down"></i> <span>ti-cloud-down</span></li>
+									<li data-name="ti-clipboard" data-code=""><i class="zpdi ti-clipboard"></i> <span>ti-clipboard</span></li>
+									<li data-name="ti-calendar" data-code=""><i class="zpdi ti-calendar"></i> <span>ti-calendar</span></li>
+									<li data-name="ti-book" data-code=""><i class="zpdi ti-book"></i> <span>ti-book</span></li>
+									<li data-name="ti-bell" data-code=""><i class="zpdi ti-bell"></i> <span>ti-bell</span></li>
+									<li data-name="ti-basketball" data-code=""><i class="zpdi ti-basketball"></i> <span>ti-basketball</span></li>
+									<li data-name="ti-bar-chart" data-code=""><i class="zpdi ti-bar-chart"></i> <span>ti-bar-chart</span></li>
+									<li data-name="ti-bar-chart-alt" data-code=""><i class="zpdi ti-bar-chart-alt"></i> <span>ti-bar-chart-alt</span></li>
+									<li data-name="ti-archive" data-code=""><i class="zpdi ti-archive"></i> <span>ti-archive</span></li>
+
+
+									<li data-name="ti-anchor" data-code=""><i class="zpdi ti-anchor"></i> <span>ti-anchor</span></li>
+									<li data-name="ti-alert" data-code=""><i class="zpdi ti-alert"></i> <span>ti-alert</span></li>
+									<li data-name="ti-alarm-clock" data-code=""><i class="zpdi ti-alarm-clock"></i> <span>ti-alarm-clock</span></li>
+									<li data-name="ti-agenda" data-code=""><i class="zpdi ti-agenda"></i> <span>ti-agenda</span></li>
+									<li data-name="ti-write" data-code=""><i class="zpdi ti-write"></i> <span>ti-write</span></li>
+									<li data-name="ti-wallet" data-code=""><i class="zpdi ti-wallet"></i> <span>ti-wallet</span></li>
+									<li data-name="ti-video-clapper" data-code=""><i class="zpdi ti-video-clapper"></i> <span>ti-video-clapper</span></li>
+									<li data-name="ti-video-camera" data-code=""><i class="zpdi ti-video-camera"></i> <span>ti-video-camera</span></li>
+									<li data-name="ti-vector" data-code=""><i class="zpdi ti-vector"></i> <span>ti-vector</span></li>
+									<li data-name="ti-support" data-code=""><i class="zpdi ti-support"></i> <span>ti-support</span></li>
+									<li data-name="ti-stamp" data-code=""><i class="zpdi ti-stamp"></i> <span>ti-stamp</span></li>
+									<li data-name="ti-slice" data-code=""><i class="zpdi ti-slice"></i> <span>ti-slice</span></li>
+									<li data-name="ti-shortcode" data-code=""><i class="zpdi ti-shortcode"></i> <span>ti-shortcode</span></li>
+									<li data-name="ti-receipt" data-code=""><i class="zpdi ti-receipt"></i> <span>ti-receipt</span></li>
+									<li data-name="ti-pin2" data-code=""><i class="zpdi ti-pin2"></i> <span>ti-pin2</span></li>
+									<li data-name="ti-pin-alt" data-code=""><i class="zpdi ti-pin-alt"></i> <span>ti-pin-alt</span></li>
+									<li data-name="ti-pencil-alt2" data-code=""><i class="zpdi ti-pencil-alt2"></i> <span>ti-pencil-alt2</span></li>
+									<li data-name="ti-eraser" data-code=""><i class="zpdi ti-eraser"></i> <span>ti-eraser</span></li>
+									<li data-name="ti-more" data-code=""><i class="zpdi ti-more"></i> <span>ti-more</span></li>
+									<li data-name="ti-more-alt" data-code=""><i class="zpdi ti-more-alt"></i> <span>ti-more-alt</span></li>
+
+									<li data-name="ti-microphone-alt" data-code=""><i class="zpdi ti-microphone-alt"></i> <span>ti-microphone-alt</span></li>
+									<li data-name="ti-magnet" data-code=""><i class="zpdi ti-magnet"></i> <span>ti-magnet</span></li>
+									<li data-name="ti-line-double" data-code=""><i class="zpdi ti-line-double"></i> <span>ti-line-double</span></li>
+									<li data-name="ti-line-dotted" data-code=""><i class="zpdi ti-line-dotted"></i> <span>ti-line-dotted</span></li>
+									<li data-name="ti-line-dashed" data-code=""><i class="zpdi ti-line-dashed"></i> <span>ti-line-dashed</span></li>
+									<li data-name="ti-ink-pen" data-code=""><i class="zpdi ti-ink-pen"></i> <span>ti-ink-pen</span></li>
+									<li data-name="ti-info-alt" data-code=""><i class="zpdi ti-info-alt"></i> <span>ti-info-alt</span></li>
+									<li data-name="ti-help-alt" data-code=""><i class="zpdi ti-help-alt"></i> <span>ti-help-alt</span></li>
+									<li data-name="ti-headphone-alt" data-code=""><i class="zpdi ti-headphone-alt"></i> <span>ti-headphone-alt</span></li>
+									<li data-name="ti-gallery" data-code=""><i class="zpdi ti-gallery"></i> <span>ti-gallery</span></li>
+									<li data-name="ti-face-smile" data-code=""><i class="zpdi ti-face-smile"></i> <span>ti-face-smile</span></li>
+									<li data-name="ti-face-sad" data-code=""><i class="zpdi ti-face-sad"></i> <span>ti-face-sad</span></li>
+									<li data-name="ti-credit-card" data-code=""><i class="zpdi ti-credit-card"></i> <span>ti-credit-card</span></li>
+									<li data-name="ti-comments-smiley" data-code=""><i class="zpdi ti-comments-smiley"></i> <span>ti-comments-smiley</span></li>
+									<li data-name="ti-time" data-code=""><i class="zpdi ti-time"></i> <span>ti-time</span></li>
+									<li data-name="ti-share" data-code=""><i class="zpdi ti-share"></i> <span>ti-share</span></li>
+									<li data-name="ti-share-alt" data-code=""><i class="zpdi ti-share-alt"></i> <span>ti-share-alt</span></li>
+									<li data-name="ti-rocket" data-code=""><i class="zpdi ti-rocket"></i> <span>ti-rocket</span></li>
+									<li data-name="ti-new-window" data-code=""><i class="zpdi ti-new-window"></i> <span>ti-new-window</span></li>
+									<li data-name="ti-rss" data-code=""><i class="zpdi ti-rss"></i> <span>ti-rss</span></li>
+									<li data-name="ti-rss-alt" data-code=""><i class="zpdi ti-rss-alt"></i> <span>ti-rss-alt</span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card icons-card">
+                        <div class="header">
+                            <h3>Control Icons</h3>
+                        </div>
+
+                        <div class="content card-padding">
+                            <div class="row">
+                            	<ul>
+									<li data-name="ti-control-stop" data-code=""><i class="zpdi ti-control-stop"></i> <span>ti-control-stop</span></li>
+									<li data-name="ti-control-shuffle" data-code=""><i class="zpdi ti-control-shuffle"></i> <span>ti-control-shuffle</span></li>
+									<li data-name="ti-control-play" data-code=""><i class="zpdi ti-control-play"></i> <span>ti-control-play</span></li>
+									<li data-name="ti-control-pause" data-code=""><i class="zpdi ti-control-pause"></i> <span>ti-control-pause</span></li>
+
+									<li data-name="ti-control-forward" data-code=""><i class="zpdi ti-control-forward"></i> <span>ti-control-forward</span></li>
+									<li data-name="ti-control-backward" data-code=""><i class="zpdi ti-control-backward"></i> <span>ti-control-backward</span></li>
+									<li data-name="ti-volume" data-code=""><i class="zpdi ti-volume"></i> <span>ti-volume</span></li>
+									<li data-name="ti-control-skip-forward" data-code=""><i class="zpdi ti-control-skip-forward"></i> <span>ti-control-skip-forward</span></li>
+
+									<li data-name="ti-control-skip-backward" data-code=""><i class="zpdi ti-control-skip-backward"></i> <span>ti-control-skip-backward</span></li>
+									<li data-name="ti-control-record" data-code=""><i class="zpdi ti-control-record"></i> <span>ti-control-record</span></li>
+									<li data-name="ti-control-eject" data-code=""><i class="zpdi ti-control-eject"></i> <span>ti-control-eject</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="card icons-card">
+                        <div class="header">
+                            <h3>Text Editor</h3>
+                        </div>
+
+                        <div class="content card-padding">
+                            <div class="row">
+                            	<ul>
+									<li data-name="ti-paragraph" data-code=""><i class="zpdi ti-paragraph"></i> <span>ti-paragraph</span></li>
+									<li data-name="ti-uppercase" data-code=""><i class="zpdi ti-uppercase"></i> <span>ti-uppercase</span></li>
+									<li data-name="ti-underline" data-code=""><i class="zpdi ti-underline"></i> <span>ti-underline</span></li>
+									<li data-name="ti-text" data-code=""><i class="zpdi ti-text"></i> <span>ti-text</span></li>
+
+									<li data-name="ti-Italic" data-code=""><i class="zpdi ti-Italic"></i> <span>ti-Italic</span></li>
+									<li data-name="ti-smallcap" data-code=""><i class="zpdi ti-smallcap"></i> <span>ti-smallcap</span></li>
+									<li data-name="ti-list" data-code=""><i class="zpdi ti-list"></i> <span>ti-list</span></li>
+									<li data-name="ti-list-ol" data-code=""><i class="zpdi ti-list-ol"></i> <span>ti-list-ol</span></li>
+
+									<li data-name="ti-align-right" data-code=""><i class="zpdi ti-align-right"></i> <span>ti-align-right</span></li>
+									<li data-name="ti-align-left" data-code=""><i class="zpdi ti-align-left"></i> <span>ti-align-left</span></li>
+									<li data-name="ti-align-justify" data-code=""><i class="zpdi ti-align-justify"></i> <span>ti-align-justify</span></li>
+									<li data-name="ti-align-center" data-code=""><i class="zpdi ti-align-center"></i> <span>ti-align-center</span></li>
+
+									<li data-name="ti-quote-right" data-code=""><i class="zpdi ti-quote-right"></i> <span>ti-quote-right</span></li>
+									<li data-name="ti-quote-left" data-code=""><i class="zpdi ti-quote-left"></i> <span>ti-quote-left</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="card icons-card">
+                        <div class="header">
+                            <h3>Layout Icons</h3>
+                        </div>
+
+                        <div class="content card-padding">
+                            <div class="row">
+                            	<ul>
+									<li data-name="ti-layout-width-full" data-code=""><i class="zpdi ti-layout-width-full"></i> <span>ti-layout-width-full</span></li>
+									<li data-name="ti-layout-width-default" data-code=""><i class="zpdi ti-layout-width-default"></i> <span>ti-layout-width-default</span></li>
+									<li data-name="ti-layout-width-default-alt" data-code=""><i class="zpdi ti-layout-width-default-alt"></i> <span>ti-layout-width-default-alt</span></li>
+									<li data-name="ti-layout-tab" data-code=""><i class="zpdi ti-layout-tab"></i> <span>ti-layout-tab</span></li>
+
+									<li data-name="ti-layout-tab-window" data-code=""><i class="zpdi ti-layout-tab-window"></i> <span>ti-layout-tab-window</span></li>
+									<li data-name="ti-layout-tab-v" data-code=""><i class="zpdi ti-layout-tab-v"></i> <span>ti-layout-tab-v</span></li>
+									<li data-name="ti-layout-tab-min" data-code=""><i class="zpdi ti-layout-tab-min"></i> <span>ti-layout-tab-min</span></li>
+									<li data-name="ti-layout-slider" data-code=""><i class="zpdi ti-layout-slider"></i> <span>ti-layout-slider</span></li>
+
+									<li data-name="ti-layout-slider-alt" data-code=""><i class="zpdi ti-layout-slider-alt"></i> <span>ti-layout-slider-alt</span></li>
+									<li data-name="ti-layout-sidebar-right" data-code=""><i class="zpdi ti-layout-sidebar-right"></i> <span>ti-layout-sidebar-right</span></li>
+									<li data-name="ti-layout-sidebar-none" data-code=""><i class="zpdi ti-layout-sidebar-none"></i> <span>ti-layout-sidebar-none</span></li>
+									<li data-name="ti-layout-sidebar-left" data-code=""><i class="zpdi ti-layout-sidebar-left"></i> <span>ti-layout-sidebar-left</span></li>
+
+									<li data-name="ti-layout-placeholder" data-code=""><i class="zpdi ti-layout-placeholder"></i> <span>ti-layout-placeholder</span></li>
+									<li data-name="ti-layout-menu" data-code=""><i class="zpdi ti-layout-menu"></i> <span>ti-layout-menu</span></li>
+									<li data-name="ti-layout-menu-v" data-code=""><i class="zpdi ti-layout-menu-v"></i> <span>ti-layout-menu-v</span></li>
+									<li data-name="ti-layout-menu-separated" data-code=""><i class="zpdi ti-layout-menu-separated"></i> <span>ti-layout-menu-separated</span></li>
+
+									<li data-name="ti-layout-menu-full" data-code=""><i class="zpdi ti-layout-menu-full"></i> <span>ti-layout-menu-full</span></li>
+									<li data-name="ti-layout-media-right" data-code=""><i class="zpdi ti-layout-media-right"></i> <span>ti-layout-media-right</span></li>
+									<li data-name="ti-layout-media-right-alt" data-code=""><i class="zpdi ti-layout-media-right-alt"></i> <span>ti-layout-media-right-alt</span></li>
+									<li data-name="ti-layout-media-overlay" data-code=""><i class="zpdi ti-layout-media-overlay"></i> <span>ti-layout-media-overlay</span></li>
+
+
+									<li data-name="ti-layout-media-overlay-alt" data-code=""><i class="zpdi ti-layout-media-overlay-alt"></i> <span>ti-layout-media-overlay-alt</span></li>
+									<li data-name="ti-layout-media-overlay-alt-2" data-code=""><i class="zpdi ti-layout-media-overlay-alt-2"></i> <span>ti-layout-media-overlay-alt-2</span></li>
+									<li data-name="ti-layout-media-left" data-code=""><i class="zpdi ti-layout-media-left"></i> <span>ti-layout-media-left</span></li>
+									<li data-name="ti-layout-media-left-alt" data-code=""><i class="zpdi ti-layout-media-left-alt"></i> <span>ti-layout-media-left-alt</span></li>
+									<li data-name="ti-layout-media-center" data-code=""><i class="zpdi ti-layout-media-center"></i> <span>ti-layout-media-center</span></li>
+									<li data-name="ti-layout-media-center-alt" data-code=""><i class="zpdi ti-layout-media-center-alt"></i> <span>ti-layout-media-center-alt</span></li>
+									<li data-name="ti-layout-list-thumb" data-code=""><i class="zpdi ti-layout-list-thumb"></i> <span>ti-layout-list-thumb</span></li>
+									<li data-name="ti-layout-list-thumb-alt" data-code=""><i class="zpdi ti-layout-list-thumb-alt"></i> <span>ti-layout-list-thumb-alt</span></li>
+									<li data-name="ti-layout-list-post" data-code=""><i class="zpdi ti-layout-list-post"></i> <span>ti-layout-list-post</span></li>
+									<li data-name="ti-layout-list-large-image" data-code=""><i class="zpdi ti-layout-list-large-image"></i> <span>ti-layout-list-large-image</span></li>
+
+									<li data-name="ti-layout-line-solid" data-code=""><i class="zpdi ti-layout-line-solid"></i> <span>ti-layout-line-solid</span></li>
+									<li data-name="ti-layout-grid4" data-code=""><i class="zpdi ti-layout-grid4"></i> <span>ti-layout-grid4</span></li>
+									<li data-name="ti-layout-grid3" data-code=""><i class="zpdi ti-layout-grid3"></i> <span>ti-layout-grid3</span></li>
+									<li data-name="ti-layout-grid2" data-code=""><i class="zpdi ti-layout-grid2"></i> <span>ti-layout-grid2</span></li>
+									<li data-name="ti-layout-grid2-thumb" data-code=""><i class="zpdi ti-layout-grid2-thumb"></i> <span>ti-layout-grid2-thumb</span></li>
+									<li data-name="ti-layout-cta-right" data-code=""><i class="zpdi ti-layout-cta-right"></i> <span>ti-layout-cta-right</span></li>
+									<li data-name="ti-layout-cta-left" data-code=""><i class="zpdi ti-layout-cta-left"></i> <span>ti-layout-cta-left</span></li>
+									<li data-name="ti-layout-cta-center" data-code=""><i class="zpdi ti-layout-cta-center"></i> <span>ti-layout-cta-center</span></li>
+									<li data-name="ti-layout-cta-btn-right" data-code=""><i class="zpdi ti-layout-cta-btn-right"></i> <span>ti-layout-cta-btn-right</span></li>
+									<li data-name="ti-layout-cta-btn-left" data-code=""><i class="zpdi ti-layout-cta-btn-left"></i> <span>ti-layout-cta-btn-left</span></li>
+
+
+									<li data-name="ti-layout-column4" data-code=""><i class="zpdi ti-layout-column4"></i> <span>ti-layout-column4</span></li>
+									<li data-name="ti-layout-column3" data-code=""><i class="zpdi ti-layout-column3"></i> <span>ti-layout-column3</span></li>
+									<li data-name="ti-layout-column2" data-code=""><i class="zpdi ti-layout-column2"></i> <span>ti-layout-column2</span></li>
+									<li data-name="ti-layout-accordion-separated" data-code=""><i class="zpdi ti-layout-accordion-separated"></i> <span>ti-layout-accordion-separated</span></li>
+									<li data-name="ti-layout-accordion-merged" data-code=""><i class="zpdi ti-layout-accordion-merged"></i> <span>ti-layout-accordion-merged</span></li>
+									<li data-name="ti-layout-accordion-list" data-code=""><i class="zpdi ti-layout-accordion-list"></i> <span>ti-layout-accordion-list</span></li>
+									<li data-name="ti-widgetized" data-code=""><i class="zpdi ti-widgetized"></i> <span>ti-widgetized</span></li>
+									<li data-name="ti-widget" data-code=""><i class="zpdi ti-widget"></i> <span>ti-widget</span></li>
+									<li data-name="ti-widget-alt" data-code=""><i class="zpdi ti-widget-alt"></i> <span>ti-widget-alt</span></li>
+									<li data-name="ti-view-list" data-code=""><i class="zpdi ti-view-list"></i> <span>ti-view-list</span></li>
+
+									<li data-name="ti-view-list-alt" data-code=""><i class="zpdi ti-view-list-alt"></i> <span>ti-view-list-alt</span></li>
+									<li data-name="ti-view-grid" data-code=""><i class="zpdi ti-view-grid"></i> <span>ti-view-grid</span></li>
+									<li data-name="ti-upload" data-code=""><i class="zpdi ti-upload"></i> <span>ti-upload</span></li>
+									<li data-name="ti-download" data-code=""><i class="zpdi ti-download"></i> <span>ti-download</span></li>
+									<li data-name="ti-loop" data-code=""><i class="zpdi ti-loop"></i> <span>ti-loop</span></li>
+									<li data-name="ti-layout-sidebar-2" data-code=""><i class="zpdi ti-layout-sidebar-2"></i> <span>ti-layout-sidebar-2</span></li>
+									<li data-name="ti-layout-grid4-alt" data-code=""><i class="zpdi ti-layout-grid4-alt"></i> <span>ti-layout-grid4-alt</span></li>
+									<li data-name="ti-layout-grid3-alt" data-code=""><i class="zpdi ti-layout-grid3-alt"></i> <span>ti-layout-grid3-alt</span></li>
+									<li data-name="ti-layout-grid2-alt" data-code=""><i class="zpdi ti-layout-grid2-alt"></i> <span>ti-layout-grid2-alt</span></li>
+									<li data-name="ti-layout-column4-alt" data-code=""><i class="zpdi ti-layout-column4-alt"></i> <span>ti-layout-column4-alt</span></li>
+
+									<li data-name="ti-layout-column3-alt" data-code=""><i class="zpdi ti-layout-column3-alt"></i> <span>ti-layout-column3-alt</span></li>
+									<li data-name="ti-layout-column2-alt" data-code=""><i class="zpdi ti-layout-column2-alt"></i> <span>ti-layout-column2-alt</span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="card icons-card">
+                        <div class="header">
+                            <h3>Brand Icons</h3>
+                        </div>
+
+                        <div class="content card-padding">
+                            <div class="row">
+                            	<ul>
+									<li data-name="ti-flickr" data-code=""><i class="zpdi ti-flickr"></i> <span>ti-flickr</span></li>
+									<li data-name="ti-flickr-alt" data-code=""><i class="zpdi ti-flickr-alt"></i> <span>ti-flickr-alt</span></li>
+									<li data-name="ti-instagram" data-code=""><i class="zpdi ti-instagram"></i> <span>ti-instagram</span></li>
+									<li data-name="ti-google" data-code=""><i class="zpdi ti-google"></i> <span>ti-google</span></li>
+
+									<li data-name="ti-github" data-code=""><i class="zpdi ti-github"></i> <span>ti-github</span></li>
+									<li data-name="ti-facebook" data-code=""><i class="zpdi ti-facebook"></i> <span>ti-facebook</span></li>
+									<li data-name="ti-dropbox" data-code=""><i class="zpdi ti-dropbox"></i> <span>ti-dropbox</span></li>
+									<li data-name="ti-dropbox-alt" data-code=""><i class="zpdi ti-dropbox-alt"></i> <span>ti-dropbox-alt</span></li>
+
+									<li data-name="ti-dribbble" data-code=""><i class="zpdi ti-dribbble"></i> <span>ti-dribbble</span></li>
+									<li data-name="ti-apple" data-code=""><i class="zpdi ti-apple"></i> <span>ti-apple</span></li>
+									<li data-name="ti-android" data-code=""><i class="zpdi ti-android"></i> <span>ti-android</span></li>
+									<li data-name="ti-yahoo" data-code=""><i class="zpdi ti-yahoo"></i> <span>ti-yahoo</span></li>
+
+									<li data-name="ti-trello" data-code=""><i class="zpdi ti-trello"></i> <span>ti-trello</span></li>
+									<li data-name="ti-stack-overflow" data-code=""><i class="zpdi ti-stack-overflow"></i> <span>ti-stack-overflow</span></li>
+									<li data-name="ti-soundcloud" data-code=""><i class="zpdi ti-soundcloud"></i> <span>ti-soundcloud</span></li>
+									<li data-name="ti-sharethis" data-code=""><i class="zpdi ti-sharethis"></i> <span>ti-sharethis</span></li>
+
+									<li data-name="ti-sharethis-alt" data-code=""><i class="zpdi ti-sharethis-alt"></i> <span>ti-sharethis-alt</span></li>
+									<li data-name="ti-reddit" data-code=""><i class="zpdi ti-reddit"></i> <span>ti-reddit</span></li>
+									<li data-name="ti-microsoft" data-code=""><i class="zpdi ti-microsoft"></i> <span>ti-microsoft</span></li>
+									<li data-name="ti-microsoft-alt" data-code=""><i class="zpdi ti-microsoft-alt"></i> <span>ti-microsoft-alt</span></li>
+
+									<li data-name="ti-linux" data-code=""><i class="zpdi ti-linux"></i> <span>ti-linux</span></li>
+									<li data-name="ti-jsfiddle" data-code=""><i class="zpdi ti-jsfiddle"></i> <span>ti-jsfiddle</span></li>
+									<li data-name="ti-joomla" data-code=""><i class="zpdi ti-joomla"></i> <span>ti-joomla</span></li>
+									<li data-name="ti-html5" data-code=""><i class="zpdi ti-html5"></i> <span>ti-html5</span></li>
+
+									<li data-name="ti-css3" data-code=""><i class="zpdi ti-css3"></i> <span>ti-css3</span></li>
+									<li data-name="ti-drupal" data-code=""><i class="zpdi ti-drupal"></i> <span>ti-drupal</span></li>
+									<li data-name="ti-wordpress" data-code=""><i class="zpdi ti-wordpress"></i> <span>ti-wordpress</span></li>
+									<li data-name="ti-tumblr" data-code=""><i class="zpdi ti-tumblr"></i> <span>ti-tumblr</span></li>
+
+									<li data-name="ti-tumblr-alt" data-code=""><i class="zpdi ti-tumblr-alt"></i> <span>ti-tumblr-alt</span></li>
+									<li data-name="ti-skype" data-code=""><i class="zpdi ti-skype"></i> <span>ti-skype</span></li>
+									<li data-name="ti-youtube" data-code=""><i class="zpdi ti-youtube"></i> <span>ti-youtube</span></li>
+									<li data-name="ti-vimeo" data-code=""><i class="zpdi ti-vimeo"></i> <span>ti-vimeo</span></li>
+
+									<li data-name="ti-vimeo-alt" data-code=""><i class="zpdi ti-vimeo-alt"></i> <span>ti-vimeo-alt</span></li>
+									<li data-name="ti-twitter" data-code=""><i class="zpdi ti-twitter"></i> <span>ti-twitter</span></li>
+									<li data-name="ti-twitter-alt" data-code=""><i class="zpdi ti-twitter-alt"></i> <span>ti-twitter-alt</span></li>
+									<li data-name="ti-linkedin" data-code=""><i class="zpdi ti-linkedin"></i> <span>ti-linkedin</span></li>
+
+									<li data-name="ti-pinterest" data-code=""><i class="zpdi ti-pinterest"></i> <span>ti-pinterest</span></li>
+									<li data-name="ti-pinterest-alt" data-code=""><i class="zpdi ti-pinterest-alt"></i> <span>ti-pinterest-alt</span></li>
+									<li data-name="ti-themify-logo" data-code=""><i class="zpdi ti-themify-logo"></i> <span>ti-themify-logo</span></li>
+									<li data-name="ti-themify-favicon" data-code=""><i class="zpdi ti-themify-favicon"></i> <span>ti-themify-favicon</span></li>
+
+									<li data-name="ti-themify-favicon-alt" data-code=""><i class="zpdi ti-themify-favicon-alt"></i> <span>ti-themify-favicon-alt</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Documentation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Contact
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Support
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p class="copyright pull-right">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="http://www.17sucai.com/">Amaze Admin</a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+<!--   Core JS Files   -->
+<script src="../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="../assets/vendors/jquery-ui-1.12.0/jquery-ui.js"></script>
+<script src="../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/vendors/material.min.js" type="text/javascript"></script>
+<script src="../assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<!-- Forms Validations Plugin -->
+<script src="../assets/vendors/jquery.validate.min.js"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+<script src="../assets/vendors/moment.min.js"></script>
+<!--  Charts Plugin -->
+<script src="../assets/vendors/chartist.min.js"></script>
+<!--  Plugin for the Wizard -->
+<script src="../assets/vendors/jquery.bootstrap-wizard.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/vendors/bootstrap-notify.js"></script>
+<!-- DateTimePicker Plugin -->
+<script src="../assets/vendors/bootstrap-datetimepicker.js"></script>
+<!-- Vector Map plugin -->
+<script src="../assets/vendors/jquery-jvectormap.js"></script>
+<!-- Sliders Plugin -->
+<script src="../assets/vendors/nouislider.min.js"></script>
+<!-- Select Plugin -->
+<script src="../assets/vendors/jquery.select-bootstrap.js"></script>
+<!--  DataTables.net Plugin    -->
+<script src="../assets/vendors/jquery.datatables.js"></script>
+<!-- Sweet Alert 2 plugin -->
+<script src="../assets/vendors/sweetalert/js/sweetalert2.min.js"></script>
+<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="../assets/vendors/jasny-bootstrap.min.js"></script>
+<!--  Full Calendar Plugin    -->
+<script src="../assets/vendors/fullcalendar.min.js"></script>
+<!-- TagsInput Plugin -->
+<script src="../assets/vendors/jquery.tagsinput.js"></script>
+<!-- Material Dashboard javascript methods -->
+<script src="../assets/js/amaze.js"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="../assets/js/demo.js"></script>
+</body>
+</html>

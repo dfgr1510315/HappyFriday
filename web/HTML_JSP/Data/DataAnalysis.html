@@ -1,0 +1,576 @@
+﻿<!doctype html>
+
+<head>
+    <meta charset="utf-8" >
+<!--    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" >-->
+    <!--<link rel="icon" type="image/png" href="assets/img/favicon.png" >-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+
+    <title>数据分析后台</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' >
+    <meta name="viewport" content="width=device-width" >
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!--  Material Dashboard CSS    -->
+    <link href="assets/css/amaze.css" rel="stylesheet" >
+<!--	<link rel="stylesheet" type="text/css" href="../../CSS/navigation.css">-->
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" >
+
+    <!--     Fonts and icons     -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/font-muli.css" rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+
+    <link href="assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet" >
+</head>
+
+<body>
+<!--<div id="navigation"></div>-->
+    <div class="wrapper">
+		<div class="sidebar" data-background-color="brown" data-active-color="danger">
+	    <!--
+			Tip 1: you can change the color of the sidebar's background using: data-background-color="white | brown"
+			Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+		-->
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    admin
+                </a>
+            </div>
+            <div class="logo logo-mini">
+                <a href="#" class="simple-text">
+                    A
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+				<ul class="nav">
+                    <li class="active">
+                        <a href="DataAnalysis.html">
+                            <i class="ti-panel"></i>
+                            <p>数据概览</p>
+                        </a>
+                    </li>
+					<li>
+						<a href="ClassCharts.html">
+							<i class="ti-bar-chart-alt"></i>
+							<p>课程播放分析</p>
+						</a>
+					</li>
+                    <li>
+                        <a href="StudentCharts.html">
+                            <i class="ti-bar-chart-alt"></i>
+                            <p>学员分析</p>
+                        </a>
+                    </li>
+				</ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-minimize">
+                        <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">
+							<i class="ti-arrow-left"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"> 数据概览 </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-bell"></i>
+                                    <span class="notification">6</span>
+                                    <p class="hidden-lg hidden-md">
+                                        Notifications
+                                        <b class="caret"></b>
+                                    </p>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">You have 5 new messages</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">You're now friend with Mike</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Wish Mary on her birthday!</a>
+                                    </li>                                    <li>
+                                        <a href="#">5 warnings in Server Console</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Jane completed 'Induction Training'</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">'Prepare Marketing Report' is overdue</a>
+                                    </li>
+                                </ul>
+                            </li>
+							<!--<li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-layout-grid3-alt"></i>
+                                    <p class="hidden-lg hidden-md">Apps</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-user"></i>
+                                    <p class="hidden-lg hidden-md">Profile</p>
+                                </a>
+                            </li>
+							<li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-settings"></i>
+                                    <p class="hidden-lg hidden-md">Settings</p>
+                                </a>
+                            </li>-->
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big icon-warning text-center">
+												<i class="ti-stats-up"></i>
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p>播放次数</p>
+												34
+											</div>
+										</div>
+									</div>
+								</div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="ti-alert text-warning"></i> 比上月下降65％
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big icon-danger text-center">
+												<i class="ti-receipt"></i>
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p>作业提交</p>
+												23
+											</div>
+										</div>
+									</div>
+								</div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="ti-tag text-warning"></i> 本月所有开设课程作业提交总次数
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big icon-success text-center">
+												<i class="ti-calendar"></i>
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p>实验报告</p>
+												2
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+                                    <div class="stats">
+                                        <i class="ti-calendar"></i> 本月所有开设课程实验报告提交总次数
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big icon-info text-center">
+												<i class="ti-twitter"></i>
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p>本月新增学员</p>
+												+4
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> 刚更新
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card" style="min-height: 350px">
+                                <div class="header card-header-icon">
+
+                                    <h4 class="title"><i class="ti-pulse"></i> 播放趋势
+                                    </h4>
+                                </div>
+                                <div class="content">
+                                    <div class="chart-edge">
+                                        <div id="line-chart" class="demo-placeholder"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="card card-circle-chart" data-background="color" data-color="orange" style="min-height: 350px">
+								<div class="header text-center">
+	                                <h5 class="title">作业按时完成度</h5>
+	                                <p class="description">过去30天</p>
+	                            </div>
+								<div class="content">
+									<div id="chartNewVisitors" class="chart-circle" data-percent="95">95%</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="card card-circle-chart" data-background="color" data-color="brown" style="min-height: 350px">
+								<div class="header text-center">
+	                                <h5 class="title">实验按时完成度</h5>
+	                                <p class="description">过去30天</p>
+	                            </div>
+								<div class="content">
+									<div id="chartSubscriptions" class="chart-circle" data-percent="9">9%</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card" style="min-height: 485px">
+                                <div class="header card-header-text">
+                                    <h4 class="title">学生统计数据</h4>
+                                    <p class="category">最近加入课程学习的学生</p>
+                                </div>
+                                <div class="content table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-primary">
+											<tr>
+												<th>ID</th>
+												<th>昵称</th>
+												<th>班级</th>
+												<th>时间</th>
+											</tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>计科1610101</td>
+                                                <td>计科一班</td>
+                                                <td>2019-05-23 17:58:13</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>计科1610102</td>
+                                                <td>计科一班</td>
+                                                <td>2019-05-14 19:14:35</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>计科1610103</td>
+                                                <td>计科一班</td>
+                                                <td>2019-04-10 21:07:54</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>计科1610105</td>
+                                                <td>计科一班</td>
+                                                <td>2019-03-31 17:48:08</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>计科1610106</td>
+                                                <td>计科一班</td>
+                                                <td>2019-03-23 12:03:20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>计科1610108</td>
+                                                <td>计科一班</td>
+                                                <td>2019-03-18 22:19:17</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>计科1610111</td>
+                                                <td>计科一班</td>
+                                                <td>2019-03-03 17:15:57</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    	<div class="col-lg-6 col-md-12">
+                            <div class="card" style="min-height: 485px">
+                                <div class="header">
+                                    <h4 class="title">学生活动痕迹</h4>
+                                </div>
+                                <div class="content">
+									<div class="streamline">
+										<div class="sl-item sl-primary">
+											<div class="sl-content">
+												<small class="text-muted">5分钟前</small>
+												<p>学员<a>zz1208</a>加入课程学习<a>课程测试</a></p>
+											</div>
+										</div>
+										<div class="sl-item sl-danger">
+											<div class="sl-content">
+												<small class="text-muted">25分钟前</small>
+												<p>学员<a>计科吴彦祖</a>回答了问题<a>怎样搭建Maven环境</a></p>
+											</div>
+										</div>
+										<div class="sl-item sl-success">
+											<div class="sl-content">
+												<small class="text-muted">40分钟前</small>
+												<p>学员<a>计科16101李小龙</a>完成了作业<a>密码学第一次作业</a></p>
+											</div>
+										</div>
+										<div class="sl-item">
+											<div class="sl-content">
+												<small class="text-muted">45分钟前</small>
+												<p>学员<a>计科16101王五</a>完成了<a>Maven</a>课时<a>Redis五种数据类型</a>的学习</p>
+											</div>
+										</div>
+										<div class="sl-item sl-warning">
+											<div class="sl-content">
+												<small class="text-muted">55分钟前</small>
+												<p>学员<a>l898</a>在课程<a>Maven</a>中发表了问题<a>怎样搭建Maven环境</a></p>
+											</div>
+										</div>
+										<div class="sl-item">
+											<div class="sl-content">
+												<small class="text-muted">60分钟前</small>
+												<p>学员<a>计科16101李四</a>完成了作业<a>密码学第一次作业</a></p>
+											</div>
+										</div>
+									</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header card-header-icon">
+                                    <h4 class="title"><i class="ti-world"></i> Global Sales by Top Locations</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="table-responsive table-sales">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="assets/img/flags/US.png" alt="">
+                                                                </div>
+                                                            </td>
+                                                            <td>USA</td>
+                                                            <td class="text-right">
+                                                                2.920
+                                                            </td>
+                                                            <td class="text-right">
+                                                                53.23%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="assets/img/flags/DE.png" alt="">
+                                                                </div>
+                                                            </td>
+                                                            <td>Germany</td>
+                                                            <td class="text-right">
+                                                                1.300
+                                                            </td>
+                                                            <td class="text-right">
+                                                                20.43%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="assets/img/flags/AU.png" alt="">
+                                                                </div>
+                                                            </td>
+                                                            <td>Australia</td>
+                                                            <td class="text-right">
+                                                                760
+                                                            </td>
+                                                            <td class="text-right">
+                                                                10.35%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="assets/img/flags/GB.png" alt="">
+                                                                </div>
+                                                            </td>
+                                                            <td>United Kingdom</td>
+                                                            <td class="text-right">
+                                                                690
+                                                            </td>
+                                                            <td class="text-right">
+                                                                7.87%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="assets/img/flags/RO.png" alt="">
+                                                                </div>
+                                                            </td>
+                                                            <td>Romania</td>
+                                                            <td class="text-right">
+                                                                600
+                                                            </td>
+                                                            <td class="text-right">
+                                                                5.94%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="assets/img/flags/BR.png" alt="">
+                                                                </div>
+                                                            </td>
+                                                            <td>Brasil</td>
+                                                            <td class="text-right">
+                                                                550
+                                                            </td>
+                                                            <td class="text-right">
+                                                                4.34%
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-md-offset-1">
+                                            <div id="worldMap" class="map"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer"></footer>
+        </div>
+
+    </div>
+<!--   Core JS Files   -->
+<script src="assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
+<script src="assets/vendors/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/vendors/material.min.js" type="text/javascript"></script>
+<script src="assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<!-- Forms Validations Plugin -->
+<script src="assets/vendors/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../../JS/LoginPC.js"></script>
+<!--<script type="text/javascript" src="../../JS/navigation.js"></script>-->
+<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+<script src="assets/vendors/moment.min.js"></script>
+<!--  Charts Plugin -->
+<script src="assets/vendors/charts/flot/jquery.flot.js"></script>
+<script src="assets/vendors/charts/flot/jquery.flot.resize.js"></script>
+<script src="assets/vendors/charts/flot/jquery.flot.pie.js"></script>
+<script src="assets/vendors/charts/flot/jquery.flot.stack.js"></script>
+<script src="assets/vendors/charts/flot/jquery.flot.categories.js"></script>
+<script src="assets/vendors/charts/chartjs/Chart.min.js" type="text/javascript"></script>
+
+<!--  Plugin for the Wizard -->
+<script src="assets/vendors/jquery.bootstrap-wizard.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/vendors/bootstrap-notify.js"></script>
+<!-- DateTimePicker Plugin -->
+<script src="assets/vendors/bootstrap-datetimepicker.js"></script>
+<!-- Vector Map plugin -->
+<script src="assets/vendors/jquery-jvectormap.js"></script>
+<!-- Sliders Plugin -->
+<script src="assets/vendors/nouislider.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyAurmSUEQDwY86-wOG3kCp855tCI8lHL-I"></script>
+<!-- Select Plugin -->
+<script src="assets/vendors/jquery.select-bootstrap.js"></script>
+
+<!--  Checkbox, Radio, Switch and Tags Input Plugins -->
+<script src="assets/js/bootstrap-checkbox-radio-switch-tags.js"></script>
+
+<!-- Circle Percentage-chart -->
+<script src="assets/js/jquery.easypiechart.min.js"></script>
+
+<!--  DataTables.net Plugin    -->
+<script src="assets/vendors/jquery.datatables.js"></script>
+<!-- Sweet Alert 2 plugin -->
+<script src="assets/vendors/sweetalert/js/sweetalert2.min.js"></script>
+<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="assets/vendors/jasny-bootstrap.min.js"></script>
+<!--  Full Calendar Plugin    -->
+<script src="assets/vendors/fullcalendar.min.js"></script>
+<!-- TagsInput Plugin -->
+<script src="assets/vendors/jquery.tagsinput.js"></script>
+<!-- Material Dashboard javascript methods -->
+<script src="assets/js/amaze.js"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
+
+<script src="assets/js/charts/flot-charts.js"></script>
+<script src="assets/js/charts/chartjs-charts.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//$('#navigation').load('../navigation_dark.html');
+		demo.initVectorMap();
+		demo.initCirclePercentage();
+	});
+</script>
+</body>
