@@ -116,6 +116,7 @@ function search_tips() {
                         }
                     );
                     list_tips.click(function(){
+                        console.log('!!!');
                         $('#search_input').val($(this).text());
                         $('.title_list_box').hide();
                     });
@@ -127,8 +128,11 @@ function search_tips() {
 }
 
 function hide_tips(){
-    $('.title_list').html('');
-    $('.title_list_box').hide()
+    //$('.title_list').html('');
+    setTimeout(function() {
+        $('.title_list_box').hide()
+    }, 600);
+
 }
 
 let cookie = {

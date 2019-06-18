@@ -41,7 +41,7 @@ function login() {
         data:data,
         dataType:'json',
         success:function (msg) {
-            console.log(msg);
+            //console.log(msg);
             if (msg.state === 1) {
                 $("#loginError").text("用户名错误或未激活").show();
             }
@@ -77,6 +77,7 @@ function setCookie(msg,username,password) {
         last_time.push(msg.history[i].last_time);
         schedule.push(msg.history[i].schedule);
     }
+    //console.log(msg);
     cookie.set('user',username);
     cookie.set('class_id',class_id);
     cookie.set('class_title',class_title);

@@ -67,7 +67,7 @@ public class save_image extends HttpServlet {
         SqlSession sqlSession = GetSqlSessionFactory.getSqlSession();
         UserDAO ul = sqlSession.getMapper(UserDAO.class);
         PrintWriter out = response.getWriter();
-        out.print(ul.change_head(username, head_image));
+        out.print(ul.change_head(head_image,username));
         out.flush();
         out.close();
     }

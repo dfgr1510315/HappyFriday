@@ -99,11 +99,6 @@ function post_head_image(_blob) {
         processData: false,//用于对data参数进行序列化处理 这里必须false
         contentType: false, //必须
         success: function (jsonObj) {
-            $('#pc_head_image').attr('src', contextPath + jsonObj.file_add);
-            $('#head_image').attr('src', contextPath + jsonObj.file_add);
-            $('#radio_cover_img').attr('src', contextPath + jsonObj.file_add);
-            $('#radio_cover').attr('src', contextPath + head_image);
-            cookie.set('head_image', jsonObj.file_add);
             $.ajax({
                 url: contextPath + "/save_image",
                 data: {
@@ -113,8 +108,14 @@ function post_head_image(_blob) {
                 type: "POST",
                 dataType: "json",
                 success: function (msg) {
+                    console.log(msg);
                     if (msg === 1) {
                         alert('修改成功');
+                        $('#pc_head_image').attr('src', contextPath + jsonObj.file_add);
+                        $('#head_image').attr('src', contextPath + jsonObj.file_add);
+                        $('#radio_cover_img').attr('src', contextPath + jsonObj.file_add);
+                        $('#radio_cover').attr('src', contextPath + head_image);
+                        cookie.set('head_image', jsonObj.file_add);
                         $('#am-close_a').click();
                     }
                     else alert('修改失败')
