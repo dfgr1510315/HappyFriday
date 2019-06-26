@@ -86,58 +86,6 @@
                         </button>
                         <a class="navbar-brand" href="#"> 数据概览 </a>
                     </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <span class="notification">6</span>
-                                    <p class="hidden-lg hidden-md">
-                                        Notifications
-                                        <b class="caret"></b>
-                                    </p>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">You have 5 new messages</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">You're now friend with Mike</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Wish Mary on her birthday!</a>
-                                    </li>                                    <li>
-                                        <a href="#">5 warnings in Server Console</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Jane completed 'Induction Training'</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">'Prepare Marketing Report' is overdue</a>
-                                    </li>
-                                </ul>
-                            </li>
-							<!--<li>
-                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-layout-grid3-alt"></i>
-                                    <p class="hidden-lg hidden-md">Apps</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-user"></i>
-                                    <p class="hidden-lg hidden-md">Profile</p>
-                                </a>
-                            </li>
-							<li>
-                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-settings"></i>
-                                    <p class="hidden-lg hidden-md">Settings</p>
-                                </a>
-                            </li>-->
-                            <li class="separator hidden-lg hidden-md"></li>
-                        </ul>
-                    </div>
                 </div>
             </nav>
             <div class="content">
@@ -228,7 +176,7 @@
 										<div class="col-xs-7">
 											<div class="numbers">
 												<p>本月新增学员</p>
-												+4
+												+9
 											</div>
 										</div>
 									</div>
@@ -242,42 +190,45 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="card" style="min-height: 350px">
+                        <div class="col-md-12">
+                            <div class="card" style="min-height: 500px">
                                 <div class="header card-header-icon">
-
                                     <h4 class="title"><i class="ti-pulse"></i> 播放趋势
                                     </h4>
                                 </div>
                                 <div class="content">
                                     <div class="chart-edge">
-                                        <div id="line-chart" class="demo-placeholder"></div>
+                                        <div id="line-chart" style="height: 500px;" class="demo-placeholder"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-						<div class="col-lg-3 col-sm-6">
-							<div class="card card-circle-chart" data-background="color" data-color="orange" style="min-height: 350px">
-								<div class="header text-center">
-	                                <h5 class="title">作业按时完成度</h5>
-	                                <p class="description">过去30天</p>
-	                            </div>
-								<div class="content">
-									<div id="chartNewVisitors" class="chart-circle" data-percent="95">95%</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-6">
-							<div class="card card-circle-chart" data-background="color" data-color="brown" style="min-height: 350px">
-								<div class="header text-center">
-	                                <h5 class="title">实验按时完成度</h5>
-	                                <p class="description">过去30天</p>
-	                            </div>
-								<div class="content">
-									<div id="chartSubscriptions" class="chart-circle" data-percent="9">9%</div>
-								</div>
-							</div>
-						</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="card card-circle-chart" data-background="color" data-color="orange" style="min-height: 350px">
+                                    <div class="header text-center">
+                                        <h5 class="title">作业按时完成度</h5>
+                                        <p class="description">过去30天</p>
+                                    </div>
+                                    <div class="content">
+                                        <div id="chartNewVisitors" class="chart-circle" data-percent="95">95%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="card card-circle-chart" data-background="color" data-color="brown" style="min-height: 350px">
+                                    <div class="header text-center">
+                                        <h5 class="title">实验按时完成度</h5>
+                                        <p class="description">过去30天</p>
+                                    </div>
+                                    <div class="content">
+                                        <div id="chartSubscriptions" class="chart-circle" data-percent="9">9%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
@@ -353,37 +304,37 @@
 									<div class="streamline">
 										<div class="sl-item sl-primary">
 											<div class="sl-content">
-												<small class="text-muted">5分钟前</small>
+												<small class="text-muted">2019-6-17 13:59:24</small>
 												<p>学员<a>zz1208</a>加入课程学习<a>课程测试</a></p>
 											</div>
 										</div>
 										<div class="sl-item sl-danger">
 											<div class="sl-content">
-												<small class="text-muted">25分钟前</small>
+												<small class="text-muted">2019-6-16 16:39:53</small>
 												<p>学员<a>计科吴彦祖</a>回答了问题<a>怎样搭建Maven环境</a></p>
 											</div>
 										</div>
 										<div class="sl-item sl-success">
 											<div class="sl-content">
-												<small class="text-muted">40分钟前</small>
+												<small class="text-muted">2019-6-15 21:28:19</small>
 												<p>学员<a>计科16101李小龙</a>完成了作业<a>密码学第一次作业</a></p>
 											</div>
 										</div>
 										<div class="sl-item">
 											<div class="sl-content">
-												<small class="text-muted">45分钟前</small>
+												<small class="text-muted">2019-6-5 15:42:26</small>
 												<p>学员<a>计科16101王五</a>完成了<a>Maven</a>课时<a>Redis五种数据类型</a>的学习</p>
 											</div>
 										</div>
 										<div class="sl-item sl-warning">
 											<div class="sl-content">
-												<small class="text-muted">55分钟前</small>
+												<small class="text-muted">2019-5-25 11:34:52</small>
 												<p>学员<a>l898</a>在课程<a>Maven</a>中发表了问题<a>怎样搭建Maven环境</a></p>
 											</div>
 										</div>
 										<div class="sl-item">
 											<div class="sl-content">
-												<small class="text-muted">60分钟前</small>
+												<small class="text-muted">2019-5-25 10:20:38</small>
 												<p>学员<a>计科16101李四</a>完成了作业<a>密码学第一次作业</a></p>
 											</div>
 										</div>
@@ -397,110 +348,340 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="header card-header-icon">
-                                    <h4 class="title"><i class="ti-world"></i> Global Sales by Top Locations</h4>
+                                    <h4 class="title"><i class="ti-world"></i> 课程播放来源地区</h4>
                                 </div>
                                 <div class="content">
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <div class="table-responsive table-sales">
                                                 <table class="table">
                                                     <tbody>
                                                         <tr>
-                                                            <td>
-                                                                <div class="flag">
-                                                                    <img src="assets/img/flags/US.png" alt="">
-                                                                </div>
-                                                            </td>
-                                                            <td>USA</td>
+                                                            <td>湖南</td>
                                                             <td class="text-right">
-                                                                2.920
+                                                                34
                                                             </td>
                                                             <td class="text-right">
-                                                                53.23%
+                                                                100%
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <div class="flag">
-                                                                    <img src="assets/img/flags/DE.png" alt="">
-                                                                </div>
-                                                            </td>
-                                                            <td>Germany</td>
+                                                            <td>北京</td>
                                                             <td class="text-right">
-                                                                1.300
+                                                                0
                                                             </td>
                                                             <td class="text-right">
-                                                                20.43%
+                                                                0%
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <div class="flag">
-                                                                    <img src="assets/img/flags/AU.png" alt="">
-                                                                </div>
-                                                            </td>
-                                                            <td>Australia</td>
+                                                            <td>天津</td>
                                                             <td class="text-right">
-                                                                760
+                                                                0
                                                             </td>
                                                             <td class="text-right">
-                                                                10.35%
+                                                                0%
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <div class="flag">
-                                                                    <img src="assets/img/flags/GB.png" alt="">
-                                                                </div>
-                                                            </td>
-                                                            <td>United Kingdom</td>
+                                                            <td>上海</td>
                                                             <td class="text-right">
-                                                                690
+                                                                0
                                                             </td>
                                                             <td class="text-right">
-                                                                7.87%
+                                                                0%
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <div class="flag">
-                                                                    <img src="assets/img/flags/RO.png" alt="">
-                                                                </div>
-                                                            </td>
-                                                            <td>Romania</td>
+                                                            <td>重庆</td>
                                                             <td class="text-right">
-                                                                600
+                                                                0
                                                             </td>
                                                             <td class="text-right">
-                                                                5.94%
+                                                                0%
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <div class="flag">
-                                                                    <img src="assets/img/flags/BR.png" alt="">
-                                                                </div>
-                                                            </td>
-                                                            <td>Brasil</td>
+                                                            <td>河北</td>
                                                             <td class="text-right">
-                                                                550
+                                                                0
                                                             </td>
                                                             <td class="text-right">
-                                                                4.34%
+                                                                0%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>河南</td>
+                                                            <td class="text-right">
+                                                                0
+                                                            </td>
+                                                            <td class="text-right">
+                                                                0%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>云南</td>
+                                                            <td class="text-right">
+                                                                0
+                                                            </td>
+                                                            <td class="text-right">
+                                                                0%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>宁夏</td>
+                                                            <td class="text-right">
+                                                                0
+                                                            </td>
+                                                            <td class="text-right">
+                                                                0%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>海南</td>
+                                                            <td class="text-right">
+                                                                0
+                                                            </td>
+                                                            <td class="text-right">
+                                                                0%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>台湾</td>
+                                                            <td class="text-right">
+                                                                0
+                                                            </td>
+                                                            <td class="text-right">
+                                                                0%
                                                             </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-md-offset-1">
-                                            <div id="worldMap" class="map"></div>
+                                        <div class="col-md-4">
+                                            <div class="table-responsive table-sales">
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>山东</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>江苏</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>浙江</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>江西</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>湖北</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>广西</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>甘肃</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>山西</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>内蒙古</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>澳门</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>香港</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="table-responsive table-sales">
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>辽宁</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>黑龙江</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>安徽</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>陕西</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>吉林</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>福建</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>贵州</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>青海</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>西藏</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>四川</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>广东</td>
+                                                        <td class="text-right">
+                                                            0
+                                                        </td>
+                                                        <td class="text-right">
+                                                            0%
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5" style="height: 634px;width: 902px;">
+                                            <div id="ChinaMap" class="map" style="height: 100%;width: 100%"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <footer class="footer"></footer>
@@ -564,13 +745,214 @@
 <script src="assets/js/demo.js"></script>
 
 <script src="assets/js/charts/flot-charts.js"></script>
-<script src="assets/js/charts/chartjs-charts.js"></script>
-
+<script type="text/javascript"  src="../../JS/echarts.min.js"></script>
+<script type="text/javascript" src="assets/js/charts/china.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		//$('#navigation').load('../navigation_dark.html');
 		demo.initVectorMap();
 		demo.initCirclePercentage();
+        lineChart()
 	});
+
+    let option = {
+        title : {
+            text: '课程播放来源地区',
+            subtext: '总播放量',
+            left: 'center'
+        },
+        tooltip : {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data:['播放量']
+        },
+        visualMap: {
+            min: 0,
+            max: 50,
+            left: 'left',
+            top: 'bottom',
+            text:['高','低'],           // 文本，默认为数值文本
+            calculable : true
+        },
+        toolbox: {
+            show: true,
+            orient : 'vertical',
+            left: 'right',
+            top: 'center',
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        series : [
+            {
+                name: 'iphone3',
+                type: 'map',
+                mapType: 'china',
+                roam: false,
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                data:[
+                    {name: '北京',value: 0},
+                    {name: '天津',value: 0},
+                    {name: '上海',value: 0},
+                    {name: '重庆',value: 0},
+                    {name: '河北',value: 0},
+                    {name: '河南',value: 0},
+                    {name: '云南',value: 0},
+                    {name: '辽宁',value: 0},
+                    {name: '黑龙江',value: 0},
+                    {name: '湖南',value: 34},
+                    {name: '安徽',value: 0},
+                    {name: '山东',value: 0},
+                    {name: '新疆',value: 0},
+                    {name: '江苏',value: 0},
+                    {name: '浙江',value: 0},
+                    {name: '江西',value: 0},
+                    {name: '湖北',value: 0},
+                    {name: '广西',value: 0},
+                    {name: '甘肃',value: 0},
+                    {name: '山西',value: 0},
+                    {name: '内蒙古',value: 0},
+                    {name: '陕西',value: 0},
+                    {name: '吉林',value: 0},
+                    {name: '福建',value: 0},
+                    {name: '贵州',value: 0},
+                    {name: '广东',value: 0},
+                    {name: '青海',value: 0},
+                    {name: '西藏',value: 0},
+                    {name: '四川',value: 0},
+                    {name: '宁夏',value: 0},
+                    {name: '海南',value: 0},
+                    {name: '台湾',value: 0},
+                    {name: '香港',value: 0},
+                    {name: '澳门',value: 0}
+                ]
+            },
+        ]
+    };
+    //初始化echarts实例
+    let myChart = echarts.init(document.getElementById('ChinaMap'));
+    //使用制定的配置项和数据显示图表
+    myChart.setOption(option);
+
+
+    function lineChart(){
+        let time = [];
+        let zero = [];
+        for (let i = 30; i > 0; i--) {
+            let curDate = new Date();
+            time.push(new Date(curDate.setDate(curDate.getDate() - i)).Format("yyyyMMdd"));
+            zero.push(0);
+        }
+        specs(time);
+        option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['Maven','课程测试','数据结构','计算机网络','微机原理',"操作系统", "软件开发技术"]
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '0%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: time
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name:'Maven',
+                    type:'line',
+                    stack: '总量',
+                    data:[0,0,0,0,0,1,2,5,0,1,2,6,1,0,2,0,1,1,5,1,3,7,5,0,1,0,0,5,0,1]
+                },
+                {
+                    name:'课程测试',
+                    type:'line',
+                    stack: '总量',
+                    data:[1,0,2,6,8,9,11,1,2,5,2,1,0,6,5,2,0,0,0,2,1,4,2,3,1,5,0,2,1,2]
+                },
+                {
+                    name:'数据结构',
+                    type:'line',
+                    stack: '总量',
+                    data:zero
+                },
+                {
+                    name:'计算机网络',
+                    type:'line',
+                    stack: '总量',
+                    data:zero
+                },
+                {
+                    name:'微机原理',
+                    type:'line',
+                    stack: '总量',
+                    data:zero
+                },
+                {
+                    name:'操作系统',
+                    type:'line',
+                    stack: '总量',
+                    data:zero
+                },
+                {
+                    name:'软件开发技术',
+                    type:'line',
+                    stack: '总量',
+                    data:[0,1,2,5,8,11,1,5,2,3,2,1,0,0,0,5,0,0,0,2,1,3,1,0,0,3,1,2,0,0]
+                }
+            ]
+        };
+        myChart = echarts.init(document.getElementById('line-chart'));
+        myChart.setOption(option);
+    }
+
+    Date.prototype.Format = function (fmt) {
+        let o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "H+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    };
+
+
+    function specs(time) {
+        for (let i = 0; i < time.length; i++) {
+            time[i] = time[i].slice(0, 4) + '-' + time[i].slice(4, 6) + '-' + time[i].slice(6)
+        }
+    }
 </script>
 </body>

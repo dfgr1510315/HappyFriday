@@ -88,13 +88,13 @@ function FromStudent(){
             data: {
                 datasets: [{
                     data: [
-                        11,
-                        14,
-                        25,
-                        14,
-                        22,
-                        50,
-                        33
+                        1,
+                        0,
+                        2,
+                        1,
+                        2,
+                        0,
+                        3
                     ],
                     backgroundColor: [
                         "#36A2EB",
@@ -135,13 +135,13 @@ function ClassStudent(){
             data: {
                 datasets: [{
                     data: [
-                        11,
-                        14,
-                        25,
-                        14,
-                        22,
-                        50,
-                        33
+                        1,
+                        1,
+                        7,
+                        1,
+                        3,
+                        5,
+                        3
                     ],
                     backgroundColor: [
                         "#36A2EB",

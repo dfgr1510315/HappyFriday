@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "Get_Teaching")
 public class Get_Teaching extends HttpServlet {
@@ -80,8 +81,9 @@ public class Get_Teaching extends HttpServlet {
         int returnId = cdl.add_class(username, Class_Name, type);
         jsonObj.put("class_id", returnId);
         HttpSession session = request.getSession();
-        String class_id = (String) session.getAttribute("class_id");
-        session.setAttribute("class_id", class_id + "," + returnId);
+        List<String> class_id = (List<String>) session.getAttribute("class_id");
+        //System.out.println(session.getAttribute("class_id"));
+        session.setAttribute("class_id", class_id.add(Integer.toString(returnId)));
         out.print(jsonObj);
         out.flush();
         out.close();

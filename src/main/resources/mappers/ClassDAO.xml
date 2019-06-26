@@ -80,7 +80,7 @@
     </select>
 
     <update id="set_cover">
-        update class_teacher_table set cover_address=#{arg0} where class_id=#{arg1}
+        update class_teacher_table set cover_address=#{arg1} where class_id=#{arg0}
     </update>
 
     <update id="save_viewed">

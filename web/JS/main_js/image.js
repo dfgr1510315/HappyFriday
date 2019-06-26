@@ -37,8 +37,9 @@ function post_cover_image(event) {
             processData: false,//用于对data参数进行序列化处理 这里必须false
             contentType: false, //必须
             success: function (jsonObj) {
-                $('#cover').attr('src',contextPath+jsonObj.head_address);
-                new_cover = jsonObj.head_address;
+               // console.log(jsonObj);
+                $('#cover').attr('src',contextPath+jsonObj.file_add);
+                new_cover = jsonObj.file_add;
             }
         });
     }
@@ -54,7 +55,8 @@ function save_cover_image() {
         type: "POST",
         dataType: "json",
         success: function (jsonObj) {
-            if (jsonObj===true) {
+            //console.log(jsonObj);
+            if (jsonObj===1) {
                 cookie.set('class_cover'+No,new_cover);
                 $('#ui-box-cover').attr('src',contextPath+new_cover);
                 $('#radio_cover').attr('src',contextPath+cookie.get('class_cover'+No));

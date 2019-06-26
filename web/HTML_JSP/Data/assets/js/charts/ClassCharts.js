@@ -180,31 +180,22 @@ $(function () {
    /*---------------------
     ----- AREA CHART -----
     ---------------------*/
+	let time = [];
+	for (let i = 30; i > 0; i--) {
+		let curDate = new Date();
+		time.push(new Date(curDate.setDate(curDate.getDate() - i)).Format("yyyyMMdd"));
+	}
+	specs(time);
 
 	var config = {
 		type: 'line',
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+			labels: time,
                 datasets: [{
                     label: "当日所有课程总播放次数",
                     backgroundColor: "#FF8A80",
                     borderColor: "#FF8A80",
-                    data: [
-                        45, 
-                        75, 
-                        26, 
-                        23, 
-                        60, 
-                        48, 
-                        9,
-                        45, 
-                        75, 
-                        26, 
-                        23, 
-                        60, 
-                        48, 
-                        9
-                    ],
+                    data: [20, 35, 26, 23, 10, 18, 9, 15, 21, 26, 23, 10, 11, 9,6,11,22,12,15,26,15,18,17,6,8,24,13,19,5,8],
                     fill: true,
                 }]
             },
@@ -394,3 +385,27 @@ $(function () {
 	}
 	
 });
+
+
+	Date.prototype.Format = function (fmt) {
+		let o = {
+			"M+": this.getMonth() + 1, //月份
+			"d+": this.getDate(), //日
+			"H+": this.getHours(), //小时
+			"m+": this.getMinutes(), //分
+			"s+": this.getSeconds(), //秒
+			"q+": Math.floor((this.getMonth() + 3) / 3), //季度
+			"S": this.getMilliseconds() //毫秒
+		};
+		if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+		for (var k in o)
+			if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+		return fmt;
+	};
+
+
+	function specs(time) {
+		for (let i = 0; i < time.length; i++) {
+			time[i] = time[i].slice(0, 4) + '-' + time[i].slice(4, 6) + '-' + time[i].slice(6)
+		}
+	}
