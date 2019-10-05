@@ -1,5 +1,5 @@
 # HappyFriday 
-611网课系统：[点击查看功能简介](https://github.com/dfgr1510315/HappyFriday/blob/ServerTest/Introduction)  
+611网课系统：[点击查看功能简介](https://github.com/dfgr1510315/HappyFriday/blob/ServerTest/Introduction.md)  
 
 ### 版本更新日志
 
