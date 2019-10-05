@@ -21,7 +21,7 @@
 ![](https://github.com/dfgr1510315/HappyFriday/blob/ServerTest/SysImage/Img12.png)<br><br>
 
 学员管理<br>
-![](https://github.com/dfgr1510315/HappyFriday/blob/ServerTest/SysImage/Img14.png)<br><br>
+![](https://github.com/dfgr1510315/HappyFriday/blob/ServerTest/SysImage/图片14.png)<br><br>
 
 ### 数据中心(因个人开发时间和精力有限只完成了部分功能)
 ![](https://github.com/dfgr1510315/HappyFriday/blob/ServerTest/SysImage/Img13.png)<br><br>
