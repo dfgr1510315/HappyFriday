@@ -1,5 +1,5 @@
 # HappyFriday 
-611网课系统
+611网课系统：[点击查看功能简介](http://blog.csdn.net/guodongxiaren )  
 
 ### 版本更新日志
 
