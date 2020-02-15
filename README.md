@@ -1,6 +1,6 @@
 # HappyFriday 
 611网课：[点击查看功能简介](https://github.com/dfgr1510315/HappyFriday/blob/ServerTest/Introduction.md) <br>
-访问地址：http://www.cyber611.com/LJZ/HTML_JSP/homepage.html
+访问地址：http://www.cyber611.com/LJZ/HTML_JSP/homepage.html 账号：admin 密码：l123456
 
 个人第一个系统：<br>
 大三写的，属于摸石头过河，面向搜索引擎编程。<br>
